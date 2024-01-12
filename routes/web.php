@@ -24,6 +24,10 @@ Route::get('/', function () {
     return Inertia::render('LandingPage');
 });
 
+Route::get('/v2', function () {
+    return Inertia::render('LandingPagev2');
+});
+
 // Route::inertia('/vehicles/{id}', 'VehiclePage');
 Route::get('/vehicles/{id}', function () {
     return Inertia::render('VehiclePage');
@@ -33,6 +37,8 @@ Route::inertia('vehicles', 'Dashboard/Vehicles');
 Route::post('/get/vehicle/data', [VehicleController::class, 'getVehicle']);
 
 Route::inertia('company', 'Dashboard/CreateCompany');
+Route::inertia('index', 'Dashboard/Index');
+Route::inertia('suppliers', 'Dashboard/Suppliers');
 
 Route::get('get/categories', [VehicleController::class, 'getCategories']);
 Route::get('get/specifications', [VehicleController::class, 'getSpecifications']);
@@ -82,7 +88,7 @@ Route::middleware(['admin'])->group(function () {
     Route::inertia('specifications', 'Dashboard/Specifications');
     Route::post('post/specifications', [VehicleController::class, 'createSpecifications']);
     Route::post('delete/specifications', [VehicleController::class, 'deleteSpecifications']);
-    
+
     Route::inertia('memberships', 'Dashboard/Memberships');
     Route::get('get/requests', [UserController::class, 'memberships']);
     Route::post('accept/requests', [UserController::class, 'acceptMemberships']);
@@ -102,6 +108,7 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::inertia('vehicle', 'Dashboard/CreateVehicle');
     Route::post('post/vehicles', [VehicleController::class, 'create']);
     Route::post('delete/vehicles', [VehicleController::class, 'destroy']);
+    Route::inertia('price-list', 'Dashboard/PriceList');
 
     Route::post('accept/rentals', [VehicleController::class, 'acceptRentals']);
     Route::post('delete/rentals', [VehicleController::class, 'deleteRentals']);

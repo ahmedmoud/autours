@@ -1,207 +1,245 @@
 <template>
     <body>
-        <div id="wrapper">
-            <!-- header begin -->
-            <header-one />
-            <!-- header close -->
-            <!-- content begin -->
-            <div class="no-bottom no-top zebra" id="content">
-                <div id="top"></div>
+    <div id="wrapper">
+        <!-- header begin -->
+        <header-one/>
+        <!-- header close -->
+        <!-- content begin -->
+        <div class="" style="background: #ececec" id="content">
+            <div id="top"></div>
+            <section id="section-cars">
+                <center class="col-md-12  mb-5">
+                    <button class="mr-2 btn  " style="width:420px; background: #f9d602; color: #000;"><span
+                        class="ti ti-circle-number-1 mr-2"/>Choose Your Location
+                    </button>
+                    <button class="mr-2 btn  active" style="width:420px; background: rgb(155,147,84);color: #000;"><span
+                        class="ti ti-circle-number-2 mr-2"/>Choose Your Car
+                    </button>
+                    <button class="btn" style="width:420px; background: #f9d602; color: #000;"><span
+                        class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
+                    </button>
+                </center>
+                <div class="container">
+                    <div class="row">
 
-                <!-- section begin -->
-                <section id="subheader" class="jarallax text-light">
-                    <img src="images/background/2.jpg" class="jarallax-img" alt="" style="object-fit: cover;
-                            object-position: center;
-                            max-width: none;
-                            position: absolute;
-                            top: 0px;
-                            left: 0px;
-                            overflow: hidden;
-                            pointer-events: none;
-                            transform-style: preserve-3d;
-                            backface-visibility: hidden;
-                            will-change: transform, opacity;
-                            margin-top: 161.5px;
-                            transform: translate3d(0px, -161.5px, 0px);
-                        " />
-                    <div class="center-y relative text-center">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <h1>
-                                        <span v-loading="loading">
-                                            {{ count }}
-                                        </span>
-                                        &nbsp; Cars Listings Found
-                                    </h1>
+
+                        <div class="col-lg-3">
+                            <div class="col-md-12 pb-4" style="background: #fff;">
+                                <div class="p-1" style="background: #e1e1e1; width: 108.9%; margin-left: -12px; margin-top: 10px;">
+                                    <h5 class="p-2">YOUR SEARCH DETAILS</h5>
                                 </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- section close -->
+                                <div class=" mt-3 row" style="background: #fff;">
+                                    <h5>PICK-UP - LOCATION </h5>
+                                    <span class=" col-md-1 ti ti-gps"></span>
+                                    <p class="col-md-11">{{ location }}</p>
+                                    <span class="col-md-6 ti ti-calendar">{{ date[0] }}</span>
+                                    <span class="col-md-3 ti ti-clock">00:00</span>
+                                </div>
+                                <hr/>
+                                <div class=" mt-3 row" style="background: #fff;">
+                                    <h5>DROP-OFF - LOCATION </h5>
+                                    <span class=" col-md-1 ti ti-gps"></span>
+                                    <p class="col-11">{{ location }}</p>
 
-                <section id="section-cars">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <div class="item_filter_group">
-                                    <h4>Vehicle Date</h4>
+                                    <span class="col-md-6 ti ti-calendar">{{ date[1] }}</span>
+                                    <span class="col-md-3 ti ti-clock">00:00</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 pb-4"></div>
+
+                            <div class="col-md-12 pb-4" style="background: #fff;">
+                                <div class="p-2 pt-3"
+                                     style="overflow: hidden; background: #e1e1e1; width: 108.9%; margin-left: -12px;">
+                                    <h5>FILTER BY</h5>
+                                </div>
+                                <div class="mt-3">
                                     <form class="trip-form mt-4 px-2" @submit.prevent="search">
                                         <div class="row align-items-center flex-column">
                                             <div class="w-100 mb-3">
-                                                <el-select class="w-100" v-model="location" size="large" filterable remote
-                                                    reserve-keyword placeholder="Pickup..." remote-show-suffix
-                                                    :remote-method="remoteLocations
-                                                        " :loading="locations.loading.value
-        ">
-                                                    <el-option v-for="item in locations
-                                                        .options.value" :key="item.id" :label="item" :value="item" />
+                                                <el-select class="w-100" v-model="location" size="large" filterable
+                                                           remote
+                                                           reserve-keyword placeholder="PICKUP..."
+                                                           remote-show-suffix
+                                                           :remote-method="remoteLocations"
+                                                           :loading="locations.loading.value">
+                                                    <el-option v-for="item in locations.all.value" :label="item" :value="item"/>
                                                 </el-select>
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-control-wrap">
                                                     <el-date-picker v-model="date" type="daterange" range-separator="To"
-                                                        start-placeholder="Start date" end-placeholder="End date"
-                                                        size="large" format="YYYY/MM/DD" value-format="YYYY-MM-DD" />
+                                                                    start-placeholder="Start date"
+                                                                    end-placeholder="End date"
+                                                                    size="large" format="YYYY/MM/DD"
+                                                                    value-format="YYYY-MM-DD"/>
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <input type="submit" value="Search" class="btn-main btn-fullwidth rounded-3"
-                                                    style="padding: 7px 25px" />
+                                                <input type="submit" value="Search"
+                                                       class="btn-main btn-fullwidth rounded-3"
+                                                       style="padding: 7px 25px"/>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="item_filter_group">
-                                    <h4>Price: <span class="price-range">{{ priceRange }}$</span></h4>
-                                    <el-slider v-model="priceRange" :min="min" :max="max" :show-tooltip="false"/>
+                                <div class="col-md-12 mt-2" style="background: #fff;">
+                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1" style="font-size: small;">{{priceRange }} - 10000$</span></h5>
+                                    <hr/>
+                                    <div class="row" style="margin-top: -20px">
+                                        <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="100000"/>
+                                    </div>
                                 </div>
-                                
-                                <div class="item_filter_group">
-                                    <h4>Vehicle Suppliers</h4>
-                                    <el-radio-group v-model="supplier"
-                                        class="radio d-flex flex-column align-items-start gap-10">
-                                        <el-radio v-for="supplier in filteredSuppliers" :label="supplier.id" size="large"
-                                            border>
+                                <div class="col-md-12 my-5" style="background: #fff;">
+                                    <h5 style="margin-bottom: -30px">CAR CATEGORIES</h5>
+                                    <hr/>
+                                    <div style="margin-top: -30px">
+                                        <div v-for="category in filteredCategories">
+                                            <el-checkbox :label="category.id"
+                                                         size="large"
+                                                         :model="category"
+                                            >
+                                                {{ category.name }}
+                                            </el-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 my-5" style="background: #fff;">
+                                    <h4 style="margin-bottom: -30px">Vehicle Suppliers</h4>
+                                    <hr/>
+                                    <div style="margin-top: -30px">
+
+
+                                        <el-checkbox v-for="supplier in filteredSuppliers" :label="supplier.id"
+                                                     size="large"
+                                                     :model="supplier"
+                                        >
                                             {{ supplier.company }}
-                                        </el-radio>
-                                    </el-radio-group>
+                                        </el-checkbox>
+                                    </div>
                                 </div>
 
-                                <div class="item_filter_group">
-                                    <h4>Vehicle Categories</h4>
-                                    <el-radio-group v-model="category"
-                                        class="radio d-flex flex-column align-items-start gap-10">
-                                        <el-radio v-for="category in filteredCategories" :label="category.id" size="large"
-                                            border>
-                                            {{ category.name }}</el-radio>
-                                    </el-radio-group>
-                                </div>
 
-                                <div v-for="(item, i) in filteredSpecifications" :key="i">
-                                    <div class="item_filter_group">
-                                        <h4>{{ item.name }}</h4>
-                                        <el-radio-group v-model="specification[i]"
-                                            class="radio d-flex flex-column align-items-start gap-10">
-                                            <el-radio v-for="option in item.options" :label="option" size="large"  border/>
-                                        </el-radio-group>
+                                <div v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
+                                    <div class="col-md-12 my-5">
+                                        <h4 style="margin-bottom: -30px">{{ item.name }}</h4>
+                                        <hr/>
+                                        <div style="margin-top: -30px">
+                                            <el-checkbox v-for="option in item.options" :label="option" size="large"
+                                                         :model="specification[i]"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div v-loading="loading" class="col-lg-9">
-                                <div class="d-flex filter_top_group">
-                                    <div style="height: 115px;margin-top: 75px;margin-left: -20px;" v-for="item in filteredCategories">
-                                        <el-radio v-model="category" :label="item.id" size="large" border>
-                                            <div class="item_filter_group filter_top">
-                                                <h4>{{ item.name }}</h4>
-                                                <img :src="'img/categories/' +
-                                                    item.photo
-                                                    " />
-                                            </div>
-                                        </el-radio>
-                                    </div>
+                        <div v-loading="loading" class="col-lg-9">
+                            <div class="d-flex filter_top_group">
+                                <div style="height: 115px; margin-top: 75px; margin-left: -20px;"
+                                     v-for="item in filteredCategories">
+                                    <el-radio v-model="category" :label="item.id" size="large" border>
+                                        <div class="item_filter_group filter_top" style="background: #fff;">
+                                            <h4>{{ item.name }}</h4>
+                                            <img :src="'img/categories/'+item.photo"/>
+                                        </div>
+                                    </el-radio>
                                 </div>
+                            </div>
 
-                                <div v-for="(vehicle, index) in priceFiltred" :key="index" class="row">
-                                    <div :style="getDisplayStyle(vehicle)" class="col-lg-12">
-                                        <div class="de-item-list mb30 w-100">
-                                            <div class="close" style="position: absolute;top: 25px;right: 40px;cursor: pointer;" @click="hideItem(index)">
-                                                <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M19.505 4.975a.6.6 0 0 1 0 .85l-13.2 13.2a.6.6 0 0 1-.85-.85l13.2-13.2a.598.598 0 0 1 .85 0Z"
-                                                        clip-rule="evenodd"></path>
-                                                    <path fill-rule="evenodd"
-                                                        d="M5.456 4.975a.6.6 0 0 0 0 .85l13.2 13.2a.6.6 0 1 0 .85-.85l-13.2-13.2a.6.6 0 0 0-.85 0Z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                            </div>
+                            <h3>SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
+                            <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row">
+                                <div :style="getDisplayStyle(vehicle)" class="col-lg-12">
+                                    <div class="de-item-list mb30 w-100">
+                                        <div class="close"
+                                             style="position: absolute;top: 9px;right: 25px;cursor: pointer;"
+                                             @click="hideItem(index)">
+                                            <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                      d="M19.505 4.975a.6.6 0 0 1 0 .85l-13.2 13.2a.6.6 0 0 1-.85-.85l13.2-13.2a.598.598 0 0 1 .85 0Z"
+                                                      clip-rule="evenodd"></path>
+                                                <path fill-rule="evenodd"
+                                                      d="M5.456 4.975a.6.6 0 0 0 0 .85l13.2 13.2a.6.6 0 1 0 .85-.85l-13.2-13.2a.6.6 0 0 0-.85 0Z"
+                                                      clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div style="width: 120%">
                                             <div>
-                                                <div>
-                                                    <div class="d-img">
-                                                        <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid" alt="" />
-                                                    </div>
-                                                    <div class="d-info">
-                                                        <div class="d-text">
-                                                            <h4>
-                                                                {{ vehicle.name }}
-                                                                <span style="font-weight: 600;color: #727272;font-size: 16px;">or Similar</span>
-                                                            </h4>
-                                                            <span>{{vehicle?.category?.name}}</span>
-                                                            <div class="d-atr-group">
-                                                                <ul class="d-atr">
-                                                                    <li v-for="specification in vehicle.specifications">
-                                                                        <span>{{specification.name}}</span>{{specification.option}}
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                <div class="col-md-3 d-img">
+                                                    <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid" width="200" height="100"
+                                                         alt=""/>
+                                                </div>
+                                                <div class="d-info">
+                                                    <div class="d-text">
+                                                        <h4>
+                                                            {{ vehicle.name }}
+                                                            <span
+                                                                style="font-weight: 600;color: #727272;font-size: 16px;">or Similar</span>
+                                                        </h4>
+                                                        <span>{{ vehicle?.category?.name }}</span>
+                                                        <div class="d-atr-group row">
+                                                            <ul class="d-atr col-12">
+                                                                <li v-for="specification in vehicle.specifications">
+                                                                    <span :class="'fa fa-' + specification.icon" />
+                                                                    <span> {{ specification.option }}</span>{{specification.name }}
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="clearfix"></div>
                                                 </div>
-                                                <div
-                                                    class="de-item-list mb30 mt30 d-flex justify-content-between align-items-center">
-                                                    <div class="d-supplier">
-                                                        <div class="d-img w-100">
-                                                            <img style="width: 100px !important;" :src="'img/' + vehicle.supplier.logo" class="w-50 img-fluid" alt="" />
-                                                        </div>
-                                                        <span>{{ vehicle.supplier.company }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>    
-                                            <div class="d-price d-total w-100 mb30 mt30">
-                                                <span class="d-days">for {{ daysNumber }} day{{ daysNumber < 2  ? '' : 's' }}</span>
-                                                <span>{{ calculatedPrice(vehicle, daysNumber) }}$</span>
-                                                <Link class="btn-main select-btn" :href="'/vehicles/' + vehicle.id">
-                                                   Selcet
-                                                   <svg width="25" height="25" fill="currentColor" viewBox="0 2 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                       <path d="m8.295 16.59 4.58-4.59-4.58-4.59L9.705 6l6 6-6 6-1.41-1.41Z"></path>
-                                                    </svg>
-                                                </Link>
+                                                <div class="clearfix"></div>
                                             </div>
+                                            <div class="de-item-list mb30 mt30 d-flex justify-content-between align-items-center col-11" style="background: #edecec;">
+                                                <div class="d-supplier">
+                                                    <div class="d-img w-100" style="height: 50px">
+                                                        <img :src="'img/' + vehicle.supplier.logo" height="50"
+                                                             width="50" alt=""/>
+                                                    </div>
+                                                    <span style="font-size: medium; margin-left: -12px">{{ vehicle.supplier.company }}</span>
+                                                    <button class="btn btn-primary w-100">
+                                                        <span
+                                                            style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
+                                                    </button>
+                                                    <div>
+                                                        <span class="be_media-body"><h5>Good</h5><span style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>+ reviews)</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-price d-total w-100 mb30 mt30">
+                                            <span class="d-days">for {{ daysNumber }} day{{
+                                                    daysNumber < 2 ? '' : 's'
+                                                }}</span>
+                                            <span>{{ calculatedPrice(vehicle, daysNumber) }}$</span>
+                                            <Link class="btn-main select-btn" :href="'/vehicles/' + vehicle.id">
+                                                Selcet
+                                                <svg width="25" height="25" fill="currentColor" viewBox="0 2 20 20"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="m8.295 16.59 4.58-4.59-4.58-4.59L9.705 6l6 6-6 6-1.41-1.41Z"></path>
+                                                </svg>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
-            <!-- content close -->
-
-            <!-- footer begin -->
-            <!-- footer close -->
+                </div>
+            </section>
         </div>
+        <!-- content close -->
+
+        <!-- footer begin -->
+        <!-- footer close -->
+    </div>
     </body>
 </template>
 
 <script setup>
-import { onMounted, ref, watchEffect, computed } from "vue";
-import { useForm, Link } from "@inertiajs/vue3";
+import {onMounted, ref, watchEffect, computed} from "vue";
+import {useForm, Link} from "@inertiajs/vue3";
 import HeaderOne from "../components/HeaderOne.vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 const form = useForm({
     pickupLoc: "",
@@ -235,6 +273,7 @@ const getLocations = async () => {
     try {
         const response = await axios.get("/get/locations");
         locations.all.value = Object.values(response.data);
+
     } catch (error) {
         console.error(error);
     } finally {
@@ -280,20 +319,20 @@ const getVehicles = async () => {
         daysNumber.value = response.data.daysNumber;
         const specificationMap = new Map();
         filteredVehicles.value.forEach(vehicle => {
-        const specifications = vehicle.specifications;
-        for (const key in specifications) {
-            if (specifications.hasOwnProperty(key)) {
-            const { name, option } = specifications[key];
-            if (specificationMap.has(name)) {
-                const specItem = specificationMap.get(name);
-                if (!specItem.options.includes(option)) {
-                    specItem.options.push(option);
+            const specifications = vehicle.specifications;
+            for (const key in specifications) {
+                if (specifications.hasOwnProperty(key)) {
+                    const {name, option} = specifications[key];
+                    if (specificationMap.has(name)) {
+                        const specItem = specificationMap.get(name);
+                        if (!specItem.options.includes(option)) {
+                            specItem.options.push(option);
+                        }
+                    } else {
+                        specificationMap.set(name, {name, options: [option]});
+                    }
                 }
-            } else {
-                specificationMap.set(name, { name, options: [option] });
             }
-            }
-        }
         });
         filteredSpecifications.value = Array.from(specificationMap.values());
         specification.value = [];
@@ -335,29 +374,33 @@ const getDisplayStyle = (item) => {
 
 const calculatedPrice = (vehicle, days) => {
     const basePrice =
-    days >= 1 && days < 7 ? vehicle.price :
-    days >= 7 && days < 30 ? vehicle.week_price :
-    days >= 30 && days < 365 ? vehicle.month_price :
-    days >= 365 ? vehicle.year_price : vehicle.price;
+        days >= 1 && days < 7 ? vehicle.price :
+            days >= 7 && days < 30 ? vehicle.week_price :
+                days >= 30 && days < 365 ? vehicle.month_price :
+                    days >= 365 ? vehicle.year_price : vehicle.price;
     const finalPrice = (basePrice + ((priceTax.value * basePrice) / 100)) * days
-    if(finalPrice > max.value){
+    if (finalPrice > max.value) {
         max.value = Math.ceil(finalPrice);
         min.value = max.value
     }
-    if(finalPrice < min.value){
+    if (finalPrice < min.value) {
         min.value = finalPrice;
     }
     return finalPrice;
 }
 
-const priceFiltred = computed(() => {
-    if(priceRange.value && priceRange.value > min.value){
+const priceFiltered = computed(() => {
+
+    if (priceRange.value && priceRange.value > min.value) {
         return filteredVehicles.value.filter((vehicle) => {
             const price = calculatedPrice(vehicle, daysNumber.value);
             return price <= priceRange.value;
         });
     } else {
-        return filteredVehicles.value
+        return filteredVehicles.value.filter((vehicle) => {
+            const price = calculatedPrice(vehicle, daysNumber.value);
+            return price <= priceRange.value;
+        });
     }
 });
 
@@ -372,7 +415,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.el-slider{
+.el-slider {
     --el-slider-main-bg-color: #f4d849;
 }
 
@@ -399,17 +442,22 @@ onMounted(() => {
 
     .is-checked {
         .item_filter_group {
-            border-color: var(--el-color-primary);
+            border-color: #f4d849;
+
             h4 {
-                color: var(--el-color-primary);
+                color: #f4d849;
             }
         }
     }
 }
 
-.price-range{
+.price-range {
     font-size: 14px;
     color: gray;
     font-weight: 500;
+}
+
+.is-checked {
+    color: #f4d849 !important;
 }
 </style>

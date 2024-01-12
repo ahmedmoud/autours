@@ -1,16 +1,17 @@
 <template>
 
-<header>
-    <div class="row justify-content-between">
+    <header style="background: #f9d602">
+    <div class="row justify-content-between" >
         <Link href="/" class="col-2">
-            <img style="max-width:150px;" src="/img/logo.svg" alt="logo">
+            <img style="max-width:150px;" src="/images/akrom.jpg" alt="logo">
         </Link>
+
         <div class="col-6 align-self-center text-right d-flex justify-content-end">
-            <div v-if="!user" class="d-flex">
-                <Link  class="nav-link" href="/login"><span>Manage Booking</span></Link>
-                <Link  class="nav-link" href="/register"><span>Register</span></Link>
+            <div v-if="!user" class="row">
+                <Link  class="nav-link col-md-6" style="color: #0a3622" href="/login"><span>Manage Booking</span></Link>
+                <Link  class="nav-link col-md-6" style="color: #0a3622" href="/register"><span>Register</span></Link>
             </div>
-            <Link v-else class="nav-link" href="/company"><span>My Profile</span></Link>
+            <Link v-else class="nav-link col-md-6" style="color: #0a3622" href="/company"><span>My Profile</span></Link>
         </div>
     </div>
 </header>
@@ -20,6 +21,7 @@
 <script setup>
 import { Link } from '@inertiajs/vue3'
 import { onMounted, ref } from 'vue'
+
 const user = ref('')
 
 const getUser = async () => {
@@ -32,7 +34,8 @@ const getUser = async () => {
 }
 
 onMounted(() => {
-  getUser();
+
+    getUser();
 })
 
 </script>

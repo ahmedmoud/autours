@@ -15,19 +15,7 @@ class UserController extends Controller
     public function upload(Request $request)
     {
         $user = User::where('id', Auth::user()->id)->first();
-        $updateData = [];
-
-        if ($request->has('name')) {
-            $updateData['name'] = $request->name;
-        }
-
-        if ($request->has('email')) {
-            $updateData['email'] = $request->email;
-        }
-
-        if ($request->has('phone')) {
-            $updateData['phone_num'] = $request->phone;
-        }
+        $updateData = $request->all();
 
         if ($request->hasFile('logo')) {
             $image = $request->file('logo');
@@ -37,56 +25,25 @@ class UserController extends Controller
             $updateData['logo'] = $image_name;
         }
 
-        if ($request->has('company')) {
-            $updateData['company'] = $request->company;
-        }
-
-        if ($request->has('priceTax')) {
-            $updateData['price_tax'] = $request->priceTax;
-        }
-
-        if ($request->has('weekPriceTax')) {
-            $updateData['week_price_tax'] = $request->weekPriceTax;
-        }
-
-        if ($request->has('monthPriceTax')) {
-            $updateData['month_price_tax'] = $request->monthPriceTax;
-        }
-
-        if ($request->has('yearPriceTax')) {         
-            $updateData['year_price_tax'] = $request->yearPriceTax;
-        }
-
-        if ($request->has('gender')) {
-            $updateData['gender'] = $request->gender;
-        }
-
-        if ($request->has('country')) {
-            $updateData['country'] = $request->country;
-        }
-    
-        if ($request->has('address')) {
-            $updateData['address'] = $request->address;
-        }
 
         if ($request->has('newPass')) {
-            if ($request->has('oldPass') && Hash::check($request->oldPass, $user->password) && $request->newPass === $request->confirmNewPass) {         
+            if ($request->has('oldPass') && Hash::check($request->oldPass, $user->password) && $request->newPass === $request->confirmNewPass) {
                 $updateData['password'] = Hash::make($request->newPass);
             } else {
                 return response()->json(['message' => 0]);
             }
         }
 
-        if ($request->has('oldPass') && Hash::check($request->oldPass, $user->password)) {         
-            
-        } else{
-            return response()->json(['message' => 0]);
-        }
-    
+//        if ($request->has('oldPass') && Hash::check($request->oldPass, $user->password)) {
+//
+//        } else{
+//            return response()->json(['message' => 0]);
+//        }
+
         $user->update($updateData);
 
         return response()->json(['message' => 1]);
-        
+
         // return response()->json(['message' => 'No file uploaded'], 400);
     }
 
@@ -99,7 +56,7 @@ class UserController extends Controller
         } else {
             return 'null';
         }
-        
+
     }
 
     public function priceTax()
@@ -122,8 +79,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return auth()->user();
-        
+        $user = auth()->user();
+        if(isset($user->language))
+            $user->language = explode(',', auth()->user()->language);
+        return $user;
+
     }
 
     public function getLogos()
@@ -136,7 +96,7 @@ class UserController extends Controller
 
         $user = Auth::user();
         $user->update(['role' => 'under_review']);
-       
+
         return response()->json(['message' => 'Role updated successfully']);
     }
 
@@ -167,6 +127,10 @@ class UserController extends Controller
         $branch->name = $request->name;
         $branch->location = $request->location;
         $branch->adresse = $request->adresse;
+        $branch->country = $request->country;
+        $branch->city = $request->city;
+        $branch->phone = $request->phone;
+        $branch->email = $request->email;
         $branch->company_id = auth()->user()->id;
 
         $branch->save();
@@ -181,9 +145,9 @@ class UserController extends Controller
 
     public function deleteBranch(Request $request)
     {
-        Branch::where('id', $request->id)->delete();  
+        Branch::where('id', $request->id)->delete();
         return $this->getBranch();
-        
+
     }
 
 

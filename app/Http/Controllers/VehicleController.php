@@ -25,8 +25,8 @@ class VehicleController extends Controller
      */
 
     public function filter(Request $request)
-    {      
-        
+    {
+
         $filteredVehicles = Session::get('filteredVehicles');
         $location = Session::get('location');
         $date = Session::get('date');
@@ -40,15 +40,16 @@ class VehicleController extends Controller
             $diffInDays = $startDate->diffInDays($endDate);
 
             if($diffInDays >= '1' && $diffInDays < '7'){
-                $priceTax = User::where('role', 'admin')->value('price_tax');
+//                $priceTax = User::where('role', 'admin')->value('price_tax');
+                $priceTax = 10;
             } else if($diffInDays >= '7' &&  $diffInDays < '30'){
-                $priceTax = User::where('role', 'admin')->value('week_price_tax');
+//                $priceTax = User::where('role', 'admin')->value('week_price_tax');
+                $priceTax = 9;
             } else if ( $diffInDays >= '30' && $diffInDays < '365' ) {
-                $priceTax = User::where('role', 'admin')->value('month_price_tax');
-            } else if ( $diffInDays >= '365' ) {
-                $priceTax = User::where('role', 'admin')->value('year_price_tax');
+//                $priceTax = User::where('role', 'admin')->value('month_price_tax');
+                $priceTax = 8;
             }
-            
+
         } else {
             $diffInDays = '1';
             $priceTax = User::where('role', 'admin')->value('price_tax');
@@ -65,7 +66,7 @@ class VehicleController extends Controller
         }
         if ($request->specification) {
             $specifications = explode(',', $request->specification);
-            
+
             foreach ($specifications as $specification){
                 if($specification){
                     $query->whereJsonContains('specifications', [
@@ -75,10 +76,10 @@ class VehicleController extends Controller
             }
         }
 
-        $prices = $query->pluck('price')->filter(); 
+        $prices = $query->pluck('price')->filter();
         $maxPrice = ( $prices->max() );
         $minPrice = ( $prices->min() );
-        
+
         $catPluck = $query->pluck('category')->unique();
         $categories = Category::whereIn('id', $catPluck)->get();
 
@@ -104,7 +105,7 @@ class VehicleController extends Controller
     }
 
     public function index()
-    {      
+    {
         return Inertia::render('ResultsPage');
     }
 
@@ -140,7 +141,7 @@ class VehicleController extends Controller
 
         if ($location) {
             $vehicles->whereRelation('branch', 'location', $location);
-        }            
+        }
 
         // if ($date && $date !== null) {
         //     $startDate = $date[0];
@@ -173,11 +174,11 @@ class VehicleController extends Controller
     }
 
     public function create(Request $request)
-    { 
+    {
         if($request->update === '1'){
 
             $existingVehicle = Vehicle::find($request->id);
-            
+
             if (!$existingVehicle) {
                 return response()->json(['error' => 'Vehicle not found'], 404);
             }
@@ -185,7 +186,7 @@ class VehicleController extends Controller
             if ($request->has('photo')) {
                 $existingVehicle->photo = $request->photo;
             }
-        
+
             if ($request->has('name')) {
                 $existingVehicle->name = $request->name;
             }
@@ -193,31 +194,31 @@ class VehicleController extends Controller
             if ($request->has('description')) {
                 $existingVehicle->description = $request->description;
             }
-        
+
             if ($request->has('price')) {
                 $existingVehicle->price = $request->price;
             }
-        
+
             if ($request->has('week_price')) {
                 $existingVehicle->week_price = $request->week_price;
             }
-        
+
             if ($request->has('month_price')) {
                 $existingVehicle->month_price = $request->month_price;
             }
-        
+
             if ($request->has('year_price')) {
                 $existingVehicle->year_price = $request->year_price;
             }
-        
+
             if ($request->has('pickupLoc')) {
                 $existingVehicle->pickup_loc = $request->pickupLoc;
             }
-        
+
             if ($request->has('category')) {
                 $existingVehicle->category = $request->category;
             }
-        
+
             if ($request->has('specifications')) {
                 $existingVehicle->specifications = json_decode($request->specifications);
             }
@@ -239,7 +240,7 @@ class VehicleController extends Controller
             if ($request->has('description')) {
                 $item->description = $request->description;
             }
-        
+
             $item->supplier = auth()->user()->id;
 
             if ($request->has('price')) {
@@ -253,15 +254,15 @@ class VehicleController extends Controller
             if ($request->has('month_price')) {
                 $item->month_price = $request->month_price;
             }
-            
+
             if ($request->has('year_price')) {
                 $item->year_price = $request->year_price;
             }
-        
+
             if ($request->has('pickupLoc')) {
                 $item->pickup_loc = $request->pickupLoc;
             }
-            
+
             if ($request->has('category')) {
                 $item->category = $request->category;
             }
@@ -272,7 +273,7 @@ class VehicleController extends Controller
 
             $item->save();
 
-        }  
+        }
 
         return response(1);
     }
@@ -284,27 +285,29 @@ class VehicleController extends Controller
         if ($request->has('name')) {
             $item->name = $request->name;
         }
-
+        if ($request->has('icon')) {
+            $item->icon = $request->icon;
+        }
         if ($request->has('options')) {
             $item->options = json_decode($request->options);
         }
 
         $item->save();
-        
+
         return response()->json(['message' => 'Added successfully']);
     }
 
     public function getSpecifications()
     {
-        
+
         return response()->json(Specification::all());
-        
+
     }
 
     public function createCategories(Request $request)
     {
         $item = new Category();
-       
+
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $image_name = $request->file('photo')->getClientOriginalName() . "_" . "_category" . "." . $request->file('photo')->extension();
@@ -318,54 +321,57 @@ class VehicleController extends Controller
         }
 
         $item->save();
-        
+
         return response()->json(['message' => 'Added successfully']);
     }
 
     public function getCategories()
     {
-        
+
         return response()->json(Category::all());
-        
+
     }
 
     public function deleteCategories(Request $request)
     {
         Category::where('id', $request->id)->delete();
-        
+
         return $this->getCategories();
-        
+
     }
 
     public function deleteSpecifications(Request $request)
     {
         Specification::where('id', $request->id)->delete();
-        
+
         return $this->getSpecifications();
-        
+
     }
 
     public function getLocations()
     {
         $locations = Branch::pluck('location')->unique();
         return response()->json($locations);
-        
+
     }
 
     public function show()
     {
+        $vehicles = Vehicle::query();
+
         $user = auth()->user();
-        $id = $user->id;
-        $role = $user->role;
+        if($user) {
+            $id = $user->id;
+            $role = $user->role;
         $rentals = Rental::all();
 
-        $vehicles = Vehicle::query();
 
         if ($role === 'active_supplier') {
             $vehicles->where('supplier', $id);
         }
+        }
 
-        $data = $vehicles->with('category', 'supplier', 'branch')->get();
+        $data = $vehicles->with('category', 'supplier', 'branch')->orderBy('id')->get();
 
         $data->each(function ($vehicle) {
             $vehicle->load(['rentals' => function ($query) {
@@ -373,7 +379,7 @@ class VehicleController extends Controller
             }]);
             $vehicle->setAttribute('rentals_count', $vehicle->rentals->count());
         });
-        
+
         return response()->json($data);
 
     }
@@ -384,7 +390,7 @@ class VehicleController extends Controller
     }
 
     public function getRentals()
-    {   
+    {
         $user = auth()->user();
         $id = $user->id;
         $role = $user->role;
@@ -399,10 +405,10 @@ class VehicleController extends Controller
             $vehicles = Vehicle::where('supplier', $id)->pluck('id')->unique();
             $data = $rentals->whereIn('vehicle_id', $vehicles)->get();
         }
-    
+
         $data = $rentals->with('vehicle')->get();
 
-        return response()->json($data); 
+        return response()->json($data);
     }
 
     public function acceptRentals(Request $request)
@@ -422,7 +428,7 @@ class VehicleController extends Controller
                 $rental->update(['order_status' => '0']);
             }
         }
-    
+
         return $this->getRentals();
     }
 
@@ -441,7 +447,7 @@ class VehicleController extends Controller
 
             $item->photo = $image_name;
         }
-        
+
         $item->save();
 
         return response(1);
@@ -449,9 +455,9 @@ class VehicleController extends Controller
 
     public function getPhotos()
     {
-        
+
         return response()->json(VehiclesPhotos::all());
-        
+
     }
 
     public function deletePhotos(Request $request)
@@ -487,7 +493,7 @@ class VehicleController extends Controller
         Vehicle::where('id', $request->id)->delete();
         return $this->show();
     }
-    
+
     public function store(Request $request)
     {
         //

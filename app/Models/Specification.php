@@ -11,6 +11,7 @@ class Specification extends Model
 
     protected $fillable = [
         'name',
+        'icon',
         'options',
     ];
 
