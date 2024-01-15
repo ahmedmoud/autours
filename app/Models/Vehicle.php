@@ -4,11 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Category;
-use App\Models\Rental;
-use App\Models\Branch;
-use App\Models\VehiclesPhotos;
-use App\Models\User;
 
 class Vehicle extends Model
 {
@@ -23,8 +18,7 @@ class Vehicle extends Model
         'month_price',
         'year_price',
         'pickup_loc',
-        'start_date',
-        'end_date',
+        'activation',
         'category',
         'specifications',
         'description',
@@ -49,4 +43,9 @@ class Vehicle extends Model
     public function rentals(){
         return $this->hasMany(Rental::class, 'vehicle_id', 'id');
     }
+
+    public function profit(){
+        return $this->hasOne(Profit::class, 'vehicle_id', 'id');
+    }
+
 }

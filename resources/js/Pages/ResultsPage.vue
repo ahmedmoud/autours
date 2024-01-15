@@ -7,25 +7,29 @@
         <!-- content begin -->
         <div class="" style="background: #ececec" id="content">
             <div id="top"></div>
+            <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>
+
             <section id="section-cars">
-                <center class="col-md-12  mb-5">
-                    <button class="mr-2 btn  " style="width:420px; background: #f9d602; color: #000;"><span
+                <div class="col-md-12   mb-5" style="margin-left: 19%;">
+                    <button class="mr-2  btn " style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-2"/>Choose Your Location
                     </button>
-                    <button class="mr-2 btn  active" style="width:420px; background: rgb(155,147,84);color: #000;"><span
+                    <button class="mr-2 btn mt-2 active"
+                            style="width:420px; background: rgb(155,147,84);color: #000;"><span
                         class="ti ti-circle-number-2 mr-2"/>Choose Your Car
                     </button>
-                    <button class="btn" style="width:420px; background: #f9d602; color: #000;"><span
+                    <button class="btn mt-2" style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
                     </button>
-                </center>
+                </div>
                 <div class="container">
                     <div class="row">
 
 
                         <div class="col-lg-3">
                             <div class="col-md-12 pb-4" style="background: #fff;">
-                                <div class="p-1" style="background: #e1e1e1; width: 108.9%; margin-left: -12px; margin-top: 10px;">
+                                <div class="p-1"
+                                     style="background: #e1e1e1; width: 108.9%; margin-left: -12px; margin-top: 10px;">
                                     <h5 class="p-2">YOUR SEARCH DETAILS</h5>
                                 </div>
                                 <div class=" mt-3 row" style="background: #fff;">
@@ -62,7 +66,8 @@
                                                            remote-show-suffix
                                                            :remote-method="remoteLocations"
                                                            :loading="locations.loading.value">
-                                                    <el-option v-for="item in locations.all.value" :label="item" :value="item"/>
+                                                    <el-option v-for="item in locations.all.value" :label="item"
+                                                               :value="item"/>
                                                 </el-select>
                                             </div>
                                             <div class="mb-3">
@@ -83,10 +88,13 @@
                                     </form>
                                 </div>
                                 <div class="col-md-12 mt-2" style="background: #fff;">
-                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1" style="font-size: small;">{{priceRange }} - 10000$</span></h5>
+                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1"
+                                                                                       style="font-size: small;">{{
+                                            priceRange
+                                        }} - {{ max }}</span></h5>
                                     <hr/>
                                     <div class="row" style="margin-top: -20px">
-                                        <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="100000"/>
+                                        <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="max"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12 my-5" style="background: #fff;">
@@ -151,7 +159,8 @@
                                     <div class="de-item-list mb30 w-100">
                                         <div class="close"
                                              style="position: absolute;top: 9px;right: 25px;cursor: pointer;"
-                                             @click="hideItem(index)">
+                                             @click="hideItem(index)"
+                                        >
                                             <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -165,7 +174,8 @@
                                         <div style="width: 120%">
                                             <div>
                                                 <div class="col-md-3 d-img">
-                                                    <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid" width="200" height="100"
+                                                    <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid"
+                                                         width="200" height="100"
                                                          alt=""/>
                                                 </div>
                                                 <div class="d-info">
@@ -179,8 +189,10 @@
                                                         <div class="d-atr-group row">
                                                             <ul class="d-atr col-12">
                                                                 <li v-for="specification in vehicle.specifications">
-                                                                    <span :class="'fa fa-' + specification.icon" />
-                                                                    <span> {{ specification.option }}</span>{{specification.name }}
+                                                                    <span :class="'fa fa-' + specification.icon"/>
+                                                                    <span> {{
+                                                                            specification.option
+                                                                        }}</span>{{ specification.name }}
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -188,19 +200,24 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="de-item-list mb30 mt30 d-flex justify-content-between align-items-center col-11" style="background: #edecec;">
+                                            <div
+                                                class="de-item-list mb30 mt30 d-flex justify-content-between align-items-center col-11"
+                                                style="background: #edecec;">
                                                 <div class="d-supplier">
                                                     <div class="d-img w-100" style="height: 50px">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="50" alt=""/>
                                                     </div>
-                                                    <span style="font-size: medium; margin-left: -12px">{{ vehicle.supplier.company }}</span>
+                                                    <span style="font-size: medium; margin-left: -12px">{{
+                                                            vehicle.supplier.company
+                                                        }}</span>
                                                     <button class="btn btn-primary w-100">
                                                         <span
                                                             style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                                     </button>
                                                     <div>
-                                                        <span class="be_media-body"><h5>Good</h5><span style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>+ reviews)</span></span>
+                                                        <span class="be_media-body"><h5>Good</h5><span
+                                                            style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>+ reviews)</span></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -209,7 +226,7 @@
                                             <span class="d-days">for {{ daysNumber }} day{{
                                                     daysNumber < 2 ? '' : 's'
                                                 }}</span>
-                                            <span>{{ calculatedPrice(vehicle, daysNumber) }}$</span>
+                                            <span>{{ vehicle.final_price }} {{ selectedCurrency }}</span>
                                             <Link class="btn-main select-btn" :href="'/vehicles/' + vehicle.id">
                                                 Selcet
                                                 <svg width="25" height="25" fill="currentColor" viewBox="0 2 20 20"
@@ -237,9 +254,9 @@
 
 <script setup>
 import {onMounted, ref, watchEffect, computed} from "vue";
-import {useForm, Link} from "@inertiajs/vue3";
+import {useForm, Link, router} from "@inertiajs/vue3";
 import HeaderOne from "../components/HeaderOne.vue";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import ProgressBar from "primevue/progressbar"
 
 const form = useForm({
     pickupLoc: "",
@@ -264,7 +281,7 @@ const price = ref(0);
 const max = ref(0)
 const min = ref(0)
 const priceTax = ref("");
-const priceRange = ref(0);
+const priceRange = ref(10000);
 const daysNumber = ref("");
 const specification = ref([]);
 
@@ -294,7 +311,10 @@ const remoteLocations = (query) => {
         locations.options.value = [];
     }
 };
-
+const getSpecifications = async () => {
+    const response = await axios.get('get/specifications')
+    // filteredSpecifications.value = response.data
+}
 const search = () => {
     form.pickupLoc = location.value;
     form.date = date.value;
@@ -312,8 +332,10 @@ const getVehicles = async () => {
         filteredCategories.value = response.data.filteredCategories;
         filteredSuppliers.value = response.data.filteredSuppliers;
         count.value = response.data.count;
-        max.value = 0;
-        min.value = 0;
+
+        max.value = response.data.max;
+        priceRange.value = response.data.max;
+        min.value = response.data.min;
         priceTax.value = response.data.priceTax;
         daysNumber.value = '';
         daysNumber.value = response.data.daysNumber;
@@ -334,6 +356,7 @@ const getVehicles = async () => {
                 }
             }
         });
+
         filteredSpecifications.value = Array.from(specificationMap.values());
         specification.value = [];
     } catch (error) {
@@ -354,8 +377,8 @@ const getFilters = async () => {
         const response = await axios.post("filter/vehicles", formData);
         filteredVehicles.value = response.data.filteredVehicles;
         count.value = response.data.count;
-        max.value = 0;
-        min.value = 0;
+        // max.value = 0;
+        // min.value = 0;
     } catch (error) {
         console.error(error);
     } finally {
@@ -372,38 +395,19 @@ const getDisplayStyle = (item) => {
     return item.isHidden ? "display: none;" : "";
 };
 
-const calculatedPrice = (vehicle, days) => {
-    const basePrice =
-        days >= 1 && days < 7 ? vehicle.price :
-            days >= 7 && days < 30 ? vehicle.week_price :
-                days >= 30 && days < 365 ? vehicle.month_price :
-                    days >= 365 ? vehicle.year_price : vehicle.price;
-    const finalPrice = (basePrice + ((priceTax.value * basePrice) / 100)) * days
-    if (finalPrice > max.value) {
-        max.value = Math.ceil(finalPrice);
-        min.value = max.value
-    }
-    if (finalPrice < min.value) {
-        min.value = finalPrice;
-    }
-    return finalPrice;
-}
 
 const priceFiltered = computed(() => {
-
-    if (priceRange.value && priceRange.value > min.value) {
-        return filteredVehicles.value.filter((vehicle) => {
-            const price = calculatedPrice(vehicle, daysNumber.value);
-            return price <= priceRange.value;
-        });
-    } else {
-        return filteredVehicles.value.filter((vehicle) => {
-            const price = calculatedPrice(vehicle, daysNumber.value);
-            return price <= priceRange.value;
-        });
+    if (filteredVehicles.value != []) {
+        if (priceRange.value && priceRange.value > min.value) {
+            return filteredVehicles.value.filter((vehicle) => {
+                return vehicle.final_price <= priceRange.value;
+            });
+        }
     }
 });
-
+const selectedCurrency = computed(() => {
+    return localStorage.getItem('currency') ?? 'EGP'
+})
 watchEffect(() => {
     getFilters();
     getLocations();
@@ -411,6 +415,7 @@ watchEffect(() => {
 
 onMounted(() => {
     getVehicles();
+    getSpecifications();
 });
 </script>
 

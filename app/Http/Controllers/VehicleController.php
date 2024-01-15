@@ -31,44 +31,23 @@ class VehicleController extends Controller
         $location = Session::get('location');
         $date = Session::get('date');
 
-        $query = Vehicle::query()->whereIn('id', $filteredVehicles->pluck('id'))->with('category', 'supplier');
+        $query = Vehicle::query()->whereIn('id', $filteredVehicles->pluck('id'))->with('category', 'supplier', 'profit');
 
-        if ($date && $date !== null) {
-            $startDate = Carbon::parse($date[0]);
-            $endDate = Carbon::parse($date[1]);
 
-            $diffInDays = $startDate->diffInDays($endDate);
-
-            if($diffInDays >= '1' && $diffInDays < '7'){
-//                $priceTax = User::where('role', 'admin')->value('price_tax');
-                $priceTax = 10;
-            } else if($diffInDays >= '7' &&  $diffInDays < '30'){
-//                $priceTax = User::where('role', 'admin')->value('week_price_tax');
-                $priceTax = 9;
-            } else if ( $diffInDays >= '30' && $diffInDays < '365' ) {
-//                $priceTax = User::where('role', 'admin')->value('month_price_tax');
-                $priceTax = 8;
-            }
-
-        } else {
-            $diffInDays = '1';
-            $priceTax = User::where('role', 'admin')->value('price_tax');
-        }
-
-        if($request->priceRange && $request->priceRange!== 0 ){
+        if ($request->priceRange && $request->priceRange !== 0) {
             $query->where('price', '<=', ($request->priceRange));
         }
-        if($request->category){
+        if ($request->category) {
             $query->where('category', $request->category);
         }
-        if($request->supplier){
+        if ($request->supplier) {
             $query->where('supplier', $request->supplier);
         }
         if ($request->specification) {
             $specifications = explode(',', $request->specification);
 
-            foreach ($specifications as $specification){
-                if($specification){
+            foreach ($specifications as $specification) {
+                if ($specification) {
                     $query->whereJsonContains('specifications', [
                         ['option' => $specification]
                     ]);
@@ -77,8 +56,8 @@ class VehicleController extends Controller
         }
 
         $prices = $query->pluck('price')->filter();
-        $maxPrice = ( $prices->max() );
-        $minPrice = ( $prices->min() );
+        $maxPrice = 0;
+        $minPrice = 10000000;
 
         $catPluck = $query->pluck('category')->unique();
         $categories = Category::whereIn('id', $catPluck)->get();
@@ -88,7 +67,33 @@ class VehicleController extends Controller
 
         $vehicles = $query->get();
 
+        if ($date && $date !== null) {
+            $startDate = Carbon::parse($date[0]);
+            $endDate = Carbon::parse($date[1]);
+            $priceTax = 0;
+            foreach ($vehicles as $vehicle) {
+                $diffInDays = $startDate->diffInDays($endDate);
+                if ($diffInDays >= '1' && $diffInDays < '3') {
+                    $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100)) * $diffInDays;
+                    $priceTax = $vehicle->profit->per_day_profit;
+                } else if ($diffInDays >= '3' && $diffInDays < '7') {
+                    $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
+                    $priceTax = $vehicle->profit->per_week_profit;
+                } else if ($diffInDays >= '8' && $diffInDays < '30') {
+                    $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
+                    $priceTax = $vehicle->profit->per_month_profit;
+                }
+                if($vehicle->final_price >= $maxPrice) $maxPrice = $vehicle->final_price;
+                if($vehicle->final_price <= $minPrice) $minPrice = $vehicle->final_price;
+            }
+        } else {
+            foreach ($vehicles as $vehicle) {
+                $vehicle->final_price = $vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100);
+            }
+        }
+
         $count = $vehicles->count();
+        if($minPrice == $maxPrice) $minPrice = 0;
 
         return $data = [
             'location' => $location,
@@ -175,7 +180,7 @@ class VehicleController extends Controller
 
     public function create(Request $request)
     {
-        if($request->update === '1'){
+        if ($request->update === '1') {
 
             $existingVehicle = Vehicle::find($request->id);
 
@@ -222,7 +227,6 @@ class VehicleController extends Controller
             if ($request->has('specifications')) {
                 $existingVehicle->specifications = json_decode($request->specifications);
             }
-
             $existingVehicle->save();
 
         } else {
@@ -355,22 +359,29 @@ class VehicleController extends Controller
 
     }
 
-    public function show()
+    public function show(Request $request)
     {
         $vehicles = Vehicle::query();
 
         $user = auth()->user();
-        if($user) {
+        $branchId = null;
+        if ($request->has('branch_id')) {
+            $branchId = $request->branch_id;
+        }
+        if ($user) {
             $id = $user->id;
             $role = $user->role;
-        $rentals = Rental::all();
+            $rentals = Rental::all();
 
 
-        if ($role === 'active_supplier') {
-            $vehicles->where('supplier', $id);
+            if ($role === 'active_supplier') {
+                $vehicles->where('supplier', $id);
+            }
         }
-        }
 
+        if ($branchId != null) {
+            $vehicles->where('pickup_loc', $branchId);
+        }
         $data = $vehicles->with('category', 'supplier', 'branch')->orderBy('id')->get();
 
         $data->each(function ($vehicle) {
@@ -397,7 +408,7 @@ class VehicleController extends Controller
 
         $rentals = Rental::query();
 
-        if ($role === 'customer' ) {
+        if ($role === 'customer') {
             $rentals->where('customer_id', $id);
         }
 
@@ -499,4 +510,8 @@ class VehicleController extends Controller
         //
     }
 
+    public function updateActivation(Request $request)
+    {
+        Vehicle::query()->find($request->vehicle_id)->update(['activation' => $request->activation]);
+    }
 }

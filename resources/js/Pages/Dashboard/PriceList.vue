@@ -34,9 +34,8 @@
 
                             <el-table-column label="Actions">
                                 <template #default="scope">
-                                    <button class="btn" @click="update(scope.$index)"><i style="color:green;"
-                                                                                         class="fa fa-check fa-2x"/>
-                                    </button>
+                                    <button class="btn" @click="update(scope.$index)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
+                                    <el-switch size="large"  v-model="tableData[scope.$index].activation" :value="scope.row.activation" @change="changeVehicleStatus(scope.$index)"></el-switch>
                                 </template>
                                 <template #header>
                                     <el-input v-model="search" size="large" placeholder="Type to search"/>
@@ -87,6 +86,8 @@ const getData = async (index, row) => {
 }
 
 const update = async ($index) => {
+    const $toast = useToast();
+
     try {
         loading.value = true;
         const formData = new FormData();
@@ -99,11 +100,11 @@ const update = async ($index) => {
 
         formData.append('update', '1');
         const response = await axios.post('post/vehicles', formData);
-        const $toast = useToast();
-        let instance = $toast.success('Price List updated successfully to '+ tableData.value[$index].name, {position: 'top'});
+        $toast.success('Price List updated successfully to '+ tableData.value[$index].name, {position: 'top'});
 
     } catch (error) {
-        console.error(error);
+        $toast.error(error.message , {position: 'top'});
+
     } finally {
         getData();
     }
@@ -119,7 +120,25 @@ const open = () => {
         ElMessage.error('Oops, wrong password.')
     }
 }
+const changeVehicleStatus = async ($index) => {
 
+    loading.value = true;
+    const $toast = useToast();
+
+    try {
+        const formData = new FormData();
+        formData.append('activation', tableData.value[$index].activation);
+        formData.append('vehicle_id', tableData.value[$index].id);
+
+        const response = await axios.post('update/vehicles/activation', formData);
+        $toast.success('Activation Status  updated successfully to ' + tableData.value[$index].name, {position: 'top'});
+    } catch (error) {
+        $toast.error(error.message , {position: 'top'});
+    }finally {
+        loading.value = false;
+    }
+    console.log($value);
+}
 onMounted(() => {
         getData()
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProfitsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
@@ -91,8 +92,11 @@ Route::middleware(['admin'])->group(function () {
 
     Route::inertia('memberships', 'Dashboard/Memberships');
     Route::get('get/requests', [UserController::class, 'memberships']);
+    Route::get('get/suppliers', [UserController::class, 'suppliers']);
     Route::post('accept/requests', [UserController::class, 'acceptMemberships']);
     Route::post('delete/requests', [UserController::class, 'deleteMemberships']);
+    Route::post('profit/upload', [ProfitsController::class, 'upload']);
+    Route::get('get/profit', [ProfitsController::class, 'show']);
 
     Route::inertia('photos', 'Dashboard/Photos');
     Route::post('post/photos', [VehicleController::class, 'createPhotos']);
@@ -107,6 +111,7 @@ Route::middleware(['member'])->group(function () {
 Route::middleware(['active_supplier'])->group(function () {
     Route::inertia('vehicle', 'Dashboard/CreateVehicle');
     Route::post('post/vehicles', [VehicleController::class, 'create']);
+    Route::post('update/vehicles/activation', [VehicleController::class, 'updateActivation']);
     Route::post('delete/vehicles', [VehicleController::class, 'destroy']);
     Route::inertia('price-list', 'Dashboard/PriceList');
 

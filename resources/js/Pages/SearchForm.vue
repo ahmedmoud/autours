@@ -4,10 +4,10 @@
                 <div class="row align-items-center w-100 d-flex " style="margin-left: 5%;">
 
                     <div class="row">
-                    <div class=" date-range-alert-danger danger  display-none col-4" > <li>Please Select Date Range</li></div>
+                    <div class=" date-range-alert-danger danger  display-none col-4 offset-4" > <li>Please Select Date Range</li></div>
                     <div class="danger pickup-location-alert-danger display-none col-5"> <li> Please select Location  </li> </div>
                     </div>
-                    <div class="  col-md-5">
+                    <div class="  col-md-3">
                         <el-select
                             v-model="location"
                             size="large"
@@ -156,6 +156,7 @@ const search = () => {
         $('.date-range-alert-danger').show()
         return;
     }
+
 
 
     if (location.value == null || location.value == []) {

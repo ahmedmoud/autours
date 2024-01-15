@@ -105,6 +105,10 @@ class UserController extends Controller
         return User::whereIn('role', ['supplier', 'under_review', 'active_supplier'])->get();
     }
 
+    public function suppliers()
+    {
+        return User::where('role', 'active_supplier')->get();
+    }
     public function acceptMemberships(Request $request)
     {
         User::where('id', $request->id)->update(['role' => 'active_supplier']);
@@ -138,9 +142,13 @@ class UserController extends Controller
         return response(1);
     }
 
-    public function getBranch()
+    public function getBranch(Request $request)
     {
-        return response()->json(Branch::where('company_id', auth()->user()->id)->get());
+        $companyId = auth()->user()->id;
+        if ($request->has('company_id')) {
+            $companyId = $request->company_id;
+        }
+        return response()->json(Branch::where('company_id', $companyId)->get());
     }
 
     public function deleteBranch(Request $request)

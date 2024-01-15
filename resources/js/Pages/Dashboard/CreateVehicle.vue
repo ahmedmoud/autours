@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <form @submit.prevent="upload">
-                        <div class="row">
+                        <div class="row mb-5">
                             <h4>Car Details</h4>
                             <div class="mb-3 mt-4 col-12">
                                 <label class="formbold-form-label">Vehicle Photo</label>
@@ -15,7 +15,7 @@
                                     size="large"
                                     filterable
                                     remote
-                                    @change="validateForm()"
+
                                     reserve-keyword
                                     placeholder="Photo..."
                                     remote-show-suffix
@@ -50,7 +50,7 @@
                             <div class="formbold-mb-3 col-md-3">
                                 <label class="formbold-form-label"> Vehicle Name </label>
                                 <div class="display-none " style="color: red;" id="name"><li>Vehicle Name is required</li></div>
-                                <input v-model="name" @change="validateForm()" type="text" class="formbold-form-input" />
+                                <input v-model="name"  type="text" class="formbold-form-input" />
                             </div>
                             <div class="formbold-mb-3 col-3">
                                 <label class="formbold-form-label col-12">Pickup Location</label>
@@ -64,7 +64,7 @@
                                         remote
                                         reserve-keyword
                                         placeholder="Pickup..."
-                                        @change="validateForm()"
+
                                         remote-show-suffix
                                         :remote-method="remoteBranches"
                                         :loading="locations.loading.value"
@@ -92,7 +92,7 @@
                                     reserve-keyword
                                     placeholder="Pickup..."
                                     remote-show-suffix
-                                    @change="validateForm()"
+
                                     :remote-method="remoteCategories"
                                     :loading="categories.loading.value"
                                     @click="remoteCategories()"
@@ -107,10 +107,10 @@
                             </div>
 
 
-                            <div class="formbold-mb-3 mb-5 col-12">
+                            <div class="formbold-mb-3 mb-5  col-12">
                                 <label class="formbold-form-label"> Vehicle Description </label>
                                 <div class="display-none " style="color: red;" id="description"><li>Vehicle Description is required</li></div>
-                                <Editor v-model="description" @change="validateForm()" class="col-6 "/>
+                                <Editor v-model="description"  class="col-6 "/>
                             </div>
 
                         </div>
@@ -121,7 +121,7 @@
                                 <label class="formbold-form-label">Price 1-2 days</label>
                                 <div class="display-none " style="color: red;" id="price"><li>Price 1-2 days is required</li></div>
                                 <div class="input-with-percent">
-                                    <input v-model="price" type="text" pattern="[0-9]+([,.][0-9]+)?"  @change="validateForm()" class="formbold-form-input col-6" />
+                                    <input v-model="price" type="text" pattern="[0-9]+([,.][0-9]+)?"   class="formbold-form-input col-6" />
                                 </div>
                             </div>
 
@@ -130,7 +130,7 @@
                                 <div class="display-none " style="color: red;" id="weekPrice"><li>Price 3-7 days is required</li></div>
                                 <div class="input-with-percent">
                                     <input v-model="weekPrice" type="text" pattern="[0-9]+([,.][0-9]+)?"
-                                           @change="validateForm()"
+
                                            class="formbold-form-input col-6"
                                            />
                                 </div>
@@ -140,7 +140,7 @@
                                 <label class="formbold-form-label">8-30 Days Price</label>
                                 <div class="display-none " style="color: red;" id="monthPrice"><li>Price 8-30 days is required</li></div>
                                 <div class="input-with-percent">
-                                    <input v-model="monthPrice" type="text" @change="validateForm()" pattern="[0-9]+([,.][0-9]+)?"
+                                    <input v-model="monthPrice" type="text"  pattern="[0-9]+([,.][0-9]+)?"
                                            class="formbold-form-input col-6"
                                            />
                                 </div>
@@ -163,7 +163,7 @@
                                 >
                                     <el-option
                                         v-for="item in list.options"
-                                        @click="getSpecificationOption(list.name, item)"
+                                        @click="getSpecificationOption(list.name, item, list.icon)"
                                         :key="item"
                                         :label="item"
                                         :value="item"
@@ -174,8 +174,7 @@
                         <hr/>
                         <div class="row justify-content-center">
                             <div class="col-md-2 ml-5">
-                                <button type="submit" class="btn btn-primary p-2" style="color: #0a3622;">Submit
-                                </button>
+                                <button type="submit" class="btn btn-primary p-2" style="color: #0a3622;">Submit</button>
                             </div>
                             <div class="col-md-5">
                                 <a href="vehicles" class="btn btn-danger">Cancel</a>
@@ -227,11 +226,11 @@ const photos = {
     options: ref([]),
 };
 
-const getSpecificationOption = (name, option) => {
+const getSpecificationOption = (name, option, icon) => {
     const s = {
         'name': name,
         'option': option,
-        'icon': icon
+        'icon': icon,
     }
 
     const isDuplicate = selectedSpecifications.value.some(item => (
@@ -246,6 +245,7 @@ const getSpecificationOption = (name, option) => {
             existingItem.option = option;
         }
     }
+
 };
 
 const fetchSpecifications = async () => {
@@ -422,7 +422,7 @@ const upload = async () => {
         formData.append('specifications', JSON.stringify(selectedSpecifications.value));
 
         if(!validateForm()) return;
-        console.log("here")
+
         const response = await axios.post('post/vehicles', formData);
         open(response.data);
         if (response.data === 1) {
@@ -434,7 +434,7 @@ const upload = async () => {
             monthPrice.value = null;
             category.value = null;
         }
-        router.get('/vehicles')
+        // router.get('/vehicles')
     } catch (error) {
         console.error(error);
     }
@@ -452,16 +452,6 @@ const open = (response) => {
     }
 }
 
-// watchEffect(() => {
-//   console.log(photo.value)
-//   console.log(photos.all.value)
-//   const matchingPhoto = photos.all.value.find(p => p.id === photo.value);
-//   console.log(matchingPhoto)
-//   if (matchingPhoto) {
-//     image.value = matchingPhoto.photo;
-
-//   }
-// })
 
 onMounted(() => {
     fetchBranches();

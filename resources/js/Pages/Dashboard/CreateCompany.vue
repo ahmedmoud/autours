@@ -523,7 +523,7 @@ const getCities = async () => {
     } catch (error) {
         console.error(error)
     } finally {
-        states.loading.value = false
+        cities.loading.value = false
     }
 }
 const remoteCountries = (query) => {
