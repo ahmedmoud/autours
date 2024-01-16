@@ -6,24 +6,15 @@
             <Link href="/" class="col-2">
                 <img style="max-width:150px;" src="/images/akrom.jpg" alt="logo">
             </Link>
-            <div class="col-10 align-self-center text-right d-flex justify-content-end">
-                <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                    <li id="nav-dropdown" style="position: relative;" >
-                        <a class="nav-link nav-icon-hover show" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="true">
-                            <img src="../../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                        </a>
-                        <div id="dorp-menu" class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up show" style="display: none;"  aria-labelledby="drop2" data-bs-popper="static">
-                            <div class="message-body">
-                                <Link  class="nav-link col-md-12" style="color: #0a3622" href="/company">
-                                    <span>My Profile</span>
-                                </Link>
-                                <a href="logout" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
+            <CDropdown togglerText="Dropdown button" class="mt-1 offset-9">
+                <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);" aria-selected="true">
+                    <img src="../../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </CDropdownToggle>
+                <CDropdownMenu>
+                    <CDropdownItem href="company">My profile</CDropdownItem>
+                    <CDropdownItem href="logout">Log out</CDropdownItem>
+                </CDropdownMenu>
+            </CDropdown>
 
         </nav>
     </header>
@@ -33,6 +24,7 @@
 <script setup>
 import {Link} from '@inertiajs/vue3'
 import {onMounted, ref} from 'vue'
+import {CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle} from "@coreui/vue";
 
 const user = ref('')
 

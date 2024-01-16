@@ -28,8 +28,9 @@
         </div>
     </div>
     <!-- three-blcok -->
-    <div class="" style=" background: #f9d602; height: 150px; display: flex; align-items: flex-end; justify-content: center; ">
-        <h2 class="font-weight-bold" >Why book a car rental <br/> with Autours?</h2>
+    <div class=""
+         style=" background: #f9d602; height: 150px; display: flex; align-items: flex-end; justify-content: center; ">
+        <h2 class="font-weight-bold">Why book a car rental <br/> with Autours?</h2>
     </div>
 
     <div class="container my-5 py-2">
@@ -322,8 +323,10 @@
                         </svg>
                     </a>
                 </div>
-                <Link class="nav-link" href="supplier/login"><span>Supplier Login</span></Link>
-                <Link class="nav-link" href="supplier/signup"><span>Supplier Signup</span></Link>
+                <div class="row offset-8">
+                    <Link class="nav-link col-2" href="supplier/login"><span>Supplier Login</span></Link>
+                    <Link class="nav-link col-2" href="supplier/signup"><span>Supplier Signup</span></Link>
+                </div>
                 <div class="col-md-6 align-self-center text-center text-md-right my-2" id="social-media">
 
                     <!-- <a href="#" class="d-inline-block text-center ml-2">

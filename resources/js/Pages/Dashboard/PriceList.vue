@@ -25,7 +25,7 @@
                                               :value="scope.row.week_price" placeholder="3-7 price"/>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="4-30 days Price" prop="month_price">
+                            <el-table-column label="8-30 days Price" prop="month_price">
                                 <template #default="scope">
                                     <el-input class=" col-6" v-model="tableData[scope.$index].month_price"
                                               :value="scope.row.month_price" placeholder="4-30 price"/>
@@ -34,8 +34,8 @@
 
                             <el-table-column label="Actions">
                                 <template #default="scope">
-                                    <button class="btn" @click="update(scope.$index)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
-                                    <el-switch size="large"  v-model="tableData[scope.$index].activation" :value="scope.row.activation" @change="changeVehicleStatus(scope.$index)"></el-switch>
+                                        <button class="btn" @click="update(scope.$index)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
+                                        <el-switch size="large" v-model="tableData[scope.$index].activation" :value="scope.row.activation" @change="changeVehicleStatus(scope.$index)"></el-switch>
                                 </template>
                                 <template #header>
                                     <el-input v-model="search" size="large" placeholder="Type to search"/>
@@ -92,6 +92,18 @@ const update = async ($index) => {
         loading.value = true;
         const formData = new FormData();
 
+        if(tableData.value[$index].price == null || tableData.value[$index].price <= 0 || isNaN(tableData.value[$index].price)) {
+            $toast.error('price should be numeric and more than 0', {position: 'top'})
+            return
+        }
+        if(tableData.value[$index].week_price == null || tableData.value[$index].week_price <= 0 || isNaN(tableData.value[$index].week_price)) {
+            $toast.error('price should be numeric and more than 0', {position: 'top'})
+            return
+        }
+        if(tableData.value[$index].month_price == null || tableData.value[$index].month_price <= 0 || isNaN(tableData.value[$index].month_price)) {
+            $toast.error('price should be numeric and more than 0', {position: 'top'})
+            return
+        }
         formData.append('id', tableData.value[$index].id);
         formData.append('price', tableData.value[$index].price);
         formData.append('week_price', tableData.value[$index].week_price);
@@ -100,10 +112,10 @@ const update = async ($index) => {
 
         formData.append('update', '1');
         const response = await axios.post('post/vehicles', formData);
-        $toast.success('Price List updated successfully to '+ tableData.value[$index].name, {position: 'top'});
+        $toast.success('Price List updated successfully to ' + tableData.value[$index].name, {position: 'top'});
 
     } catch (error) {
-        $toast.error(error.message , {position: 'top'});
+        $toast.error(error.message, {position: 'top'});
 
     } finally {
         getData();
@@ -133,8 +145,8 @@ const changeVehicleStatus = async ($index) => {
         const response = await axios.post('update/vehicles/activation', formData);
         $toast.success('Activation Status  updated successfully to ' + tableData.value[$index].name, {position: 'top'});
     } catch (error) {
-        $toast.error(error.message , {position: 'top'});
-    }finally {
+        $toast.error(error.message, {position: 'top'});
+    } finally {
         loading.value = false;
     }
     console.log($value);

@@ -12049,7 +12049,7 @@ input[type="range"]::-moz-range-thumb {
     border-radius:6px;
     -moz-border-radius:6px;
     -webkit-border-radius:6px;
-    box-shadow: 3px 3px 9px rgba(164,164,186,.5);
+    /*box-shadow: 3px 3px 9px rgba(164,164,186,.5);*/
 }
 
 .dark-scheme .de-item-list img{

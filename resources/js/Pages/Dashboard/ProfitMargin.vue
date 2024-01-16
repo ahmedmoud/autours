@@ -155,32 +155,37 @@
                         <el-table-column label="Branch Name" prop="branch_name"/>
                         <el-table-column label="1-2 days Price" prop="per_day_profit">
                             <template #default="scope">
-                                <el-input class=" col-5" v-model="tableData[scope.$index].per_day_profit"
-                                          :value="scope.row.per_day_profit" placeholder="1-2 price"/> %
+                                <el-input class=" col-6" v-model="tableData[scope.$index].per_day_profit"
+                                          :value="scope.row.per_day_profit" placeholder="1-2 price"/>
+                                %
                             </template>
                         </el-table-column>
                         <el-table-column label="3-7 days Price" prop="per_week_profit">
                             <template #default="scope">
-                                <el-input class=" col-5" v-model="tableData[scope.$index].per_week_profit"
-                                          :value="scope.row.per_week_profit" placeholder="3-7 price"/> %
+                                <el-input class=" col-6" v-model="tableData[scope.$index].per_week_profit"
+                                          :value="scope.row.per_week_profit" placeholder="3-7 price"/>
+                                %
                             </template>
                         </el-table-column>
                         <el-table-column label="4-30 days Price" prop="per_month_profit">
                             <template #default="scope">
-                                <el-input class=" col-5" v-model="tableData[scope.$index].per_month_profit"
-                                          :value="scope.row.per_month_profit" placeholder="4-30 price"/> %
+                                <el-input class=" col-6" v-model="tableData[scope.$index].per_month_profit"
+                                          :value="scope.row.per_month_profit" placeholder="4-30 price"/>
+                                %
                             </template>
                         </el-table-column>
                         <el-table-column label="weekend Price" prop="per_month_profit">
                             <template #default="scope">
-                                <el-input class=" col-5 " v-model="tableData[scope.$index].weekend_profit"
-                                          :value="scope.row.weekend_profit" placeholder="4-30 price"/> %
+                                <el-input class=" col-6 " v-model="tableData[scope.$index].weekend_profit"
+                                          :value="scope.row.weekend_profit" placeholder="4-30 price"/>
+                                %
                             </template>
                         </el-table-column>
 
                         <el-table-column label="Actions">
                             <template #default="scope">
-                                <button class="btn" ><i style="color:green;" @click="updateSingleVehicle(scope.$index)" class="fa fa-check fa-2x"/></button>
+                                <button class="btn"><i style="color:green;" @click="updateSingleVehicle(scope.$index)"
+                                                       class="fa fa-check fa-2x"/></button>
                             </template>
                             <template #header>
                                 <el-input v-model="search" size="large" placeholder="Type to search"/>
@@ -264,7 +269,7 @@ const filterTableData = computed(() => {
 
     const dataArray = Array.isArray(tableData.value) ? tableData.value : [];
 
-    return  dataArray.filter((data) =>
+    return dataArray.filter((data) =>
         !search.value ||
         data.vehicle_name.toLowerCase().includes(search.value.toLowerCase()) ||
         data.branch_name.toLowerCase().includes(search.value.toLowerCase()) ||
@@ -275,28 +280,28 @@ const filterTableData = computed(() => {
 const upload = async () => {
     const formData = new FormData();
     const $toast = useToast();
-    if (priceTax.value) {
+    if (priceTax.value && priceTax.value > 0 && !isNaN(priceTax.value)) {
         formData.append('priceTax', priceTax.value);
     } else {
-        $toast.error('1-2 days profit is required', {position: 'top'});
+        $toast.error('1-2 days profit is required and should be more than 0', {position: 'top'});
         return
     }
     if (weekPriceTax.value) {
         formData.append('weekPriceTax', weekPriceTax.value);
     } else {
-        $toast.error('3-7 days profit is required', {position: 'top'});
+        $toast.error('3-7 days profit is required and should be more than 0', {position: 'top'});
         return
     }
     if (monthPriceTax.value) {
         formData.append('monthPriceTax', monthPriceTax.value);
     } else {
-        $toast.error('8 - 30 days profit is required', {position: 'top'});
+        $toast.error('8 - 30 days profit is required and should be more than 0', {position: 'top'});
         return
     }
     if (weekendPriceTax.value) {
         formData.append('weekendPriceTax', weekendPriceTax.value);
     } else {
-        $toast.error('weekend profit is required', {position: 'top'});
+        $toast.error('weekend profit is required and should be more than 0', {position: 'top'});
         return
     }
     if (country.value) {
@@ -354,35 +359,35 @@ const updateSingleVehicle = async ($index) => {
         loading.value = true;
         const formData = new FormData();
         const $toast = useToast();
-        if (tableData.value[$index].per_day_profit) {
+        if (tableData.value[$index].per_day_profit && !isNaN(tableData.value[$index].per_day_profit) && tableData.value[$index].per_day_profit > 0) {
             formData.append('priceTax', tableData.value[$index].per_day_profit);
         } else {
-            $toast.error('1-2 days profit is required for '+ tableData.value[$index].vehicle_name, {position: 'top'});
+            $toast.error('1-2 days profit is required and should be more than 0 for ' + tableData.value[$index].vehicle_name, {position: 'top'});
             return
         }
         if (tableData.value[$index].per_week_profit) {
             formData.append('weekPriceTax', tableData.value[$index].per_week_profit);
         } else {
-            $toast.error('3-7 days profit is required for ' + tableData.value[$index].vehicle_name, {position: 'top'});
+            $toast.error('3-7 days profit is required and should be more than 0 for ' + tableData.value[$index].vehicle_name, {position: 'top'});
             return
         }
         if (tableData.value[$index].per_month_profit) {
             formData.append('monthPriceTax', tableData.value[$index].per_month_profit);
         } else {
-            $toast.error('8 - 30 days profit is required for '+ tableData.value[$index].vehicle_name, {position: 'top'});
+            $toast.error('8 - 30 days profit is required and should be more than 0 for ' + tableData.value[$index].vehicle_name, {position: 'top'});
             return
         }
         if (tableData.value[$index].weekend_profit) {
-            formData.append('weekendPriceTax',tableData.value[$index].weekend_profit);
+            formData.append('weekendPriceTax', tableData.value[$index].weekend_profit);
         } else {
-            $toast.error('weekend profit is required for ' + tableData.value[$index].vehicle_name, {position: 'top'});
+            $toast.error('weekend profit is required and should be more than 0 for ' + tableData.value[$index].vehicle_name, {position: 'top'});
             return
         }
         formData.append('selectedVehicles', tableData.value[$index].vehicle_id);
 
 
         const response = await axios.post('profit/upload', formData);
-        $toast.success('Price List updated successfully to '+ tableData.value[$index].vehicle_name, {position: 'top'});
+        $toast.success('Price List updated successfully to ' + tableData.value[$index].vehicle_name, {position: 'top'});
 
     } catch (error) {
         console.error(error);

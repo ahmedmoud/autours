@@ -10,7 +10,7 @@
             <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>
 
             <section id="section-cars">
-                <div class="col-md-12   mb-5" style="margin-left: 19%;">
+                <div class="col-md-12   mb-5" style="margin-left: 18%;">
                     <button class="mr-2  btn " style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-2"/>Choose Your Location
                     </button>
@@ -205,8 +205,7 @@
                                                 style="background: #edecec;">
                                                 <div class="d-supplier">
                                                     <div class="d-img w-100" style="height: 50px">
-                                                        <img :src="'img/' + vehicle.supplier.logo" height="50"
-                                                             width="50" alt=""/>
+                                                        <img :src="'img/' + vehicle.supplier.logo" height="50" width="50" alt=""/>
                                                     </div>
                                                     <span style="font-size: medium; margin-left: -12px">{{
                                                             vehicle.supplier.company

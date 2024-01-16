@@ -65,7 +65,7 @@ class VehicleController extends Controller
         $suppPluck = $query->pluck('supplier')->unique();
         $suppliers = User::whereIn('id', $suppPluck)->get();
 
-        $vehicles = $query->get();
+        $vehicles = $query->where('activation', true)->get();
 
         if ($date && $date !== null) {
             $startDate = Carbon::parse($date[0]);
@@ -77,14 +77,16 @@ class VehicleController extends Controller
                     $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100)) * $diffInDays;
                     $priceTax = $vehicle->profit->per_day_profit;
                 } else if ($diffInDays >= '3' && $diffInDays < '7') {
-                    $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
+                    $vehicle->final_price = ($vehicle->week_price + (($vehicle->week_price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
                     $priceTax = $vehicle->profit->per_week_profit;
                 } else if ($diffInDays >= '8' && $diffInDays < '30') {
-                    $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
+                    $vehicle->final_price = ($vehicle->month_price + (($vehicle->month_price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
                     $priceTax = $vehicle->profit->per_month_profit;
                 }
-                if($vehicle->final_price >= $maxPrice) $maxPrice = $vehicle->final_price;
-                if($vehicle->final_price <= $minPrice) $minPrice = $vehicle->final_price;
+                if($vehicle->final_price >= $maxPrice) $maxPrice = round($vehicle->final_price) + 1;
+                if($vehicle->final_price <= $minPrice) $minPrice = round($vehicle->final_price);
+                $vehicle->final_price = round($vehicle->final_price, 2);
+
             }
         } else {
             foreach ($vehicles as $vehicle) {
