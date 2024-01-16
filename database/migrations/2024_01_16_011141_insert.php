@@ -12,6 +12,9 @@ return new class extends Migration {
     public function up(): void
     {
 
+        Schema::table('specifications', function (Blueprint $table){
+            $table->string('icon');
+        });
         \App\Models\Specification::query()->insert([
             [
                 'id' => 1,
