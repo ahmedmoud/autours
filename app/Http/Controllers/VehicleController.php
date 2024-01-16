@@ -71,8 +71,9 @@ class VehicleController extends Controller
             $startDate = Carbon::parse($date[0]);
             $endDate = Carbon::parse($date[1]);
             $priceTax = 0;
+            $diffInDays = $startDate->diffInDays($endDate);
             foreach ($vehicles as $vehicle) {
-                $diffInDays = $startDate->diffInDays($endDate);
+
                 if ($diffInDays >= '1' && $diffInDays < '3') {
                     $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100)) * $diffInDays;
                     $priceTax = $vehicle->profit->per_day_profit;
