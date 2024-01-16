@@ -139,7 +139,8 @@ const changeVehicleStatus = async ($index) => {
 
     try {
         const formData = new FormData();
-        formData.append('activation', tableData.value[$index].activation);
+        const activation = tableData.value[$index].activation ? 1 : 0;
+        formData.append('activation', activation);
         formData.append('vehicle_id', tableData.value[$index].id);
 
         const response = await axios.post('update/vehicles/activation', formData);
