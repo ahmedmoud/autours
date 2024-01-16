@@ -312,7 +312,7 @@ const remoteLocations = (query) => {
 };
 const getSpecifications = async () => {
     const response = await axios.get('get/specifications')
-    // filteredSpecifications.value = response.data
+    filteredSpecifications.value = response.data
 }
 const search = () => {
     form.pickupLoc = location.value;
