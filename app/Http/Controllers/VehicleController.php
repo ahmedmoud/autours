@@ -65,7 +65,7 @@ class VehicleController extends Controller
         $suppPluck = $query->pluck('supplier')->unique();
         $suppliers = User::whereIn('id', $suppPluck)->get();
 
-        $vehicles = $query->where('activation', true)->get();
+        $vehicles = $query->where('activation', true)->has('profit')->get();
 
         if ($date && $date !== null) {
             $startDate = Carbon::parse($date[0]);
