@@ -323,10 +323,12 @@
                         </svg>
                     </a>
                 </div>
-                <div class="row offset-8">
+                <div class="row offset-8" v-if="!user">
                     <Link class="nav-link col-2" href="supplier/login"><span>Supplier Login</span></Link>
                     <Link class="nav-link col-2" href="supplier/signup"><span>Supplier Signup</span></Link>
                 </div>
+                <Link v-else class="nav-link col-md-2" style="color: #0a3622" href="/company"><span>My Profile</span></Link>
+
                 <div class="col-md-6 align-self-center text-center text-md-right my-2" id="social-media">
 
                     <!-- <a href="#" class="d-inline-block text-center ml-2">
@@ -354,6 +356,7 @@ import {ref, onMounted} from 'vue'
 import {useForm, Link} from '@inertiajs/vue3';
 import HeaderOne from '../components/HeaderOne.vue'
 import SearchForm from "./SearchForm.vue";
+const user = ref('')
 
 const form = useForm({
     pickupLoc: '',
@@ -442,11 +445,20 @@ const search = () => {
     form.date = date.value
     form.post('search/vehicles');
 }
-
+const getUser = async () => {
+    try{
+        const response = await axios.get('/get/user/data');
+        user.value = response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
 onMounted(() => {
     getLocations();
     getVehicles();
     getLogos();
+    getUser();
+
 })
 </script>
 

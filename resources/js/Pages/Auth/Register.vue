@@ -1,4 +1,6 @@
 <template>
+    <header-one/>
+
     <body>
     <div id="wrapper">
         <!-- content begin -->
@@ -116,6 +118,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import HeaderOne from "../../components/HeaderOne.vue";
 
 const form = useForm({
     name: '',

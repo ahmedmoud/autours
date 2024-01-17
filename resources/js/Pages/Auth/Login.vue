@@ -1,12 +1,13 @@
 <template>
-    
+    <header-one/>
+
 <body>
     <div id="wrapper">
         <!-- content begin -->
         <div class="no-bottom no-top" id="content">
             <div id="top"></div>
             <section id="section-hero" aria-label="section" class="jarallax login-section" style="background: url(images/background/2.jpg);">
-                
+
                 <div class="v-center">
                     <div class="container">
                             <div class="row align-items-center">
@@ -48,6 +49,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import HeaderOne from "../../components/HeaderOne.vue";
 
 const form = useForm({
     email: '',

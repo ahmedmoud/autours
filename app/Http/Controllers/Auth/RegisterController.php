@@ -25,14 +25,13 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+//    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -76,10 +75,6 @@ class RegisterController extends Controller
             $role = 'supplier';
         } else {
             $role = 'customer';
-        }
-
-        if($request->phone){
-            $phone = $request->phone;
         }
 
         User::create([

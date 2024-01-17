@@ -53,6 +53,7 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::get('logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
+
 Route::post('/post/user/data', [RegisterController::class, 'store']);
 
 Route::get('/get/logos', [UserController::class, 'getLogos']);
