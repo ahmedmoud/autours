@@ -386,7 +386,10 @@ class VehicleController extends Controller
             $vehicles->where('pickup_loc', $branchId);
         }
         $data = $vehicles->with('category', 'supplier', 'branch')->orderBy('id')->get();
+        foreach ($data as $vehicle) {
+            $vehicle->activation =$vehicle->activation == 1 ? true : false;
 
+        }
         $data->each(function ($vehicle) {
             $vehicle->load(['rentals' => function ($query) {
                 $query->where('order_status', 1);

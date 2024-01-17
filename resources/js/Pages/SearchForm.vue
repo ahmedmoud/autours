@@ -166,7 +166,6 @@ const search = () => {
     form.post('search/vehicles');
 }
 const showAlert = () =>{
-    console.log("here")
     if(date.value != [] && date.value != null)
         $('.date-range-alert-danger').hide()
 

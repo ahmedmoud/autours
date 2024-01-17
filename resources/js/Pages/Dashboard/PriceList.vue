@@ -35,7 +35,7 @@
                             <el-table-column label="Actions">
                                 <template #default="scope">
                                         <button class="btn" @click="update(scope.$index)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
-                                        <el-switch size="large" v-model="tableData[scope.$index].activation" :value="scope.row.activation === true ||  scope.row.activation === 1 " @click="changeVehicleStatus(scope.$index)"></el-switch>
+                                        <el-switch size="large" v-model="tableData[scope.$index].activation" :value="scope.row.activation" @click="changeVehicleStatus(scope.$index)"></el-switch>
                                 </template>
                                 <template #header>
                                     <el-input v-model="search" size="large" placeholder="Type to search"/>
