@@ -4,7 +4,7 @@
         <!-- content begin -->
         <div class="no-bottom no-top" id="content">
             <div id="top"></div>
-            
+
             <!-- section begin -->
             <section id="subheader" class="jarallax text-light">
                 <img src="/images/background/subheader.jpg" class="jarallax-img" alt=""
@@ -34,7 +34,7 @@
                     </div>
             </section>
             <!-- section close -->
-            
+
 
             <section aria-label="section">
                 <div class="container">
@@ -42,7 +42,7 @@
 						<div class="col-md-8 offset-md-2">
 							<h3>Wants to join us? Register now.</h3>
                         	<div class="spacer-10"></div>
-							
+
 							<form class="form-border" @submit.prevent="postUserData">
 
                                 <div class="row">
@@ -97,18 +97,18 @@
 
                                 </div>
                             </form>
-							
+
 						</div>
                     </div>
 				</div>
             </section>
-			
-			
+
+
         </div>
         <!-- content close -->
 
         <a href="#" id="back-to-top"></a>
-        
+
     </div>
 
 </body>
@@ -126,6 +126,7 @@ const form = useForm({
 });
 
 const postUserData = () => {
+    console.log("here");
     form.post('/post/user/data'), {
         onFinish: () => form.reset('password'),
     };
