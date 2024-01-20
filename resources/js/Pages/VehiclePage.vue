@@ -8,7 +8,7 @@
         <!-- content begin -->
         <div class="no-bottom no-top zebra" id="content">
             <div id="top"></div>
-            
+
             <!-- section begin -->
             <section id="subheader" class="jarallax text-light">
                 <img src="/images/background/2.jpg" class="jarallax-img" alt=""
@@ -49,7 +49,7 @@
                                 <div class="spacer-30"></div>
                                 <h3>{{ vehicle.name }}</h3>
                                 <p>
-                                  {{ vehicle.description }}  
+                                  {{ vehicle.description }}
                                 </p>
                             </div>
                         </div>
@@ -124,14 +124,14 @@
                                                     style="padding: 7px 25px"
                                                 />
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </form>
                                     <form class="trip-form mt-4 px-2" @submit.prevent="book">
                                         <input type='submit' id='send_message' value='Book Now' class="btn-main btn-fullwidth">
                                     </form>
-                                    
+
                                     <div class="clearfix"></div>
-                                    
+
                                 </form>
                             </div>
 
@@ -148,19 +148,19 @@
                                     <span><i class="fa fa-envelope fa-lg"></i></span>
                                 </div>
                             </div> -->
-                        </div>                
+                        </div>
                     </div>
                 </div>
             </section>
-			
-			
+
+
         </div>
-        <!-- content close -->        
+        <!-- content close -->
         <!-- footer begin -->
         <!-- footer close -->
-        
+
     </div>
-</body> 
+</body>
 </template>
 
 <script setup>
@@ -236,8 +236,7 @@ const calculatedPrice = (vehicle, days) => {
     const basePrice =
     days >= 1 && days < 7 ? vehicle.price :
     days >= 7 && days < 30 ? vehicle.week_price :
-    days >= 30 && days < 365 ? vehicle.month_price :
-    days >= 365 ? vehicle.year_price : vehicle.price;
+    days >= 30 && days < 365 ? vehicle.month_price : vehicle.price;
 
     return ((basePrice + ((priceTax.value * basePrice) / 100)) * days).toFixed(2);
 

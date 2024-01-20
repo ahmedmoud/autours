@@ -215,9 +215,7 @@ class VehicleController extends Controller
                 $existingVehicle->month_price = $request->month_price;
             }
 
-            if ($request->has('year_price')) {
-                $existingVehicle->year_price = $request->year_price;
-            }
+
 
             if ($request->has('pickupLoc')) {
                 $existingVehicle->pickup_loc = $request->pickupLoc;
@@ -262,9 +260,6 @@ class VehicleController extends Controller
                 $item->month_price = $request->month_price;
             }
 
-            if ($request->has('year_price')) {
-                $item->year_price = $request->year_price;
-            }
 
             if ($request->has('pickupLoc')) {
                 $item->pickup_loc = $request->pickupLoc;

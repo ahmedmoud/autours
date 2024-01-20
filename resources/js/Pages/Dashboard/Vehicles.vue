@@ -123,14 +123,14 @@
                                 </div>
                             </div>
 
-                            <div class="formbold-mb-3">
-                                <label class="formbold-form-label">360 Day Price</label>
-                                <div class="input-with-percent">
-                                    <input v-model="data.year_price" type="text" pattern="[0-9]+([,.][0-9]+)?"
-                                           class="formbold-form-input"/>
-                                    <span class="percent-symbol">$</span>
-                                </div>
-                            </div>
+<!--                            <div class="formbold-mb-3">-->
+<!--                                <label class="formbold-form-label">360 Day Price</label>-->
+<!--                                <div class="input-with-percent">-->
+<!--                                    <input v-model="data.year_price" type="text" pattern="[0-9]+([,.][0-9]+)?"-->
+<!--                                           class="formbold-form-input"/>-->
+<!--                                    <span class="percent-symbol">$</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                             <div class="formbold-mb-3">
                                 <label class="formbold-form-label"> Vehicle Location </label>
@@ -398,7 +398,6 @@ const upload = async () => {
         formData.append('price', data.value.price);
         formData.append('week_price', data.value.week_price);
         formData.append('month_price', data.value.month_price);
-        formData.append('year_price', data.value.year_price);
         if (!isNaN(category.value)) {
             formData.append('category', category.value);
         } else {

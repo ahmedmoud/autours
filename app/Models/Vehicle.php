@@ -16,7 +16,6 @@ class Vehicle extends Model
         'price',
         'week_price',
         'month_price',
-        'year_price',
         'pickup_loc',
         'activation',
         'category',

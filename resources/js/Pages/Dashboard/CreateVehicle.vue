@@ -198,7 +198,6 @@ const description = ref('')
 const price = ref('')
 const weekPrice = ref('')
 const monthPrice = ref('')
-const yearPrice = ref('')
 const pickupLoc = ref('')
 const locations = {
     loading: ref(false),
@@ -416,7 +415,6 @@ const upload = async () => {
         formData.append('price', price.value);
         formData.append('week_price', weekPrice.value);
         formData.append('month_price', monthPrice.value);
-        formData.append('year_price', yearPrice.value);
         formData.append('pickupLoc', pickupLoc.value);
         formData.append('category', category.value);
         formData.append('specifications', JSON.stringify(selectedSpecifications.value));
