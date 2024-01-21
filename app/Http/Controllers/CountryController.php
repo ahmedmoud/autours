@@ -27,7 +27,7 @@ class CountryController extends Controller
     public function index(Request $request)
     {
 
-      return Branch::query()->distinct('country')->get()->pluck('country');
+      return Branch::query()->distinct('country')->get()->unique('country')->pluck('country');
 
     }
 
