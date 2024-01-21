@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProfitsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
@@ -36,6 +37,7 @@ Route::get('/vehicles/{id}', function () {
 
 Route::inertia('vehicles', 'Dashboard/Vehicles');
 Route::post('/get/vehicle/data', [VehicleController::class, 'getVehicle']);
+Route::get('/get/countries', [CountryController::class, 'index']);
 
 Route::inertia('company', 'Dashboard/CreateCompany');
 Route::inertia('index', 'Dashboard/Index');

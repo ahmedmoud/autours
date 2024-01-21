@@ -61,10 +61,6 @@ class ProfitsController extends Controller
     {
         try {
             $query = Profit::query();
-            if ($request->has('country')) {
-                $supplierIds = User::query()->select(['id'])->where('country', $request->country)->get()->pluck('id')->toArray();
-                $query->whereIn('supplier_id', $supplierIds);
-            }
             if ($request->has('supplier')) {
                 $query->where('supplier_id', $request->supplier);
             }
@@ -74,9 +70,14 @@ class ProfitsController extends Controller
             if ($request->has('selectedVehicles')) {
                 $query->whereIn('vehicle_id', explode(',',$request->selectedVehicles));
             }
+
             $query->
               rightJoin('vehicles', 'profits.vehicle_id', '=','vehicles.id' )
             ->leftJoin('branches', 'branches.id', '=', 'profits.branch_id');
+
+            if ($request->has('country')) {
+                $query->where('branches.country', $request->country);
+            }
             $data = $query->select([
                 'vehicles.id as vehicle_id',
                 'profits.per_day_profit',

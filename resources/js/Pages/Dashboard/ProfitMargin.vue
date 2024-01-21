@@ -96,6 +96,9 @@
                                         </el-option>
                                     </el-select>
                                 </div>
+                                <div class="mt-4 col-md-1">
+                                    <button class="mt-2 btn btn-primary col-md-12" type="button" @click="getUserData">Search</button>
+                                </div>
                             </div>
                             <hr/>
                             <h4>Profit Percentage</h4>
@@ -254,7 +257,7 @@ const getUserData = async (index) => {
         if (branch.value) branch.supplier = branch.value
         if (selectedVehicles.value) selectedVehicles.supplier = selectedVehicles.value
 
-        const response = await axios.get('/get/profit', params);
+        const response = await axios.get('/get/profit', {params: params});
         tableData.value = response.data.data
         for (const key in tableData.value[index]) {
             data.value[key] = tableData.value[index][key] || '';
@@ -265,17 +268,24 @@ const getUserData = async (index) => {
         loading.value = false;
     }
 }
+
+
+
 const filterTableData = computed(() => {
 
     const dataArray = Array.isArray(tableData.value) ? tableData.value : [];
 
+    console.log("here")
     return dataArray.filter((data) =>
-        !search.value ||
-        data.vehicle_name.toLowerCase().includes(search.value.toLowerCase()) ||
-        data.branch_name.toLowerCase().includes(search.value.toLowerCase()) ||
-        data.branch_country.toLowerCase().includes(search.value.toLowerCase())
+            !search.value
+        ||   !country.value
+        || (data.vehicle_name && data.vehicle_name.toLowerCase().includes(search.value.toLowerCase()) )
+        || (data.vehicle_name && data.vehicle_name.toLowerCase().includes(country.value.toLowerCase()) )
+        || (data.branch_name && data.branch_name.toLowerCase().includes(search.value.toLowerCase()))
+        || (data.branch_country && data.branch_country.toLowerCase().includes(search.value.toLowerCase()))
     );
 })
+
 
 const upload = async () => {
     const formData = new FormData();
@@ -341,12 +351,13 @@ const fetchCountries = async () => {
     countries.loading.value = true;
     try {
         //
-        const response = await axios.get('https://countriesnow.space/api/v0.1/countries', {})
-        countries.all.value = response.data.data
+        const response = await axios.get('/get/countries', {})
+        countries.all.value = response.data
+        console.log(response);
         countries.list.value = countries.all.value.map((item) => ({
-            id: `${item.id}`,
-            label: `${item.country}`,
-            iso: `${item.iso2}`
+            id: `${item}`,
+            label: `${item}`,
+            iso: `${item}`
         }))
     } catch (error) {
         console.error(error)
