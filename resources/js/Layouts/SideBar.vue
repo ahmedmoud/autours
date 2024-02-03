@@ -7,10 +7,10 @@
 
                     <a v-if="supplier || activeSupplier || reviewing && user.logo !== null"
                        class="text-nowrap logo-img">
-                        <img :src="user.logo ? 'img/' + user.logo : ''" alt="logo" width="180">
+                        <img :src="'/' + user.logo ? '/img/' + user.logo : ''" alt="logo" width="180">
                     </a>
                     <a v-else-if=" admin " class="text-nowrap logo-img">
-                        <img src="images/logo_white.png" alt="logo" width="180">
+                        <img src="/images/logo_white.png" alt="logo" width="180">
                     </a>
 
                     <div class="profile_name">
@@ -28,7 +28,7 @@
                         <span class="hide-menu"></span>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="index" aria-expanded="false">
+                        <a class="sidebar-link" href="/index" aria-expanded="false">
                                                <span>
                                                   <i class="ti ti-layout-dashboard"></i>
                                               </span>
@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="company" aria-expanded="false">
+                        <a class="sidebar-link" href="/company" aria-expanded="false">
                             <span><i class="ti ti-user-circle"></i></span>
                             <span class="hide-menu">My Profile</span>
                         </a>
@@ -44,45 +44,45 @@
 
                     <div v-if="admin">
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="margin">
+                            <a class="sidebar-link" href="/margin">
                                 <i class="ti ti-zoom-money"></i>
                                 <span>Profit Margin</span></a>
                         </li>
                         <!---->
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="photos">
+                            <a class="sidebar-link" href="/photos">
                                 <i class="ti ti-photo"></i>
                                 <span>Vehicles Photos</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="categories">
+                            <a class="sidebar-link" href="/categories">
                                 <i class="ti ti-category"></i>
                                 <span>Categories</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="specifications">
+                            <a class="sidebar-link" href="/specifications">
                                 <i class="ti ti-car-turbine"></i>
                                 <span>Specifications</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="memberships">
+                            <a class="sidebar-link" href="/memberships">
                                 <i class="ti ti-key" aria-hidden="true"></i>
                                 <span>Memberships</span></a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="vehicles">
-                                <i class="ti ti-car" aria-hidden="true"></i>
-                                <span>Vehicles</span></a>
-                        </li>
+<!--                        <li class="sidebar-item">-->
+<!--                            <a class="sidebar-link" href="/vehicles">-->
+<!--                                <i class="ti ti-car" aria-hidden="true"></i>-->
+<!--                                <span>Vehicles</span></a>-->
+<!--                        </li>-->
                     </div>
                     <div v-if="activeSupplier">
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" href="vehicle">
+                            <Link class="sidebar-link" href="/vehicle">
                                 <span><i class="ti ti-car-crash"></i></span>
                                 <span>Crete a Vehicle</span></Link>
                         </li>
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" href="price-list">
+                            <Link class="sidebar-link" href="/price-list">
                                 <span><i class="ti ti-zoom-money"></i></span>
                                 <span >Price List</span></Link>
                         </li>
@@ -111,13 +111,25 @@
                     </div>
 
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link" href="rentals">
+                        <Link class="sidebar-link" href="/rentals">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
                             <span>Rentals</span></Link>
                     </li>
 
+                    <li class="sidebar-item" v-if="supplier || activeSupplier">
+                        <Link class="sidebar-link" href="/rental-terms">
+                            <i class="ti ti-list" aria-hidden="true"></i>
+                            <span>Rental Terms</span></Link>
+                    </li>
+
+                    <li class="sidebar-item " v-if="admin">
+                        <Link class="sidebar-link" href="/included">
+                            <i class="ti ti-feather" aria-hidden="true"></i>
+                            <span>What is included ?</span></Link>
+                    </li>
+
                     <li class="sidebar-item">
-                        <Link class="sidebar-link" href="logout">
+                        <Link class="sidebar-link" href="/logout">
                             <i class="ti ti-logout" aria-hidden="true"></i>
                             <span>Sign Out</span></Link>
 
@@ -150,7 +162,7 @@ const reviewing = ref(false)
 
 const getRole = async () => {
     try {
-        const response = await axios.get('get/user/role');
+        const response = await axios.get('/get/user/role');
         role.value = response.data;
     } catch (error) {
         console.error(error);

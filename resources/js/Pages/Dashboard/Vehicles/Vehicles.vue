@@ -123,15 +123,6 @@
                                 </div>
                             </div>
 
-<!--                            <div class="formbold-mb-3">-->
-<!--                                <label class="formbold-form-label">360 Day Price</label>-->
-<!--                                <div class="input-with-percent">-->
-<!--                                    <input v-model="data.year_price" type="text" pattern="[0-9]+([,.][0-9]+)?"-->
-<!--                                           class="formbold-form-input"/>-->
-<!--                                    <span class="percent-symbol">$</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
                             <div class="formbold-mb-3">
                                 <label class="formbold-form-label"> Vehicle Location </label>
                                 <el-select
@@ -217,7 +208,7 @@
 </template>
 
 <script setup>
-import {useForm} from '@inertiajs/vue3';
+import {router, useForm} from '@inertiajs/vue3';
 import {onMounted, computed, ref} from 'vue'
 
 const search = ref('')
@@ -349,8 +340,7 @@ const remoteCategories = (query) => {
 }
 
 const handleDrawer = (index, row) => {
-    getData(index, row);
-    drawer.value = true;
+    router.get('edit/vehicle',{id: row.id}  )
 }
 
 const handleClose = () => {
@@ -492,6 +482,10 @@ const filterTableData = computed(() => {
 
 const handleDelete = async (index, row) => {
     try {
+       const decision =  confirm("Are you sure want to delete ?" + row.name)
+        if(!decision) {
+            return;
+        }
         loading.value = true;
         const response = await axios.post('delete/vehicles', row);
         tableData.value = response.data;
@@ -499,6 +493,7 @@ const handleDelete = async (index, row) => {
         console.error(error);
     } finally {
         loading.value = false;
+        getData()
     }
 }
 

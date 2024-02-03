@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\StatusCodes;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -47,22 +49,35 @@ class LoginController extends Controller
         return Inertia::render('Auth/Login');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/index');
+        try {
+            $credentials = $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ]);
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+//                return redirect()->intended('/index');
+            }
+        if(\auth()->user()) {
+            return response()->json([
+                'data' => [],
+                'status' => true,
+                'user_type' => \auth()->user()->role
+            ]);
+        }
+            return response()->json([
+                'message' =>['Credentials not valid'],
+                'status' => false,
+            ], StatusCodes::SERVER_ERROR);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'status' => false
+            ]);
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
     }
 
     public function logout(Request $request): RedirectResponse

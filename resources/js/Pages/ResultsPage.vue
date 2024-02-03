@@ -205,11 +205,19 @@
                                                 style="background: #edecec;">
                                                 <div class="d-supplier">
                                                     <div class="d-img w-100" style="height: 50px">
-                                                        <img :src="'img/' + vehicle.supplier.logo" height="50" width="50" alt=""/>
+                                                        <img :src="'img/' + vehicle.supplier.logo" height="50"
+                                                             width="50" alt=""/>
                                                     </div>
-                                                    <span style="font-size: medium; margin-left: -12px">{{
-                                                            vehicle.supplier.company
-                                                        }}</span>
+                                                    <div>
+                                                        <div>
+                                                            <span style="font-size: medium; margin-left: -12px">{{
+                                                                    vehicle.supplier.company
+                                                                }}</span>
+                                                        </div>
+                                                        <div style="margin-left: -12px">
+                                                            <small><a href="#">Rental Terms</a></small>
+                                                        </div>
+                                                    </div>
                                                     <button class="btn btn-primary w-100">
                                                         <span
                                                             style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
@@ -217,6 +225,27 @@
                                                     <div>
                                                         <span class="be_media-body"><h5>Good</h5><span
                                                             style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>+ reviews)</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="de-item-list col-md-11 bg-light-gray">
+                                                <div class="row col-md-11">
+                                                    <span class="primary"
+                                                          style="color: #5e9007;">What is Included!</span>
+                                                    <ul class="row mt-3">
+                                                        <li class="col-md-6" v-for="item in vehicle.included ">
+                                                            <div class="row">
+                                                                <i class="col-md-2 fa fa-check fa-xl mt-3" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{item.what_is_included}}</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12"><span><i class="fa fa-location"/></span>
+                                                        <span>Address: </span>{{ vehicle.supplier.address }}
+                                                    </div>
+                                                    <div class="col-md-12"><span><i class="fa fa-gas-pump"/></span> Fuel
+                                                        Policy
                                                     </div>
                                                 </div>
                                             </div>

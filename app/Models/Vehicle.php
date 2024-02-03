@@ -47,4 +47,8 @@ class Vehicle extends Model
         return $this->hasOne(Profit::class, 'vehicle_id', 'id');
     }
 
+    public function included(){
+        return $this->belongsToMany(Included::class, 'vehicle_included','vehicle_id','included_id');
+    }
+
 }

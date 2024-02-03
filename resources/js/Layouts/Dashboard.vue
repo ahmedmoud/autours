@@ -38,7 +38,7 @@ const reviewing = ref(false)
 
 const getRole = async () => {
     try {
-        const response = await axios.get('get/user/role');
+        const response = await axios.get('/get/user/role');
         role.value = response.data;
     } catch (error) {
         console.error(error);

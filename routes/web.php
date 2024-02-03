@@ -3,7 +3,9 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\IncludedController;
 use App\Http\Controllers\ProfitsController;
+use App\Http\Controllers\RentalTermsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
@@ -35,12 +37,11 @@ Route::get('/vehicles/{id}', function () {
     return Inertia::render('VehiclePage');
 });
 
-Route::inertia('vehicles', 'Dashboard/Vehicles');
 Route::post('/get/vehicle/data', [VehicleController::class, 'getVehicle']);
 Route::get('/get/countries', [CountryController::class, 'index']);
 
 Route::inertia('company', 'Dashboard/CreateCompany');
-Route::inertia('index', 'Dashboard/Index');
+Route::inertia('index', 'Dashboard/Index')->middleware('admin_or_supplier');
 Route::inertia('suppliers', 'Dashboard/Suppliers');
 
 Route::get('get/categories', [VehicleController::class, 'getCategories']);
@@ -93,6 +94,13 @@ Route::middleware(['admin'])->group(function () {
     Route::post('post/specifications', [VehicleController::class, 'createSpecifications']);
     Route::post('delete/specifications', [VehicleController::class, 'deleteSpecifications']);
 
+
+    Route::inertia('included', 'Dashboard/Included');
+    Route::post('post/included', [IncludedController::class, 'store']);
+    Route::get('get/included', [IncludedController::class, 'index']);
+    Route::post('delete/included', [IncludedController::class, 'delete']);
+
+
     Route::inertia('memberships', 'Dashboard/Memberships');
     Route::get('get/requests', [UserController::class, 'memberships']);
     Route::get('get/suppliers', [UserController::class, 'suppliers']);
@@ -112,11 +120,22 @@ Route::middleware(['member'])->group(function () {
 });
 
 Route::middleware(['active_supplier'])->group(function () {
-    Route::inertia('vehicle', 'Dashboard/CreateVehicle');
+    Route::inertia('vehicle', 'Dashboard/Vehicles/CreateVehicle');
     Route::post('post/vehicles', [VehicleController::class, 'create']);
     Route::post('update/vehicles/activation', [VehicleController::class, 'updateActivation']);
     Route::post('delete/vehicles', [VehicleController::class, 'destroy']);
+    Route::get('edit/vehicles/{id}', [VehicleController::class, 'edit']);
+    Route::inertia('vehicles', 'Dashboard/Vehicles/Vehicles');
+    Route::inertia('edit/vehicle', 'Dashboard/Vehicles/EditVehicle');
+    Route::get('get/included', [IncludedController::class, 'index']);
+
     Route::inertia('price-list', 'Dashboard/PriceList');
+
+
+    Route::inertia('rental-terms', 'Dashboard/RentalTerms');
+    Route::post('post/rental-terms', [RentalTermsController::class, 'createSpecifications']);
+    Route::post('delete/rental-terms', [RentalTermsController::class, 'deleteSpecifications']);
+
 
     Route::post('accept/rentals', [VehicleController::class, 'acceptRentals']);
     Route::post('delete/rentals', [VehicleController::class, 'deleteRentals']);

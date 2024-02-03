@@ -10,8 +10,8 @@
         <div class="col-10 align-self-center text-right d-flex justify-content-end">
 
             <div v-if="!user" class="row">
-                <Link  class="nav-link col-md-6" style="color: #0a3622" href="/login"><span>Manage Booking</span></Link>
-                <Link  class="nav-link col-md-6" style="color: #0a3622" href="/register"><span>Register</span></Link>
+<!--                <Link  class="nav-link col-md-3" style="color: #0a3622" href="/login"><span>Login</span></Link>-->
+                <Link  class="nav-link col-md-6" style="color: #0a3622" href="/register"><span>Manage Booking</span></Link>
             </div>
             <Link v-else class="nav-link col-md-2" style="color: #0a3622" href="/company"><span>My Profile</span></Link>
 

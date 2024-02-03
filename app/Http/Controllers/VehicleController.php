@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusCodes;
+use App\Http\Requests\CreateEditVehicle;
+use App\Models\Included;
+use App\Models\VehicleIncluded;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
@@ -31,8 +35,7 @@ class VehicleController extends Controller
         $location = Session::get('location');
         $date = Session::get('date');
 
-        $query = Vehicle::query()->whereIn('id', $filteredVehicles->pluck('id'))->with('category', 'supplier', 'profit');
-
+        $query = Vehicle::query()->whereIn('id', $filteredVehicles->pluck('id'))->with('category', 'supplier', 'profit','included');
 
         if ($request->priceRange && $request->priceRange !== 0) {
             $query->where('price', '<=', ($request->priceRange));
@@ -96,7 +99,7 @@ class VehicleController extends Controller
         }
 
         $count = $vehicles->count();
-        if($minPrice == $maxPrice) $minPrice = 0;
+        if($minPrice >= $maxPrice) $minPrice = 0;
 
         return $data = [
             'location' => $location,
@@ -181,12 +184,12 @@ class VehicleController extends Controller
         return redirect()->intended('results');
     }
 
-    public function create(Request $request)
+    public function create(CreateEditVehicle $request)
     {
         if ($request->update === '1') {
 
             $existingVehicle = Vehicle::find($request->id);
-
+            $item = $existingVehicle;
             if (!$existingVehicle) {
                 return response()->json(['error' => 'Vehicle not found'], 404);
             }
@@ -218,17 +221,26 @@ class VehicleController extends Controller
 
 
             if ($request->has('pickupLoc')) {
-                $existingVehicle->pickup_loc = $request->pickupLoc;
+                $existingVehicle->pickup_loc = Branch::query()->where('name', $request->pickupLoc)->first()->id;
             }
 
             if ($request->has('category')) {
-                $existingVehicle->category = $request->category;
+                $existingVehicle->category = Category::query()->where('name',$request->category)->first()->id;
             }
 
             if ($request->has('specifications')) {
                 $existingVehicle->specifications = json_decode($request->specifications);
             }
+
             $existingVehicle->save();
+            if ($request->has('included')) {
+                $included = explode(',', $request->included);
+                VehicleIncluded::query()->where('vehicle_id', $request->id)->delete();
+                foreach ($included as $include) {
+                    $includeId = Included::query()->where('what_is_included', $include)->first()->id;
+                    VehicleIncluded::insert(['vehicle_id' => $request->id, 'included_id' => $includeId]);
+                }
+            }
 
         } else {
 
@@ -273,11 +285,20 @@ class VehicleController extends Controller
                 $item->specifications = json_decode($request->specifications);
             }
 
-            $item->save();
 
+             $item->save();
+            if ($request->has('included')) {
+               $included = explode(',', $request->included);
+               foreach ($included as $include) {
+                   VehicleIncluded::insert(['vehicle_id' => $item->id, 'included_id' => $include]);
+               }
+            }
         }
 
-        return response(1);
+        return response()->json([
+            'data' => $item,
+            'status' => true
+        ]);
     }
 
     public function createSpecifications(Request $request)
@@ -486,7 +507,19 @@ class VehicleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        if(!is_numeric($id) || !is_int((int)$id) ) {
+            return response()->json([
+                'data' => ['message' => 'id is not valid id'],
+                'status' => false
+            ], StatusCodes::SERVER_ERROR);
+        }
+         $vehicle = Vehicle::query()->with(['branch','category','included'])->find($id);
+        $vehicle->what_is_included = $vehicle->included->pluck('what_is_included');
+        return response()->json([
+        'data' => $vehicle,
+        'status' => true
+        ]);
+
     }
 
     /**
@@ -503,7 +536,7 @@ class VehicleController extends Controller
     public function destroy(Request $request)
     {
         Vehicle::where('id', $request->id)->delete();
-        return $this->show();
+        return $this->show($request->id);
     }
 
     public function store(Request $request)

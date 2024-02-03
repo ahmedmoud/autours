@@ -1,6 +1,7 @@
 <template>
     <div  class="justify-content-center" style="background: #f9d602; height: 280px">
-            <form class="trip-form  d-flex  search-form" @submit.prevent="search"  style="max-width: 70%; top: 25%; left: 12%; ">
+<loader v-if="loading" />
+            <form v-if="!loading" class="trip-form  d-flex  search-form " @submit.prevent="search"  style="max-width: 70%; top: 25%; left: 12%; ">
                 <div class="row align-items-center w-100 d-flex " style="margin-left: 5%;">
 
                     <div class="row">
@@ -61,8 +62,7 @@
 <script setup>
 import {ref, onMounted} from 'vue'
 import {useForm, Link} from '@inertiajs/vue3';
-import HeaderOne from '../components/HeaderOne.vue'
-
+import Loader from '../components/Loader.vue'
 const form = useForm({
     pickupLoc: '',
     date: '',
@@ -76,20 +76,25 @@ const locations = {
     options: ref([]),
     loading: ref(false),
 }
-var date_required = false;
+const loading = ref(false);
 var field = ''
 const vehicles = ref([])
 
 const getLogos = async () => {
     try {
+        loading.value = true
         const response = await axios.get('get/logos')
         logos.value = response.data
+        loading.value = false
+
     } catch (error) {
         console.error(error)
     }
 }
 const fetchCountries = async () => {
     countries.loading.value = true;
+    loading.value = true
+
     try {
         const response = await axios.get('https://api.countrystatecity.in/v1/countries', {
             headers: {
@@ -102,7 +107,7 @@ const fetchCountries = async () => {
             label: `${item.name}`,
             iso: `${item.iso2}`
         }))
-        console.log(countries.list.value)
+        loading.value = false
     } catch (error) {
         console.error(error)
     } finally {
@@ -111,8 +116,11 @@ const fetchCountries = async () => {
 }
 const getVehicles = async () => {
     try {
+        loading.value = true
+
         const response = await axios.get('get/vehicles')
         vehicles.value = response.data
+        loading.value = false
     } catch (error) {
         console.error(error)
     }
@@ -120,10 +128,13 @@ const getVehicles = async () => {
 
 const getLocations = async () => {
     locations.loading.value = true;
+    loading.value = true
+
     try {
         const response = await axios.get('/get/locations')
         locations.all.value = Object.values(response.data)
         console.log(locations)
+        loading.value = false
     } catch (error) {
         console.error(error)
     } finally {
@@ -134,6 +145,8 @@ const getLocations = async () => {
 const remoteLocations = (query) => {
     if (query) {
         locations.loading.value = true
+        loading.value = true
+
         setTimeout(() => {
             locations.loading.value = false
             locations.options.value = locations.all.value.filter((item) =>
@@ -141,6 +154,7 @@ const remoteLocations = (query) => {
             )
         }, 200)
 
+        loading.value = false
 
     } else {
         locations.options.value = [];
@@ -148,22 +162,25 @@ const remoteLocations = (query) => {
 }
 
 const search = () => {
-    console.log(form.date)
+    loading.value = true
     form.pickupLoc = location.value
     form.date = date.value
 
     if(date.value == [] || date.value ===null) {
         $('.date-range-alert-danger').show()
+        loading.value = false
         return;
     }
 
 
 
     if (location.value == null || location.value == []) {
+        loading.value = false
         $('.pickup-location-alert-danger').show()
         return;
     }
     form.post('search/vehicles');
+    loading.value = false
 }
 const showAlert = () =>{
     if(date.value != [] && date.value != null)

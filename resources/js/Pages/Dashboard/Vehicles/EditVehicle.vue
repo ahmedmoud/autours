@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title fw-semibold mb-4">Create New Vehicle</h3>
+            <h3 class="card-title fw-semibold mb-4">Edit Vehicle </h3>
             <div class="card">
                 <div class="card-body">
                     <form @submit.prevent="upload">
@@ -37,13 +37,13 @@
                                         :value="item.photo"
                                     >
                                         <div class="d-flex" style="gap:10px;">
-                                            <img :src="'img/vehicles/' + item.photo" style="width:50px;">
+                                            <img :src="'/img/vehicles/' + item.photo" style="width:50px;">
                                             {{ item.label }}
                                         </div>
                                     </el-option>
                                 </el-select>
                                 <div class="col-4 mt-5">
-                                    <img v-if="photo" :src="'img/vehicles/' + photo" class="mb-4 col-12" width="300"
+                                    <img v-if="photo" :src="'/img/vehicles/' + photo" class="mb-4 col-12" width="300"
                                          height="300">
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                             v-for="item in locations.options.value"
                                             :key="item.id"
                                             :label="item.label"
-                                            :value="item.id"
+                                            :value="item.label"
                                         />
                                     </el-select>
 
@@ -92,7 +92,6 @@
                                     reserve-keyword
                                     placeholder="Pickup..."
                                     remote-show-suffix
-
                                     :remote-method="remoteCategories"
                                     :loading="categories.loading.value"
                                     @click="remoteCategories()"
@@ -102,6 +101,7 @@
                                         :key="item.id"
                                         :label="item.label"
                                         :value="item.id"
+                                        aria-selected="true"
                                     />
                                 </el-select>
                             </div>
@@ -172,12 +172,37 @@
                             </div>
                         </div>
                         <hr/>
+
+                        <h4> What is included ? </h4>
+                        <div class="row">
+                            <div class="formbold-mb-3 col-6">
+                                <el-select
+                                    v-model="selectedIncluded"
+                                    size="large"
+                                    filterable
+                                    remote
+                                    multiple
+                                    class="col-5"
+                                    reserve-keyword
+                                    placeholder="Select features..."
+                                    remote-show-suffix
+                                >
+                                    <el-option
+                                        v-for="item in included.list.value"
+                                        :key="item.id"
+                                        :label="item.label"
+                                        :value="item.label"
+
+                                    />
+                                </el-select>
+                            </div>
+                        </div>
                         <div class="row justify-content-center">
                             <div class="col-md-2 ml-5">
                                 <button type="submit" class="btn btn-primary p-2" style="color: #0a3622;">Submit</button>
                             </div>
                             <div class="col-md-5">
-                                <a href="vehicles" class="btn btn-danger">Cancel</a>
+                                <a href="/vehicles" class="btn btn-danger">Cancel</a>
                             </div>
                         </div>
                     </form>
@@ -192,6 +217,10 @@ import {onMounted, ref, watchEffect} from 'vue'
 import {router} from "@inertiajs/vue3";
 import Editor from 'primevue/editor';
 
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+const $toast = useToast();
 const photo = ref('')
 const name = ref('')
 const description = ref('')
@@ -213,10 +242,19 @@ const categories = {
     list: ref([]),
     options: ref([]),
 };
+const selectedIncluded = ref('')
+
+const included = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+};
 
 const specification = ref([])
 const specifications = ref([])
 const selectedSpecifications = ref([])
+let vehicle = {};
 
 const photos = {
     loading: ref(false),
@@ -249,7 +287,7 @@ const getSpecificationOption = (name, option, icon) => {
 
 const fetchSpecifications = async () => {
     try {
-        const response = await axios.get('get/specifications');
+        const response = await axios.get('/get/specifications');
         specifications.value = response.data;
     } catch (error) {
         console.error(error);
@@ -261,7 +299,7 @@ const fetchSpecifications = async () => {
 const fetchCategories = async () => {
     categories.loading.value = true;
     try {
-        const response = await axios.get('get/categories')
+        const response = await axios.get('/get/categories')
         categories.all.value = response.data
         categories.list.value = categories.all.value.map((item) => ({
             id: `${item.id}`,
@@ -291,7 +329,7 @@ const remoteCategories = (query) => {
 const fetchBranches = async () => {
     locations.loading.value = true;
     try {
-        const response = await axios.get('get/branches')
+        const response = await axios.get('/get/branches')
         locations.all.value = response.data
         locations.list.value = locations.all.value.map((item) => ({
             id: `${item.id}`,
@@ -406,6 +444,8 @@ const validateForm = () => {
     }
     return valid;
 }
+
+
 const upload = async () => {
     try {
         const formData = new FormData();
@@ -417,44 +457,78 @@ const upload = async () => {
         formData.append('month_price', monthPrice.value);
         formData.append('pickupLoc', pickupLoc.value);
         formData.append('category', category.value);
-        formData.append('specifications', JSON.stringify(selectedSpecifications.value));
+        formData.append('specifications',JSON.stringify(selectedSpecifications.value));
+        formData.append('included', selectedIncluded.value);
+        formData.append('update', '1');
+        formData.append('id', vehicle.id);
 
         if(!validateForm()) return;
 
-        const response = await axios.post('post/vehicles', formData);
+        const response = await axios.post('/post/vehicles', formData);
         open(response.data);
-        if (response.data === 1) {
-            photo.value = null;
-            name.value = null;
-            description.value = null;
-            price.value = null;
-            weekPrice.value = null;
-            monthPrice.value = null;
-            category.value = null;
-        }
-        // router.get('/vehicles')
+
+        router.get('/vehicles')
     } catch (error) {
-        console.error(error);
+        console.log(error)
+        $toast.error(error.response.data.message, {position: 'top'})
     }
 }
 
 const open = (response) => {
-    if (response === 1) {
-        ElMessage({
-            showClose: true,
-            message: 'Created successfully.',
-            type: 'success',
-        })
+    console.log(response)
+    if (response.status) {
+       $toast.success('Your Vehicle Updated Successfully', {position: 'top'})
     } else {
-        ElMessage.error('Oops, something went wrong.')
+        $toast.error(error.response.message, {position: 'top'})
     }
 }
+const getData = async () => {
+    console.log(router)
+    try {
+        let urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
 
-
+        const response = await axios.get('/edit/vehicles/' + id);
+        vehicle = response.data.data
+        name.value = vehicle.name
+        pickupLoc.value = vehicle.branch.name
+        category.value = vehicle.category.name
+        description.value = vehicle.description
+        price.value = vehicle.price
+        weekPrice.value = vehicle.week_price
+        monthPrice.value = vehicle.month_price
+        specification.value = vehicle.specifications
+        selectedSpecifications.value = vehicle.specifications
+        selectedIncluded.value = vehicle.what_is_included
+        photo.value = vehicle.photo
+        console.log(vehicle.included)
+    }catch (e){
+        console.log(e)
+        $toast.error(e.response.data.data.message, {position: 'top'});
+    }
+}
+const fetchIncluded = async () => {
+    included.loading.value = true;
+    try {
+        const response = await axios.get('/get/included')
+        included.all.value = response.data
+        included.list.value = included.all.value.map((item) => ({
+            id: `${item.id}`,
+            label: `${item.what_is_included}`,
+        }))
+    } catch (error) {
+        console.error(error)
+    } finally {
+        included.loading.value = false;
+    }
+}
 onMounted(() => {
     fetchBranches();
     fetchCategories();
     fetchSpecifications();
     fetchPhotos();
+    fetchSpecifications();
+    fetchIncluded();
+    getData()
 });
 </script>

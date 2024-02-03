@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\StatusCodes;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -63,28 +63,39 @@ class RegisterController extends Controller
         ]);
     }
 
+
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
+     * @param RegisterRequest $request
+     * @return JsonResponse
      */
-    protected function store(Request $request): RedirectResponse
+    protected function store(RegisterRequest $request): \Illuminate\Http\JsonResponse
     {
-        if($request->supplier === 1){
-            $role = 'supplier';
-        } else {
-            $role = 'customer';
+
+        try {
+            if ($request->supplier === 1) {
+                $role = 'supplier';
+            } else {
+                $role = 'customer';
+            }
+
+            User::create([
+                'name' => $request->name,
+                'phone_num' => $request->phone,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $role,
+            ]);
+            return response()->json([
+                'data' => [],
+                'status' => true
+            ], StatusCodes::SUCCESS);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'status' => false
+            ], StatusCodes::SERVER_ERROR);
         }
 
-        User::create([
-            'name' => $request->name,
-            'phone_num' => $request->phone,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $role,
-        ]);
-
-        return redirect()->intended('/login');
     }
 }
