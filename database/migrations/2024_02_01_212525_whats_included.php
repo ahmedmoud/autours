@@ -28,8 +28,8 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('vehicle_included', function (Blueprint $table) {
-          $table->foreign('included_id')->references('id')->on('included');
-          $table->foreign('vehicle_id')->references('id')->on('vehicles');
+//          $table->foreign('included_id')->references('id')->on('included');
+//          $table->foreign('vehicle_id')->references('id')->on('vehicles');
         });
     }
 
