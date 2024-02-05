@@ -5,18 +5,19 @@
     <!-- banner -->
     <div class="jumbotron jumbotron-fluid" id=""
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 75%; display:flex; align-items: flex-end; justify-content: center;">
-        <div class="container text-center  " style="">
-            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
-                class=" text-white font-weight-bold my-5 " style="font-size: 5.6rem;  ">
-                Looking for a vehicle?<br/>
-            </h1>
-            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
-                class=" text-white font-weight-bold my-5 " style="font-size: 5.6rem;  ">
-                You're at the right place.
-            </h1>
+        <div class=" text-center  " style="width: 70%">
+            <FloatSearchForm />
+<!--            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"-->
+<!--                class=" text-white font-weight-bold my-5 " style="font-size: 5.6rem;  ">-->
+<!--                Looking for a vehicle?<br/>-->
+<!--            </h1>-->
+<!--            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"-->
+<!--                class=" text-white font-weight-bold my-5 " style="font-size: 5.6rem;  ">-->
+<!--                You're at the right place.-->
+<!--            </h1>-->
         </div>
     </div>
-    <search-form/>
+<!--    <search-form/>-->
     <!-- client -->
     <div class="jumbotron jumbotron-fluid" style="background: #FFFFFF">
         <div class="container">
@@ -290,6 +291,7 @@ import {ref, onMounted} from 'vue'
 import {useForm, Link} from '@inertiajs/vue3';
 import HeaderOne from '../components/HeaderOne.vue'
 import SearchForm from "./SearchForm.vue";
+import FloatSearchForm from "./FloatSearchForm.vue";
 import Footer from "../components/Footer.vue"
 import Contactus from "../components/Contactus.vue"
 

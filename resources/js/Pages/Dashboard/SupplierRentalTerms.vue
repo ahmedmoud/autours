@@ -3,25 +3,13 @@
         <div class="card-body">
             <h2 class="mb-4">Rental Terms</h2>
             <div class="card">
-                <div class="card-body">
-                    <form @submit.prevent="postData">
-                        <div class="row" style="height: 300px;">
-                            <div class="formbold-mb-3 col-6">
-                                <label class="formbold-form-label"> Title </label>
-                                <Editor v-model="form.title" type="text"   style="height: 200px;" required/>
-                            </div>
-                            <div class="formbold-mb-3 col-6 position-relative">
-                                <label class="formbold-form-label"> Description </label>
-                                <Editor v-model="form.description" type="text"  style="height: 200px;" required/>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                </div>
                 <div class=" d-flex">
                     <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
+                        <el-table-column width="100" label="Select">
+                            <template #default="scope">
+                            <el-checkbox  :checked="scope.row.selected" size="large" v-on:click="selectTerm(scope.row)"/>
+                            </template>
+                        </el-table-column>
                         <el-table-column label="Title">
                             <template #default="scope">
                                 <div v-html="scope.row.title"></div>
@@ -34,17 +22,9 @@
                             </template>
                         </el-table-column>
                         <el-table-column align="right">
-
                             <template #header>
                                 <el-input v-model="search" size="small" placeholder="Type to search"/>
                             </template>
-
-                            <template #default="scope">
-<!--                                <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>-->
-
-                                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-                            </template>
-
                         </el-table-column>
                     </el-table>
                 </div>
@@ -73,21 +53,27 @@ const $toast = useToast();
 const handleClose = (tag) => {
     dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
 }
+const selectTerm = async (item) => {
+    try {
+        const formData = new FormData();
 
-const showInput = () => {
-    inputVisible.value = true
-    nextTick(() => {
-        InputRef.value.input.focus()
-    })
-}
 
-const handleInputConfirm = () => {
-    if (inputValue.value) {
-        dynamicTags.value.push(inputValue.value)
+        formData.append('term_id', item.id);
+
+        const response = await axios.post('select-rental-terms', formData);
+        if(response.data.status) {
+            $toast.success('Rental Term added successfully', {position: 'top'})
+            form.reset();
+        }
+        console.log(response.data.status);
+    } catch (error) {
+        $toast.error(error.response.data.message, {position: 'top'});
+    } finally {
+        getData();
     }
-    inputVisible.value = false
-    inputValue.value = ''
 }
+
+
 
 const getData = async () => {
     try {

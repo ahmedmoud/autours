@@ -9,27 +9,54 @@
             <div id="top"></div>
             <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>
 
+            <div v-if="isOpen" class="modal-mask">
+                <div class="modal-wrapper" @click="$emit('close')">
+                    <div class="modal-container" ref="target">
+                        <div class="modal-header">
+                            <slot name="header"> Rental Terms </slot>
+                        </div>
+                        <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
+                            <CAccordion>
+                                <CAccordionItem v-for="(item,index) in activeRentalTerms" :item-key="index">
+                                    <CAccordionHeader>
+                                        <div v-html="item.title"> </div>
+                                    </CAccordionHeader>
+                                    <CAccordionBody>
+                                        <div v-html="item.description"> </div>
+                                    </CAccordionBody>
+                                </CAccordionItem>
+                            </CAccordion>
+                        </div>
+                        <div class="modal-footer">
+                            <slot name="footer">
+                                <div>
+                                    <button class="btn btn-primary"  @click="closeModal()">Done</button>
+                                </div>
+                            </slot>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <section id="section-cars">
                 <div class="col-md-12   mb-5" style="margin-left: 18%;">
-                    <button class="mr-2  btn " style="width:420px; background: #f9d602; color: #000;"><span
+                    <button class="mr-2 mt-2 btn " style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-2"/>Choose Your Location
                     </button>
-                    <button class="mr-2 btn mt-2 active"
-                            style="width:420px; background: rgb(155,147,84);color: #000;"><span
+                    <button class="mr-2 btn mt-2 active" style="width:420px; background: rgb(155,147,84);color: #000;"><span
                         class="ti ti-circle-number-2 mr-2"/>Choose Your Car
                     </button>
-                    <button class="btn mt-2" style="width:420px; background: #f9d602; color: #000;"><span
-                        class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
+                    <button class="btn mt-2" style="width:420px; background: #f9d602; color: #000;"><span class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
                     </button>
                 </div>
-                <div class="container">
+
+
+                <div class="" style="width: 90%; padding-left: 10%;">
                     <div class="row">
-
-
                         <div class="col-lg-3">
                             <div class="col-md-12 pb-4" style="background: #fff;">
                                 <div class="p-1"
-                                     style="background: #e1e1e1; width: 108.9%; margin-left: -12px; margin-top: 10px;">
+                                     style="background: #e1e1e1; width: 107.5%; margin-left: -12px; margin-top: 10px;">
                                     <h5 class="p-2">YOUR SEARCH DETAILS</h5>
                                 </div>
                                 <div class=" mt-3 row" style="background: #fff;">
@@ -53,7 +80,7 @@
 
                             <div class="col-md-12 pb-4" style="background: #fff;">
                                 <div class="p-2 pt-3"
-                                     style="overflow: hidden; background: #e1e1e1; width: 108.9%; margin-left: -12px;">
+                                     style="overflow: hidden; background: #e1e1e1; width: 107.5%; margin-left: -12px;">
                                     <h5>FILTER BY</h5>
                                 </div>
                                 <div class="mt-3">
@@ -171,7 +198,7 @@
                                                       clip-rule="evenodd"></path>
                                             </svg>
                                         </div>
-                                        <div style="width: 120%">
+                                        <div style="width: 140%">
                                             <div>
                                                 <div class="col-md-3 d-img">
                                                     <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid"
@@ -200,9 +227,8 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div
-                                                class="de-item-list mb30 mt30 d-flex justify-content-between align-items-center col-11"
-                                                style="background: #edecec;">
+                                            <div class="de-item-list mb30 mt30 d-flex justify-content-between align-items-center col-11"
+                                                style="background: #edecec; max-width: 85%;">
                                                 <div class="d-supplier">
                                                     <div class="d-img w-100" style="height: 50px">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
@@ -215,7 +241,7 @@
                                                                 }}</span>
                                                         </div>
                                                         <div style="margin-left: -12px">
-                                                            <small><a href="#">Rental Terms</a></small>
+                                                            <small><a class="cursor-pointer text-primary" href="javascript:void(0);" @click="openRentalTerms(vehicle)" >Rental Terms</a></small>
                                                         </div>
                                                     </div>
                                                     <button class="btn btn-primary w-100">
@@ -228,7 +254,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="de-item-list col-md-11 bg-light-gray">
+
+                                            <div class="de-item-list col-md-11 bg-light-gray" style="max-width: 85%;">
                                                 <div class="row col-md-11">
                                                     <span class="primary"
                                                           style="color: #5e9007;">What is Included!</span>
@@ -241,14 +268,16 @@
                                                     </ul>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-12"><span><i class="fa fa-location"/></span>
-                                                        <span>Address: </span>{{ vehicle.supplier.address }}
+                                                    <div class="col-md-12">
+                                                        <h5><i class="fa fa-location"/>Address: </h5><p>{{ vehicle.supplier.address }}</p>
                                                     </div>
-                                                    <div class="col-md-12"><span><i class="fa fa-gas-pump"/></span> Fuel
-                                                        Policy
-                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <span><i class="fa fa-gas-pump"/></span>
+                                                        Fuel Policy: <small> Full to Full </small> </div>
                                                 </div>
                                             </div>
+
+
                                         </div>
                                         <div class="d-price d-total w-100 mb30 mt30">
                                             <span class="d-days">for {{ daysNumber }} day{{
@@ -272,12 +301,10 @@
                 </div>
             </section>
         </div>
-        <!-- content close -->
-
-        <!-- footer begin -->
-        <!-- footer close -->
     </div>
+
     </body>
+
 </template>
 
 <script setup>
@@ -285,10 +312,16 @@ import {onMounted, ref, watchEffect, computed} from "vue";
 import {useForm, Link, router} from "@inertiajs/vue3";
 import HeaderOne from "../components/HeaderOne.vue";
 import ProgressBar from "primevue/progressbar"
+import {CAccordion,CAccordionItem,CAccordionHeader,CAccordionBody} from '@coreui/vue';
+const isOpen = ref(false)
 
+const closeModal = () => {
+    isOpen.value = false;
+}
 const form = useForm({
     pickupLoc: "",
     date: "",
+    currency: ""
 });
 const date = ref("");
 const location = ref("");
@@ -312,7 +345,6 @@ const priceTax = ref("");
 const priceRange = ref(10000);
 const daysNumber = ref("");
 const specification = ref([]);
-
 const getLocations = async () => {
     locations.loading.value = true;
     try {
@@ -346,6 +378,7 @@ const getSpecifications = async () => {
 const search = () => {
     form.pickupLoc = location.value;
     form.date = date.value;
+    form.currency = localStorage.getItem('currency') ?? 'USD';
     form.post("search/vehicles");
     getVehicles();
 };
@@ -353,7 +386,7 @@ const search = () => {
 const getVehicles = async () => {
     try {
         loading.value = true;
-        const response = await axios.post("filter/vehicles");
+        const response = await axios.post("filter/vehicles",{currency: localStorage.getItem('currency') ?? 'USD'});
         filteredVehicles.value = response.data.filteredVehicles;
         location.value = response.data.location;
         date.value = response.data.date;
@@ -402,6 +435,7 @@ const getFilters = async () => {
         formData.append("priceRange", price.value);
         formData.append("supplier", supplier.value);
         formData.append("specification", specification.value);
+        formData.append("currency", localStorage.getItem('currency') ?? 'EGP');
         const response = await axios.post("filter/vehicles", formData);
         filteredVehicles.value = response.data.filteredVehicles;
         count.value = response.data.count;
@@ -422,7 +456,11 @@ const hideItem = (index) => {
 const getDisplayStyle = (item) => {
     return item.isHidden ? "display: none;" : "";
 };
-
+const activeRentalTerms = ref('');
+const openRentalTerms = (vehicle) => {
+    isOpen.value = true
+    activeRentalTerms.value = vehicle.rental_terms
+}
 
 const priceFiltered = computed(() => {
     if (filteredVehicles.value != []) {
@@ -434,7 +472,7 @@ const priceFiltered = computed(() => {
     }
 });
 const selectedCurrency = computed(() => {
-    return localStorage.getItem('currency') ?? 'EGP'
+    return localStorage.getItem('currency') ?? 'USD'
 })
 watchEffect(() => {
     getFilters();
@@ -448,6 +486,23 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-container {
+    width: 900px;
+    margin: 150px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+}
 .el-slider {
     --el-slider-main-bg-color: #f4d849;
 }

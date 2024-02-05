@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AssignRentalTerm;
 use App\Http\Requests\CreateRentalTerms;
+use App\Models\Currency;
 use App\Models\RentalTerms;
 use App\Models\SupplierRentalTerm;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
-class RentalTermsController extends Controller
+class CurrencyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,19 +32,8 @@ class RentalTermsController extends Controller
 
     public function index()
     {
-        $terms = RentalTerms::query()->get();
-        if(\auth()->user()->role == 'active_supplier') {
-            $selected = SupplierRentalTerm::query()->where('supplier_id', \auth()->user()->id)->get()->pluck('rental_term_id')->toArray();
-            foreach ($terms as $term) {
-                if(in_array($term->id, $selected )) {
-                    $term->selected = 1;
-                } else {
-                    $term->selected = 0;
 
-                }
-            }
-        }
-        return $terms;
+        return Currency::query()->get();
     }
 
 

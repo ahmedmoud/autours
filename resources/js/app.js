@@ -3,8 +3,6 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import Dashboard from "@/Layouts/Dashboard.vue";
-import 'element-plus/dist/index.css'
-
 createInertiaApp({
   resolve: (name) => {
     const page = resolvePageComponent(

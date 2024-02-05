@@ -117,6 +117,12 @@
                     </li>
 
                     <li class="sidebar-item" v-if="supplier || activeSupplier">
+                        <Link class="sidebar-link" href="/supplier-rental-terms">
+                            <i class="ti ti-list" aria-hidden="true"></i>
+                            <span>My Rental Terms</span></Link>
+                    </li>
+
+                    <li class="sidebar-item" v-if="admin">
                         <Link class="sidebar-link" href="/rental-terms">
                             <i class="ti ti-list" aria-hidden="true"></i>
                             <span>Rental Terms</span></Link>

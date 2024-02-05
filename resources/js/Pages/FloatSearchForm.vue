@@ -1,68 +1,58 @@
 <template>
-    <div  class="justify-content-center" style="background: #f9d602; height: 280px">
+    <div  class="justify-content-center" style="background: #0e1418c2; height: 280px;">
 <loader v-if="loading" />
-            <form v-if="!loading" class="trip-form  d-flex  search-form " @submit.prevent="search"  style="max-width: 70%; top: 25%; left: 12%; ">
-                <div class="row align-items-center w-100 d-flex " style="margin-left: 5%;">
-
-                    <div class="row">
-                    <div class=" date-range-alert-danger danger  display-none col-4 offset-4" > <li>Please Select Date Range</li></div>
-                    <div class="danger pickup-location-alert-danger display-none col-5"> <li> Please select Location  </li> </div>
-                    </div>
-                    <div class="  col-md-3">
-                        <el-select
-                            v-model="location"
-                            size="large"
-                            filterable
-                            class="col-md-10"
-                            remote
-                            reserve-keyword
-                            placeholder="Pickup..."
-                            remote-show-suffix
-                        >
-                            <el-option
-                                v-for="location in locations.all.value"
-                                @click=""
-                                aria-required="true"
-                                :key="location"
-                                :label="location"
-                                :change="showAlert()"
-                                :value="location"
-                            />
-                        </el-select>
-
-                    </div>
-                    <div class=" col-md-5" >
-                        <div class="form-control-wrap col-md-10">
-                            <el-date-picker
-                                v-model="date"
-                                type="daterange"
-                                range-separator="TO"
-                                start-placeholder="Start date"
-                                end-placeholder="End date"
-                                size="large"
-                                required="true"
-                                :change="showAlert()"
-                                format="YYYY/MM/DD"
-                                value-format="YYYY-MM-DD"
-                            />
+            <form v-if="!loading" class="trip-form  d-flex  " @submit.prevent="search"  style="max-width: 70%; top: 30%;  ">
+                <div class="row">
+                    <div class="row  col-md-12 " style="margin-left: 6%;">
+                        <div class="row">
+                            <div class=" date-range-alert-danger danger  display-none col-4 offset-4">
+                                <li>Please Select Date Range</li>
+                            </div>
+                            <div class="danger pickup-location-alert-danger display-none col-5">
+                                <li> Please select Location</li>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control form-select bg-white" style=" height: 60px;" v-model="location">
+                                <option disabled selected value="" class="el-select-dropdown">     Select Your Location...</option>
+                                <option  class="el-select-dropdown"  v-for="item in locations.all.value" :value="item"> {{ item }}</option>
+                            </select>
 
                         </div>
-                    </div>
-                    <div class=" col-md-2" >
-                        <input type="submit" value="Search" class="btn btn-fullwidth rounded-3" style=" padding:9px 25px; background: #0a3622; color: #f9d602;"/>
-                    </div>
+                        <div class=" col-md-6">
+                            <div class=" ">
+                                <el-date-picker
+                                    v-model="date"
+                                    type="daterange"
+                                    range-separator="TO"
+                                    start-placeholder="Start date"
+                                    end-placeholder="End date"
+                                    size="large"
+                                    required="true"
+                                    :change="showAlert()"
+                                    format="YYYY/MM/DD"
+                                    value-format="YYYY-MM-DD"
+                                    style="height: 60px;"
 
+                                />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-5" style="left: 105%;     font-weight: 400 !important;">
+                        <input type="submit" value="SEARCH CARS" class=" w-100 " style=" height:60px; padding:9px 25px; background: rgb(249, 214, 2); color: #000;"/>
+                    </div>
                 </div>
-
-
             </form>
     </div>
 </template>
 
 <script setup>
 import {ref, onMounted} from 'vue'
-import {useForm, Link} from '@inertiajs/vue3';
+import {useForm} from '@inertiajs/vue3';
 import Loader from '../components/Loader.vue'
+
+const value = ref()
 const form = useForm({
     pickupLoc: '',
     date: '',
@@ -169,7 +159,7 @@ const search = () => {
     form.currency = localStorage.getItem('currency') ?? 'USD'
 
     if(date.value == [] || date.value ===null) {
-        $('.date-range-alert-danger').show()
+        alert('Please Select Date range')
         loading.value = false
         return;
     }
@@ -178,7 +168,8 @@ const search = () => {
 
     if (location.value == null || location.value == []) {
         loading.value = false
-        $('.pickup-location-alert-danger').show()
+        alert('Please Select Location')
+
         return;
     }
     form.post('search/vehicles');
@@ -229,16 +220,13 @@ header {
 
 .trip-form {
     border-radius: 7px;
-    padding: 40px;
-    background: #fff;
-    position: relative;
+        position: relative;
     z-index: 3;
-    -webkit-box-shadow: 0 15px 30px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 15px 30px 0px rgba(0, 0, 0, 0.1);
 }
 
 $easing: cubic-bezier(0.680, -0.550, 0.265, 1.550);
 $color: white;
+
 
 .acc {
     .wrapper {

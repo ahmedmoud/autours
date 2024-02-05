@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Enums\StatusCodes;
 use App\Http\Requests\CreateEditVehicle;
+use App\Models\CurrencyRate;
 use App\Models\Included;
+use App\Models\SupplierRentalTerm;
 use App\Models\VehicleIncluded;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -28,92 +30,6 @@ class VehicleController extends Controller
      * Display a listing of the resource.
      */
 
-    public function filter(Request $request)
-    {
-
-        $filteredVehicles = Session::get('filteredVehicles');
-        $location = Session::get('location');
-        $date = Session::get('date');
-
-        $query = Vehicle::query()->whereIn('id', $filteredVehicles->pluck('id'))->with('category', 'supplier', 'profit','included');
-
-        if ($request->priceRange && $request->priceRange !== 0) {
-            $query->where('price', '<=', ($request->priceRange));
-        }
-        if ($request->category) {
-            $query->where('category', $request->category);
-        }
-        if ($request->supplier) {
-            $query->where('supplier', $request->supplier);
-        }
-        if ($request->specification) {
-            $specifications = explode(',', $request->specification);
-
-            foreach ($specifications as $specification) {
-                if ($specification) {
-                    $query->whereJsonContains('specifications', [
-                        ['option' => $specification]
-                    ]);
-                }
-            }
-        }
-
-        $prices = $query->pluck('price')->filter();
-        $maxPrice = 0;
-        $minPrice = 10000000;
-
-        $catPluck = $query->pluck('category')->unique();
-        $categories = Category::whereIn('id', $catPluck)->get();
-
-        $suppPluck = $query->pluck('supplier')->unique();
-        $suppliers = User::whereIn('id', $suppPluck)->get();
-
-        $vehicles = $query->where('activation', true)->has('profit')->get();
-
-        if ($date && $date !== null) {
-            $startDate = Carbon::parse($date[0]);
-            $endDate = Carbon::parse($date[1]);
-            $priceTax = 0;
-            $diffInDays = $startDate->diffInDays($endDate);
-            foreach ($vehicles as $vehicle) {
-
-                if ($diffInDays >= '1' && $diffInDays < '3') {
-                    $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100)) * $diffInDays;
-                    $priceTax = $vehicle->profit->per_day_profit;
-                } else if ($diffInDays >= '3' && $diffInDays < '7') {
-                    $vehicle->final_price = ($vehicle->week_price + (($vehicle->week_price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
-                    $priceTax = $vehicle->profit->per_week_profit;
-                } else if ($diffInDays >= '8' && $diffInDays < '30') {
-                    $vehicle->final_price = ($vehicle->month_price + (($vehicle->month_price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
-                    $priceTax = $vehicle->profit->per_month_profit;
-                }
-                if($vehicle->final_price >= $maxPrice) $maxPrice = round($vehicle->final_price) + 1;
-                if($vehicle->final_price <= $minPrice) $minPrice = round($vehicle->final_price);
-                $vehicle->final_price = round($vehicle->final_price, 2);
-
-            }
-        } else {
-            foreach ($vehicles as $vehicle) {
-                $vehicle->final_price = $vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100);
-            }
-        }
-
-        $count = $vehicles->count();
-        if($minPrice >= $maxPrice) $minPrice = 0;
-
-        return $data = [
-            'location' => $location,
-            'date' => $date,
-            'filteredVehicles' => $vehicles,
-            'filteredCategories' => $categories,
-            'filteredSuppliers' => $suppliers,
-            'count' => $count,
-            'max' => $maxPrice,
-            'min' => $minPrice,
-            'priceTax' => $priceTax,
-            'daysNumber' => $diffInDays
-        ];
-    }
 
     public function index()
     {
@@ -141,6 +57,118 @@ class VehicleController extends Controller
         $item->save();
 
         return redirect()->intended('/');
+    }
+
+    public function filter(Request $request)
+    {
+        try {
+
+            $filteredVehicles = Session::get('filteredVehicles');
+            $location = Session::get('location');
+            $date = Session::get('date');
+            $currency = $request->currency;
+
+            if ($filteredVehicles == null) {
+                return response()->json([
+                    'data' => ['message' => 'There is no chosen '],
+                    'status' => false
+                ]);
+            }
+            $query = Vehicle::query()->whereIn('id', $filteredVehicles->pluck('id'))->with('category', 'supplier', 'profit', 'included', 'branch');
+
+            if ($request->priceRange && $request->priceRange !== 0) {
+                $query->where('price', '<=', ($request->priceRange));
+            }
+            if ($request->category) {
+                $query->where('category', $request->category);
+            }
+            if ($request->supplier) {
+                $query->where('supplier', $request->supplier);
+            }
+            if ($request->specification) {
+                $specifications = explode(',', $request->specification);
+
+                foreach ($specifications as $specification) {
+                    if ($specification) {
+                        $query->whereJsonContains('specifications', [
+                            ['option' => $specification]
+                        ]);
+                    }
+                }
+            }
+
+            $maxPrice = 0;
+            $minPrice = 10000000;
+
+            $catPluck = $query->pluck('category')->unique();
+            $categories = Category::whereIn('id', $catPluck)->get();
+
+            $suppPluck = $query->pluck('supplier')->unique();
+            $suppliers = User::whereIn('id', $suppPluck)->get();
+
+            $vehicles = $query->where('activation', true)->has('profit')->get();
+
+            if ($date && $date !== null) {
+                $startDate = Carbon::parse($date[0]);
+                $endDate = Carbon::parse($date[1]);
+                $priceTax = 0;
+                $diffInDays = $startDate->diffInDays($endDate);
+                foreach ($vehicles as $vehicle) {
+
+                    if ($diffInDays >= '1' && $diffInDays < '3') {
+                        $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100)) * $diffInDays;
+                        $priceTax = $vehicle->profit->per_day_profit;
+                    } else if ($diffInDays >= '3' && $diffInDays < '7') {
+                        $vehicle->final_price = ($vehicle->week_price + (($vehicle->week_price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
+                        $priceTax = $vehicle->profit->per_week_profit;
+                    } else if ($diffInDays >= '8' && $diffInDays < '30') {
+                        $vehicle->final_price = ($vehicle->month_price + (($vehicle->month_price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
+                        $priceTax = $vehicle->profit->per_month_profit;
+                    }
+
+                    $vehicle->final_price = round($vehicle->final_price, 2);
+                    if ($currency != $vehicle->branch->currency) {
+                        $rate = CurrencyRate::query()->where('currency_from', $vehicle->branch->currency)->where('currency_to', $currency)->first();
+                        if ($rate != null) {
+                            $vehicle->final_price *= $rate->rate;
+                            $vehicle->final_price = round($vehicle->final_price, 2);
+                        }
+                    }
+                    if ($vehicle->final_price >= $maxPrice) $maxPrice = round($vehicle->final_price) + 1;
+                    if ($vehicle->final_price <= $minPrice) $minPrice = round($vehicle->final_price);
+
+                }
+            } else {
+                foreach ($vehicles as $vehicle) {
+                    $vehicle->final_price = $vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100);
+
+                }
+            }
+
+            $count = $vehicles->count();
+            foreach ($vehicles as $vehicle) {
+                $vehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $vehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
+            }
+            if ($minPrice >= $maxPrice) $minPrice = 0;
+
+            return $data = [
+                'location' => $location,
+                'date' => $date,
+                'filteredVehicles' => $vehicles,
+                'filteredCategories' => $categories,
+                'filteredSuppliers' => $suppliers,
+                'count' => $count,
+                'max' => $maxPrice,
+                'min' => $minPrice,
+                'priceTax' => $priceTax,
+                'daysNumber' => $diffInDays
+            ];
+        } catch (\Exception $e) {
+            return response()->json([
+                'data' => ['message' => $e->getMessage()],
+                'status' => false
+            ]);
+        }
     }
 
     public function search(Request $request): RedirectResponse
@@ -173,12 +201,14 @@ class VehicleController extends Controller
         //           ->where('end_date', '>=', $endDate);
         // });
 
-        $results = $vehicles->with('category', 'supplier')->get();
+        $results = $vehicles->with(['category', 'supplier'])->get();
+
 
         Session::put([
             'filteredVehicles' => $results,
             'location' => $location,
-            'date' => $date
+            'date' => $date,
+            'currency' => $request->currency
         ]);
 
         return redirect()->intended('results');
@@ -219,13 +249,12 @@ class VehicleController extends Controller
             }
 
 
-
             if ($request->has('pickupLoc')) {
                 $existingVehicle->pickup_loc = Branch::query()->where('name', $request->pickupLoc)->first()->id;
             }
 
             if ($request->has('category')) {
-                $existingVehicle->category = Category::query()->where('name',$request->category)->first()->id;
+                $existingVehicle->category = Category::query()->where('name', $request->category)->first()->id;
             }
 
             if ($request->has('specifications')) {
@@ -286,12 +315,12 @@ class VehicleController extends Controller
             }
 
 
-             $item->save();
+            $item->save();
             if ($request->has('included')) {
-               $included = explode(',', $request->included);
-               foreach ($included as $include) {
-                   VehicleIncluded::insert(['vehicle_id' => $item->id, 'included_id' => $include]);
-               }
+                $included = explode(',', $request->included);
+                foreach ($included as $include) {
+                    VehicleIncluded::insert(['vehicle_id' => $item->id, 'included_id' => $include]);
+                }
             }
         }
 
@@ -403,7 +432,7 @@ class VehicleController extends Controller
         }
         $data = $vehicles->with('category', 'supplier', 'branch')->orderBy('id')->get();
         foreach ($data as $vehicle) {
-            $vehicle->activation =$vehicle->activation == 1 ? true : false;
+            $vehicle->activation = $vehicle->activation == 1 ? true : false;
 
         }
         $data->each(function ($vehicle) {
@@ -419,7 +448,60 @@ class VehicleController extends Controller
 
     public function getVehicle(Request $request)
     {
-        return Vehicle::where('id', $request->id)->with('category', 'supplier', 'branch')->first();
+        try {
+            if (!$request->has('id')|| !is_int((int)$request->id)) {
+                throw new \Exception('The id is invalid');
+            }
+            $location = Session::get('location');
+            $date = Session::get('date');
+            $currency = $request->currency;
+            $selectedVehicle = Vehicle::where('id', $request->id)->with('category', 'supplier', 'branch', 'included')->first();
+
+            if($date == null) {
+                return response()->json([
+                    'message' => 'please select date range',
+                    'status' => false
+                ], StatusCodes::SERVER_ERROR);
+            }
+            $startDate = Carbon::parse($date[0]);
+            $endDate = Carbon::parse($date[1]);
+            $diffInDays = $startDate->diffInDays($endDate);
+
+            if ($diffInDays >= '1' && $diffInDays < '3') {
+                $selectedVehicle->final_price = ($selectedVehicle->price + (($selectedVehicle->price * $selectedVehicle->profit->per_day_profit) / 100)) * $diffInDays;
+            } else if ($diffInDays >= '3' && $diffInDays < '7') {
+                $selectedVehicle->final_price = ($selectedVehicle->week_price + (($selectedVehicle->week_price * $selectedVehicle->profit->per_week_profit) / 100)) * $diffInDays;
+            } else if ($diffInDays >= '8' && $diffInDays < '30') {
+                $selectedVehicle->final_price = ($selectedVehicle->month_price + (($selectedVehicle->month_price * $selectedVehicle->profit->per_month_profit) / 100)) * $diffInDays;
+            }
+
+
+            if ($currency != $selectedVehicle->branch->currency) {
+                $rate = CurrencyRate::query()->where('currency_from', $selectedVehicle->branch->currency)->where('currency_to', $currency)->first();
+                if ($rate != null) {
+                    $selectedVehicle->final_price *= $rate->rate;
+                }
+            }
+            $selectedVehicle->final_price = round($selectedVehicle->final_price, 2);
+            $selectedVehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $selectedVehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
+
+            return response()->json([
+                'data' => [
+                    'vehicle' => $selectedVehicle,
+                    'date' => $date,
+                    'days' => $diffInDays,
+                    'currency' => $currency,
+                    'location' => $location
+                ],
+                'status' => true
+            ]);
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'message' => $e->getMessage(),
+                'status' => false
+            ], StatusCodes::SERVER_ERROR);
+        }
     }
 
     public function getRentals()
@@ -507,17 +589,17 @@ class VehicleController extends Controller
      */
     public function edit(string $id)
     {
-        if(!is_numeric($id) || !is_int((int)$id) ) {
+        if (!is_numeric($id) || !is_int((int)$id)) {
             return response()->json([
                 'data' => ['message' => 'id is not valid id'],
                 'status' => false
             ], StatusCodes::SERVER_ERROR);
         }
-         $vehicle = Vehicle::query()->with(['branch','category','included'])->find($id);
+        $vehicle = Vehicle::query()->with(['branch', 'category', 'included'])->find($id);
         $vehicle->what_is_included = $vehicle->included->pluck('what_is_included');
         return response()->json([
-        'data' => $vehicle,
-        'status' => true
+            'data' => $vehicle,
+            'status' => true
         ]);
 
     }

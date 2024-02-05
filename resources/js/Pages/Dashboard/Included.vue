@@ -7,7 +7,7 @@
                     <form @submit.prevent="postData">
                             <div >
                                 <label class="formbold-form-label"> What is included? </label>
-                                <Editor style="height: 250px" :class="'col-md-6'" v-model="form.included" required/>
+                                <el-input  :class="'col-md-4 '" v-model="form.included" required/>
                             </div>
                         <div class="text-center mt-5">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -76,9 +76,13 @@ const filterTableData = computed(() => {
 
 const handleDelete = async (index, row) => {
     try {
+        const d = confirm('are you sure you want to delete this item ?')
+        if(!d) return
         loading.value = true;
         const response = await axios.post('delete/included', row);
-        tableData.value = response.data;
+        if(response.data) {
+            $toast.success('Item deleted', {position: 'top'});
+        }
     } catch (error) {
         console.error(error);
     } finally {

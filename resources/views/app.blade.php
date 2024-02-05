@@ -27,7 +27,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <title>Autours</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon512*256.png" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="{{url('/images/favicon512*256.png')}}" sizes="32x32">
     <link rel="stylesheet" href="{{url('assets/css/styles.min.css')}}" />
     <link rel="stylesheet" href="{{url('assets/css/spinner.css')}}" />
     <link rel="stylesheet" href="{{url('assets/css/fontawesome/css/fontawesome.min.css')}}" />

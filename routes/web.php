@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\IncludedController;
 use App\Http\Controllers\ProfitsController;
 use App\Http\Controllers\RentalTermsController;
@@ -79,6 +80,8 @@ Route::inertia('rentals', 'Dashboard/Rentals');
 Route::get('/get/rentals', [VehicleController::class, 'getRentals']);
 
 Route::get('get/photos', [VehicleController::class, 'getPhotos']);
+Route::get('get/rental-terms', [RentalTermsController::class, 'index']);
+Route::get('get/currencies', [CurrencyController::class, 'index']);
 
 // Authorized only
 
@@ -99,6 +102,13 @@ Route::middleware(['admin'])->group(function () {
     Route::post('post/included', [IncludedController::class, 'store']);
     Route::get('get/included', [IncludedController::class, 'index']);
     Route::post('delete/included', [IncludedController::class, 'delete']);
+
+    Route::inertia('rental-terms', 'Dashboard/RentalTerms');
+    Route::post('post/rental-terms', [RentalTermsController::class, 'insert']);
+    Route::post('delete/rental-terms', [RentalTermsController::class, 'destroy']);
+    Route::post('edit/rental-terms', [RentalTermsController::class, 'edit']);
+    Route::post('show/rental-terms', [RentalTermsController::class, 'show']);
+
 
 
     Route::inertia('memberships', 'Dashboard/Memberships');
@@ -127,14 +137,12 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::get('edit/vehicles/{id}', [VehicleController::class, 'edit']);
     Route::inertia('vehicles', 'Dashboard/Vehicles/Vehicles');
     Route::inertia('edit/vehicle', 'Dashboard/Vehicles/EditVehicle');
-    Route::get('get/included', [IncludedController::class, 'index']);
 
     Route::inertia('price-list', 'Dashboard/PriceList');
 
+    Route::inertia('supplier-rental-terms', 'Dashboard/SupplierRentalTerms');
+    Route::post('select-rental-terms', [RentalTermsController::class, 'assignRentalTerms']);
 
-    Route::inertia('rental-terms', 'Dashboard/RentalTerms');
-    Route::post('post/rental-terms', [RentalTermsController::class, 'createSpecifications']);
-    Route::post('delete/rental-terms', [RentalTermsController::class, 'deleteSpecifications']);
 
 
     Route::post('accept/rentals', [VehicleController::class, 'acceptRentals']);

@@ -16,19 +16,19 @@
                             <el-table-column label="1-2 days Price" prop="price">
                                 <template #default="scope">
                                     <el-input class=" col-6" v-model="tableData[scope.$index].price"
-                                              :value="scope.row.price" placeholder="1-2 price"/>
+                                              :value="scope.row.price" placeholder="1-2 price"/>{{scope.row.branch.currency}}
                                 </template>
                             </el-table-column>
                             <el-table-column label="3-7 days Price" prop="week_price">
                                 <template #default="scope">
                                     <el-input class=" col-6" v-model="tableData[scope.$index].week_price"
-                                              :value="scope.row.week_price" placeholder="3-7 price"/>
+                                              :value="scope.row.week_price" placeholder="3-7 price"/>{{scope.row.branch.currency}}
                                 </template>
                             </el-table-column>
                             <el-table-column label="8-30 days Price" prop="month_price">
                                 <template #default="scope">
                                     <el-input class=" col-6" v-model="tableData[scope.$index].month_price"
-                                              :value="scope.row.month_price" placeholder="4-30 price"/>
+                                              :value="scope.row.month_price" placeholder="4-30 price"/>{{scope.row.branch.currency}}
                                 </template>
                             </el-table-column>
 

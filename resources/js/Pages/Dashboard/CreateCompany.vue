@@ -113,6 +113,7 @@
                                     </el-select>
                                 </div>
                             </div>
+
                             <div class="formbold-mb-3 col-md-6" v-if="supplier || activeSupplier">
 
                                 <label class="formbold-form-label">Address</label>
@@ -155,6 +156,7 @@
                                     <el-table-column prop="name" label="Name"/>
                                     <el-table-column prop="location" label="Location"/>
                                     <el-table-column prop="adresse" label="Adress"/>
+                                    <el-table-column prop="currency" label="Currency"/>
                                     <el-table-column fixed="right" label="Actions">
                                         <template #default="scope">
                                             <el-button
@@ -259,12 +261,36 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="formbold-mb-3 col-md-6" v-if="supplier || activeSupplier">
+                                    <label class="formbold-form-label">Currency</label>
+                                    <div class="countries">
+                                        <el-select
+                                            v-model="newBranch.currency"
+                                            size="large"
+                                            filterable
+                                            remote
+                                            reserve-keyword
+                                            placeholder="Currency..."
+                                            remote-show-suffix
+                                            :remote-method="remoteCountries"
+                                            :loading="currencies.loading.value"
+                                            required>
+                                            <el-option
+                                                v-for="item in currencies.list.value"
+                                                :key="item"
+                                                :label="item.label"
+                                                :value="item.value"
+                                            />
+                                        </el-select>
+                                    </div>
+                                </div>
                                 <div v-if="supplier || activeSupplier || reviewing" class="formbold-mb-3">
                                     <label class="formbold-form-label">Address</label>
                                     <textarea v-model="newBranch.address" class="form-control" rows="3"
                                               required></textarea>
                                 </div>
+
+
 
                                 <el-form-item>
                                     <el-button type="primary" @click="uploadBranch">Add</el-button>
@@ -341,9 +367,17 @@ const newBranch = ref({
     email: '',
     abriviation: '',
     address: '',
+    currency: ''
 });
 
 const branches = ref([])
+
+const currencies = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+}
 
 const onAddItem = () => {
     addBranch.value = true;
@@ -380,7 +414,8 @@ const uploadBranch = async () => {
         newBranch.value.email = '';
         newBranch.value.phone = '';
         newBranch.value.abriviation = '';
-        newBranch.value.address = '';
+        newBranch.value.abriviation = '';
+        newBranch.value.currency = '';
 
         newBranch.value.adresse = '';
         newBranch.value.location = '';
@@ -479,6 +514,24 @@ const fetchCountries = async () => {
         console.error(error)
     } finally {
         countries.loading.value = false;
+    }
+}
+
+const fetchCurrencies = async () => {
+    currencies.loading.value = true;
+    try {
+        //
+        const response = await axios.get('get/currencies', {})
+        currencies.all.value = response.data
+        currencies.list.value = currencies.all.value.map((item) => ({
+            id: `${item.id}`,
+            label: `${item.name}`,
+            value: `${item.name}`,
+        }))
+    } catch (error) {
+        console.error(error)
+    } finally {
+        currencies.loading.value = false;
     }
 }
 
@@ -638,6 +691,7 @@ onMounted(() => {
     getRole();
     fetchCountries();
     fetchBranches();
+    fetchCurrencies()
 });
 
 </script>

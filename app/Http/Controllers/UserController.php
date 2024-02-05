@@ -136,6 +136,7 @@ class UserController extends Controller
         $branch->phone = $request->phone;
         $branch->email = $request->email;
         $branch->company_id = auth()->user()->id;
+        $branch->currency = $request->currency;
 
         $branch->save();
 
