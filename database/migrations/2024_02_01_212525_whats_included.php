@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('included');
+
         Schema::create('included', function (Blueprint $table) {
             $table->id();
             $table->text('what_is_included');
             $table->timestamps();
         });
+        Schema::dropIfExists('vehicle_included');
+
 
         Schema::create('vehicle_included', function (Blueprint $table) {
             $table->id();
