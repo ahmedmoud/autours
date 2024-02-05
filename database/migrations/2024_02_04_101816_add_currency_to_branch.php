@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->unique()->index()->change();
         });
         Schema::table('branches', function (Blueprint $table) {
-            $table->foreign('currency')->on('currencies')->references('name');
+//            $table->foreign('currency')->on('currencies')->references('name');
         });
     }
 

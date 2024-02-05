@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->timestamps();
         });
         Schema::table('supplier_rental_terms', function (Blueprint $table) {
-            $table->foreign('rental_term_id')->on('rental_terms')->references('id');
-            $table->foreign('supplier_id')->on('users')->references('id');
+//            $table->foreign('rental_term_id')->on('rental_terms')->references('id');
+//            $table->foreign('supplier_id')->on('users')->references('id');
         });
 
     }

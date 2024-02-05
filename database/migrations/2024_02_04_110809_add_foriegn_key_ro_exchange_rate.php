@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('currency_from')->change();
             $table->double('rate');
             $table->string('currency_to')->change();
-            $table->foreign('currency_from')->on('currencies')->references('name');
-            $table->foreign('currency_to')->on('currencies')->references('name');
+//            $table->foreign('currency_from')->on('currencies')->references('name');
+//            $table->foreign('currency_to')->on('currencies')->references('name');
         });
     }
 
