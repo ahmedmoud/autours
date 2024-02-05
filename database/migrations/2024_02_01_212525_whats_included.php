@@ -19,8 +19,8 @@ return new class extends Migration
 
         Schema::create('vehicle_included', function (Blueprint $table) {
             $table->id();
-            $table->integer('included_id')->index();
-            $table->integer('vehicle_id')->index();
+            $table->bigInteger('included_id')->index();
+            $table->bigInteger('vehicle_id')->index();
             $table->timestamps();
         });
         Schema::table('vehicle_included', function (Blueprint $table) {
