@@ -1,7 +1,7 @@
 <template>
     <div  class="justify-content-center" style="background: #0e1418c2; height: 280px;">
 <loader v-if="loading" />
-            <form v-if="!loading" class="trip-form  d-flex  " @submit.prevent="search"  style="max-width: 70%; top: 30%;  ">
+            <form v-if="!loading" class="trip-form   " @submit.prevent="search"  style="max-width: 70%; top: 30%;  ">
                 <div class="row">
                     <div class="row  col-md-12 " style="margin-left: 6%;">
                         <div class="row">

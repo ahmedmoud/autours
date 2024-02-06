@@ -3,27 +3,36 @@
 
     <body>
     <!-- banner -->
+
     <div class="jumbotron jumbotron-fluid" id=""
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 75%; display:flex; align-items: flex-end; justify-content: center;">
-        <div class=" text-center  " style="width: 70%">
-            <FloatSearchForm />
-<!--            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"-->
-<!--                class=" text-white font-weight-bold my-5 " style="font-size: 5.6rem;  ">-->
-<!--                Looking for a vehicle?<br/>-->
-<!--            </h1>-->
-<!--            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"-->
-<!--                class=" text-white font-weight-bold my-5 " style="font-size: 5.6rem;  ">-->
-<!--                You're at the right place.-->
-<!--            </h1>-->
+
+        <div class="jumbotron-fluid  " style="width: 70%">
+            <h1 style="color: #ffffff">
+                <span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy .
+            </h1>
+            <FloatSearchForm/>
+            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
+                class=" text-white font-weight-bold my-5 ml-4 " style="  ">
+                Looking for a vehicle? You're at the right place.<br/>
+            </h1>
+            <div class="row text-white font-weight-bold">
+                <i class="col-1 fa fa-check-square fa-xl mt-2"  style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Free Cancellation</p>
+                <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Damage Collision Waiver</p>
+                <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Theft Protection</p>
+                <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Unlimited Mileage</p>
+                <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Third Party Liability</p>
+            </div>
         </div>
     </div>
-<!--    <search-form/>-->
+
+    <!--    <search-form/>-->
     <!-- client -->
     <div class="jumbotron jumbotron-fluid" style="background: #FFFFFF">
         <div class="container">
             <div class="row" style="justify-content: center;">
                 <div v-for="logo in logos" class="ml-5 col-sm-4 col-md-2 py-2 align-self-center">
-                    <img :src="'img/' + logo" class="mx-auto d-block" width="300" height="200">
+                    <img :src="'img/' + logo" class="mx-auto d-block" width="300" height="200"/>
                 </div>
             </div>
         </div>
@@ -280,9 +289,9 @@
         </div>
     </div>
     <!-- contact -->
-        <Contactus />
+    <Contactus/>
     <!-- copyright -->
-         <Footer />
+    <Footer/>
     </body>
 </template>
 
@@ -386,7 +395,7 @@ const search = () => {
     form.post('search/vehicles');
 }
 const getUser = async () => {
-    try{
+    try {
         const response = await axios.get('/get/user/data');
         user.value = response.data;
     } catch (error) {
