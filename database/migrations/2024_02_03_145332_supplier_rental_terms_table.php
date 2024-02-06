@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->integer('supplier_id')->index();
             $table->timestamps();
         });
-        Schema::dropIfExists('supplier_rental_terms');
 
         Schema::table('supplier_rental_terms', function (Blueprint $table) {
 //            $table->foreign('rental_term_id')->on('rental_terms')->references('id');
