@@ -211,10 +211,7 @@ class VehicleController extends Controller
             'currency' => $request->currency
         ]);
 
-        return response()->json([
-            'data' => [],
-            'status' => true
-        ]);
+        return redirect()->intended('results');
     }
 
     public function create(CreateEditVehicle $request)

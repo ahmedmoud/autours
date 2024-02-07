@@ -158,7 +158,7 @@ const search = () => {
     form.date = date.value
     form.currency = localStorage.getItem('currency') ?? 'USD'
 
-    if(date.value == [] || date.value ===null) {
+    if(date.value === [] || date.value ===null) {
         alert('Please Select Date range')
         loading.value = false
         return;
@@ -166,14 +166,15 @@ const search = () => {
 
 
 
-    if (location.value == null || location.value == []) {
+    if (location.value == null || location.value === []) {
         loading.value = false
         alert('Please Select Location')
 
         return;
     }
-    form.post('search/vehicles');
+   form.post('search/vehicles');
     loading.value = false
+
 }
 const showAlert = () =>{
     if(date.value != [] && date.value != null)
