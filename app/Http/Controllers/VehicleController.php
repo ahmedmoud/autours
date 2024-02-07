@@ -63,9 +63,16 @@ class VehicleController extends Controller
     {
         try {
 
-            $filteredVehicles = Session::get('filteredVehicles');
-            $location = Session::get('location');
-            $date = Session::get('date');
+            $location = $request->pickupLoc;
+            $date = $request->date;
+
+            $filteredVehicles = Vehicle::query();
+
+            if ($location) {
+                $filteredVehicles->whereRelation('branch', 'location', $location);
+            }
+
+
             $currency = $request->currency;
             info("Session get ");
 
@@ -75,7 +82,7 @@ class VehicleController extends Controller
                     'status' => false
                 ]);
             }
-            $query = Vehicle::query()->whereIn('id', $filteredVehicles->pluck('id'))->with('category', 'supplier', 'profit', 'included', 'branch');
+            $query = $filteredVehicles->with('category', 'supplier', 'profit', 'included', 'branch');
 
             if ($request->priceRange && $request->priceRange !== 0) {
                 $query->where('price', '<=', ($request->priceRange));
@@ -211,7 +218,7 @@ class VehicleController extends Controller
             'date' => $date,
             'currency' => $request->currency
         ]);
-    info("Session created");
+
         return redirect()->intended('results');
     }
 
@@ -453,8 +460,8 @@ class VehicleController extends Controller
             if (!$request->has('id')|| !is_int((int)$request->id)) {
                 throw new \Exception('The id is invalid');
             }
-            $location = Session::get('location');
-            $date = Session::get('date');
+            $location = $request->location;
+            $date = $request->date;
             $currency = $request->currency;
             $selectedVehicle = Vehicle::where('id', $request->id)->with('category', 'supplier', 'branch', 'included')->first();
 

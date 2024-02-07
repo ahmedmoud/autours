@@ -284,14 +284,14 @@
                                                     daysNumber < 2 ? '' : 's'
                                                 }}</span>
                                             <span>{{ vehicle.final_price }} {{ selectedCurrency }}</span>
-                                            <Link class="btn-main select-btn" :href="'/vehicles/' + vehicle.id">
+                                            <a class="btn-main select-btn cursor-pointer"  @click="goToBookingPage(vehicle.id)" >
                                                 Selcet
                                                 <svg width="25" height="25" fill="currentColor" viewBox="0 2 20 20"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="m8.295 16.59 4.58-4.59-4.58-4.59L9.705 6l6 6-6 6-1.41-1.41Z"></path>
                                                 </svg>
-                                            </Link>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -319,11 +319,14 @@ const closeModal = () => {
     isOpen.value = false;
 }
 const form = useForm({
-    'pickupLoc': '',
-    'date': '',
-    'currency': ''
+    pickupLoc: '',
+    id: '',
+    currency: '',
+    date: '',
+    date_from: '',
+    date_to: ''
 });
-const date = ref("");
+const date = ref([]);
 const location = ref("");
 const locations = {
     all: ref([]),
@@ -378,15 +381,20 @@ const getSpecifications = async () => {
 const search = () => {
     form.pickupLoc = location.value;
     form.date = date.value;
+    form.date_from = date.value[0];
+    form.date_to = date.value[1];
     form.currency = localStorage.getItem('currency') ?? 'USD';
-    axios.post("/search/vehicles", form.data());
-    getVehicles();
+    router.get('/results', form.data())
 };
 
 const getVehicles = async () => {
     try {
+        form.pickupLoc = location.value;
+        form.date = date.value;
+
+        form.currency = localStorage.getItem('currency') ?? 'USD';
         loading.value = true;
-        const response = await axios.post("filter/vehicles",{currency: localStorage.getItem('currency') ?? 'USD'});
+        const response = await axios.post("filter/vehicles", form.data());
         filteredVehicles.value = response.data.filteredVehicles;
         location.value = response.data.location;
         date.value = response.data.date;
@@ -432,6 +440,8 @@ const getFilters = async () => {
         loading.value = true;
         const formData = new FormData();
         formData.append("category", category.value);
+        formData.append("date", date.value);
+        formData.append("location", location.value);
         formData.append("priceRange", price.value);
         formData.append("supplier", supplier.value);
         formData.append("specification", specification.value);
@@ -463,6 +473,7 @@ const openRentalTerms = (vehicle) => {
 }
 
 const priceFiltered = computed(() => {
+    console.log(filteredVehicles.value)
     if (filteredVehicles.value != []) {
         if (priceRange.value && priceRange.value > min.value) {
             return filteredVehicles.value.filter((vehicle) => {
@@ -479,10 +490,31 @@ watchEffect(() => {
     getLocations();
 });
 
-onMounted(() => {
+const goToBookingPage = (vehicle_id)=>{
+    form.date_from = date.value[0]
+    form.date_to = date.value[1]
+    form.id = vehicle_id;
+
+    router.get('/vehicles/book', form.data())
+}
+const setParams = async () => {
+    let urlParams =  new URLSearchParams(window.location.search);
+    if(urlParams.has('pickupLoc')){
+        location.value =  urlParams.get('pickupLoc')
+    }
+    if(urlParams.has('date_from')){
+        date.value[0] =  urlParams.get('date_from')
+    }
+    if(urlParams.has('date_to')){
+        date.value[1] =  urlParams.get('date_to')
+    }
     getVehicles();
+}
+
+onMounted(() =>{
+    setParams();
     getSpecifications();
-});
+})
 </script>
 
 <style lang="scss">

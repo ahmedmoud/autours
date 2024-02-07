@@ -34,7 +34,7 @@ Route::get('/v2', function () {
 });
 
 // Route::inertia('/vehicles/{id}', 'VehiclePage');
-Route::get('/vehicles/{id}', function () {
+Route::get('/vehicles/book', function () {
     return Inertia::render('VehiclePage');
 });
 

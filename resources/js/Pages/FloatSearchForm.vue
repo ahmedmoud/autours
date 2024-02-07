@@ -49,14 +49,15 @@
 
 <script setup>
 import {ref, onMounted} from 'vue'
-import {useForm} from '@inertiajs/vue3';
+import {router, useForm} from '@inertiajs/vue3';
 import Loader from '../components/Loader.vue'
 
 const value = ref()
 const form = useForm({
     pickupLoc: '',
     date: '',
-    currency: ''
+    date_from: '',
+    date_to: ''
 });
 const logos = ref({})
 const date = ref('')
@@ -152,11 +153,10 @@ const remoteLocations = (query) => {
     }
 }
 
-const search = () => {
+const search = async () => {
     loading.value = true
     form.pickupLoc = location.value
     form.date = date.value
-    form.currency = localStorage.getItem('currency') ?? 'USD'
 
     if(date.value == [] || date.value ===null) {
         alert('Please Select Date range.')
@@ -172,7 +172,9 @@ const search = () => {
 
         return;
     }
-   form.post('search/vehicles');
+    form.date_from = date.value[0]
+    form.date_to = date.value[1]
+    router.get('/results', form.data())
     loading.value = false
 
 }

@@ -237,31 +237,51 @@ const loading = ref(false);
 const form = useForm({
     pickupLoc: "",
     date: "",
+    date_from: "",
+    date_to: "",
     vehicle: "",
     price: "",
 });
 const $toast = useToast();
-const extractVetementIdFromUrl = () => {
-    const page = usePage();
-    const urlSegments = page.url.split('/');
-    const vetementIdIndex = urlSegments.indexOf('vehicles') + 1;
 
-    if (vetementIdIndex > 0 && vetementIdIndex < urlSegments.length) {
-        id.value = urlSegments[vetementIdIndex];
-    } else {
-        id.value = null;
-    }
-
-}
 const activeRentalTerms = ref('');
 const openRentalTerms = (vehicle) => {
     isOpen.value = true
     activeRentalTerms.value = vehicle.rental_terms
 }
+const setParams = async () => {
+    let urlParams =  new URLSearchParams(window.location.search);
+    if(urlParams.has('pickupLoc')){
+        location.value =  urlParams.get('pickupLoc')
+        form.pickupLoc = urlParams.get('pickupLoc')
+    }
+    if(urlParams.has('date_from')){
+        date.value[0] =  urlParams.get('date_from')
+    }
+    if(urlParams.has('date_to')){
+        date.value[1] =  urlParams.get('date_to')
+    }
+    if(urlParams.has('date')){
+       form.date = urlParams.get('date')
+    }
+    if(urlParams.has('id')){
+        id.value =  urlParams.get('id')
+        form.id =  urlParams.get('id')
+    }
+    getVehicle()
+}
 const getVehicle = async () => {
     try {
         loading.value = true
-        const response = await axios.post('/get/vehicle/data', {id: id.value, currency: localStorage.getItem('currency') ?? 'USD'})
+
+
+        const response = await axios.post('/get/vehicle/data', {
+            id: id.value,
+            currency: localStorage.getItem('currency') ?? 'USD',
+            date: date.value,
+            location: location.value
+
+        })
          vehicle.value = response.data.data.vehicle
         form.vehicle = vehicle.value.id
         form.price = vehicle.value.final_price
@@ -271,10 +291,10 @@ const getVehicle = async () => {
         loading.value = false
 
     } catch (error) {
-        if(!error.response.data.status) {
-            $toast.error('Please Select Date and pickup', {position: 'top'})
-            router.get('/')
-        }
+        // if(!error.response.data.status) {
+        //     $toast.error('Please Select Date and pickup', {position: 'top'})
+        //     router.get('/')
+        // }
         loading.value = false
         console.error(error)
     }
@@ -288,10 +308,10 @@ const fetchVehicles = async () => {
         daysNumber.value = '';
         daysNumber.value = response.data.daysNumber;
     } catch (error) {
-        if(!error.response.data.status) {
-            $toast.error('Please Select Date and pickup', {position: 'top'})
-            router.get('/')
-        }
+        // if(!error.response.data.status) {
+        //     $toast.error('Please Select Date and pickup', {position: 'top'})
+        //     router.get('/')
+        // }
         console.error(error);
     }
 };
@@ -305,15 +325,15 @@ const book = () => {
 const search = () => {
     form.pickupLoc = location.value;
     form.date = date.value;
-    axios.post("/search/vehicles", form);
+    form.date_from = date.value[0];
+    form.date_to = date.value[1];
     getVehicle();
 };
 
 
 onMounted(() => {
     currency.value = localStorage.getItem('currency') ?? 'USD'
-    extractVetementIdFromUrl();
-    getVehicle();
+    setParams();
     fetchVehicles();
 })
 
