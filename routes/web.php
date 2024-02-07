@@ -72,7 +72,7 @@ Route::post('delete/branches', [UserController::class, 'deleteBranch']);
 
 Route::post('filter/vehicles', [VehicleController::class, 'filter']);
 Route::get('get/vehicles', [VehicleController::class, 'show']);
-Route::post('search/vehicles', [VehicleController::class, 'search']);
+Route::get('/search/vehicles', [VehicleController::class, 'search']);
 
 Route::get('/get/locations', [VehicleController::class, 'getLocations']);
 

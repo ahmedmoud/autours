@@ -38,8 +38,8 @@
                 </div>
             </div>
 
-            <section id="section-cars">
-                <div class="col-md-12   mb-5" style="margin-left: 18%;">
+            <section id="section-cars" >
+                <div class="col-md-12   mb-5" style="margin-left: 13%;">
                     <button class="mr-2 mt-2 btn " style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-2"/>Choose Your Location
                     </button>
@@ -378,8 +378,8 @@ const getSpecifications = async () => {
 const search = () => {
     form.pickupLoc = location.value;
     form.date = date.value;
-    form.currency = localStorage.getItem('currency') ?? 'USD';
-    form.post("search/vehicles");
+    // form.currency = localStorage.getItem('currency') ?? 'USD';
+    form.get("/search/vehicles");
     getVehicles();
 };
 

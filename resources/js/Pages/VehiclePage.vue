@@ -43,8 +43,8 @@
             </div>
 
             <section id="section-car-details" v-if="!loading">
-                <div class="col-md-12   my-5" style="margin-left: 14%;">
-                    <button class="mr-2 mt-2 btn " style="width:420px; background: #f9d602; color: #000;"><span
+                <div class="col-md-12   mb-5" style="margin-left: 13%;">
+                <button class="mr-2 mt-2 btn " style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-2"/>Choose Your Location
                     </button>
                     <button class="mr-2 btn mt-2 "
@@ -305,7 +305,7 @@ const book = () => {
 const search = () => {
     form.pickupLoc = location.value;
     form.date = date.value;
-    axios.post("/search/vehicles", form);
+    axios.get("/search/vehicles", form);
     getVehicle();
 };
 

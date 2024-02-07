@@ -172,7 +172,7 @@ const search = () => {
 
         return;
     }
-    form.post('search/vehicles');
+    form.get('search/vehicles');
     loading.value = false
 }
 const showAlert = () =>{
