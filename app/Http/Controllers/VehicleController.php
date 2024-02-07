@@ -67,6 +67,7 @@ class VehicleController extends Controller
             $location = Session::get('location');
             $date = Session::get('date');
             $currency = $request->currency;
+            info("Session get ");
 
             if ($filteredVehicles == null) {
                 return response()->json([
@@ -210,7 +211,7 @@ class VehicleController extends Controller
             'date' => $date,
             'currency' => $request->currency
         ]);
-
+    info("Session created");
         return redirect()->intended('results');
     }
 
