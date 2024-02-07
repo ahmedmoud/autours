@@ -282,19 +282,20 @@ const getVehicle = async () => {
             location: location.value
 
         })
-         vehicle.value = response.data.data.vehicle
+        vehicle.value = response.data.data.vehicle
         form.vehicle = vehicle.value.id
         form.price = vehicle.value.final_price
         form.date = response.data.data.date
         date.value = response.data.data.date
         location.value = response.data.data.location
+        daysNumber.value = response.data.data.days
         loading.value = false
 
     } catch (error) {
-        // if(!error.response.data.status) {
-        //     $toast.error('Please Select Date and pickup', {position: 'top'})
-        //     router.get('/')
-        // }
+        if(!error.response.data.status) {
+            $toast.error('Please Select Date and pickup', {position: 'top'})
+            router.get('/')
+        }
         loading.value = false
         console.error(error)
     }
@@ -304,14 +305,15 @@ const fetchVehicles = async () => {
     try {
         const response = await axios.post("/filter/vehicles");
         date.value = response.data.date;
+        console.log(response.data)
         priceTax.value = response.data.priceTax;
         daysNumber.value = '';
-        daysNumber.value = response.data.daysNumber;
+        daysNumber.value = response.data.days;
     } catch (error) {
-        // if(!error.response.data.status) {
-        //     $toast.error('Please Select Date and pickup', {position: 'top'})
-        //     router.get('/')
-        // }
+        if(!error.response.data.status) {
+            $toast.error('Please Select Date and pickup', {position: 'top'})
+            router.get('/')
+        }
         console.error(error);
     }
 };
@@ -334,7 +336,7 @@ const search = () => {
 onMounted(() => {
     currency.value = localStorage.getItem('currency') ?? 'USD'
     setParams();
-    fetchVehicles();
+    // fetchVehicles();
 })
 
 </script>
