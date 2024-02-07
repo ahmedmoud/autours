@@ -319,9 +319,9 @@ const closeModal = () => {
     isOpen.value = false;
 }
 const form = useForm({
-    pickupLoc: "",
-    date: "",
-    currency: ""
+    'pickupLoc': '',
+    'date': '',
+    'currency': ''
 });
 const date = ref("");
 const location = ref("");
@@ -378,8 +378,8 @@ const getSpecifications = async () => {
 const search = () => {
     form.pickupLoc = location.value;
     form.date = date.value;
-    // form.currency = localStorage.getItem('currency') ?? 'USD';
-    form.get("/search/vehicles");
+    form.currency = localStorage.getItem('currency') ?? 'USD';
+    axios.post("/search/vehicles", form.data());
     getVehicles();
 };
 

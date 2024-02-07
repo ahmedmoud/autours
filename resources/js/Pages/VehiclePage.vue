@@ -305,7 +305,7 @@ const book = () => {
 const search = () => {
     form.pickupLoc = location.value;
     form.date = date.value;
-    axios.get("/search/vehicles", form);
+    axios.post("/search/vehicles", form);
     getVehicle();
 };
 

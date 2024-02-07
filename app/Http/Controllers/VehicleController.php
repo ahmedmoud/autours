@@ -171,7 +171,7 @@ class VehicleController extends Controller
         }
     }
 
-    public function search(Request $request): RedirectResponse
+    public function search(Request $request)
     {
         $location = $request->pickupLoc;
         $date = $request->date;
@@ -182,24 +182,24 @@ class VehicleController extends Controller
             $vehicles->whereRelation('branch', 'location', $location);
         }
 
-        // if ($date && $date !== null) {
-        //     $startDate = $date[0];
-        //     $endDate = $date[1];
+//         if ($date && $date !== null) {
+//             $startDate = $date[0];
+//             $endDate = $date[1];
+//
+//             $rented = Rental::query()
+//             ->where('end_date', '>', $endDate)
+//             ->orWhere('end_date', '>', $startDate);
+//
+//             $exclude = $rented->pluck('vehicle_id')->unique();
+//
+//             $vehicles->whereNotIn('id', $exclude);
+//
+//         }
 
-        //     $rented = Rental::query()
-        //     ->where('end_date', '>', $endDate)
-        //     ->orWhere('end_date', '>', $startDate);
-
-        //     $exclude = $rented->pluck('vehicle_id')->unique();
-
-        //     $vehicles->whereNotIn('id', $exclude);
-
-        // }
-
-        // $vehicles = $vehicles->where(function ($query) use ($startDate, $endDate) {
-        //     $query->where('start_date', '<=', $startDate)
-        //           ->where('end_date', '>=', $endDate);
-        // });
+//         $vehicles = $vehicles->where(function ($query) use ($startDate, $endDate) {
+//             $query->where('start_date', '<=', $startDate)
+//                   ->where('end_date', '>=', $endDate);
+//         });
 
         $results = $vehicles->with(['category', 'supplier'])->get();
 
@@ -211,7 +211,10 @@ class VehicleController extends Controller
             'currency' => $request->currency
         ]);
 
-        return redirect()->intended('results');
+        return response()->json([
+            'data' => [],
+            'status' => true
+        ]);
     }
 
     public function create(CreateEditVehicle $request)

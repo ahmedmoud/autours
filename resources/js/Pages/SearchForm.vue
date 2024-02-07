@@ -181,7 +181,7 @@ const search = () => {
         $('.pickup-location-alert-danger').show()
         return;
     }
-    form.get('search/vehicles');
+    form.post('search/vehicles');
     loading.value = false
 }
 const showAlert = () =>{

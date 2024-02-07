@@ -392,7 +392,7 @@ const remoteLocations = (query) => {
 const search = () => {
     form.pickupLoc = location.value
     form.date = date.value
-    form.get('search/vehicles');
+    form.post('search/vehicles');
 }
 const getUser = async () => {
     try {
