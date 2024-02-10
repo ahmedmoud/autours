@@ -39,7 +39,7 @@
             </div>
 
             <section id="section-cars" >
-                <div class="col-md-12   mb-5" style="margin-left: 13%;">
+                <div class="col-md-12   mb-5" style="margin-left: 18%;">
                     <button class="mr-2 mt-2 btn " style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-2"/>Choose Your Location
                     </button>

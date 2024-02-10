@@ -1,9 +1,9 @@
 <template>
     <div  class="justify-content-center" style="background: #0e1418c2; height: 280px;">
 <loader v-if="loading" />
-            <form v-if="!loading" class="trip-form   " @submit.prevent="search"  style="max-width: 70%; top: 30%;  ">
+            <form v-if="!loading" class="trip-form   " @submit.prevent="search"  style=" top: 30%; left: 5%; ">
                 <div class="row">
-                    <div class="row  col-md-12 " style="margin-left: 6%;">
+                    <div class="row  col-md-12 ">
                         <div class="row">
                             <div class=" date-range-alert-danger danger  display-none col-4 offset-4">
                                 <li>Please Select Date Range</li>
@@ -12,7 +12,7 @@
                                 <li> Please select Location</li>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <select class="form-control form-select bg-white" style=" height: 60px;" v-model="location">
                                 <option disabled selected value="" class="el-select-dropdown">     Select Your Location...</option>
                                 <option  class="el-select-dropdown"  v-for="item in locations.all.value" :value="item"> {{ item }}</option>
@@ -39,10 +39,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-5" style="left: 105%;     font-weight: 400 !important;">
-                        <input type="submit" value="SEARCH CARS" class=" w-100 " style=" height:60px; padding:9px 25px; background: rgb(249, 214, 2); color: #000;"/>
+                    <div class="mt-5 align-content-end">
+                        <button  class=" offset-9 px-5 btn btn-primary" style=" height:60px;  background: rgb(249, 214, 2); color: #000;">
+                            SEARCH CARS
+                        </button>
                     </div>
                 </div>
+
             </form>
     </div>
 </template>

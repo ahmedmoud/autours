@@ -5,7 +5,7 @@
     <!-- banner -->
 
     <div class="jumbotron jumbotron-fluid" id=""
-         style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 75%; display:flex; align-items: flex-end; justify-content: center;">
+         style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 750px; display:flex;  justify-content: center;">
 
         <div class="jumbotron-fluid  " style="width: 70%">
             <h1 style="color: #ffffff">
@@ -16,7 +16,7 @@
                 class=" text-white font-weight-bold my-5 ml-4 " style="  ">
                 Looking for a vehicle? You're at the right place.<br/>
             </h1>
-            <div class="row text-white font-weight-bold">
+            <div class="row text-white font-weight-bold position-fixed">
                 <i class="col-1 fa fa-check-square fa-xl mt-2"  style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Free Cancellation</p>
                 <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Damage Collision Waiver</p>
                 <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Theft Protection</p>
