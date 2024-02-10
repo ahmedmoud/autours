@@ -124,20 +124,7 @@
                                         <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="max"/>
                                     </div>
                                 </div>
-                                <div class="col-md-12 my-5" style="background: #fff;">
-                                    <h5 style="margin-bottom: -30px">CAR CATEGORIES</h5>
-                                    <hr/>
-                                    <div style="margin-top: -30px">
-                                        <div v-for="category in filteredCategories">
-                                            <el-checkbox :label="category.id"
-                                                         size="large"
-                                                         :model="category"
-                                            >
-                                                {{ category.name }}
-                                            </el-checkbox>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-12 my-5" style="background: #fff;">
                                     <h4 style="margin-bottom: -30px">Vehicle Suppliers</h4>
                                     <hr/>
@@ -147,6 +134,7 @@
                                         <el-checkbox v-for="supplier in filteredSuppliers" :label="supplier.id"
                                                      size="large"
                                                      :model="supplier"
+                                                     @click="selectSupplier(supplier.id)"
                                         >
                                             {{ supplier.company }}
                                         </el-checkbox>
@@ -169,10 +157,17 @@
 
                         <div v-loading="loading" class="col-lg-9">
                             <div class="d-flex filter_top_group">
+                                <div style="height: 115px; margin-top: 75px; margin-left: -20px;">
+                                    <el-radio  v-model="category" :label="'All'" size="large" border @click="SelectCategory('')">
+                                        <div class="item_filter_group filter_top " style="background: #fff; width: 150px;">
+                                            <h4>All</h4>
+                                        </div>
+                                    </el-radio>
+                                </div>
                                 <div style="height: 115px; margin-top: 75px; margin-left: -20px;"
                                      v-for="item in filteredCategories">
-                                    <el-radio v-model="category" :label="item.id" size="large" border>
-                                        <div class="item_filter_group filter_top" style="background: #fff;">
+                                    <el-radio v-model="category" :label="item.id" size="large" border @click="SelectCategory(item.id)">
+                                        <div class="item_filter_group filter_top " style="background: #fff;">
                                             <h4>{{ item.name }}</h4>
                                             <img :src="'img/categories/'+item.photo"/>
                                         </div>
@@ -214,12 +209,12 @@
                                                         </h4>
                                                         <span>{{ vehicle?.category?.name }}</span>
                                                         <div class="d-atr-group row">
-                                                            <ul class="d-atr col-12">
+                                                            <ul class="d-atr col-md-8">
                                                                 <li v-for="specification in vehicle.specifications">
                                                                     <span :class="'fa fa-' + specification.icon"/>
                                                                     <span> {{
                                                                             specification.option
-                                                                        }}</span>{{ specification.name }}
+                                                                        }}</span>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -324,7 +319,9 @@ const form = useForm({
     currency: '',
     date: '',
     date_from: '',
-    date_to: ''
+    date_to: '',
+    category: '',
+    supplier: ''
 });
 const date = ref([]);
 const location = ref("");
@@ -383,15 +380,23 @@ const search = () => {
     form.date = date.value;
     form.date_from = date.value[0];
     form.date_to = date.value[1];
+    form.category = category.value
     form.currency = localStorage.getItem('currency') ?? 'USD';
     router.get('/results', form.data())
 };
-
+const SelectCategory = (category_id) => {
+    category.value = category_id;
+    form.category = category_id
+    getVehicles()
+}
+const selectSupplier = (supplier_id) => {
+    form.supplier = supplier_id
+    getVehicles()
+}
 const getVehicles = async () => {
     try {
         form.pickupLoc = location.value;
         form.date = date.value;
-
         form.currency = localStorage.getItem('currency') ?? 'USD';
         loading.value = true;
         const response = await axios.post("filter/vehicles", form.data());
@@ -486,7 +491,7 @@ const selectedCurrency = computed(() => {
     return localStorage.getItem('currency') ?? 'USD'
 })
 watchEffect(() => {
-    getFilters();
+    // getFilters();
     getLocations();
 });
 
@@ -500,13 +505,16 @@ const goToBookingPage = (vehicle_id)=>{
 const setParams = async () => {
     let urlParams =  new URLSearchParams(window.location.search);
     if(urlParams.has('pickupLoc')){
-        location.value =  urlParams.get('pickupLoc')
+        location.value =  await urlParams.get('pickupLoc')
     }
     if(urlParams.has('date_from')){
-        date.value[0] =  urlParams.get('date_from')
+        date.value[0] =  await urlParams.get('date_from')
     }
     if(urlParams.has('date_to')){
-        date.value[1] =  urlParams.get('date_to')
+        date.value[1] = await urlParams.get('date_to')
+    }
+    if(urlParams.has('category')){
+        category.value = await urlParams.get('category')
     }
     getVehicles();
 }

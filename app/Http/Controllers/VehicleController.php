@@ -71,6 +71,7 @@ class VehicleController extends Controller
             if ($location) {
                 $filteredVehicles->whereRelation('branch', 'location', $location);
             }
+            $priceTax = 0;
 
 
             $currency = $request->currency;
@@ -108,8 +109,13 @@ class VehicleController extends Controller
             $maxPrice = 0;
             $minPrice = 10000000;
 
-            $catPluck = $query->pluck('category')->unique();
-            $categories = Category::whereIn('id', $catPluck)->get();
+            $categories = Category::query()
+                ->join('vehicles', 'vehicles.category','=','categories.id')
+                ->join('branches', 'branches.id','=','vehicles.pickup_loc')
+                ->where('branches.location',$location)
+                ->select(['categories.id as id', 'categories.name as name','categories.photo as photo'])
+                ->distinct('categories.id')->get();
+
 
             $suppPluck = $query->pluck('supplier')->unique();
             $suppliers = User::whereIn('id', $suppPluck)->get();
@@ -117,9 +123,10 @@ class VehicleController extends Controller
             $vehicles = $query->where('activation', true)->has('profit')->get();
 
             if ($date && $date !== null) {
+                if(is_string($date))
+                    $date = explode( ',', $date) ;
                 $startDate = Carbon::parse($date[0]);
                 $endDate = Carbon::parse($date[1]);
-                $priceTax = 0;
                 $diffInDays = $startDate->diffInDays($endDate);
                 foreach ($vehicles as $vehicle) {
 
@@ -154,12 +161,20 @@ class VehicleController extends Controller
             }
 
             $count = $vehicles->count();
+
             foreach ($vehicles as $vehicle) {
                 $vehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $vehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
             }
+            $vehicles = $vehicles->toArray();
+            usort($vehicles, function($a, $b)
+            {
+                if ($a["final_price"] == $b["final_price"])
+                    return (0);
+                return (($a["final_price"] < $b["final_price"]) ? -1 : 1);
+            });
             if ($minPrice >= $maxPrice) $minPrice = 0;
 
-            return $data = [
+            return  [
                 'location' => $location,
                 'date' => $date,
                 'filteredVehicles' => $vehicles,
@@ -175,7 +190,7 @@ class VehicleController extends Controller
             return response()->json([
                 'data' => ['message' => $e->getMessage()],
                 'status' => false
-            ]);
+            ], StatusCodes::SERVER_ERROR);
         }
     }
 

@@ -166,6 +166,30 @@
                             </div>
                         </div>
                         <hr/>
+                        <h4> What is included ? </h4>
+                        <div class="row">
+                            <div class="formbold-mb-3 col-6">
+                                <el-select
+                                    v-model="selectedIncluded"
+                                    size="large"
+                                    filterable
+                                    remote
+                                    multiple
+                                    class="col-5"
+                                    reserve-keyword
+                                    placeholder="Select features..."
+                                    remote-show-suffix
+                                >
+                                    <el-option
+                                        v-for="item in included.list.value"
+                                        :key="item.id"
+                                        :label="item.label"
+                                        :value="item.id"
+                                    />
+                                </el-select>
+                            </div>
+                        </div>
+                        <hr/>
                         <h4> Specifications </h4>
                         <div class="row">
                             <div v-for="(list, i) in specifications" :key="i" class="formbold-mb-3 col-6">
@@ -192,36 +216,16 @@
                             </div>
                         </div>
                         <hr/>
-                        <h4> What is included ? </h4>
-                        <div class="row">
-                            <div class="formbold-mb-3 col-6">
-                                <el-select
-                                    v-model="selectedIncluded"
-                                    size="large"
-                                    filterable
-                                    remote
-                                    multiple
-                                    class="col-5"
-                                    reserve-keyword
-                                    placeholder="Select features..."
-                                    remote-show-suffix
-                                >
-                                    <el-option
-                                        v-for="item in included.list.value"
-                                        :key="item.id"
-                                        :label="item.label"
-                                        :value="item.id"
-                                    />
-                                </el-select>
-                            </div>
-                        </div>
+                        <div style="height: 100px;"></div>
+
+
                         <div class="row justify-content-center">
                             <div class="col-md-2 ml-5">
-                                <button type="submit" class="btn btn-primary p-2" style="color: #0a3622;">Submit
+                                <button type="submit" class="btn btn-primary p-3" style="color: #0a3622;">Submit
                                 </button>
                             </div>
                             <div class="col-md-5">
-                                <a href="/vehicles" class="btn btn-danger">Cancel</a>
+                                <a href="/vehicles" class="btn btn-danger p-3">Cancel</a>
                             </div>
                         </div>
                     </form>
