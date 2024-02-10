@@ -32,7 +32,7 @@
                     <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{ selectedCurrency }}
                     </CDropdownToggle>
                     <CDropdownMenu>
-                        <CDropdownItem v-for="currency in currencies" v-on:click="changeCurrency(currency.name)">
+                        <CDropdownItem class="pointer-event" v-for="currency in currencies" v-on:click="changeCurrency(currency.name)">
                             {{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}
                         </CDropdownItem>
                     </CDropdownMenu>
