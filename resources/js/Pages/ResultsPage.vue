@@ -156,16 +156,15 @@
                         </div>
 
                         <div v-loading="loading" class="col-lg-9">
-                            <div class="d-flex filter_top_group">
-                                <div style="height: 115px; margin-top: 75px; margin-left: -20px;">
+                            <div class="row filter_top_group">
+                                <div style="height: 115px; margin-top: 75px; margin-left: -20px;" class="col-md-2">
                                     <el-radio  v-model="category" :label="'All'" size="large" border @click="SelectCategory('')">
                                         <div class="item_filter_group filter_top " style="background: #fff; width: 150px;">
                                             <h4>All</h4>
                                         </div>
                                     </el-radio>
                                 </div>
-                                <div style="height: 115px; margin-top: 75px; margin-left: -20px;"
-                                     v-for="item in filteredCategories">
+                                <div style="height: 115px; margin-top: 75px; margin-left: -20px;" class="col-md-2" v-for="item in filteredCategories">
                                     <el-radio v-model="category" :label="item.id" size="large" border @click="SelectCategory(item.id)">
                                         <div class="item_filter_group filter_top " style="background: #fff;">
                                             <h4>{{ item.name }}</h4>
