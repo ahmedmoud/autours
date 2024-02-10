@@ -14,10 +14,10 @@ return new class extends Migration
     {
         DB::insert("INSERT INTO currencies (name, country, flag)
                           VALUES
-                              ('RSA','Kingdom of Saudi Arabia', 'SA' ),
+                              ('SAR','Kingdom of Saudi Arabia', 'SA' ),
                               ('QAR','Qatar', 'QA' ),
                               ('OMR','Oman', 'OM' ),
-                              ('KD','Kuwait', 'KW' ),
+                              ('KWD','Kuwait', 'KW' ),
                               ('BHD','Bahrain', 'BH' )
                                  ;");
     }
