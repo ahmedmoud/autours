@@ -86,7 +86,7 @@
                                     <div class="row"><span>{{ vehicle.category?.name }}</span></div>
                                     <div class="item w-100">
                                         <img class="item w-150"
-                                             :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"/>
+                                             :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo" width="350" height="250"/>
                                     </div>
                                     <div class="spacer-30"></div>
 
