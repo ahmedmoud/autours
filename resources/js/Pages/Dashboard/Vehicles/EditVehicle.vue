@@ -9,7 +9,9 @@
                             <h4>Car Details</h4>
                             <div class="mb-3 mt-4 col-12">
                                 <label class="formbold-form-label">Vehicle Photo</label>
-                                <div class="display-none " style="color: red;" id="photo"><li>Please select Photo</li></div>
+                                <div class="display-none " style="color: red;" id="photo">
+                                    <li>Please select Photo</li>
+                                </div>
                                 <el-select
                                     v-model="photo"
                                     size="large"
@@ -49,12 +51,16 @@
                             </div>
                             <div class="formbold-mb-3 col-md-3">
                                 <label class="formbold-form-label"> Vehicle Name </label>
-                                <div class="display-none " style="color: red;" id="name"><li>Vehicle Name is required</li></div>
-                                <input v-model="name"  type="text" class="formbold-form-input" />
+                                <div class="display-none " style="color: red;" id="name">
+                                    <li>Vehicle Name is required</li>
+                                </div>
+                                <input v-model="name" type="text" class="formbold-form-input"/>
                             </div>
                             <div class="formbold-mb-3 col-3">
                                 <label class="formbold-form-label col-12">Pickup Location</label>
-                                <div class="display-none " style="color: red;" id="pickupLoc"><li>Please select Pickup location</li></div>
+                                <div class="display-none " style="color: red;" id="pickupLoc">
+                                    <li>Please select Pickup location</li>
+                                </div>
                                 <div class="countries">
                                     <el-select
                                         v-model="pickupLoc"
@@ -82,7 +88,9 @@
                             </div>
                             <div class="formbold-mb-3 col-3">
                                 <label class="formbold-form-label col-12">Category</label>
-                                <div class="display-none " style="color: red;" id="category"><li>Pleasee select Category</li></div>
+                                <div class="display-none " style="color: red;" id="category">
+                                    <li>Pleasee select Category</li>
+                                </div>
                                 <el-select
                                     v-model="category"
                                     size="large"
@@ -109,40 +117,93 @@
 
                             <div class="formbold-mb-3 mb-5  col-12">
                                 <label class="formbold-form-label"> Vehicle Description </label>
-                                <div class="display-none " style="color: red;" id="description"><li>Vehicle Description is required</li></div>
-                                <Editor v-model="description"  class="col-6 "/>
+                                <div class="display-none " style="color: red;" id="description">
+                                    <li>Vehicle Description is required</li>
+                                </div>
+                                <Editor v-model="description" class="col-6 "/>
                             </div>
 
                         </div>
-                        <hr />
+                        <hr/>
                         <div class="row">
                             <h4>Prices Section </h4>
                             <div class="formbold-mb-3 col-4">
                                 <label class="formbold-form-label">Price 1-2 days</label>
-                                <div class="display-none " style="color: red;" id="price"><li>Price 1-2 days is required</li></div>
+                                <div class="display-none " style="color: red;" id="price">
+                                    <li>Price 1-2 days is required</li>
+                                </div>
                                 <div class="input-with-percent">
-                                    <input v-model="price" type="text" pattern="[0-9]+([,.][0-9]+)?"   class="formbold-form-input col-6" />
+                                    <input v-model="price" type="text" pattern="[0-9]+([,.][0-9]+)?"
+                                           class="formbold-form-input col-6"/>
                                 </div>
                             </div>
 
                             <div class="formbold-mb-3 col-4">
                                 <label class="formbold-form-label">3 - 7 Days Price</label>
-                                <div class="display-none " style="color: red;" id="weekPrice"><li>Price 3-7 days is required</li></div>
+                                <div class="display-none " style="color: red;" id="weekPrice">
+                                    <li>Price 3-7 days is required</li>
+                                </div>
                                 <div class="input-with-percent">
                                     <input v-model="weekPrice" type="text" pattern="[0-9]+([,.][0-9]+)?"
 
                                            class="formbold-form-input col-6"
-                                           />
+                                    />
                                 </div>
                             </div>
 
                             <div class="formbold-mb-3 col-4">
                                 <label class="formbold-form-label">8-30 Days Price</label>
-                                <div class="display-none " style="color: red;" id="monthPrice"><li>Price 8-30 days is required</li></div>
+                                <div class="display-none " style="color: red;" id="monthPrice">
+                                    <li>Price 8-30 days is required</li>
+                                </div>
                                 <div class="input-with-percent">
-                                    <input v-model="monthPrice" type="text"  pattern="[0-9]+([,.][0-9]+)?"
+                                    <input v-model="monthPrice" type="text" pattern="[0-9]+([,.][0-9]+)?"
                                            class="formbold-form-input col-6"
-                                           />
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h4> What is included ? </h4>
+                        <div class="row">
+                            <div class="formbold-mb-3 col-6">
+                                <!--                                <MultiSelect v-model="selectedIncluded"-->
+                                <!--                                             :options="included.list.value"-->
+                                <!--                                             optionLabel="label"-->
+                                <!--                                             select-all-->
+                                <!--                                             option-value="id"-->
+                                <!--                                             optionGroupChildren="item"-->
+                                <!--                                             placeholder="Select Whats included !"-->
+                                <!--                                             class="col-md-6 p-dropdown-items "-->
+                                <!--                                >-->
+                                <!--                                    <template #optiongroup="slotProps">-->
+                                <!--                                        <div class="flex align-content-center" style="width: 250px; height: 50px;">-->
+                                <!--                                            <div>{{ slotProps.option.label }}</div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </template>-->
+                                <!--                                </MultiSelect>-->
+                                <div style="height: 250px;">
+                                    <el-select
+                                        v-model="selectedIncluded"
+                                        size="large"
+                                        filterable
+                                        remote
+                                        multiple
+                                        class="col-5"
+                                        reserve-keyword
+                                        placeholder="Select features..."
+                                        remote-show-suffix
+                                        v-b-scrollspy
+                                    >
+                                        <div >
+                                            <el-option
+                                                v-for="item in included.list.value"
+                                                :key="item.id"
+                                                :label="item.label"
+                                                :value="item.label"
+                                            />
+                                        </div>
+                                    </el-select>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +211,8 @@
                         <h4> Specifications </h4>
                         <div class="row">
                             <div v-for="(list, i) in specifications" :key="i" class="formbold-mb-3 col-6">
-                                <label class="formbold-form-label col-5">{{ list.name }} - <i :class="'fa fa-' + list.icon"/></label>
+                                <label class="formbold-form-label col-5">{{ list.name }} - <i
+                                    :class="'fa fa-' + list.icon"/></label>
                                 <el-select
                                     v-model="specification[i]"
                                     size="large"
@@ -172,37 +234,15 @@
                             </div>
                         </div>
                         <hr/>
+                        <div style="height: 100px;"></div>
 
-                        <h4> What is included ? </h4>
-                        <div class="row">
-                            <div class="formbold-mb-3 col-6">
-                                <el-select
-                                    v-model="selectedIncluded"
-                                    size="large"
-                                    filterable
-                                    remote
-                                    multiple
-                                    class="col-5"
-                                    reserve-keyword
-                                    placeholder="Select features..."
-                                    remote-show-suffix
-                                >
-                                    <el-option
-                                        v-for="item in included.list.value"
-                                        :key="item.id"
-                                        :label="item.label"
-                                        :value="item.label"
-
-                                    />
-                                </el-select>
-                            </div>
-                        </div>
                         <div class="row justify-content-center">
                             <div class="col-md-2 ml-5">
-                                <button type="submit" class="btn btn-primary p-2" style="color: #0a3622;">Submit</button>
+                                <button type="submit" class="btn btn-primary p-3" style="color: #0a3622;">Submit
+                                </button>
                             </div>
                             <div class="col-md-5">
-                                <a href="/vehicles" class="btn btn-danger">Cancel</a>
+                                <a href="/vehicles" class="btn btn-danger p-3">Cancel</a>
                             </div>
                         </div>
                     </form>
@@ -242,7 +282,7 @@ const categories = {
     list: ref([]),
     options: ref([]),
 };
-const selectedIncluded = ref('')
+const selectedIncluded = ref([])
 
 const included = {
     loading: ref(false),
@@ -390,53 +430,53 @@ const remotePhotos = (query) => {
 const validateForm = () => {
     console.log(price.value)
     let valid = true;
-    if (price.value === '' || price.value === [] ||price.value === null || price.value === undefined) {
+    if (price.value === '' || price.value === [] || price.value === null || price.value === undefined) {
         $('#price').show();
         valid = false;
     } else {
         $('#price').hide();
     }
 
-    if (weekPrice.value === '' || weekPrice.value === [] ||weekPrice.value === null || weekPrice.value === undefined) {
+    if (weekPrice.value === '' || weekPrice.value === [] || weekPrice.value === null || weekPrice.value === undefined) {
         $('#weekPrice').show();
         valid = false;
     } else {
         $('#weekPrice').hide();
     }
 
-        if (monthPrice.value === '' || monthPrice.value === [] ||monthPrice.value === null || monthPrice.value === undefined) {
+    if (monthPrice.value === '' || monthPrice.value === [] || monthPrice.value === null || monthPrice.value === undefined) {
         $('#monthPrice').show();
         valid = false;
     } else {
         $('#monthPrice').hide();
     }
 
-    if (photo.value === '' || photo.value === [] ||photo.value === null || photo.value === undefined) {
+    if (photo.value === '' || photo.value === [] || photo.value === null || photo.value === undefined) {
         $('#photo').show();
         valid = false;
     } else {
         $('#photo').hide();
     }
-    if (name.value === '' || name.value === [] ||name.value === null || name.value === undefined) {
+    if (name.value === '' || name.value === [] || name.value === null || name.value === undefined) {
         $('#name').show();
         valid = false;
     } else {
         $('#name').hide();
     }
-    if (description.value === '' || description.value === [] ||description.value === null || description.value === undefined) {
+    if (description.value === '' || description.value === [] || description.value === null || description.value === undefined) {
         $('#description').show();
         valid = false;
     } else {
         $('#description').hide();
     }
-    if (category.value === '' || category.value === [] ||category.value === null || category.value === undefined) {
+    if (category.value === '' || category.value === [] || category.value === null || category.value === undefined) {
         $('#category').show();
         valid = false;
     } else {
         $('#category').hide();
     }
 
-    if (pickupLoc.value === '' || pickupLoc.value === [] ||pickupLoc.value === null || pickupLoc.value === undefined) {
+    if (pickupLoc.value === '' || pickupLoc.value === [] || pickupLoc.value === null || pickupLoc.value === undefined) {
         $('#pickupLoc').show();
         valid = false;
     } else {
@@ -457,12 +497,14 @@ const upload = async () => {
         formData.append('month_price', monthPrice.value);
         formData.append('pickupLoc', pickupLoc.value);
         formData.append('category', category.value);
-        formData.append('specifications',JSON.stringify(selectedSpecifications.value));
+        formData.append('specifications', JSON.stringify(selectedSpecifications.value));
         formData.append('included', selectedIncluded.value);
         formData.append('update', '1');
         formData.append('id', vehicle.id);
 
-        if(!validateForm()) return;
+        console.log(selectedIncluded.value)
+        return
+        if (!validateForm()) return;
 
         const response = await axios.post('/post/vehicles', formData);
         open(response.data);
@@ -477,7 +519,7 @@ const upload = async () => {
 const open = (response) => {
     console.log(response)
     if (response.status) {
-       $toast.success('Your Vehicle Updated Successfully', {position: 'top'})
+        $toast.success('Your Vehicle Updated Successfully', {position: 'top'})
     } else {
         $toast.error(error.response.message, {position: 'top'})
     }
@@ -502,7 +544,7 @@ const getData = async () => {
         selectedIncluded.value = vehicle.what_is_included
         photo.value = vehicle.photo
         console.log(vehicle.included)
-    }catch (e){
+    } catch (e) {
         console.log(e)
         $toast.error(e.response.data.data.message, {position: 'top'});
     }

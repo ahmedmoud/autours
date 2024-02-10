@@ -3,6 +3,8 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import Dashboard from "@/Layouts/Dashboard.vue";
+import PrimeVue from 'primevue/config';
+
 createInertiaApp({
   resolve: (name) => {
     const page = resolvePageComponent(
@@ -17,7 +19,7 @@ createInertiaApp({
   },
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
-      .use(plugin)
+      .use(plugin).use(PrimeVue)
       .mount(el)
   },
 })
