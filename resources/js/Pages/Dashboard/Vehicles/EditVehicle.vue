@@ -512,6 +512,7 @@ const fetchIncluded = async () => {
     try {
         const response = await axios.get('/get/included')
         included.all.value = response.data
+        console.log(included.all.value)
         included.list.value = included.all.value.map((item) => ({
             id: `${item.id}`,
             label: `${item.what_is_included}`,

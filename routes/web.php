@@ -82,6 +82,7 @@ Route::get('/get/rentals', [VehicleController::class, 'getRentals']);
 Route::get('get/photos', [VehicleController::class, 'getPhotos']);
 Route::get('get/rental-terms', [RentalTermsController::class, 'index']);
 Route::get('get/currencies', [CurrencyController::class, 'index']);
+Route::get('get/included', [IncludedController::class, 'index']);
 
 // Authorized only
 
@@ -100,7 +101,6 @@ Route::middleware(['admin'])->group(function () {
 
     Route::inertia('included', 'Dashboard/Included');
     Route::post('post/included', [IncludedController::class, 'store']);
-    Route::get('get/included', [IncludedController::class, 'index']);
     Route::post('delete/included', [IncludedController::class, 'delete']);
 
     Route::inertia('rental-terms', 'Dashboard/RentalTerms');
