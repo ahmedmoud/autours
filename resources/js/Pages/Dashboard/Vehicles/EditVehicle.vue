@@ -502,8 +502,7 @@ const upload = async () => {
         formData.append('update', '1');
         formData.append('id', vehicle.id);
 
-        console.log(selectedIncluded.value)
-        return
+
         if (!validateForm()) return;
 
         const response = await axios.post('/post/vehicles', formData);
