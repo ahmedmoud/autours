@@ -132,7 +132,7 @@ body {
     margin-top: 4%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
     .topnav a {
         display: none;
     }
@@ -147,7 +147,7 @@ body {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
     .topnav.responsive {
         position: relative;
     }

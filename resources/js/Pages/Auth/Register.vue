@@ -20,9 +20,9 @@
             </section>
             <!-- section close -->
             <section aria-label="section">
-                <div class="container">
+                <div class="">
                     <div class="row">
-                        <div class="col-md-12 offset-md-2">
+                        <div class="col-md-12">
                             <div class="spacer-10"></div>
                             <div class="flip-container">
                                 <div class="flipper" v-bind:class="(RegisterForm.supplier) ? 'flip' : ''" id="flipper">
@@ -260,6 +260,8 @@ onMounted(()=> {
 
 <style scoped>
 
+
+
 #subheader h3, h2 {
     font-family: 'Outfit';
     margin-top: 100px;
@@ -267,13 +269,12 @@ onMounted(()=> {
     letter-spacing: -2px;
 }
 
-.flip-container {
-    perspective: 1000;
-}
+
 
 .flipper {
     padding: 30px;
-    width: 60%;
+    width: 50%;
+    left: 25%;
     height: 360px;
     position: relative;
     background: #f5f5f5;
@@ -327,6 +328,18 @@ input {
     text-decoration: none;
     text-align: left !important;
 }
+@media screen and (max-width: 1000px){
 
+    .flip-container {
+        width: 100%;
+
+    }
+    .flipper {
+        top: -120px;
+        width: 100%;
+        left: 0;
+        background: #ffffff;
+    }
+}
 
 </style>

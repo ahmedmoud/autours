@@ -18,7 +18,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <footer class="jumbotron jumbotron-fluid" id="copyright" style="background: black;">
+    <footer class="" id="copyright" style="background: black;
+">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-md-6 text-white align-self-center text-center text-md-left my-2">
@@ -39,13 +40,15 @@ onMounted(() => {
                         </svg>
                     </a>
                 </div>
-                <div style="float: right" v-if="!user">
-                    <a class="nav-link col-3" href="/register"><span>Supplier&nbsp;Login</span></a>
-                    <a class="nav-link col-2" href="/register?user_type=supplier"><span>Supplier&nbsp;Signup</span></a>
-                </div>
+
                 <!--<Link v-else class="nav-link col-md-2 offset-8" style="color: #0a3622" href="/company"><span>My Profile</span></Link>-->
+                <div class="row" v-if="!user">
+                    <a class="nav-link col-12" href="/register"><span>Supplier&nbsp;Login</span></a>
+                    <a class="nav-link col-12" href="/register?user_type=supplier"><span>Supplier&nbsp;Signup</span></a>
+                </div>
                 <div class="col-md-6 align-self-center text-center text-md-right my-2" id="social-media"></div>
             </div>
+
         </div>
     </footer>
 
