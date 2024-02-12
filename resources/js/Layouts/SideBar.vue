@@ -77,28 +77,28 @@
                     </div>
                     <div v-if="activeSupplier">
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" href="/vehicle">
+                            <a class="sidebar-link" href="/vehicle">
                                 <span><i class="ti ti-car-crash"></i></span>
-                                <span>Crete a Vehicle</span></Link>
+                                <span>Crete a Vehicle</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" href="/price-list">
+                            <a class="sidebar-link" href="/price-list">
                                 <span><i class="ti ti-zoom-money"></i></span>
-                                <span >Price List</span></Link>
+                                <span >Price List</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" href="vehicles">
+                            <a class="sidebar-link" href="/vehicles">
                                 <span><i class="ti ti-car"></i></span>
 
-                                <span>My Vehicles</span></Link>
+                                <span>My Vehicles</span></a>
                         </li>
                     </div>
 
                     <div v-if="supplier || activeSupplier || reviewing">
                         <li class="sidebar-item active">
-                            <Link class="sidebar-link" href="membership">
+                            <a class="sidebar-link" href="/membership">
                                 <i class="ti ti-gift-card" aria-hidden="true"></i>
-                                <span>Membership</span></Link>
+                                <span>Membership</span></a>
                         </li>
                     </div>
 
@@ -111,33 +111,33 @@
                     </div>
 
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link" href="/rentals">
+                        <a class="sidebar-link" href="/rentals">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
-                            <span>Rentals</span></Link>
+                            <span>Rentals</span></a>
                     </li>
 
                     <li class="sidebar-item" v-if="supplier || activeSupplier">
-                        <Link class="sidebar-link" href="/supplier-rental-terms">
+                        <a class="sidebar-link" href="/supplier-rental-terms">
                             <i class="ti ti-list" aria-hidden="true"></i>
-                            <span>My Rental Terms</span></Link>
+                            <span>My Rental Terms</span></a>
                     </li>
 
                     <li class="sidebar-item" v-if="admin">
-                        <Link class="sidebar-link" href="/rental-terms">
+                        <a class="sidebar-link" href="/rental-terms">
                             <i class="ti ti-list" aria-hidden="true"></i>
-                            <span>Rental Terms</span></Link>
+                            <span>Rental Terms</span></a>
                     </li>
 
                     <li class="sidebar-item " v-if="admin">
-                        <Link class="sidebar-link" href="/included">
+                        <a class="sidebar-link" href="/included">
                             <i class="ti ti-feather" aria-hidden="true"></i>
-                            <span>What is included ?</span></Link>
+                            <span>What is included ?</span></a>
                     </li>
 
                     <li class="sidebar-item">
-                        <Link class="sidebar-link" href="/logout">
+                        <a class="sidebar-link" href="/logout">
                             <i class="ti ti-logout" aria-hidden="true"></i>
-                            <span>Sign Out</span></Link>
+                            <span>Sign Out</span></a>
 
                     </li>
                 </ul>

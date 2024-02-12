@@ -2,26 +2,13 @@
 
     <header style="background: #f9d602">
         <div class="row justify-content-between">
-            <Link href="/" class="col-2">
-                <img style="max-width:150px;" src="/images/akrom.jpg" alt="logo">
-            </Link>
-            <div class="topnav" id="myTopnav">
-                <a v-if="!user" class="nav-link col-md-2 " style="color: #0a3622; margin-left: 52%" href="/register">Manage Booking</a>
-                <Link v-else-if="user.role !== 'customer'" class="nav-link col-md-2" style="color: #0a3622"
-                      href="/company"><span>My Profile</span></Link>
-                <nav v-else class="navbar navbar-expand-lg navbar-light mr-5">
-                    <CDropdown togglerText="Dropdown button" class="mt-1 offset-9">
-                        <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);" aria-selected="true">
-                            <img src="../../assets/images/profile/user-1.jpg" alt="" width="35" height="35"
-                                 class="rounded-circle">
-                        </CDropdownToggle>
-                        <CDropdownMenu>
-                            <CDropdownItem href="#">My profile</CDropdownItem>
-                            <CDropdownItem href="/logout">Log out</CDropdownItem>
-                        </CDropdownMenu>
-                    </CDropdown>
+            <a href="/" class="col-2"><img style="max-width:150px;" src="/images/akrom.jpg" alt="logo"></a>
 
-                </nav>
+            <div class="topnav" id="myTopnav">
+                <a v-if="!user" class="nav-link col-md-1 " style="color: #0a3622; margin-left: 64%" href="/register">Manage&nbsp;Booking</a>
+                <a v-else-if="user.role !== 'customer'" class="nav-link col-md-1" style="color: #0a3622;  margin-left: 64%" href="/company"><span>My&nbsp;Profile</span></a>
+                <a v-else class="nav-link col-md-1" style="color: #0a3622;  margin-left: 66%" href="/logout"><span>Log&nbsp;out</span></a>
+
                 <a class="col-md-1">
                     <CDropdown togglerText="Dropdown button" class="mt-1">
                         <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{ selectedCurrency }}
@@ -37,8 +24,8 @@
                 <!--                <a href="#news">News</a>-->
                 <!--                <a href="#contact">Contact</a>-->
                 <!--                <a href="#about">About</a>-->
-                <a href="javascript:void(0);" class="icon" @click="myFunction()">
-                    <i class="fa fa-bars"></i>
+                <a href="javascript:void(0);" class="icon "  @click="myFunction()">
+                    <i class="fa fa-bars"/>
                 </a>
             </div>
             <!--            <div class="col-10 align-self-center text-right d-flex justify-content-end topnav" id="myTopnav">-->
@@ -140,6 +127,9 @@ body {
 
 .topnav .icon {
     display: none;
+    color: black;
+    height: 0;
+    margin-top: 4%;
 }
 
 @media screen and (max-width: 600px) {
@@ -150,6 +140,10 @@ body {
     .topnav a.icon {
         float: right;
         display: block;
+
+    }
+    .topnav p{
+        font-size: 5vw;
     }
 }
 
@@ -160,14 +154,15 @@ body {
 
     .topnav.responsive .icon {
         position: absolute;
-        right: 0;
-        top: 0;
+        right: 8%;
+        top: 3%;
     }
 
     .topnav.responsive a {
         float: none;
         display: block;
-        text-align: left;
+        text-align: right;
     }
+
 }
 </style>

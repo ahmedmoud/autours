@@ -25,6 +25,7 @@
                                     format="YYYY/MM/DD"
                                     value-format="YYYY-MM-DD"
                                     style="height: 60px;"
+                                    :disabled-date="disabledDate"
 
                                 />
 
@@ -64,6 +65,11 @@ const locations = {
 const loading = ref(false);
 var field = ''
 const vehicles = ref([])
+const disabledDate = (time) => {
+    const date = new Date();
+   return time < date
+}
+
 
 const getLogos = async () => {
     try {

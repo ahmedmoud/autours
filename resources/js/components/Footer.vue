@@ -39,9 +39,9 @@ onMounted(() => {
                         </svg>
                     </a>
                 </div>
-                <div class="row offset-8" v-if="!user">
-                    <Link class="nav-link col-2" href="register"><span>Supplier Login</span></Link>
-                    <Link class="nav-link col-2" href="register?user_type=supplier"><span>Supplier Signup</span></Link>
+                <div style="float: right" v-if="!user">
+                    <a class="nav-link col-3" href="/register"><span>Supplier&nbsp;Login</span></a>
+                    <a class="nav-link col-2" href="/register?user_type=supplier"><span>Supplier&nbsp;Signup</span></a>
                 </div>
                 <!--<Link v-else class="nav-link col-md-2 offset-8" style="color: #0a3622" href="/company"><span>My Profile</span></Link>-->
                 <div class="col-md-6 align-self-center text-center text-md-right my-2" id="social-media"></div>

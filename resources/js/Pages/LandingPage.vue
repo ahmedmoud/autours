@@ -8,29 +8,20 @@
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 750px; display:flex;  justify-content: center;">
 
         <div class="jumbotron-fluid  " style="width: 70%">
-            <p style="color: #ffffff; font-size:3vw;">
-                <strong> <span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy .
-            </strong></p>
+            <h1 class="p-fontsize" style="color: #ffffff;"><strong><span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy.</strong></h1>
             <FloatSearchForm/>
-            <p class="py-5" style="font-size:2.8vw; color: #ffffff;">
-                <strong>  Looking for a vehicle? You're at the right place.<br/></strong>
-            </p>
-            <div class="row text-white font-weight-bold position-relative">
-                <div class="row col-md-2"><i class="col-md-2 fa fa-check-square fa-xl mt-2"
-                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">Free
-                    Cancellation</p></div>
-                <div class="row col-md-3"><i class="col-md-2 fa fa-check-square fa-xl mt-2"
-                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">
-                    Damage Collision Waiver</p></div>
-                <div class="row col-md-2"><i class="col-2 fa fa-check-square fa-xl mt-2"
-                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">Theft
-                    Protection</p></div>
-                <div class="row col-md-3"><i class="col-2 fa fa-check-square fa-xl mt-2"
-                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">
-                    Unlimited Mileage</p></div>
-                <div class="row col-md-3"><i class="col-2 fa fa-check-square fa-xl mt-2"
-                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">Third
-                    Party Liability</p></div>
+            <h1 class="py-3 p-fontsize" style=" color: #ffffff;">
+                <strong>  Looking for a vehicle? You're at the right place!<br/></strong>
+            </h1>
+            <div class="text-white font-weight-bold included-part">
+                <p class="col-md-12">
+                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free Cancellation
+                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Damage Collision Waiver
+                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Theft Protection
+                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Unlimited Mileage
+                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Third Party Liability
+                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Meet and Greet
+                </p>
             </div>
         </div>
     </div>
@@ -422,6 +413,16 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @import '../../css/custom.css';
+
+@media screen and (max-width: 600px) {
+     .p-fontsize{
+        font-size: 5vw;
+    }
+    .included-part{
+        display: none;
+    }
+}
+
 
 #banner {
     position: relative;
