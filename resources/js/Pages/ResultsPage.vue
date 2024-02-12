@@ -63,8 +63,8 @@
                                     <h5>PICK-UP - LOCATION </h5>
                                     <span class=" col-md-1 ti ti-gps"></span>
                                     <p class="col-md-11">{{ location }}</p>
-                                    <span class="col-md-6 ti ti-calendar">{{ date[0] }}</span>
-                                    <span class="col-md-3 ti ti-clock">00:00</span>
+                                    <span class="col-md-6 ti ti-calendar"> &nbsp;{{ date[0] }}</span>
+                                    <span class="col-md-3 ti ti-clock"> 00:00</span>
                                 </div>
                                 <hr/>
                                 <div class=" mt-3 row" style="background: #fff;">
@@ -72,8 +72,8 @@
                                     <span class=" col-md-1 ti ti-gps"></span>
                                     <p class="col-11">{{ location }}</p>
 
-                                    <span class="col-md-6 ti ti-calendar">{{ date[1] }}</span>
-                                    <span class="col-md-3 ti ti-clock">00:00</span>
+                                    <span class="col-md-6 ti ti-calendar"> &nbsp;{{ date[1] }}</span>
+                                    <span class="col-md-3 ti ti-clock"> 00:00</span>
                                 </div>
                             </div>
                             <div class="col-md-12 pb-4"></div>
@@ -115,10 +115,7 @@
                                     </form>
                                 </div>
                                 <div class="col-md-12 mt-2" style="background: #fff;">
-                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1"
-                                                                                       style="font-size: small;">{{
-                                            priceRange
-                                        }} - {{ max }}</span></h5>
+                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1" style="font-size: small;">&nbsp;{{priceRange }} &nbsp; - &nbsp; {{ max }}</span></h5>
                                     <hr/>
                                     <div class="row" style="margin-top: -20px">
                                         <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="max"/>
@@ -147,8 +144,7 @@
                                         <h4 style="margin-bottom: -30px">{{ item.name }}</h4>
                                         <hr/>
                                         <div style="margin-top: -30px">
-                                            <el-checkbox v-for="option in item.options" :label="option" size="large"
-                                                         :model="specification[i]"/>
+                                            <el-checkbox v-for="option in item.options" :label="option" size="large" :model="specification[i]" @click="selectSpecification(item, option)"/>
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +157,7 @@
                                     <el-radio v-model="category" :label="item.id" size="large" border @click="SelectCategory(item.id)">
                                         <div class="item_filter_group filter_top " style="background: #fff;">
                                             <h4>{{ item.name }}</h4>
-                                            <img :src="'img/categories/'+item.photo"/>
+                                            <img :src="'img/categories/'+item.photo" width="50" height="50"/>
                                         </div>
                                     </el-radio>
                                 </div>
@@ -237,7 +233,7 @@
                                                     </button>
                                                     <div>
                                                         <span class="be_media-body"><h5>Good</h5><span
-                                                            style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>+ reviews)</span></span>
+                                                            style="font-size: medium;">(&nbsp;<strong style="color: #f9d602">1000&nbsp;</strong>+ reviews)</span></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -313,7 +309,8 @@ const form = useForm({
     date_from: '',
     date_to: '',
     category: '',
-    supplier: ''
+    supplier: '',
+    specifications: []
 });
 const date = ref([]);
 const location = ref("");
@@ -383,6 +380,11 @@ const SelectCategory = (category_id) => {
 }
 const selectSupplier = (supplier_id) => {
     form.supplier = supplier_id
+    getVehicles()
+}
+
+const selectSpecification = (item, option) => {
+    form.specifications.push({name: item.name, option: option})
     getVehicles()
 }
 const getVehicles = async () => {

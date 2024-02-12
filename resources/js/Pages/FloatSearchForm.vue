@@ -1,25 +1,17 @@
 <template>
-    <div  class="justify-content-center" style="background: #0e1418c2; height: 280px;">
-<loader v-if="loading" />
-            <form v-if="!loading" class="trip-form   " @submit.prevent="search"  style=" top: 30%; left: 5%; ">
-                <div class="row">
-                    <div class="row  col-md-12 ">
-                        <div class="row">
-                            <div class=" date-range-alert-danger danger  display-none col-4 offset-4">
-                                <li>Please Select Date Range</li>
-                            </div>
-                            <div class="danger pickup-location-alert-danger display-none col-5">
-                                <li> Please select Location</li>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
+    <div   style="position:relative; padding: 5%; background: #0e1418c2; height: 280px; ">
+            <form  v-if="!loading"  @submit.prevent="search">
+                <div>
+                    <div class="row">
+
+                        <div class="col-md-5 mt-2">
                             <select class="form-control form-select bg-white" style=" height: 60px;" v-model="location">
                                 <option disabled selected value="" class="el-select-dropdown">     Select Your Location...</option>
                                 <option  class="el-select-dropdown"  v-for="item in locations.all.value" :value="item"> {{ item }}</option>
                             </select>
 
                         </div>
-                        <div class=" col-md-6">
+                        <div class=" col-md-6 mt-2">
                             <div class=" ">
                                 <el-date-picker
                                     v-model="date"
@@ -39,11 +31,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-5 align-content-end">
-                        <button  class=" offset-9 px-5 btn btn-primary" style=" height:60px;  background: rgb(249, 214, 2); color: #000;">
+                        <button  class=" position-relative float-right px-5" style="top: 30px; height:60px;  background: rgb(249, 214, 2); color: #000;">
                             SEARCH CARS
                         </button>
-                    </div>
                 </div>
 
             </form>

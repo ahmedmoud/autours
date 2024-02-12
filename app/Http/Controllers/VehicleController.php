@@ -116,9 +116,8 @@ class VehicleController extends Controller
                 ->select(['categories.id as id', 'categories.name as name','categories.photo as photo'])
                 ->distinct('categories.id')->get();
 
-
-            $suppPluck = $query->pluck('supplier')->unique();
-            $suppliers = User::whereIn('id', $suppPluck)->get();
+            $branches = Branch::query()->where('location', $location)->get();
+            $suppliers = User::query()->whereIn('id', $branches->pluck('company_id') )->get();
 
             $vehicles = $query->where('activation', true)->has('profit')->get();
 
@@ -166,6 +165,8 @@ class VehicleController extends Controller
                 $vehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $vehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
             }
             $vehicles = $vehicles->toArray();
+
+
             usort($vehicles, function($a, $b)
             {
                 if ($a["final_price"] == $b["final_price"])

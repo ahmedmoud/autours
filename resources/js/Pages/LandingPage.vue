@@ -4,24 +4,33 @@
     <body>
     <!-- banner -->
 
-    <div class="jumbotron jumbotron-fluid" id=""
+    <div class="jumbotron jumbotron-fluid"
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 750px; display:flex;  justify-content: center;">
 
         <div class="jumbotron-fluid  " style="width: 70%">
-            <h1 style="color: #ffffff">
-                <span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy .
-            </h1>
+            <p style="color: #ffffff; font-size:3vw;">
+                <strong> <span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy .
+            </strong></p>
             <FloatSearchForm/>
-            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
-                class=" text-white font-weight-bold my-5 ml-4 " style="  ">
-                Looking for a vehicle? You're at the right place.<br/>
-            </h1>
-            <div class="row text-white font-weight-bold position-fixed">
-                <i class="col-1 fa fa-check-square fa-xl mt-2"  style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Free Cancellation</p>
-                <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Damage Collision Waiver</p>
-                <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Theft Protection</p>
-                <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Unlimited Mileage</p>
-                <i class="col-1 fa fa-check-square fa-xl mt-2"   style="color: #7fff1f; margin-right: -6%;"/><p class="col-md-2">Third Party Liability</p>
+            <p class="py-5" style="font-size:2.8vw; color: #ffffff;">
+                <strong>  Looking for a vehicle? You're at the right place.<br/></strong>
+            </p>
+            <div class="row text-white font-weight-bold position-relative">
+                <div class="row col-md-2"><i class="col-md-2 fa fa-check-square fa-xl mt-2"
+                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">Free
+                    Cancellation</p></div>
+                <div class="row col-md-3"><i class="col-md-2 fa fa-check-square fa-xl mt-2"
+                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">
+                    Damage Collision Waiver</p></div>
+                <div class="row col-md-2"><i class="col-2 fa fa-check-square fa-xl mt-2"
+                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">Theft
+                    Protection</p></div>
+                <div class="row col-md-3"><i class="col-2 fa fa-check-square fa-xl mt-2"
+                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">
+                    Unlimited Mileage</p></div>
+                <div class="row col-md-3"><i class="col-2 fa fa-check-square fa-xl mt-2"
+                                             style="color: #7fff1f; margin-right: -6%;"/>&nbsp;<p class="col-md-10">Third
+                    Party Liability</p></div>
             </div>
         </div>
     </div>
