@@ -1,5 +1,5 @@
 <template>
-    <div   style="position:relative; padding: 5%; background: #0e1418c2; height: 280px; ">
+    <div   style="position: relative; padding: 5%; background: #0e1418c2; height: 280px; ">
             <form  v-if="!loading"  @submit.prevent="search">
                 <div>
                     <div class="row">
@@ -11,7 +11,7 @@
                             </select>
 
                         </div>
-                        <div class=" col-md-6 mt-2">
+                        <div class=" col-md-5 mt-2">
                             <div class=" ">
                                 <el-date-picker
                                     v-model="date"
@@ -31,13 +31,40 @@
 
                             </div>
                         </div>
+                        <div class=" col-md-2 mt-2">
+                            <div class=" ">
+                                <el-time-picker
+                                    v-model="time"
+                                    type="range"
+                                    range-separator="TO"
+                                    start-placeholder="Start time"
+                                    end-placeholder="End time"
+                                    size="large"
+                                    required="true"
+                                    :change="showAlert()"
+                                    style="height: 60px;"
+                                    value-format = "HH:mm"
+                                    format = "HH:mm"
+                                    placeholder="Time 00:00"
+
+                                />
+
+                            </div>
+                        </div>
                     </div>
                         <button  class=" position-relative float-right px-5" style="top: 30px; height:60px;  background: rgb(249, 214, 2); color: #000;">
                             SEARCH CARS
                         </button>
+                    <p class="col-md-12 text-white position-relative float-right included-part">
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free Cancellation
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No Credit card fees
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No hidden fees
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free amendment
+                    </p>
                 </div>
 
             </form>
+
     </div>
 </template>
 
@@ -55,6 +82,7 @@ const form = useForm({
 });
 const logos = ref({})
 const date = ref('')
+const time = ref('')
 const countries = ref('')
 const location = ref('')
 const locations = {
@@ -229,6 +257,11 @@ header {
 $easing: cubic-bezier(0.680, -0.550, 0.265, 1.550);
 $color: white;
 
+@media screen and (max-width: 600px){
+    .included-part{
+        display: none;
+    }
+}
 
 .acc {
     .wrapper {

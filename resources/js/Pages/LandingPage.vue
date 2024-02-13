@@ -5,23 +5,16 @@
     <!-- banner -->
 
     <div class="jumbotron jumbotron-fluid"
-         style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 750px; display:flex;  justify-content: center;">
+         style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 650px; display:flex;  justify-content: center;">
 
-        <div class="jumbotron-fluid  " style="width: 70%">
+        <div class="jumbotron-fluid col-md-8  " >
             <h1 class="p-fontsize" style="color: #ffffff;"><strong><span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy.</strong></h1>
             <FloatSearchForm/>
             <h1 class="py-3 p-fontsize" style=" color: #ffffff;">
                 <strong>  Looking for a vehicle? You're at the right place!<br/></strong>
             </h1>
             <div class="text-white font-weight-bold included-part">
-                <p class="col-md-12">
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free Cancellation
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Damage Collision Waiver
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Theft Protection
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Unlimited Mileage
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Third Party Liability
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Meet and Greet
-                </p>
+
             </div>
         </div>
     </div>
@@ -420,6 +413,9 @@ onMounted(() => {
     }
     .included-part{
         display: none;
+    }
+    .jumbotron-fluid{
+        width: 100%;
     }
 }
 
