@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Enums\StatusCodes;
+use App\Events\NewRental;
+use App\Http\Requests\BookCarRequest;
 use App\Http\Requests\CreateEditVehicle;
+use App\Http\Requests\FilterVehicleRequest;
+use App\Http\Requests\GetVehiclePageRequest;
 use App\Models\CurrencyRate;
 use App\Models\Included;
 use App\Models\SupplierRentalTerm;
 use App\Models\VehicleIncluded;
+use App\Services\VehicleService;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
@@ -17,6 +22,7 @@ use App\Models\Branch;
 use App\Models\VehiclesPhotos;
 use App\Models\Rental;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -30,41 +36,27 @@ class VehicleController extends Controller
      * Display a listing of the resource.
      */
 
+    public VehicleService $vehicleService;
+
+
 
     public function index()
     {
         return Inertia::render('ResultsPage');
     }
 
-    public function book(Request $request): RedirectResponse
-    {
-        $location = $request->pickupLoc;
-        $date = $request->date;
-        $user = auth()->user()->id;
-        $vehicle = $request->vehicle;
-        $price = $request->price;
 
-        $item = new Rental();
-
-        $item->customer_id = $user;
-        $item->order_status = '0';
-        $item->order_number = 'ATRS#' . str_pad(rand(0, 99999999), 8, '0', STR_PAD_LEFT);
-        $item->vehicle_id = $vehicle;
-        $item->price = $price;
-        $item->start_date = Carbon::parse($date[0]);
-        $item->end_date = Carbon::parse($date[1]);
-
-        $item->save();
-
-        return redirect()->intended('/');
-    }
-
-    public function filter(Request $request)
+    public function filter(FilterVehicleRequest $request)
     {
         try {
 
             $location = $request->pickupLoc;
-            $date = $request->date;
+            $dateFrom = $request->date_from;
+            $dateTo = $request->date_to;
+
+            $timeFrom = $request->time_from;
+            $timeTo = $request->time_to;
+
 
             $filteredVehicles = Vehicle::query();
 
@@ -110,54 +102,46 @@ class VehicleController extends Controller
             $minPrice = 10000000;
 
             $categories = Category::query()
-                ->join('vehicles', 'vehicles.category','=','categories.id')
-                ->join('branches', 'branches.id','=','vehicles.pickup_loc')
-                ->where('branches.location',$location)
-                ->select(['categories.id as id', 'categories.name as name','categories.photo as photo'])
+                ->join('vehicles', 'vehicles.category', '=', 'categories.id')
+                ->join('branches', 'branches.id', '=', 'vehicles.pickup_loc')
+                ->where('branches.location', $location)
+                ->select(['categories.id as id', 'categories.name as name', 'categories.photo as photo'])
                 ->distinct('categories.id')->get();
 
             $branches = Branch::query()->where('location', $location)->get();
-            $suppliers = User::query()->whereIn('id', $branches->pluck('company_id') )->get();
+            $suppliers = User::query()->whereIn('id', $branches->pluck('company_id'))->get();
 
             $vehicles = $query->where('activation', true)->has('profit')->get();
 
-            if ($date && $date !== null) {
-                if(is_string($date))
-                    $date = explode( ',', $date) ;
-                $startDate = Carbon::parse($date[0]);
-                $endDate = Carbon::parse($date[1]);
-                $diffInDays = $startDate->diffInDays($endDate);
-                foreach ($vehicles as $vehicle) {
+            $startDate = Carbon::parse($dateFrom);
+            $endDate = Carbon::parse($dateTo);
 
-                    if ($diffInDays >= '1' && $diffInDays < '3') {
-                        $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100)) * $diffInDays;
-                        $priceTax = $vehicle->profit->per_day_profit;
-                    } else if ($diffInDays >= '3' && $diffInDays < '7') {
-                        $vehicle->final_price = ($vehicle->week_price + (($vehicle->week_price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
-                        $priceTax = $vehicle->profit->per_week_profit;
-                    } else if ($diffInDays >= '8' && $diffInDays < '30') {
-                        $vehicle->final_price = ($vehicle->month_price + (($vehicle->month_price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
-                        $priceTax = $vehicle->profit->per_month_profit;
-                    }
+            $diffInDays = $startDate->diffInDays($endDate);
+            foreach ($vehicles as $vehicle) {
+                if ($diffInDays >= '1' && $diffInDays < '3') {
+                    $vehicle->final_price = ($vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100)) * $diffInDays;
+                    $priceTax = $vehicle->profit->per_day_profit;
+                } else if ($diffInDays >= '3' && $diffInDays <= '7') {
 
-                    $vehicle->final_price = round($vehicle->final_price, 2);
-                    if ($currency != $vehicle->branch->currency) {
-                        $rate = CurrencyRate::query()->where('currency_from', $vehicle->branch->currency)->where('currency_to', $currency)->first();
-                        if ($rate != null) {
-                            $vehicle->final_price *= $rate->rate;
-                            $vehicle->final_price = round($vehicle->final_price, 2);
-                        }
-                    }
-                    if ($vehicle->final_price >= $maxPrice) $maxPrice = round($vehicle->final_price) + 1;
-                    if ($vehicle->final_price <= $minPrice) $minPrice = round($vehicle->final_price);
-
+                    $vehicle->final_price = ($vehicle->week_price + (($vehicle->week_price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
+                    $priceTax = $vehicle->profit->per_week_profit;
+                } else if ($diffInDays >= 8 && $diffInDays < 30) {
+                    $vehicle->final_price = ($vehicle->month_price + (($vehicle->month_price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
+                    $priceTax = $vehicle->profit->per_month_profit;
                 }
-            } else {
-                foreach ($vehicles as $vehicle) {
-                    $vehicle->final_price = $vehicle->price + (($vehicle->price * $vehicle->profit->per_day_profit) / 100);
-
+                $vehicle->final_price = round($vehicle->final_price, 2);
+                if ($currency != $vehicle->branch->currency) {
+                    $rate = CurrencyRate::query()->where('currency_from', $vehicle->branch->currency)->where('currency_to', $currency)->first();
+                    if ($rate != null) {
+                        $vehicle->final_price *= $rate->rate;
+                        $vehicle->final_price = round($vehicle->final_price, 2);
+                    }
                 }
+                if ($vehicle->final_price >= $maxPrice) $maxPrice = round($vehicle->final_price) + 1;
+                if ($vehicle->final_price <= $minPrice) $minPrice = round($vehicle->final_price);
+
             }
+
 
             $count = $vehicles->count();
 
@@ -167,17 +151,17 @@ class VehicleController extends Controller
             $vehicles = $vehicles->toArray();
 
 
-            usort($vehicles, function($a, $b)
-            {
+            usort($vehicles, function ($a, $b) {
                 if ($a["final_price"] == $b["final_price"])
                     return (0);
                 return (($a["final_price"] < $b["final_price"]) ? -1 : 1);
             });
             if ($minPrice >= $maxPrice) $minPrice = 0;
 
-            return  [
+            return [
                 'location' => $location,
-                'date' => $date,
+                'date_from' => $dateFrom,
+                'date_to' => $dateTo,
                 'filteredVehicles' => $vehicles,
                 'filteredCategories' => $categories,
                 'filteredSuppliers' => $suppliers,
@@ -197,6 +181,7 @@ class VehicleController extends Controller
 
     public function search(Request $request)
     {
+        dd($request->all());
         $location = $request->pickupLoc;
         $date = $request->date;
 
@@ -470,30 +455,21 @@ class VehicleController extends Controller
 
     }
 
-    public function getVehicle(Request $request)
+    public function getVehicle(GetVehiclePageRequest $request)
     {
         try {
-            if (!$request->has('id')|| !is_int((int)$request->id)) {
-                throw new \Exception('The id is invalid');
-            }
+
             $location = $request->location;
-            $date = $request->date;
             $currency = $request->currency;
             $selectedVehicle = Vehicle::where('id', $request->id)->with('category', 'supplier', 'branch', 'included')->first();
 
-            if($date == null) {
-                return response()->json([
-                    'message' => 'please select date range',
-                    'status' => false
-                ], StatusCodes::SERVER_ERROR);
-            }
-            $startDate = Carbon::parse($date[0]);
-            $endDate = Carbon::parse($date[1]);
+            $startDate = Carbon::parse($request->date_from);
+            $endDate = Carbon::parse($request->date_to);
             $diffInDays = $startDate->diffInDays($endDate);
 
             if ($diffInDays >= '1' && $diffInDays < '3') {
                 $selectedVehicle->final_price = ($selectedVehicle->price + (($selectedVehicle->price * $selectedVehicle->profit->per_day_profit) / 100)) * $diffInDays;
-            } else if ($diffInDays >= '3' && $diffInDays < '7') {
+            } else if ($diffInDays >= '3' && $diffInDays <= '7') {
                 $selectedVehicle->final_price = ($selectedVehicle->week_price + (($selectedVehicle->week_price * $selectedVehicle->profit->per_week_profit) / 100)) * $diffInDays;
             } else if ($diffInDays >= '8' && $diffInDays < '30') {
                 $selectedVehicle->final_price = ($selectedVehicle->month_price + (($selectedVehicle->month_price * $selectedVehicle->profit->per_month_profit) / 100)) * $diffInDays;
@@ -512,7 +488,10 @@ class VehicleController extends Controller
             return response()->json([
                 'data' => [
                     'vehicle' => $selectedVehicle,
-                    'date' => $date,
+                    'date_from' => $startDate->toDateString(),
+                    'date_to' => $endDate->toDateString(),
+                    'time_from' => $endDate->toTimeString(),
+                    'time_to' => $endDate->toTimeString(),
                     'days' => $diffInDays,
                     'currency' => $currency,
                     'location' => $location
@@ -528,27 +507,7 @@ class VehicleController extends Controller
         }
     }
 
-    public function getRentals()
-    {
-        $user = auth()->user();
-        $id = $user->id;
-        $role = $user->role;
 
-        $rentals = Rental::query();
-
-        if ($role === 'customer') {
-            $rentals->where('customer_id', $id);
-        }
-
-        if ($role === 'active_supplier') {
-            $vehicles = Vehicle::where('supplier', $id)->pluck('id')->unique();
-            $data = $rentals->whereIn('vehicle_id', $vehicles)->get();
-        }
-
-        $data = $rentals->with('vehicle')->get();
-
-        return response()->json($data);
-    }
 
     public function acceptRentals(Request $request)
     {

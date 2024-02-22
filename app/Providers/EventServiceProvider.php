@@ -2,6 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\CancelRental;
+use App\Events\NewRental;
+use App\Listeners\CancelRentalAdminListener;
+use App\Listeners\CancelRentalCustomerListener;
+use App\Listeners\CancelRentalSupplierListener;
+use App\Listeners\NotifyAdminListener;
+use App\Listeners\NotifyCustomerListener;
+use App\Listeners\NotifySupplier;
+use App\Listeners\NotifySupplierListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +27,16 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        NewRental::class => [
+            NotifyCustomerListener::class,
+            NotifySupplierListener::class,
+            NotifyAdminListener::class
+        ],
+        CancelRental::class => [
+            CancelRentalCustomerListener::class,
+            CancelRentalSupplierListener::class,
+            CancelRentalAdminListener::class,
+        ]
     ];
 
     /**

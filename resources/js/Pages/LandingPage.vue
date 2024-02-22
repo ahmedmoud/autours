@@ -7,7 +7,7 @@
     <div class="jumbotron jumbotron-fluid"
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 650px; display:flex;  justify-content: center;">
 
-        <div class="jumbotron-fluid col-md-8  " >
+        <div class="jumbotron-fluid   " >
             <h1 class="p-fontsize" style="color: #ffffff;"><strong><span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy.</strong></h1>
             <FloatSearchForm/>
             <h1 class="py-3 p-fontsize" style=" color: #ffffff;">
@@ -25,7 +25,7 @@
         <div class="container">
             <div class="row" style="justify-content: center;">
                 <div v-for="logo in logos" class="ml-5 col-sm-4 col-md-2 py-2 align-self-center">
-                    <img :src="'img/' + logo" class="mx-auto d-block" width="300" height="200"/>
+                    <img :src="'img/' + logo" class="mx-auto d-block" width="200" height="130"/>
                 </div>
             </div>
         </div>
@@ -407,7 +407,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 @import '../../css/custom.css';
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
      .p-fontsize{
         font-size: 5vw;
     }

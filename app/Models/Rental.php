@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use App\Models\Vehicle;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +23,15 @@ class Rental extends Model
 
     public function vehicle() {
         return $this->belongsTo(Vehicle::class, 'vehicle_id', 'id');
+    }
+
+
+    public function customer() {
+        return $this->belongsTo(User::class, 'customer_id', 'id');
+    }
+
+    public function status() {
+        return $this->belongsTo(RentalStatus::class, 'order_status', 'id');
     }
 
 }

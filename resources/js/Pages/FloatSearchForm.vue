@@ -1,61 +1,95 @@
 <template>
-    <div   style="position: relative; padding: 5%; background: #0e1418c2; height: 280px; ">
-            <form  v-if="!loading"  @submit.prevent="search">
+    <div   class="form-layout">
+        <Loader v-if="loading"/>
+            <form  v-if="!loading"  @submit.prevent="search" >
                 <div>
                     <div class="row">
 
-                        <div class="col-md-5 mt-2">
-                            <select class="form-control form-select bg-white" style=" height: 60px;" v-model="location">
-                                <option disabled selected value="" class="el-select-dropdown">     Select Your Location...</option>
-                                <option  class="el-select-dropdown"  v-for="item in locations.all.value" :value="item"> {{ item }}</option>
+                        <label class="text-white">Select Pickup Location</label>
+                        <div class="col-md-5 mt-2 location-input">
+                            <select class="form-control form-select bg-white" style=" height: 60px;" v-model="form.pickupLoc">
+                                <option disabled selected value="" style="font-size: 20px;" class="el-select-dropdown">     Select Your Location...</option>
+                                <option  class="el-select-dropdown" style="font-size: 20px;" v-for="item in locations.all.value" :value="item"> {{ item }}</option>
                             </select>
 
                         </div>
-                        <div class=" col-md-5 mt-2">
-                            <div class=" ">
-                                <el-date-picker
-                                    v-model="date"
-                                    type="daterange"
-                                    range-separator="TO"
-                                    start-placeholder="Start date"
-                                    end-placeholder="End date"
-                                    size="large"
-                                    required="true"
-                                    :change="showAlert()"
-                                    format="YYYY/MM/DD"
-                                    value-format="YYYY-MM-DD"
-                                    style="height: 60px;"
-                                    :disabled-date="disabledDate"
+                        <div class="col-md-7 row">
+                            <div class=" col-md-4 mt-2 date-input">
+                                <div class=" ">
+                                    <el-date-picker
+                                        v-model="form.date_from"
+                                        range-separator="TO"
+                                        placeholder="From"
+                                        size="large"
+                                        required="true"
+                                        format="YYYY/MM/DD"
+                                        value-format="YYYY-MM-DD"
+                                        style="height: 60px;"
+                                        :disabled-date="disabledDate"
 
-                                />
+                                    />
 
+                                </div>
                             </div>
-                        </div>
-                        <div class=" col-md-2 mt-2">
-                            <div class=" ">
-                                <el-time-picker
-                                    v-model="time"
-                                    type="range"
-                                    range-separator="TO"
-                                    start-placeholder="Start time"
-                                    end-placeholder="End time"
-                                    size="large"
-                                    required="true"
-                                    :change="showAlert()"
-                                    style="height: 60px;"
-                                    value-format = "HH:mm"
-                                    format = "HH:mm"
-                                    placeholder="Time 00:00"
+                            <div class=" col-md-2 mt-2 time-input">
+                                <div class=" ">
+                                    <el-time-picker
+                                        v-model="form.time_from"
+                                        type="range"
+                                        range-separator="TO"
+                                        size="large"
+                                        required="true"
+                                        style="height: 60px;"
+                                        value-format="HH:mm"
+                                        format="HH:mm"
+                                        placeholder="10:00"
 
-                                />
+                                    />
 
+                                </div>
+                            </div>
+                            <div class=" col-md-4 mt-2 date-input">
+                                <div class=" ">
+                                    <el-date-picker
+                                        v-model="form.date_to"
+                                        range-separator="TO"
+                                        placeholder="To"
+                                        size="large"
+                                        required="true"
+                                        format="YYYY/MM/DD"
+                                        value-format="YYYY-MM-DD"
+                                        style="height: 60px;"
+                                        :disabled-date="disabledDate"
+
+                                    />
+
+                                </div>
+                            </div>
+                            <div class=" col-md-2 mt-2 time-input">
+                                <div class=" ">
+                                    <el-time-picker
+                                        v-model="form.time_to"
+                                        type="range"
+                                        range-separator="TO"
+                                        start-placeholder="Start time"
+                                        end-placeholder="End time"
+                                        size="large"
+                                        required="true"
+                                        style="height: 60px;"
+                                        value-format="HH:mm"
+                                        format="HH:mm"
+                                        placeholder="10:00"
+
+                                    />
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                        <button  class=" position-relative float-right px-5" style="top: 30px; height:60px;  background: rgb(249, 214, 2); color: #000;">
+                        <button  class=" position-relative float-right px-5 mt-2" style="top: 30px; height:60px;  background: rgb(249, 214, 2); color: #000;">
                             SEARCH CARS
                         </button>
-                    <p class="col-md-12 text-white position-relative float-right included-part">
+                    <p class="col-md-12 text-white position-relative float-right included-part" style="top: 10px">
                         <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free Cancellation
                         <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No Credit card fees
                         <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No hidden fees
@@ -75,16 +109,16 @@ import Loader from '../components/Loader.vue'
 
 const value = ref()
 const form = useForm({
-    pickupLoc: '',
-    date: '',
-    date_from: '',
-    date_to: ''
+    pickupLoc: ref(''),
+    date: ref(''),
+    date_from: ref(''),
+    date_to: ref(''),
+    time_from: ref(''),
+    time_to: ref('')
 });
 const logos = ref({})
-const date = ref('')
-const time = ref('')
 const countries = ref('')
-const location = ref('')
+
 const locations = {
     all: ref([]),
     options: ref([]),
@@ -95,7 +129,8 @@ var field = ''
 const vehicles = ref([])
 const disabledDate = (time) => {
     const date = new Date();
-   return time < date
+    date.setHours(0,0,0,0)
+    return time < date
 }
 
 
@@ -152,7 +187,6 @@ const getLocations = async () => {
     try {
         const response = await axios.get('/get/locations')
         locations.all.value = Object.values(response.data)
-        console.log(locations)
         loading.value = false
     } catch (error) {
         console.error(error)
@@ -181,39 +215,53 @@ const remoteLocations = (query) => {
 }
 
 const search = async () => {
-    loading.value = true
-    form.pickupLoc = location.value
-    form.date = date.value
+    // loading.value = true
 
-    if(date.value == [] || date.value ===null) {
-        alert('Please Select Date range.')
+    if(form.date_from.value == [] || form.date_from.value ===null) {
+        alert('Please Select Start Date.')
         loading.value = false
         return;
     }
 
+    if(form.date_to.value == [] || form.date_to.value ===null) {
+        alert('Please Select End Date.')
+        loading.value = false
+        return;
+    }
 
+    if(form.time_from.value == [] || form.time_from.value ===null) {
+        alert('Please Select Start Time.')
+        loading.value = false
+        return;
+    }
 
-    if (location.value == null || location.value == []) {
+    if(form.time_to.value == [] || form.time_to.value ===null) {
+        alert('Please Select End Time.')
+        loading.value = false
+        return;
+    }
+
+    const date_time_from = new Date(form.date_from + ' ' + form.time_from);
+    const date_time_to = new Date(form.date_to + ' ' + form.time_to);
+
+    if(date_time_from > date_time_to) {
+        alert('Please Select Start Date Time after End Date Time.')
+        loading.value = false
+        return;
+    }
+
+    if (form.pickupLoc == null || form.pickupLoc == []) {
         loading.value = false
         alert('Please Select Location.')
-
         return;
     }
-    form.date_from = date.value[0]
-    form.date_to = date.value[1]
+
+
     router.get('/results', form.data())
     loading.value = false
 
 }
-const showAlert = () =>{
-    if(date.value != [] && date.value != null)
-        $('.date-range-alert-danger').hide()
 
-    if(location.value != [] && location.value != null)
-
-        $('.pickup-location-alert-danger').hide()
-
-}
 onMounted(() => {
     getLocations();
     getVehicles();
@@ -256,8 +304,27 @@ header {
 
 $easing: cubic-bezier(0.680, -0.550, 0.265, 1.550);
 $color: white;
+@media screen and (max-width: 800px){
 
-@media screen and (max-width: 600px){
+    .date-input {
+        width: 30%;
+    }
+    .time-input {
+        width: 20%;
+    }
+    .location-input {
+        width: 97%;
+    }
+}
+
+.form-layout {
+    position: relative;
+    padding: 2%;
+    background: #0e1418c2;
+    height: 300px;
+}
+
+@media screen and (max-width: 1200px){
     .included-part{
         display: none;
     }

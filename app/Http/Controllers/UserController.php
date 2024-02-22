@@ -88,7 +88,7 @@ class UserController extends Controller
 
     public function getLogos()
     {
-        return User::whereNotNull('logo')->take(5)->pluck('logo');
+        return User::query()->where('role', 'active_supplier')->whereNotNull('logo')->take(5)->pluck('logo');
     }
 
     public function membership()

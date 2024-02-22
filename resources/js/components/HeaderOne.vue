@@ -5,26 +5,55 @@
             <a href="/" class="col-2"><img style="max-width:150px;" src="/images/akrom.jpg" alt="logo"></a>
 
             <div class="topnav" id="myTopnav">
-                <a v-if="!user" class="nav-link col-md-1 " style="color: #0a3622; margin-left: 64%" href="/register">Manage&nbsp;Booking</a>
-                <a v-else-if="user.role !== 'customer'" class="nav-link col-md-1" style="color: #0a3622;  margin-left: 64%" href="/company"><span>My&nbsp;Profile</span></a>
-                <a v-else class="nav-link col-md-1" style="color: #0a3622;  margin-left: 66%" href="/logout"><span>Log&nbsp;out</span></a>
 
-                <a class="col-md-1">
-                    <CDropdown togglerText="Dropdown button" class="mt-1">
-                        <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{ selectedCurrency }}
-                        </CDropdownToggle>
-                        <CDropdownMenu>
-                            <CDropdownItem class="pointer-event" v-for="currency in currencies"
-                                           v-on:click="changeCurrency(currency.name)">
-                                {{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}
-                            </CDropdownItem>
-                        </CDropdownMenu>
-                    </CDropdown>
-                </a>
+                <div class="row menu-responsive">
+
+                    <div class="row">
+                        <a v-if="!user" class="nav-link col-md-8  " style="color: #0a3622;" href="/register">Manage&nbsp;Booking</a>
+                        <a v-else-if="user.role !== 'customer'" class="nav-link col-md-8" style="color: #0a3622;"
+                           href="/company"><span>My&nbsp;console</span></a>
+
+
+                        <a class="col-md-3">
+                            <CDropdown togglerText="Dropdown button" class="mt-1">
+                                <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{
+                                        selectedCurrency
+                                    }}
+                                </CDropdownToggle>
+                                <CDropdownMenu>
+                                    <CDropdownItem class="cursor-pointer" v-for="currency in currencies"
+                                                   v-on:click="changeCurrency(currency.name)">
+                                        {{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}
+                                    </CDropdownItem>
+                                </CDropdownMenu>
+                            </CDropdown>
+                        </a>
+                        <a v-if="user.role === 'customer'" class="col-md-7">
+                            <CDropdown togglerText="Dropdown button" class="mt-1">
+                                <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{
+                                        user.name
+                                    }}
+                                </CDropdownToggle>
+                                <CDropdownMenu>
+                                    <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-bookings')"><i
+                                        class="fa fa-history"/>&nbsp;&nbsp;My&nbsp;Bookings
+                                    </CDropdownItem>
+                                    <CDropdownItem class="cursor-pointer"><i class="fa fa-user"/>&nbsp;&nbsp;My&nbsp;Profile
+                                    </CDropdownItem>
+                                    <CDropdownItem class="cursor-pointer" @click="() => router.get('logout')"><i
+                                        class="fa fa-door-closed"/>&nbsp;&nbsp;Log&nbsp;Out
+                                    </CDropdownItem>
+                                </CDropdownMenu>
+                            </CDropdown>
+                        </a>
+                    </div>
+
+                </div>
+
                 <!--                <a href="#news">News</a>-->
                 <!--                <a href="#contact">Contact</a>-->
                 <!--                <a href="#about">About</a>-->
-                <a href="javascript:void(0);" class="icon "  @click="myFunction()">
+                <a href="javascript:void(0);" class="icon " @click="myFunction()">
                     <i class="fa fa-bars"/>
                 </a>
             </div>
@@ -88,7 +117,7 @@ const myFunction = () => {
 
     if (x.className === "topnav") {
         x.className += " responsive";
-    }  else {
+    } else {
         x.className = "topnav";
     }
 }
@@ -132,6 +161,12 @@ body {
     margin-top: 4%;
 }
 
+@media screen and (max-width: 1500px) {
+    .nav-icon {
+        margin-left: 50% !important;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .topnav a {
         display: none;
@@ -142,12 +177,11 @@ body {
         display: block;
 
     }
-    .topnav p{
+
+    .topnav p {
         font-size: 5vw;
     }
-}
 
-@media screen and (max-width: 1000px) {
     .topnav.responsive {
         position: relative;
     }
@@ -159,10 +193,13 @@ body {
     }
 
     .topnav.responsive a {
-        float: none;
+        float: right;
         display: block;
         text-align: right;
     }
 
+    .menu-responsive {
+        margin-top: 8%;
+    }
 }
 </style>

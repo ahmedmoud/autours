@@ -199,7 +199,7 @@ const postUserData = async () => {
         if (response.data.status) {
             $toast.success('You Have Successfully Registered', {position: 'top'})
             setTimeout(function () {
-                window.location.href = '/register'
+                window.location.href = '/'
             }, 1000)
         }
     } catch ($error) {

@@ -13,16 +13,16 @@
                 <div class="modal-wrapper" @click="$emit('close')">
                     <div class="modal-container" ref="target">
                         <div class="modal-header">
-                            <slot name="header"> Rental Terms </slot>
+                            <slot name="header"> Rental Terms</slot>
                         </div>
                         <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
                             <CAccordion>
                                 <CAccordionItem v-for="(item,index) in activeRentalTerms" :item-key="index">
                                     <CAccordionHeader>
-                                        <div v-html="item.title"> </div>
+                                        <div v-html="item.title"></div>
                                     </CAccordionHeader>
                                     <CAccordionBody>
-                                        <div v-html="item.description"> </div>
+                                        <div v-html="item.description"></div>
                                     </CAccordionBody>
                                 </CAccordionItem>
                             </CAccordion>
@@ -30,7 +30,7 @@
                         <div class="modal-footer">
                             <slot name="footer">
                                 <div>
-                                    <button class="btn btn-primary"  @click="closeModal()">Done</button>
+                                    <button class="btn btn-primary" @click="closeModal()">Done</button>
                                 </div>
                             </slot>
                         </div>
@@ -38,15 +38,18 @@
                 </div>
             </div>
 
-            <section id="section-cars" >
-                <div class="col-md-12   mb-5" style="margin-left: 18%;">
-                    <button class="mr-2 mt-2 btn " style="width:420px; background: #f9d602; color: #000;"><span
+            <section id="section-cars">
+                <div class="col-md-12  steps-buttons mb-5 position-relative" style="left: 15%;">
+                    <button class="mr-2 mt-2 btn steps-button "
+                            style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-2"/>Choose Your Location
                     </button>
-                    <button class="mr-2 btn mt-2 active" style="width:420px; background: rgb(155,147,84);color: #000;"><span
+                    <button class="mr-2 btn mt-2 steps-button active"
+                            style="width:420px; background: rgb(155,147,84);color: #000;"><span
                         class="ti ti-circle-number-2 mr-2"/>Choose Your Car
                     </button>
-                    <button class="btn mt-2" style="width:420px; background: #f9d602; color: #000;"><span class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
+                    <button class="btn mt-2 steps-button" style="width:420px; background: #f9d602; color: #000; "><span
+                        class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
                     </button>
                 </div>
 
@@ -61,19 +64,19 @@
                                 </div>
                                 <div class=" mt-3 row" style="background: #fff;">
                                     <h5>PICK-UP - LOCATION </h5>
-                                    <span class=" col-md-1 ti ti-gps"></span>
-                                    <p class="col-md-11">{{ location }}</p>
-                                    <span class="col-md-6 ti ti-calendar"> &nbsp;{{ date[0] }}</span>
-                                    <span class="col-md-3 ti ti-clock"> 00:00</span>
+                                    <p class="col-11"><span class="  ti ti-gps"></span>&nbsp;{{ form.pickupLoc }}</p>
+
+                                    <span class="col-md-6 ti ti-calendar">&nbsp;{{ form.date_from }}</span>
+                                    <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_from }}</span>
                                 </div>
                                 <hr/>
                                 <div class=" mt-3 row" style="background: #fff;">
                                     <h5>DROP-OFF - LOCATION </h5>
-                                    <span class=" col-md-1 ti ti-gps"></span>
-                                    <p class="col-11">{{ location }}</p>
 
-                                    <span class="col-md-6 ti ti-calendar"> &nbsp;{{ date[1] }}</span>
-                                    <span class="col-md-3 ti ti-clock"> 00:00</span>
+                                    <p class="col-11"><span class="  ti ti-gps"></span>&nbsp;{{ form.pickupLoc }}</p>
+
+                                    <span class="col-md-6 ti ti-calendar">&nbsp;{{ form.date_to }}</span>
+                                    <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_to }}</span>
                                 </div>
                             </div>
                             <div class="col-md-12 pb-4"></div>
@@ -86,8 +89,9 @@
                                 <div class="mt-3">
                                     <form class="trip-form mt-4 px-2" @submit.prevent="search">
                                         <div class="row align-items-center flex-column">
-                                            <div class="w-100 mb-3">
-                                                <el-select class="w-100" v-model="location" size="large" filterable
+                                            <div class="mb-3 col-md-11">
+                                                <el-select class="w-100" v-model="form.pickupLoc" size="large"
+                                                           filterable
                                                            remote
                                                            reserve-keyword placeholder="PICKUP..."
                                                            remote-show-suffix
@@ -97,25 +101,59 @@
                                                                :value="item"/>
                                                 </el-select>
                                             </div>
-                                            <div class="mb-3">
-                                                <div class="form-control-wrap">
-                                                    <el-date-picker v-model="date" type="daterange" range-separator="To"
+                                            <div class="mb-3 row">
+                                                <div class="form-control-wrap col-md-7">
+                                                    <el-date-picker v-model="form.date_from"
                                                                     start-placeholder="Start date"
                                                                     end-placeholder="End date"
                                                                     size="large" format="YYYY/MM/DD"
                                                                     value-format="YYYY-MM-DD"/>
                                                 </div>
+                                                <div class="col-md-5">
+                                                    <el-time-picker
+                                                        v-model="form.time_from"
+                                                        type="range"
+                                                        size="large"
+                                                        required="true"
+                                                        value-format="HH:mm"
+                                                        format="HH:mm"
+                                                        placeholder="10:00"
+
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <div class="form-control-wrap col-md-7">
+                                                    <el-date-picker v-model="form.date_to" range-separator="To"
+                                                                    start-placeholder="Start date"
+                                                                    end-placeholder="End date"
+                                                                    size="large" format="YYYY/MM/DD"
+                                                                    value-format="YYYY-MM-DD"/>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <el-time-picker
+                                                        v-model="form.time_to"
+                                                        type="range"
+                                                        range-separator="TO"
+                                                        size="large"
+                                                        required="true"
+                                                        value-format="HH:mm"
+                                                        format="HH:mm"
+                                                        placeholder="10:00"
+
+                                                    />
+                                                </div>
                                             </div>
                                             <div class="mb-3">
                                                 <input type="submit" value="Search"
-                                                       class="btn-main btn-fullwidth rounded-3"
+                                                       class="btn-main btn-fullwidth "
                                                        style="padding: 7px 25px"/>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="col-md-12 mt-2" style="background: #fff;">
-                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1" style="font-size: small;">&nbsp;{{priceRange }} &nbsp; - &nbsp; {{ max }}</span></h5>
+                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1" style="font-size: small;">&nbsp;{{priceRange }}&nbsp;-&nbsp;{{ max }}</span></h5>
                                     <hr/>
                                     <div class="row" style="margin-top: -20px">
                                         <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="max"/>
@@ -126,15 +164,16 @@
                                     <h4 style="margin-bottom: -30px">Vehicle Suppliers</h4>
                                     <hr/>
                                     <div style="margin-top: -30px">
+                                        <div class="row" v-for="supplier in filteredSuppliers">
+                                            <strong style="color: #d7c134;" class="col-md-10 mt-2">{{ supplier.company }}&nbsp;(1)</strong>
+                                        <el-checkbox
+                                                    class="col-md-1"
 
-
-                                        <el-checkbox v-for="supplier in filteredSuppliers" :label="supplier.id"
                                                      size="large"
                                                      :model="supplier"
                                                      @click="selectSupplier(supplier.id)"
-                                        >
-                                            {{ supplier.company }}
-                                        </el-checkbox>
+                                        />
+                                        </div>
                                     </div>
                                 </div>
 
@@ -144,7 +183,14 @@
                                         <h4 style="margin-bottom: -30px">{{ item.name }}</h4>
                                         <hr/>
                                         <div style="margin-top: -30px">
-                                            <el-checkbox v-for="option in item.options" :label="option" size="large" :model="specification[i]" @click="selectSpecification(item, option)"/>
+                                            <div class="row" v-for="option in item.options">
+                                                <strong class="col-md-10 mt-2">{{option}}  {{ item.name }}</strong>
+                                                <el-checkbox
+                                                    class="col-md-1 "
+                                                    size="large"
+                                                    :model="specification[i]"
+                                                    @click="selectSpecification(item, option)"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -153,8 +199,10 @@
 
                         <div v-loading="loading" class="col-lg-9">
                             <div class="row filter_top_group">
-                                <div style="height: 115px; margin-top: 75px;" class="col-md-2 " v-for="item in filteredCategories">
-                                    <el-radio v-model="category" :label="item.id" size="large" border @click="SelectCategory(item.id)">
+                                <div style="height: 115px; margin-top: 75px;" class="col-md-2 "
+                                     v-for="item in filteredCategories">
+                                    <el-radio v-model="category" :label="item.id" size="large" border
+                                              @click="SelectCategory(item.id)">
                                         <div class="item_filter_group filter_top " style="background: #fff;">
                                             <h4>{{ item.name }}</h4>
                                             <img :src="'img/categories/'+item.photo" width="50" height="50"/>
@@ -210,53 +258,63 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="de-item-list mb30 mt30 d-flex justify-content-between align-items-center col-11"
+                                            <div
+                                                class="de-item-list mb30 mt30  justify-content-between align-items-center col-11"
                                                 style="background: #edecec; max-width: 85%;">
                                                 <div class="d-supplier">
-                                                    <div class="d-img w-100" style="height: 50px">
+                                                    <div class="col-md-2 d-img w-100" style="height: 50px">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="50" alt=""/>
                                                     </div>
-                                                    <div>
+                                                    <div class="row">
                                                         <div>
                                                             <span style="font-size: medium; margin-left: -12px">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
-                                                        <div style="margin-left: -12px">
-                                                            <small><a class="cursor-pointer text-primary" href="javascript:void(0);" @click="openRentalTerms(vehicle)" >Rental Terms</a></small>
+                                                        <div style="margin-left: -15px">
+                                                            <small><a class="cursor-pointer text-primary"
+                                                                      href="javascript:void(0);"
+                                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                                         </div>
                                                     </div>
-                                                    <button class="btn btn-primary w-100">
+                                                    <div>
+                                                        <button class=" btn-primary w-100">
                                                         <span
-                                                            style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
-                                                    </button>
+                                                            style="background-color: #f9d602; padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
+                                                        </button>
+                                                    </div>
                                                     <div>
                                                         <span class="be_media-body"><h5>Good</h5><span
-                                                            style="font-size: medium;">(&nbsp;<strong style="color: #f9d602">1000&nbsp;</strong>+ reviews)</span></span>
+                                                            style="font-size: medium;">(&nbsp;<strong
+                                                            style="color: #f9d602">1000&nbsp;</strong>+ reviews)</span></span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="de-item-list col-md-11 bg-light-gray" style="max-width: 85%;">
                                                 <div class="row col-md-11">
-                                                    <span class="primary"
-                                                          style="color: #5e9007;">What is Included!</span>
+                                                    <strong class="primary"
+                                                          style="color: #5e9007;">What is Included!</strong>
                                                     <ul class="row mt-3">
-                                                        <li class="col-md-6" v-for="item in vehicle.included ">
-                                                            <div class="row">
-                                                                <i class="col-md-2 fa fa-check fa-xl mt-3" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{item.what_is_included}}</p>
+                                                        <li class="col-md-6" style="margin-top: -4%" v-for="(item, index) in vehicle.included ">
+                                                            <div class="row" v-if="index < 4">
+                                                                <i class="col-md-2 fa fa-check fa-xl mt-3" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{ item.what_is_included }}</p>
+                                                            </div>
+                                                            <div class="row" :id="'vehicle-' +vehicle.id" style="display: none;" v-else>
+                                                                <i class="col-md-2 fa fa-check fa-xl mt-3" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{ item.what_is_included }}</p>
                                                             </div>
                                                         </li>
+                                                        <span @click="showMoreIncluded(vehicle.id)" class="col-md-6 cursor-pointer" :id="'show-more'+ vehicle.id" v-if="vehicle.included.length > 4 ">Show more ...</span>
                                                     </ul>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <h5><i class="fa fa-location"/>Address: </h5><p>{{ vehicle.supplier.address }}</p>
+                                                        <p><strong><i class="fa fa-location"/>Address:</strong>&nbsp;{{ vehicle.supplier.address }}</p>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <span><i class="fa fa-gas-pump"/></span>
-                                                        Fuel Policy: <small> Full to Full </small> </div>
+                                                        Fuel Policy: <small> Full to Full </small></div>
                                                 </div>
                                             </div>
 
@@ -267,7 +325,8 @@
                                                     daysNumber < 2 ? '' : 's'
                                                 }}</span>
                                             <span>{{ vehicle.final_price }} {{ selectedCurrency }}</span>
-                                            <a class="btn-main select-btn cursor-pointer"  @click="goToBookingPage(vehicle.id)" >
+                                            <a class="btn-main select-btn cursor-pointer"
+                                               @click="goToBookingPage(vehicle.id)">
                                                 Selcet
                                                 <svg width="25" height="25" fill="currentColor" viewBox="0 2 20 20"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -295,25 +354,26 @@ import {onMounted, ref, watchEffect, computed} from "vue";
 import {useForm, Link, router} from "@inertiajs/vue3";
 import HeaderOne from "../components/HeaderOne.vue";
 import ProgressBar from "primevue/progressbar"
-import {CAccordion,CAccordionItem,CAccordionHeader,CAccordionBody} from '@coreui/vue';
+import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/vue';
+
 const isOpen = ref(false)
 
 const closeModal = () => {
     isOpen.value = false;
 }
-const form = useForm({
+const form = {
     pickupLoc: '',
     id: '',
     currency: '',
-    date: '',
     date_from: '',
     date_to: '',
+    time_from: '',
+    time_to: '',
     category: '',
     supplier: '',
     specifications: []
-});
-const date = ref([]);
-const location = ref("");
+}
+
 const locations = {
     all: ref([]),
     options: ref([]),
@@ -347,6 +407,19 @@ const getLocations = async () => {
     }
 };
 
+const showMoreIncluded = (vehicle_name) => {
+    const display = document.getElementById('vehicle-'+vehicle_name).style.display;
+    if(display === 'none') {
+        document.getElementById('vehicle-'+vehicle_name).style.display = ""
+        document.getElementById('show-more'+vehicle_name).textContent  = "Show less ..."
+
+    } else {
+        document.getElementById('vehicle-'+vehicle_name).style.display = "none"
+        document.getElementById('show-more'+vehicle_name).textContent = "Show more ..."
+
+    }
+    console.log(display)
+}
 const remoteLocations = (query) => {
     if (query) {
         locations.loading.value = true;
@@ -365,13 +438,9 @@ const getSpecifications = async () => {
     filteredSpecifications.value = response.data
 }
 const search = () => {
-    form.pickupLoc = location.value;
-    form.date = date.value;
-    form.date_from = date.value[0];
-    form.date_to = date.value[1];
     form.category = category.value
     form.currency = localStorage.getItem('currency') ?? 'USD';
-    router.get('/results', form.data())
+    router.get('/results', form)
 };
 const SelectCategory = (category_id) => {
     category.value = category_id;
@@ -389,14 +458,13 @@ const selectSpecification = (item, option) => {
 }
 const getVehicles = async () => {
     try {
-        form.pickupLoc = location.value;
-        form.date = date.value;
         form.currency = localStorage.getItem('currency') ?? 'USD';
         loading.value = true;
-        const response = await axios.post("filter/vehicles", form.data());
+        const response = await axios.post("filter/vehicles", form);
         filteredVehicles.value = response.data.filteredVehicles;
-        location.value = response.data.location;
-        date.value = response.data.date;
+        form.pickupLoc = response.data.location;
+        form.date_from = response.data.date_from
+        form.date_to = response.data.date_to
         filteredCategories.value = response.data.filteredCategories;
         filteredSuppliers.value = response.data.filteredSuppliers;
         count.value = response.data.count;
@@ -425,7 +493,7 @@ const getVehicles = async () => {
             }
         });
 
-        filteredSpecifications.value = Array.from(specificationMap.values());
+        // filteredSpecifications.value = Array.from(specificationMap.values());
         specification.value = [];
     } catch (error) {
         console.error(error);
@@ -440,7 +508,6 @@ const getFilters = async () => {
         const formData = new FormData();
         formData.append("category", category.value);
         formData.append("date", date.value);
-        formData.append("location", location.value);
         formData.append("priceRange", price.value);
         formData.append("supplier", supplier.value);
         formData.append("specification", specification.value);
@@ -489,37 +556,55 @@ watchEffect(() => {
     getLocations();
 });
 
-const goToBookingPage = (vehicle_id)=>{
-    form.date_from = date.value[0]
-    form.date_to = date.value[1]
+const goToBookingPage = (vehicle_id) => {
     form.id = vehicle_id;
 
-    router.get('/vehicles/book', form.data())
+    router.get('/vehicles/book', form)
 }
 const setParams = async () => {
-    let urlParams =  new URLSearchParams(window.location.search);
-    if(urlParams.has('pickupLoc')){
-        location.value =  await urlParams.get('pickupLoc')
+    let urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('pickupLoc')) {
+        form.pickupLoc = await urlParams.get('pickupLoc')
     }
-    if(urlParams.has('date_from')){
-        date.value[0] =  await urlParams.get('date_from')
+    if (urlParams.has('date_from')) {
+        form.date_from = await urlParams.get('date_from')
     }
-    if(urlParams.has('date_to')){
-        date.value[1] = await urlParams.get('date_to')
+    if (urlParams.has('date_to')) {
+        form.date_to = await urlParams.get('date_to')
     }
-    if(urlParams.has('category')){
+    if (urlParams.has('time_from')) {
+        form.time_from = await urlParams.get('time_from')
+    }
+    if (urlParams.has('time_to')) {
+        form.time_to = await urlParams.get('time_to')
+    }
+    if (urlParams.has('category')) {
         category.value = await urlParams.get('category')
     }
+
     getVehicles();
 }
 
-onMounted(() =>{
+onMounted(() => {
     setParams();
     getSpecifications();
 })
 </script>
 
 <style lang="scss">
+.show-more-whats-included{
+    display: none;
+}
+@media screen and (max-width: 1328px) {
+    .steps-buttons {
+        left: 0 !important;
+    }
+    .steps-button {
+        width: 100% !important;
+    }
+}
+
 .modal-mask {
     position: fixed;
     z-index: 9998;
@@ -529,6 +614,7 @@ onMounted(() =>{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
 .modal-container {
     width: 900px;
     margin: 150px auto;
@@ -537,6 +623,7 @@ onMounted(() =>{
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
 }
+
 .el-slider {
     --el-slider-main-bg-color: #f4d849;
 }
@@ -546,12 +633,11 @@ onMounted(() =>{
 }
 
 .filter_top {
-    position: relative;
+    position: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 165px;
-
     img {
         width: 100px;
     }
@@ -582,4 +668,6 @@ onMounted(() =>{
 .is-checked {
     color: #f4d849 !important;
 }
+
+
 </style>

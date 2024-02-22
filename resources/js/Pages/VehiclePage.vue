@@ -17,16 +17,16 @@
                 <div class="modal-wrapper" @click="$emit('close')">
                     <div class="modal-container" ref="target">
                         <div class="modal-header">
-                            <slot name="header"> Rental Terms </slot>
+                            <slot name="header"> Rental Terms</slot>
                         </div>
                         <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
                             <CAccordion>
                                 <CAccordionItem v-for="(item,index) in activeRentalTerms" :item-key="index">
                                     <CAccordionHeader>
-                                        <div v-html="item.title"> </div>
+                                        <div v-html="item.title"></div>
                                     </CAccordionHeader>
                                     <CAccordionBody>
-                                        <div v-html="item.description"> </div>
+                                        <div v-html="item.description"></div>
                                     </CAccordionBody>
                                 </CAccordionItem>
                             </CAccordion>
@@ -34,7 +34,7 @@
                         <div class="modal-footer">
                             <slot name="footer">
                                 <div>
-                                    <button class="btn btn-primary"  @click="closeModal()">Done</button>
+                                    <button class="btn btn-primary" @click="closeModal()">Done</button>
                                 </div>
                             </slot>
                         </div>
@@ -42,142 +42,220 @@
                 </div>
             </div>
 
-            <section id="section-car-details" v-if="!loading">
-                <div class="col-md-12   mb-5 " style="margin-left: 18%; margin-top: 5%;">
-                <button class="mr-2 mt-2 btn " style="width:420px; background: #f9d602; color: #000;"><span
-                        class="ti ti-circle-number-1 mr-2"/>Choose Your Location
-                    </button>
-                    <button class="mr-2 btn mt-2 "
-                            style="width:420px; background: #f9d602; color: #000;"><span
+            <section id="section-car-details">
+                <div class="col-md-12   mb-5 " style="margin-left: 15%; margin-top: 5%;">
+                <span class="mr-2 mt-2 btn-main"
+                      style="padding: 10px 10px 10px 10px ;width:420px; background: #f9d602; color: #000;"><span
+                    class="ti ti-circle-number-1 mr-2"/>Choose Your Location
+                    </span>
+                    <span class="mr-2 btn-main mt-2 "
+                          style="padding: 10px 10px 10px 10px ;width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-2 mr-2"/>Choose Your Car
-                    </button>
-                    <button class="btn mt-2 active" style="width:420px; background: rgb(155,147,84);color: #000;"><span
+                    </span>
+                    <span class="btn-main mt-2 active"
+                          style="padding: 10px 10px 10px 10px ;width:420px; background: rgb(155,147,84);color: #000;"><span
                         class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
-                    </button>
+                    </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-2 offset-1" style="margin-top: 1.5%;">
+                    <div class="col-md-3 " style="margin: 30px 0 0 50px;">
                         <div class="col-md-11 pb-4" style="background: #fff;">
-                            <div class="p-1" style="background: #e1e1e1; width: 111%; margin-left: -12px; margin-top: 10px;">
+                            <div class="p-1"
+                                 style="background: #e1e1e1; width: 106.5%; margin-left: -12px; margin-top: 10px;">
                                 <h5 class="p-2">YOUR SEARCH DETAILS</h5>
                             </div>
                             <div class=" mt-3 row" style="background: #fff;">
                                 <h5>PICK-UP - LOCATION </h5>
 
-                                <p class="col-md-12"><span class=" col-md-1 ti ti-gps"></span>{{location}}</p>
-                                <span class="col-md-6 ti ti-calendar">&nbsp;{{date[0]}}</span>
-                                <span class="col-md-3 ti ti-clock">&nbsp;00:00</span>
+                                <p class="col-md-11"><span class=" col-md-1 ti ti-gps"></span>{{ form.pickupLoc }}</p>
+                                <span class="col-md-6 ti ti-calendar">&nbsp;{{ form.date_from }}</span>
+                                <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_from }}</span>
                             </div>
                             <hr/>
                             <div class=" mt-3 row" style="background: #fff;">
                                 <h5>DROP-OFF - LOCATION </h5>
-                                <p class="col-12"><span class=" col-md-1 ti ti-gps"></span>{{location}}</p>
+                                <p class="col-12"><span class=" col-md-1 ti ti-gps"></span>{{ form.pickupLoc }}</p>
 
-                                <span class="col-md-6 ti ti-calendar">&nbsp;{{date[1]}}</span>
-                                <span class="col-md-3 ti ti-clock">&nbsp;00:00</span>
+                                <span class="col-md-6 ti ti-calendar">&nbsp;{{ form.date_to }}</span>
+                                <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_to }}</span>
                             </div>
                         </div>
                         <div class="col-md-11 pb-4" style="background: #fff;">
-                            <div class="p-1" style="background: #e1e1e1; width: 111%; margin-left: -12px; margin-top: 10px;">
+                            <div class="p-1" style="background: #e1e1e1; width: 106.5%; margin-left: -12px; margin-top: 10px;">
                                 <h5 class="p-2">Booking This Car</h5>
                             </div>
                             <form class="trip-form mt-4 px-2" @submit.prevent="search">
                                 <div class="row  flex-column">
-                                    <div class="w-100 mb-3 ">
+                                    <div class="w-100 mb-3 col-md-11">
                                         <el-select
                                             class="w-100"
-                                            v-model="location"
+                                            v-model="form.pickupLoc"
                                             size="large"
                                             placeholder="Pickup..."
                                             disabled>
                                         </el-select>
                                     </div>
-                                    <div class="mb-3">
-                                        <div class="form-control-wrap">
+                                    <div class="mb-3 row">
+                                        <div class="form-control-wrap col-md-7">
                                             <el-date-picker
-                                                v-model="date"
-                                                type="daterange"
-                                                range-separator="To"
-                                                start-placeholder="Start date"
-                                                end-placeholder="End date"
+                                                v-model="form.date_from"
+                                                placeholder="Start date"
                                                 size="large"
                                                 format="YYYY/MM/DD"
                                                 value-format="YYYY-MM-DD"
+                                                :disabled-date="disabledDate"
+
+                                            />
+                                        </div>
+                                        <div class="form-control-wrap col-md-5">
+                                            <el-time-picker
+                                                v-model="form.time_from"
+                                                placeholder="Start Time"
+                                                size="large"
+                                                format="HH:mm"
+                                                value-format="HH:mm"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="form-control-wrap col-md-7">
+                                            <el-date-picker
+                                                v-model="form.date_to"
+                                                placeholder="End date"
+                                                size="large"
+                                                format="YYYY/MM/DD"
+                                                value-format="YYYY-MM-DD"
+                                                :disabled-date="disabledDate"
+
+                                            />
+                                        </div>
+                                        <div class="form-control-wrap col-md-5">
+                                            <el-time-picker
+                                                v-model="form.time_to"
+                                                placeholder="End Time"
+                                                size="large"
+                                                format="HH:mm"
+                                                value-format="HH:mm"
                                             />
                                         </div>
                                     </div>
                                     <div class="  ">
-                                        <input type="submit" value="Check Availability" class="btn-main btn-fullwidth " />
+                                        <input type="submit" value="Check Availability"
+                                               class="btn-main btn-fullwidth " style="background: #f9d602"/>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
+                        <div class="col-md-11 pb-4 mt-4" style="background: #e5e5e3; border: 3px solid #eed616;">
+                            <div>
+                                <p class="mt-3">Total Rental Price</p>
+                                <h3>{{ currency + ' ' + vehicle.final_price }}</h3>
+                                <p > For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
+                                    {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }} / per
+                                    day </p>
+                                <div class="row">
+                                    <p class="col-md-9">Rental Cost</p>
+                                    <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price }}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-md-9">Extras</p>
+                                    <p class="col-md-3">{{ currency + '&nbsp' + 0 }}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-md-9">Total Rental Cost</p>
+                                    <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price}}</p>
+                                </div>
+                                <hr style="margin-bottom: 5%;"/>
+                                <div class="row">
+                                    <strong class="col-md-8">Pay Now</strong>
+                                    <strong class="col-md-4">{{ currency + ' ' + vehicle.final_price}}</strong>
+                                </div>
+                                <hr style="margin-top: 1%;"/>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="container bg-white col-md-10 offset-md-0 p-5" style=" margin-top: 2%">
-                        <div class="row g-5">
+                        <div class="row g-5" >
                             <div class="col-lg-6">
                                 <div id="slider-carousel" class="owl-carousel">
                                     <h3>{{ vehicle.name }}</h3>
                                     <div class="row"><span>{{ vehicle.category?.name }}</span></div>
                                     <div class="item w-100">
                                         <img class="item w-150"
-                                             :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo" width="350" height="250"/>
+                                             :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"
+                                             width="350" height="250"/>
                                     </div>
                                     <div class="spacer-30"></div>
 
-                                    <p v-html="vehicle.description"></p>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class=" row ">
-                                    <h3 class="col-md-4">{{ currency + ' ' +vehicle.final_price }}</h3>
-                                    <p class="col-md-6"> for {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} - {{ currency + ' ' + Math.round((vehicle.final_price / daysNumber))}} / per day </p>
+                                    <h3 class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</h3>
+                                    <p class="col-md-6"> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
+                                        {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }} / per
+                                        day </p>
                                 </div>
                                 <div class="de-spec">
-                                    <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications" class="row">
-                                        <span class="d-title"><i :class="'fa fa-' + specification.icon"/> &nbsp;{{ specification.name }}</span>
+                                    <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
+                                         class="row">
+                                        <span class="d-title"><i :class="'fa fa-' + specification.icon"/> &nbsp;{{
+                                                specification.name
+                                            }}</span>
                                         <span class="d-value">{{ specification.option }}</span>
                                     </div>
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
-
-                            <div class="row bg-light-gray mt-5 item-list" >
+                            <div class="col-md-12">
+                                <p v-html="vehicle.description"></p>
+                            </div>
+                            <div class="row bg-light-gray mt-5 item-list">
                                 <div class="row">
                                     <div class="col-lg-2">
-                                        <img width="100" height="100" :src="'/img/' + vehicle?.supplier?.logo"  alt=""/>
+                                        <img width="100" height="100" :src="'/img/' + vehicle?.supplier?.logo" alt=""/>
                                     </div>
                                     <div class="col-lg-2">
-                                        <div class="col-lg-2"><span style="font-size: medium; margin-left: -12px">{{ vehicle?.supplier?.company }}</span></div>
-                                        <div class="col-lg-10" style="margin-left: -12px"><small><a class="cursor-pointer text-primary" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental Terms</a></small></div>
+                                        <div class="col-lg-2"><span style="font-size: medium; margin-left: -12px">{{
+                                                vehicle?.supplier?.company
+                                            }}</span></div>
+                                        <div class="col-lg-10" style="margin-left: -12px"><small><a
+                                            class="cursor-pointer text-primary" href="javascript:void(0);"
+                                            @click="openRentalTerms(vehicle)">Rental Terms</a></small></div>
                                     </div>
                                     <div class="row col-lg-2">
                                         <div class="col-lg-3">
-                                           <button class="btn btn-primary"><span style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span></button>
+                                            <button class=" btn-primary"><span
+                                                style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
+                                            </button>
                                         </div>
                                         <div class="col-lg-12 row">
-                                            <span class="be_media-body col-lg-12"><strong>Good</strong><span style="font-size: medium;">(<strong style="color: #f9d602">1000</strong> + reviews)</span></span>
+                                            <span class="be_media-body col-lg-12"><strong>Good</strong><span
+                                                style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>&nbsp;+&nbsp;Reviews)</span></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="col-md-12">
-                                            <h5><i class="fa fa-location"/>Address: </h5><p>{{ vehicle?.supplier?.address }}</p>
+                                            <p><strong><i class="fa fa-location"/>Address:</strong>{{
+                                                    vehicle?.supplier?.address
+                                                }}</p>
                                         </div>
                                         <div class="col-md-12">
                                             <span><i class="fa fa-gas-pump"/></span>
-                                            Fuel Policy: <small> Full to Full </small> </div>
+                                            Fuel Policy: <small> Full to Full </small></div>
                                     </div>
                                 </div>
 
                                 <div class=" row col-lg-12">
-                                    <span class="primary" style="color: #5e9007;">What is Included!</span>
+                                    <strong class="primary mb-4" style="color: #5e9007;">What is Included!</strong>
                                     <ul class="row col-lg-6">
-                                        <li class="col-lg-6" v-for="item in vehicle.included ">
+                                        <li class="col-lg-6" style="margin-top: -4%" v-for="item in vehicle.included ">
                                             <div class="row">
-                                                <i class="col-lg-2 fa fa-check fa-xl mt-3" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{item.what_is_included}}</p>
+                                                <i class="col-1 fa fa-check fa-xl mt-3" style="color: green;"/>
+                                                <p class="col-md-10" style="font-size: 13px;">
+                                                    {{ item.what_is_included }}</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -189,152 +267,209 @@
                                 <div class="col-lg-12">
                                     <div class="">
                                         <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="invoice-title">
-                                                            <h4 class="float-end font-size-15">Invoice #DS0204 <span class="badge bg-success font-size-12 ms-2">Paid</span></h4>
-                                                            <div class="mb-4">
-                                                                <h2 class="mb-1 text-muted">Autours.com</h2>
-                                                            </div>
-                                                            <div class="text-muted">
-                                                                <p class="mb-1">3184 Spruce Drive Pittsburgh, PA 15201</p>
-                                                                <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i> xyz@987.com</p>
-                                                                <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+                                            <div class="col-lg-12" v-if="!user" >
+                                                <h4 style="text-align: center;">Register First to continue your reservation</h4>
+                                                <hr/>
+                                                <form method="post" @submit.prevent="register"
+                                                     >
+                                                    <div class="row">
+                                                        <div class="formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">Full name</label>
+                                                            <div class="countries">
+                                                                <el-input
+                                                                    v-model="RegisterForm.name"
+                                                                    size="large"
+                                                                    filterable
+                                                                    remote
+                                                                    reserve-keyword
+                                                                    placeholder="Enter Full name here..."
+                                                                    remote-show-suffix
+                                                                    :loading="countries.loading.value"
+                                                                    required>
+                                                                </el-input>
                                                             </div>
                                                         </div>
-
-                                                        <hr class="my-4">
-
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="text-muted">
-                                                                    <h5 class="font-size-16 mb-3">Billed To:</h5>
-                                                                    <h5 class="font-size-15 mb-2">Preston Miller</h5>
-                                                                    <p class="mb-1">4068 Post Avenue Newfolden, MN 56738</p>
-                                                                    <p class="mb-1">PrestonMiller@armyspy.com</p>
-                                                                    <p>001-234-5678</p>
-                                                                </div>
+                                                        <div class="formbold-mb-3 col-md-3"
+                                                             v-if="!user || user.role !== 'customer' ">
+                                                            <label class="formbold-form-label">Country</label>
+                                                            <div class="countries">
+                                                                <el-select
+                                                                    v-model="RegisterForm.country"
+                                                                    size="large"
+                                                                    class="col-md-12"
+                                                                    filterable
+                                                                    reserve-keyword
+                                                                    placeholder="Select Country..."
+                                                                    remote-show-suffix
+                                                                    :loading="countries.loading.value"
+                                                                    required>
+                                                                    <el-option
+                                                                        v-for="item in countries.list.value"
+                                                                        :key="item.id"
+                                                                        :label="item.label"
+                                                                        :value="item.label"
+                                                                    />
+                                                                </el-select>
                                                             </div>
-                                                            <!-- end col -->
-                                                            <div class="col-sm-6">
-                                                                <div class="text-muted text-sm-end">
-                                                                    <div>
-                                                                        <h5 class="font-size-15 mb-1">Invoice No:</h5>
-                                                                        <p>#DZ0112</p>
-                                                                    </div>
-                                                                    <div class="mt-4">
-                                                                        <h5 class="font-size-15 mb-1">Invoice Date:</h5>
-                                                                        <p>12 Oct, 2020</p>
-                                                                    </div>
-                                                                    <div class="mt-4">
-                                                                        <h5 class="font-size-15 mb-1">Order No:</h5>
-                                                                        <p>#1123456</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end col -->
                                                         </div>
-                                                        <!-- end row -->
-
-                                                        <div class="py-2">
-                                                            <h5 class="font-size-15">Order Summary</h5>
-
-                                                            <div class="table-responsive">
-                                                                <table class="table align-middle table-nowrap table-centered mb-0">
-                                                                    <thead>
-                                                                    <tr>
-                                                                        <th style="width: 70px;">No.</th>
-                                                                        <th>Item</th>
-                                                                        <th>Price</th>
-                                                                        <th>Quantity</th>
-                                                                        <th class="text-end" style="width: 120px;">Total</th>
-                                                                    </tr>
-                                                                    </thead><!-- end thead -->
-                                                                    <tbody>
-                                                                    <tr>
-                                                                        <th scope="row">01</th>
-                                                                        <td>
-                                                                            <div>
-                                                                                <h5 class="text-truncate font-size-14 mb-1">Black Strap A012</h5>
-                                                                                <p class="text-muted mb-0">Watch, Black</p>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>$ 245.50</td>
-                                                                        <td>1</td>
-                                                                        <td class="text-end">$ 245.50</td>
-                                                                    </tr>
-                                                                    <!-- end tr -->
-                                                                    <tr>
-                                                                        <th scope="row">02</th>
-                                                                        <td>
-                                                                            <div>
-                                                                                <h5 class="text-truncate font-size-14 mb-1">Stainless Steel S010</h5>
-                                                                                <p class="text-muted mb-0">Watch, Gold</p>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>$ 245.50</td>
-                                                                        <td>2</td>
-                                                                        <td class="text-end">$491.00</td>
-                                                                    </tr>
-                                                                    <!-- end tr -->
-                                                                    <tr>
-                                                                        <th scope="row" colspan="4" class="text-end">Sub Total</th>
-                                                                        <td class="text-end">$732.50</td>
-                                                                    </tr>
-                                                                    <!-- end tr -->
-                                                                    <tr>
-                                                                        <th scope="row" colspan="4" class="border-0 text-end">
-                                                                            Discount :</th>
-                                                                        <td class="border-0 text-end">- $25.50</td>
-                                                                    </tr>
-                                                                    <!-- end tr -->
-                                                                    <tr>
-                                                                        <th scope="row" colspan="4" class="border-0 text-end">
-                                                                            Shipping Charge :</th>
-                                                                        <td class="border-0 text-end">$20.00</td>
-                                                                    </tr>
-                                                                    <!-- end tr -->
-                                                                    <tr>
-                                                                        <th scope="row" colspan="4" class="border-0 text-end">
-                                                                            Tax</th>
-                                                                        <td class="border-0 text-end">$12.00</td>
-                                                                    </tr>
-                                                                    <!-- end tr -->
-                                                                    <tr>
-                                                                        <th scope="row" colspan="4" class="border-0 text-end">Total</th>
-                                                                        <td class="border-0 text-end"><h4 class="m-0 fw-semibold">$739.00</h4></td>
-                                                                    </tr>
-                                                                    <!-- end tr -->
-                                                                    </tbody><!-- end tbody -->
-                                                                </table><!-- end table -->
-                                                            </div><!-- end table responsive -->
-                                                            <div class="d-print-none mt-4">
-                                                                <div class="float-end">
-                                                                    <a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
-                                                                </div>
+                                                        <div class="formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">E-mail</label>
+                                                            <div class="countries">
+                                                                <el-input
+                                                                    v-model="RegisterForm.email"
+                                                                    size="large"
+                                                                    filterable
+                                                                    remote
+                                                                    reserve-keyword
+                                                                    placeholder="E-mail..."
+                                                                    remote-show-suffix
+                                                                    required>
+                                                                </el-input>
+                                                            </div>
+                                                        </div>
+                                                        <div class="formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">Phone</label>
+                                                            <div class="">
+                                                                <el-select
+                                                                    v-model="RegisterForm.mobile_code"
+                                                                    size="large"
+                                                                    class="col-md-2"
+                                                                    filterable
+                                                                    reserve-keyword
+                                                                    placeholder="Pickup..."
+                                                                    remote-show-suffix
+                                                                    required>
+                                                                    <el-option
+                                                                        v-for='item in countryCodes'
+                                                                        :key="'+' + item.code"
+                                                                        :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
+                                                                        :value="'+' + item.code"
+                                                                    />
+                                                                </el-select>
+                                                                <el-input
+                                                                    v-model="RegisterForm.phone"
+                                                                    size="large"
+                                                                    class="col-md-10"
+                                                                    filterable
+                                                                    remote
+                                                                    reserve-keyword
+                                                                    placeholder="Phone Number..."
+                                                                    remote-show-suffix
+                                                                    :loading="countries.loading.value"
+                                                                    required>
+                                                                </el-input>
+                                                            </div>
+                                                        </div>
+                                                        <div class="formbold-mb-3 col-md-4">
+                                                            <label class="formbold-form-label">Password</label>
+                                                            <div class="countries">
+                                                                <el-input
+                                                                    v-model="RegisterForm.password"
+                                                                    size="large"
+                                                                    filterable
+                                                                    remote
+                                                                    type="password"
+                                                                    reserve-keyword
+                                                                    placeholder="Account Password ..."
+                                                                    remote-show-suffix
+                                                                    required>
+                                                                </el-input>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </form>
                                             </div><!-- end col -->
+                                            <div class="col-lg-12" v-else-if="user && user.role === 'customer' " >
+                                            <form method="post" @submit.prevent="register">
+                                                <div class="row">
+                                                    <div class="formbold-mb-3 col-md-6">
+                                                        <label class="formbold-form-label">Card Number</label>
+                                                        <div class="countries">
+                                                            <el-input
+                                                                v-model="bookingForm.card_number"
+                                                                size="large"
+                                                                filterable
+                                                                remote
+                                                                reserve-keyword
+                                                                placeholder="Enter front card number..."
+                                                                remote-show-suffix
+                                                                :disabled="loading"
+                                                                required>
+                                                            </el-input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="formbold-mb-3 col-md-6">
+                                                        <label class="formbold-form-label">CVV</label>
+                                                        <el-input
+                                                            v-model="bookingForm.CVV"
+                                                            size="large"
+                                                            class="col-md-3"
+                                                            filterable
+                                                            remote
+                                                            reserve-keyword
+                                                            placeholder="CVV..."
+                                                            :disabled="loading"
+
+                                                            remote-show-suffix
+                                                            required>
+                                                        </el-input>
+                                                    </div>
+                                                    <div class="formbold-mb-3 col-md-6">
+                                                        <label class="formbold-form-label">Name On Card</label>
+                                                        <div class="countries">
+                                                            <el-input
+                                                                v-model="bookingForm.name_on_card"
+                                                                size="large"
+                                                                filterable
+                                                                remote
+                                                                reserve-keyword
+                                                                placeholder="Name on Card..."
+                                                                remote-show-suffix
+                                                                :disabled="loading"
+                                                                required>
+                                                            </el-input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="formbold-mb-3 col-md-6">
+                                                        <label class="formbold-form-label">Card Expiry Date</label>
+                                                        <el-input
+                                                            v-model="bookingForm.card_exp_date"
+                                                            size="large"
+                                                            class="col-md-4"
+                                                            filterable
+                                                            remote
+                                                            :disabled="loading"
+                                                            reserve-keyword
+                                                            placeholder="YY/MM"
+                                                            remote-show-suffix
+                                                            required>
+                                                        </el-input>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            </div>
                                         </div>
                                     </div>
+                                    <hr/>
+                                    <ProgressBar v-if="loading" mode="indeterminate" style="height: 6px"></ProgressBar>
+
                                 </div>
-                                <button type='submit' id='send_message' @click="book" class="btn-main btn-fullwidth offset-4 col-md-3">
+                                <button v-if="!loading" id='send_message' @click="book" :disabled="loading"
+                                        class="btn-main btn-fullwidth offset-4 col-md-3" style="background: #f9d602">
                                     Continue To Payment
                                 </button>
                             </div>
+
 
                         </div>
                     </div>
                 </div>
             </section>
-            <div v-else>
-            <Loader />
-            </div>
+
         </div>
     </div>
+    <Footer/>
+
     </body>
 </template>
 
@@ -344,11 +479,12 @@ import {usePage, useForm} from '@inertiajs/vue3';
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import HeaderOne from '../components/HeaderOne.vue'
-import Loader from '../components/Loader.vue'
 import {router} from "@inertiajs/vue3";
-import {CAccordion,CAccordionItem,CAccordionHeader,CAccordionBody} from '@coreui/vue';
-
-
+import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/vue';
+import Footer from "../components/Footer.vue";
+import getUnicodeFlagIcon from "country-flag-icons/unicode";
+import ProgressBar from 'primevue/progressbar';
+import 'primevue/resources/themes/aura-light-amber/theme.css'
 
 const isOpen = ref(false)
 
@@ -356,77 +492,172 @@ const closeModal = () => {
     isOpen.value = false;
 }
 
-
+const countryCodes = [
+    {"country":"Algeria","code":"213","iso":"DZ"},
+    {"country":"Australia","code":"61","iso":"AU"},
+    {"country":"Bahrain","code":"973","iso":"BH"},
+    {"country":"Canada","code":"1","iso":"CA"},
+    {"country":"China","code":"86","iso":"CN"},
+    {"country":"Denmark","code":"45","iso":"DK"},
+    {"country":"Egypt","code":"20","iso":"EG"},
+    {"country":"France","code":"33","iso":"FR"},
+    {"country":"Germany","code":"49","iso":"DE"},
+    {"country":"Greece","code":"30","iso":"GR"},
+    {"country":"India","code":"91","iso":"IN"},
+    {"country":"Indonesia","code":"62","iso":"ID"},
+    {"country":"Iran","code":"98","iso":"IR"},
+    {"country":"Iraq","code":"964","iso":"IQ"},
+    {"country":"Italy","code":"39","iso":"IT"},
+    {"country":"Jordan","code":"962","iso":"JO"},
+    {"country":"Kuwait","code":"965","iso":"KW"},
+    {"country":"Lebanon","code":"961","iso":"LB"},
+    {"country":"Libya","code":"218","iso":"LY"},
+    {"country":"Mexico","code":"52","iso":"MX"},
+    {"country":"Morocco","code":"212","iso":"MA"},
+    {"country":"Netherlands","code":"31","iso":"NL"},
+    {"country":"Oman","code":"968","iso":"OM"},
+    {"country":"Pakistan","code":"92","iso":"PK"},
+    {"country":"Palestine","code":"970","iso":"PS"},
+    {"country":"Poland","code":"48","iso":"PL"},
+    {"country":"Portugal","code":"351","iso":"PT"},
+    {"country":"Qatar","code":"974","iso":"QA"},
+    {"country":"Russia","code":"7","iso":"RU"},
+    {"country":"Saudi Arabia","code":"966","iso":"SA"},
+    {"country":"Spain","code":"34","iso":"ES"},
+    {"country":"Sweden","code":"46","iso":"SE"},
+    {"country":"Switzerland","code":"41","iso":"CH"},
+    {"country":"Syria","code":"963","iso":"SY"},
+    {"country":"Tunisia","code":"216","iso":"TN"},
+    {"country":"Turkey","code":"90","iso":"TR"},
+    {"country":"United Arab Emirates","code":"971","iso":"AE"},
+    {"country":"United Kingdom","code":"44","iso":"GB"},
+    {"country":"United States","code":"1","iso":"US"},
+];
+const user = ref('')
+const value = ref(0);
 const id = ref('')
 const vehicle = ref('')
 const currency = ref('')
 const date = ref([]);
-const location = ref("");
 const priceTax = ref("");
 const daysNumber = ref("");
 const loading = ref(false);
+
 const form = useForm({
     id: "",
     pickupLoc: "",
-    date: "",
     date_from: "",
     date_to: "",
+    time_from: "",
+    time_to: "",
     vehicle: "",
     price: "",
+    currency: localStorage.getItem('currency') ?? 'USD',
+});
+const countries = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+};
+
+const RegisterForm = useForm({
+    name: '',
+    phone: '',
+    email: '',
+    password: '',
+    mobile_code: '',
+    country: '',
+    user_type: '',
+    supplier: 0
+});
+
+const bookingForm = useForm({
+    pickupLoc: "",
+    date_from: "",
+    date_to: "",
+    time_from: "",
+    time_to: "",
+    id: "",
+    card_number: "",
+    name_on_card: "",
+    CVV: "",
+    card_exp_date: "",
+    currency: ""
 });
 const $toast = useToast();
-
+const getUser = async () => {
+    try {
+        const response = await axios.get('/get/user/data');
+        user.value = response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
 const activeRentalTerms = ref('');
 const openRentalTerms = (vehicle) => {
     isOpen.value = true
     activeRentalTerms.value = vehicle.rental_terms
 }
 const setParams = async () => {
-    let urlParams =  new URLSearchParams(window.location.search);
-    if(urlParams.has('pickupLoc')){
-        location.value =  urlParams.get('pickupLoc')
+    let urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('pickupLoc')) {
         form.pickupLoc = urlParams.get('pickupLoc')
     }
-    if(urlParams.has('date_from')){
-        date.value[0] =  urlParams.get('date_from')
+    if (urlParams.has('date_from')) {
+        form.date_from = urlParams.get('date_from')
+
     }
-    if(urlParams.has('date_to')){
-        date.value[1] =  urlParams.get('date_to')
+    if (urlParams.has('date_to')) {
+        form.date_to = urlParams.get('date_to')
+
     }
-    if(urlParams.has('date')){
-       form.date = urlParams.get('date')
+
+    if (urlParams.has('time_from')) {
+        form.time_from = urlParams.get('time_from')
     }
-    if(urlParams.has('id')){
-        id.value =  urlParams.get('id')
-        form.id =  urlParams.get('id')
+    if (urlParams.has('time_to')) {
+        form.time_to = urlParams.get('time_to')
+    }
+
+    if (urlParams.has('date')) {
+        form.date = urlParams.get('date')
+    }
+    if (urlParams.has('id')) {
+        id.value = urlParams.get('id')
+        form.id = urlParams.get('id')
     }
     getVehicle()
 }
 const getVehicle = async () => {
     try {
+        setTimeout(() => {
+            value.value +=1;
+        }, 200);
         loading.value = true
 
 
-        const response = await axios.post('/get/vehicle/data', {
-            id: id.value,
-            currency: localStorage.getItem('currency') ?? 'USD',
-            date: date.value,
-            location: location.value
+        form.id = id.value;
+        form.currency = localStorage.getItem('currency') ?? 'USD';
 
-        })
+        const response = await axios.post('/get/vehicle/data', form)
+
         vehicle.value = response.data.data.vehicle
         form.vehicle = vehicle.value.id
         form.price = vehicle.value.final_price
-        form.date = response.data.data.date
+
+        form.date_from = response.data.data.date_from
+        form.date_to = response.data.data.date_to
+
         date.value = response.data.data.date
-        location.value = response.data.data.location
         daysNumber.value = response.data.data.days
         loading.value = false
 
     } catch (error) {
-        if(!error.response.data.status) {
-            $toast.error('Please Select Date and pickup', {position: 'top'})
-            router.get('/')
+        if (!error.response.data.status) {
+            $toast.error(error.response.data.message, {position: 'top'})
+            // router.get('/')
         }
         loading.value = false
         console.error(error)
@@ -442,7 +673,7 @@ const fetchVehicles = async () => {
         daysNumber.value = '';
         daysNumber.value = response.data.days;
     } catch (error) {
-        if(!error.response.data.status) {
+        if (!error.response.data.status) {
             $toast.error('Please Select Date and pickup', {position: 'top'})
             router.get('/')
         }
@@ -450,25 +681,127 @@ const fetchVehicles = async () => {
     }
 };
 
-const book = () => {
-    form.pickupLoc = location.value;
-    form.date = date.value;
-    form.id = id.value;
-    form.post("/book/vehicles");
+const book = async () => {
+    try {
+        loading.value = true;
+        if (user.value === '' || user.value === null || user.value === undefined) {
+            register();
+            return
+        }
+
+        if (user.value.role !== 'customer') {
+            $toast.error("You are not a customer!", {position: 'top'})
+            return;
+        }
+
+        bookingForm.id = id.value;
+        bookingForm.pickupLoc = form.pickupLoc;
+        bookingForm.date_from = form.date_from;
+        bookingForm.date_to = form.date_to;
+        bookingForm.time_from = form.time_from;
+        bookingForm.time_to = form.time_to;
+        bookingForm.currency = currency.value;
+
+        const resposne = await axios.post("/book/vehicles", form.data());
+        if (resposne.status) {
+            $toast.success("Thank You for your payment!", {position: 'top', duration: 1000})
+            $toast.success("Your Booking has been placed successfully", {position: 'top'})
+            router.get('/my-bookings')
+            loading.value = false;
+        }
+    } catch (e) {
+        loading.value = false;
+
+        $toast.error(e.response.data.message, {position: 'top'})
+    }
 };
 
 const search = () => {
-    form.pickupLoc = location.value;
-    form.date = date.value;
-    form.date_from = date.value[0];
-    form.date_to = date.value[1];
     getVehicle();
 };
 
+const register = async () => {
+    loading.value = true
+
+    if (RegisterForm.name === undefined || RegisterForm.name === null || RegisterForm.name.length === 0) {
+        $toast.error("Please Insert valid Name", {position: 'top'});
+        loading.value = false
+        return;
+    }
+    if (RegisterForm.email === undefined || RegisterForm.email === null || RegisterForm.email.length === 0) {
+        $toast.error("Please Insert valid Email", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    if (RegisterForm.phone === undefined || RegisterForm.phone === null || RegisterForm.phone.length === 0) {
+        $toast.error("Please Insert valid Phone number", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    if (RegisterForm.mobile_code === undefined || RegisterForm.mobile_code === null || RegisterForm.mobile_code.length === 0) {
+        $toast.error("Please Insert valid Phone number", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    if (RegisterForm.country === undefined || RegisterForm.country === null || RegisterForm.country.length === 0) {
+        $toast.error("Please Insert Select Country", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    if (RegisterForm.password === undefined || RegisterForm.password === null || RegisterForm.password.length === 0) {
+        $toast.error("Please Insert valid Password", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    try {
+
+        const response = await axios.post('/post/user/data', RegisterForm.data())
+        if (response.data.status) {
+            $toast.success('You Have Successfully Registered', {position: 'top'})
+            setTimeout(function () {
+                window.location.reload()
+            }, 1000)
+        }
+    } catch ($error) {
+        loading.value = false
+        $toast.error($error.response.data.message, {position: 'top'})
+    }
+}
+
+const fetchCountries = async () => {
+    countries.loading.value = true;
+    try {
+        //
+        const response = await axios.get('https://countriesnow.space/api/v0.1/countries', {})
+        countries.all.value = response.data.data
+        countries.list.value = countries.all.value.map((item) => ({
+            id: `${item.id}`,
+            label: `${item.country}`,
+            iso: `${item.iso2}`
+        }))
+    } catch (error) {
+        console.error(error)
+    } finally {
+        countries.loading.value = false;
+    }
+}
+
+const disabledDate = (time) => {
+    const date = new Date();
+    date.setHours(0,0,0,0)
+    return time < date
+}
 
 onMounted(() => {
     currency.value = localStorage.getItem('currency') ?? 'USD'
     setParams();
+    fetchCountries()
+    getUser()
     // fetchVehicles();
 })
 
@@ -478,13 +811,14 @@ onMounted(() => {
 li::before {
     display: none;
 }
+
 .item-list {
     display: grid;
     align-items: flex-end;
     padding: 20px;
     background: #ffffff;
     border: solid 1px #dddddd;
-    box-shadow: 3px 3px 9px rgba(164,164,186,0.2);
+    box-shadow: 3px 3px 9px rgba(164, 164, 186, 0.2);
     border-radius: 6px;
 }
 </style>

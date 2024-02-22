@@ -8,6 +8,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -85,6 +86,14 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => $role,
             ]);
+            $credentials = [
+                'email' => $request->email,
+                'password' => $request->password,
+            ];
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+            }
+
             return response()->json([
                 'data' => [],
                 'status' => true

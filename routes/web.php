@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\IncludedController;
@@ -77,7 +78,7 @@ Route::post('/search/vehicles', [VehicleController::class, 'search']);
 Route::get('/get/locations', [VehicleController::class, 'getLocations']);
 
 Route::inertia('rentals', 'Dashboard/Rentals');
-Route::get('/get/rentals', [VehicleController::class, 'getRentals']);
+Route::get('/get/rentals', [BookingsController::class, 'getRentals']);
 
 Route::get('get/photos', [VehicleController::class, 'getPhotos']);
 Route::get('get/rental-terms', [RentalTermsController::class, 'index']);
@@ -150,8 +151,10 @@ Route::middleware(['active_supplier'])->group(function () {
 });
 
 Route::middleware(['customer'])->group(function () {
-    Route::post('/book/vehicles', [VehicleController::class, 'book']);
+    Route::post('/book/vehicles', [BookingsController::class, 'book']);
+        Route::inertia('/my-bookings','MyBookings' );
+        Route::post('/cancel/booking',[BookingsController::class, 'cancelBooking'] );
 });
 
-
+//Route::view('/email', 'email.booking.supplier');
 
