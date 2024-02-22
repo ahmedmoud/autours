@@ -21,7 +21,7 @@
             <hr class="my-4">
             <p>This a confirmation to your reservation and here is the details:</p>
             <p>The car model is {{json_decode($body)->vehicle->name}}</p>
-            <img src="{{base_path('/img/') . json_decode($body)->vehicle->photo}}" height="100"
+            <img src="{{base_path('/img/vehicles/') . json_decode($body)->vehicle->photo}}" height="100"
                  width="150"/>
             <div class="row">
                 <div class="col-sm-6">
