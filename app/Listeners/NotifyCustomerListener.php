@@ -11,7 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class NotifyCustomerListener
+class NotifyCustomerListener implements ShouldQueue
 {
     /**
      * Create the event listener.

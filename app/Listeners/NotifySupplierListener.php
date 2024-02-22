@@ -6,9 +6,10 @@ use App\Events\NewRental;
 use App\Mail\NewBookingSupplier;
 use App\Models\Branch;
 use App\Models\User;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class NotifySupplierListener
+class NotifySupplierListener implements ShouldQueue
 {
     /**
      * Create the event listener.
