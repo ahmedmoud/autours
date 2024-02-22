@@ -18,7 +18,7 @@ return new class extends Migration {
             ]
         ]);
         Schema::table('rentals', function (Blueprint $table) {
-            $table->foreign('order_status')->on('rental_statuses')->references('id');
+//            $table->foreign('order_status')->on('rental_statuses')->references('id');
         });
     }
 
