@@ -20,7 +20,7 @@
                     <div class="" v-for="item in rentals">
                         <div>
                             <h4>
-                                {{ item.vehicle.branch.city }},&nbsp;{{ item.vehicle.branch.country }}
+                                {{ item.vehicle.branch?.city }},&nbsp;{{ item.vehicle.branch?.country }}
                             </h4>
                             <small>{{ item.start_date + ' , ' + item.end_date }} </small>
                         </div>
@@ -108,7 +108,7 @@ const bookAgain = (rental) => {
             date_to: tomorrowDate.getFullYear() + '-' + (tomorrowDate.getMonth() < '10' ? '0' + tomorrowDate.getMonth() : tomorrowDate.getMonth()) + '-' + tomorrowDate.getDate(),
             time_from: "00:00",
             time_to: "00:00",
-            pickupLoc: rental.vehicle.branch.location,
+            pickupLoc: rental.vehicle.branch?.location,
             id: rental.vehicle.id
         }
         router.get('/vehicles/book', form)

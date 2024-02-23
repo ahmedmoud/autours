@@ -94,7 +94,6 @@
                                                                class="formbold-form-input"/>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-md-6">
                                                     <div class="field-set">
                                                         <label>Phone</label>
@@ -165,6 +164,7 @@ const RegisterForm = useForm({
     name: '',
     phone: '',
     email: '',
+    country : '',
     password: '',
     user_type: '',
     supplier: 0
@@ -175,7 +175,30 @@ const loginForm = useForm({
     password: '',
 });
 
+const countries = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+};
 const $toast = useToast();
+const fetchCountries = async () => {
+    countries.loading.value = true;
+    try {
+        //
+        const response = await axios.get('https://countriesnow.space/api/v0.1/countries', {})
+        countries.all.value = response.data.data
+        countries.list.value = countries.all.value.map((item) => ({
+            id: `${item.id}`,
+            label: `${item.country}`,
+            iso: `${item.iso2}`
+        }))
+    } catch (error) {
+        console.error(error)
+    } finally {
+        countries.loading.value = false;
+    }
+}
 
 const loading = ref(false);
 const postUserData = async () => {
@@ -248,6 +271,7 @@ const LoginToMyAccount = () => {
 
 onMounted(()=> {
     let urlParams = new URLSearchParams(window.location.search);
+    fetchCountries()
     RegisterForm.user_type = urlParams.get('user_type');
     if (RegisterForm.user_type == 'supplier'){
         console.log(RegisterForm.supplier)
