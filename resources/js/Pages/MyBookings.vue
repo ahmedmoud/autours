@@ -153,4 +153,9 @@ onMounted(() => {
     border-radius: 10px
 
 }
+@media (max-width: 767px) {
+    .card-body {
+        flex-direction: column !important;
+    }
+}
 </style>

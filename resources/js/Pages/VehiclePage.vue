@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <section id="section-car-details">
+            <section id="section-car-details" >
                 <div class="col-md-12   mb-5 " style="margin-left: 15%; margin-top: 5%;">
                 <span class="mr-2 mt-2 btn-main"
                       style="padding: 10px 10px 10px 10px ;width:420px; background: #f9d602; color: #000;"><span
@@ -58,7 +58,7 @@
                     </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 " style="margin: 30px 0 0 50px;">
+                    <div class="col-md-3 " style="margin: 30px 0 0 12%;">
                         <div class="col-md-11 pb-4" style="background: #fff;">
                             <div class="p-1"
                                  style="background: #e1e1e1; width: 106.5%; margin-left: -12px; margin-top: 10px;">
@@ -175,16 +175,16 @@
                         </div>
 
                     </div>
-                    <div class="container bg-white col-md-10 offset-md-0 p-5" style=" margin-top: 2%">
+                    <div class="container bg-white col-md-6 offset-md-0 p-5" style=" margin-top: 2%">
                         <div class="row g-5" >
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div id="slider-carousel" class="owl-carousel">
                                     <h3>{{ vehicle.name }}</h3>
                                     <div class="row"><span>{{ vehicle.category?.name }}</span></div>
                                     <div class="item w-100">
                                         <img class="item w-150"
                                              :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"
-                                             width="350" height="250"/>
+                                             width="250" height="150"/>
                                     </div>
                                     <div class="spacer-30"></div>
 
@@ -193,8 +193,8 @@
 
                             <div class="col-lg-6">
                                 <div class=" row ">
-                                    <h3 class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</h3>
-                                    <p class="col-md-6"> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
+                                    <h4 class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</h4>
+                                    <p class="col-md-7"> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }} / per
                                         day </p>
                                 </div>
@@ -209,24 +209,20 @@
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 ">
                                 <p v-html="vehicle.description"></p>
                             </div>
-                            <div class="row bg-light-gray mt-5 item-list">
-                                <div class="row">
+                            <div class="row bg-light-gray mt-5 item-list p-0 ">
+                                <div class="row mt-4">
                                     <div class="col-lg-2">
-                                        <img width="100" height="100" :src="'/img/' + vehicle?.supplier?.logo" alt=""/>
+                                        <img width="100" height="70" :src="'/img/' + vehicle?.supplier?.logo" alt=""/>
                                     </div>
-                                    <div class="col-lg-2">
-                                        <div class="col-lg-2"><span style="font-size: medium; margin-left: -12px">{{
-                                                vehicle?.supplier?.company
-                                            }}</span></div>
-                                        <div class="col-lg-10" style="margin-left: -12px"><small><a
-                                            class="cursor-pointer text-primary" href="javascript:void(0);"
-                                            @click="openRentalTerms(vehicle)">Rental Terms</a></small></div>
+                                    <div class="col-md-2">
+                                        <div class="col-md-4"><p  style="font-size: medium; white-space: nowrap;">{{vehicle?.supplier?.company }}</p></div>
+                                        <div class="col-md-8"><small><a class="cursor-pointer text-primary" style="white-space: nowrap;" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental Terms</a></small></div>
                                     </div>
-                                    <div class="row col-lg-2">
-                                        <div class="col-lg-3">
+                                    <div class="col-md-4">
+                                        <div class="col-md-3 mb-2">
                                             <button class=" btn-primary"><span
                                                 style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                             </button>
@@ -236,7 +232,7 @@
                                                 style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>&nbsp;+&nbsp;Reviews)</span></span>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="col-md-12">
                                             <p><strong><i class="fa fa-location"/>Address:</strong>{{
                                                     vehicle?.supplier?.address
@@ -289,7 +285,7 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
-                                                        <div class="formbold-mb-3 col-md-3"
+                                                        <div class="formbold-mb-3 col-md-4"
                                                              v-if="!user || user.role !== 'customer' ">
                                                             <label class="formbold-form-label">Country</label>
                                                             <div class="countries">
@@ -327,39 +323,6 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
-                                                        <div class="formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">Phone</label>
-                                                            <div class="">
-                                                                <el-select
-                                                                    v-model="RegisterForm.mobile_code"
-                                                                    size="large"
-                                                                    class="col-md-2"
-                                                                    filterable
-                                                                    reserve-keyword
-                                                                    placeholder="Pickup..."
-                                                                    remote-show-suffix
-                                                                    required>
-                                                                    <el-option
-                                                                        v-for='item in countryCodes'
-                                                                        :key="'+' + item.code"
-                                                                        :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
-                                                                        :value="'+' + item.code"
-                                                                    />
-                                                                </el-select>
-                                                                <el-input
-                                                                    v-model="RegisterForm.phone"
-                                                                    size="large"
-                                                                    class="col-md-10"
-                                                                    filterable
-                                                                    remote
-                                                                    reserve-keyword
-                                                                    placeholder="Phone Number..."
-                                                                    remote-show-suffix
-                                                                    :loading="countries.loading.value"
-                                                                    required>
-                                                                </el-input>
-                                                            </div>
-                                                        </div>
                                                         <div class="formbold-mb-3 col-md-4">
                                                             <label class="formbold-form-label">Password</label>
                                                             <div class="countries">
@@ -376,6 +339,40 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
+                                                        <div class="formbold-mb-3 col-md-9">
+                                                            <label class="formbold-form-label">Phone</label>
+                                                            <div class="">
+                                                                <el-select
+                                                                    v-model="RegisterForm.mobile_code"
+                                                                    size="large"
+                                                                    class="col-md-3"
+                                                                    filterable
+                                                                    reserve-keyword
+                                                                    placeholder="Pickup..."
+                                                                    remote-show-suffix
+                                                                    required>
+                                                                    <el-option
+                                                                        v-for='item in countryCodes'
+                                                                        :key="'+' + item.code"
+                                                                        :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
+                                                                        :value="'+' + item.code"
+                                                                    />
+                                                                </el-select>
+                                                                <el-input
+                                                                    v-model="RegisterForm.phone"
+                                                                    size="large"
+                                                                    class="col-md-8"
+                                                                    filterable
+                                                                    remote
+                                                                    reserve-keyword
+                                                                    placeholder="Phone Number..."
+                                                                    remote-show-suffix
+                                                                    :loading="countries.loading.value"
+                                                                    required>
+                                                                </el-input>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </form>
                                             </div><!-- end col -->
@@ -456,7 +453,7 @@
                                 </div>
                                 <button v-if="!loading" id='send_message' @click="book" :disabled="loading"
                                         class="btn-main btn-fullwidth offset-4 col-md-3" style="background: #f9d602">
-                                    Continue To Payment
+                                    Continue&nbsp;To&nbsp;Payment
                                 </button>
                             </div>
 

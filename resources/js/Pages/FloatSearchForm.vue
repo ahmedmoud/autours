@@ -174,13 +174,16 @@ const search = async () => {
 
     form.date_from = form.date[0];
     form.date_to = form.date[1];
-    if(form.date_from.value == [] || form.date_from.value ===null) {
+
+    console.log("here")
+    console.log(form.date[0])
+    if(form.date[0] == undefined || form.date_from.value ===null) {
         alert('Please Select Start Date.')
         loading.value = false
         return;
     }
 
-    if(form.date_to.value == [] || form.date_to.value ===null) {
+    if(form.date[1] == [] || form.date_to.value ===null) {
         alert('Please Select End Date.')
         loading.value = false
         return;

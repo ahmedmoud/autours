@@ -7,7 +7,7 @@
         <!-- content begin -->
         <div class="" style="background: #ececec" id="content">
             <div id="top"></div>
-            <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>
+<!--            <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>-->
 
             <div v-if="isOpen" class="modal-mask">
                 <div class="modal-wrapper" @click="$emit('close')">
@@ -214,7 +214,7 @@
                             <h3>SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
                             <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row">
                                 <div :style="getDisplayStyle(vehicle)" class="col-lg-12">
-                                    <div class="de-item-list mb30 w-100">
+                                    <div class="de-item-list mb30 w-100 p-3">
                                         <div class="close"
                                              style="position: absolute;top: 9px;right: 25px;cursor: pointer;"
                                              @click="hideItem(index)"
@@ -259,7 +259,7 @@
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div
-                                                class="de-item-list mb30 mt30  justify-content-between align-items-center col-11"
+                                                class="de-item-list p-2 mb30 mt30  justify-content-between align-items-center col-11"
                                                 style="background: #edecec; max-width: 85%;">
                                                 <div class="d-supplier">
                                                     <div class="col-md-2 d-img w-100" style="height: 50px">
@@ -292,7 +292,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="de-item-list col-md-11 bg-light-gray" style="max-width: 85%;">
+                                            <div class="de-item-list col-md-11 bg-light-gray pt-1" style="max-width: 85%;">
                                                 <div class="row col-md-11">
                                                     <strong class="primary"
                                                           style="color: #5e9007;">What is Included!</strong>
@@ -308,7 +308,7 @@
                                                         <span @click="showMoreIncluded(vehicle.id)" class="col-md-6 cursor-pointer" :id="'show-more'+ vehicle.id" v-if="vehicle.included.length > 4 ">Show more ...</span>
                                                     </ul>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row mb-5">
                                                     <div class="col-md-12">
                                                         <p><strong><i class="fa fa-location"/>Address:</strong>&nbsp;{{ vehicle.supplier.address }}</p>
                                                     </div>
