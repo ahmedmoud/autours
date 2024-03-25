@@ -7,24 +7,26 @@
 
                         <label class="text-white">Select Pickup Location</label>
                         <div class="col-md-5 mt-2 location-input">
-                            <select class="form-control form-select bg-white" style=" height: 60px;" v-model="form.pickupLoc">
+                            <select class="form-control form-select bg-white" style=" height: 45px;" v-model="form.pickupLoc">
                                 <option disabled selected value="" style="font-size: 20px;" class="el-select-dropdown">     Select Your Location...</option>
                                 <option  class="el-select-dropdown" style="font-size: 20px;" v-for="item in locations.all.value" :value="item"> {{ item }}</option>
                             </select>
 
                         </div>
                         <div class="col-md-7 row">
-                            <div class=" col-md-4 mt-2 date-input">
+                            <div class=" col-md-6 mt-2 date-input">
                                 <div class=" ">
                                     <el-date-picker
-                                        v-model="form.date_from"
+                                        v-model="form.date"
+                                        type="daterange"
                                         range-separator="TO"
-                                        placeholder="From"
+                                        start-placeholder="Start date"
+                                        end-placeholder="End date"
                                         size="large"
                                         required="true"
                                         format="YYYY/MM/DD"
                                         value-format="YYYY-MM-DD"
-                                        style="height: 60px;"
+                                        style="height: 45px;"
                                         :disabled-date="disabledDate"
 
                                     />
@@ -32,57 +34,10 @@
                                 </div>
                             </div>
                             <div class=" col-md-2 mt-2 time-input">
-                                <div class=" ">
-                                    <el-time-picker
-                                        v-model="form.time_from"
-                                        type="range"
-                                        range-separator="TO"
-                                        size="large"
-                                        required="true"
-                                        style="height: 60px;"
-                                        value-format="HH:mm"
-                                        format="HH:mm"
-                                        placeholder="10:00"
-
-                                    />
-
-                                </div>
-                            </div>
-                            <div class=" col-md-4 mt-2 date-input">
-                                <div class=" ">
-                                    <el-date-picker
-                                        v-model="form.date_to"
-                                        range-separator="TO"
-                                        placeholder="To"
-                                        size="large"
-                                        required="true"
-                                        format="YYYY/MM/DD"
-                                        value-format="YYYY-MM-DD"
-                                        style="height: 60px;"
-                                        :disabled-date="disabledDate"
-
-                                    />
-
-                                </div>
+                                    <select  style="height: 45px;" class=" w-100 form-control" v-model="form.time_from"><option value="00:00" selected>00:00</option><option value="00:30">00:30</option><option value="01:00">01:00</option><option value="01:30">01:30</option><option value="02:00">02:00</option><option value="02:30">02:30</option><option value="03:00">03:00</option><option value="03:30">03:30</option><option value="04:00">04:00</option><option value="04:30">04:30</option><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30">07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option><option value="09:30">09:30</option><option value="10:00" selected="selected">10:00</option><option value="10:30">10:30</option><option value="11:00">11:00</option><option value="11:30">11:30</option><option value="12:00">12:00</option><option value="12:30">12:30</option><option value="13:00">13:00</option><option value="13:30">13:30</option><option value="14:00">14:00</option><option value="14:30">14:30</option><option value="15:00">15:00</option><option value="15:30">15:30</option><option value="16:00">16:00</option><option value="16:30">16:30</option><option value="17:00">17:00</option><option value="17:30">17:30</option><option value="18:00">18:00</option><option value="18:30">18:30</option><option value="19:00">19:00</option><option value="19:30">19:30</option><option value="20:00">20:00</option><option value="20:30">20:30</option><option value="21:00">21:00</option><option value="21:30">21:30</option><option value="22:00">22:00</option><option value="22:30">22:30</option><option value="23:00">23:00</option><option value="23:30">23:30</option></select>
                             </div>
                             <div class=" col-md-2 mt-2 time-input">
-                                <div class=" ">
-                                    <el-time-picker
-                                        v-model="form.time_to"
-                                        type="range"
-                                        range-separator="TO"
-                                        start-placeholder="Start time"
-                                        end-placeholder="End time"
-                                        size="large"
-                                        required="true"
-                                        style="height: 60px;"
-                                        value-format="HH:mm"
-                                        format="HH:mm"
-                                        placeholder="10:00"
-
-                                    />
-
-                                </div>
+                                    <select style="height: 45px;" class=" w-100 form-control" v-model="form.time_to" ><option  value="00:00">00:00</option><option value="00:30">00:30</option><option value="01:00">01:00</option><option value="01:30">01:30</option><option value="02:00">02:00</option><option value="02:30">02:30</option><option value="03:00">03:00</option><option value="03:30">03:30</option><option value="04:00">04:00</option><option value="04:30">04:30</option><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30">07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option><option value="09:30">09:30</option><option value="10:00" selected="selected">10:00</option><option value="10:30">10:30</option><option value="11:00">11:00</option><option value="11:30">11:30</option><option value="12:00">12:00</option><option value="12:30">12:30</option><option value="13:00">13:00</option><option value="13:30">13:30</option><option value="14:00">14:00</option><option value="14:30">14:30</option><option value="15:00">15:00</option><option value="15:30">15:30</option><option value="16:00">16:00</option><option value="16:30">16:30</option><option value="17:00">17:00</option><option value="17:30">17:30</option><option value="18:00">18:00</option><option value="18:30">18:30</option><option value="19:00">19:00</option><option value="19:30">19:30</option><option value="20:00">20:00</option><option value="20:30">20:30</option><option value="21:00">21:00</option><option value="21:30">21:30</option><option value="22:00">22:00</option><option value="22:30">22:30</option><option value="23:00">23:00</option><option value="23:30">23:30</option></select>
                             </div>
                         </div>
                     </div>
@@ -113,8 +68,8 @@ const form = useForm({
     date: ref(''),
     date_from: ref(''),
     date_to: ref(''),
-    time_from: ref(''),
-    time_to: ref('')
+    time_from: ref('00:00'),
+    time_to: ref('00:00')
 });
 const logos = ref({})
 const countries = ref('')
@@ -217,6 +172,8 @@ const remoteLocations = (query) => {
 const search = async () => {
     // loading.value = true
 
+    form.date_from = form.date[0];
+    form.date_to = form.date[1];
     if(form.date_from.value == [] || form.date_from.value ===null) {
         alert('Please Select Start Date.')
         loading.value = false
@@ -321,7 +278,7 @@ $color: white;
     position: relative;
     padding: 2%;
     background: #0e1418c2;
-    height: 300px;
+    height: 260px;
 }
 
 @media screen and (max-width: 1200px){

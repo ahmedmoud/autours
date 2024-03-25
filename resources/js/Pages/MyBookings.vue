@@ -30,8 +30,9 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="col-md-12">
-                                    <h4>{{ item.vehicle.name }}</h4>
+                                    <p class="row"><h4 class="col-md-5">{{ item.vehicle.name }} </h4> Or Similar</p>
                                     <h5>{{ item.start_date + ' - ' + item.end_date }}</h5>
+                                    <h6>{{item.vehicle.supplier.name}}</h6>
                                     <strong
                                         :style="item.order_status == 2 ? 'color: green': item.order_status == 3 ? 'color: red' :item.order_status == 4 ? 'color: yellow'  :'color: gray'">{{
                                             item.status.name_en
@@ -39,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 mt-4">
-                                <h5> {{ item.currency }}&nbsp;{{ item.price }}</h5>
+                                <p class="row"><strong class="col-md-5"> Total price:</strong><small class="col-md-4"> {{ item.currency }}&nbsp;{{ item.price }}</small></p>
                             </div>
                             <div class="col-md-1" style="top: 0; right: 0;">
                                 <CDropdown togglerText="Dropdown button" class="mt-1 dropdown">

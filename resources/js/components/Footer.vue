@@ -18,7 +18,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <footer class="" id="copyright" style="background: black;
+    <footer class="wrapper" id="copyright" style="background: black;
 ">
         <div class="container">
             <div class="row justify-content-between">
@@ -55,5 +55,20 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
+.wrapper {
+    min-height: 100px; /* Adjust 60px to your footer's actual height */
+    position: relative;
+    overflow: auto;
+    padding-bottom: 5%; /* Adjust to match your footer's height */
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
 </style>

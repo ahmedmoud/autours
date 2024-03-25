@@ -74,7 +74,7 @@ class RegisterController extends Controller
 
         try {
             if ($request->supplier === 1) {
-                $role = 'supplier';
+                $role = 'under_review';
             } else {
                 $role = 'customer';
             }

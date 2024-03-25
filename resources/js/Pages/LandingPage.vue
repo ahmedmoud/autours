@@ -24,8 +24,8 @@
     <div class="jumbotron jumbotron-fluid" style="background: #FFFFFF">
         <div class="container">
             <div class="row" style="justify-content: center;">
-                <div v-for="logo in logos" class="ml-5 col-sm-4 col-md-2 py-2 align-self-center">
-                    <img :src="'img/' + logo" class="mx-auto d-block" width="200" height="130"/>
+                <div v-for="logo in logos" class="col-md-1 py-2 align-self-center">
+                    <img :src="'img/company_logos/' + logo" class="mx-auto d-block" width="100" height="40"/>
                 </div>
             </div>
         </div>
@@ -304,7 +304,7 @@ const form = useForm({
     pickupLoc: '',
     date: '',
 });
-const logos = ref({})
+const logos = ref(["europcar.png","avis.png","alamo.png","sixt.png","national.jpg","dollar.png","hertz.png","thrifty.jpeg","budget.jpg","enterprise.svg.png"])
 const date = ref('')
 const countries = ref('')
 const location = ref('')
@@ -319,7 +319,7 @@ const vehicles = ref([])
 const getLogos = async () => {
     try {
         const response = await axios.get('get/logos')
-        logos.value = response.data
+        // logos.value = response.data
     } catch (error) {
         console.error(error)
     }
