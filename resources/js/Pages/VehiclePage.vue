@@ -194,13 +194,13 @@
                             <div class="col-lg-6">
                                 <div class=" row ">
                                     <h4 class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</h4>
-                                    <p class="col-md-7"> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
+                                    <p class="col-md-7 text-nowrap"> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }} / per
                                         day </p>
                                 </div>
                                 <div class="de-spec">
                                     <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
-                                         class="row">
+                                         class="row text-nowrap">
                                         <span class="d-title"><i :class="'fa fa-' + specification.icon"/> &nbsp;{{
                                                 specification.name
                                             }}</span>
@@ -209,9 +209,7 @@
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
-                            <div class="col-md-12 ">
-                                <p v-html="vehicle.description"></p>
-                            </div>
+
                             <div class="row bg-light-gray mt-5 item-list p-0 ">
                                 <div class="row mt-4">
                                     <div class="col-lg-2">
@@ -245,13 +243,13 @@
                                 </div>
 
                                 <div class=" row col-lg-12">
-                                    <strong class="primary mb-4" style="color: #5e9007;">What is Included!</strong>
-                                    <ul class="row col-lg-6">
-                                        <li class="col-lg-6" style="margin-top: -4%" v-for="item in vehicle.included ">
+                                    <strong class="primary mb-5" style="color: #5e9007;">What is Included!</strong>
+                                    <ul class="row col-lg-12">
+                                        <li class="col-lg-4" style="margin-top: -4%" v-for="item in vehicle.included ">
                                             <div class="row">
                                                 <i class="col-1 fa fa-check fa-xl mt-3" style="color: green;"/>
-                                                <p class="col-md-10" style="font-size: 13px;">
-                                                    {{ item.what_is_included }}</p>
+                                                <p class="col-md-10 text-nowrap" style="font-size: 13px;">
+                                                    {{ item.what_is_included }}.</p>
                                             </div>
                                         </li>
                                     </ul>
