@@ -184,7 +184,7 @@
                                     <div class="item w-100">
                                         <img class="item w-150"
                                              :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"
-                                             width="250" height="150"/>
+                                             width="250" height="120"/>
                                     </div>
                                     <div class="spacer-30"></div>
 
