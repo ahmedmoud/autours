@@ -296,13 +296,13 @@
                                                 <div class="row col-md-11">
                                                     <strong class="primary"
                                                           style="color: #5e9007;">What is Included!</strong>
-                                                    <ul class="row mt-3">
-                                                        <li class="col-md-6" style="margin-top: -4%" v-for="(item, index) in vehicle.included ">
+                                                    <ul class="row mt-4">
+                                                        <li class="col-md-6" style="margin-top: -6%" v-for="(item, index) in vehicle.included ">
                                                             <div class="row" v-if="index < 4">
-                                                                <i class="col-md-2 fa fa-check fa-xl mt-3" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{ item.what_is_included }}</p>
+                                                                <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{ item.what_is_included }}</p>
                                                             </div>
-                                                            <div class="row" :id="'vehicle-' +vehicle.id" style="display: none;" v-else>
-                                                                <i class="col-md-2 fa fa-check fa-xl mt-3" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{ item.what_is_included }}</p>
+                                                            <div :class="'row vehicle-'+vehicle.id"  style="display: none;" v-else>
+                                                                <i class="col-md-1 fa fa-check fa-l mt-2" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{ item.what_is_included }}</p>
                                                             </div>
                                                         </li>
                                                         <span @click="showMoreIncluded(vehicle.id)" class="col-md-6 cursor-pointer" :id="'show-more'+ vehicle.id" v-if="vehicle.included.length > 4 ">Show more ...</span>
@@ -407,18 +407,21 @@ const getLocations = async () => {
     }
 };
 
-const showMoreIncluded = (vehicle_name) => {
-    const display = document.getElementById('vehicle-'+vehicle_name).style.display;
-    if(display === 'none') {
-        document.getElementById('vehicle-'+vehicle_name).style.display = ""
-        document.getElementById('show-more'+vehicle_name).textContent  = "Show less ..."
+const showMoreIncluded = (vehicle_id) => {
+    var elements = document.querySelectorAll('.vehicle-' + vehicle_id);
+    const showMoreElement = document.getElementById('show-more' + vehicle_id);
+// Loop through each element to apply the display toggle logic
+    elements.forEach(function(element) {
+        const display = element.style.display;
 
-    } else {
-        document.getElementById('vehicle-'+vehicle_name).style.display = "none"
-        document.getElementById('show-more'+vehicle_name).textContent = "Show more ..."
-
-    }
-    console.log(display)
+        if (display === 'none') {
+            element.style.display = '';
+            showMoreElement.textContent = 'Show less ...';
+        } else {
+            element.style.display = 'none';
+            showMoreElement.textContent = 'Show more ...';
+        }
+    });
 }
 const remoteLocations = (query) => {
     if (query) {

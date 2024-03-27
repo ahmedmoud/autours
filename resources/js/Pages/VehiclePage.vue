@@ -247,7 +247,7 @@
                                     <ul class="row col-lg-12">
                                         <li class="col-lg-4" style="margin-top: -4%" v-for="item in vehicle.included ">
                                             <div class="row">
-                                                <i class="col-1 fa fa-check fa-xl mt-3" style="color: green;"/>
+                                                <i class="col-1 fa fa-check fa-l mt-2" style="color: green;"/>
                                                 <p class="col-md-10 text-nowrap" style="font-size: 13px;">
                                                     {{ item.what_is_included }}.</p>
                                             </div>
