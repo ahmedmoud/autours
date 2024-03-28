@@ -27,7 +27,6 @@ return new class extends Migration
 
         Schema::table('rentals', function (Blueprint $table){
             $table->unsignedBigInteger('customer_id')->change();
-            $table->unsignedBigInteger('order_status')->change();
             $table->unsignedBigInteger('vehicle_id')->change();
 
         });
