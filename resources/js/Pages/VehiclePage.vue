@@ -43,29 +43,21 @@
             </div>
 
             <section id="section-car-details" >
-                <div class="col-md-12   mb-5 " style="margin-left: 15%; margin-top: 5%;">
-                <span class="mr-2 mt-2 btn-main"
-                      style="padding: 10px 10px 10px 10px ;width:420px; background: #f9d602; color: #000;"><span
-                    class="ti ti-circle-number-1 mr-2"/>Choose Your Location
-                    </span>
-                    <span class="mr-2 btn-main mt-2 "
-                          style="padding: 10px 10px 10px 10px ;width:420px; background: #f9d602; color: #000;"><span
-                        class="ti ti-circle-number-2 mr-2"/>Choose Your Car
-                    </span>
-                    <span class="btn-main mt-2 active"
-                          style="padding: 10px 10px 10px 10px ;width:420px; background: rgb(155,147,84);color: #000;"><span
-                        class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
-                    </span>
+                <div class="col-md-12 mt-3" style="left:16%;">
+                <span class="p-1 mr-1 mt-2 btn-main" style="width:400px; background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span class="ti ti-circle-number-1 mr-1"/>Choose Your Location</span>
+                    <span class="p-1 mr-1 btn-main mt-2 " style="width:400px; background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span class="ti ti-circle-number-2 mr-1"/>Choose Your Car</span>
+                    <span class="p-1 btn-main mt-2 active" style="width:400px; background: rgb(155,147,84);color: #000; font-family: Arial, sans-serif;"><span class="ti ti-circle-number-3 mr-1"/>Reserve Your Car</span>
                 </div>
                 <div class="row">
                     <div class="col-md-3 " style="margin: 30px 0 0 12%;">
+
+                        <div class="p-1 col-11"  style="background-color: #e1e1e1; ">
+                            <h5 class="p-2">YOUR SEARCH DETAILS</h5>
+                        </div>
                         <div class="col-md-11 pb-4" style="background: #fff;">
-                            <div class="p-1"
-                                 style="background: #e1e1e1; width: 106.5%; margin-left: -12px; margin-top: 10px;">
-                                <h5 class="p-2">YOUR SEARCH DETAILS</h5>
-                            </div>
-                            <div class=" mt-3 row" style="background: #fff;">
-                                <h5>PICK-UP - LOCATION </h5>
+
+                            <div class="row" style="background: #fff;">
+                                <h5 class="mt-4">PICK-UP - LOCATION </h5>
 
                                 <p class="col-md-11"><span class=" col-md-1 ti ti-gps"></span>{{ form.pickupLoc }}</p>
                                 <span class="col-md-6 ti ti-calendar">&nbsp;{{ form.date_from }}</span>
@@ -80,13 +72,14 @@
                                 <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_to }}</span>
                             </div>
                         </div>
+                        <div class="p-1 col-11 mt-3" style="background: #e1e1e1;">
+                            <h5 class="p-2">Booking This Car</h5>
+                        </div>
                         <div class="col-md-11 pb-4" style="background: #fff;">
-                            <div class="p-1" style="background: #e1e1e1; width: 106.5%; margin-left: -12px; margin-top: 10px;">
-                                <h5 class="p-2">Booking This Car</h5>
-                            </div>
-                            <form class="trip-form mt-4 px-2" @submit.prevent="search">
+
+                            <form class="trip-form  px-2" @submit.prevent="search">
                                 <div class="row  flex-column">
-                                    <div class="w-100 mb-3 col-md-11">
+                                    <div class="w-100 mt-4 mb-3 col-md-11">
                                         <el-select
                                             class="w-100"
                                             v-model="form.pickupLoc"
@@ -184,7 +177,7 @@
                                     <div class="item w-100">
                                         <img class="item w-150"
                                              :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"
-                                             width="250" height="120"/>
+                                             width="250" height="150"/>
                                     </div>
                                     <div class="spacer-30"></div>
 
@@ -256,7 +249,6 @@
                                 </div>
 
                             </div>
-
                             <div class="de-box row col-lg-12 mt-5 mb25" >
                                 <div class="col-lg-12">
                                     <div class="">
@@ -265,16 +257,33 @@
                                                 <h4 style="text-align: center;">Register First to continue your reservation</h4>
                                                 <hr/>
                                                 <form method="post" @submit.prevent="register"
-                                                     >
+                                                >
                                                     <div class="row">
                                                         <div class="formbold-mb-3 col-md-6">
                                                             <label class="formbold-form-label">Full name</label>
-                                                            <div class="countries">
+                                                            <div class="row">
+                                                                <el-select
+                                                                    v-model="RegisterForm.gender"
+                                                                    size="large"
+                                                                    filterable
+                                                                    class="col-md-4"
+                                                                    reserve-keyword
+                                                                    placeholder="Mr/Mrs..."
+                                                                    remote-show-suffix
+                                                                    required>
+                                                                    <el-option
+                                                                        v-for='item in ["Mr.","Mrs."]'
+                                                                        :key="'+' + item"
+                                                                        :label="item"
+                                                                        :value="item"
+                                                                    />
+                                                                </el-select>
                                                                 <el-input
                                                                     v-model="RegisterForm.name"
                                                                     size="large"
                                                                     filterable
                                                                     remote
+                                                                    class="col-md-8"
                                                                     reserve-keyword
                                                                     placeholder="Enter Full name here..."
                                                                     remote-show-suffix
@@ -286,7 +295,7 @@
                                                         <div class="formbold-mb-3 col-md-4"
                                                              v-if="!user || user.role !== 'customer' ">
                                                             <label class="formbold-form-label">Country</label>
-                                                            <div class="countries">
+                                                            <div class="countries row">
                                                                 <el-select
                                                                     v-model="RegisterForm.country"
                                                                     size="large"
@@ -339,14 +348,14 @@
                                                         </div>
                                                         <div class="formbold-mb-3 col-md-9">
                                                             <label class="formbold-form-label">Phone</label>
-                                                            <div class="">
+                                                            <div class="row">
                                                                 <el-select
                                                                     v-model="RegisterForm.mobile_code"
                                                                     size="large"
                                                                     class="col-md-3"
                                                                     filterable
                                                                     reserve-keyword
-                                                                    placeholder="Pickup..."
+                                                                    placeholder="code..."
                                                                     remote-show-suffix
                                                                     required>
                                                                     <el-option
@@ -375,73 +384,73 @@
                                                 </form>
                                             </div><!-- end col -->
                                             <div class="col-lg-12" v-else-if="user && user.role === 'customer' " >
-                                            <form method="post" @submit.prevent="register">
-                                                <div class="row">
-                                                    <div class="formbold-mb-3 col-md-6">
-                                                        <label class="formbold-form-label">Card Number</label>
-                                                        <div class="countries">
+                                                <form method="post" @submit.prevent="register">
+                                                    <div class="row">
+                                                        <div class="formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">Card Number</label>
+                                                            <div class="row">
+                                                                <el-input
+                                                                    v-model="bookingForm.card_number"
+                                                                    size="large"
+                                                                    filterable
+                                                                    remote
+                                                                    reserve-keyword
+                                                                    placeholder="Enter front card number..."
+                                                                    remote-show-suffix
+                                                                    :disabled="loading"
+                                                                    required>
+                                                                </el-input>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">CVV</label>
                                                             <el-input
-                                                                v-model="bookingForm.card_number"
+                                                                v-model="bookingForm.CVV"
                                                                 size="large"
+                                                                class="col-md-4"
                                                                 filterable
                                                                 remote
                                                                 reserve-keyword
-                                                                placeholder="Enter front card number..."
-                                                                remote-show-suffix
+                                                                placeholder="CVV..."
                                                                 :disabled="loading"
-                                                                required>
-                                                            </el-input>
-                                                        </div>
-                                                    </div>
-                                                    <div class="formbold-mb-3 col-md-6">
-                                                        <label class="formbold-form-label">CVV</label>
-                                                        <el-input
-                                                            v-model="bookingForm.CVV"
-                                                            size="large"
-                                                            class="col-md-3"
-                                                            filterable
-                                                            remote
-                                                            reserve-keyword
-                                                            placeholder="CVV..."
-                                                            :disabled="loading"
 
-                                                            remote-show-suffix
-                                                            required>
-                                                        </el-input>
-                                                    </div>
-                                                    <div class="formbold-mb-3 col-md-6">
-                                                        <label class="formbold-form-label">Name On Card</label>
-                                                        <div class="countries">
+                                                                remote-show-suffix
+                                                                required>
+                                                            </el-input>
+                                                        </div>
+                                                        <div class=" formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">Name On Card</label>
+                                                            <div class="countries">
+                                                                <el-input
+                                                                    v-model="bookingForm.name_on_card"
+                                                                    size="large"
+                                                                    filterable
+                                                                    remote
+                                                                    reserve-keyword
+                                                                    placeholder="Name on Card..."
+                                                                    remote-show-suffix
+                                                                    :disabled="loading"
+                                                                    required>
+                                                                </el-input>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">Exp Date</label>
                                                             <el-input
-                                                                v-model="bookingForm.name_on_card"
+                                                                v-model="bookingForm.card_exp_date"
                                                                 size="large"
+                                                                class="col-md-4"
                                                                 filterable
                                                                 remote
-                                                                reserve-keyword
-                                                                placeholder="Name on Card..."
-                                                                remote-show-suffix
                                                                 :disabled="loading"
+                                                                reserve-keyword
+                                                                placeholder="YY/MM"
+                                                                remote-show-suffix
                                                                 required>
                                                             </el-input>
                                                         </div>
                                                     </div>
-                                                    <div class="formbold-mb-3 col-md-6">
-                                                        <label class="formbold-form-label">Card Expiry Date</label>
-                                                        <el-input
-                                                            v-model="bookingForm.card_exp_date"
-                                                            size="large"
-                                                            class="col-md-4"
-                                                            filterable
-                                                            remote
-                                                            :disabled="loading"
-                                                            reserve-keyword
-                                                            placeholder="YY/MM"
-                                                            remote-show-suffix
-                                                            required>
-                                                        </el-input>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -455,10 +464,12 @@
                                 </button>
                             </div>
 
-
                         </div>
                     </div>
+
                 </div>
+
+
             </section>
 
         </div>
@@ -564,7 +575,8 @@ const RegisterForm = useForm({
     mobile_code: '',
     country: '',
     user_type: '',
-    supplier: 0
+    supplier: 0,
+    gender: '',
 });
 
 const bookingForm = useForm({
@@ -718,6 +730,11 @@ const search = () => {
 const register = async () => {
     loading.value = true
 
+    if (RegisterForm.gender === undefined || RegisterForm.gender === null || RegisterForm.gender.length === 0) {
+        $toast.error("Please Select Mr/Mrs", {position: 'top'});
+        loading.value = false
+        return;
+    }
     if (RegisterForm.name === undefined || RegisterForm.name === null || RegisterForm.name.length === 0) {
         $toast.error("Please Insert valid Name", {position: 'top'});
         loading.value = false
@@ -754,7 +771,7 @@ const register = async () => {
         return;
     }
     try {
-
+        RegisterForm.name = RegisterForm.gender + ' '+ RegisterForm.name
         const response = await axios.post('/post/user/data', RegisterForm.data())
         if (response.data.status) {
             $toast.success('You Have Successfully Registered', {position: 'top'})
