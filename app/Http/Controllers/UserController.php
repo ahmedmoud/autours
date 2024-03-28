@@ -104,9 +104,13 @@ class UserController extends Controller
         return User::whereIn('role', ['supplier', 'under_review', 'active_supplier'])->get();
     }
 
-    public function suppliers()
+    public function suppliers(Request $request)
     {
-        return User::where('role', 'active_supplier')->get();
+        $query = User::query()->where('role', 'active_supplier');
+        if($request->has('country')) {
+            $query->where('country', $request->country);
+        }
+        return $query->get();
     }
     public function acceptMemberships(Request $request)
     {

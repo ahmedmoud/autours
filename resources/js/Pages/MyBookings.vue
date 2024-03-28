@@ -25,22 +25,30 @@
                             <small>{{ item.start_date + ' , ' + item.end_date }} </small>
                         </div>
                         <div class="card p-4 row shadow-2-strong flex-row" style="width: 90%">
-                            <div class="col-md-3 ">
-                                <img :src=" 'img/vehicles/' + item.vehicle.photo" width="180" height="120" alt=""/>
+                            <div class="col-md-2 ">
+                                <img :src=" 'img/vehicles/' + item.vehicle.photo" width="180" height="100" alt=""/>
                             </div>
-                            <div class="col-md-5">
-                                <div class="col-md-12">
-                                    <p class="row"><h4 class="col-md-5">{{ item.vehicle.name }} </h4> Or Similar</p>
-                                    <h5>{{ item.start_date + ' - ' + item.end_date }}</h5>
-                                    <h6>{{item.vehicle.supplier.name}}</h6>
+                            <div class="col-md-4">
+                                    <div class="text-nowrap"><h5>{{ item.vehicle.name }}&nbsp;Or&nbsp;Similar </h5></div>
+                                    <strong>{{ item.start_date + ' - ' + item.end_date }}</strong>
+                                    <div class="row ">
+                                        <img class="col-md-3 rounded-3" :src="'img/' + item.vehicle.supplier.logo"
+                                             height="80" width="50">
+                                        <p class="col-md-6 mt-4">{{ item.vehicle.supplier.name }}</p></div>
                                     <strong
                                         :style="item.order_status == 2 ? 'color: green': item.order_status == 3 ? 'color: red' :item.order_status == 4 ? 'color: yellow'  :'color: gray'">{{
                                             item.status.name_en
                                         }}</strong>
-                                </div>
                             </div>
-                            <div class="col-md-3 mt-4">
-                                <p class="row"><strong class="col-md-5"> Total price:</strong><small class="col-md-4"> {{ item.currency }}&nbsp;{{ item.price }}</small></p>
+                            <div class="col-md-5">
+                                <p class="row">
+                                    <strong class="col-md-2 text-nowrap">Pick-up:</strong>
+                                    <small class="col-md-10 text-nowrap">{{ item.vehicle.branch?.adresse }}</small>
+                                    <strong class="col-md-2 text-nowrap">Drop-off:</strong>
+                                    <small class="col-md-10 text-nowrap">{{ item.vehicle.branch?.adresse }}</small>
+                                </p>
+                                <p class="row"><strong class="col-md-5"> Total price:</strong><small class="col-md-4">
+                                    {{ item.currency }}&nbsp;{{ item.price }}</small></p>
                             </div>
                             <div class="col-md-1" style="top: 0; right: 0;">
                                 <CDropdown togglerText="Dropdown button" class="mt-1 dropdown">
@@ -50,13 +58,16 @@
                                         <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: black;"
                                                        @click="bookAgain(item)"><i class="fa fa-repeat"/>&nbsp;Book&nbsp;again
                                         </CDropdownItem>
+                                        <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: black;"
+                                                       ><i class="fa fa-download"/>&nbsp;Download&nbsp;invoice
+                                        </CDropdownItem>
 
                                     </CDropdownMenu>
                                 </CDropdown>
                             </div>
 
-                            <button  :disabled="loading" class="offset-10 col-md-2 cursor-pointer btn btn-danger"
-                                     @click="cancelBooking(item)"><i class="fa fa-cancel"/>&nbsp;Cancel
+                            <button :disabled="loading" class="offset-10 col-md-2 cursor-pointer btn btn-danger"
+                                    @click="cancelBooking(item)"><i class="fa fa-cancel"/>&nbsp;Cancel
                             </button>
                         </div>
                         <hr/>
@@ -86,7 +97,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 const $toast = useToast();
 const loading = ref(false)
 const rentals = ref('');
-const approveFare = ref(false )
+const approveFare = ref(false)
 const getRentals = async () => {
     try {
         loading.value = true
@@ -155,6 +166,7 @@ onMounted(() => {
     border-radius: 10px
 
 }
+
 @media (max-width: 767px) {
     .card-body {
         flex-direction: column !important;
