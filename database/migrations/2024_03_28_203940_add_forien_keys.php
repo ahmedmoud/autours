@@ -15,7 +15,6 @@ return new class extends Migration
             $table->foreign('company_id')->references('id')->on('users');
         });
 
-        Schema::drop('membership_requests');
 
         Schema::table('profits', function (Blueprint $table){
 
