@@ -106,6 +106,7 @@ class VehicleController extends Controller
                 ->join('branches', 'branches.id', '=', 'vehicles.pickup_loc')
                 ->where('branches.location', $location)
                 ->select(['categories.id as id', 'categories.name as name', 'categories.photo as photo'])
+                ->orderBy('sort')
                 ->distinct('categories.id')->get();
 
             $branches = Branch::query()->where('location', $location)->get();
