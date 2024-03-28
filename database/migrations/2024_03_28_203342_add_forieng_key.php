@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::table('vehicle_specifications', function (Blueprint $table){
             $table->bigInteger('vehicle_id')->change();
 
-            $table->foreign('vehicle_id')->references('id')->on('vehicles');
-
         });
     }
 
