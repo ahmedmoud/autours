@@ -12,37 +12,37 @@ return new class extends Migration
     public function up(): void
     {
        Schema::table('branches', function (Blueprint $table){
-           $table->bigInteger('company_id')->change();
+           $table->unsignedBigInteger('company_id')->change();
        });
 
         Schema::drop('membership_requests');
 
         Schema::table('profits', function (Blueprint $table){
-            $table->bigInteger('supplier_id')->change();
-            $table->bigInteger('vehicle_id')->change();
-            $table->bigInteger('branch_id')->change();
+            $table->unsignedBigInteger('supplier_id')->change();
+            $table->unsignedBigInteger('vehicle_id')->change();
+            $table->unsignedBigInteger('branch_id')->change();
 
         });
 
         Schema::table('rentals', function (Blueprint $table){
-            $table->bigInteger('customer_id')->change();
-            $table->bigInteger('order_status')->change();
-            $table->bigInteger('vehicle_id')->change();
+            $table->unsignedBigInteger('customer_id')->change();
+            $table->unsignedBigInteger('order_status')->change();
+            $table->unsignedBigInteger('vehicle_id')->change();
 
         });
 
         Schema::table('supplier_rental_terms', function (Blueprint $table){
-            $table->bigInteger('rental_term_id')->change();
-            $table->bigInteger('supplier_id')->change();
+            $table->unsignedBigInteger('rental_term_id')->change();
+            $table->unsignedBigInteger('supplier_id')->change();
 
         });
         Schema::table('vehicle_included', function (Blueprint $table){
-            $table->bigInteger('included_id')->change();
-            $table->bigInteger('vehicle_id')->change();
+            $table->unsignedBigInteger('included_id')->change();
+            $table->unsignedBigInteger('vehicle_id')->change();
         });
         Schema::table('vehicles', function (Blueprint $table){
-            $table->bigInteger('supplier')->change();
-            $table->bigInteger('category')->change();
+            $table->unsignedBigInteger('supplier')->change();
+            $table->unsignedBigInteger('category')->change();
         });
 
     }
