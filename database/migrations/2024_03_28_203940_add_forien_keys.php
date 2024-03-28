@@ -42,14 +42,11 @@ return new class extends Migration
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
         });
         Schema::table('vehicles', function (Blueprint $table){
-          
-
             $table->foreign('supplier')->references('id')->on('users');
             $table->foreign('category')->references('id')->on('categories');
         });
         Schema::table('vehicle_specifications', function (Blueprint $table){
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
-
         });
     }
 
