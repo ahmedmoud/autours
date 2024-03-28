@@ -15,7 +15,8 @@ return new class extends Migration
            $table->unsignedBigInteger('company_id')->change();
        });
 
-        Schema::drop('membership_requests');
+        Schema::dropIfExists('membership_requests');
+        Schema::dropIfExists('fuel');
 
         Schema::table('profits', function (Blueprint $table){
             $table->unsignedBigInteger('supplier_id')->change();
