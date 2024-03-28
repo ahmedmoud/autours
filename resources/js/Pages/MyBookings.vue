@@ -50,12 +50,14 @@
                                         <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: black;"
                                                        @click="bookAgain(item)"><i class="fa fa-repeat"/>&nbsp;Book&nbsp;again
                                         </CDropdownItem>
-                                        <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: red;"
-                                                       @click="cancelBooking(item)"><i class="fa fa-cancel"/>&nbsp;Cancel
-                                        </CDropdownItem>
+
                                     </CDropdownMenu>
                                 </CDropdown>
                             </div>
+
+                            <button  :disabled="loading" class="offset-10 col-md-2 cursor-pointer btn btn-danger"
+                                     @click="cancelBooking(item)"><i class="fa fa-cancel"/>&nbsp;Cancel
+                            </button>
                         </div>
                         <hr/>
                     </div>

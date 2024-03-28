@@ -168,7 +168,7 @@
                         </div>
 
                     </div>
-                    <div class="container bg-white col-md-6 offset-md-0 p-5" style=" margin-top: 2%">
+                    <div class="container bg-white col-md-6 offset-md-0 p-5" style=" margin-top: 1.7%">
                         <div class="row g-5" >
                             <div class="col-lg-4">
                                 <div id="slider-carousel" class="owl-carousel">
