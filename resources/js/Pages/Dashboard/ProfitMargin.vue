@@ -102,37 +102,37 @@
                             </div>
                             <hr/>
                             <h4>Profit Percentage</h4>
-                            <div class="row">
-                                <div class="formbold-mb-3 col-md-12">
+                            <div class="row mt-5">
+                                <div class="formbold-mb-3 col-md-2">
                                     <label class="formbold-form-label ">1-2 Day</label>
                                     <div class="input-with-percent">
                                         <input v-model="priceTax" type="text" pattern="[0-9]+([,.][0-9]+)?"
-                                               class="formbold-form-input col-md-2"/>
+                                               class="formbold-form-input "/>
                                         <span class="percent-symbol">%</span>
                                     </div>
                                 </div>
-                                <div class="formbold-mb-3 col-md-12">
+                                <div class="formbold-mb-3 col-md-2">
                                     <label class="formbold-form-label">3 - 7 Days</label>
                                     <div class="input-with-percent">
                                         <input v-model="weekPriceTax" type="text" pattern="[0-9]+([,.][0-9]+)?"
-                                               class="formbold-form-input col-md-2"/>
+                                               class="formbold-form-input "/>
                                         <span class="percent-symbol">%</span>
                                     </div>
                                 </div>
 
-                                <div class="formbold-mb-3 col-md-12">
+                                <div class="formbold-mb-3 col-md-2">
                                     <label class="formbold-form-label">8-30 Days</label>
                                     <div class="input-with-percent">
                                         <input v-model="monthPriceTax" type="text" pattern="[0-9]+([,.][0-9]+)?"
-                                               class="formbold-form-input col-md-2"/>
+                                               class="formbold-form-input "/>
                                         <span class="percent-symbol">%</span>
                                     </div>
                                 </div>
-                                <div class="formbold-mb-3 col-md-12">
+                                <div class="formbold-mb-3 col-md-2">
                                     <label class="formbold-form-label">Weekend</label>
                                     <div class="input-with-percent">
                                         <input v-model="weekendPriceTax" type="text" pattern="[0-9]+([,.][0-9]+)?"
-                                               class="formbold-form-input col-md-2"/>
+                                               class="formbold-form-input "/>
                                         <span class="percent-symbol">%</span>
                                     </div>
                                 </div>
