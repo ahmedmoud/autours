@@ -199,7 +199,7 @@
 
                         <div v-loading="loading" class="col-lg-9">
                             <div class="row filter_top_group">
-                                <div style="height: 115px; margin-top: 75px;" class="col-md-2 "
+                                <div style="height: 115px; margin-top: 75px;" class="col-md-1 category" :id="'category' + item.id"
                                      v-for="item in filteredCategories">
                                     <el-radio v-model="category" :label="item.id" size="large" border
                                               @click="SelectCategory(item.id)">
@@ -446,6 +446,11 @@ const search = () => {
     router.get('/results', form)
 };
 const SelectCategory = (category_id) => {
+    $(".category").removeClass('col-md-2')
+    $(".category").addClass('col-md-1')
+    $(".category").addClass('category')
+
+    $("#category"+category_id).addClass( 'col-md-2')
     category.value = category_id;
     form.category = category_id
     getVehicles()
