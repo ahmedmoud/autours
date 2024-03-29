@@ -205,7 +205,7 @@
                                               @click="SelectCategory(item.id)">
                                         <div class="item_filter_group filter_top " style="background: #fff;">
                                             <h4>{{ item.name }}</h4>
-                                            <img :src="'img/categories/'+item.photo" width="50" height="50"/>
+                                            <img :src="'img/categories/'+item.photo" width="40" height="80"/>
                                         </div>
                                     </el-radio>
                                 </div>

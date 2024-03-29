@@ -107,7 +107,7 @@ class VehicleController extends Controller
                 ->where('branches.location', $location)
                 ->select(['categories.id as id', 'categories.name as name', 'categories.photo as photo','categories.sort'])
                 ->orderBy('sort')
-                ->distinct('categories.id')->get();
+                ->distinct('categories.id','sort')->get();
 
             $branches = Branch::query()->where('location', $location)->get();
             $suppliers = User::query()->whereIn('id', $branches->pluck('company_id'))->get();
