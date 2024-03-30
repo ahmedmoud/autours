@@ -161,7 +161,7 @@ Route::middleware(['customer'])->group(function () {
 $user = User::query()->find(3);
 $rental = Rental::query()->find(11);
 $rental->vehicle = $rental->vehicle;
-$rental->branch = Branch::query()->where('id', $rental->vehicle->pickLoc)->first();
+$rental->branch = Branch::query()->where('id', $rental->vehicle->pickup_loc)->first();
 $rental->supplier = User::query()->where('id', $rental->vehicle->supplier)->first();
 $rental->customer = User::query()->where('id', $rental->customer_id)->first();
 Route::view('/email', 'email.booking.new.customer',['body' =>  $rental]);

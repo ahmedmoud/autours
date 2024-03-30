@@ -6,35 +6,58 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <div class="invoice-title">
-                <h3>Hi {{json_decode($body)->customer->name}} !</h3>
-                <h4 class="float-end font-size-15">Invoice {{json_decode($body)->order_number}} <span
-                        class="badge bg-success font-size-12 ms-2">Paid</span></h4>
-                <div class="mb-4">
-                    <h2 class="mb-1 text-muted">Autours.com</h2>
+
+            <div class="table-responsive mb-5">
+                <div class="col-md-12">
+                    <div class="text-muted text-sm-end">
+                        <h2 class="mb-1 text-muted">Autours.com</h2>
+                        <table class="table align-middle table-nowrap table-centered mb-0">
+                            <thead>
+                            <tr>
+                                <th style="width: 250px;"> <h3>Hi {{json_decode($body)->customer->name}} !</h3></th>
+                                <th  style="width: 250px;"><h4>Invoice {{json_decode($body)->order_number}} </h4></th>
+                                <th  style="width: 250px;"><span class="badge bg-success font-size-12 ms-2">Paid</span></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
-                <div class="text-muted">
-                    <p class="mb-1">{{json_decode($body)->customer->address}}</p>
-                    <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i>{{json_decode($body)->customer->email}}</p>
-                    <p><i class="uil uil-phone me-1"></i>{{json_decode($body)->customer->phone_num}}</p>
+            </div>
+            <h3>This a confirmation to your reservation and here is the details:</h3>
+        <hr style="width:60%;"/>
+            <div class="table-responsive mb-5">
+                <div class="col-md-12">
+                    <div class="text-muted text-sm-end">
+
+                        <table class="table align-middle table-nowrap table-centered mb-0">
+                            <thead>
+                            <tr>
+                                <th style="width: 250px;">  <p class="mb-1">{{json_decode($body)->customer->address}}</p></th>
+                                <th  style="width: 250px;"><p><i class="uil uil-envelope-alt me-1"></i>{{json_decode($body)->customer->email}} </p></th>
+                                <th  style="width: 250px;"><p><i class="uil uil-phone me-1"></i>{{json_decode($body)->customer->phone_num}}</p></th>
+                            </tr>
+                            </thead>
+                            <thead>
+
+                            <tr>
+                                <th style="width: 250px;"><p><strong>The Car model is</strong> {{json_decode($body)->vehicle->name}}</p></th>
+                                <th  style="width: 250px;"> <p class="font-size-16 mb-3">Billed To: Autours</p></th>
+                                <th  style="width: 250px;">{{json_decode($body)->branch->adresse}}</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <hr class="my-4">
             <div class="row">
                 <div class="col-md-6">
-                    <p>This a confirmation to your reservation and here is the details:</p>
-                    <p>The car model is {{json_decode($body)->vehicle->name}}</p>
                     <img src="{{url('img/vehicles').'/' . json_decode($body)->vehicle->photo}}" height="200"
                          width="280"/>
                 </div>
                 <div class="col-md-6">
                     <div class="text-muted">
-                        <h5 class="font-size-16 mb-3">Billed To:</h5>
-                        <h5 class="font-size-15 mb-2">Autours</h5>
-                        <p class="mb-1">4068 Post Avenue Newfolden, MN 56738</p>
-                        <p class="mb-1">PrestonMiller@armyspy.com</p>
-                        <p>001-234-5678</p>
+
                     </div>
                 </div>
             </div>
@@ -57,12 +80,11 @@
                             <tr>
                                 <td  style="width: 250px;">
                                     <div>
-                                        <p>{{json_decode($body)->order_number}}</p>
+                                        {{json_decode($body)->order_number}}
                                     </div>
                                 </td>
-                                <td  style="width: 250px;"><p>{{\Carbon\Carbon::parse(json_decode($body)->created_at)->toDateString()}}</p>
-                                </td>
-                                <td  style="width: 250px;"><p>#{{json_decode($body)->id}}</p></td>
+                                <td  style="width: 250px;">{{\Carbon\Carbon::parse(json_decode($body)->created_at)->toDateString()}}</td>
+                                <td  style="width: 250px;">#{{json_decode($body)->id}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -79,10 +101,10 @@
                     <table class="table align-middle table-nowrap table-centered mb-0">
                         <thead>
                         <tr>
-                            <th style="width: 70px;">No.</th>
-                            <th>Vehicle model</th>
-                            <th>Price Per Night</th>
-                            <th>Number Of days</th>
+                            <th style="width: 100px;">No.</th>
+                            <th style="width: 200px;">Vehicle model</th>
+                            <th style="width: 200px;">Price Per Night</th>
+                            <th style="width: 200px;">Number Of days</th>
                             <th class="text-end" style="width: 120px;">Total</th>
                         </tr>
                         </thead><!-- end thead -->
