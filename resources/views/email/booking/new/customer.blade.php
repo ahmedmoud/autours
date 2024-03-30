@@ -1,6 +1,7 @@
-<head><link rel="stylesheet" href="{{url('assets/css/styles.css')}}"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-      integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous"/>
+<head>
+    <link rel="stylesheet" href="{{url('assets/css/styles.css')}}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+          integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous"/>
 </head>
 <div class="container">
     <div class="card">
@@ -38,24 +39,37 @@
                 </div>
             </div>
 
-                <!-- end col -->
+            <div class="table-responsive mb-5">
                 <div class="col-md-12">
                     <div class="text-muted text-sm-end">
-                        <div>
-                            <h5 class="font-size-15 mb-1">Invoice No:</h5>
-                            <p>{{json_decode($body)->order_number}}</p>
-                        </div>
-                        <div class="mt-4">
-                            <h5 class="font-size-15 mb-1">Invoice Date:</h5>
-                            <p>{{\Carbon\Carbon::parse(json_decode($body)->created_at)->toDateString()}}</p>
-                        </div>
-                        <div class="mt-4">
-                            <h5 class="font-size-15 mb-1">Order No:</h5>
-                            <p>#{{json_decode($body)->id}}</p>
-                        </div>
+                        <table class="table align-middle table-nowrap table-centered mb-0">
+
+                            <!-- end col -->
+
+                            <thead>
+                            <tr>
+                                <th style="width: 250px;">Invoice No:</th>
+                                <th>Invoice Date:</th>
+                                <th>Order No:</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <p>{{json_decode($body)->order_number}}</p>
+                                    </div>
+                                </td>
+                                <td><p>{{\Carbon\Carbon::parse(json_decode($body)->created_at)->toDateString()}}</p>
+                                </td>
+                                <td><p>#{{json_decode($body)->id}}</p></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <!-- end col -->
+            </div>
+            <!-- end col -->
             <!-- end row -->
 
             <div class="py-2">
