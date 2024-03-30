@@ -49,20 +49,20 @@
                             <thead>
                             <tr>
                                 <th style="width: 250px;">Invoice No:</th>
-                                <th>Invoice Date:</th>
-                                <th>Order No:</th>
+                                <th  style="width: 250px;">Invoice Date:</th>
+                                <th  style="width: 250px;">Order No:</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>
+                                <td  style="width: 250px;">
                                     <div>
                                         <p>{{json_decode($body)->order_number}}</p>
                                     </div>
                                 </td>
-                                <td><p>{{\Carbon\Carbon::parse(json_decode($body)->created_at)->toDateString()}}</p>
+                                <td  style="width: 250px;"><p>{{\Carbon\Carbon::parse(json_decode($body)->created_at)->toDateString()}}</p>
                                 </td>
-                                <td><p>#{{json_decode($body)->id}}</p></td>
+                                <td  style="width: 250px;"><p>#{{json_decode($body)->id}}</p></td>
                             </tr>
                             </tbody>
                         </table>
