@@ -10,6 +10,9 @@ use App\Http\Controllers\ProfitsController;
 use App\Http\Controllers\RentalTermsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
+use App\Models\Branch;
+use App\Models\Rental;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 use Inertia\Inertia;
@@ -155,6 +158,11 @@ Route::middleware(['customer'])->group(function () {
         Route::inertia('/my-bookings','MyBookings' );
         Route::post('/cancel/booking',[BookingsController::class, 'cancelBooking'] );
 });
-
-//Route::view('/email', 'email.booking.supplier');
+$user = User::query()->find(3);
+$rental = Rental::query()->find(11);
+$rental->vehicle = $rental->vehicle;
+$rental->branch = Branch::query()->where('id', $rental->vehicle->pickLoc)->first();
+$rental->supplier = User::query()->where('id', $rental->vehicle->supplier)->first();
+$rental->customer = User::query()->where('id', $rental->customer_id)->first();
+Route::view('/email', 'email.booking.new.customer',['body' =>  $rental]);
 

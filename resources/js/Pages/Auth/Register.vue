@@ -150,14 +150,14 @@
 </template>
 
 <script setup>
-import { useForm} from '@inertiajs/vue3';
+import {router, useForm} from '@inertiajs/vue3';
 import {ref} from 'vue';
 import HeaderOne from "../../components/HeaderOne.vue";
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import Footer from "../../components/Footer.vue"
 import Contactus from "../../components/Contactus.vue"
-import { onMounted} from 'vue'
+import { onMounted, onBeforeMount} from 'vue'
 
 
 const RegisterForm = useForm({
@@ -268,8 +268,22 @@ const LoginToMyAccount = () => {
     document.querySelector("#flipper").classList.toggle("flip");
 
 }
+const getUserData = async () => {
+    try {
+        const response = await axios.get('/get/user/data');
+        if(response.data){
+            router.get('/')
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+onBeforeMount(()=>{
+    getUserData();
 
+})
 onMounted(()=> {
+
     let urlParams = new URLSearchParams(window.location.search);
     fetchCountries()
     RegisterForm.user_type = urlParams.get('user_type');

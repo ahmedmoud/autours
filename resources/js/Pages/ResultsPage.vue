@@ -203,7 +203,7 @@
                                      v-for="item in filteredCategories">
                                     <el-radio v-model="category" :label="item.id" size="large" border
                                               @click="SelectCategory(item.id)">
-                                        <div class="item_filter_group filter_top " style="background: #fff;">
+                                        <div class="item_filter_group filter_top " style="margin-right: 3%; background: #fff;">
                                             <h4>{{ item.name }}</h4>
                                             <img :src="'img/categories/'+item.photo" width="40" height="80"/>
                                         </div>

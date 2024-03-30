@@ -1,13 +1,13 @@
+<link rel="stylesheet" href="{{url('/assets/css/styles.css')}}"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
       integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous"/>
-<link rel="stylesheet" href="http://staging.autours.net/assets/css/styles.css"/>
 <div class="container">
     <div class="card">
         <div class="card-body">
             <div class="invoice-title">
                 <h3>Hi {{json_decode($body)->customer->name}} !</h3>
                 <h4 class="float-end font-size-15">Invoice {{json_decode($body)->order_number}} <span
-                            class="badge bg-success font-size-12 ms-2">Paid</span></h4>
+                        class="badge bg-success font-size-12 ms-2">Paid</span></h4>
                 <div class="mb-4">
                     <h2 class="mb-1 text-muted">Autours.com</h2>
                 </div>
@@ -19,12 +19,14 @@
             </div>
 
             <hr class="my-4">
-            <p>This a confirmation to your reservation and here is the details:</p>
-            <p>The car model is {{json_decode($body)->vehicle->name}}</p>
-            <img src="{{base_path('/img/vehicles/') . json_decode($body)->vehicle->photo}}" height="100"
-                 width="150"/>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-6">
+                    <p>This a confirmation to your reservation and here is the details:</p>
+                    <p>The car model is {{json_decode($body)->vehicle->name}}</p>
+                    <img src="{{url('img/vehicles').'/' . json_decode($body)->vehicle->photo}}" height="200"
+                         width="280"/>
+                </div>
+                <div class="col-md-6">
                     <div class="text-muted">
                         <h5 class="font-size-16 mb-3">Billed To:</h5>
                         <h5 class="font-size-15 mb-2">Autours</h5>
@@ -33,8 +35,10 @@
                         <p>001-234-5678</p>
                     </div>
                 </div>
+            </div>
+
                 <!-- end col -->
-                <div class="col-sm-6">
+                <div class="col-md-12">
                     <div class="text-muted text-sm-end">
                         <div>
                             <h5 class="font-size-15 mb-1">Invoice No:</h5>
@@ -51,7 +55,6 @@
                     </div>
                 </div>
                 <!-- end col -->
-            </div>
             <!-- end row -->
 
             <div class="py-2">
@@ -104,7 +107,7 @@
                         <tr>
                             <th scope="row" colspan="4" class="border-0 text-end">Total</th>
                             <td class="border-0 text-end"><h4
-                                        class="m-0 fw-semibold">{{json_decode($body)->currency . ' ' . json_decode($body)->price}}</h4>
+                                    class="m-0 fw-semibold">{{json_decode($body)->currency . ' ' . json_decode($body)->price}}</h4>
                             </td>
                         </tr>
                         <!-- end tr -->
@@ -120,25 +123,4 @@
         </div>
     </div>
 </div>
-<style>
-    body {
-        margin-top: 20px;
-        background-color: #eee;
-    }
 
-    .card {
-        box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-    }
-
-    .card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 0 solid rgba(0, 0, 0, .125);
-        border-radius: 1rem;
-    }
-</style>

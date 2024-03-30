@@ -5,7 +5,7 @@
     <!-- banner -->
 
     <div class="jumbotron jumbotron-fluid"
-         style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 650px; display:flex;  justify-content: center;">
+         style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px; display:flex;  justify-content: center;">
 
         <div class="jumbotron-fluid   " >
             <h1 class="p-fontsize" style="color: #ffffff;"><strong><span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy.</strong></h1>
@@ -21,7 +21,7 @@
 
     <!--    <search-form/>-->
     <!-- client -->
-    <div class="jumbotron jumbotron-fluid" style="background: #FFFFFF">
+    <div class="my-4" style="background: #FFFFFF">
         <div class="container">
             <div class="row" style="justify-content: center;">
                 <div v-for="logo in logos" class="col-md-1 py-2 align-self-center">
@@ -31,9 +31,8 @@
         </div>
     </div>
     <!-- three-blcok -->
-    <div class=""
-         style=" background: #f9d602; height: 150px; display: flex; align-items: flex-end; justify-content: center; ">
-        <h2 class="font-weight-bold">Why book a car rental <br/> with Autours?</h2>
+    <div class="my-5" style=" background: #f9d602; height: 200px; display: flex; align-items: flex-end; justify-content: center; ">
+        <h2 class="mb-5 font-weight-bold">Why book a car rental <br/> with Autours?</h2>
     </div>
 
     <div class="container my-5 py-2">

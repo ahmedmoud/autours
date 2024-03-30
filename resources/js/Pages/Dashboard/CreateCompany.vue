@@ -310,6 +310,7 @@
 
 <script setup>
 import {onMounted, ref} from 'vue'
+import {router} from "@inertiajs/vue3";
 
 const logo = ref('');
 const image = ref('');
@@ -494,6 +495,9 @@ const getUserData = async () => {
         language.value = response.data.language ? response.data.language : '';
         company.value = response.data.company ? response.data.company : '';
         gender.value = response.data.gender ? response.data.gender : '';
+        if(response.data.role == 'customer'){
+            router.get('/')
+        }
     } catch (error) {
         console.error(error);
     }
