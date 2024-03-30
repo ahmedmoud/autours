@@ -199,11 +199,11 @@
 
                         <div v-loading="loading" class="col-lg-9">
                             <div class="row filter_top_group">
-                                <div style="height: 115px; margin-top: 75px;" class="col-md-1 category" :id="'category' + item.id"
+                                <div style="height: 115px; margin-top: 75px; margin-right: 3%; " class="col-md-1 category" :id="'category' + item.id"
                                      v-for="item in filteredCategories">
                                     <el-radio v-model="category" :label="item.id" size="large" border
                                               @click="SelectCategory(item.id)">
-                                        <div class="item_filter_group filter_top " style="margin-right: 3%; background: #fff;">
+                                        <div class="item_filter_group filter_top " style="background: #fff;">
                                             <h4>{{ item.name }}</h4>
                                             <img :src="'img/categories/'+item.photo" width="40" height="80"/>
                                         </div>
