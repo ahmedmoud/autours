@@ -29,7 +29,7 @@ class CancelRentalAdminListener implements ShouldQueue
     {
         $user = User::query()->where('role','admin')->first();
         $event->rental->vehicle = $event->rental->vehicle;
-        $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickLoc)->first();
+        $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_Loc)->first();
         $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
 
