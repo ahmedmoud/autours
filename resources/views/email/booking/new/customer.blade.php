@@ -42,7 +42,7 @@
                             <tr>
                                 <th style="width: 250px;"><p><strong>The Car model is</strong> {{json_decode($body)->vehicle->name}}</p></th>
                                 <th  style="width: 250px;"> <p class="font-size-16 mb-3">Billed To: Autours</p></th>
-                                <th  style="width: 250px;">{{json_decode($body)->branch->adresse}}</th>
+                                <th  style="width: 250px;">autours Address </th>
                             </tr>
                             </thead>
                         </table>
