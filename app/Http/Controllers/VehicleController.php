@@ -285,7 +285,7 @@ class VehicleController extends Controller
                             'vehicle_id' => $existingVehicle->id,
                             'name' => $specification->name,
                             'value' => $specification->option,
-                            'icon' => $specification->icon,
+                            'icon' => isset($specification->icon) ? $specification->icon : ''
                         ]
                     );
                 }
