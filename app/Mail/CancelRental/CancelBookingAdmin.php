@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\CancelRental;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewBookingSupplier extends Mailable
+class CancelBookingAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 //    public $theme = "custom.css";
@@ -37,7 +36,7 @@ class NewBookingSupplier extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'email.booking.new.supplier',
+            markdown: 'email.booking.cancel.admin',
             with: [
                 'body' => $this->body,
             ],

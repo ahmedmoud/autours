@@ -8,20 +8,18 @@
 * Profit margin percentage to be horizontal aligned. Done
 * cancel button on my bookings instead of menu item. Done
 * add more details on my bookings card . Address, pickup location and dropoff location, supplier logo, invoice pdf.Done(PDF).
-
-* ⁠instant confirmation for some vehicles.
-* ⁠suggest some rental terms from supplier side .
-* cancellation policy to be included in vehicle page.
-
-* add my profile to customer.
-
-* filter in dropdown menu should be reflected in the below vehicle list.
+* ⁠instant confirmation for some vehicles.Done
+* ⁠add rental status in retals list.Done
 * Category cards to be more aligned. Done
 * Arrange categories. Done
+
+* ⁠suggest some rental terms from supplier side .
+* cancellation policy to be included in vehicle page.
+* add my profile to customer.
+* filter in dropdown menu should be reflected in the below vehicle list.
 * add cars number beside supplier name in filters.
 * Add dropdown menu instead of checkboxes.
 * send emails after: 
 	* ⁠approval and register supplier.
 	* ⁠when supplier create vehicle.
 * filter per country per supplier. 
-* ⁠add rental status in retals list.

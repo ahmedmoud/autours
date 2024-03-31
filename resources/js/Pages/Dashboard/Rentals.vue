@@ -12,8 +12,8 @@
                     <el-table-column label="Name" prop="vehicle.name"/>
                     <el-table-column label="Pickup" prop="vehicle.pickup_loc"/>
                     <el-table-column label="Total Price" prop="price"/>
-                    <el-table-column label="Supplier price" prop="price"/>
                     <el-table-column label="Supplier name" prop="vehicle.supplier.name"/>
+                    <el-table-column label="Rental Status" prop="status.name_en"/>
                     <el-table-column label="Start Date" prop="start_date"/>
                     <el-table-column label="End Date" prop="end_date"/>
                     <el-table-column label="Status">

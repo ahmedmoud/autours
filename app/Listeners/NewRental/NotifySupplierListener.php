@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\NewRental;
 
 use App\Events\NewRental;
-use App\Mail\NewBookingSupplier;
+use App\Mail\NewRental\NewBookingSupplier;
 use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -27,7 +27,7 @@ class NotifySupplierListener implements ShouldQueue
 
         $user = User::query()->find($event->rental->vehicle->supplier);
          $event->rental->vehicle = $event->rental->vehicle;
-         $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_Loc)->first();
+         $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_loc)->first();
          $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
          $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
 

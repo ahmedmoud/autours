@@ -73,7 +73,6 @@
                                         filterable
                                         remote
                                         reserve-keyword
-
                                         placeholder="Pickup..."
                                         remote-show-suffix
                                         :remote-method="remoteCountries"

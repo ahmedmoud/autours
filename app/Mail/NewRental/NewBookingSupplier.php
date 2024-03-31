@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\NewRental;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewBookingCustomer extends Mailable
+class NewBookingSupplier extends Mailable
 {
     use Queueable, SerializesModels;
 //    public $theme = "custom.css";
@@ -37,7 +36,7 @@ class NewBookingCustomer extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'email.booking.new.customer',
+            markdown: 'email.booking.new.supplier',
             with: [
                 'body' => $this->body,
             ],

@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\NewRental;
 
-use App\Events\CancelRental;
-use App\Mail\CancelBookingAdmin;
-use App\Mail\CancelBookingCustomer;
-use App\Mail\NewBookingAdmin;
+use App\Mail\NewRental\NewBookingAdmin;
 use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class CancelRentalAdminListener implements ShouldQueue
+class NotifyAdminListener implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -25,15 +21,15 @@ class CancelRentalAdminListener implements ShouldQueue
     /**
      * Handle the event.
      */
-    public function handle(CancelRental $event): void
+    public function handle(object $event): void
     {
         $user = User::query()->where('role','admin')->first();
         $event->rental->vehicle = $event->rental->vehicle;
-        $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_Loc)->first();
+        $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_loc)->first();
         $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
 
         $body = $event->rental;
-        $status = Mail::to($user->email)->send(new CancelBookingAdmin($body));
+        $status = Mail::to($user->email)->send(new NewBookingAdmin($body));
     }
 }

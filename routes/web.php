@@ -13,6 +13,7 @@ use App\Http\Controllers\VehicleController;
 use App\Models\Branch;
 use App\Models\Rental;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 use Inertia\Inertia;
@@ -164,5 +165,12 @@ $rental->vehicle = $rental->vehicle;
 $rental->branch = Branch::query()->where('id', $rental->vehicle->pickup_loc)->first();
 $rental->supplier = User::query()->where('id', $rental->vehicle->supplier)->first();
 $rental->customer = User::query()->where('id', $rental->customer_id)->first();
-Route::view('/email', 'email.booking.new.customer',['body' =>  $rental]);
+$rental->request = new \stdClass();
+$rental->request->rental_id =  11;
+$rental->request->api_key = env('api-key');
+$rental->request->timestamp = Carbon::now()->toDateTime();
+
+
+Route::view('/email', 'email.booking.request.supplier',['body' =>  $rental]);
+Route::get('/booking/update-status', [BookingsController::class, 'updateBookingStatus']);
 

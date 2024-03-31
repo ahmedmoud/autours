@@ -6,6 +6,7 @@ use App\Enums\RentalStatuses;
 use App\Enums\StatusCodes;
 use App\Events\CancelRental;
 use App\Events\NewRental;
+use App\Events\NewRentalRequest;
 use App\Http\Requests\BookCarRequest;
 use App\Http\Requests\CancelBookingRequest;
 use App\Services\VehicleService;
@@ -35,6 +36,7 @@ class BookingsController extends Controller
     {
         $this->vehicleService = $vehicleService;
     }
+
     public function index(Request $request)
     {
         $rentals = Rental::query()
@@ -50,7 +52,7 @@ class BookingsController extends Controller
         try {
             $rental = Rental::query()->find($request->id);
             $today = Carbon::today();
-            if($rental->order_status == RentalStatuses::CANCELED) {
+            if ($rental->order_status == RentalStatuses::CANCELED) {
                 return response()->json([
                     'data' => [],
                     'message' => "Rental Already Cancelled."
@@ -64,7 +66,7 @@ class BookingsController extends Controller
             }
             $rental->start_date = new Carbon($rental->start_date);
 
-            if ( $rental->start_date->diffInDays($today) <= 2 && !$rental->fareApproval) {
+            if ($rental->start_date->diffInDays($today) <= 2 && !$rental->fareApproval) {
                 return response()->json([
                     'data' => [],
                     'message' => "There will be a fare to cancel"
@@ -104,7 +106,7 @@ class BookingsController extends Controller
             $data = $rentals->whereIn('vehicle_id', $vehicles)->get();
         }
 
-        $data = $rentals->with('vehicle.supplier','vehicle.branch','status', 'customer')->orderBy('id','desc')->get();
+        $data = $rentals->with('vehicle.supplier', 'vehicle.branch', 'status', 'customer')->orderBy('id', 'desc')->get();
 
         return response()->json($data);
     }
@@ -121,9 +123,10 @@ class BookingsController extends Controller
 //            if($vehicleWithPrice->stock <= 0 ) {
 //                throw new \Exception("Sorry There is no enough stock to book this car!");
 //            }
+            $vehicle = Vehicle::query()->find($request->id);
             $item = new Rental();
             $item->customer_id = auth()->user()->id;
-            $item->order_status = RentalStatuses::CONFIRMED;
+            $item->order_status = $vehicle->instant_confirmation >= 1 ? RentalStatuses::CONFIRMED : RentalStatuses::PENDING;
             $item->order_number = '#ATRS-' . Rental::query()->count();
             $item->vehicle_id = $request->id;
             $item->price = $vehicleWithPrice->final_price;
@@ -138,7 +141,11 @@ class BookingsController extends Controller
 
             DB::commit();
 
-            event(new NewRental($item->id));
+            if ($vehicle->instant_confirmation)
+                event(new NewRental($item->id));
+            else
+                event(new NewRentalRequest($item->id));
+
             return response()->json([
                 'data' => $item,
                 'status' => true,
@@ -154,4 +161,19 @@ class BookingsController extends Controller
         }
     }
 
+    public function updateBookingStatus(Request $request)
+    {
+        $rental_request = json_decode(base64_decode($request->get("request")));
+
+        $rental = Rental::query()->find($rental_request->rental_id);
+        $rental->order_status= $request->status;
+        $rental->save();
+        if($request->status == RentalStatuses::CONFIRMED) {
+            event(new NewRental($rental->id));
+        }
+        if($request->status == RentalStatuses::REJECTED) {
+            event(new CancelRental($rental->id));
+        }
+        return "rental updated";
+    }
 }
