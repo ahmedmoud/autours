@@ -9,14 +9,22 @@
 
             <div class="table-responsive mb-5">
                 <div class="col-md-12">
-                    <div class="text-muted text-sm-end">
-                        <h2 class="mb-1 text-muted">Autours.com</h2>
+                    <div class="text-muted ">
+                        <table class="table align-middle table-nowrap table-centered mb-0">
+
+                            <thead>
+                            <tr>
+                                <img src="{{url('images/favicon.png')}}" width="100" height="100"/>
+                            </tr>
+                            </thead>
+                        </table>
                         <table class="table align-middle table-nowrap table-centered mb-0">
                             <thead>
                             <tr>
-                                <th style="width: 250px;"> <h3>Hi {{json_decode($body)->customer->name}} !</h3></th>
-                                <th  style="width: 250px;"><h4>Invoice {{json_decode($body)->order_number}} </h4></th>
-                                <th  style="width: 250px;"><span class="badge bg-success font-size-12 ms-2">Paid</span></th>
+                                <th style="width: 250px;"><h3>Hi {{json_decode($body)->customer->name}} !</h3></th>
+                                <th style="width: 250px;"><h4>Invoice {{json_decode($body)->order_number}} </h4></th>
+                                <th style="width: 250px;"><span class="badge bg-success font-size-12 ms-2">Paid</span>
+                                </th>
                             </tr>
                             </thead>
                         </table>
@@ -24,25 +32,47 @@
                 </div>
             </div>
             <h3>This a confirmation to your reservation and here is the details:</h3>
-        <hr style="width:60%;"/>
+            <thead>
+            <tr>
+                <th style="width: 250px;"><p class="mb-1">{{json_decode($body)->customer->address}}</p>
+                </th>
+                <th style="width: 250px;"><p>Email:<i
+                            class="uil uil-envelope-alt me-1"></i>{{json_decode($body)->customer->email}}
+                    </p></th>
+                <th style="width: 250px;"><p>Phone:<i
+                            class="uil uil-phone me-1"></i>{{json_decode($body)->customer->phone_num}}
+                    </p></th>
+            </tr>
+            </thead>
             <div class="table-responsive mb-5">
                 <div class="col-md-12">
-                    <div class="text-muted text-sm-end">
+                    <div class="text-muted">
 
-                        <table class="table align-middle table-nowrap table-centered mb-0">
+                        <table class="table  table-nowrap table-centered mb-0">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="{{url('img/vehicles').'/' . json_decode($body)->vehicle->photo}}" height="200"
+                                         width="320"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-muted">
+
+                                    </div>
+                                </div>
+                            </div>
                             <thead>
+
                             <tr>
-                                <th style="width: 250px;">  <p class="mb-1">{{json_decode($body)->customer->address}}</p></th>
-                                <th  style="width: 250px;"><p><i class="uil uil-envelope-alt me-1"></i>{{json_decode($body)->customer->email}} </p></th>
-                                <th  style="width: 250px;"><p><i class="uil uil-phone me-1"></i>{{json_decode($body)->customer->phone_num}}</p></th>
+                                <th class="row"><h5 class="col-md-3">The Car model is:</h5><p class="col-md-9"> {{json_decode($body)->vehicle->name}}</p></th>
+                                <th class="row"><p >Billed To: Autours</p></th>
+                                <th class="row"><p >Address: Autours Address</p></th>
                             </tr>
                             </thead>
                             <thead>
-
                             <tr>
-                                <th style="width: 250px;"><p><strong>The Car model is</strong> {{json_decode($body)->vehicle->name}}</p></th>
-                                <th  style="width: 250px;"> <p class="font-size-16 mb-3">Billed To: Autours</p></th>
-                                <th  style="width: 250px;">autours Address </th>
+                                <th class="row" style="width: 800px"><h5 class="col-md-2">Pick-up:</h5> <p class="col-md-8">{{json_decode($body)->branch->adresse}}</p></th>
+                                <th class="row" style="width: 800px"><h5 class="col-md-2">Drop-off:</h5> <p class="col-md-8">{{json_decode($body)->branch->adresse}}</p></th>
                             </tr>
                             </thead>
                         </table>
@@ -50,17 +80,7 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="{{url('img/vehicles').'/' . json_decode($body)->vehicle->photo}}" height="200"
-                         width="280"/>
-                </div>
-                <div class="col-md-6">
-                    <div class="text-muted">
 
-                    </div>
-                </div>
-            </div>
 
             <div class="table-responsive mb-5">
                 <div class="col-md-12">
@@ -71,20 +91,20 @@
 
                             <thead>
                             <tr>
+                                <th style="width: 250px;">Order No:</th>
                                 <th style="width: 250px;">Invoice No:</th>
-                                <th  style="width: 250px;">Invoice Date:</th>
-                                <th  style="width: 250px;">Order No:</th>
+                                <th style="width: 250px;">Invoice Date:</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td  style="width: 250px;">
+                                <td style="width: 250px;">#{{json_decode($body)->id}}</td>
+                                <td style="width: 250px;">
                                     <div>
                                         {{json_decode($body)->order_number}}
                                     </div>
                                 </td>
-                                <td  style="width: 250px;">{{\Carbon\Carbon::parse(json_decode($body)->created_at)->toDateString()}}</td>
-                                <td  style="width: 250px;">#{{json_decode($body)->id}}</td>
+                                <td style="width: 250px;">{{\Carbon\Carbon::parse(json_decode($body)->created_at)->toDateString()}}</td>
                             </tr>
                             </tbody>
                         </table>

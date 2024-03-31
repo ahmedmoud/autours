@@ -12,6 +12,7 @@ use App\Models\CurrencyRate;
 use App\Models\Included;
 use App\Models\SupplierRentalTerm;
 use App\Models\VehicleIncluded;
+use App\Models\VehicleSpecification;
 use App\Services\VehicleService;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -37,7 +38,6 @@ class VehicleController extends Controller
      */
 
     public VehicleService $vehicleService;
-
 
 
     public function index()
@@ -105,9 +105,9 @@ class VehicleController extends Controller
                 ->join('vehicles', 'vehicles.category', '=', 'categories.id')
                 ->join('branches', 'branches.id', '=', 'vehicles.pickup_loc')
                 ->where('branches.location', $location)
-                ->select(['categories.id as id', 'categories.name as name', 'categories.photo as photo','categories.sort'])
+                ->select(['categories.id as id', 'categories.name as name', 'categories.photo as photo', 'categories.sort'])
                 ->orderBy('sort')
-                ->distinct('categories.id','sort')->get();
+                ->distinct('categories.id', 'sort')->get();
 
             $branches = Branch::query()->where('location', $location)->get();
             $suppliers = User::query()->whereIn('id', $branches->pluck('company_id'))->get();
@@ -226,6 +226,7 @@ class VehicleController extends Controller
 
     public function create(CreateEditVehicle $request)
     {
+        DB::beginTransaction();
         if ($request->update === '1') {
 
             $existingVehicle = Vehicle::find($request->id);
@@ -257,6 +258,9 @@ class VehicleController extends Controller
             if ($request->has('month_price')) {
                 $existingVehicle->month_price = $request->month_price;
             }
+            if ($request->has('instant_confirmation')) {
+                $existingVehicle->instant_confirmation = $request->instant_confirmation == 'false' ? 0 : 1;
+            }
 
 
             if ($request->has('pickupLoc')) {
@@ -272,6 +276,20 @@ class VehicleController extends Controller
             }
 
             $existingVehicle->save();
+            if ($request->has('specifications')) {
+                VehicleSpecification::query()->where('vehicle_id', $existingVehicle->id)->delete();
+                $specifications = json_decode($request->specifications);
+                foreach ($specifications as $specification) {
+                    VehicleSpecification::insert(
+                        [
+                            'vehicle_id' => $existingVehicle->id,
+                            'name' => $specification->name,
+                            'value' => $specification->option,
+                            'icon' => $specification->icon,
+                        ]
+                    );
+                }
+            }
             if ($request->has('included')) {
                 $included = explode(',', $request->included);
                 VehicleIncluded::query()->where('vehicle_id', $request->id)->delete();
@@ -296,7 +314,9 @@ class VehicleController extends Controller
             if ($request->has('description')) {
                 $item->description = $request->description;
             }
-
+            if ($request->has('instant_confirmation')) {
+                $item->instant_confirmation = $request->instant_confirmation ? 1 : 0;
+            }
             $item->supplier = auth()->user()->id;
 
             if ($request->has('price')) {
@@ -319,13 +339,26 @@ class VehicleController extends Controller
             if ($request->has('category')) {
                 $item->category = $request->category;
             }
-
             if ($request->has('specifications')) {
+
                 $item->specifications = json_decode($request->specifications);
+
             }
 
-
             $item->save();
+            if ($request->has('specifications')) {
+                $specifications = json_decode($request->specifications);
+                foreach ($specifications as $specification) {
+                    VehicleSpecification::insert(
+                        [
+                            'vehicle_id' => $item->id,
+                            'name' => $specification->name,
+                            'value' => $specification->option,
+                            'icon' => $specification->icon,
+                        ]
+                    );
+                }
+            }
             if ($request->has('included')) {
                 $included = explode(',', $request->included);
                 foreach ($included as $include) {
@@ -333,7 +366,7 @@ class VehicleController extends Controller
                 }
             }
         }
-
+        DB::commit();
         return response()->json([
             'data' => $item,
             'status' => true
@@ -507,7 +540,6 @@ class VehicleController extends Controller
             ], StatusCodes::SERVER_ERROR);
         }
     }
-
 
 
     public function acceptRentals(Request $request)

@@ -7,7 +7,7 @@
         <!-- content begin -->
         <div class="" style="background: #ececec" id="content">
             <div id="top"></div>
-<!--            <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>-->
+            <!--            <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>-->
 
             <div v-if="isOpen" class="modal-mask">
                 <div class="modal-wrapper" @click="$emit('close')">
@@ -153,7 +153,10 @@
                                     </form>
                                 </div>
                                 <div class="col-md-12 mt-2" style="background: #fff;">
-                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1" style="font-size: small;">&nbsp;{{priceRange }}&nbsp;-&nbsp;{{ max }}</span></h5>
+                                    <h5 style="margin-bottom: -30px">PRICE RANGE <span class="col-md-1"
+                                                                                       style="font-size: small;">&nbsp;{{
+                                            priceRange
+                                        }}&nbsp;-&nbsp;{{ max }}</span></h5>
                                     <hr/>
                                     <div class="row" style="margin-top: -20px">
                                         <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="max"/>
@@ -165,14 +168,16 @@
                                     <hr/>
                                     <div style="margin-top: -30px">
                                         <div class="row" v-for="supplier in filteredSuppliers">
-                                            <strong style="color: #d7c134;" class="col-md-10 mt-2">{{ supplier.company }}&nbsp;(1)</strong>
-                                        <el-checkbox
-                                                    class="col-md-1"
+                                            <strong style="color: #d7c134;" class="col-md-10 mt-2">{{
+                                                    supplier.company
+                                                }}&nbsp;(1)</strong>
+                                            <el-checkbox
+                                                class="col-md-1"
 
-                                                     size="large"
-                                                     :model="supplier"
-                                                     @click="selectSupplier(supplier.id)"
-                                        />
+                                                size="large"
+                                                :model="supplier"
+                                                @click="selectSupplier(supplier.id)"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +189,7 @@
                                         <hr/>
                                         <div style="margin-top: -30px">
                                             <div class="row" v-for="option in item.options">
-                                                <strong class="col-md-10 mt-2">{{option}}  {{ item.name }}</strong>
+                                                <strong class="col-md-10 mt-2">{{ option }} {{ item.name }}</strong>
                                                 <el-checkbox
                                                     class="col-md-1 "
                                                     size="large"
@@ -199,7 +204,8 @@
 
                         <div v-loading="loading" class="col-lg-9">
                             <div class="row filter_top_group">
-                                <div style="height: 115px; margin-top: 75px; margin-right: 3%; " class="col-md-1 category" :id="'category' + item.id"
+                                <div style="height: 115px; margin-top: 75px; margin-right: 3%; "
+                                     class="col-md-1 category" :id="'category' + item.id"
                                      v-for="item in filteredCategories">
                                     <el-radio v-model="category" :label="item.id" size="large" border
                                               @click="SelectCategory(item.id)">
@@ -259,14 +265,14 @@
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div
-                                                class="de-item-list p-2 mb30 mt30  justify-content-between align-items-center col-11"
+                                                class="de-item-list p-2 mb30 mt30  justify-content-between align-items-center col-12"
                                                 style="background: #edecec; max-width: 85%;">
                                                 <div class="d-supplier">
                                                     <div class="col-md-2 d-img w-100" style="height: 50px">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="50" alt=""/>
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="col-md-3 row">
                                                         <div>
                                                             <span style="font-size: medium; margin-left: -12px">{{
                                                                     vehicle.supplier.company
@@ -278,39 +284,59 @@
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <button class=" btn-primary w-100">
+                                                    <div class="col-md-2">
+                                                        <button class=" btn-primary ">
                                                         <span
                                                             style="background-color: #f9d602; padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                                         </button>
                                                     </div>
-                                                    <div>
+                                                    <div class="col-md-5">
                                                         <span class="be_media-body"><h5>Good</h5><span
                                                             style="font-size: medium;">(&nbsp;<strong
                                                             style="color: #f9d602">1000&nbsp;</strong>+ reviews)</span></span>
                                                     </div>
+                                                    <div v-if="vehicle.instant_confirmation" class="col-md-2">
+                                                        <button class="scv-badge badge-white be_media pr-3" tabindex="0">
+                                                            <i style="color: gold;" class="mt-3 ml-2 mr-2 fa fa-bolt fa-xl be_media-left be_media-middle" />
+                                                            <span class="scv-inst-text">Instant Confirmation</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div class="de-item-list col-md-11 bg-light-gray pt-1" style="max-width: 85%;">
+                                            <div class="de-item-list col-md-11 bg-light-gray pt-1"
+                                                 style="max-width: 85%;">
                                                 <div class="row col-md-11">
                                                     <strong class="primary"
-                                                          style="color: #5e9007;">What is Included!</strong>
+                                                            style="color: #5e9007;">What is Included!</strong>
                                                     <ul class="row mt-4">
-                                                        <li class="col-md-6" style="margin-top: -6%" v-for="(item, index) in vehicle.included ">
+                                                        <li class="col-md-6" style="margin-top: -6%"
+                                                            v-for="(item, index) in vehicle.included ">
                                                             <div class="row" v-if="index < 4">
-                                                                <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{ item.what_is_included }}</p>
+                                                                <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
+                                                                   style="color: green;"/>
+                                                                <p class="col-md-10" style="font-size: 13px;">
+                                                                    {{ item.what_is_included }}</p>
                                                             </div>
-                                                            <div :class="'row vehicle-'+vehicle.id"  style="display: none;" v-else>
-                                                                <i class="col-md-1 fa fa-check fa-l mt-2" style="color: green;"/><p class="col-md-10" style="font-size: 13px;">{{ item.what_is_included }}</p>
+                                                            <div :class="'row vehicle-'+vehicle.id"
+                                                                 style="display: none;" v-else>
+                                                                <i class="col-md-1 fa fa-check fa-l mt-2"
+                                                                   style="color: green;"/>
+                                                                <p class="col-md-10" style="font-size: 13px;">
+                                                                    {{ item.what_is_included }}</p>
                                                             </div>
                                                         </li>
-                                                        <span @click="showMoreIncluded(vehicle.id)" class="col-md-6 cursor-pointer" :id="'show-more'+ vehicle.id" v-if="vehicle.included.length > 4 ">Show more ...</span>
+                                                        <span @click="showMoreIncluded(vehicle.id)"
+                                                              class="col-md-6 cursor-pointer"
+                                                              :id="'show-more'+ vehicle.id"
+                                                              v-if="vehicle.included.length > 4 ">Show more ...</span>
                                                     </ul>
                                                 </div>
                                                 <div class="row mb-5">
                                                     <div class="col-md-12">
-                                                        <p><strong><i class="fa fa-location"/>Address:</strong>&nbsp;{{ vehicle.supplier.address }}</p>
+                                                        <p><strong><i class="fa fa-location"/>Address:</strong>&nbsp;{{
+                                                                vehicle.supplier.address
+                                                            }}</p>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <span><i class="fa fa-gas-pump"/></span>
@@ -411,7 +437,7 @@ const showMoreIncluded = (vehicle_id) => {
     var elements = document.querySelectorAll('.vehicle-' + vehicle_id);
     const showMoreElement = document.getElementById('show-more' + vehicle_id);
 // Loop through each element to apply the display toggle logic
-    elements.forEach(function(element) {
+    elements.forEach(function (element) {
         const display = element.style.display;
 
         if (display === 'none') {
@@ -450,7 +476,7 @@ const SelectCategory = (category_id) => {
     $(".category").addClass('col-md-1')
     $(".category").addClass('category')
 
-    $("#category"+category_id).addClass( 'col-md-2')
+    $("#category" + category_id).addClass('col-md-2')
     category.value = category_id;
     form.category = category_id
     getVehicles()
@@ -601,9 +627,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.show-more-whats-included{
+.show-more-whats-included {
     display: none;
 }
+
 @media screen and (max-width: 1328px) {
     .steps-buttons {
         left: 0 !important;
@@ -646,6 +673,7 @@ onMounted(() => {
     flex-direction: column;
     align-items: center;
     height: 165px;
+
     img {
         width: 100px;
     }
@@ -676,6 +704,47 @@ onMounted(() => {
 .is-checked {
     color: #f4d849 !important;
 }
+
+.scv-badge.badge-white {
+    display: flex;
+    min-width: 10px;
+    padding: 2px 6px 3px 3px;
+    color: #605c5c;
+    background-color: #fff;
+    border-radius: 2em;
+    line-height: 14px;
+    vertical-align: middle;
+    white-space: normal;
+    border: 1px solid #ddd;
+}
+
+[id|=sc-be] .be_media {
+    overflow: hidden;
+    transform: scale(1);
+    transform-origin: 0 0;
+}
+
+.scv-icon.scv-instant {
+    height: 29px;
+    min-width: 32px;
+    width: 32px;
+    display: inline-block;
+}
+
+[id|=sc-be] .be_media-middle {
+    vertical-align: middle;
+}
+
+.scv-inst-text {
+    display: inline-block;
+    font-size: 11px;
+    text-align: left;
+    vertical-align: middle;
+    -webkit-align-self: center;
+    align-self: center;
+    margin-left: 2px;
+}
+
 
 
 </style>

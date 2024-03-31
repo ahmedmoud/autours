@@ -113,7 +113,14 @@
                                     />
                                 </el-select>
                             </div>
+                            <div class="formbold-mb-3 mb-5  col-3">
+                                <label class="formbold-form-label"> Reserve Without Confirmation </label>
+                                    <el-switch
+                                        size="large"
+                                        v-model="instantConfirmation"
+                                    />
 
+                            </div>
 
                             <div class="formbold-mb-3 mb-5  col-12">
                                 <label class="formbold-form-label"> Vehicle Description </label>
@@ -239,6 +246,7 @@
 import {onMounted, ref, watchEffect} from 'vue'
 import {router} from "@inertiajs/vue3";
 import Editor from 'primevue/editor';
+import  ToggleButton  from 'primevue/togglebutton';
 
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
@@ -276,6 +284,7 @@ const included = {
 const specification = ref([])
 const specifications = ref([])
 const selectedSpecifications = ref([])
+const instantConfirmation = ref(false)
 
 const photos = {
     loading: ref(false),
@@ -498,6 +507,7 @@ const upload = async () => {
         formData.append('category', category.value);
         formData.append('specifications', JSON.stringify(selectedSpecifications.value));
         formData.append('included', selectedIncluded.value);
+        formData.append('instant_confirmation', instantConfirmation.value);
 
         if (!validateForm()) return;
 

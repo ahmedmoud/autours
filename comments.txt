@@ -1,20 +1,23 @@
 * Remove description. Done
 * ⁠includes issue. Done
 * ⁠make all paragraphs in one line. Done
-* ⁠mr/mrs before full name.
-* ⁠adjust form alignment before payment.
-* ⁠adjust font and margins between steps buttons.
+* ⁠mr/mrs before full name. Done
+* ⁠adjust form alignment before payment. Done
+* ⁠adjust font and margins between steps buttons. Done
+* fix supplier drop down menu per country. Done
+* Profit margin percentage to be horizontal aligned. Done
+* cancel button on my bookings instead of menu item. Done
+* add more details on my bookings card . Address, pickup location and dropoff location, supplier logo, invoice pdf.Done(PDF).
+
 * ⁠instant confirmation for some vehicles.
 * ⁠suggest some rental terms from supplier side .
 * cancellation policy to be included in vehicle page.
-* cancel button on my bookings instead of menu item.
-* add more details on my bookings card . Address, pickup location and dropoff location, supplier logo, invoice pdf.
+
 * add my profile to customer.
-* fix supplier drop down menu per country.
-* Profit margin percentage to be horizontal aligned.
+
 * filter in dropdown menu should be reflected in the below vehicle list.
-* Category cards to be more aligned.
-* Arrange categories.
+* Category cards to be more aligned. Done
+* Arrange categories. Done
 * add cars number beside supplier name in filters.
 * Add dropdown menu instead of checkboxes.
 * send emails after: 

@@ -229,9 +229,13 @@
                                                     vehicle?.supplier?.address
                                                 }}</p>
                                         </div>
-                                        <div class="col-md-12">
-                                            <span><i class="fa fa-gas-pump"/></span>
-                                            Fuel Policy: <small> Full to Full </small></div>
+                                        <div v-if="vehicle.instant_confirmation" class="col-md-2">
+                                            <button class="scv-badge badge-white be_media pr-3" tabindex="0">
+                                                <i style="color: gold;" class="mt-3 ml-2 mr-2 fa fa-bolt fa-xl be_media-left be_media-middle" />
+                                                <span class="scv-inst-text">Instant Confirmation</span>
+                                            </button>
+                                        </div>
+
                                     </div>
                                 </div>
 

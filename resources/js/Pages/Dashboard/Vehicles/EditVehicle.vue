@@ -113,7 +113,14 @@
                                     />
                                 </el-select>
                             </div>
+                            <div class="formbold-mb-3 mb-5  col-3">
+                                <label class="formbold-form-label"> Reserve Without Confirmation </label>
+                                <el-switch
+                                    size="large"
+                                    v-model="instantConfirmation"
+                                />
 
+                            </div>
 
                             <div class="formbold-mb-3 mb-5  col-12">
                                 <label class="formbold-form-label"> Vehicle Description </label>
@@ -274,6 +281,7 @@ const locations = {
     list: ref([]),
     options: ref([]),
 };
+const instantConfirmation = ref(false)
 
 const category = ref('')
 const categories = {
@@ -500,6 +508,7 @@ const upload = async () => {
         formData.append('specifications', JSON.stringify(selectedSpecifications.value));
         formData.append('included', selectedIncluded.value);
         formData.append('update', '1');
+        formData.append('instant_confirmation', instantConfirmation.value);
         formData.append('id', vehicle.id);
 
 
@@ -542,6 +551,7 @@ const getData = async () => {
         selectedSpecifications.value = vehicle.specifications
         selectedIncluded.value = vehicle.what_is_included
         photo.value = vehicle.photo
+        instantConfirmation.value = vehicle.instant_confirmation === 1? true : false
         console.log(vehicle.included)
     } catch (e) {
         console.log(e)
