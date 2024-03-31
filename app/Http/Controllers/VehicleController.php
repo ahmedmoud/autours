@@ -283,8 +283,8 @@ class VehicleController extends Controller
                     VehicleSpecification::insert(
                         [
                             'vehicle_id' => $existingVehicle->id,
-                            'name' => $specification->name,
-                            'value' => $specification->option,
+                            'name' => isset($specification->name) ? $specification->name : '',
+                            'value' => isset($specification->option) ? $specification->option : '',
                             'icon' => isset($specification->icon) ? $specification->icon : ''
                         ]
                     );
