@@ -244,10 +244,9 @@
                                                 </div>
                                                 <div class="d-info">
                                                     <div class="d-text">
-                                                        <h4>
+                                                        <h4 class="text-nowrap">
                                                             {{ vehicle.name }}
-                                                            <span
-                                                                style="font-weight: 600;color: #727272;font-size: 16px;">or Similar</span>
+                                                            <span style="font-weight: 600;color: #727272;font-size: 16px;">or&nbsp;Similar</span>
                                                         </h4>
                                                         <span>{{ vehicle?.category?.name }}</span>
                                                         <div class="d-atr-group row">
@@ -290,10 +289,10 @@
                                                             style="background-color: #f9d602; padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-3">
                                                         <span class="be_media-body"><h5>Good</h5><span
                                                             style="font-size: medium;">(&nbsp;<strong
-                                                            style="color: #f9d602">1000&nbsp;</strong>+ reviews)</span></span>
+                                                            style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
                                                     <div v-if="vehicle.instant_confirmation" class="col-md-2">
                                                         <button class="scv-badge badge-white be_media pr-3" tabindex="0">
