@@ -32,7 +32,7 @@
                                     <div class="text-nowrap"><h5>{{ item.vehicle.name }}&nbsp;Or&nbsp;Similar </h5></div>
                                     <strong>{{ item.start_date + ' - ' + item.end_date }}</strong>
                                     <div class="row ">
-                                        <img class="col-md-3 rounded-3" :src="'img/' + item.vehicle.supplier.logo"
+                                        <img class="col-md-4 rounded-3" :src="'img/' + item.vehicle.supplier.logo"
                                              height="80" width="50">
                                         <p class="col-md-6 mt-4">{{ item.vehicle.supplier.name }}</p></div>
                                     <strong

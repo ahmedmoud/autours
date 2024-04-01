@@ -66,7 +66,6 @@
                             <tr>
                                 <th class="row"><h5 class="col-md-3">The Car model is:</h5><p class="col-md-9"> {{json_decode($body)->vehicle->name}}</p></th>
                                 <th class="row"><p >Billed To: Autours</p></th>
-                                <th class="row"><p >Address: Autours Address</p></th>
                             </tr>
                             </thead>
                             <thead>

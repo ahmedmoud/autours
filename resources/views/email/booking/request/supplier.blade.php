@@ -66,7 +66,6 @@
                             <tr>
                                 <th class="row"><p>The Car model is {{json_decode($body)->vehicle->name}}</p></th>
                                 <th class="row"><p>Billed To: Autours</p></th>
-                                <th class="row"><p>Address: Autours Address</p></th>
                             </tr>
                             </thead>
                             <thead>

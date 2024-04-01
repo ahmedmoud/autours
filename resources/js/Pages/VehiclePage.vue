@@ -837,4 +837,44 @@ li::before {
     box-shadow: 3px 3px 9px rgba(164, 164, 186, 0.2);
     border-radius: 6px;
 }
+.scv-badge.badge-white {
+    display: flex;
+    min-width: 10px;
+    padding: 2px 6px 3px 3px;
+    color: #605c5c;
+    background-color: #fff;
+    border-radius: 2em;
+    line-height: 14px;
+    vertical-align: middle;
+    white-space: normal;
+    border: 1px solid #ddd;
+}
+
+[id|=sc-be] .be_media {
+    overflow: hidden;
+    transform: scale(1);
+    transform-origin: 0 0;
+}
+
+.scv-icon.scv-instant {
+    height: 29px;
+    min-width: 32px;
+    width: 32px;
+    display: inline-block;
+}
+
+[id|=sc-be] .be_media-middle {
+    vertical-align: middle;
+}
+
+.scv-inst-text {
+    display: inline-block;
+    font-size: 11px;
+    text-align: left;
+    vertical-align: middle;
+    -webkit-align-self: center;
+    align-self: center;
+    margin-left: 2px;
+}
+
 </style>

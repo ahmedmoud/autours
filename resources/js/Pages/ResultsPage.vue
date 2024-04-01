@@ -264,8 +264,8 @@
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div
-                                                class="de-item-list p-2 mb30 mt30  justify-content-between align-items-center col-12"
-                                                style="background: #edecec; max-width: 85%;">
+                                                class="de-item-list p-2 mb30 mt30  justify-content-between align-items-center col-10"
+                                                style="background: #edecec; ">
                                                 <div class="d-supplier">
                                                     <div class="col-md-2 d-img w-100" style="height: 50px">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
