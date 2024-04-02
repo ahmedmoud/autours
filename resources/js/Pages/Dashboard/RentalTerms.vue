@@ -60,6 +60,7 @@ import Editor from 'primevue/editor';
 
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+const $toast = useToast();
 
 const search = ref('')
 const tableData = ref([])
@@ -69,7 +70,6 @@ const inputValue = ref('')
 const dynamicTags = ref([])
 const inputVisible = ref(false)
 const InputRef = ref(false)
-const $toast = useToast();
 const handleClose = (tag) => {
     dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
 }

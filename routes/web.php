@@ -46,6 +46,9 @@ Route::get('/vehicles/book', function () {
 Route::post('/get/vehicle/data', [VehicleController::class, 'getVehicle']);
 Route::get('/get/countries', [CountryController::class, 'index']);
 
+Route::inertia('/my-profile', 'MyProfile');
+Route::get('/my-current-user-profile', [UserController::class, 'profile']);
+
 Route::inertia('company', 'Dashboard/CreateCompany');
 Route::inertia('index', 'Dashboard/Index')->middleware('admin_or_supplier');
 Route::inertia('suppliers', 'Dashboard/Suppliers');

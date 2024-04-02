@@ -38,7 +38,7 @@
                                     <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-bookings')"><i
                                         class="fa fa-history"/>&nbsp;&nbsp;My&nbsp;Bookings
                                     </CDropdownItem>
-                                    <CDropdownItem class="cursor-pointer"><i class="fa fa-user"/>&nbsp;&nbsp;My&nbsp;Profile
+                                    <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-profile')"><i class="fa fa-user"/>&nbsp;&nbsp;My&nbsp;Profile
                                     </CDropdownItem>
                                     <CDropdownItem class="cursor-pointer" @click="() => router.get('/logout')"><i
                                         class="fa fa-door-closed"/>&nbsp;&nbsp;Log&nbsp;Out

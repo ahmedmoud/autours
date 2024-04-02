@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusCodes;
+use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Branch;
 use Illuminate\Support\Facades\Hash;
+use MongoDB\Driver\Session;
 
 class UserController extends Controller
 {
@@ -163,43 +166,28 @@ class UserController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function profile(Request $request)
     {
-        //
-    }
+        try {
+            $user = \auth()->user();
+            if (is_null($user) || $user->role != 'customer') {
+                return response()->json([
+                    'data' => [],
+                    'message' => 'no logged in User'
+                ], StatusCodes::FORBIDDEN);
+            }
+            $user->rentals = Rental::query()->where('customer_id',$user->id)->with(['vehicle.supplier','vehicle.branch','status'])->orderBy('id','desc')->get();
+            return response()->json([
+                'data' => $user
+            ]);
+        } catch (\Exception $e) {
+            info("error while getting the user profile");
+            info($e->getMessage());
+            return response()->json([
+                'data' =>[],
+                'message' => 'Server Error'
+            ], StatusCodes::SERVER_ERROR);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

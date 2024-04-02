@@ -30,6 +30,7 @@ class Rental extends Model
         return $this->belongsTo(User::class, 'customer_id', 'id');
     }
 
+
     public function status() {
         return $this->belongsTo(RentalStatus::class, 'order_status', 'id');
     }
