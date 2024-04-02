@@ -118,8 +118,8 @@ const uploadPhoto = async (event) => {
 
 
         const response = await axios.post('upload', formData);
-        if (response.data.message === 0) {
-            $toast.success("profile picture updated successfully!")
+        if (response.data.message === 1) {
+            $toast.success("profile picture updated successfully!", {position: 'top'})
             window.location.reload()
         }
     } catch (e) {
