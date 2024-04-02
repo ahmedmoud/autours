@@ -12,14 +12,15 @@
 * ⁠add rental status in retals list.Done
 * Category cards to be more aligned. Done
 * Arrange categories. Done
+* add my profile to customer.Done
+* filter in dropdown menu should be reflected in the below vehicle list.Done
 
-* ⁠suggest some rental terms from supplier side .
+* ⁠suggest some rental terms from supplier side.
 * cancellation policy to be included in vehicle page.
-* add my profile to customer.
-* filter in dropdown menu should be reflected in the below vehicle list.
+
 * add cars number beside supplier name in filters.
 * Add dropdown menu instead of checkboxes.
 * send emails after: 
 	* ⁠approval and register supplier.
 	* ⁠when supplier create vehicle.
-* filter per country per supplier. 
+* filter per country per supplier.
