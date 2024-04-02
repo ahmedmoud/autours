@@ -494,6 +494,7 @@ const getUserData = async () => {
         language.value = response.data.language ? response.data.language : '';
         company.value = response.data.company ? response.data.company : '';
         gender.value = response.data.gender ? response.data.gender : '';
+        city.value = response.data.city ? response.data.city : '';
         if(response.data.role == 'customer'){
             router.get('/')
         }

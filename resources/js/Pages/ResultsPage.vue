@@ -168,12 +168,9 @@
                                     <hr/>
                                     <div style="margin-top: -30px">
                                         <div class="row" v-for="supplier in filteredSuppliers">
-                                            <strong style="color: #d7c134;" class="col-md-10 mt-2">{{
-                                                    supplier.company
-                                                }}&nbsp;(1)</strong>
+                                            <strong style="color: #d7c134;" class="col-md-10 mt-2">{{supplier.company }}&nbsp;(1)</strong>
                                             <el-checkbox
                                                 class="col-md-1"
-
                                                 size="large"
                                                 :model="supplier"
                                                 @click="selectSupplier(supplier.id)"
