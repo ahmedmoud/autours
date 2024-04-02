@@ -1,4 +1,5 @@
 <template>
+
     <body>
     <div id="wrapper">
 
@@ -8,75 +9,136 @@
         <!-- content begin -->
         <div class="no-bottom no-top zebra" id="content">
             <div id="top"></div>
-            <section id="section-car-details" >
+            <section id="section-car-details">
                 <div class="container mt-5">
-
-                    <div class="row align-items-center">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                            <!-- Bg -->
-                            <div class="pt-20 rounded-top" style="background: url('/images/akrom.jpg'); height: 345px;  background-size: cover;">
-                            </div>
-                            <div class="card rounded-bottom smooth-shadow-sm">
-                                <div class="d-flex align-items-center justify-content-between pt-4 pb-6 px-4">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-xxl avatar-indicators  me-2 position-relative d-flex justify-content-end align-items-end mt-n10">
-                                            <div class="position-absolute mr-3 cursor-pointer"><i class="fa fa-camera"/></div>
-                                            <input type="file" v-on:change="uploadPhoto" id="profile_pic" hidden />
-                                            <img @click="updatePhoto" :src="'img/' + user.logo" class="cursor-pointer avatar-xxl rounded-circle border border-2 " alt="Image" />
+                    <div class="card overflow-hidden">
+                        <div class="card-body p-0">
+                            <img src="images/akrom.jpg" alt="" class="img-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 order-lg-1 order-2">
+                                    <div class="d-flex align-items-center justify-content-around m-4">
+                                        <div class="text-center">
+                                            <i class="fa fa-car fs-6 d-block mb-2"></i>
+                                            <h4 class="mb-0 fw-semibold lh-1">{{ user?.rentals?.length }}</h4>
+                                            <p class="mb-0 fs-4">Rentals</p>
                                         </div>
-                                        <div class="lh-1">
-                                            <h2 class="mb-0">{{user.name}}
-                                                <a href="#!" class="text-decoration-none">
-
-                                                </a>
-                                            </h2>
-                                            <p class="mb-0 d-block">{{user.email}}</p>
+                                        <div class="text-center">
+                                            <i class="fa fa-cancel fs-6 d-block mb-2"></i>
+                                            <h4 class="mb-0 fw-semibold lh-1">0</h4>
+                                            <p class="mb-0 fs-4">Cancelled</p>
                                         </div>
-                                    </div>
-                                    <div>
-<!--                                        <a href="#" class="btn btn-outline-primary d-none d-md-block">Edit Profile</a>-->
+                                        <div class="text-center">
+                                            <i class="fa fa-check fs-6 d-block mb-2"></i>
+                                            <h4 class="mb-0 fw-semibold lh-1">0</h4>
+                                            <p class="mb-0 fs-4">Confirmed</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <ul class="nav nav-lt-tab px-4" id="pills-tab" role="tablist">
+                                <div class="col-lg-4 mt-n3 order-lg-2 order-1">
+                                    <div class="mt-n5">
+                                        <div @click="updatePhoto"
+                                             class="d-flex align-items-center justify-content-center mb-2">
+                                            <div
+                                                class="linear-gradient d-flex align-items-center justify-content-center rounded-circle"
+                                                style="width: 110px; height: 110px;">
+                                                <input type="file" id="profile_pic" v-on:change="uploadPhoto"
+                                                       hidden=""/>
+                                                <div
+                                                    class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden"
+                                                    style="width: 100px; height: 100px;">
+                                                    <img :src="'img/'+user.logo" alt="" class="w-100 h-100">
+                                                </div>
+                                            </div>
+                                            <i class="fa fa-pencil-square fa-xl mt-5"/>
+                                        </div>
 
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#"> Rentals ({{user.rentals?.length}})</a>
-                                    </li>
-
-                                </ul>
+                                        <div class="text-center">
+                                            <h5 class="fs-5 mb-0 fw-semibold">{{ user.name }}</h5>
+                                            <p class="mb-0 fs-4">{{ user.email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <ul class="nav nav-pills user-profile-tab justify-content-end mt-2 bg-light-info rounded-2"
+                                id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link position-relative rounded-0 active d-flex align-items-center justify-content-center bg-transparent fs-3 py-6"
+                                        id="pills-rentals-tab" data-bs-toggle="pill" data-bs-target="#pills-rentals"
+                                        type="button" role="tab" aria-controls="pills-rentals" aria-selected="true">
+                                        <i class="fa fa-car me-2 fs-6"></i>
+                                        <span class="d-none d-md-block">Rentals</span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-6"
+                                        id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about"
+                                        type="button" role="tab" aria-controls="pills-about" aria-selected="false"
+                                        tabindex="-1">
+                                        <i class="fa fa-user me-2 fs-6"></i>
+                                        <span class="d-none d-md-block">About</span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-6"
+                                        id="pills-friends-tab" data-bs-toggle="pill" data-bs-target="#pills-friends"
+                                        type="button" role="tab" aria-controls="pills-friends" aria-selected="false"
+                                        tabindex="-1">
+                                        <i class="fa fa-credit-card me-2 fs-6"></i>
+                                        <span class="d-none d-md-block">My Cards</span>
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="py-6">
-                        <div class="row">
-                            <div v-for="rental in user.rentals" class="col-lg-4 col-12">
-                                <!-- card -->
-                                <div class="card mb-5 rounded-3">
-                                    <div>
-                                        <img :src="'img/vehicles/'+ rental.vehicle.photo" alt="Image" class="img-fluid rounded-top">
-                                    </div>
-                                    <!-- avatar -->
-                                    <div class="avatar avatar-xl mt-n7 ms-4">
-                                        <img :src="'img/'+ rental.vehicle.supplier.logo" alt="Image"
-                                             class="rounded-circle border-4
-              border-white-color-40">
-                                    </div>
-                                    <!-- card body -->
-                                    <div class="card-body">
-                                        <!-- Title -->
-                                        <h4 class="mb-1">{{rental.vehicle.name}}</h4>
-                                        <p>{{rental.vehicle.supplier.name}}</p>
-                                        <p>{{rental.start_date}} to {{rental.end_date}}</p>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-rentals" role="tabpanel"
+                             aria-labelledby="pills-rentals-tab" tabindex="0">
+                            <div class="d-sm-flex align-items-center justify-content-between mt-3 mb-4">
+                                <h3 class="mb-3 mb-sm-0 fw-semibold d-flex align-items-center">Rentals <span
+                                    class="badge text-bg-secondary fs-2 rounded-4 py-1 px-2 ms-2">{{
+                                        user?.rentals?.length
+                                    }}</span>
+                                </h3>
+                                <form class="position-relative">
+                                    <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh"
+                                           placeholder="Search Friends">
+                                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y text-dark ms-3"></i>
+                                </form>
+                            </div>
+                            <div class="row">
+                                <div v-for="rental in user.rentals" class="col-lg-4 col-12">
+                                    <!-- card -->
+                                    <div class="card mb-5 rounded-3">
                                         <div>
-                                            <!-- Dropdown -->
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a style="color:white" :class="
+                                            <img :src="'img/vehicles/'+ rental.vehicle.photo" alt="Image"
+                                                 class="img-fluid rounded-top">
+                                        </div>
+                                        <!-- avatar -->
+                                        <div class="avatar avatar-xl mt-n7 ms-4">
+                                            <img :src="'img/'+ rental.vehicle.supplier.logo" alt="Image" height="80"
+                                                 width="80"
+                                                 class="mt-3 rounded-circle border-4 border-white-color-40">
+                                        </div>
+                                        <!-- card body -->
+                                        <div class="card-body">
+                                            <!-- Title -->
+                                            <h4 class="mb-1">{{ rental.vehicle.name }}</h4>
+                                            <p>{{ rental.vehicle.supplier.name }}</p>
+                                            <p>{{ rental.start_date }} to {{ rental.end_date }}</p>
+                                            <div>
+                                                <!-- Dropdown -->
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a style="color:white" :class="
                                                 rental.status.id=== 2 ? 'btn btn-success'
                                                 : rental.status.id=== 3 ? 'btn btn-danger'
                                                 : rental.status.id=== 4 ? 'btn btn-warning'
-                                                 : 'btn btn-primary' ">{{rental.status.name_en}}</a>
-                                                <div >
-                                                    {{rental.vehicle.branch.location}}
+                                                 : 'btn btn-primary' ">{{ rental.status.name_en }}</a>
+                                                    <div>
+                                                        {{ rental.vehicle.branch.location }}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,6 +147,138 @@
                             </div>
 
                         </div>
+                        <div class="tab-pane fade show " id="pills-about" role="tabpanel"
+                             aria-labelledby="pills-about-tab" tabindex="1">
+                            <div class="row bg-white p-5 rounded-5">
+                                <form method="post" @submit.prevent="register">
+                                    <div class="row">
+                                        <div class="formbold-mb-3 col-md-6">
+                                            <label class="formbold-form-label">Full name</label>
+                                            <div class="row">
+                                                <el-select
+                                                    v-model="RegisterForm.gender"
+                                                    size="large"
+                                                    filterable
+                                                    class="col-md-4"
+                                                    reserve-keyword
+                                                    placeholder="Mr/Mrs..."
+                                                    remote-show-suffix
+                                                    required>
+                                                    <el-option
+                                                        v-for='item in ["Mr.","Mrs."]'
+                                                        :key="'+' + item"
+                                                        :label="item"
+                                                        :value="item"
+                                                    />
+                                                </el-select>
+                                                <el-input
+                                                    v-model="RegisterForm.name"
+                                                    size="large"
+                                                    filterable
+                                                    remote
+                                                    class="col-md-8"
+                                                    reserve-keyword
+                                                    placeholder="Enter Full name here..."
+                                                    remote-show-suffix
+                                                    :loading="countries.loading.value"
+                                                    required>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                        <div class="formbold-mb-3 col-md-4"
+                                             v-if="!user || user.role !== 'customer' ">
+                                            <label class="formbold-form-label">Country</label>
+                                            <div class="countries row">
+                                                <el-select
+                                                    v-model="RegisterForm.country"
+                                                    size="large"
+                                                    class="col-md-12"
+                                                    filterable
+                                                    reserve-keyword
+                                                    placeholder="Select Country..."
+                                                    remote-show-suffix
+                                                    :loading="countries.loading.value"
+                                                    required>
+                                                    <el-option
+                                                        v-for="item in countries.list.value"
+                                                        :key="item.id"
+                                                        :label="item.label"
+                                                        :value="item.label"
+                                                    />
+                                                </el-select>
+                                            </div>
+                                        </div>
+                                        <div class="formbold-mb-3 col-md-6">
+                                            <label class="formbold-form-label">E-mail</label>
+                                            <div class="countries">
+                                                <el-input
+                                                    v-model="RegisterForm.email"
+                                                    size="large"
+                                                    filterable
+                                                    remote
+                                                    reserve-keyword
+                                                    placeholder="E-mail..."
+                                                    remote-show-suffix
+                                                    required>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                        <div class="formbold-mb-3 col-md-4">
+                                            <label class="formbold-form-label">Password</label>
+                                            <div class="countries">
+                                                <el-input
+                                                    v-model="RegisterForm.password"
+                                                    size="large"
+                                                    filterable
+                                                    remote
+                                                    type="password"
+                                                    reserve-keyword
+                                                    placeholder="Account Password ..."
+                                                    remote-show-suffix
+                                                    required>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                        <div class="formbold-mb-3 col-md-9">
+                                            <label class="formbold-form-label">Phone</label>
+                                            <div class="row">
+                                                <el-select
+                                                    v-model="RegisterForm.mobile_code"
+                                                    size="large"
+                                                    class="col-md-3"
+                                                    filterable
+                                                    reserve-keyword
+                                                    placeholder="code..."
+                                                    remote-show-suffix
+                                                    required>
+                                                    <el-option
+                                                        v-for='item in countryCodes'
+                                                        :key="'+' + item.code"
+                                                        :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
+                                                        :value="'+' + item.code"
+                                                    />
+                                                </el-select>
+                                                <el-input
+                                                    v-model="RegisterForm.phone"
+                                                    size="large"
+                                                    class="col-md-8"
+                                                    filterable
+                                                    remote
+                                                    reserve-keyword
+                                                    placeholder="Phone Number..."
+                                                    remote-show-suffix
+                                                    :loading="countries.loading.value"
+                                                    required>
+                                                </el-input>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </section>
@@ -101,12 +295,72 @@ import Footer from "../components/Footer.vue";
 import HeaderOne from "../components/HeaderOne.vue";
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
-import {router} from '@inertiajs/vue3';
+import {router, useForm} from '@inertiajs/vue3';
+import getUnicodeFlagIcon from "country-flag-icons/unicode";
 
 const $toast = useToast();
 const loading = ref(false)
 const user = ref('');
 const photo = ref('');
+const countries = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+};
+
+const countryCodes = [
+    {"country": "Algeria", "code": "213", "iso": "DZ"},
+    {"country": "Australia", "code": "61", "iso": "AU"},
+    {"country": "Bahrain", "code": "973", "iso": "BH"},
+    {"country": "Canada", "code": "1", "iso": "CA"},
+    {"country": "China", "code": "86", "iso": "CN"},
+    {"country": "Denmark", "code": "45", "iso": "DK"},
+    {"country": "Egypt", "code": "20", "iso": "EG"},
+    {"country": "France", "code": "33", "iso": "FR"},
+    {"country": "Germany", "code": "49", "iso": "DE"},
+    {"country": "Greece", "code": "30", "iso": "GR"},
+    {"country": "India", "code": "91", "iso": "IN"},
+    {"country": "Indonesia", "code": "62", "iso": "ID"},
+    {"country": "Iran", "code": "98", "iso": "IR"},
+    {"country": "Iraq", "code": "964", "iso": "IQ"},
+    {"country": "Italy", "code": "39", "iso": "IT"},
+    {"country": "Jordan", "code": "962", "iso": "JO"},
+    {"country": "Kuwait", "code": "965", "iso": "KW"},
+    {"country": "Lebanon", "code": "961", "iso": "LB"},
+    {"country": "Libya", "code": "218", "iso": "LY"},
+    {"country": "Mexico", "code": "52", "iso": "MX"},
+    {"country": "Morocco", "code": "212", "iso": "MA"},
+    {"country": "Netherlands", "code": "31", "iso": "NL"},
+    {"country": "Oman", "code": "968", "iso": "OM"},
+    {"country": "Pakistan", "code": "92", "iso": "PK"},
+    {"country": "Palestine", "code": "970", "iso": "PS"},
+    {"country": "Poland", "code": "48", "iso": "PL"},
+    {"country": "Portugal", "code": "351", "iso": "PT"},
+    {"country": "Qatar", "code": "974", "iso": "QA"},
+    {"country": "Russia", "code": "7", "iso": "RU"},
+    {"country": "Saudi Arabia", "code": "966", "iso": "SA"},
+    {"country": "Spain", "code": "34", "iso": "ES"},
+    {"country": "Sweden", "code": "46", "iso": "SE"},
+    {"country": "Switzerland", "code": "41", "iso": "CH"},
+    {"country": "Syria", "code": "963", "iso": "SY"},
+    {"country": "Tunisia", "code": "216", "iso": "TN"},
+    {"country": "Turkey", "code": "90", "iso": "TR"},
+    {"country": "United Arab Emirates", "code": "971", "iso": "AE"},
+    {"country": "United Kingdom", "code": "44", "iso": "GB"},
+    {"country": "United States", "code": "1", "iso": "US"},
+];
+const RegisterForm = useForm({
+    name: '',
+    phone: '',
+    email: '',
+    password: '',
+    mobile_code: '',
+    country: '',
+    user_type: '',
+    supplier: 0,
+    gender: '',
+});
 
 const uploadPhoto = async (event) => {
     try {
@@ -136,15 +390,73 @@ const getUser = async () => {
         loading.value = true
         const params = {};
 
-        const response = await axios.get('/my-current-user-profile' );
+        const response = await axios.get('/my-current-user-profile');
         user.value = response.data.data;
         console.log(user.value)
     } catch (error) {
-       router.get('/')
+        router.get('/')
     } finally {
         loading.value = false;
     }
 }
+const register = async () => {
+    loading.value = true
+
+    if (RegisterForm.gender === undefined || RegisterForm.gender === null || RegisterForm.gender.length === 0) {
+        $toast.error("Please Select Mr/Mrs", {position: 'top'});
+        loading.value = false
+        return;
+    }
+    if (RegisterForm.name === undefined || RegisterForm.name === null || RegisterForm.name.length === 0) {
+        $toast.error("Please Insert valid Name", {position: 'top'});
+        loading.value = false
+        return;
+    }
+    if (RegisterForm.email === undefined || RegisterForm.email === null || RegisterForm.email.length === 0) {
+        $toast.error("Please Insert valid Email", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    if (RegisterForm.phone === undefined || RegisterForm.phone === null || RegisterForm.phone.length === 0) {
+        $toast.error("Please Insert valid Phone number", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    if (RegisterForm.mobile_code === undefined || RegisterForm.mobile_code === null || RegisterForm.mobile_code.length === 0) {
+        $toast.error("Please Insert valid Phone number", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    if (RegisterForm.country === undefined || RegisterForm.country === null || RegisterForm.country.length === 0) {
+        $toast.error("Please Insert Select Country", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    if (RegisterForm.password === undefined || RegisterForm.password === null || RegisterForm.password.length === 0) {
+        $toast.error("Please Insert valid Password", {position: 'top'});
+        loading.value = false
+
+        return;
+    }
+    try {
+        RegisterForm.name = RegisterForm.gender + ' ' + RegisterForm.name
+        const response = await axios.post('/post/user/data', RegisterForm.data())
+        if (response.data.status) {
+            $toast.success('You Have Successfully Registered', {position: 'top'})
+            setTimeout(function () {
+                window.location.reload()
+            }, 1000)
+        }
+    } catch ($error) {
+        loading.value = false
+        $toast.error($error.response.data.message, {position: 'top'})
+    }
+}
+
 onMounted(() => {
     getUser()
 })
@@ -152,158 +464,117 @@ onMounted(() => {
 
 </script>
 <style>
+.card {
+    margin-bottom: 30px;
+}
+
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.mt-n5 {
+    margin-top: -3rem !important;
+}
+
+.linear-gradient {
+    background-image: linear-gradient(#50b2fc, #f44c66);
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.rounded-2 {
+    border-radius: 7px !important;
+}
+
+.bg-light-info {
+    --bs-bg-opacity: 1;
+    background-color: rgba(235, 243, 254, 1) !important;
+}
 
 .card {
-    border: 0;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,20,.08), 0 1px 2px rgba(0,0,20,.08);
-}
-.rounded-bottom {
-    border-bottom-left-radius: 0.375rem !important;
-    border-bottom-right-radius: 0.375rem !important;
+    margin-bottom: 30px;
 }
 
-.avatar-xxl {
-    height: 7.5rem;
-    width: 7.5rem;
-}
-.nav-lt-tab {
-    border-top: 1px solid var(--dashui-border-color);
-}
-.px-4 {
-    padding-left: 1rem!important;
-    padding-right: 1rem!important;
+.position-relative {
+    position: relative !important;
 }
 
-.avatar-sm {
-    height: 2rem;
-    width: 2rem;
-}
-
-.nav-lt-tab .nav-item {
-    margin: -0.0625rem 1rem 0;
-}
-.nav-lt-tab .nav-item .nav-link {
-    border-radius: 0;
-    border-top: 2px solid transparent;
-    color: var(--dashui-gray-600);
-    font-weight: 500;
-    padding: 1rem 0;
-}
-
-.pt-20 {
-    padding-top: 8rem!important;
-}
-
-.avatar-xxl.avatar-indicators:before {
-    bottom: 5px;
-    height: 16%;
-    right: 17%;
-    width: 16%;
-}
-.avatar-online:before {
-    background-color: #198754;
-}
-.avatar-indicators:before {
-    border: 2px solid #FFF;
-    border-radius: 50%;
-    bottom: 0;
-    content: "";
-    display: table;
-    height: 30%;
-    position: absolute;
-    right: 5%;
-    width: 30%;
-}
-
-.avatar-xxl {
-    height: 7.5rem;
-    width: 7.5rem;
-}
-.mt-n10 {
-    margin-top: -3rem!important;
-}
-.me-2 {
-    margin-right: 0.5rem!important;
-}
-.align-items-end {
-    align-items: flex-end!important;
-}
-.rounded-circle {
-    border-radius: 50%!important;
-}
-.border-2 {
-    --dashui-border-width: 2px;
-}
-.border {
-    border: 1px solid #dcdcdc !important;
-}
-
-.py-6 {
-    padding-bottom: 1.5rem!important;
-    padding-top: 1.5rem!important;
-}
-
-.bg-gray-300 {
-    --dashui-bg-opacity: 1;
-    background-color: #cbd5e1!important;
-}
-
-.mb-6 {
-    margin-bottom: 1.5rem!important;
-}
-.align-items-center {
-    align-items: center!important;
-}
-
-
-.mb-4 {
-    margin-bottom: 1rem!important;
-}
-
-.mb-8 {
-    margin-bottom: 2rem!important;
-}
 .shadow-none {
-    box-shadow: none!important;
+    box-shadow: none !important;
 }
 
-.card>.list-group:last-child {
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    border-bottom-width: 0;
-}
-.card>.list-group:first-child {
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    border-top-width: 0;
-}
-.card>.list-group {
-    border-bottom: inherit;
-    border-top: inherit;
+.overflow-hidden {
+    overflow: hidden !important;
 }
 
-.avatar-xl {
-    height: 5rem;
-    width: 5rem;
-}
-.avatar {
-    display: inline-block;
-    height: 3rem;
-    position: relative;
-    width: 3rem;
-}
-.mt-n7 {
-    margin-top: -1.75rem!important;
-}
-.ms-4 {
-    margin-left: 1rem!important;
+.border {
+    border: 1px solid #ebf1f6 !important;
 }
 
-.avatar img {
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    width: 100%;
+.fs-6 {
+    font-size: 1.25rem !important;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+.user-profile-tab .nav-item .nav-link.active {
+    color: #5d87ff;
+    border-bottom: 2px solid #5d87ff;
+}
+
+.mb-9 {
+    margin-bottom: 20px !important;
+}
+
+.fw-semibold {
+    font-weight: 600 !important;
+}
+
+.fs-4 {
+    font-size: 1rem !important;
+}
+
+.card, .bg-light {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+
+.fs-2 {
+    font-size: .75rem !important;
+}
+
+.rounded-4 {
+    border-radius: 4px !important;
+}
+
+.ms-7 {
+    margin-left: 30px !important;
 }
 </style>
