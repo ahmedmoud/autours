@@ -55,4 +55,8 @@ class Vehicle extends Model
     {
         $this->rental_terms =  SupplierRentalTerm::query()->where('supplier_id', $this->supplier)->join('rental_terms','rental_terms.id', '=','supplier_rental_terms.rental_term_id')->select(['title','description'])->get();
     }
+    public function specifications()
+    {
+        return $this->hasMany(VehicleSpecification::class, 'vehicle_id','id');
+    }
 }

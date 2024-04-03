@@ -84,16 +84,16 @@ class VehicleController extends Controller
                 $query->where('category', $request->category);
             }
             if ($request->supplier) {
-                $query->where('supplier', $request->supplier);
-            }
-            if ($request->specification) {
-                $specifications = explode(',', $request->specification);
 
+                $query->whereIn('supplier', $request->supplier);
+            }
+
+            if ($request->specifications) {
+                $specifications = $request->specifications;
                 foreach ($specifications as $specification) {
-                    if ($specification) {
-                        $query->whereJsonContains('specifications', [
-                            ['option' => $specification]
-                        ]);
+                    if ($specification && isset($specification['option']) && is_array($specification['option']) && count($specification['option']) > 0) {
+                        $query->whereRelation('specifications', 'name', $specification['name'])
+                            ->whereRelation('specifications', 'value', $specification['option']);
                     }
                 }
             }
@@ -113,7 +113,14 @@ class VehicleController extends Controller
             $suppliers = User::query()->whereIn('id', $branches->pluck('company_id'))->get();
 
             $vehicles = $query->where('activation', true)->has('profit')->get();
-
+            foreach ($suppliers as $supplier) {
+                $supplier->vehicle_count = 0;
+                foreach ($vehicles as $vehicle) {
+                    if ($vehicle->supplier == $supplier->id) {
+                        $supplier->vehicle_count++;
+                    }
+                }
+            }
             $startDate = Carbon::parse($dateFrom);
             $endDate = Carbon::parse($dateTo);
 
@@ -396,6 +403,30 @@ class VehicleController extends Controller
     {
 
         return response()->json(Specification::all());
+
+    }
+
+    public function getFilteredSpecifications(Request $request)
+    {
+        $specifications = Specification::query()->get();
+
+        if ($request->has('vehicle_ids')) {
+            foreach ($specifications as $specification) {
+                $arrayX = [];
+                foreach ($specification->options as $option) {
+                    $x = new \stdClass();
+                    $x->value = $option;
+                    $x->vehicle_count = VehicleSpecification::query()
+                        ->where('name', $specification->name)
+                        ->where('value', $option)
+                        ->whereIn('vehicle_id', $request->vehicle_ids)
+                        ->count();
+                    $arrayX[] =  $x;
+                }
+                $specification->options = $arrayX;
+            }
+        }
+        return response()->json($specifications);
 
     }
 

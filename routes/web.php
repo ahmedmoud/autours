@@ -55,6 +55,7 @@ Route::inertia('suppliers', 'Dashboard/Suppliers');
 
 Route::get('get/categories', [VehicleController::class, 'getCategories']);
 Route::get('get/specifications', [VehicleController::class, 'getSpecifications']);
+Route::post('get/filtered/specifications', [VehicleController::class, 'getFilteredSpecifications']);
 
 Route::get('results',  [VehicleController::class, 'index'])->name('results');
 

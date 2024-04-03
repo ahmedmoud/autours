@@ -167,14 +167,26 @@
                                     <h4 style="margin-bottom: -30px">Vehicle Suppliers</h4>
                                     <hr/>
                                     <div style="margin-top: -30px">
-                                        <div class="row" v-for="supplier in filteredSuppliers">
-                                            <strong style="color: #d7c134;" class="col-md-10 mt-2">{{supplier.company }}&nbsp;(1)</strong>
-                                            <el-checkbox
-                                                class="col-md-1"
+                                        <div class="countries">
+                                            <el-select
+                                                v-model="supplier"
                                                 size="large"
-                                                :model="supplier"
-                                                @click="selectSupplier(supplier.id)"
-                                            />
+                                                filterable
+                                                remote
+                                                multiple
+                                                reserve-keyword
+                                                placeholder="Supplier filter..."
+                                                remote-show-suffix
+                                                @change="selectSupplier"
+                                            >
+                                                <el-option
+                                                    v-for="supplier in filteredSuppliers"
+                                                    :key="supplier.company"
+                                                    :label="supplier.company + ' (' + supplier?.vehicle_count + ')' "
+                                                    :value="supplier.id"
+                                                />
+
+                                            </el-select>
                                         </div>
                                     </div>
                                 </div>
@@ -185,14 +197,30 @@
                                         <h4 style="margin-bottom: -30px">{{ item.name }}</h4>
                                         <hr/>
                                         <div style="margin-top: -30px">
-                                            <div class="row" v-for="option in item.options">
-                                                <strong class="col-md-10 mt-2">{{ option }} {{ item.name }}</strong>
-                                                <el-checkbox
-                                                    class="col-md-1 "
-                                                    size="large"
-                                                    :model="specification[i]"
-                                                    @click="selectSpecification(item, option)"/>
+                                            <div style="margin-top: -30px">
+                                                <div class="countries">
+                                                    <el-select
+                                                        v-model="specification[i]"
+                                                        size="large"
+                                                        filterable
+                                                        remote
+                                                        multiple
+                                                        reserve-keyword
+                                                        placeholder="Supplier filter..."
+                                                        remote-show-suffix
+                                                        @change="selectSpecification(item, i)"
+                                                    >
+                                                        <el-option
+                                                            v-for="option in item.options"
+                                                            :key="option.value"
+                                                            :label="option.value + ' (' + option.vehicle_count + ')'"
+                                                            :value="option.value"
+                                                        />
+
+                                                    </el-select>
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -459,7 +487,7 @@ const remoteLocations = (query) => {
     }
 };
 const getSpecifications = async () => {
-    const response = await axios.get('get/specifications')
+    const response = await axios.post('get/filtered/specifications', {vehicle_ids: filteredVehicles.value.map(a => a.id)})
     filteredSpecifications.value = response.data
 }
 const search = () => {
@@ -477,13 +505,23 @@ const SelectCategory = (category_id) => {
     form.category = category_id
     getVehicles()
 }
-const selectSupplier = (supplier_id) => {
-    form.supplier = supplier_id
+const selectSupplier = () => {
+    form.supplier= supplier.value
     getVehicles()
 }
 
-const selectSpecification = (item, option) => {
-    form.specifications.push({name: item.name, option: option})
+const selectSpecification = (item, index) => {
+    console.log(specification.value[index])
+    let found = 0;
+        for(let i=0; i<form.specifications.length; i++) {
+            if(form.specifications[i].name === item.name) {
+                found = 1
+                form.specifications[i].option = specification.value[index]
+            }
+        }
+        if (found === 0) {
+            form.specifications.push({name: item.name, option: specification.value[index]})
+        }
     getVehicles()
 }
 const getVehicles = async () => {
@@ -522,9 +560,9 @@ const getVehicles = async () => {
                 }
             }
         });
-
+        getSpecifications()
         // filteredSpecifications.value = Array.from(specificationMap.values());
-        specification.value = [];
+        // specification.value = [];
     } catch (error) {
         console.error(error);
     } finally {
@@ -618,7 +656,6 @@ const setParams = async () => {
 
 onMounted(() => {
     setParams();
-    getSpecifications();
 })
 </script>
 
