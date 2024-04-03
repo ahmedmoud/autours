@@ -164,9 +164,11 @@
                                 </div>
 
                                 <div class="col-md-12 my-5" style="background: #fff;">
-                                    <h4 style="margin-bottom: -30px">Vehicle Suppliers</h4>
+                                    <div class="row" @click="collapse('ms')">
+                                        <h4 class="col-md-10" style="margin-bottom: -30px">
+                                        Vehicle Suppliers</h4> <i :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-ms' "/> </div>
                                     <hr/>
-                                        <div style="margin-top: -30px">
+                                        <div style="margin-top: -30px" id="ms">
                                             <div class="row" v-for="supplier in filteredSuppliers">
                                                 <strong style="color: #d7c134;" class="col-md-10 mt-2">{{supplier.company + ' (' + supplier?.vehicle_count + ')' }}&nbsp;</strong>
                                                 <el-checkbox
