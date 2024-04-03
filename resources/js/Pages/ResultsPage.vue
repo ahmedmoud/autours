@@ -181,12 +181,19 @@
 
 
                                 <div v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
-                                    <div class="col-md-12 my-5">
-                                        <h4 style="margin-bottom: -30px">{{ item.name }}</h4>
+                                    <div class="col-md-12 my-5" >
+                                       <div @click="collapse(item.id)"  class="row"> <h4 class="col-md-10" style="margin-bottom: -30px">{{ item.name }}</h4>
+                                           <i :class="'col-md-2 fa fa-arrow-down cursor-pointer ' +  'pointer-arrow-' + item.id"/></div>
                                         <hr/>
-                                        <div style="margin-top: -30px">
-                                         
-
+                                        <div style="margin-top: -30px" :id="item.id">
+                                            <div class="row" v-for="option in item.options">
+                                                <strong class="col-md-10 mt-2">{{ option.value +  ` ${item.name.split(" ")[item.name.split(" ").length -1 ] } (${option.vehicle_count})` }} </strong>
+                                                <el-checkbox
+                                                    class="col-md-1 "
+                                                    size="large"
+                                                    :model="specification[i]"
+                                                    @click="selectSpecification(item, option)"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -454,6 +461,18 @@ const remoteLocations = (query) => {
         locations.options.value = [];
     }
 };
+const collapse = (menu) => {
+    if($("#" + menu ).css('display') === 'block') {
+        $('.pointer-arrow-'+menu).removeClass('fa-arrow-down')
+        $('.pointer-arrow-'+menu).addClass('fa-arrow-right')
+    } else if($("#" + menu ).css('display') === 'none'){
+        $('.pointer-arrow-'+menu).removeClass('fa-arrow-right')
+        $('.pointer-arrow-'+menu).addClass('fa-arrow-down')
+    }
+
+    $("#" + menu ).toggle('slide')
+
+}
 const getSpecifications = async () => {
 
     console.log(filteredVehicles.value)
