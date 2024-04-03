@@ -166,28 +166,16 @@
                                 <div class="col-md-12 my-5" style="background: #fff;">
                                     <h4 style="margin-bottom: -30px">Vehicle Suppliers</h4>
                                     <hr/>
-                                    <div style="margin-top: -30px">
-                                        <div class="countries">
-                                            <el-select
-                                                v-model="supplier"
-                                                size="large"
-                                                filterable
-                                                remote
-                                                multiple
-                                                reserve-keyword
-                                                placeholder="Supplier filter..."
-                                                remote-show-suffix
-                                                @change="selectSupplier"
-                                            >
-                                                <el-option
-                                                    v-for="supplier in filteredSuppliers"
-                                                    :key="supplier.company"
-                                                    :label="supplier.company + ' (' + supplier?.vehicle_count + ')' "
-                                                    :value="supplier.id"
+                                        <div style="margin-top: -30px">
+                                            <div class="row" v-for="supplier in filteredSuppliers">
+                                                <strong style="color: #d7c134;" class="col-md-10 mt-2">{{supplier.company + ' (' + supplier?.vehicle_count + ')' }}&nbsp;</strong>
+                                                <el-checkbox
+                                                    class="col-md-1"
+                                                    size="large"
+                                                    :model="supplier"
+                                                    @click="selectSupplier(supplier.id)"
                                                 />
-
-                                            </el-select>
-                                        </div>
+                                            </div>
                                     </div>
                                 </div>
 
@@ -197,29 +185,7 @@
                                         <h4 style="margin-bottom: -30px">{{ item.name }}</h4>
                                         <hr/>
                                         <div style="margin-top: -30px">
-                                            <div style="margin-top: -30px">
-                                                <div class="countries">
-                                                    <el-select
-                                                        v-model="specification[i]"
-                                                        size="large"
-                                                        filterable
-                                                        remote
-                                                        multiple
-                                                        reserve-keyword
-                                                        placeholder="Supplier filter..."
-                                                        remote-show-suffix
-                                                        @change="selectSpecification(item, i)"
-                                                    >
-                                                        <el-option
-                                                            v-for="option in item.options"
-                                                            :key="option.value"
-                                                            :label="option.value + ' (' + option.vehicle_count + ')'"
-                                                            :value="option.value"
-                                                        />
-
-                                                    </el-select>
-                                                </div>
-                                            </div>
+                                         
 
                                         </div>
                                     </div>
