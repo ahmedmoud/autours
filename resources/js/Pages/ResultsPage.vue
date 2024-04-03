@@ -406,7 +406,7 @@ let vehicleIds = [];
 
 const loading = ref(false);
 const category = ref("");
-const supplier = ref("");
+const supplier = ref([]);
 const filteredVehicles = ref("");
 const filteredCategories = ref("");
 const filteredSuppliers = ref("");
@@ -497,21 +497,26 @@ const SelectCategory = (category_id) => {
     form.category = category_id
     getVehicles()
 }
-const selectSupplier = () => {
-    form.supplier= supplier.value
+const selectSupplier = (supplier_id) => {
+    if(supplier.value.indexOf(supplier_id) >= 0) {
+        supplier.value.splice(supplier.value.indexOf(supplier_id), 1);
+    } else {
+        supplier.value.push(supplier_id);
+    }
+    form.supplier = supplier.value
     getVehicles()
 }
 
-const selectSpecification = (item, index) => {
+const selectSpecification = (item, option) => {
     let found = 0;
         for(let i=0; i<form.specifications.length; i++) {
             if(form.specifications[i].name === item.name) {
                 found = 1
-                form.specifications[i].option = specification.value[index]
+                form.specifications[i].option = option
             }
         }
         if (found === 0) {
-            form.specifications.push({name: item.name, option: specification.value[index]})
+            form.specifications.push({name: item.name, option: option})
         }
     getVehicles()
 }
