@@ -429,6 +429,8 @@ const locations = {
     options: ref([]),
     loading: ref(false),
 };
+let vehicleIds = [];
+
 const loading = ref(false);
 const category = ref("");
 const supplier = ref("");
@@ -487,7 +489,12 @@ const remoteLocations = (query) => {
     }
 };
 const getSpecifications = async () => {
-    const response = await axios.post('get/filtered/specifications', {vehicle_ids: filteredVehicles.value.map(a => a.id)})
+
+    console.log(filteredVehicles.value)
+    if (vehicleIds.length <= 0) {
+        vehicleIds =  filteredVehicles.value.map(a => a.id)
+    }
+    const response = await axios.post('get/filtered/specifications', {vehicle_ids: vehicleIds})
     filteredSpecifications.value = response.data
 }
 const search = () => {
@@ -511,7 +518,6 @@ const selectSupplier = () => {
 }
 
 const selectSpecification = (item, index) => {
-    console.log(specification.value[index])
     let found = 0;
         for(let i=0; i<form.specifications.length; i++) {
             if(form.specifications[i].name === item.name) {
@@ -534,7 +540,10 @@ const getVehicles = async () => {
         form.date_from = response.data.date_from
         form.date_to = response.data.date_to
         filteredCategories.value = response.data.filteredCategories;
-        filteredSuppliers.value = response.data.filteredSuppliers;
+        if(filteredSuppliers.value.length <= 0)
+        {
+            filteredSuppliers.value = response.data.filteredSuppliers;
+        }
         count.value = response.data.count;
 
         max.value = response.data.max;
@@ -560,6 +569,8 @@ const getVehicles = async () => {
                 }
             }
         });
+
+
         getSpecifications()
         // filteredSpecifications.value = Array.from(specificationMap.values());
         // specification.value = [];
@@ -607,7 +618,6 @@ const openRentalTerms = (vehicle) => {
 }
 
 const priceFiltered = computed(() => {
-    console.log(filteredVehicles.value)
     if (filteredVehicles.value != []) {
         if (priceRange.value && priceRange.value > min.value) {
             return filteredVehicles.value.filter((vehicle) => {
@@ -651,7 +661,7 @@ const setParams = async () => {
         category.value = await urlParams.get('category')
     }
 
-    getVehicles();
+   await getVehicles();
 }
 
 onMounted(() => {
