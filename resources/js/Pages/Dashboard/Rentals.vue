@@ -11,20 +11,12 @@
                     </el-table-column>
                     <el-table-column label="Name" prop="vehicle.name"/>
                     <el-table-column label="Pickup" prop="vehicle.pickup_loc"/>
-                    <el-table-column label="Total Price" prop="price"/>
-                    <el-table-column label="Supplier name" prop="vehicle.supplier.name"/>
+                    <el-table-column label="Total Price" prop="supplier_price"/>
                     <el-table-column label="Rental Status" prop="status.name_en"/>
                     <el-table-column label="Start Date" prop="start_date"/>
                     <el-table-column label="End Date" prop="end_date"/>
-                    <el-table-column label="Status">
-                        <template #default="scope">
-                            {{
-                                scope.row.order_status === 0 ? 'Pending' : (scope.row.order_status === 1 ? 'Active' : 'Not Active')
-                            }}
-                        </template>
-                    </el-table-column>
+                    <el-table-column label="Status" prop="status.name_en"/>
                     <el-table-column align="right">
-
                         <template #header>
                             <el-input v-model="search" size="small" placeholder="Type to search"/>
                         </template>
@@ -65,7 +57,7 @@ const role = ref('')
 
 const getRole = async () => {
     try {
-        const response = await axios.get('get/user/role');
+        const response = await axios.get('/get/user/role');
         role.value = response.data;
     } catch (error) {
         console.error(error);
@@ -115,8 +107,9 @@ const handleDelete = async (index, row) => {
 }
 
 onMounted(() => {
-        getRole(),
-            getData()
+        getRole()
+        getData()
+        fetchCountries()
     }
 )
 </script>

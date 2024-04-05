@@ -38,13 +38,13 @@
                 </div>
             </div>
 
-            <section id="section-cars">
+            <div id="section-cars">
                 <div class="col-md-12  steps-buttons mb-5 position-relative" style="left: 15%;">
-                    <button class="mr-2 mt-2 btn steps-button "
+                    <button class="mr-1 mt-2 btn steps-button "
                             style="width:420px; background: #f9d602; color: #000;"><span
-                        class="ti ti-circle-number-1 mr-2"/>Choose Your Location
+                        class="ti ti-circle-number-1 mr-1"/>Choose Your Location
                     </button>
-                    <button class="mr-2 btn mt-2 steps-button active"
+                    <button class="mr-1 btn mt-2 steps-button active"
                             style="width:420px; background: rgb(155,147,84);color: #000;"><span
                         class="ti ti-circle-number-2 mr-2"/>Choose Your Car
                     </button>
@@ -170,7 +170,7 @@
                                     <hr/>
                                         <div style="margin-top: -30px" id="ms">
                                             <div class="row" v-for="supplier in filteredSuppliers">
-                                                <strong style="color: #d7c134;" class="col-md-10 mt-2">{{supplier.company + ' (' + supplier?.vehicle_count + ')' }}&nbsp;</strong>
+                                                <strong class="col-md-10 mt-2">{{supplier.company + ' (' + supplier?.vehicle_count + ')' }}&nbsp;</strong>
                                                 <el-checkbox
                                                     class="col-md-1"
                                                     size="large"
@@ -189,7 +189,7 @@
                                         <hr/>
                                         <div style="margin-top: -30px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
-                                                <strong class="col-md-10 mt-2">{{ option.value +  ` ${item.name.split(" ")[item.name.split(" ").length -1 ] } (${option.vehicle_count})` }} </strong>
+                                                <strong class="col-md-10 mt-2">{{ option.value +  ` ${item.name.split(" ")[item.name.split(" ").length -1 ] == 'Transmission' ?  '' : item.name.split(" ")[item.name.split(" ").length -1 ]} (${option.vehicle_count})` }} </strong>
                                                 <el-checkbox
                                                     class="col-md-1 "
                                                     size="large"
@@ -366,7 +366,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 

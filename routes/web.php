@@ -42,6 +42,7 @@ Route::get('/v2', function () {
 Route::get('/vehicles/book', function () {
     return Inertia::render('VehiclePage');
 });
+Route::get('get/suppliers', [UserController::class, 'suppliers']);
 
 Route::post('/get/vehicle/data', [VehicleController::class, 'getVehicle']);
 Route::get('/get/countries', [CountryController::class, 'index']);
@@ -85,7 +86,6 @@ Route::post('/search/vehicles', [VehicleController::class, 'search']);
 
 Route::get('/get/locations', [VehicleController::class, 'getLocations']);
 
-Route::inertia('rentals', 'Dashboard/Rentals');
 Route::get('/get/rentals', [BookingsController::class, 'getRentals']);
 
 Route::get('get/photos', [VehicleController::class, 'getPhotos']);
@@ -94,8 +94,14 @@ Route::get('get/currencies', [CurrencyController::class, 'index']);
 Route::get('get/included', [IncludedController::class, 'index']);
 
 // Authorized only
+Route::middleware(['admin_or_supplier'])->group(function () {
 
+    Route::inertia('rentals/admin', 'Dashboard/AdminRentals');
+    Route::inertia('rentals/supplier', 'Dashboard/Rentals');
+});
 Route::middleware(['admin'])->group(function () {
+    Route::get('/get/rentals/admin', [BookingsController::class, 'getAdminRentals']);
+    Route::get('/get/supplier/invoice', [BookingsController::class, 'getSupplierInvoices']);
 
     Route::inertia('margin', 'Dashboard/ProfitMargin');
 
@@ -122,7 +128,6 @@ Route::middleware(['admin'])->group(function () {
 
     Route::inertia('memberships', 'Dashboard/Memberships');
     Route::get('get/requests', [UserController::class, 'memberships']);
-    Route::get('get/suppliers', [UserController::class, 'suppliers']);
     Route::post('accept/requests', [UserController::class, 'acceptMemberships']);
     Route::post('delete/requests', [UserController::class, 'deleteMemberships']);
     Route::post('profit/upload', [ProfitsController::class, 'upload']);
@@ -163,18 +168,18 @@ Route::middleware(['customer'])->group(function () {
         Route::inertia('/my-bookings','MyBookings' );
         Route::post('/cancel/booking',[BookingsController::class, 'cancelBooking'] );
 });
-$user = User::query()->find(3);
-$rental = Rental::query()->find(11);
-$rental->vehicle = $rental->vehicle;
-$rental->branch = Branch::query()->where('id', $rental->vehicle->pickup_loc)->first();
-$rental->supplier = User::query()->where('id', $rental->vehicle->supplier)->first();
-$rental->customer = User::query()->where('id', $rental->customer_id)->first();
-$rental->request = new \stdClass();
-$rental->request->rental_id =  11;
-$rental->request->api_key = env('api-key');
-$rental->request->timestamp = Carbon::now()->toDateTime();
-
-
-Route::view('/email', 'email.booking.request.supplier',['body' =>  $rental]);
+//$user = User::query()->find(3);
+//$rental = Rental::query()->find(11);
+//$rental->vehicle = $rental->vehicle;
+//$rental->branch = Branch::query()->where('id', $rental->vehicle->pickup_loc)->first();
+//$rental->supplier = User::query()->where('id', $rental->vehicle->supplier)->first();
+//$rental->customer = User::query()->where('id', $rental->customer_id)->first();
+//$rental->request = new \stdClass();
+//$rental->request->rental_id =  11;
+//$rental->request->api_key = env('api-key');
+//$rental->request->timestamp = Carbon::now()->toDateTime();
+//
+//
+//Route::view('/email', 'email.booking.request.supplier',['body' =>  $rental]);
 Route::get('/booking/update-status', [BookingsController::class, 'updateBookingStatus']);
 

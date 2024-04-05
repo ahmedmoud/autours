@@ -110,8 +110,13 @@
                         </li> -->
                     </div>
 
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link" href="/rentals">
+                    <li class="sidebar-item " v-if="admin">
+                        <a class="sidebar-link" href="/rentals/admin">
+                            <i class="ti ti-receipt" aria-hidden="true"></i>
+                            <span>Rentals</span></a>
+                    </li>
+                    <li class="sidebar-item " v-if="activeSupplier">
+                        <a class="sidebar-link" href="/rentals/supplier">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
                             <span>Rentals</span></a>
                     </li>

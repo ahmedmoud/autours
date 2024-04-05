@@ -9,6 +9,7 @@ use App\Events\NewRental;
 use App\Events\NewRentalRequest;
 use App\Http\Requests\BookCarRequest;
 use App\Http\Requests\CancelBookingRequest;
+use App\Models\CurrencyRate;
 use App\Services\VehicleService;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -89,6 +90,18 @@ class BookingsController extends Controller
         }
     }
 
+    public function getAdminRentals(Request $request)
+    {
+
+        $rentals = Rental::query();
+        if($request->has('supplier_id') && $request->supplier_id) {
+            $rentals->where('supplier_id', $request->supplier_id);
+        }
+        $data = $rentals->with('vehicle.supplier', 'vehicle.branch', 'status', 'customer')->orderBy('id', 'desc')->get();
+
+        return response()->json($data);
+    }
+
     public function getRentals()
     {
         $user = auth()->user();
@@ -126,10 +139,13 @@ class BookingsController extends Controller
             $vehicle = Vehicle::query()->find($request->id);
             $item = new Rental();
             $item->customer_id = auth()->user()->id;
+            $item->supplier_id = $vehicleWithPrice->supplier;
             $item->order_status = $vehicle->instant_confirmation >= 1 ? RentalStatuses::CONFIRMED : RentalStatuses::PENDING;
             $item->order_number = '#ATRS-' . Rental::query()->count();
             $item->vehicle_id = $request->id;
             $item->price = $vehicleWithPrice->final_price;
+            $item->profit_margin = $vehicleWithPrice->rate;
+            $item->supplier_price = $vehicleWithPrice->supplier_price;
             $item->start_date = Carbon::parse($request->date_from);
             $item->end_date = Carbon::parse($request->date_to);
             $item->start_time = Carbon::parse($request->time_from);
@@ -166,14 +182,38 @@ class BookingsController extends Controller
         $rental_request = json_decode(base64_decode($request->get("request")));
 
         $rental = Rental::query()->find($rental_request->rental_id);
-        $rental->order_status= $request->status;
+        $rental->order_status = $request->status;
         $rental->save();
-        if($request->status == RentalStatuses::CONFIRMED) {
+        if ($request->status == RentalStatuses::CONFIRMED) {
             event(new NewRental($rental->id));
         }
-        if($request->status == RentalStatuses::REJECTED) {
+        if ($request->status == RentalStatuses::REJECTED) {
             event(new CancelRental($rental->id));
         }
         return "rental updated";
+    }
+
+    public function getSupplierInvoices(Request $request)
+    {
+        $request->company_id;
+        $rentals = Rental::query()
+            ->where('supplier_id', $request->company_id)
+            ->where('order_status', RentalStatuses::CONFIRMED)
+            ->orderBy('id', 'desc')
+            ->get();
+        $totalPriceUSD = 0;
+
+        foreach ($rentals as $rental) {
+            $rate = CurrencyRate::query()
+                ->where('currency_from', $rental->currency)
+                ->where('currency_to', 'USD')
+                ->first();
+            $totalPriceUSD += ($rental->supplier_price * $rate->rate);
+        }
+        $invoice = new \stdClass();
+        $invoice->total_price = round($totalPriceUSD, 2);
+        $invoice->currency = 'USD';
+        $invoice->count_rentals = $rentals->count();
+        return response()->json(['data' => $invoice]);
     }
 }

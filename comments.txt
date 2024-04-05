@@ -14,12 +14,11 @@
 * Arrange categories. Done
 * add my profile to customer.Done
 * filter in dropdown menu should be reflected in the below vehicle list.Done
+* add cars number beside supplier name in filters.(Done)
+* Add dropdown menu instead of checkboxes.(Done)
 
 * ⁠suggest some rental terms from supplier side.
 * cancellation policy to be included in vehicle page.
-
-* add cars number beside supplier name in filters.
-* Add dropdown menu instead of checkboxes.
 * send emails after: 
 	* ⁠approval and register supplier.
 	* ⁠when supplier create vehicle.

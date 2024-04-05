@@ -573,26 +573,6 @@ class VehicleController extends Controller
     }
 
 
-    public function acceptRentals(Request $request)
-    {
-        Rental::where('id', $request->id)->update(['order_status' => '1']);
-        return $this->getRentals();
-    }
-
-    public function deleteRentals(Request $request)
-    {
-        $rental = Rental::find($request->id);
-
-        if ($rental) {
-            if ($rental->order_status === 0) {
-                $rental->delete();
-            } else {
-                $rental->update(['order_status' => '0']);
-            }
-        }
-
-        return $this->getRentals();
-    }
 
     public function createPhotos(Request $request)
     {

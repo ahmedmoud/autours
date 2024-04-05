@@ -11,8 +11,8 @@
                     <img src="../../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
                 </CDropdownToggle>
                 <CDropdownMenu>
-                    <CDropdownItem href="company">My profile</CDropdownItem>
-                    <CDropdownItem href="logout">Log out</CDropdownItem>
+                    <CDropdownItem href="/company">My profile</CDropdownItem>
+                    <CDropdownItem href="/logout">Log out</CDropdownItem>
                 </CDropdownMenu>
             </CDropdown>
 
