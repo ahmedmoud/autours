@@ -352,7 +352,20 @@
 </template>
 
 <script setup>
-
+import {onMounted, ref} from 'vue'
+const user = ref('');
+const getUser = async () => {
+    try {
+        const response = await axios.get('/get/user/data');
+        user.value = response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+onMounted(() => {
+getUser()
+    }
+)
 $(function () {
 
 

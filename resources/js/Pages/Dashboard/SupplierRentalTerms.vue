@@ -2,7 +2,10 @@
     <div class="card">
         <div class="card-body">
             <h2 class="mb-4">Rental Terms</h2>
+            <button class="btn btn-primary col-md-2 my-5" @click="suggestModal()">Suggest Rental Term</button>
+
             <div class="card">
+
                 <div class=" d-flex">
                     <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
                         <el-table-column width="100" label="Select">
@@ -28,6 +31,26 @@
                         </el-table-column>
                     </el-table>
                 </div>
+                <el-dialog  v-model="suggestTerm" >
+
+                            <form @submit.prevent="saveSuggestion" class="mt-5">
+                                <div class="row" style="height: 300px;">
+                                    <div class="formbold-mb-3 col-6">
+                                        <label class="formbold-form-label"> Title </label>
+                                        <Editor v-model="form.title" type="text"   style="height: 200px;" required/>
+                                    </div>
+                                    <div class="formbold-mb-3 col-6 position-relative">
+                                        <label class="formbold-form-label"> Description </label>
+                                        <Editor v-model="form.description" type="text"  style="height: 200px;" required/>
+                                    </div>
+                                </div>
+                        <el-form-item class="mt-5">
+                            <el-button type="submit" @click="saveSuggestion">Add</el-button>
+                            <el-button @click="cancelSuggestion">Cancel</el-button>
+                        </el-form-item>
+                            </form>
+                </el-dialog>
+
             </div>
         </div>
     </div>
@@ -49,6 +72,7 @@ const inputValue = ref('')
 const dynamicTags = ref([])
 const inputVisible = ref(false)
 const InputRef = ref(false)
+const suggestTerm = ref(false)
 const $toast = useToast();
 const handleClose = (tag) => {
     dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
@@ -73,7 +97,13 @@ const selectTerm = async (item) => {
     }
 }
 
+const cancelSuggestion = async () => {
+    suggestTerm.value = false
+}
+const suggestModal = () => {
+    suggestTerm.value = true
 
+}
 
 const getData = async () => {
     try {
@@ -121,7 +151,7 @@ const form = useForm({
     description: ''
 });
 
-const postData = async () => {
+const saveSuggestion = async () => {
     try {
         const formData = new FormData();
         const options = dynamicTags.value;
@@ -136,14 +166,19 @@ const postData = async () => {
         }
         formData.append('title', form.title);
         formData.append('description', form.description);
+        formData.append('status', 1);
 
         const response = await axios.post('post/rental-terms', formData);
+        suggestTerm.value = false
+        console.log(response)
         if(response.data.status) {
             $toast.success('Rental Term added successfully', {position: 'top'})
             form.reset();
         }
         console.log(response.data.status);
     } catch (error) {
+        console.log(error);
+
         $toast.error(error.response.data.message, {position: 'top'});
     } finally {
         getData();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusCodes;
 use App\Http\Requests\AssignRentalTerm;
 use App\Http\Requests\CreateRentalTerms;
 use App\Models\RentalTerms;
@@ -31,17 +32,22 @@ class RentalTermsController extends Controller
 
     public function index()
     {
-        $terms = RentalTerms::query()->get();
-        if(\auth()->user()->role == 'active_supplier') {
-            $selected = SupplierRentalTerm::query()->where('supplier_id', \auth()->user()->id)->get()->pluck('rental_term_id')->toArray();
+        $terms = RentalTerms::query();
+        if (\auth()->user()->role == 'active_supplier') {
+            $terms = $terms->where('status', 2)->get();
+            $selected = SupplierRentalTerm::query()
+                ->where('supplier_id', \auth()->user()->id)
+                ->get()->pluck('rental_term_id')->toArray();
             foreach ($terms as $term) {
-                if(in_array($term->id, $selected )) {
+                if (in_array($term->id, $selected)) {
                     $term->selected = 1;
                 } else {
                     $term->selected = 0;
 
                 }
             }
+        } else {
+            $terms = $terms->get();
         }
         return $terms;
     }
@@ -49,11 +55,24 @@ class RentalTermsController extends Controller
 
     public function insert(CreateRentalTerms $request)
     {
-        $status =  RentalTerms::query()->insert($request->all());
-        return response()->json([
-            'status' => $status,
-            'data' => []
-        ]);
+        try {
+            $rental = new RentalTerms();
+            $rental->title = $request->title;
+            $rental->description = $request->description;
+            $rental->status = $request->status;
+            $rental->created_by = \auth()->user()->id;
+            $rental->save();
+
+            return response()->json([
+                'status' => true,
+                'data' => []
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ], StatusCodes::SERVER_ERROR);
+        }
     }
 
     public function show($id)
@@ -75,9 +94,10 @@ class RentalTermsController extends Controller
         ]);
     }
 
-    public function assignRentalTerms (AssignRentalTerm $request) {
+    public function assignRentalTerms(AssignRentalTerm $request)
+    {
         $checkIfSelected = SupplierRentalTerm::query()->where('supplier_id', auth()->user()->id)->where('rental_term_id', $request->term_id)->get();
-        if($checkIfSelected->count()) {
+        if ($checkIfSelected->count()) {
             $status = SupplierRentalTerm::query()->where('supplier_id', auth()->user()->id)->where('rental_term_id', $request->term_id)->delete();
         } else {
             $status = SupplierRentalTerm::query()->insert(['supplier_id' => auth()->user()->id, 'rental_term_id' => $request->term_id]);
@@ -86,5 +106,28 @@ class RentalTermsController extends Controller
             'status' => $status,
             'data' => []
         ]);
+    }
+
+    public function approveOrReject(Request $request)
+    {
+        try {
+            $term = RentalTerms::query()->find($request->id);
+            $term->update(['status'=> $request->status]);
+            if($term->created_by) {
+                SupplierRentalTerm::query()->insert([
+                    'supplier_id' => RentalTerms::query()->find($request->id)->created_by,
+                    'rental_term_id' => $request->id
+                ]);
+            }
+            return response()->json([
+                'status' => 1,
+                'message' => ''
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ], StatusCodes::SERVER_ERROR);
+        }
     }
 }

@@ -1,6 +1,7 @@
 <script setup>
-import {Link} from "@inertiajs/vue3";
+import {Link, router} from "@inertiajs/vue3";
 import {onMounted, ref} from "vue";
+import {CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle} from '@coreui/vue';
 
 const user = ref('')
 const getUser = async () => {
@@ -43,8 +44,13 @@ onMounted(() => {
 
                 <!--<Link v-else class="nav-link col-md-2 offset-8" style="color: #0a3622" href="/company"><span>My Profile</span></Link>-->
                 <div class="row" v-if="!user">
-                    <a class="nav-link col-12" href="/register"><span>Supplier&nbsp;Login</span></a>
-                    <a class="nav-link col-12" href="/register?user_type=supplier"><span>Supplier&nbsp;Signup</span></a>
+                    <CDropdown togglerText="Dropdown button" class="col-md-1 mt-1">
+                        <CDropdownToggle component="a" style="color: rgb(194,194,30);">Supplier</CDropdownToggle>
+                        <CDropdownMenu>
+                            <CDropdownItem class="cursor-pointer" @click="() => router.get('/register')">Supplier&nbsp;Login</CDropdownItem>
+                            <CDropdownItem class="cursor-pointer" @click="() => router.get('/register?user_type=supplier')">Supplier&nbsp;Signup</CDropdownItem>
+                        </CDropdownMenu>
+                    </CDropdown>
                 </div>
                 <div class="col-md-6 align-self-center text-center text-md-right my-2" id="social-media"></div>
             </div>

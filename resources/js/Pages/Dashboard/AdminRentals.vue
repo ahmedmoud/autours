@@ -123,8 +123,8 @@
             </table>
         </div>
         <div class="row ml-5 mt-5" v-if="invoices?.total_price > 0">
-            <a href="#" class=" col-2 text-white btn btn-success mr-5">Pay</a>
-            <a href="#" class="col-2 btn btn-danger text-white">Cancel</a>
+            <a @click="reconcile()" class=" col-2 text-white btn btn-success mr-5">Pay</a>
+            <a @click="cancel()" class="col-2 btn btn-danger text-white">Cancel</a>
         </div>
     </div>
 
@@ -132,6 +132,8 @@
 
 <script setup>
 import {onMounted, computed, ref} from 'vue'
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 const country = ref('')
 const supplier = ref('')
@@ -159,6 +161,7 @@ const tableData = ref([])
 const loading = ref(false)
 const role = ref('')
 const invoices = ref({})
+const $toast = useToast();
 const fetchCountries = async () => {
     countries.loading.value = true;
     try {
@@ -175,6 +178,28 @@ const fetchCountries = async () => {
         console.error(error)
     } finally {
         countries.loading.value = false;
+    }
+}
+
+const cancel = () =>{
+    supplier.value = '';
+    country.value  = ''
+    getData()
+}
+const reconcile = async () =>{
+    try {
+        suppliers.loading.value = true
+        if (country.value) {
+            const response = await axios.post(`/rentals/reconcile`, {'supplier_id': supplier.value})
+            if(response.data.status) {
+                $toast.success('Supplier Rentals Reconciled Successfully', {position: 'top'});
+                getData()
+            }
+        }
+    } catch (error) {
+        console.error(error)
+    } finally {
+        suppliers.loading.value = false
     }
 }
 const getSuppliers = async () => {

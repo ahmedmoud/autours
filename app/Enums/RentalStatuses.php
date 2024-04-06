@@ -10,4 +10,6 @@ const  CANCELED = 3;
 const  PENDING = 4;
 const  REJECTED = 5;
 const  PENDING_PAYMENT = 6;
+
+const RECONCILED = 7;
 }

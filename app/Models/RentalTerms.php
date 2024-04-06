@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class RentalTerms extends Model
 {
     public $timestamps = true;
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['status','title','description','created_by'];
 }

@@ -216,4 +216,22 @@ class BookingsController extends Controller
         $invoice->count_rentals = $rentals->count();
         return response()->json(['data' => $invoice]);
     }
+    public function reconcile(Request $request)
+    {
+        try {
+            Rental::query()
+                ->where('supplier_id', $request->supplier_id)
+                ->where('order_status', RentalStatuses::CONFIRMED)
+                ->update(['order_status' => RentalStatuses::RECONCILED]);
+            return response()->json([
+                "status" => true,
+                "data" => []
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "status" => false,
+                "message" => $e->getMessage()
+            ], StatusCodes::SERVER_ERROR);
+        }
+    }
 }

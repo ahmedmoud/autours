@@ -28,21 +28,27 @@
                             </template>
                         </el-table-column>
 
-                        <el-table-column label="Description">
+                        <el-table-column  label="Description">
                             <template #default="scope">
                                 <div v-html="scope.row.description"></div>
                             </template>
                         </el-table-column>
-                        <el-table-column align="right">
+                        <el-table-column label="Status">
+                            <template #default="scope">
+                                <div> {{scope.row.status == 2 ? 'Approved' : 'Pending'}}</div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column>
 
                             <template #header>
                                 <el-input v-model="search" size="small" placeholder="Type to search"/>
                             </template>
 
                             <template #default="scope">
-<!--                                <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>-->
+                                <button :class="'btn btn-success m-2'" v-if="scope.row.status == 1" size="small" @click="approveOrReject(2, scope.row.id)">Approve</button>
+                                <button :class="'btn btn-danger'" v-if="scope.row.status == 1" size="small" @click="approveOrReject(3, scope.row.id)">Reject</button>
 
-                                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                                <el-button v-if="scope.row.status == 2" size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
                             </template>
 
                         </el-table-column>
@@ -88,7 +94,20 @@ const handleInputConfirm = () => {
     inputVisible.value = false
     inputValue.value = ''
 }
-
+const approveOrReject = async (status, id) => {
+    try {
+        loading.value = true;
+        const response = await axios.post('update/rental-terms/status', {id: id, status:status});
+        if(response.data.status) {
+            $toast.success('Rental Term added successfully', {position: 'top'})
+            getData()
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        loading.value = false;
+    }
+}
 const getData = async () => {
     try {
         loading.value = true;

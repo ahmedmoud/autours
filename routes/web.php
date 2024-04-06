@@ -98,6 +98,8 @@ Route::middleware(['admin_or_supplier'])->group(function () {
 
     Route::inertia('rentals/admin', 'Dashboard/AdminRentals');
     Route::inertia('rentals/supplier', 'Dashboard/Rentals');
+    Route::post('post/rental-terms', [RentalTermsController::class, 'insert']);
+
 });
 Route::middleware(['admin'])->group(function () {
     Route::get('/get/rentals/admin', [BookingsController::class, 'getAdminRentals']);
@@ -112,6 +114,7 @@ Route::middleware(['admin'])->group(function () {
     Route::inertia('specifications', 'Dashboard/Specifications');
     Route::post('post/specifications', [VehicleController::class, 'createSpecifications']);
     Route::post('delete/specifications', [VehicleController::class, 'deleteSpecifications']);
+    Route::post('rentals/reconcile', [BookingsController::class, 'reconcile']);
 
 
     Route::inertia('included', 'Dashboard/Included');
@@ -119,10 +122,10 @@ Route::middleware(['admin'])->group(function () {
     Route::post('delete/included', [IncludedController::class, 'delete']);
 
     Route::inertia('rental-terms', 'Dashboard/RentalTerms');
-    Route::post('post/rental-terms', [RentalTermsController::class, 'insert']);
     Route::post('delete/rental-terms', [RentalTermsController::class, 'destroy']);
     Route::post('edit/rental-terms', [RentalTermsController::class, 'edit']);
     Route::post('show/rental-terms', [RentalTermsController::class, 'show']);
+    Route::post('update/rental-terms/status', [RentalTermsController::class, 'approveOrReject']);
 
 
 
