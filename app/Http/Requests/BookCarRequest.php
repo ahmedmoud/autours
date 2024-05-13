@@ -28,7 +28,8 @@ class BookCarRequest extends FormRequest
             'currency' => 'required|string|exists:currencies,name',
             'pickupLoc' => 'required|string|exists:branches,location',
             'time_from' => 'required|date_format:H:i',
-            'time_to' => 'required|date_format:H:i'
+            'time_to' => 'required|date_format:H:i',
+            'old_rental_id' => 'nullable|integer|exists:rentals,id'
         ];
     }
 }

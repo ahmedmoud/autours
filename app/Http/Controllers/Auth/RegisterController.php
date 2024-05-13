@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Enums\StatusCodes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Rental;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\Client\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -105,6 +107,11 @@ class RegisterController extends Controller
                 'status' => false
             ], StatusCodes::SERVER_ERROR);
         }
+
+    }
+
+    public function updateUser(Request $request)
+    {
 
     }
 }

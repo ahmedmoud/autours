@@ -66,7 +66,7 @@
                                 </CDropdown>
                             </div>
 
-                            <button :disabled="loading" class="offset-10 col-md-2 cursor-pointer btn btn-danger"
+                            <button v-if="item.order_status != 3" :disabled="loading" class="offset-10 col-md-2 cursor-pointer btn btn-danger"
                                     @click="cancelBooking(item)"><i class="fa fa-cancel"/>&nbsp;Cancel
                             </button>
                         </div>

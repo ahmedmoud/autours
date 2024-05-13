@@ -352,7 +352,7 @@
                                             <span>{{ vehicle.final_price }} {{ selectedCurrency }}</span>
                                             <a class="btn-main select-btn cursor-pointer"
                                                @click="goToBookingPage(vehicle.id)">
-                                                Selcet
+                                                Select
                                                 <svg width="25" height="25" fill="currentColor" viewBox="0 2 20 20"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -396,6 +396,7 @@ const form = {
     time_to: '',
     category: '',
     supplier: '',
+    booking_id:'',
     specifications: []
 }
 
@@ -487,6 +488,10 @@ const getSpecifications = async () => {
 const search = () => {
     form.category = category.value
     form.currency = localStorage.getItem('currency') ?? 'USD';
+    let urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('booking_id')) {
+        form.booking_id = urlParams.get('booking_id')
+    }
     router.get('/results', form)
 };
 const SelectCategory = (category_id) => {
@@ -626,10 +631,18 @@ watchEffect(() => {
     getLocations();
 });
 
-const goToBookingPage = (vehicle_id) => {
+const goToBookingPage = async (vehicle_id) => {
     form.id = vehicle_id;
-
-    router.get('/vehicles/book', form)
+    let uri = '/vehicles/book'
+    let urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('booking_id') ) {
+        console.log("=======>")
+        console.log(urlParams.get("booking_id"))
+        form.booking_id =  urlParams.get('booking_id')
+        uri = '/update-booking'
+    }
+    console.log(uri)
+    router.get(uri, form)
 }
 const setParams = async () => {
     let urlParams = new URLSearchParams(window.location.search);

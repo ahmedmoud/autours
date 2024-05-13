@@ -49,7 +49,7 @@
                                                     <img :src="'img/'+user.logo" alt="" class="w-100 h-100">
                                                 </div>
                                             </div>
-                                            <i class="fa fa-pencil-square fa-xl mt-5"/>
+                                            <i class="cursor-pointer fa fa-pencil-square fa-xl mt-5"/>
                                         </div>
 
                                         <div class="text-center">
@@ -102,6 +102,7 @@
                                         user?.rentals?.length
                                     }}</span>
                                 </h3>
+
                                 <form class="position-relative">
                                     <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh"
                                            placeholder="Search Friends">
@@ -112,11 +113,13 @@
                                 <div v-for="rental in user.rentals" class="col-lg-4 col-12">
                                     <!-- card -->
                                     <div class="card mb-5 rounded-3">
+
                                         <div>
                                             <img :src="'img/vehicles/'+ rental.vehicle.photo" alt="Image"
                                                  class="img-fluid rounded-top">
                                         </div>
                                         <!-- avatar -->
+
                                         <div class="avatar avatar-xl mt-n7 ms-4">
                                             <img :src="'img/'+ rental.vehicle.supplier.logo" alt="Image" height="80"
                                                  width="80"
@@ -128,6 +131,9 @@
                                             <h4 class="mb-1">{{ rental.vehicle.name }}</h4>
                                             <p>{{ rental.vehicle.supplier.name }}</p>
                                             <p>{{ rental.start_date }} to {{ rental.end_date }}</p>
+                                            <p>
+                                                {{ rental.vehicle.branch.location }}
+                                            </p>
                                             <div>
                                                 <!-- Dropdown -->
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -136,9 +142,12 @@
                                                 : rental.status.id=== 3 ? 'btn btn-danger'
                                                 : rental.status.id=== 4 ? 'btn btn-warning'
                                                  : 'btn btn-primary' ">{{ rental.status.name_en }}</a>
-                                                    <div>
-                                                        {{ rental.vehicle.branch.location }}
-                                                    </div>
+                                                    <button class="btn btn-warning"
+                                                    v-if="moment(rental.start_date).isAfter(moment(Date.now())) && rental.order_status == 2"
+                                                            @click="updateReservation(rental.id)"
+                                                    ><i class="fa fa-pencil"/>&nbsp; Edit </button>
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -152,31 +161,16 @@
                             <div class="row bg-white p-5 rounded-5">
                                 <form method="post" @submit.prevent="register">
                                     <div class="row">
-                                        <div class="formbold-mb-3 col-md-6">
+                                        <div class="formbold-mb-3 col-md-4">
                                             <label class="formbold-form-label">Full name</label>
                                             <div class="row">
-                                                <el-select
-                                                    v-model="RegisterForm.gender"
-                                                    size="large"
-                                                    filterable
-                                                    class="col-md-4"
-                                                    reserve-keyword
-                                                    placeholder="Mr/Mrs..."
-                                                    remote-show-suffix
-                                                    required>
-                                                    <el-option
-                                                        v-for='item in ["Mr.","Mrs."]'
-                                                        :key="'+' + item"
-                                                        :label="item"
-                                                        :value="item"
-                                                    />
-                                                </el-select>
+
                                                 <el-input
                                                     v-model="RegisterForm.name"
                                                     size="large"
                                                     filterable
+                                                    disabled
                                                     remote
-                                                    class="col-md-8"
                                                     reserve-keyword
                                                     placeholder="Enter Full name here..."
                                                     remote-show-suffix
@@ -185,15 +179,15 @@
                                                 </el-input>
                                             </div>
                                         </div>
-                                        <div class="formbold-mb-3 col-md-4"
-                                             v-if="!user || user.role !== 'customer' ">
+                                        <div class="formbold-mb-3 col-md-6">
                                             <label class="formbold-form-label">Country</label>
                                             <div class="countries row">
                                                 <el-select
+                                                    disabled
                                                     v-model="RegisterForm.country"
                                                     size="large"
-                                                    class="col-md-12"
                                                     filterable
+                                                    class="col-md-8"
                                                     reserve-keyword
                                                     placeholder="Select Country..."
                                                     remote-show-suffix
@@ -208,13 +202,14 @@
                                                 </el-select>
                                             </div>
                                         </div>
-                                        <div class="formbold-mb-3 col-md-6">
+                                        <div class="formbold-mb-3 col-md-4">
                                             <label class="formbold-form-label">E-mail</label>
                                             <div class="countries">
                                                 <el-input
                                                     v-model="RegisterForm.email"
                                                     size="large"
                                                     filterable
+                                                    disabled
                                                     remote
                                                     reserve-keyword
                                                     placeholder="E-mail..."
@@ -224,46 +219,14 @@
                                             </div>
                                         </div>
                                         <div class="formbold-mb-3 col-md-4">
-                                            <label class="formbold-form-label">Password</label>
-                                            <div class="countries">
-                                                <el-input
-                                                    v-model="RegisterForm.password"
-                                                    size="large"
-                                                    filterable
-                                                    remote
-                                                    type="password"
-                                                    reserve-keyword
-                                                    placeholder="Account Password ..."
-                                                    remote-show-suffix
-                                                    required>
-                                                </el-input>
-                                            </div>
-                                        </div>
-                                        <div class="formbold-mb-3 col-md-9">
                                             <label class="formbold-form-label">Phone</label>
                                             <div class="row">
-                                                <el-select
-                                                    v-model="RegisterForm.mobile_code"
-                                                    size="large"
-                                                    class="col-md-3"
-                                                    filterable
-                                                    reserve-keyword
-                                                    placeholder="code..."
-                                                    remote-show-suffix
-                                                    required>
-                                                    <el-option
-                                                        v-for='item in countryCodes'
-                                                        :key="'+' + item.code"
-                                                        :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
-                                                        :value="'+' + item.code"
-                                                    />
-                                                </el-select>
                                                 <el-input
                                                     v-model="RegisterForm.phone"
                                                     size="large"
-                                                    class="col-md-8"
                                                     filterable
                                                     remote
+                                                    disabled
                                                     reserve-keyword
                                                     placeholder="Phone Number..."
                                                     remote-show-suffix
@@ -297,6 +260,7 @@ import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import {router, useForm} from '@inertiajs/vue3';
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
+import moment from 'moment';
 
 const $toast = useToast();
 const loading = ref(false)
@@ -381,6 +345,11 @@ const uploadPhoto = async (event) => {
         $toast.error("Something went wrong!")
     }
 }
+
+const updateReservation = (item_id) => {
+   window.location.href = '/update-booking?booking_id='+item_id
+    // router.get('/update-booking/'+item_id)
+}
 const updatePhoto = () => {
     document.getElementById('profile_pic').click()
 }
@@ -392,6 +361,10 @@ const getUser = async () => {
 
         const response = await axios.get('/my-current-user-profile');
         user.value = response.data.data;
+        RegisterForm.name = response.data.data.name
+        RegisterForm.email = response.data.data.email
+        RegisterForm.phone = response.data.data.phone_num
+        RegisterForm.country = response.data.data.country
         console.log(user.value)
     } catch (error) {
         router.get('/')
@@ -442,6 +415,7 @@ const register = async () => {
 
         return;
     }
+    return
     try {
         RegisterForm.name = RegisterForm.gender + ' ' + RegisterForm.name
         const response = await axios.post('/post/user/data', RegisterForm.data())

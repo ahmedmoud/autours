@@ -38,6 +38,11 @@ Route::get('/v2', function () {
     return Inertia::render('LandingPagev2');
 });
 
+Route::group(['prefix'=>'/booking'], function(){
+    Route::get('/{id}', [BookingsController::class, 'show'])->middleware('customer');
+
+});
+
 // Route::inertia('/vehicles/{id}', 'VehiclePage');
 Route::get('/vehicles/book', function () {
     return Inertia::render('VehiclePage');
@@ -48,6 +53,7 @@ Route::post('/get/vehicle/data', [VehicleController::class, 'getVehicle']);
 Route::get('/get/countries', [CountryController::class, 'index']);
 
 Route::inertia('/my-profile', 'MyProfile');
+Route::inertia('/update-booking', 'UpdateBooking');
 Route::get('/my-current-user-profile', [UserController::class, 'profile']);
 
 Route::inertia('company', 'Dashboard/CreateCompany');

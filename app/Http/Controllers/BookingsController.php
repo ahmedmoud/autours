@@ -94,7 +94,7 @@ class BookingsController extends Controller
     {
 
         $rentals = Rental::query();
-        if($request->has('supplier_id') && $request->supplier_id) {
+        if ($request->has('supplier_id') && $request->supplier_id) {
             $rentals->where('supplier_id', $request->supplier_id);
         }
         $data = $rentals->with('vehicle.supplier', 'vehicle.branch', 'status', 'customer')->orderBy('id', 'desc')->get();
@@ -136,6 +136,7 @@ class BookingsController extends Controller
 //            if($vehicleWithPrice->stock <= 0 ) {
 //                throw new \Exception("Sorry There is no enough stock to book this car!");
 //            }
+
             $vehicle = Vehicle::query()->find($request->id);
             $item = new Rental();
             $item->customer_id = auth()->user()->id;
@@ -152,7 +153,10 @@ class BookingsController extends Controller
             $item->end_time = Carbon::parse($request->time_to);
             $item->currency = $request->currency;
             $item->number_of_days = $diffInDays;
-
+            if ($request->old_rental_id) {
+                Rental::query()->find($request->old_rental_id)->delete();
+                $item->old_rental_id = $request->old_rental_id;
+            }
             $item->save();
 
             DB::commit();
@@ -216,6 +220,7 @@ class BookingsController extends Controller
         $invoice->count_rentals = $rentals->count();
         return response()->json(['data' => $invoice]);
     }
+
     public function reconcile(Request $request)
     {
         try {
@@ -233,5 +238,29 @@ class BookingsController extends Controller
                 "message" => $e->getMessage()
             ], StatusCodes::SERVER_ERROR);
         }
+    }
+
+    public function show($id)
+    {
+        if (!is_numeric($id)  || $id < 0) {
+            return response()->json([
+                'status' => 0,
+                'data' => [],
+                'message' => 'id not valid'
+            ], StatusCodes::BAD_REQUEST);
+        }
+        $rental = Rental::query()->where('id', $id)->with('vehicle','vehicle.branch')->first();
+        if (is_null($rental)) {
+            return response()->json([
+                'status' => 0,
+                'data' => [],
+                'message' => 'id not valid'
+            ], StatusCodes::BAD_REQUEST);
+        }
+        return response()->json([
+            'status' => 1,
+            'data' => $rental,
+            'message' => ''
+        ], StatusCodes::SUCCESS);
     }
 }
