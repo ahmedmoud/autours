@@ -717,7 +717,7 @@ const book = async () => {
         if (resposne.status) {
             $toast.success("Thank You for your payment!", {position: 'top', duration: 1000})
             $toast.success("Your Booking has been placed successfully", {position: 'top'})
-            router.get('/my-bookings')
+            router.get('/my-profile')
             loading.value = false;
         }
     } catch (e) {
