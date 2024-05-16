@@ -116,7 +116,7 @@
 
                                         <div>
                                             <img :src="'img/vehicles/'+ rental.vehicle.photo" alt="Image"
-                                                 height="250" width="400" class="img-fluid rounded-top">
+                                                 height="250" width="400" >
                                         </div>
                                         <!-- avatar -->
 
