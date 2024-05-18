@@ -5,7 +5,7 @@
         <header-one/>
         <!-- header close -->
         <!-- content begin -->
-        <div class="" style="background: #ececec" id="content">
+        <div class="mt-3" style="background: #ececec" id="content">
             <div id="top"></div>
             <!--            <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>-->
 

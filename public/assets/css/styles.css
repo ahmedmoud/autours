@@ -19786,12 +19786,6 @@ textarea.form-control-lg {
     color: #5A6A85 !important
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-}
 
 a {
     text-decoration: none

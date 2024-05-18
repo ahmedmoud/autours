@@ -6,13 +6,26 @@
                     <div class="row">
 
                         <label class="text-white">Select Pickup Location</label>
-                        <div class="col-md-5 mt-2 location-input">
-                            <select class="form-control form-select bg-white" style=" height: 45px;" v-model="form.pickupLoc">
-                                <option disabled selected value="" style="font-size: 20px;" class="el-select-dropdown">     Select Your Location...</option>
-                                <option  class="el-select-dropdown" style="font-size: 20px;" v-for="item in locations.all.value" :value="item"> {{ item }}</option>
-                            </select>
+<!--                        <div class="col-md-5 mt-2 location-input">-->
+<!--                            <select class="form-control form-select bg-white" style=" height: 45px;" v-model="form.pickupLoc">-->
+<!--                                <option disabled selected value="" style="font-size: 20px;" class="el-select-dropdown">     Select Your Location...</option>-->
+<!--                                <option  class="el-select-dropdown" style="font-size: 20px;" v-for="item in locations.all.value" :value="item"> {{ item }}</option>-->
+<!--                            </select>-->
 
-                        </div>
+<!--                        </div>-->
+                        <Dropdown v-model="form.pickupLoc" :options="locations?.all?.value" placeholder="Enter Your Location!" style="height: 45px;"  filter  filter-icon="fa fa-search fa-l" class="col-md-5 md:w-14rem mt-2">
+                            <template #value="slotProps" >
+                                <div v-if="slotProps.value" class="flex align-items-center" >
+                                    <div>{{ slotProps.value }}</div>
+                                </div>
+                            </template>
+                            <template #option="slotProps" >
+                                <div class="flex align-items-center" >
+                                    <img :alt="slotProps.option" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`fa fa-car`" style="width: 18px" />
+                                    <div>{{ slotProps.option }}</div>
+                                </div>
+                            </template>
+                        </Dropdown>
                         <div class="col-md-7 row">
                             <div class=" col-md-6 mt-2 date-input">
                                 <div class=" ">
@@ -61,6 +74,8 @@
 import {ref, onMounted} from 'vue'
 import {router, useForm} from '@inertiajs/vue3';
 import Loader from '../components/Loader.vue'
+import Dropdown from 'primevue/dropdown';
+import 'primevue/resources/themes/aura-light-amber/theme.css'
 
 const value = ref()
 const form = useForm({
