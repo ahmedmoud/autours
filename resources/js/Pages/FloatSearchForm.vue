@@ -13,16 +13,15 @@
 <!--                            </select>-->
 
 <!--                        </div>-->
-                        <Dropdown v-model="form.pickupLoc" :options="locations?.all?.value" placeholder="Enter Your Location!" style="height: 45px;"  filter  filter-icon="fa fa-search fa-l" class="col-md-5 md:w-14rem mt-2">
+                        <Dropdown v-model="form.pickupLoc" :options="locations?.all?.value" :placeholder="form.pickupLoc"   filter  filter-icon="fa fa-search fa-l" class="col-md-5 md:w-14rem mt-2">
                             <template #value="slotProps" >
                                 <div v-if="slotProps.value" class="flex align-items-center" >
                                     <div>{{ slotProps.value }}</div>
                                 </div>
                             </template>
-                            <template #option="slotProps" >
+                            <template #option="slotProps">
                                 <div class="flex align-items-center" >
-                                    <img :alt="slotProps.option" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`fa fa-car`" style="width: 18px" />
-                                    <div>{{ slotProps.option }}</div>
+                                    <div>{{ slotProps.option }}<i class="fa fa-car"/></div>
                                 </div>
                             </template>
                         </Dropdown>
@@ -79,7 +78,7 @@ import 'primevue/resources/themes/aura-light-amber/theme.css'
 
 const value = ref()
 const form = useForm({
-    pickupLoc: ref(''),
+    pickupLoc: ref('Enter Your location!'),
     date: ref(''),
     date_from: ref(''),
     date_to: ref(''),
