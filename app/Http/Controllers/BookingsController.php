@@ -137,12 +137,15 @@ class BookingsController extends Controller
 //                throw new \Exception("Sorry There is no enough stock to book this car!");
 //            }
 
-            $vehicle = Vehicle::query()->find($request->id)->with('branch');
+            $vehicle = Vehicle::query()->with('branch')->find($request->id);
             $item = new Rental();
             $item->customer_id = auth()->user()->id;
             $item->supplier_id = $vehicleWithPrice->supplier;
+
             $item->order_status = $vehicle->instant_confirmation >= 1 ? RentalStatuses::CONFIRMED : RentalStatuses::PENDING;
-            $item->order_number = $vehicle->branch->country??$vehicle->branch->country[0] . $vehicle->branch->country[1] . 'ATR-' . Rental::query()->count();
+
+            $prefix = $vehicle->branch->country ? strtoupper($vehicle->branch->country[0]) . strtoupper($vehicle->branch->country[1]) : null;
+            $item->order_number =  $prefix . 'ATR' . Rental::query()->count();
             $item->vehicle_id = $request->id;
             $item->price = $vehicleWithPrice->final_price;
             $item->profit_margin = $vehicleWithPrice->rate;

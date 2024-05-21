@@ -24,12 +24,12 @@
                                         </div>
                                         <div class="text-center">
                                             <i class="fa fa-cancel fs-6 d-block mb-2"></i>
-                                            <h4 class="mb-0 fw-semibold lh-1">0</h4>
+                                            <h4 class="mb-0 fw-semibold lh-1">{{ user?.rentals?.filter(function(item) { return item.order_status === 3}).length }}</h4>
                                             <p class="mb-0 fs-4">Cancelled</p>
                                         </div>
                                         <div class="text-center">
                                             <i class="fa fa-check fs-6 d-block mb-2"></i>
-                                            <h4 class="mb-0 fw-semibold lh-1">0</h4>
+                                            <h4 class="mb-0 fw-semibold lh-1">{{ user?.rentals?.filter(function(item) { return item.order_status === 2}).length }}</h4>
                                             <p class="mb-0 fs-4">Confirmed</p>
                                         </div>
                                     </div>

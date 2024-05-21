@@ -21,7 +21,7 @@
                             </template>
                             <template #option="slotProps">
                                 <div class="flex align-items-center" >
-                                    <div>{{ slotProps.option }}<i class="fa fa-car"/></div>
+                                    <div>{{ slotProps.option }}&nbsp;<i class="fa fa-plane-departure"/></div>
                                 </div>
                             </template>
                         </Dropdown>
