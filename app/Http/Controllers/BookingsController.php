@@ -10,6 +10,7 @@ use App\Events\NewRentalRequest;
 use App\Http\Requests\BookCarRequest;
 use App\Http\Requests\CancelBookingRequest;
 use App\Models\CurrencyRate;
+use App\Models\RentalStatus;
 use App\Services\VehicleService;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -97,9 +98,22 @@ class BookingsController extends Controller
         if ($request->has('supplier_id') && $request->supplier_id) {
             $rentals->where('supplier_id', $request->supplier_id);
         }
+        if ($request->has('order_status') && $request->order_status) {
+            $rentals->where('order_status', $request->order_status);
+        }
+        if ($request->has('order_number') && $request->order_number) {
+            $rentals->where('order_number', $request->order_number);
+        }
+        if ($request->has('date_range') && $request->date_range) {
+            $rentals->whereRaw('created_at::date >= ?' ,$request->date_range[0]);
+            $rentals->whereRaw('created_at::date <= ?' ,$request->date_range[1]);
+        }
         $data = $rentals->with('vehicle.supplier', 'vehicle.branch', 'status', 'customer')->orderBy('id', 'desc')->get();
 
-        return response()->json($data);
+        return response()->json([
+            'rentals' => $data,
+            'rental_statuses' => RentalStatus::query()->get()
+        ]);
     }
 
     public function getRentals()
@@ -145,7 +159,16 @@ class BookingsController extends Controller
             $item->order_status = $vehicle->instant_confirmation >= 1 ? RentalStatuses::CONFIRMED : RentalStatuses::PENDING;
 
             $prefix = $vehicle->branch->country ? strtoupper($vehicle->branch->country[0]) . strtoupper($vehicle->branch->country[1]) : null;
-            $item->order_number =  $prefix . 'ATR' . Rental::query()->count();
+            $count = Rental::query()->count();
+            $suffix_count= $count;
+            if ($count < 1000) {
+                $suffix_count = '0'.$suffix_count;
+                if ($count < 100)
+                    $suffix_count = '0' . $suffix_count;
+                    if ($count < 10)
+                        $suffix_count = '0'. $suffix_count;
+            }
+            $item->order_number =  $prefix.'ATR'.$suffix_count;
             $item->vehicle_id = $request->id;
             $item->price = $vehicleWithPrice->final_price;
             $item->profit_margin = $vehicleWithPrice->rate;

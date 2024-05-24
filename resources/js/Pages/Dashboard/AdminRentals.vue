@@ -30,6 +30,8 @@
                         size="large"
                         filterable
                         remote
+                        style="height: 35px;"
+
                         reserve-keyword
                         v-on:change="getSupplierInvoices()"
                         placeholder="Suppliers..."
@@ -44,17 +46,68 @@
                         />
                     </el-select>
                 </div>
+                <div class="formbold-mb-3 col-md-2">
+                    <label class="formbold-form-label">Status</label>
+                    <el-select
+                        v-model="order_status"
+                        size="large"
+                        filterable
+                        remote
+                        reserve-keyword
+                        placeholder="Rental Status..."
+                        remote-show-suffix
+                        style="height: 35px;"
+                        :loading="countries.loading.value"
+                        @change="selectStatus()"
+                        required>
+                        <el-option
+                            v-for="item in order_statuses.all.value"
+                            :key="item.id"
+                            :label="item.name_en"
+                            :value="item.id"
+                        />
+                    </el-select>
+                </div>
+                <div class="formbold-mb-3 col-md-2">
+                    <label class="formbold-form-label">Rental Reference</label>
+                    <el-input
+                        placeholder="Reference..."
+                        v-model="reference"
+                        @change="getData()"
+                        style="height: 35px;"
+
+                    >
+
+                    </el-input>
+                </div>
+                <div class=" col-md-3  date-input">
+                    <div class=" ">
+                        <label class="formbold-form-label">Select Date Range</label>
+                        <el-date-picker
+                            v-model="date_range"
+                            type="daterange"
+                            range-separator="TO"
+                            start-placeholder="Start date"
+                            end-placeholder="End date"
+                            size="large"
+                            required="true"
+                            format="YYYY/MM/DD"
+                            value-format="YYYY-MM-DD"
+                            style="height: 35px;"
+                            @change="getData"
+
+                        />
+
+                    </div>
+                </div>
             </div>
             <h2 class="mb-4">Rentals</h2>
             <div class=" d-flex">
                 <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
-                    <el-table-column label="Photo" prop="">
-                        <template #default="scope">
-                            <img :src="'/img/vehicles/' + scope.row.vehicle.photo" class="w-100">
-                        </template>
-                    </el-table-column>
+
+                    <el-table-column label="Name" prop="order_number"/>
                     <el-table-column label="Name" prop="vehicle.name"/>
-                    <el-table-column label="Pickup" prop="vehicle.pickup_loc"/>
+                    <el-table-column label="Customer" prop="customer.name"/>
                     <el-table-column label="Total Price" prop="price"/>
                     <el-table-column label="Profit" prop="profit_margin"/>
                     <el-table-column label="Supplier price" prop="supplier_price"/>
@@ -138,6 +191,8 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 const country = ref('')
 const supplier = ref('')
 const branch = ref('')
+const reference = ref('')
+const date_range = ref('')
 const countries = {
     loading: ref(false),
     all: ref([]),
@@ -156,6 +211,14 @@ const branches = {
     list: ref([]),
     options: ref([]),
 };
+
+const order_statuses = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+}
+const order_status = ref('')
 const search = ref('')
 const tableData = ref([])
 const loading = ref(false)
@@ -226,6 +289,10 @@ const getSuppliers = async () => {
     }
 }
 
+const selectStatus = () => {
+   getData()
+}
+
 const getSupplierInvoices = async () => {
     try {
         const response = await axios.get('/get/supplier/invoice', {
@@ -253,12 +320,27 @@ const getData = async () => {
     try {
         loading.value = true;
         let params = {};
-        if(supplier.value != [] || supplier.value != null || supplier.value != undefined || supplier.value != "") {
+        if(supplier.value !== [] || supplier.value != null || supplier.value !== undefined || supplier.value !== "") {
             params ={supplier_id:  supplier.value}
         }
+        if(order_status.value !== [] || order_status.value != null || order_status.value !== undefined || order_status.value !== "") {
+            params ={order_status:  order_status.value}
+        }
+        if(reference.value !== [] || reference.value != null || reference.value !== undefined || reference.value !== "") {
+            params ={order_number:  reference.value}
+        }
+        if(date_range.value !== [] || date_range.value != null || date_range.value !== undefined || date_range.value !== "") {
+            params ={date_range:  date_range.value}
+        }
         const response = await axios.get('/get/rentals/admin', {params: params});
-        tableData.value = response.data;
-        console.log(tableData.value)
+        tableData.value = response.data.rentals;
+        order_statuses.all.value = response.data.rental_statuses;
+        order_statuses.list.value = order_statuses.all.value.map((item) => ({
+            value: `${item.name_en}`,
+            label: `${item.name_en}`,
+            id: `${item.id}`,
+        }))
+        order_statuses.loading.value = false
     } catch (error) {
         console.error(error);
     } finally {

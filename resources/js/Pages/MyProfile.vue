@@ -130,6 +130,8 @@
                                             <!-- Title -->
                                             <h4 class="mb-1">{{ rental.vehicle.name }}</h4>
                                             <p>{{ rental.vehicle.supplier.name }}</p>
+                                            <p>#{{ rental.order_number }}</p>
+
                                             <p>{{ rental.start_date }} to {{ rental.end_date }}</p>
                                             <p>
                                                 {{ rental.vehicle.branch.location }}
