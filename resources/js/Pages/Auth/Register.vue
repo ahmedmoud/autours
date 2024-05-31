@@ -42,7 +42,8 @@
                                                 <div class="col-md-12">
                                                     <div class="field-set">
                                                         <label>Password</label>
-                                                        <input v-model="loginForm.password" type='password'  name='password' id='password' class="form-control">
+                                                        <input v-model="loginForm.password" type='password'
+                                                               name='password' id='password' class="form-control">
                                                     </div>
                                                 </div>
 
@@ -50,8 +51,9 @@
                                                 <div class=" mt-2 row">
                                                     <div id='submit' class="pull-left col-md-8">
                                                         <button type='submit' id='send_message'
-                                                                class="btn-main color-2" :disabled="loading">Continue <span><i
-                                                            class="fa fa-arrow-right ml-2"/></span></button>
+                                                                class="btn-main color-2" :disabled="loading">Continue
+                                                            <span><i
+                                                                class="fa fa-arrow-right ml-2"/></span></button>
                                                     </div>
                                                     <div id='submit' class="mt-4 col-md-4 ">
                                                         <a class="flipbutton cursor-pointer" id="loginButton"
@@ -137,7 +139,38 @@
 
                                     </div>
                                 </div>
+                                <div class="container w-50" style="height: 200px; overflow-y: scroll; scrollbar-width: thin;">
+                                    <p>Become a car rental supplier!
+                                        Autours is a company operating in the tourism field since its establishment in
+                                        2005, with car rental bookings being our main area of expertise.
+                                        We provide you a great chance to increase the business, as through our
+                                        multilingual www.autours.net millions of customers from different countries book
+                                        their car rental. We have a huge affiliate and reseller network worldwide, who
+                                        send us high amount of car bookings in different countries and destinations. It
+                                        is an opportunity for you to expand your business in different markets.
+                                        If you are a car rental company, small or big, and you want to increase the
+                                        volume of your car rental reservations, you are welcome to join our car rental
+                                        partner network.
+                                        Benefits from joining the car rental network of www.autours.net
+                                        No financial risk at all. The customers pay directly to you upon the arrival.
+                                        Immediate increase of your car rental sales.
+                                        No entry/administration fee or other costs.
+                                        Access to our agent area for special offers, stop sales, statistics, information
+                                        and evaluation results from customers. The results from the feedback and
+                                        evaluation will help you and improve your service.
+                                        Smart reservation procedure for confirming via e-mail or Dashboard for your
+                                        admin interface.
+                                        Flexible system for amendments, cancellations and one-way rentals.
+                                        Guaranteed bookings and very low volume of no-show customers
+                                        Our team will assist you, proposing rates, car groups purchase, changes and
+                                        tips.
+                                        Please fill in the Supplier Application Form in order to get more information on
+                                        how you can become an www.autours.net
+                                        Supplier.
+                                    </p>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -157,14 +190,14 @@ import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import Footer from "../../components/Footer.vue"
 import Contactus from "../../components/Contactus.vue"
-import { onMounted, onBeforeMount} from 'vue'
+import {onMounted, onBeforeMount} from 'vue'
 
 
 const RegisterForm = useForm({
     name: '',
     phone: '',
     email: '',
-    country : '',
+    country: '',
     password: '',
     user_type: '',
     supplier: 0
@@ -244,10 +277,10 @@ const manageBooking = async () => {
     }
     try {
         const response = await axios.post('/login', loginForm.data())
-        if(response.data.status) {
+        if (response.data.status) {
             $toast.success('You Have Successfully Logged In', {position: 'top'})
             setTimeout(function () {
-                if(response.data.user_type !== 'customer') {
+                if (response.data.user_type !== 'customer') {
                     window.location.href = '/index'
                 } else {
                     window.location.href = '/'
@@ -271,23 +304,23 @@ const LoginToMyAccount = () => {
 const getUserData = async () => {
     try {
         const response = await axios.get('/get/user/data');
-        if(response.data){
+        if (response.data) {
             router.get('/')
         }
     } catch (error) {
         console.error(error);
     }
 }
-onBeforeMount(()=>{
+onBeforeMount(() => {
     getUserData();
 
 })
-onMounted(()=> {
+onMounted(() => {
 
     let urlParams = new URLSearchParams(window.location.search);
     fetchCountries()
     RegisterForm.user_type = urlParams.get('user_type');
-    if (RegisterForm.user_type == 'supplier'){
+    if (RegisterForm.user_type == 'supplier') {
         console.log(RegisterForm.supplier)
         RegisterForm.supplier = 1;
         console.log(RegisterForm.supplier)
@@ -299,14 +332,12 @@ onMounted(()=> {
 <style scoped>
 
 
-
 #subheader h3, h2 {
     font-family: 'Outfit';
     margin-top: 100px;
     margin-bottom: 10px;
     letter-spacing: -2px;
 }
-
 
 
 .flipper {
@@ -366,12 +397,14 @@ input {
     text-decoration: none;
     text-align: left !important;
 }
-@media screen and (max-width: 1000px){
+
+@media screen and (max-width: 1000px) {
 
     .flip-container {
         width: 100%;
 
     }
+
     .flipper {
         top: -120px;
         width: 100%;

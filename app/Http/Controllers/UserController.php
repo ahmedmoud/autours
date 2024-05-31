@@ -190,4 +190,22 @@ class UserController extends Controller
         }
 
     }
+
+    public function getCustomers(Request $request): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $data = User::query()->where('role', 'customer')->get();
+            return response()->json([
+                'data' => $data,
+                'status' => 1
+            ]);
+        }catch (\Exception $e) {
+            info("error while getting the customers");
+            info($e->getMessage());
+            return response()->json([
+                'data' =>[],
+                'message' => 'Server Error'
+            ], StatusCodes::SERVER_ERROR);
+        }
+    }
 }

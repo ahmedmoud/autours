@@ -112,6 +112,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/get/supplier/invoice', [BookingsController::class, 'getSupplierInvoices']);
 
     Route::inertia('margin', 'Dashboard/ProfitMargin');
+    Route::inertia('customers', 'Dashboard/Customers');
+    Route::get('/get/customers', [UserController::class, 'getCustomers']);
 
     Route::inertia('categories', 'Dashboard/Categories');
     Route::post('post/categories', [VehicleController::class, 'createCategories']);

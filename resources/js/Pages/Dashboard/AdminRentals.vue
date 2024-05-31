@@ -31,7 +31,6 @@
                         filterable
                         remote
                         style="height: 35px;"
-
                         reserve-keyword
                         v-on:change="getSupplierInvoices()"
                         placeholder="Suppliers..."
@@ -75,7 +74,6 @@
                         v-model="reference"
                         @change="getData()"
                         style="height: 35px;"
-
                     >
 
                     </el-input>
@@ -105,7 +103,7 @@
             <div class=" d-flex">
                 <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
 
-                    <el-table-column label="Name" prop="order_number"/>
+                    <el-table-column label="Booking Reference" prop="order_number"/>
                     <el-table-column label="Name" prop="vehicle.name"/>
                     <el-table-column label="Customer" prop="customer.name"/>
                     <el-table-column label="Total Price" prop="price"/>
@@ -164,13 +162,13 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td style="width: 250px;">{{invoices?.count_rentals}}</td>
+                    <td style="width: 250px;">{{ invoices?.count_rentals }}</td>
                     <td style="width: 250px;">
                         <div>
-                            {{invoices?.total_price}}
+                            {{ invoices?.total_price }}
                         </div>
                     </td>
-                    <td style="width: 250px;">{{invoices?.currency}}</td>
+                    <td style="width: 250px;">{{ invoices?.currency }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -244,17 +242,17 @@ const fetchCountries = async () => {
     }
 }
 
-const cancel = () =>{
+const cancel = () => {
     supplier.value = '';
-    country.value  = ''
+    country.value = ''
     getData()
 }
-const reconcile = async () =>{
+const reconcile = async () => {
     try {
         suppliers.loading.value = true
         if (country.value) {
             const response = await axios.post(`/rentals/reconcile`, {'supplier_id': supplier.value})
-            if(response.data.status) {
+            if (response.data.status) {
                 $toast.success('Supplier Rentals Reconciled Successfully', {position: 'top'});
                 getData()
             }
@@ -290,7 +288,7 @@ const getSuppliers = async () => {
 }
 
 const selectStatus = () => {
-   getData()
+    getData()
 }
 
 const getSupplierInvoices = async () => {
@@ -319,18 +317,24 @@ const getRole = async () => {
 const getData = async () => {
     try {
         loading.value = true;
-        let params = {};
-        if(supplier.value !== [] || supplier.value != null || supplier.value !== undefined || supplier.value !== "") {
-            params ={supplier_id:  supplier.value}
+        const params = {
+            supplier_id: "",
+            order_status: "",
+            order_number: "",
+            date_range: ""
+        };
+        if (supplier.value !== [] || supplier.value != null || supplier.value !== undefined || supplier.value !== "") {
+            params.supplier_id = supplier.value
         }
-        if(order_status.value !== [] || order_status.value != null || order_status.value !== undefined || order_status.value !== "") {
-            params ={order_status:  order_status.value}
+        if (order_status.value !== [] || order_status.value != null || order_status.value !== undefined || order_status.value !== "") {
+            params.order_status = order_status.value
         }
-        if(reference.value !== [] || reference.value != null || reference.value !== undefined || reference.value !== "") {
-            params ={order_number:  reference.value}
+        if (reference.value !== [] || reference.value != null || reference.value !== undefined || reference.value !== "") {
+
+            params.order_number =  reference.value
         }
-        if(date_range.value !== [] || date_range.value != null || date_range.value !== undefined || date_range.value !== "") {
-            params ={date_range:  date_range.value}
+        if (date_range.value !== [] || date_range.value != null || date_range.value !== undefined || date_range.value !== "") {
+            params.date_range =  date_range.value
         }
         const response = await axios.get('/get/rentals/admin', {params: params});
         tableData.value = response.data.rentals;
@@ -376,8 +380,14 @@ const handleDelete = async (index, row) => {
         loading.value = false;
     }
 }
-
+const setParams = async () => {
+    let urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('status')) {
+        order_status.value = urlParams.get('status')
+    }
+}
 onMounted(() => {
+        setParams();
         getRole()
         getData()
         fetchCountries()

@@ -116,17 +116,26 @@ class BookingsController extends Controller
         ]);
     }
 
-    public function getRentals()
+    public function getRentals(Request $request)
     {
+
         $user = auth()->user();
         $id = $user->id;
         $role = $user->role;
 
         $rentals = Rental::query();
 
-        if ($role === 'customer') {
-            $rentals->where('customer_id', $id);
+        if ($request->has('order_status') && $request->order_status) {
+            $rentals->where('order_status', $request->order_status);
         }
+        if ($request->has('order_number') && $request->order_number) {
+            $rentals->where('order_number', $request->order_number);
+        }
+        if ($request->has('date_range') && $request->date_range) {
+            $rentals->whereRaw('created_at::date >= ?' ,$request->date_range[0]);
+            $rentals->whereRaw('created_at::date <= ?' ,$request->date_range[1]);
+        }
+
 
         if ($role === 'active_supplier') {
             $vehicles = Vehicle::where('supplier', $id)->pluck('id')->unique();
@@ -135,7 +144,12 @@ class BookingsController extends Controller
 
         $data = $rentals->with('vehicle.supplier', 'vehicle.branch', 'status', 'customer')->orderBy('id', 'desc')->get();
 
-        return response()->json($data);
+        return response()->json(
+           [
+               'rentals' => $data,
+               'rental_statuses' => RentalStatus::query()->get()
+           ]
+        );
     }
 
     public function book(BookCarRequest $request)

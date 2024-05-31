@@ -69,11 +69,11 @@
                                 <i class="ti ti-key" aria-hidden="true"></i>
                                 <span>Memberships</span></a>
                         </li>
-<!--                        <li class="sidebar-item">-->
-<!--                            <a class="sidebar-link" href="/vehicles">-->
-<!--                                <i class="ti ti-car" aria-hidden="true"></i>-->
-<!--                                <span>Vehicles</span></a>-->
-<!--                        </li>-->
+                        <!--                        <li class="sidebar-item">-->
+                        <!--                            <a class="sidebar-link" href="/vehicles">-->
+                        <!--                                <i class="ti ti-car" aria-hidden="true"></i>-->
+                        <!--                                <span>Vehicles</span></a>-->
+                        <!--                        </li>-->
                     </div>
                     <div v-if="activeSupplier">
                         <li class="sidebar-item">
@@ -84,7 +84,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="/price-list">
                                 <span><i class="ti ti-zoom-money"></i></span>
-                                <span >Price List</span></a>
+                                <span>Price List</span></a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="/vehicles">
@@ -102,24 +102,45 @@
                         </li>
                     </div>
 
-                    <div v-if="customer">
-                        <!-- <li class="nav-item active">
-                            <Link class="nav-link" href="dashboard">
-                                <i class="fa fa-bookmark" aria-hidden="true"></i>
-                                <span>Rentals History</span></Link>
-                        </li> -->
-                    </div>
-
                     <li class="sidebar-item " v-if="admin">
-                        <a class="sidebar-link" href="/rentals/admin">
+                        <a class="sidebar-link" href="/customers">
+                            <i class="ti ti-users" aria-hidden="true"></i>
+                            <span>Customers</span></a>
+                    </li>
+
+                    <ul class="sidebar-item " v-if="admin" @click="openChild('rentals')">
+                        <a class="sidebar-link" href="#">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
                             <span>Rentals</span></a>
+                    </ul>
+
+                    <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
+                        <a class="sidebar-link" href="/rentals/admin">
+                            <i class="ti ti-paper-bag" aria-hidden="true"></i>
+                            <span>All Rentals</span></a>
                     </li>
-                    <li class="sidebar-item " v-if="activeSupplier">
+                    <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
+                        <a class="sidebar-link" href="/rentals/admin?status=2">
+                            <i class="ti ti-checks" aria-hidden="true"></i>
+                            <span>Confirmed</span></a>
+                    </li>
+                    <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
+                        <a class="sidebar-link" href="/rentals/admin?status=4">
+                            <i class="ti ti-loader" aria-hidden="true"></i>
+                            <span>Pending</span></a>
+                    </li>
+                    <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
+                        <a class="sidebar-link" href="/rentals/admin?status=3">
+                            <i class="ti ti-forbid" aria-hidden="true"></i>
+                            <span>Canceled</span></a>
+                    </li>
+
+                    <ul class="sidebar-item parent-item" v-if="activeSupplier" @click="openChild('rentals')">
                         <a class="sidebar-link" href="/rentals/supplier">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
                             <span>Rentals</span></a>
-                    </li>
+                    </ul>
+
 
                     <li class="sidebar-item" v-if="supplier || activeSupplier">
                         <a class="sidebar-link" href="/supplier-rental-terms">
@@ -171,6 +192,10 @@ const supplier = ref(false)
 const customer = ref(false)
 const reviewing = ref(false)
 
+const openChild = async (menu_name) => {
+    console.log(menu_name)
+    $('.child-item-' + menu_name).toggle()
+}
 const getRole = async () => {
     try {
         const response = await axios.get('/get/user/role');
