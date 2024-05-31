@@ -42,16 +42,22 @@
                 </div>
             </div>
 
-            <section id="section-car-details" >
+            <section id="section-car-details">
                 <div class="col-md-12 mt-3" style="left:16%;">
-                <span class="p-1 mr-1 mt-2 btn-main" style="width:400px; background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span class="ti ti-circle-number-1 mr-1"/>Choose Your Location</span>
-                    <span class="p-1 mr-1 btn-main mt-2 " style="width:400px; background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span class="ti ti-circle-number-2 mr-1"/>Choose Your Car</span>
-                    <span class="p-1 btn-main mt-2 active" style="width:400px; background: rgb(155,147,84);color: #000; font-family: Arial, sans-serif;"><span class="ti ti-circle-number-3 mr-1"/>Reserve Your Car</span>
+                    <span class="p-1 mr-1 mt-2 btn-main"
+                          style="width:400px; background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span
+                        class="ti ti-circle-number-1 mr-1"/>Choose Your Location</span>
+                    <span class="p-1 mr-1 btn-main mt-2 "
+                          style="width:400px; background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span
+                        class="ti ti-circle-number-2 mr-1"/>Choose Your Car</span>
+                    <span class="p-1 btn-main mt-2 active"
+                          style="width:400px; background: rgb(155,147,84);color: #000; font-family: Arial, sans-serif;"><span
+                        class="ti ti-circle-number-3 mr-1"/>Reserve Your Car</span>
                 </div>
                 <div class="row">
                     <div class="col-md-3 " style="margin: 30px 0 0 12%;">
 
-                        <div class="p-1 col-11"  style="background-color: #e1e1e1; ">
+                        <div class="p-1 col-11" style="background-color: #e1e1e1; ">
                             <h5 class="p-2">YOUR SEARCH DETAILS</h5>
                         </div>
                         <div class="col-md-11 pb-4" style="background: #fff;">
@@ -143,8 +149,9 @@
                             <div>
                                 <p class="mt-3">Total Rental Price</p>
                                 <h3>{{ currency + ' ' + vehicle.final_price }}</h3>
-                                <p > For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
-                                    {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }} / per
+                                <p> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
+                                    {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }} /
+                                    per
                                     day </p>
                                 <div class="row">
                                     <p class="col-md-9">Rental Cost</p>
@@ -156,23 +163,23 @@
                                 </div>
                                 <div class="row">
                                     <p class="col-md-9">Total Rental Cost</p>
-                                    <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price}}</p>
+                                    <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price }}</p>
                                 </div>
                                 <hr style="margin-bottom: 5%;"/>
                                 <div class="row">
                                     <strong class="col-md-8">Pay Now</strong>
-                                    <strong class="col-md-4">{{ currency + ' ' + vehicle.final_price}}</strong>
+                                    <strong class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</strong>
                                 </div>
                                 <hr style="margin-top: 1%;"/>
                             </div>
                         </div>
 
                     </div>
-                    <div class="container bg-white col-md-6 offset-md-0 p-5" style=" margin-top: 1.7%">
-                        <div class="row g-5" >
+                    <div class="container bg-white col-md-5 offset-md-0 p-5" style=" margin-top: 1.7%">
+                        <div class="row g-5">
                             <div class="col-lg-4">
                                 <div id="slider-carousel" class="owl-carousel">
-                                    <h3>{{ vehicle.name }}</h3>
+                                    <h3 class="text-nowrap">{{ vehicle.name }}</h3>
                                     <div class="row"><span>{{ vehicle.category?.name }}</span></div>
                                     <div class="item w-100">
                                         <img class="item w-150"
@@ -187,8 +194,10 @@
                             <div class="col-lg-6">
                                 <div class=" row ">
                                     <h4 class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</h4>
-                                    <p class="col-md-7 text-nowrap"> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
-                                        {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }} / per
+                                    <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
+                                        day{{ daysNumber < 2 ? '' : 's' }} -
+                                        {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
+                                        / per
                                         day </p>
                                 </div>
                                 <div class="de-spec">
@@ -202,58 +211,83 @@
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
-
-                            <div class="row bg-light-gray mt-5 item-list p-0 ">
-                                <div class="row mt-4">
-                                    <div class="col-lg-2">
-                                        <img width="100" height="70" :src="'/img/' + vehicle?.supplier?.logo" alt=""/>
+                            <div
+                                class="de-item-list py-1 mb30 mt30  justify-content-between align-items-center col-md-12"
+                                style="background: #edecec; ">
+                                <div class="d-supplier">
+                                    <div class="col-md-2 d-img w-100" style="height: 50px">
+                                        <img :src="'/img/' + vehicle?.supplier?.logo" height="50"
+                                             width="50" alt=""/>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="col-md-4"><p  style="font-size: medium; white-space: nowrap;">{{vehicle?.supplier?.company }}</p></div>
-                                        <div class="col-md-8"><small><a class="cursor-pointer text-primary" style="white-space: nowrap;" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental Terms</a></small></div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="col-md-3 mb-2">
-                                            <button class=" btn-primary"><span
-                                                style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
-                                            </button>
+                                    <div class="col-md-3 row">
+                                        <div>
+                                                            <span style="font-size: medium; margin-left: -12px;"
+                                                                  class="text-nowrap">{{
+                                                                    vehicle?.supplier?.company
+                                                                }}</span>
                                         </div>
-                                        <div class="col-lg-12 row">
-                                            <span class="be_media-body col-lg-12"><strong>Good</strong><span
-                                                style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>&nbsp;+&nbsp;Reviews)</span></span>
+                                        <div style="margin-left: -15px">
+                                            <small><a class="cursor-pointer text-primary"
+                                                      href="javascript:void(0);"
+                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="col-md-12">
-                                            <p><strong><i class="fa fa-location"/>Address:</strong>{{
-                                                    vehicle?.supplier?.address
-                                                }}</p>
-                                        </div>
-
-
+                                    <div class="col-md-1">
+                                        <span class="py-2 px-1 rounded-1"
+                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                                        <span class="be_media-body"><h5>Good</h5><span
+                                                            style="font-size: medium;">(&nbsp;<strong
+                                                            style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
                                 </div>
-
-                                <div class=" row col-lg-12">
-                                    <strong class="primary mb-5" style="color: #5e9007;">What is Included!</strong>
-                                    <ul class="row col-lg-12">
-                                        <li class="col-lg-4" style="margin-top: -4%" v-for="item in vehicle.included ">
-                                            <div class="row">
-                                                <i class="col-1 fa fa-check fa-l mt-2" style="color: green;"/>
-                                                <p class="col-md-10 text-nowrap" style="font-size: 13px;">
-                                                    {{ item.what_is_included }}.</p>
+                            </div>
+                            <div class="de-item-list col-md-12 bg-light-gray pt-1">
+                                <div class="row col-md-11">
+                                    <strong class="primary"
+                                            style="color: #5e9007;">What is Included!</strong>
+                                    <ul class="row mt-4">
+                                        <li class="col-md-6" style="margin-top: -6%"
+                                            v-for="(item, index) in vehicle.included ">
+                                            <div class="row" v-if="index < 4">
+                                                <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
+                                                   style="color: green;"/>
+                                                <p class="col-md-10" style="font-size: 13px;">
+                                                    {{ item.what_is_included }}</p>
+                                            </div>
+                                            <div :class="'row vehicle-'+vehicle.id"
+                                                 style="display: none;" v-else>
+                                                <i class="col-md-1 fa fa-check fa-l mt-2"
+                                                   style="color: green;"/>
+                                                <p class="col-md-10" style="font-size: 13px;">
+                                                    {{ item.what_is_included }}</p>
                                             </div>
                                         </li>
+                                        <span @click="showMoreIncluded(vehicle.id)"
+                                              class="col-md-6 cursor-pointer"
+                                              :id="'show-more'+ vehicle.id"
+                                              v-if="vehicle?.included?.length > 4 ">Show more ...</span>
                                     </ul>
                                 </div>
-
+                                <div class="row mb-5">
+                                    <div class="col-md-12">
+                                        <p><strong><i class="fa fa-location"/>Address:</strong>&nbsp;{{
+                                                vehicle?.supplier?.address
+                                            }}</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <span><i class="fa fa-gas-pump"/></span>
+                                        Fuel Policy: <small> Full to Full </small></div>
+                                </div>
                             </div>
-                            <div class="de-box row col-lg-12 mt-5 mb25" >
+                            <div class="de-box row col-lg-12 mt-5 mb25">
                                 <div class="col-lg-12">
                                     <div class="">
                                         <div class="row">
-                                            <div class="col-lg-12" v-if="!user" >
-                                                <h4 style="text-align: center;">Register First to continue your reservation</h4>
+                                            <div class="col-lg-12" v-if="!user">
+                                                <h4 style="text-align: center;">Register First to continue your
+                                                    reservation</h4>
                                                 <hr/>
                                                 <form method="post" @submit.prevent="register"
                                                 >
@@ -382,7 +416,7 @@
                                                     </div>
                                                 </form>
                                             </div><!-- end col -->
-                                            <div class="col-lg-12" v-else-if="user && user.role === 'customer' " >
+                                            <div class="col-lg-12" v-else-if="user && user.role === 'customer' ">
                                                 <form method="post" @submit.prevent="register">
                                                     <div class="row">
                                                         <div class="formbold-mb-3 col-md-6">
@@ -458,7 +492,7 @@
 
                                 </div>
                                 <button v-if="!loading" id='send_message' @click="book" :disabled="loading"
-                                        class="btn-main btn-fullwidth offset-4 col-md-3" style="background: #f9d602">
+                                        class="btn-main btn-fullwidth offset-4 col-md-4" style="background: #f9d602">
                                     Continue&nbsp;To&nbsp;Payment
                                 </button>
                             </div>
@@ -498,45 +532,45 @@ const closeModal = () => {
 }
 
 const countryCodes = [
-    {"country":"Algeria","code":"213","iso":"DZ"},
-    {"country":"Australia","code":"61","iso":"AU"},
-    {"country":"Bahrain","code":"973","iso":"BH"},
-    {"country":"Canada","code":"1","iso":"CA"},
-    {"country":"China","code":"86","iso":"CN"},
-    {"country":"Denmark","code":"45","iso":"DK"},
-    {"country":"Egypt","code":"20","iso":"EG"},
-    {"country":"France","code":"33","iso":"FR"},
-    {"country":"Germany","code":"49","iso":"DE"},
-    {"country":"Greece","code":"30","iso":"GR"},
-    {"country":"India","code":"91","iso":"IN"},
-    {"country":"Indonesia","code":"62","iso":"ID"},
-    {"country":"Iran","code":"98","iso":"IR"},
-    {"country":"Iraq","code":"964","iso":"IQ"},
-    {"country":"Italy","code":"39","iso":"IT"},
-    {"country":"Jordan","code":"962","iso":"JO"},
-    {"country":"Kuwait","code":"965","iso":"KW"},
-    {"country":"Lebanon","code":"961","iso":"LB"},
-    {"country":"Libya","code":"218","iso":"LY"},
-    {"country":"Mexico","code":"52","iso":"MX"},
-    {"country":"Morocco","code":"212","iso":"MA"},
-    {"country":"Netherlands","code":"31","iso":"NL"},
-    {"country":"Oman","code":"968","iso":"OM"},
-    {"country":"Pakistan","code":"92","iso":"PK"},
-    {"country":"Palestine","code":"970","iso":"PS"},
-    {"country":"Poland","code":"48","iso":"PL"},
-    {"country":"Portugal","code":"351","iso":"PT"},
-    {"country":"Qatar","code":"974","iso":"QA"},
-    {"country":"Russia","code":"7","iso":"RU"},
-    {"country":"Saudi Arabia","code":"966","iso":"SA"},
-    {"country":"Spain","code":"34","iso":"ES"},
-    {"country":"Sweden","code":"46","iso":"SE"},
-    {"country":"Switzerland","code":"41","iso":"CH"},
-    {"country":"Syria","code":"963","iso":"SY"},
-    {"country":"Tunisia","code":"216","iso":"TN"},
-    {"country":"Turkey","code":"90","iso":"TR"},
-    {"country":"United Arab Emirates","code":"971","iso":"AE"},
-    {"country":"United Kingdom","code":"44","iso":"GB"},
-    {"country":"United States","code":"1","iso":"US"},
+    {"country": "Algeria", "code": "213", "iso": "DZ"},
+    {"country": "Australia", "code": "61", "iso": "AU"},
+    {"country": "Bahrain", "code": "973", "iso": "BH"},
+    {"country": "Canada", "code": "1", "iso": "CA"},
+    {"country": "China", "code": "86", "iso": "CN"},
+    {"country": "Denmark", "code": "45", "iso": "DK"},
+    {"country": "Egypt", "code": "20", "iso": "EG"},
+    {"country": "France", "code": "33", "iso": "FR"},
+    {"country": "Germany", "code": "49", "iso": "DE"},
+    {"country": "Greece", "code": "30", "iso": "GR"},
+    {"country": "India", "code": "91", "iso": "IN"},
+    {"country": "Indonesia", "code": "62", "iso": "ID"},
+    {"country": "Iran", "code": "98", "iso": "IR"},
+    {"country": "Iraq", "code": "964", "iso": "IQ"},
+    {"country": "Italy", "code": "39", "iso": "IT"},
+    {"country": "Jordan", "code": "962", "iso": "JO"},
+    {"country": "Kuwait", "code": "965", "iso": "KW"},
+    {"country": "Lebanon", "code": "961", "iso": "LB"},
+    {"country": "Libya", "code": "218", "iso": "LY"},
+    {"country": "Mexico", "code": "52", "iso": "MX"},
+    {"country": "Morocco", "code": "212", "iso": "MA"},
+    {"country": "Netherlands", "code": "31", "iso": "NL"},
+    {"country": "Oman", "code": "968", "iso": "OM"},
+    {"country": "Pakistan", "code": "92", "iso": "PK"},
+    {"country": "Palestine", "code": "970", "iso": "PS"},
+    {"country": "Poland", "code": "48", "iso": "PL"},
+    {"country": "Portugal", "code": "351", "iso": "PT"},
+    {"country": "Qatar", "code": "974", "iso": "QA"},
+    {"country": "Russia", "code": "7", "iso": "RU"},
+    {"country": "Saudi Arabia", "code": "966", "iso": "SA"},
+    {"country": "Spain", "code": "34", "iso": "ES"},
+    {"country": "Sweden", "code": "46", "iso": "SE"},
+    {"country": "Switzerland", "code": "41", "iso": "CH"},
+    {"country": "Syria", "code": "963", "iso": "SY"},
+    {"country": "Tunisia", "code": "216", "iso": "TN"},
+    {"country": "Turkey", "code": "90", "iso": "TR"},
+    {"country": "United Arab Emirates", "code": "971", "iso": "AE"},
+    {"country": "United Kingdom", "code": "44", "iso": "GB"},
+    {"country": "United States", "code": "1", "iso": "US"},
 ];
 const user = ref('')
 const value = ref(0);
@@ -636,10 +670,29 @@ const setParams = async () => {
     }
     getVehicle()
 }
+
+const showMoreIncluded = (vehicle_id) => {
+    var elements = document.querySelectorAll('.vehicle-' + vehicle_id);
+    const showMoreElement = document.getElementById('show-more' + vehicle_id);
+// Loop through each element to apply the display toggle logic
+    elements.forEach(function (element) {
+        const display = element.style.display;
+
+        if (display === 'none') {
+            element.style.display = '';
+            showMoreElement.textContent = 'Show less ...';
+        } else {
+            element.style.display = 'none';
+            showMoreElement.textContent = 'Show more ...';
+        }
+    });
+}
+
+
 const getVehicle = async () => {
     try {
         setTimeout(() => {
-            value.value +=1;
+            value.value += 1;
         }, 200);
         loading.value = true
 
@@ -770,7 +823,7 @@ const register = async () => {
         return;
     }
     try {
-        RegisterForm.name = RegisterForm.gender + ' '+ RegisterForm.name
+        RegisterForm.name = RegisterForm.gender + ' ' + RegisterForm.name
         const response = await axios.post('/post/user/data', RegisterForm.data())
         if (response.data.status) {
             $toast.success('You Have Successfully Registered', {position: 'top'})
@@ -804,7 +857,7 @@ const fetchCountries = async () => {
 
 const disabledDate = (time) => {
     const date = new Date();
-    date.setHours(0,0,0,0)
+    date.setHours(0, 0, 0, 0)
     return time < date
 }
 
@@ -832,6 +885,7 @@ li::before {
     box-shadow: 3px 3px 9px rgba(164, 164, 186, 0.2);
     border-radius: 6px;
 }
+
 .scv-badge.badge-white {
     display: flex;
     min-width: 10px;

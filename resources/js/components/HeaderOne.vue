@@ -8,46 +8,44 @@
 
                 <div class="row menu-responsive">
 
-                    <div class="row">
-                        <a v-if="!user" class="nav-link col-md-8  " style="color: #0a3622;" href="/register">Manage&nbsp;Booking</a>
-                        <a v-else-if="user.role !== 'customer'" class="nav-link col-md-8" style="color: #0a3622;"
-                           href="/company"><span>My&nbsp;console</span></a>
+                    <a v-if="!user" class="nav-link col-md-8  " style="color: #0a3622;" href="/register">Manage&nbsp;Booking</a>
+                    <a v-else-if="user.role !== 'customer'" class="nav-link col-md-8" style="color: #0a3622;"
+                       href="/company"><span>My&nbsp;console</span></a>
 
 
-                        <a class="col-md-3">
-                            <CDropdown togglerText="Dropdown button" class="mt-1">
-                                <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{
-                                        selectedCurrency
-                                    }}
-                                </CDropdownToggle>
-                                <CDropdownMenu>
-                                    <CDropdownItem class="cursor-pointer" v-for="currency in currencies"
-                                                   v-on:click="changeCurrency(currency.name)">
-                                        {{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}
-                                    </CDropdownItem>
-                                </CDropdownMenu>
-                            </CDropdown>
-                        </a>
-                        <a v-if="user.role === 'customer'" class="col-md-7">
-                            <CDropdown togglerText="Dropdown button" class="mt-1">
-                                <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{
-                                        user.name
-                                    }}
-                                </CDropdownToggle>
-                                <CDropdownMenu>
-                                    <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-bookings')"><i
-                                        class="fa fa-history"/>&nbsp;&nbsp;My&nbsp;Bookings
-                                    </CDropdownItem>
-                                    <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-profile')"><i class="fa fa-user"/>&nbsp;&nbsp;My&nbsp;Profile
-                                    </CDropdownItem>
-                                    <CDropdownItem class="cursor-pointer" @click="() => router.get('/logout')"><i
-                                        class="fa fa-door-closed"/>&nbsp;&nbsp;Log&nbsp;Out
-                                    </CDropdownItem>
-                                </CDropdownMenu>
-                            </CDropdown>
-                        </a>
-                    </div>
-
+                    <a v-if="user.role === 'customer'" class="col-md-7">
+                        <CDropdown togglerText="Dropdown button" class="mt-1">
+                            <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{
+                                    user.name
+                                }}
+                            </CDropdownToggle>
+                            <CDropdownMenu>
+                                <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-bookings')"><i
+                                    class="fa fa-history"/>&nbsp;&nbsp;My&nbsp;Bookings
+                                </CDropdownItem>
+                                <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-profile')"><i
+                                    class="fa fa-user"/>&nbsp;&nbsp;My&nbsp;Profile
+                                </CDropdownItem>
+                                <CDropdownItem class="cursor-pointer" @click="() => router.get('/logout')"><i
+                                    class="fa fa-door-closed"/>&nbsp;&nbsp;Log&nbsp;Out
+                                </CDropdownItem>
+                            </CDropdownMenu>
+                        </CDropdown>
+                    </a>
+                    <a class="col-md-4">
+                        <CDropdown togglerText="Dropdown button" class="mt-1 ">
+                            <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{
+                                    selectedCurrency
+                                }}
+                            </CDropdownToggle>
+                            <CDropdownMenu>
+                                <CDropdownItem class="cursor-pointer" v-for="currency in currencies"
+                                               v-on:click="changeCurrency(currency.name)">
+                                    {{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}
+                                </CDropdownItem>
+                            </CDropdownMenu>
+                        </CDropdown>
+                    </a>
                 </div>
 
                 <!--                <a href="#news">News</a>-->

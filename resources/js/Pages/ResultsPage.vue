@@ -163,13 +163,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 my-5" style="background: #fff;">
+                                <div class="col-md-12 my-2" style="background: #fff;">
                                     <div class="row" @click="collapse('ms')">
                                         <h4 class="col-md-10" style="margin-bottom: -30px">
                                         Vehicle Suppliers</h4> <i :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-ms' "/> </div>
                                     <hr/>
-                                        <div style="margin-top: -30px" id="ms">
+                                        <div style="margin-top: -45px" id="ms" >
                                             <div class="row" v-for="supplier in filteredSuppliers">
+                                                <div class="row" v-if="supplier?.vehicle_count">
                                                 <strong class="col-md-10 mt-2">{{supplier.company + ' (' + supplier?.vehicle_count + ')' }}&nbsp;</strong>
                                                 <el-checkbox
                                                     class="col-md-1"
@@ -177,24 +178,27 @@
                                                     :model="supplier"
                                                     @click="selectSupplier(supplier.id)"
                                                 />
+                                                </div>
                                             </div>
                                     </div>
                                 </div>
 
 
                                 <div v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
-                                    <div class="col-md-12 my-5" >
+                                    <div class="col-md-12 my-2  " >
                                        <div @click="collapse(item.id)"  class="row"> <h4 class="col-md-10" style="margin-bottom: -30px">{{ item.name }}</h4>
                                            <i :class="'col-md-2 fa fa-arrow-down cursor-pointer ' +  'pointer-arrow-' + item.id"/></div>
-                                        <hr/>
-                                        <div style="margin-top: -30px" :id="item.id">
+                                        <hr style="margin-top: 20px"/>
+                                        <div style="margin-top: -35px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
-                                                <strong class="col-md-10 mt-2">{{ option.value +  ` ${item.name.split(" ")[item.name.split(" ").length -1 ] == 'Transmission' ?  '' : item.name.split(" ")[item.name.split(" ").length -1 ]} (${option.vehicle_count})` }} </strong>
+                                                <div class="row col-md-12" v-if="option.vehicle_count">
+                                                <strong class="col-md-10 ">{{ option.value +  ` ${item.name.split(" ")[item.name.split(" ").length -1 ] == 'Transmission' ?  '' : item.name.split(" ")[item.name.split(" ").length -1 ]} (${option.vehicle_count})` }} </strong>
                                                 <el-checkbox
                                                     class="col-md-1 "
                                                     size="large"
                                                     :model="specification[i]"
                                                     @click="selectSpecification(item, option)"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -219,7 +223,7 @@
 
                             <h3>SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
                             <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row">
-                                <div :style="getDisplayStyle(vehicle)" class="col-lg-12">
+                                <div :style="getDisplayStyle(vehicle)" class="col-lg-10">
                                     <div class="de-item-list mb30 w-100 p-3">
                                         <div class="close"
                                              style="position: absolute;top: 9px;right: 25px;cursor: pointer;"
@@ -237,7 +241,7 @@
                                         </div>
                                         <div style="width: 140%">
                                             <div>
-                                                <div class="col-md-3 d-img">
+                                                <div class="col-md-2 d-img">
                                                     <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid"
                                                          width="200" height="100"
                                                          alt=""/>
@@ -263,8 +267,7 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div
-                                                class="de-item-list p-2 mb30 mt30  justify-content-between align-items-center col-10"
+                                            <div class="de-item-list p-1 mb30 mt30  justify-content-between align-items-center col-10"
                                                 style="background: #edecec; ">
                                                 <div class="d-supplier">
                                                     <div class="col-md-2 d-img w-100" style="height: 50px">
@@ -273,7 +276,7 @@
                                                     </div>
                                                     <div class="col-md-3 row">
                                                         <div>
-                                                            <span style="font-size: medium; margin-left: -12px">{{
+                                                            <span style="font-size: medium; margin-left: -12px;" class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
@@ -283,11 +286,8 @@
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
-                                                        <button class=" btn-primary ">
-                                                        <span
-                                                            style="background-color: #f9d602; padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
-                                                        </button>
+                                                    <div class="col-md-1">
+                                                        <span class="py-2 px-1 rounded-1" style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <span class="be_media-body"><h5>Good</h5><span
@@ -303,8 +303,8 @@
                                                 </div>
                                             </div>
 
-                                            <div class="de-item-list col-md-11 bg-light-gray pt-1"
-                                                 style="max-width: 85%;">
+                                            <div class="de-item-list col-md-11 bg-light-gray pt-0"
+                                                 style="max-width: 84%;">
                                                 <div class="row col-md-11">
                                                     <strong class="primary"
                                                             style="color: #5e9007;">What is Included!</strong>
