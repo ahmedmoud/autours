@@ -109,13 +109,11 @@
                     <el-table-column label="Total Price" prop="price"/>
                     <el-table-column label="Profit" prop="profit_margin"/>
                     <el-table-column label="Supplier price" prop="supplier_price"/>
-                    <el-table-column label="Currency" prop="currency"/>
 
                     <el-table-column label="Supplier name" prop="vehicle.supplier.name"/>
                     <el-table-column label="Rental Status" prop="status.name_en"/>
                     <el-table-column label="Start Date" prop="start_date"/>
                     <el-table-column label="End Date" prop="end_date"/>
-                    <el-table-column label="Status" prop="status.name_en"/>
                     <el-table-column align="right">
 
                         <template #header>

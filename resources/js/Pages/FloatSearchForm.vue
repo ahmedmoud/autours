@@ -1,5 +1,5 @@
 <template>
-    <div   class="form-layout">
+    <div   class="form-layout" >
         <Loader v-if="loading"/>
             <form  v-if="!loading"  @submit.prevent="search" >
                 <div>

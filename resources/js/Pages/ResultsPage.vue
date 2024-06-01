@@ -350,7 +350,7 @@
                                                     daysNumber < 2 ? '' : 's'
                                                 }}</span>
                                             <span>{{ vehicle.final_price }} {{ selectedCurrency }}</span>
-                                            <a class="btn-main select-btn cursor-pointer"
+                                            <a class="btn-main select-btn cursor-pointer text-white" style="background-c"
                                                @click="goToBookingPage(vehicle.id)">
                                                 Select
                                                 <svg width="25" height="25" fill="currentColor" viewBox="0 2 20 20"
@@ -369,6 +369,7 @@
             </div>
         </div>
     </div>
+    <Footer/>
 
     </body>
 
@@ -378,8 +379,8 @@
 import {onMounted, ref, watchEffect, computed} from "vue";
 import {useForm, Link, router} from "@inertiajs/vue3";
 import HeaderOne from "../components/HeaderOne.vue";
-import ProgressBar from "primevue/progressbar"
 import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/vue';
+import Footer from "../components/Footer.vue";
 
 const isOpen = ref(false)
 

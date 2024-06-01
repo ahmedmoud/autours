@@ -180,7 +180,7 @@
                             <div class="col-lg-4">
                                 <div id="slider-carousel" class="owl-carousel">
                                     <h3 class="text-nowrap">{{ vehicle.name }}</h3>
-                                    <div class="row"><span>{{ vehicle.category?.name }}</span></div>
+                                    <div class="row"><span class="text-nowrap">{{ vehicle.category?.name }}</span></div>
                                     <div class="item w-100">
                                         <img class="item w-150"
                                              :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"

@@ -8,8 +8,8 @@
 
                 <div class="row menu-responsive">
 
-                    <a v-if="!user" class="nav-link col-md-8  " style="color: #0a3622;" href="/register">Manage&nbsp;Booking</a>
-                    <a v-else-if="user.role !== 'customer'" class="nav-link col-md-8" style="color: #0a3622;"
+                    <a v-if="!user" class="nav-link col-md-8  text-black bold"  href="/register">Manage&nbsp;Booking</a>
+                    <a v-else-if="user.role !== 'customer'" class="nav-link col-md-8 text-black bold"
                        href="/company"><span>My&nbsp;console</span></a>
 
 
@@ -20,13 +20,10 @@
                                 }}
                             </CDropdownToggle>
                             <CDropdownMenu>
-                                <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-bookings')"><i
-                                    class="fa fa-history"/>&nbsp;&nbsp;My&nbsp;Bookings
-                                </CDropdownItem>
                                 <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-profile')"><i
-                                    class="fa fa-user"/>&nbsp;&nbsp;My&nbsp;Profile
+                                    class="fa fa-user text-black bold"/>&nbsp;&nbsp;My&nbsp;Profile
                                 </CDropdownItem>
-                                <CDropdownItem class="cursor-pointer" @click="() => router.get('/logout')"><i
+                                <CDropdownItem class="cursor-pointer text-black bold" @click="() => router.get('/logout')"><i
                                     class="fa fa-door-closed"/>&nbsp;&nbsp;Log&nbsp;Out
                                 </CDropdownItem>
                             </CDropdownMenu>
@@ -39,9 +36,9 @@
                                 }}
                             </CDropdownToggle>
                             <CDropdownMenu>
-                                <CDropdownItem class="cursor-pointer" v-for="currency in currencies"
+                                <CDropdownItem class="cursor-pointer " v-for="currency in currencies"
                                                v-on:click="changeCurrency(currency.name)">
-                                    {{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}
+                                    <p class="text-black bold">{{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}</p>
                                 </CDropdownItem>
                             </CDropdownMenu>
                         </CDropdown>
