@@ -225,7 +225,7 @@ const search = async () => {
         return;
     }
 
-    if (form.pickupLoc == null || form.pickupLoc == []) {
+    if (form.pickupLoc == null || form.pickupLoc == [] || form.pickupLoc == 'Enter Your location!') {
         loading.value = false
         alert('Please Select Location.')
         return;

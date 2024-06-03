@@ -31,7 +31,7 @@
                     </a>
                     <a class="col-md-4">
                         <CDropdown togglerText="Dropdown button" class="mt-1 ">
-                            <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{
+                            <CDropdownToggle class="text-black bold" component="a" style="color: rgba(30, 30, 30, 1);">{{
                                     selectedCurrency
                                 }}
                             </CDropdownToggle>
@@ -200,4 +200,13 @@ body {
 .el-picker-panel{
     color: #000 !important;
 }
+.el-date-range-picker{
+    --el-datepicker-active-color: rgb(249, 214, 2) !important;
+    --el-datepicker-hover-text-color: rgb(249, 214, 2) !important;
+    --el-datepicker-inrange-bg-color: rgba(249, 214, 2, 0.19) !important;
+
+    .el-date-table td.today .el-date-table-cell__text {
+        color: rgb(249, 214, 2) !important;
+        background: rgba(249, 214, 2, 0.26) !important;
+    }}
 </style>
