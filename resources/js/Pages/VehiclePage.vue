@@ -43,19 +43,19 @@
             </div>
 
             <section id="section-car-details">
-                <div class="col-md-12 mt-3" style="left:16%;">
-                    <span class="p-1 mr-1 mt-2 btn-main"
-                          style="width:400px; background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span
+                <div class="col-md-12 mt-3 offset-3">
+                    <span class="p-1 mr-1 mt-2 btn-main col-md-2"
+                          style=" background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span
                         class="ti ti-circle-number-1 mr-1"/>Choose Your Location</span>
-                    <span class="p-1 mr-1 btn-main mt-2 "
-                          style="width:400px; background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span
+                    <span class="p-1 mr-1 btn-main mt-2 col-md-2"
+                          style="background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span
                         class="ti ti-circle-number-2 mr-1"/>Choose Your Car</span>
-                    <span class="p-1 btn-main mt-2 active"
-                          style="width:400px; background: rgb(155,147,84);color: #000; font-family: Arial, sans-serif;"><span
+                    <span class="p-1 btn-main mt-2 active col-md-2"
+                          style=" background: rgb(155,147,84);color: #000; font-family: Arial, sans-serif;"><span
                         class="ti ti-circle-number-3 mr-1"/>Reserve Your Car</span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 " style="margin: 30px 0 0 12%;">
+                    <div class="col-md-3 offset-2 mt-4" >
 
                         <div class="p-1 col-11" style="background-color: #e1e1e1; ">
                             <h5 class="p-2">YOUR SEARCH DETAILS</h5>
@@ -263,12 +263,12 @@
                                         <span @click="showMoreIncluded(vehicle.id)"
                                               class="col-md-6 cursor-pointer"
                                               :id="'show-more'+ vehicle.id"
-                                              v-if="vehicle.included.length > 4 ">Show more ...</span>
+                                              v-if="vehicle?.included?.length > 4 ">Show more ...</span>
                                     </ul>
                                 </div>
                                 <div class="row mb-5 col-md-4">
                                     <div class="col-md-12 mt-5">
-                                        <p class="text-nowrap"><i class="fa fa-location"/>Address:&nbsp;<small>{{vehicle.supplier.address }}</small></p>
+                                        <p class="text-nowrap"><i class="fa fa-location"/>Address:&nbsp;<small>{{vehicle?.supplier?.address }}</small></p>
                                     </div>
                                     <div class="col-md-12 text-nowrap" style="margin-top: -20px">
                                         <span class="text-nowrap"><i class="fa fa-gas-pump"/></span>
@@ -776,41 +776,41 @@ const search = () => {
 const register = async () => {
     loading.value = true
 
-    if (RegisterForm.gender === undefined || RegisterForm.gender === null || RegisterForm.gender.length === 0) {
+    if (RegisterForm.gender === undefined || RegisterForm.gender === null || RegisterForm?.gender?.length === 0) {
         $toast.error("Please Select Mr/Mrs", {position: 'top'});
         loading.value = false
         return;
     }
-    if (RegisterForm.name === undefined || RegisterForm.name === null || RegisterForm.name.length === 0) {
+    if (RegisterForm.name === undefined || RegisterForm.name === null || RegisterForm?.name?.length === 0) {
         $toast.error("Please Insert valid Name", {position: 'top'});
         loading.value = false
         return;
     }
-    if (RegisterForm.email === undefined || RegisterForm.email === null || RegisterForm.email.length === 0) {
+    if (RegisterForm.email === undefined || RegisterForm.email === null || RegisterForm?.email?.length === 0) {
         $toast.error("Please Insert valid Email", {position: 'top'});
         loading.value = false
 
         return;
     }
-    if (RegisterForm.phone === undefined || RegisterForm.phone === null || RegisterForm.phone.length === 0) {
+    if (RegisterForm.phone === undefined || RegisterForm.phone === null || RegisterForm?.phone?.length === 0) {
         $toast.error("Please Insert valid Phone number", {position: 'top'});
         loading.value = false
 
         return;
     }
-    if (RegisterForm.mobile_code === undefined || RegisterForm.mobile_code === null || RegisterForm.mobile_code.length === 0) {
+    if (RegisterForm.mobile_code === undefined || RegisterForm.mobile_code === null || RegisterForm?.mobile_code?.length === 0) {
         $toast.error("Please Insert valid Phone number", {position: 'top'});
         loading.value = false
 
         return;
     }
-    if (RegisterForm.country === undefined || RegisterForm.country === null || RegisterForm.country.length === 0) {
+    if (RegisterForm.country === undefined || RegisterForm.country === null || RegisterForm?.country?.length === 0) {
         $toast.error("Please Insert Select Country", {position: 'top'});
         loading.value = false
 
         return;
     }
-    if (RegisterForm.password === undefined || RegisterForm.password === null || RegisterForm.password.length === 0) {
+    if (RegisterForm.password === undefined || RegisterForm.password === null || RegisterForm?.password?.length === 0) {
         $toast.error("Please Insert valid Password", {position: 'top'});
         loading.value = false
 

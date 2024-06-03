@@ -41,22 +41,18 @@ onMounted(() => {
                         </svg>
                     </a>
                     <a href="https://linkedin.com/" target="_blank">
-                        <i class="fa-brands fa-linkedin-in fa-xl" />
-                   </a>
+                        <i class="fa-brands fa-linkedin-in fa-xl"/>
+                    </a>
                     <a href="https://x.com/" target="_blank">
-                        <i class="fa-brands fa-x-twitter fa-xl"  />
+                        <i class="fa-brands fa-x-twitter fa-xl"/>
                     </a>
                 </div>
 
                 <!--<Link v-else class="nav-link col-md-2 offset-8" style="color: #0a3622" href="/company"><span>My Profile</span></Link>-->
                 <div class="row" v-if="!user">
-                    <CDropdown togglerText="Dropdown button" class="col-md-1 mt-1">
-                        <CDropdownToggle component="a" style="color: rgb(194,194,30);">Supplier</CDropdownToggle>
-                        <CDropdownMenu>
-                            <CDropdownItem class="cursor-pointer" @click="() => router.get('/register')">Supplier&nbsp;Login</CDropdownItem>
-                            <CDropdownItem class="cursor-pointer" @click="() => router.get('/register?user_type=supplier')">Supplier&nbsp;Signup</CDropdownItem>
-                        </CDropdownMenu>
-                    </CDropdown>
+                    <div class="col-2">
+                        <button class="btn text-warning" @click="() => router.get('/register?user_type=supplier')"> Supplier ?</button>
+                    </div>
                 </div>
                 <div class="col-md-6 align-self-center text-center text-md-right my-2" id="social-media"></div>
             </div>
@@ -73,6 +69,7 @@ onMounted(() => {
     overflow: auto;
     padding-bottom: 5%; /* Adjust to match your footer's height */
 }
+
 .footer {
     position: fixed;
     left: 0;

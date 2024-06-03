@@ -22,10 +22,40 @@
             <section aria-label="section">
                 <div class="">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="spacer-10"></div>
-                            <div class="flip-container">
-                                <div class="flipper" v-bind:class="(RegisterForm.supplier) ? 'flip' : ''" id="flipper">
+                        <div class="row">
+                            <div  v-if="RegisterForm.user_type === 'supplier'" class="col-md-5 ml-5 " style="height: 350px; overflow-y: scroll; scrollbar-width: thin;">
+                                <p>Become a car rental supplier!
+                                    Autours is a company operating in the tourism field since its establishment in
+                                    2005, with car rental bookings being our main area of expertise.
+                                    We provide you a great chance to increase the business, as through our
+                                    multilingual www.autours.net millions of customers from different countries book
+                                    their car rental. We have a huge affiliate and reseller network worldwide, who
+                                    send us high amount of car bookings in different countries and destinations. It
+                                    is an opportunity for you to expand your business in different markets.
+                                    If you are a car rental company, small or big, and you want to increase the
+                                    volume of your car rental reservations, you are welcome to join our car rental
+                                    partner network.
+                                    Benefits from joining the car rental network of www.autours.net
+                                    No financial risk at all. The customers pay directly to you upon the arrival.
+                                    Immediate increase of your car rental sales.
+                                    No entry/administration fee or other costs.
+                                    Access to our agent area for special offers, stop sales, statistics, information
+                                    and evaluation results from customers. The results from the feedback and
+                                    evaluation will help you and improve your service.
+                                    Smart reservation procedure for confirming via e-mail or Dashboard for your
+                                    admin interface.
+                                    Flexible system for amendments, cancellations and one-way rentals.
+                                    Guaranteed bookings and very low volume of no-show customers
+                                    Our team will assist you, proposing rates, car groups purchase, changes and
+                                    tips.
+                                    Please fill in the Supplier Application Form in order to get more information on
+                                    how you can become an www.autours.net
+                                    Supplier.
+                                </p>
+                            </div>
+
+                            <div class=" col-md-6 flip-container">
+                                <div :class="RegisterForm.user_type !== 'supplier' ? 'flipper offset-5' : 'flipper' "  v-bind:class="(RegisterForm.supplier) ? 'flip' : ''" id="flipper">
                                     <div class="front">
                                         <h3 class="title my-3">Manage Booking</h3>
                                         <form class="form-border" @submit.prevent="manageBooking">
@@ -138,36 +168,6 @@
                                         </form>
 
                                     </div>
-                                </div>
-                                <div class="container w-50" style="height: 200px; overflow-y: scroll; scrollbar-width: thin;">
-                                    <p>Become a car rental supplier!
-                                        Autours is a company operating in the tourism field since its establishment in
-                                        2005, with car rental bookings being our main area of expertise.
-                                        We provide you a great chance to increase the business, as through our
-                                        multilingual www.autours.net millions of customers from different countries book
-                                        their car rental. We have a huge affiliate and reseller network worldwide, who
-                                        send us high amount of car bookings in different countries and destinations. It
-                                        is an opportunity for you to expand your business in different markets.
-                                        If you are a car rental company, small or big, and you want to increase the
-                                        volume of your car rental reservations, you are welcome to join our car rental
-                                        partner network.
-                                        Benefits from joining the car rental network of www.autours.net
-                                        No financial risk at all. The customers pay directly to you upon the arrival.
-                                        Immediate increase of your car rental sales.
-                                        No entry/administration fee or other costs.
-                                        Access to our agent area for special offers, stop sales, statistics, information
-                                        and evaluation results from customers. The results from the feedback and
-                                        evaluation will help you and improve your service.
-                                        Smart reservation procedure for confirming via e-mail or Dashboard for your
-                                        admin interface.
-                                        Flexible system for amendments, cancellations and one-way rentals.
-                                        Guaranteed bookings and very low volume of no-show customers
-                                        Our team will assist you, proposing rates, car groups purchase, changes and
-                                        tips.
-                                        Please fill in the Supplier Application Form in order to get more information on
-                                        how you can become an www.autours.net
-                                        Supplier.
-                                    </p>
                                 </div>
                             </div>
 
@@ -342,8 +342,8 @@ onMounted(() => {
 
 .flipper {
     padding: 30px;
-    width: 50%;
-    left: 25%;
+    width: 95%;
+    left: 5%;
     height: 360px;
     position: relative;
     background: #f5f5f5;

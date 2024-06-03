@@ -246,7 +246,7 @@
                                         </div>
                                         <div>
                                             <div class="col-md-12">
-                                                <div class="col-md-2 d-img">
+                                                <div class="col-md-3 d-img">
                                                     <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid"
                                                          width="200" height="100"
                                                          alt=""/>
@@ -348,7 +348,7 @@
                                                 </div>
                                                 <div class="col-md-2 d-price d-total offset-1">
                                                      <span class="d-days">for {{ daysNumber }} day{{daysNumber < 2 ? '' : 's'}}</span>
-                                                        <span class="row">{{ vehicle.final_price }} {{selectedCurrency }}</span>
+                                                        <span class="text-nowrap">{{ vehicle.final_price }} {{selectedCurrency }}</span>
                                                     <a class="btn-main select-btn cursor-pointer text-white" @click="goToBookingPage(vehicle.id)">Select
                                                         <svg width="25" height="25" fill="currentColor"
                                                              viewBox="0 2 20 20"
