@@ -37,7 +37,7 @@
     --bg-color-even: #E8E8E8;
     --bg-color-odd: #F4F4F4;
     --bg-color-dark: #111111;
-    --body-font-color: #727272;
+    --body-font-color: #000000;
     --dark-body-font-color: rgba(255, 255, 255, .6);
     --gray-color:#acacac;
 
@@ -11971,10 +11971,9 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .de-item-list {
-    display: grid;
+    display: flex;
     grid-template-columns: 2fr 1fr;
     align-items: flex-end;
-    padding: 0px;
     background: #ffffff;
     border: solid 1px #dddddd;
     box-shadow: 3px 3px 9px rgba(164,164,186,0.2);
@@ -11983,7 +11982,6 @@ input[type="range"]::-moz-range-thumb {
 
 .d-supplier{
     display: flex;
-    gap: 20px;
     align-items: center;
 }
 .d-supplier span{

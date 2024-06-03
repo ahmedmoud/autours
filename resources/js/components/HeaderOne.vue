@@ -197,4 +197,7 @@ body {
         margin-top: 8%;
     }
 }
+.el-picker-panel{
+    color: #000 !important;
+}
 </style>
