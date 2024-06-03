@@ -200,13 +200,16 @@ body {
 .el-picker-panel{
     color: #000 !important;
 }
-.el-date-range-picker{
+.el-date-range-picker {
     --el-datepicker-active-color: rgb(249, 214, 2) !important;
     --el-datepicker-hover-text-color: rgb(249, 214, 2) !important;
     --el-datepicker-inrange-bg-color: rgba(249, 214, 2, 0.19) !important;
-
+}
     .el-date-table td.today .el-date-table-cell__text {
         color: rgb(249, 214, 2) !important;
         background: rgba(249, 214, 2, 0.26) !important;
-    }}
+    }
+    .el-date-table td.current:not(.disabled) .el-date-table-cell__text{
+        background-color: rgb(249, 214, 2) !important;
+    }
 </style>

@@ -73,7 +73,6 @@
                             <div class=" mt-3 row" style="background: #fff;">
                                 <h5>DROP-OFF - LOCATION </h5>
                                 <p class="col-12"><span class=" col-md-1 ti ti-gps"></span>{{ form.pickupLoc }}</p>
-
                                 <span class="col-md-6 ti ti-calendar">&nbsp;{{ form.date_to }}</span>
                                 <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_to }}</span>
                             </div>
@@ -175,13 +174,13 @@
                         </div>
 
                     </div>
-                    <div class="container bg-white col-md-5 offset-md-0 p-5" style=" margin-top: 1.7%">
-                        <div class="row g-5">
-                            <div class="col-lg-4">
-                                <div id="slider-carousel" class="owl-carousel">
-                                    <h3 class="text-nowrap">{{ vehicle.name }}</h3>
-                                    <div class="row"><span class="text-nowrap">{{ vehicle.category?.name }}</span></div>
-                                    <div class="item w-100">
+                    <div class="container bg-white col-md-5 offset-md-0 p-5 mt-4" >
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="slider-carousel">
+                                    <h3 class="text-nowrap">{{ vehicle.name }} - <small class="text-nowrap">{{ vehicle?.category?.name }}</small></h3>
+                                    <div class="row"></div>
+                                    <div class="item">
                                         <img class="item w-150"
                                              :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"
                                              width="250" height="150"/>
@@ -191,9 +190,9 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-md-6 row">
                                 <div class=" row ">
-                                    <h4 class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</h4>
+                                    <h4 class="col-md-5 text-nowrap">{{ currency + ' ' + vehicle.final_price }}</h4>
                                     <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
                                         day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
@@ -212,7 +211,7 @@
                                 <div class="spacer-single"></div>
                             </div>
                             <div
-                                class="de-item-list py-1 mb30 mt30  justify-content-between align-items-center col-md-12"
+                                class=" rounded-2 py-1 mb30 mt30  justify-content-between align-items-center col-md-12"
                                 style="background: #edecec; ">
                                 <div class="d-supplier">
                                     <div class="col-md-2 d-img w-100" style="height: 50px">
@@ -221,18 +220,16 @@
                                     </div>
                                     <div class="col-md-3 row">
                                         <div>
-                                                            <span style="font-size: medium; margin-left: -12px;"
+                                                            <span style="font-size: medium;"
                                                                   class="text-nowrap">{{
                                                                     vehicle?.supplier?.company
                                                                 }}</span>
                                         </div>
-                                        <div style="margin-left: -15px">
-                                            <small><a class="cursor-pointer text-primary"
-                                                      href="javascript:void(0);"
-                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
+                                        <div>
+                                            <small><a class="cursor-pointer text-primary" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                         </div>
                                     </div>
-                                    <div class="col-md-1">
+                                    <div class="col-md-2">
                                         <span class="py-2 px-1 rounded-1"
                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                     </div>
@@ -243,42 +240,39 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="de-item-list col-md-12 bg-light-gray pt-1">
-                                <div class="row col-md-11">
-                                    <strong class="primary"
-                                            style="color: #5e9007;">What is Included!</strong>
-                                    <ul class="row mt-4">
-                                        <li class="col-md-6" style="margin-top: -6%"
+                            <div class=" rounded-2 col-md-12 bg-light-gray pt-1 row">
+                                <div class="row col-md-8">
+                                    <p class="primary bold m-0" style="color: #5e9007;">What is Included!</p>
+                                    <ul class="row" >
+                                        <li class="col-md-6" style="height: 20px"
                                             v-for="(item, index) in vehicle.included ">
                                             <div class="row" v-if="index < 4">
                                                 <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                    style="color: green;"/>
-                                                <p class="col-md-10" style="font-size: 13px;">
+                                                <p class="col-md-10 text-nowrap" style="font-size: 80%;">
                                                     {{ item.what_is_included }}</p>
                                             </div>
-                                            <div :class="'row vehicle-'+vehicle.id"
+                                            <div :class="'row text-nowrap vehicle-'+vehicle.id"
                                                  style="display: none;" v-else>
-                                                <i class="col-md-1 fa fa-check fa-l mt-2"
+                                                <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                    style="color: green;"/>
-                                                <p class="col-md-10" style="font-size: 13px;">
+                                                <p class="col-md-10 text-nowrap" style="font-size: 13px;">
                                                     {{ item.what_is_included }}</p>
                                             </div>
                                         </li>
                                         <span @click="showMoreIncluded(vehicle.id)"
                                               class="col-md-6 cursor-pointer"
                                               :id="'show-more'+ vehicle.id"
-                                              v-if="vehicle?.included?.length > 4 ">Show more ...</span>
+                                              v-if="vehicle.included.length > 4 ">Show more ...</span>
                                     </ul>
                                 </div>
-                                <div class="row mb-5">
-                                    <div class="col-md-12">
-                                        <p><strong><i class="fa fa-location"/>Address:</strong>&nbsp;{{
-                                                vehicle?.supplier?.address
-                                            }}</p>
+                                <div class="row mb-5 col-md-4">
+                                    <div class="col-md-12 mt-5">
+                                        <p class="text-nowrap"><i class="fa fa-location"/>Address:&nbsp;<small>{{vehicle.supplier.address }}</small></p>
                                     </div>
-                                    <div class="col-md-12">
-                                        <span><i class="fa fa-gas-pump"/></span>
-                                        Fuel Policy: <small> Full to Full </small></div>
+                                    <div class="col-md-12 text-nowrap" style="margin-top: -20px">
+                                        <span class="text-nowrap"><i class="fa fa-gas-pump"/></span>
+                                        Fuel Policy: <small class="text-nowrap"> Full to Full </small></div>
                                 </div>
                             </div>
                             <div class="de-box row col-lg-12 mt-5 mb25">
@@ -492,7 +486,7 @@
 
                                 </div>
                                 <button v-if="!loading" id='send_message' @click="book" :disabled="loading"
-                                        class="btn-main btn-fullwidth offset-4 col-md-4" style="background: #f9d602">
+                                        class="btn-main btn-fullwidth offset-4 col-md-5" style="background: #f9d602">
                                     Continue&nbsp;To&nbsp;Payment
                                 </button>
                             </div>

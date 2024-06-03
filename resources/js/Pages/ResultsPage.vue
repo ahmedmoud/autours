@@ -233,10 +233,7 @@
                             <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-12">
                                 <div :style="getDisplayStyle(vehicle)" >
                                     <div class="de-item-list mb30  p-4 ">
-                                        <div class="close"
-                                             style="position: absolute; top: 10px;right: 35px; cursor: pointer;"
-                                             @click="hideItem(index)"
-                                        >
+                                        <div class="close" style="position: absolute; top: 10px;right: 35px; cursor: pointer;" @click="hideItem(index)">
                                             <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
