@@ -213,8 +213,10 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div v-loading="loading" class="col-lg-9">
+                        <div v-if="loading">
+                            <Loader />
+                        </div>
+                        <div v-else  class="col-lg-9">
                             <div class="row filter_top_group">
                                 <div style="height: 115px; margin-top: 75px; margin-right: 3%; "
                                      class="col-md-1 category" :id="'category' + item.id"
@@ -230,7 +232,7 @@
                             </div>
 
                             <h3>SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
-                            <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-12">
+                            <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
                                 <div :style="getDisplayStyle(vehicle)" >
                                     <div class="de-item-list mb30  p-4 ">
                                         <div class="close" style="position: absolute; top: 10px;right: 35px; cursor: pointer;" @click="hideItem(index)">
@@ -381,7 +383,7 @@ import {useForm, Link, router} from "@inertiajs/vue3";
 import HeaderOne from "../components/HeaderOne.vue";
 import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/vue';
 import Footer from "../components/Footer.vue";
-
+import Loader from "../components/Loader.vue"
 const isOpen = ref(false)
 
 const closeModal = () => {
