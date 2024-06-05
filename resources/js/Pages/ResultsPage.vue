@@ -166,7 +166,7 @@
                                 <div class="col-md-12 my-2" style="background: #fff;">
                                     <div class="row" @click="collapse('ms')">
                                         <h4 class="col-md-10" style="margin-bottom: -30px">
-                                            Vehicle Suppliers</h4> <i
+                                            Suppliers</h4> <i
                                         :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-ms' "/></div>
                                     <hr/>
                                     <div style="margin-top: -45px" id="ms">
@@ -213,8 +213,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="loading">
-                            <Loader />
+                        <div v-if="loading" class="col-lg-5" style=" margin-top: 10%; margin-left: 10%;">
+                            <Loader style=" margin-top: 40%; margin-left: 25%;" />
                         </div>
                         <div v-else  class="col-lg-9">
                             <div class="row filter_top_group">

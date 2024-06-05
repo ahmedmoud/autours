@@ -165,7 +165,6 @@ class VehicleController extends Controller
                 return (($a["final_price"] < $b["final_price"]) ? -1 : 1);
             });
             if ($minPrice >= $maxPrice) $minPrice = 0;
-
             return [
                 'location' => $location,
                 'date_from' => $dateFrom,

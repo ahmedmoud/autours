@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="col-md-8" style="bottom: 1000px; left: 50%;">
+    <div class="col-md-2" >
         <div class="loader"></div>
     </div>
 

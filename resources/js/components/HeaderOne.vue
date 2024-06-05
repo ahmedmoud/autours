@@ -15,13 +15,13 @@
 
                     <a v-if="user.role === 'customer'" class="col-md-7">
                         <CDropdown togglerText="Dropdown button" class="mt-1">
-                            <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);">{{
+                            <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);" class="bold">{{
                                     user.name
                                 }}
                             </CDropdownToggle>
                             <CDropdownMenu>
-                                <CDropdownItem class="cursor-pointer" @click="() => router.get('/my-profile')"><i
-                                    class="fa fa-user text-black bold"/>&nbsp;&nbsp;My&nbsp;Profile
+                                <CDropdownItem class="cursor-pointer bold" @click="() => router.get('/my-profile')"><i
+                                    class="fa fa-user text-black "/>&nbsp;&nbsp;My&nbsp;Profile
                                 </CDropdownItem>
                                 <CDropdownItem class="cursor-pointer text-black bold" @click="() => router.get('/logout')"><i
                                     class="fa fa-door-closed"/>&nbsp;&nbsp;Log&nbsp;Out
