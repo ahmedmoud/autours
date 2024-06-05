@@ -199,7 +199,7 @@
                                             <div class="row" v-for="option in item.options">
                                                 <div class="row col-md-12" v-if="option.vehicle_count">
                                                     <strong class="col-md-10 ">{{
-                                                            option.value + ` ${item.name.split(" ")[item.name.split(" ").length - 1] == 'Transmission' ? '' : item.name.split(" ")[item.name.split(" ").length - 1]} (${option.vehicle_count})`
+                                                            option.value + ` (${option.vehicle_count})`
                                                         }} </strong>
                                                     <el-checkbox
                                                         class="col-md-1 "
