@@ -278,13 +278,13 @@
                                             <div class=" rounded-2  mb-3 mt-3 py-1   justify-content-between align-items-center col-md-9"
                                                 style="background: #edecec; ">
                                                 <div class="d-supplier">
-                                                    <div class="col-md-2 d-img w-100" style="height: 50px">
+                                                    <div class="col-md-3 d-img w-100" style="height: 50px; margin-left: -15px;">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
-                                                             width="50" alt=""/>
+                                                             width="100" alt=""/>
                                                     </div>
-                                                    <div class="col-md-2 row">
+                                                    <div class="col-md-3 row">
                                                         <div>
-                                                            <span style="font-size: medium; margin-left: -12px;"
+                                                            <span style="font-size: medium; margin-left: -40px;"
                                                                   class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
@@ -306,8 +306,8 @@
                                                     </div>
                                                     <div v-if="vehicle.instant_confirmation" class="col-md-2">
                                                             <button class="scv-badge badge-white be_media" tabindex="0">
-                                                            <i style="color: gold;" class="mt-3 px-2 fa fa-bolt fa-xl be_media-left be_media-middle"/>
-                                                            <span class="scv-inst-text">Instant Confirmation</span>
+                                                            <i style="color: gold;" class="mt-3 px-2 fa fa-check fa-xl be_media-left be_media-middle"/>
+                                                            <span class="scv-inst-text text-nowrap" style="color: #000;">Instant Confirmation</span>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -758,7 +758,7 @@ onMounted(() => {
 .scv-badge.badge-white {
     display: flex;
     min-width: 10px;
-    padding: 2px 6px 3px 3px;
+    padding: 12px 11px 11px 4px;
     color: #605c5c;
     background-color: #fff;
     border-radius: 2em;
