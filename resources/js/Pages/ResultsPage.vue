@@ -280,11 +280,11 @@
                                                 <div class="d-supplier">
                                                     <div class="col-md-3 d-img w-100" style="height: 50px; margin-left: -15px;">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
-                                                             width="100" alt=""/>
+                                                             width="130" alt=""/>
                                                     </div>
-                                                    <div class="col-md-3 row">
+                                                    <div class="col-md-2 row">
                                                         <div>
-                                                            <span style="font-size: medium; margin-left: -40px;"
+                                                            <span style="font-size: medium; margin-left: -50px;"
                                                                   class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
@@ -295,7 +295,7 @@
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-1">
                                                         <span class="py-2 px-1 rounded-1"
                                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                                     </div>
