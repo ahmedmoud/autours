@@ -232,7 +232,7 @@
                             </div>
 
                             <h3>SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
-                            <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
+                            <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-12">
                                 <div :style="getDisplayStyle(vehicle)" >
                                     <div class="de-item-list mb-3 p-4 ">
                                         <div class="close" style="position: absolute; top: 10px;right: 35px; cursor: pointer;" @click="hideItem(index)">
