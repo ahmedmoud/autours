@@ -8,22 +8,22 @@
 
                 <div class="row menu-responsive">
 
-                    <a v-if="!user" class="nav-link col-md-8  text-black bold"  href="/register">Manage&nbsp;Booking</a>
-                    <a v-else-if="user.role !== 'customer'" class="nav-link col-md-8 text-black bold"
+                    <a v-if="!user" class="nav-link col-md-8  text-black "  href="/register">Manage&nbsp;Booking</a>
+                    <a v-else-if="user.role !== 'customer'" class="nav-link col-md-8 text-black "
                        href="/company"><span>My&nbsp;console</span></a>
 
 
                     <a v-if="user.role === 'customer'" class="col-md-7">
                         <CDropdown togglerText="Dropdown button" class="mt-1">
-                            <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);" class="bold">{{
+                            <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);" class="">{{
                                     user.name
                                 }}
                             </CDropdownToggle>
                             <CDropdownMenu>
-                                <CDropdownItem class="cursor-pointer bold" @click="() => router.get('/my-profile')"><i
-                                    class="fa fa-user text-black "/>&nbsp;&nbsp;My&nbsp;Profile
+                                <CDropdownItem class="cursor-pointer  text-black " @click="() => router.get('/my-profile')"><i
+                                    class="fa fa-user "/>&nbsp;&nbsp;My&nbsp;Profile
                                 </CDropdownItem>
-                                <CDropdownItem class="cursor-pointer text-black bold" @click="() => router.get('/logout')"><i
+                                <CDropdownItem class="cursor-pointer text-black " @click="() => router.get('/logout')"><i
                                     class="fa fa-door-closed"/>&nbsp;&nbsp;Log&nbsp;Out
                                 </CDropdownItem>
                             </CDropdownMenu>
@@ -31,14 +31,14 @@
                     </a>
                     <a class="col-md-4">
                         <CDropdown togglerText="Dropdown button" class="mt-1 ">
-                            <CDropdownToggle class="text-black bold" component="a" style="color: rgba(30, 30, 30, 1);">{{
+                            <CDropdownToggle class="text-black " component="a" style="color: rgba(30, 30, 30, 1);">{{
                                     selectedCurrency
                                 }}
                             </CDropdownToggle>
                             <CDropdownMenu>
                                 <CDropdownItem class="cursor-pointer " v-for="currency in currencies"
                                                v-on:click="changeCurrency(currency.name)">
-                                    <p class="text-black bold">{{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}</p>
+                                    <p class="text-black ">{{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}</p>
                                 </CDropdownItem>
                             </CDropdownMenu>
                         </CDropdown>

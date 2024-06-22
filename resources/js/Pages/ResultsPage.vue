@@ -234,7 +234,7 @@
                             <h3>SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
                             <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
                                 <div :style="getDisplayStyle(vehicle)" >
-                                    <div class="de-item-list mb30  p-4 ">
+                                    <div class="de-item-list mb-3 p-4 ">
                                         <div class="close" style="position: absolute; top: 10px;right: 35px; cursor: pointer;" @click="hideItem(index)">
                                             <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -248,9 +248,9 @@
                                         </div>
                                         <div>
                                             <div class="col-md-12">
-                                                <div class="col-md-3 d-img">
+                                                <div class="col-md-2 d-img">
                                                     <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid"
-                                                         width="200" height="100"
+                                                         width="300" height="100"
                                                          alt=""/>
                                                 </div>
                                                 <div class="d-info">
@@ -264,8 +264,8 @@
                                                         <div class="d-atr-group row">
                                                             <ul class="d-atr col-md-8">
                                                                 <li v-for="specification in vehicle.specifications">
-                                                                    <span :class="'fa fa-' + specification.icon"/>
-                                                                    <span> {{
+                                                                    <img  style="width:15%; margin-right: 5px;" :src="'assets/images/icons/' + specification.icon + '.svg'"/>
+                                                                    <span > {{
                                                                             specification.option
                                                                         }}</span>
                                                                 </li>
@@ -306,7 +306,7 @@
                                                     </div>
                                                     <div v-if="vehicle.instant_confirmation" class="col-md-2">
                                                             <button class="scv-badge badge-white be_media" tabindex="0">
-                                                            <i style="color: gold;" class="mt-3 ml-2 mr-2 fa fa-bolt fa-xl be_media-left be_media-middle"/>
+                                                            <i style="color: gold;" class="mt-3 px-2 fa fa-bolt fa-xl be_media-left be_media-middle"/>
                                                             <span class="scv-inst-text">Instant Confirmation</span>
                                                         </button>
                                                     </div>

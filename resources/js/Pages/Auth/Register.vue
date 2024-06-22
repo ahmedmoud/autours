@@ -107,7 +107,7 @@
 
                                     <div class="back">
                                         <h3 class="title my-3">Register</h3>
-                                        <form class="form-border" @submit.prevent="postUserData">
+                                        <form class="form-border" autocomplete="off"  @submit.prevent="postUserData">
 
                                             <div class="row">
 
@@ -122,25 +122,36 @@
                                                 <div class="col-md-6">
                                                     <div class="field-set">
                                                         <label>Email Address</label>
-                                                        <input v-model="RegisterForm.email" type="email"
-                                                               class="formbold-form-input"/>
+                                                        <input v-model="RegisterForm.email" type="email" id="email"  name="email" class="formbold-form-input"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="field-set">
+                                                        <label>Country</label>
+                                                        <input v-model="RegisterForm.country" type="text" class="formbold-form-input"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="field-set">
+                                                        <label>Code</label>
+                                                        <input v-model="RegisterForm.code" type='text' name='code' placeholder=" " autocomplete="false"  id='code' class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="field-set">
                                                         <label>Phone</label>
-                                                        <input v-model="RegisterForm.phone" type='text' name='phone'
-                                                               id='phone' class="form-control">
+                                                        <input v-model="RegisterForm.phone" autocomplete="false" type='text' name='phone' id='phone' class="form-control">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="field-set">
                                                         <label>Password</label>
-                                                        <input v-model="RegisterForm.password" type="password"
-                                                               class="formbold-form-input"/>
+                                                        <input v-model="RegisterForm.password" type="password" name="password" id="password" class="formbold-form-input"/>
                                                     </div>
                                                 </div>
+
 
 
                                                 <div class="col-md-12 mt-2 row">
@@ -200,6 +211,7 @@ const RegisterForm = useForm({
     country: '',
     password: '',
     user_type: '',
+    code: '',
     supplier: 0
 });
 
@@ -344,7 +356,7 @@ onMounted(() => {
     padding: 30px;
     width: 95%;
     left: 5%;
-    height: 360px;
+    height: 450px;
     position: relative;
     background: #f5f5f5;
     -webkit-border-radius: 20px;

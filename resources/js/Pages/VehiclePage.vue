@@ -202,7 +202,9 @@
                                 <div class="de-spec">
                                     <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
                                          class="row text-nowrap">
-                                        <span class="d-title"><i :class="'fa fa-' + specification.icon"/> &nbsp;{{
+                                        <span class="d-title">
+                                            <img  style="width: 15%; margin-right: 5px;" :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
+                                            &nbsp;{{
                                                 specification.name
                                             }}</span>
                                         <span class="d-value">{{ specification.option }}</span>
