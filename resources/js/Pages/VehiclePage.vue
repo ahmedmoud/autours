@@ -176,9 +176,9 @@
                     </div>
                     <div class="container bg-white col-md-5 offset-md-0 p-5 mt-4" >
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div id="slider-carousel">
-                                    <h3 class="text-nowrap">{{ vehicle.name }} - <small class="text-nowrap">{{ vehicle?.category?.name }}</small></h3>
+                                    <h3 class="text-nowrap" style="margin-left: -20px;">{{ vehicle.name }} - <small class="text-nowrap">{{ vehicle?.category?.name }}</small></h3>
                                     <div class="row"></div>
                                     <div class="item">
                                         <img class="item w-150"
@@ -199,15 +199,13 @@
                                         / per
                                         day </p>
                                 </div>
-                                <div class="de-spec">
+                                <div class="row de-spec text-nowrap">
                                     <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
-                                         class="row text-nowrap">
+                                         class="">
                                         <span class="d-title">
-                                            <img  style="width: 15%; margin-right: 5px;" :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
-                                            &nbsp;{{
-                                                specification.name
-                                            }}</span>
-                                        <span class="d-value">{{ specification.option }}</span>
+                                            <img  style="width: 15%; margin-right: 2px;" :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
+                                             {{ specification.option }}</span>
+
                                     </div>
                                 </div>
                                 <div class="spacer-single"></div>

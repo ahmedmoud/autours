@@ -280,7 +280,7 @@
                                                 <div class="d-supplier">
                                                     <div class="col-md-3 d-img w-100" style="height: 50px; margin-left: -15px;">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
-                                                             width="130" alt=""/>
+                                                             width="80" alt=""/>
                                                     </div>
                                                     <div class="col-md-2 row">
                                                         <div>
@@ -289,13 +289,13 @@
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
-                                                        <div style="margin-left: -15px">
+                                                        <div style="margin-left: -50px">
                                                             <small><a class="cursor-pointer text-primary"
                                                                       href="javascript:void(0);"
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-1">
+                                                    <div >
                                                         <span class="py-2 px-1 rounded-1"
                                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                                     </div>
@@ -306,7 +306,7 @@
                                                     </div>
                                                     <div v-if="vehicle.instant_confirmation" class="col-md-2">
                                                             <button class="scv-badge badge-white be_media" tabindex="0">
-                                                            <i style="color: gold;" class="mt-3 px-2 fa fa-check fa-xl be_media-left be_media-middle"/>
+                                                            <i style="color: gold;" class="mt-1 px-2 fa fa-check fa-xl be_media-left be_media-middle"/>
                                                             <span class="scv-inst-text text-nowrap" style="color: #000;">Instant Confirmation</span>
                                                         </button>
                                                     </div>
