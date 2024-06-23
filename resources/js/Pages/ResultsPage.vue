@@ -284,7 +284,7 @@
                                                     </div>
                                                     <div class="col-md-2 row">
                                                         <div>
-                                                            <span style="font-size: medium; margin-left: -50px;"
+                                                            <span style="font-size: 1rm; margin-left: -40px;"
                                                                   class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
