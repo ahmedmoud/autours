@@ -289,7 +289,7 @@
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
-                                                        <div style="margin-left: -50px">
+                                                        <div style="margin-left: -40px">
                                                             <small><a class="cursor-pointer text-primary"
                                                                       href="javascript:void(0);"
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
