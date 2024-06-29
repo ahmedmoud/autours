@@ -39,7 +39,7 @@
             </div>
 
             <div id="section-cars">
-                <div class="col-md-12  steps-buttons mb-5 position-relative" style="left: 15%;">
+                <div class=" col-md-12 mb-4 top-buttons">
                     <button class="mr-1 mt-2 btn steps-button "
                             style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-1"/>Choose Your Location
@@ -322,19 +322,19 @@
                                                                 <div class="row" v-if="index < 4">
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
-                                                                    <p class="col-md-10 text-nowrap" style="font-size: 80%;">
+                                                                    <p class="col-md-10 included-font" >
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                                 <div :class="'row text-nowrap vehicle-'+vehicle.id"
                                                                      style="display: none;" v-else>
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
-                                                                    <p class="col-md-10 text-nowrap" style="font-size: 13px;">
+                                                                    <p class="col-md-10 text-nowrap included-font" >
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                             </li>
                                                             <span @click="showMoreIncluded(vehicle.id)"
-                                                                  class="col-md-6 cursor-pointer"
+                                                                  class="col-md-12 cursor-pointer"
                                                                   :id="'show-more'+ vehicle.id"
                                                                   v-if="vehicle.included.length > 4 ">Show more ...</span>
                                                         </ul>
@@ -794,6 +794,29 @@ onMounted(() => {
     align-self: center;
     margin-left: 2px;
 }
-
+@media (min-width: 1700px) {
+    .included-font {
+        font-size: 12px;
+    }
+    .top-buttons{
+        margin-left: 15%;
+    }
+}
+@media (max-width: 1699px) {
+    .included-font {
+        font-size: 10px;
+    }
+    .top-buttons{
+        margin-left: 10%;
+    }
+}
+    @media (max-width: 1500px) {
+        .included-font {
+            font-size: 8px;
+        }
+        .top-buttons{
+            margin-left: 8%;
+        }
+}
 
 </style>

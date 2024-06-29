@@ -82,12 +82,21 @@
             <h2 class="mb-4">Rentals</h2>
             <div class=" d-flex">
                 <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
-                    <el-table-column label="Name" prop="vehicle.name"/>
                     <el-table-column label="Booking Reference" prop="order_number"/>
-                    <el-table-column label="Total Price" prop="supplier_price"/>
+                    <el-table-column label="Vehicle" prop="vehicle.name"/>
+                    <el-table-column label="Customer Name" prop="customer.name"/>
+                    <el-table-column label="Country" prop="customer.country"/>
+                    <el-table-column label="Total Price" prop="supplier_price">
+                        <template #default="scope">
+                            {{scope.row.price}} {{scope.row.currency}}
+                        </template>
+                    </el-table-column>
                     <el-table-column label="Rental Status" prop="status.name_en"/>
-                    <el-table-column label="Start Date" prop="start_date"/>
-                    <el-table-column label="End Date" prop="end_date"/>
+                    <el-table-column label="Duration" align="center" prop="start_date">
+                        <template #default="scope">
+                            {{moment(scope.row.end_date).diff(moment(scope.row.start_date), 'days')}}
+                        </template>
+                    </el-table-column>
                     <el-table-column align="right">
                         <template #header>
                             <el-input v-model="search" size="small" placeholder="Type to search"/>
@@ -121,6 +130,7 @@
 
 <script setup>
 import {onMounted, computed, ref} from 'vue'
+import moment from "moment/moment.js";
 
 const search = ref('')
 const tableData = ref([])
