@@ -165,11 +165,11 @@
 
                                 <div class="col-md-12 my-2" style="background: #fff;">
                                     <div class="row" @click="collapse('ms')">
-                                        <h4 class="col-md-10" style="margin-bottom: -30px">
+                                        <h4 class="col-md-10" style="color: #000; margin-bottom: -30px">
                                             Suppliers</h4> <i
                                         :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-ms' "/></div>
-                                    <hr/>
-                                    <div style="margin-top: -45px" id="ms">
+                                    <hr style="margin-top: 20px;"/>
+                                    <div style="margin-top: -45px;" id="ms">
                                         <div class="row" v-for="supplier in filteredSuppliers">
                                             <div class="row" v-if="supplier?.vehicle_count">
                                                 <strong class="col-md-10 mt-2">{{
@@ -190,7 +190,7 @@
                                 <div v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
                                     <div class="col-md-12 my-2  ">
                                         <div @click="collapse(item.id)" class="row"><h4 class="col-md-10"
-                                                                                        style="margin-bottom: -30px">
+                                                                                        style="color: #000; margin-bottom: -30px">
                                             {{ item.name }}</h4>
                                             <i :class="'col-md-2 fa fa-arrow-down cursor-pointer ' +  'pointer-arrow-' + item.id"/>
                                         </div>
@@ -231,7 +231,7 @@
                                 </div>
                             </div>
 
-                            <h3>SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
+                            <h3 style="color: #000;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
                             <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-12">
                                 <div :style="getDisplayStyle(vehicle)" >
                                     <div class="de-item-list mb-3 p-4 ">
@@ -255,7 +255,7 @@
                                                 </div>
                                                 <div class="d-info">
                                                     <div class="d-text">
-                                                        <h4 class="text-nowrap">
+                                                        <h4 style="color: #000;" class="text-nowrap">
                                                             {{ vehicle.name }}
                                                             <span
                                                                 style="font-weight: 600;color: #727272;font-size: 16px;">or&nbsp;Similar</span>
