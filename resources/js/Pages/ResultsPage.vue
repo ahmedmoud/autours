@@ -5,7 +5,7 @@
         <header-one/>
         <!-- header close -->
         <!-- content begin -->
-        <div class="mt-3" style="background: #ececec" id="content">
+        <div class="" style="background: #ececec" id="content">
             <div id="top"></div>
             <!--            <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>-->
 
@@ -39,7 +39,7 @@
             </div>
 
             <div id="section-cars">
-                <div class=" col-md-12 mb-4 top-buttons">
+                <div class=" col-md-12 mb-3 top-buttons">
                     <button class="mr-1 mt-2 btn steps-button "
                             style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-1"/>Choose Your Location
