@@ -267,6 +267,8 @@
                                                                     <img  style="width:15%; margin-right: 5px;" :src="'assets/images/icons/' + specification.icon + '.svg'"/>
                                                                     <span > {{
                                                                             specification.option
+                                                                        }} {{
+                                                                            specification.name.split(' ')[specification.name.split(' ').length -1] == 'Conditioning' ? '' : specification.name.split(' ')[specification.name.split(' ').length -1]
                                                                         }}</span>
                                                                 </li>
                                                             </ul>
@@ -322,7 +324,7 @@
                                                                 <div class="row" v-if="index < 4">
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
-                                                                    <p class="col-md-10 included-font" >
+                                                                    <p class="col-md-10 included-font text-nowrap" >
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                                 <div :class="'row text-nowrap vehicle-'+vehicle.id"
