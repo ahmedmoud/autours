@@ -184,7 +184,7 @@ import 'primevue/resources/themes/aura-light-amber/theme.css'
 
 const value = ref()
 const form = useForm({
-    pickupLoc: ref('Enter Your location!'),
+    pickupLoc: ref('Enter Your destination!'),
     date: ref(''),
     date_from: ref(''),
     date_to: ref(''),
@@ -330,7 +330,7 @@ const search = async () => {
         return;
     }
 
-    if (form.pickupLoc == null || form.pickupLoc == [] || form.pickupLoc == 'Enter Your location!') {
+    if (form.pickupLoc == null || form.pickupLoc == [] || form.pickupLoc == 'Enter Your destination!') {
         loading.value = false
         alert('Please Select Location.')
         return;
