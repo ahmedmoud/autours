@@ -268,7 +268,7 @@
                                                                     <span > {{
                                                                             specification.option
                                                                         }} {{
-                                                                            specification.name.split(' ')[specification.name.split(' ').length -1] == 'Conditioning' ? '' : specification.name.split(' ')[specification.name.split(' ').length -1]
+                                                                            specification.name?.split(' ')[specification.name?.split(' ').length -1] == 'Conditioning' ? '' : specification.name?.split(' ')[specification.name?.split(' ')?.length -1]
                                                                         }}</span>
                                                                 </li>
                                                             </ul>
