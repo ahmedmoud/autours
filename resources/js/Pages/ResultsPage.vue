@@ -289,12 +289,12 @@
                                                     </div>
                                                     <div class="col-md-2 row">
                                                         <div>
-                                                            <span style="font-size: .85vw; margin-left: -60px; color: #000;"
+                                                            <span style="font-size: .85vw; margin-left: -55px; color: #000;"
                                                                   class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
-                                                        <div style="margin-left: -50px; margin-top: -10px;">
+                                                        <div style="margin-left: -55px; margin-top: -10px;">
                                                             <small><a class="cursor-pointer text-primary"
                                                                       href="javascript:void(0);"
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
