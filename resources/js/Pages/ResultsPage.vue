@@ -283,7 +283,7 @@
                                             <div class=" rounded-2  mb-3  py-1   justify-content-between align-items-center col-md-9"
                                                 style="background: #edecec; ">
                                                 <div class="d-supplier">
-                                                    <div class="col-md-3 d-img w-100" style="height: 60px; margin-left: -15px;">
+                                                    <div class="col-md-3 mt-2 d-img w-100" style="height: 60px; margin-left: -15px;">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="80" alt=""/>
                                                     </div>
@@ -305,8 +305,8 @@
                                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <span class="be_media-body"><h5>Good</h5><span
-                                                            style="font-size: medium;">(&nbsp;<strong
+                                                        <span class="be_media-body" ><h5 style="margin-bottom: -5px;">Good</h5><span
+                                                            style="font-size: medium; ">(&nbsp;<strong
                                                             style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
                                                     <div v-if="vehicle.instant_confirmation" class="col-md-2">
