@@ -312,7 +312,7 @@
                                                     <div v-if="vehicle.instant_confirmation" class="col-md-2">
                                                             <button class="scv-badge badge-white be_media" tabindex="0">
                                                             <i style="color: gold;" class="mt-1 px-2 fa fa-check fa-xl be_media-left be_media-middle"/>
-                                                            <span class="scv-inst-text text-nowrap" style="color: #000;">Instant Confirmation</span>
+                                                            <span class="scv-inst-text text-nowrap" style="color: #000; font-size: .8vw;">Instant Confirmation</span>
                                                         </button>
                                                     </div>
                                                 </div>
