@@ -283,13 +283,13 @@
                                             <div class=" rounded-2  mb-3  py-1   justify-content-between align-items-center col-md-9"
                                                 style="background: #edecec; ">
                                                 <div class="d-supplier">
-                                                    <div class="col-md-3 d-img w-100" style="height: 50px; margin-left: -15px;">
+                                                    <div class="col-md-3 d-img w-100" style="height: 60px; margin-left: -15px;">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="80" alt=""/>
                                                     </div>
                                                     <div class="col-md-2 row">
                                                         <div>
-                                                            <span style="font-size: .85vw; margin-left: -50px; color: #000;"
+                                                            <span style="font-size: .85vw; margin-left: -60px; color: #000;"
                                                                   class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
