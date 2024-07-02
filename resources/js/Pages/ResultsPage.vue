@@ -280,7 +280,7 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class=" rounded-2  mb-3 mt-3 py-1   justify-content-between align-items-center col-md-9"
+                                            <div class=" rounded-2  mb-3  py-1   justify-content-between align-items-center col-md-9"
                                                 style="background: #edecec; ">
                                                 <div class="d-supplier">
                                                     <div class="col-md-3 d-img w-100" style="height: 50px; margin-left: -15px;">
