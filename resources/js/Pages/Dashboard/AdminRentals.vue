@@ -125,6 +125,9 @@
 
                     <el-table-column label="Supplier name" prop="vehicle.supplier.name"/>
                     <el-table-column label="Rental Status" prop="status.name_en"/>
+                    <el-table-column label="Started At" prop="start_date"/>
+                    <el-table-column label="Ended At" prop="end_date"/>
+
                     <el-table-column label="Duration" prop="start_date">
                         <template #default="scope">
                             {{moment(scope.row.end_date).diff(moment(scope.row.start_date), 'days')}}
