@@ -316,7 +316,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>1
                                             <div class="row">
                                                 <div class="de-item-list col-md-9 justify-content-between align-items-center bg-light-gray">
                                                     <div class="row col-md-8">

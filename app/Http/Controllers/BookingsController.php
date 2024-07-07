@@ -105,8 +105,7 @@ class BookingsController extends Controller
             $rentals->where('order_number', $request->order_number);
         }
         if ($request->has('date_range') && $request->date_range) {
-            $rentals->whereRaw('created_at::date >= ?' ,$request->date_range[0]);
-            $rentals->whereRaw('created_at::date <= ?' ,$request->date_range[1]);
+            $rentals->whereBetween('created_at' ,[$request->date_range[0],$request->date_range[1]]);
         }
         $data = $rentals->with('vehicle.supplier', 'vehicle.branch', 'status', 'customer')->orderBy('id', 'desc')->get();
 
