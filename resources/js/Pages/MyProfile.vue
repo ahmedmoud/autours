@@ -112,8 +112,23 @@
                             <div class="row">
                                 <div v-for="rental in user.rentals" class="col-lg-4 col-12">
                                     <!-- card -->
-                                    <div class="card mb-5 rounded-3">
 
+                                    <div class="card mb-5 rounded-3">
+                                        <div class="col-md-1" style="top: 0; left: 83%;">
+                                            <CDropdown togglerText="Dropdown button" class="mt-1 dropdown">
+                                                <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);"><i
+                                                    class="fa fa-bars"/></CDropdownToggle>
+                                                <CDropdownMenu>
+                                                    <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: black;"
+                                                                   @click="cancelBooking(rental)"><i class="fa fa-repeat"/>&nbsp;Cancel
+                                                    </CDropdownItem>
+                                                    <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: black;"
+                                                    ><i class="fa fa-download"/>&nbsp;Download&nbsp;invoice
+                                                    </CDropdownItem>
+
+                                                </CDropdownMenu>
+                                            </CDropdown>
+                                        </div>
                                         <div>
                                             <img :src="'img/vehicles/'+ rental.vehicle.photo" alt="Image"
                                                  height="250" width="400" >
@@ -132,7 +147,8 @@
                                             <p>{{ rental.vehicle.supplier.name }}</p>
                                             <p>#{{ rental.order_number }}</p>
 
-                                            <p>{{ rental.start_date }} to {{ rental.end_date }}</p>
+                                            <p><strong> Start Date:</strong> {{ rental.start_date }} </p>
+                                            <p><strong> End Date:</strong>  {{ rental.end_date }}</p>
                                             <p>
                                                 {{ rental.vehicle.branch.location }}
                                             </p>
@@ -147,7 +163,7 @@
                                                     <button class="btn btn-warning"
                                                     v-if="moment(rental.start_date).isAfter(moment(Date.now())) && rental.order_status == 2"
                                                             @click="updateReservation(rental.id)"
-                                                    ><i class="fa fa-pencil"/>&nbsp; Edit </button>
+                                                    ><i class="fa fa-pencil"/>&nbsp; Modify </button>
 
 
                                                 </div>
@@ -263,6 +279,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 import {router, useForm} from '@inertiajs/vue3';
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import moment from 'moment';
+import {CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle} from "@coreui/vue";
 
 const $toast = useToast();
 const loading = ref(false)
@@ -348,6 +365,24 @@ const uploadPhoto = async (event) => {
     }
 }
 
+const cancelBooking = async (rental) => {
+    try {
+        loading.value = true
+        const response = await axios.post('/cancel/booking', rental);
+
+        console.log(response.status)
+        if (response.status) {
+            $toast.warning('Rental has been Cancelled', {position: 'top'})
+            getUser()
+        }
+        loading.value = false
+    } catch (e) {
+
+        loading.value = false
+        $toast.error(e.response.data.message, {position: 'top'})
+    }
+
+}
 const updateReservation = (item_id) => {
    window.location.href = '/update-booking?booking_id='+item_id
     // router.get('/update-booking/'+item_id)

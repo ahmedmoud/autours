@@ -103,41 +103,39 @@
             <div class=" d-flex">
                 <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
 
-                    <el-table-column label="Booking Reference" prop="order_number"/>
-                    <el-table-column label="Vehicle" prop="vehicle.name"/>
-                    <el-table-column label="Customer Name" prop="customer.name"/>
-                    <el-table-column label="Country" prop="customer.country"/>
-                    <el-table-column label="Total Price" prop="price">
+                    <el-table-column align="left" label="Booking #" prop="order_number"/>
+                    <el-table-column align="left" label="Vehicle" prop="vehicle.name"/>
+                    <el-table-column align="left" label="Customer Name" prop="customer.name"/>
+                    <el-table-column align="left" label="Country" prop="customer.country"/>
+                    <el-table-column align="left" label="Total Price" prop="price">
                         <template #default="scope">
                             {{scope.row.price}} {{scope.row.currency}}
                         </template>
                     </el-table-column>
-                    <el-table-column label="Profit" prop="profit_margin">
+                    <el-table-column align="left" label="Profit" prop="profit_margin">
                         <template #default="scope">
                             {{scope.row.profit_margin}}%
                         </template>
                     </el-table-column>
-                    <el-table-column label="Supplier price" prop="supplier_price">
+                    <el-table-column align="left" label="Supplier price" prop="supplier_price">
                         <template #default="scope">
                             {{scope.row.supplier_price}} {{scope.row.currency}}
                         </template>
                     </el-table-column>
 
-                    <el-table-column label="Supplier name" prop="vehicle.supplier.name"/>
-                    <el-table-column label="Rental Status" prop="status.name_en"/>
-                    <el-table-column label="Started At" prop="start_date"/>
-                    <el-table-column label="Ended At" prop="end_date"/>
+                    <el-table-column align="left" label="Supplier name" prop="vehicle.supplier.name"/>
+                    <el-table-column align="left" label="Rental Status" prop="status.name_en"/>
+                    <el-table-column align="left" label="Started At" prop="start_date"/>
+                    <el-table-column align="left" label="Ended At" prop="end_date"/>
 
-                    <el-table-column label="Duration" prop="start_date">
+                    <el-table-column align="left" label="Duration" prop="start_date">
                         <template #default="scope">
                             {{moment(scope.row.end_date).diff(moment(scope.row.start_date), 'days')}}
                         </template>
                     </el-table-column>
                     <el-table-column align="right">
 
-                        <template #header>
-                            <el-input v-model="search" size="small" placeholder="Type to search"/>
-                        </template>
+
 
                         <template v-if="role === 'active_supplier'" #default="scope">
                             <el-button

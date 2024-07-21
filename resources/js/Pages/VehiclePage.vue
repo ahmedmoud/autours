@@ -55,7 +55,7 @@
                         class="ti ti-circle-number-3 mr-1"/>Reserve Your Car</span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 offset-2 mt-4" >
+                    <div class="col-md-3 offset-1 mt-4" >
 
                         <div class="p-1 col-11" style="background-color: #e1e1e1; ">
                             <h5 class="p-2">YOUR SEARCH DETAILS</h5>
@@ -153,15 +153,15 @@
                                     per
                                     day </p>
                                 <div class="row">
-                                    <p class="col-md-9">Rental Cost</p>
+                                    <p class="col-md-8">Rental Cost</p>
                                     <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price }}</p>
                                 </div>
                                 <div class="row">
-                                    <p class="col-md-9">Extras</p>
+                                    <p class="col-md-8">Extras</p>
                                     <p class="col-md-3">{{ currency + '&nbsp' + 0 }}</p>
                                 </div>
                                 <div class="row">
-                                    <p class="col-md-9">Total Rental Cost</p>
+                                    <p class="col-md-8">Total Rental Cost</p>
                                     <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price }}</p>
                                 </div>
                                 <hr style="margin-bottom: 5%;"/>
@@ -174,7 +174,7 @@
                         </div>
 
                     </div>
-                    <div class="container bg-white col-md-5 offset-md-0 p-5 mt-4" >
+                    <div class="container bg-white col-md-6 offset-md-0 pt-5 pl-5 mt-4" >
                         <div class="row">
                             <div class="col-md-5">
                                 <div id="slider-carousel">
@@ -204,14 +204,13 @@
                                          class="">
                                         <span class="d-title">
                                             <img  style="width: 15%; margin-right: 2px;" :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
-                                             {{ specification.option }}</span>
-
+                                             {{ specification.option }} {{specification.name == 'Number of Seats' ? 'Seats' : specification.name == 'Doors' ? 'Doors' : '' }}
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
-                            <div
-                                class=" rounded-2 py-1 mb30 mt30  justify-content-between align-items-center col-md-12"
+                            <div class=" rounded-2 py-1 mb-2   justify-content-between align-items-center col-md-11"
                                 style="background: #edecec; ">
                                 <div class="d-supplier">
                                     <div class="col-md-2 d-img w-100" style="height: 50px">
@@ -240,13 +239,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class=" rounded-2 col-md-12 bg-light-gray pt-1 row">
+                            <div class=" row ml-1 rounded-2 col-md-11 bg-light-gray pt-1 ">
                                 <div class="row col-md-8">
                                     <p class="primary bold m-0" style="color: #5e9007;">What is Included!</p>
                                     <ul class="row" >
                                         <li class="col-md-6" style="height: 20px"
                                             v-for="(item, index) in vehicle.included ">
-                                            <div class="row" v-if="index < 4">
+                                            <div class="row" v-if="index < 140">
                                                 <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                    style="color: green;"/>
                                                 <p class="col-md-10 text-nowrap" style="font-size: 80%;">
@@ -260,25 +259,35 @@
                                                     {{ item.what_is_included }}</p>
                                             </div>
                                         </li>
-                                        <span @click="showMoreIncluded(vehicle.id)"
-                                              class="col-md-6 cursor-pointer"
-                                              :id="'show-more'+ vehicle.id"
-                                              v-if="vehicle?.included?.length > 4 ">Show more ...</span>
+
                                     </ul>
                                 </div>
                                 <div class="row mb-5 col-md-4">
                                     <div class="col-md-12 mt-5">
                                         <p class="text-nowrap"><i class="fa fa-location"/>Address:&nbsp;<small>{{vehicle?.supplier?.address }}</small></p>
                                     </div>
-                                    <div class="col-md-12 text-nowrap" style="margin-top: -20px">
-                                        <span class="text-nowrap"><i class="fa fa-gas-pump"/></span>
-                                        Fuel Policy: <small class="text-nowrap"> Full to Full </small></div>
+                                    <div class="row col-md-12 text-nowrap" style="margin-top: -20px">
+                                       <p> <strong class="text-nowrap"><i class="fa fa-gas-pump"/></strong>
+                                        Fuel Policy: <small class="text-nowrap"> Full to Full </small></p></div>
+                                </div>
+                            </div>
+                            <div class="de-box row col-lg-12 mt-5">
+                                <div class="col-lg-12">
+                                    <div class="">
+                                        <div class="col-lg-12" v-if="user">
+                                            <el-checkbox  class="mr-2"/> Remember me on this device. <br/>
+                                            <el-checkbox v-model="rental_terms" class="mr-2"/> I confirm that i have read, understood and agree with the
+                                            <a class="cursor-pointer text-primary" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> .<br/>
+                                            <el-checkbox  class="mr-2"/> Subscribe me to the promotional emails.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="de-box row col-lg-12 mt-5 mb25">
                                 <div class="col-lg-12">
                                     <div class="">
                                         <div class="row">
+
                                             <div class="col-lg-12" v-if="!user">
                                                 <h4 style="text-align: center;">Register First to continue your
                                                     reservation</h4>
@@ -287,7 +296,6 @@
                                                 >
                                                     <div class="row">
                                                         <div class="formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">Full name</label>
                                                             <div class="row">
                                                                 <el-select
                                                                     v-model="RegisterForm.gender"
@@ -319,9 +327,8 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
-                                                        <div class="formbold-mb-3 col-md-4"
+                                                        <div class="formbold-mb-3 col-md-6"
                                                              v-if="!user || user.role !== 'customer' ">
-                                                            <label class="formbold-form-label">Country</label>
                                                             <div class="countries row">
                                                                 <el-select
                                                                     v-model="RegisterForm.country"
@@ -343,7 +350,6 @@
                                                             </div>
                                                         </div>
                                                         <div class="formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">E-mail</label>
                                                             <div class="countries">
                                                                 <el-input
                                                                     v-model="RegisterForm.email"
@@ -357,8 +363,7 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
-                                                        <div class="formbold-mb-3 col-md-4">
-                                                            <label class="formbold-form-label">Password</label>
+                                                        <div class="formbold-mb-3 col-md-6">
                                                             <div class="countries">
                                                                 <el-input
                                                                     v-model="RegisterForm.password"
@@ -373,13 +378,12 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
-                                                        <div class="formbold-mb-3 col-md-9">
-                                                            <label class="formbold-form-label">Phone</label>
+                                                        <div class="formbold-mb-3 col-md-12">
                                                             <div class="row">
                                                                 <el-select
                                                                     v-model="RegisterForm.mobile_code"
                                                                     size="large"
-                                                                    class="col-md-3"
+                                                                    class="col-md-2"
                                                                     filterable
                                                                     reserve-keyword
                                                                     placeholder="code..."
@@ -395,7 +399,7 @@
                                                                 <el-input
                                                                     v-model="RegisterForm.phone"
                                                                     size="large"
-                                                                    class="col-md-8"
+                                                                    class="col-md-10"
                                                                     filterable
                                                                     remote
                                                                     reserve-keyword
@@ -567,6 +571,7 @@ const countryCodes = [
     {"country": "United States", "code": "1", "iso": "US"},
 ];
 const user = ref('')
+const rental_terms = ref(false)
 const value = ref(0);
 const id = ref('')
 const vehicle = ref('')
@@ -745,6 +750,10 @@ const book = async () => {
         if (user.value.role !== 'customer') {
             $toast.error("You are not a customer!", {position: 'top'})
             return;
+        }
+        if(rental_terms != true) {
+            $toast.error("Please Approve on the rental terms !")
+
         }
 
         bookingForm.id = id.value;

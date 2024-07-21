@@ -54,7 +54,7 @@
                 </div>
 
 
-                <div class="" style="width: 90%; padding-left: 10%;">
+                <div class="" style="width: 100%; padding-left: 10%;">
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="col-md-12 pb-4" style="background: #fff;">
@@ -90,7 +90,7 @@
                                     <form class="trip-form mt-4 px-2" @submit.prevent="search">
                                         <div class="row align-items-center flex-column">
                                             <div class="mb-3 col-md-11">
-                                                <el-select class="w-100" v-model="form.pickupLoc" size="large"
+                                                <el-select style="width:100%" v-model="form.pickupLoc" size="large"
                                                            filterable
                                                            remote
                                                            reserve-keyword placeholder="PICKUP..."
@@ -144,7 +144,7 @@
                                                     />
                                                 </div>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-3 col-md-11">
                                                 <input type="submit" value="Search"
                                                        class="btn-main btn-fullwidth "
                                                        style="padding: 7px 25px"/>
@@ -173,8 +173,9 @@
                                         <div class="row" v-for="supplier in filteredSuppliers">
                                             <div class="row" v-if="supplier?.vehicle_count">
                                                 <strong class="col-md-10 mt-2">{{
-                                                        supplier.company + ' (' + supplier?.vehicle_count + ')'
-                                                    }}&nbsp;</strong>
+                                                        supplier.company
+                                                    }} <small style="font-size: 14px;">
+                                                        ({{ supplier?.vehicle_count }})</small></strong>
                                                 <el-checkbox
                                                     class="col-md-1"
                                                     size="large"
@@ -198,9 +199,16 @@
                                         <div style="margin-top: -35px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
                                                 <div class="row col-md-12" v-if="option.vehicle_count">
-                                                    <strong class="col-md-10 ">{{
-                                                            option.value + ` (${option.vehicle_count})`
-                                                        }} </strong>
+                                                    <div class="row"><strong class="col-md-10 ">{{ option.value }}
+                                                        {{
+                                                            item.name == 'Number Of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
+                                                        }}
+                                                        <small
+                                                            style="font-size: 14px;">({{
+                                                                option.vehicle_count
+                                                            }})</small>
+                                                    </strong>
+                                                    </div>
                                                     <el-checkbox
                                                         class="col-md-1 "
                                                         size="large"
@@ -214,28 +222,33 @@
                             </div>
                         </div>
                         <div v-if="loading" class="col-lg-5" style=" margin-top: 10%; margin-left: 10%;">
-                            <Loader style=" margin-top: 40%; margin-left: 25%;" />
+                            <Loader style=" margin-top: 40%; margin-left: 25%;"/>
                         </div>
-                        <div v-else  class="col-lg-9">
+                        <div v-else class="col-lg-9">
                             <div class="row filter_top_group">
-                                <div style="height: 115px; margin-top: 75px; margin-right: 3%; "
-                                     class="col-md-1 category" :id="'category' + item.id"
-                                     v-for="item in filteredCategories">
-                                    <el-radio v-model="category" :label="item.id" size="large" border
-                                              @click="SelectCategory(item.id)">
-                                        <div class="item_filter_group filter_top " style="background: #fff;">
-                                            <h4>{{ item.name }}</h4>
-                                            <img :src="'img/categories/'+item.photo" width="40" height="80"/>
-                                        </div>
-                                    </el-radio>
+                                <div class="horizontal-slider-container">
+                                    <ul class="horizonal-slider">
+                                            <li class="item my-3" :id="'category' + item.id"  v-for="item in filteredCategories">
+                                                <el-radio v-model="category" :label="item.id" size="large" border @click="SelectCategory(item.id)" >
+                                                    <div class="item_filter_group filter_top " >
+                                                        <h4>{{ item.name }}</h4>
+                                                        <img :src="'img/categories/'+item.photo" width="40" height="80"/>
+                                                    </div>
+                                                </el-radio>
+
+                                            </li>
+                                    </ul>
                                 </div>
                             </div>
 
-                            <h3 style="color: #000;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
-                            <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-12">
-                                <div :style="getDisplayStyle(vehicle)" >
+                            <h3 style="color: #000;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS
+                                FOUND</strong></h3>
+                            <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
+                                <div :style="getDisplayStyle(vehicle)">
                                     <div class="de-item-list mb-3 p-4 ">
-                                        <div class="close" style="position: absolute; top: 10px;right: 35px; cursor: pointer;" @click="hideItem(index)">
+                                        <div class="close"
+                                             style="position: absolute; top: 10px;right: 35px; cursor: pointer;"
+                                             @click="hideItem(index)">
                                             <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -264,14 +277,15 @@
                                                         <div class="d-atr-group row">
                                                             <ul class="d-atr col-md-8">
                                                                 <li v-for="specification in vehicle.specifications">
-                                                                    <img  style="width:15%; margin-right: 5px;" :src="'assets/images/icons/' + specification.icon + '.svg'"/>
-                                                                    <span > {{
+                                                                    <img style="width:15%; margin-right: 5px;"
+                                                                         :src="'assets/images/icons/' + specification.icon + '.svg'"/>
+                                                                    <span> {{
                                                                             specification.option
                                                                         }} {{
-                                                                            specification.name?.split(' ')[specification.name?.split(' ').length -1] == 'Conditioning'||
-                                                                            specification.name?.split(' ')[specification.name?.split(' ').length -1] == 'Transmutation'||
-                                                                            specification.name?.split(' ')[specification.name?.split(' ').length -1] == 'Fuel'
-                                                                                ? '' : specification.name?.split(' ')[specification.name?.split(' ')?.length -1]
+                                                                            specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Conditioning' ||
+                                                                            specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Transmutation' ||
+                                                                            specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Fuel'
+                                                                                ? '' : specification.name?.split(' ')[specification.name?.split(' ')?.length - 1]
                                                                         }}</span>
                                                                 </li>
                                                             </ul>
@@ -280,17 +294,20 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class=" rounded-2  mb-3  py-1   justify-content-between align-items-center col-md-9"
+                                            <div
+                                                class=" rounded-2  mb-3  py-1   justify-content-between align-items-center col-md-9"
                                                 style="background: #edecec; ">
                                                 <div class="d-supplier">
-                                                    <div class="col-md-3 mt-2 d-img w-100" style="height: 60px; margin-left: -15px;">
+                                                    <div class="col-md-3 mt-2 d-img w-100"
+                                                         style="height: 60px; margin-left: -15px;">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="80" alt=""/>
                                                     </div>
                                                     <div class="col-md-2 row">
                                                         <div>
-                                                            <span style="font-size: .85vw; margin-left: -55px; color: #000;"
-                                                                  class="text-nowrap">{{
+                                                            <span
+                                                                style="font-size: .85vw; margin-left: -55px; color: #000;"
+                                                                class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
@@ -300,41 +317,45 @@
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                                         </div>
                                                     </div>
-                                                    <div >
+                                                    <div>
                                                         <span class="py-2 px-1 rounded-1"
                                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <span class="be_media-body" ><h5 style="margin-bottom: -5px;">Good</h5><span
+                                                        <span class="be_media-body"><h5 style="margin-bottom: -5px;">Good</h5><span
                                                             style="font-size: medium; ">(&nbsp;<strong
                                                             style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
                                                     <div v-if="vehicle.instant_confirmation" class="col-md-2">
-                                                            <button class="scv-badge badge-white be_media" tabindex="0">
-                                                            <i style="color: gold;" class="mt-1 px-2 fa fa-check fa-xl be_media-left be_media-middle"/>
-                                                            <span class="scv-inst-text text-nowrap" style="color: #000; font-size: .8vw;">Instant Confirmation</span>
+                                                        <button class="scv-badge badge-white be_media" tabindex="0">
+                                                            <i style="color: gold;"
+                                                               class="mt-1 px-2 fa fa-check fa-xl be_media-left be_media-middle"/>
+                                                            <span class="scv-inst-text text-nowrap"
+                                                                  style="color: #000; font-size: .8vw;">Instant Confirmation</span>
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </div>1
+                                            </div>
                                             <div class="row">
-                                                <div class="de-item-list col-md-9 justify-content-between align-items-center bg-light-gray">
+                                                <div
+                                                    class="de-item-list col-md-9 justify-content-between align-items-center bg-light-gray">
                                                     <div class="row col-md-8">
-                                                        <p class="primary bold mb-0"  style="color: #5e9007;">What is Included!</p>
-                                                        <ul class="row" >
+                                                        <p class="primary bold mb-0" style="color: #5e9007;">What is
+                                                            Included!</p>
+                                                        <ul class="row">
                                                             <li class="col-md-6" style="height: 20px"
                                                                 v-for="(item, index) in vehicle.included ">
                                                                 <div class="row" v-if="index < 4">
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
-                                                                    <p class="col-md-10 included-font text-nowrap" >
+                                                                    <p class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                                 <div :class="'row text-nowrap vehicle-'+vehicle.id"
                                                                      style="display: none;" v-else>
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
-                                                                    <p class="col-md-10 text-nowrap included-font" >
+                                                                    <p class="col-md-10 text-nowrap included-font">
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                             </li>
@@ -346,7 +367,9 @@
                                                     </div>
                                                     <div class="row mb-5">
                                                         <div class="col-md-12">
-                                                            <p class="text-nowrap"><i class="fa fa-location"/>Address:&nbsp;<small>{{vehicle.supplier.address }}</small></p>
+                                                            <p class="text-nowrap"><i class="fa fa-location"/>Address:&nbsp;<small>{{
+                                                                    vehicle.supplier.address
+                                                                }}</small></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
                                                             <span class="text-nowrap"><i class="fa fa-gas-pump"/></span>
@@ -354,13 +377,19 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 d-price d-total offset-1">
-                                                     <span class="d-days">for {{ daysNumber }} day{{daysNumber < 2 ? '' : 's'}}</span>
-                                                        <span class="text-nowrap">{{ vehicle.final_price }} {{selectedCurrency }}</span>
-                                                    <a class="btn-main select-btn cursor-pointer text-white" @click="goToBookingPage(vehicle.id)">Select
+                                                    <span class="d-days">for {{
+                                                            daysNumber
+                                                        }} day{{ daysNumber < 2 ? '' : 's' }}</span>
+                                                    <span class="text-nowrap">{{
+                                                            vehicle.final_price
+                                                        }} {{ selectedCurrency }}</span>
+                                                    <a class="btn-main select-btn cursor-pointer text-white"
+                                                       @click="goToBookingPage(vehicle.id)">Select
                                                         <svg width="25" height="25" fill="currentColor"
                                                              viewBox="0 2 20 20"
                                                              xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="m8.295 16.59 4.58-4.59-4.58-4.59L9.705 6l6 6-6 6-1.41-1.41Z"></path>
+                                                            <path
+                                                                d="m8.295 16.59 4.58-4.59-4.58-4.59L9.705 6l6 6-6 6-1.41-1.41Z"></path>
                                                         </svg>
                                                     </a>
                                                 </div>
@@ -389,6 +418,7 @@ import HeaderOne from "../components/HeaderOne.vue";
 import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/vue';
 import Footer from "../components/Footer.vue";
 import Loader from "../components/Loader.vue"
+
 const isOpen = ref(false)
 
 const closeModal = () => {
@@ -799,29 +829,69 @@ onMounted(() => {
     align-self: center;
     margin-left: 2px;
 }
+
 @media (min-width: 1700px) {
     .included-font {
         font-size: 12px;
     }
-    .top-buttons{
+    .top-buttons {
         margin-left: 15%;
     }
 }
+
 @media (max-width: 1699px) {
     .included-font {
-        font-size: 10px;
+        font-size: 11px;
     }
-    .top-buttons{
+    .top-buttons {
         margin-left: 10%;
     }
 }
-    @media (max-width: 1500px) {
-        .included-font {
-            font-size: 8px;
-        }
-        .top-buttons{
-            margin-left: 8%;
-        }
+
+@media (max-width: 1500px) {
+    .included-font {
+        font-size: 9.5px;
+    }
+    .top-buttons {
+        margin-left: 8%;
+    }
+}
+
+
+.horizonal-slider {
+    display: grid;
+    grid-gap: calc(var(--gutter) / 2);
+    grid-template-columns: repeat(6, calc(15% - var(--gutter) * 2));
+    grid-template-rows: minmax(150px, 1fr);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+
+    scroll-snap-type: x proximity;
+    padding-bottom: calc(.75 * var(--gutter));
+    margin-bottom: calc(-.25 * var(--gutter));
+    list-style: none;
+}
+
+.horizontal-slider-container {
+    width: 80%;
+    height: 220px;
+}
+
+.item {
+    scroll-snap-align: center;
+    padding: calc(var(--gutter) / 2 * 1.5);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+
+/* End  */
+
+:root {
+    --gutter: 20px;
 }
 
 </style>
