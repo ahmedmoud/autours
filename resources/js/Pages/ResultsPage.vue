@@ -274,7 +274,7 @@
                                                         <div class="d-atr-group row">
                                                             <ul class="d-atr col-md-8">
                                                                 <li v-for="specification in vehicle.specifications">
-                                                                    <img style="width:15%; margin-right: 5px;"
+                                                                    <img style="width:15%; margin-right: 5px;" v-if="specification.icon"
                                                                          :src="'assets/images/icons/' + specification.icon + '.svg'"/>
                                                                     <span> {{
                                                                             specification.option
