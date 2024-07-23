@@ -271,18 +271,7 @@
                                         Fuel Policy: <small class="text-nowrap"> Full to Full </small></p></div>
                                 </div>
                             </div>
-                            <div class="de-box row col-lg-12 mt-5">
-                                <div class="col-lg-12">
-                                    <div class="">
-                                        <div class="col-lg-12" v-if="user">
-                                            <el-checkbox  class="mr-2"/> Remember me on this device. <br/>
-                                            <el-checkbox v-model="rental_terms" class="mr-2"/> I confirm that i have read, understood and agree with the
-                                            <a class="cursor-pointer text-primary" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> .<br/>
-                                            <el-checkbox  class="mr-2"/> Subscribe me to the promotional emails.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="de-box row col-lg-12 mt-5 mb25">
                                 <div class="col-lg-12">
                                     <div class="">
@@ -295,13 +284,13 @@
                                                 <form method="post" @submit.prevent="register"
                                                 >
                                                     <div class="row">
-                                                        <div class="formbold-mb-3 col-md-6">
+                                                        <div class="formbold-mb-3 col-md-12">
                                                             <div class="row">
                                                                 <el-select
                                                                     v-model="RegisterForm.gender"
                                                                     size="large"
                                                                     filterable
-                                                                    class="col-md-4"
+                                                                    class="col-md-3"
                                                                     reserve-keyword
                                                                     placeholder="Mr/Mrs..."
                                                                     remote-show-suffix
@@ -318,7 +307,7 @@
                                                                     size="large"
                                                                     filterable
                                                                     remote
-                                                                    class="col-md-8"
+                                                                    class="col-md-9"
                                                                     reserve-keyword
                                                                     placeholder="Enter Full name here..."
                                                                     remote-show-suffix
@@ -327,7 +316,39 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
-                                                        <div class="formbold-mb-3 col-md-6"
+                                                        <div class="formbold-mb-3 col-md-8">
+                                                            <div class="row">
+                                                                <el-select
+                                                                    v-model="RegisterForm.mobile_code"
+                                                                    size="large"
+                                                                    class="col-md-4"
+                                                                    filterable
+                                                                    reserve-keyword
+                                                                    placeholder="code..."
+                                                                    remote-show-suffix
+                                                                    required>
+                                                                    <el-option
+                                                                        v-for='item in countryCodes'
+                                                                        :key="'+' + item.code"
+                                                                        :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
+                                                                        :value="'+' + item.code"
+                                                                    />
+                                                                </el-select>
+                                                                <el-input
+                                                                    v-model="RegisterForm.phone"
+                                                                    size="large"
+                                                                    class="col-md-8"
+                                                                    filterable
+                                                                    remote
+                                                                    reserve-keyword
+                                                                    placeholder="Phone Number..."
+                                                                    remote-show-suffix
+                                                                    :loading="countries.loading.value"
+                                                                    required>
+                                                                </el-input>
+                                                            </div>
+                                                        </div>
+                                                        <div class="formbold-mb-3 col-md-4"
                                                              v-if="!user || user.role !== 'customer' ">
                                                             <div class="countries row">
                                                                 <el-select
@@ -378,38 +399,7 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
-                                                        <div class="formbold-mb-3 col-md-12">
-                                                            <div class="row">
-                                                                <el-select
-                                                                    v-model="RegisterForm.mobile_code"
-                                                                    size="large"
-                                                                    class="col-md-2"
-                                                                    filterable
-                                                                    reserve-keyword
-                                                                    placeholder="code..."
-                                                                    remote-show-suffix
-                                                                    required>
-                                                                    <el-option
-                                                                        v-for='item in countryCodes'
-                                                                        :key="'+' + item.code"
-                                                                        :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
-                                                                        :value="'+' + item.code"
-                                                                    />
-                                                                </el-select>
-                                                                <el-input
-                                                                    v-model="RegisterForm.phone"
-                                                                    size="large"
-                                                                    class="col-md-10"
-                                                                    filterable
-                                                                    remote
-                                                                    reserve-keyword
-                                                                    placeholder="Phone Number..."
-                                                                    remote-show-suffix
-                                                                    :loading="countries.loading.value"
-                                                                    required>
-                                                                </el-input>
-                                                            </div>
-                                                        </div>
+
 
                                                     </div>
                                                 </form>
@@ -417,38 +407,6 @@
                                             <div class="col-lg-12" v-else-if="user && user.role === 'customer' ">
                                                 <form method="post" @submit.prevent="register">
                                                     <div class="row">
-                                                        <div class="formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">Card Number</label>
-                                                            <div class="row">
-                                                                <el-input
-                                                                    v-model="bookingForm.card_number"
-                                                                    size="large"
-                                                                    filterable
-                                                                    remote
-                                                                    reserve-keyword
-                                                                    placeholder="Enter front card number..."
-                                                                    remote-show-suffix
-                                                                    :disabled="loading"
-                                                                    required>
-                                                                </el-input>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">CVV</label>
-                                                            <el-input
-                                                                v-model="bookingForm.CVV"
-                                                                size="large"
-                                                                class="col-md-4"
-                                                                filterable
-                                                                remote
-                                                                reserve-keyword
-                                                                placeholder="CVV..."
-                                                                :disabled="loading"
-
-                                                                remote-show-suffix
-                                                                required>
-                                                            </el-input>
-                                                        </div>
                                                         <div class=" formbold-mb-3 col-md-6">
                                                             <label class="formbold-form-label">Name On Card</label>
                                                             <div class="countries">
@@ -465,6 +423,39 @@
                                                                 </el-input>
                                                             </div>
                                                         </div>
+                                                        <div class="formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">Card Number</label>
+                                                            <div class="row">
+                                                                <el-input
+                                                                    v-model="bookingForm.card_number"
+                                                                    size="large"
+                                                                    filterable
+                                                                    remote
+                                                                    reserve-keyword
+                                                                    placeholder="Enter front card number..."
+                                                                    remote-show-suffix
+                                                                    :disabled="loading"
+                                                                    required>
+                                                                </el-input>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" formbold-mb-3 col-md-6">
+                                                            <label class="formbold-form-label">CVV</label>
+                                                            <el-input
+                                                                v-model="bookingForm.CVV"
+                                                                size="large"
+                                                                class="col-md-4"
+                                                                filterable
+                                                                remote
+                                                                reserve-keyword
+                                                                placeholder="CVV..."
+                                                                :disabled="loading"
+
+                                                                remote-show-suffix
+                                                                required>
+                                                            </el-input>
+                                                        </div>
+
                                                         <div class="row formbold-mb-3 col-md-6">
                                                             <label class="formbold-form-label">Exp Date</label>
                                                             <el-input
@@ -485,6 +476,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <el-checkbox  class="mr-2"/> Remember me on this device. <br/>
+                                    <el-checkbox v-model="rental_terms" class="mr-2"/> I confirm that i have read, understood and agree with the
+                                    <a class="cursor-pointer text-primary " style="text-decoration: underline;" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> .<br/>
+                                    <el-checkbox  class="mr-2"/> Subscribe me to the promotional emails.
                                     <hr/>
                                     <ProgressBar v-if="loading" mode="indeterminate" style="height: 6px"></ProgressBar>
 

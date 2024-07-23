@@ -199,14 +199,12 @@
                                         <div style="margin-top: -35px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
                                                 <div class="row col-md-12" v-if="option.vehicle_count">
-                                                    <div class="row"><strong class="col-md-10 ">{{ option.value }}
+                                                    <div class="row"><strong class="col-md-8 ">{{ option.value }}
                                                         {{
                                                             item.name == 'Number Of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
                                                         }}
                                                         <small
-                                                            style="font-size: 14px;">({{
-                                                                option.vehicle_count
-                                                            }})</small>
+                                                            style="font-size: 14px;">({{option.vehicle_count }})</small>
                                                     </strong>
                                                     </div>
                                                     <el-checkbox
@@ -235,7 +233,6 @@
                                                         <img :src="'img/categories/'+item.photo" width="40" height="80"/>
                                                     </div>
                                                 </el-radio>
-
                                             </li>
                                     </ul>
                                 </div>
@@ -859,14 +856,12 @@ onMounted(() => {
 
 
 .horizonal-slider {
-    display: grid;
-    grid-gap: calc(var(--gutter) / 2);
+    display: flex;
     grid-template-columns: repeat(6, calc(15% - var(--gutter) * 2));
     grid-template-rows: minmax(150px, 1fr);
     overflow-x: scroll;
     overflow-y: hidden;
     scrollbar-width: thin;
-
     scroll-snap-type: x proximity;
     padding-bottom: calc(.75 * var(--gutter));
     margin-bottom: calc(-.25 * var(--gutter));
@@ -879,6 +874,7 @@ onMounted(() => {
 }
 
 .item {
+    width: 12%;
     scroll-snap-align: center;
     padding: calc(var(--gutter) / 2 * 1.5);
     flex-direction: column;
