@@ -7,7 +7,7 @@
     <div class="jumbotron jumbotron-fluid"
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px; display:flex;  justify-content: center;">
 
-        <div class="jumbotron-fluid" style="width: 65%;" >
+        <div class="jumbotron-fluid" style="width: 75%;" >
             <h1 class="p-fontsize" style="color: #ffffff;"><strong><span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy.</strong></h1>
             <FloatSearchForm/>
             <h1 class="py-3 p-fontsize" style=" color: #ffffff;">

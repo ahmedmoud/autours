@@ -1,4 +1,5 @@
 <template>
+
     <body>
     <div id="wrapper">
         <!-- header begin -->
@@ -204,7 +205,9 @@
                                                             item.name == 'Number Of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
                                                         }}
                                                         <small
-                                                            style="font-size: 14px;">({{option.vehicle_count }})</small>
+                                                            style="font-size: 14px;">({{
+                                                                option.vehicle_count
+                                                            }})</small>
                                                     </strong>
                                                     </div>
                                                     <el-checkbox
@@ -222,21 +225,79 @@
                         <div v-if="loading" class="col-lg-5" style=" margin-top: 10%; margin-left: 10%;">
                             <Loader style=" margin-top: 40%; margin-left: 25%;"/>
                         </div>
+
                         <div v-else class="col-lg-9">
-                            <div class="row filter_top_group">
-                                <div class="horizontal-slider-container">
-                                    <ul class="horizonal-slider">
-                                            <li class="item my-3" :id="'category' + item.id"  v-for="item in filteredCategories">
-                                                <el-radio v-model="category" :label="item.id" size="large" border @click="SelectCategory(item.id)" >
-                                                    <div class="item_filter_group filter_top " >
-                                                        <h4>{{ item.name }}</h4>
-                                                        <img :src="'img/categories/'+item.photo" width="40" height="80"/>
-                                                    </div>
-                                                </el-radio>
-                                            </li>
-                                    </ul>
-                                </div>
+                            <div class="slide-container  mt-5">
+
+                                        <swiper
+                                            :modules="[Navigation, Pagination, Scrollbar, A11y]"
+                                            :slides-per-view="5"
+                                            :space-between="5"
+                                            navigation
+                                        >
+
+                                            <swiper-slide  v-for="item in filteredCategories" >
+                                                <div class="card " >
+                                                    <el-radio v-model="category" :label="item.id" size="large" border
+                                                              @click="SelectCategory(item.id)" class=" image-content">
+                                                        <div class="card-item">
+                                                            <h4 class="mt-3 ml-3"> {{ item.name }} </h4>
+                                                            <div class="card-image">
+                                                                <img :src="'img/categories/'+item.photo" alt=""
+                                                                     class="card-img">
+                                                            </div>
+                                                        </div>
+                                                    </el-radio>
+                                                </div>
+                                            </swiper-slide>
+                                            <swiper-slide  v-for="item in filteredCategories">
+                                                <div class="card " >
+                                                    <el-radio v-model="category" :label="item.id" size="large" border
+                                                              @click="SelectCategory(item.id)" class=" image-content">
+                                                        <div class="card-item">
+                                                            <h4 class="mt-3 ml-3"> {{ item.name }} </h4>
+                                                            <div class="card-image">
+                                                                <img :src="'img/categories/'+item.photo" alt=""
+                                                                     class="card-img">
+                                                            </div>
+                                                        </div>
+                                                    </el-radio>
+                                                </div>
+                                            </swiper-slide>
+                                            <swiper-slide  v-for="item in filteredCategories">
+                                                <div class="card " >
+                                                    <el-radio v-model="category" :label="item.id" size="large" border
+                                                              @click="SelectCategory(item.id)" class=" image-content">
+                                                        <div class="card-item">
+                                                            <h4 class="mt-3 ml-3"> {{ item.name }} </h4>
+                                                            <div class="card-image">
+                                                                <img :src="'img/categories/'+item.photo" alt=""
+                                                                     class="card-img">
+                                                            </div>
+                                                        </div>
+                                                    </el-radio>
+                                                </div>
+                                            </swiper-slide>
+                                            <swiper-slide  v-for="item in filteredCategories">
+                                                <div class="card " >
+                                                    <el-radio v-model="category" :label="item.id" size="large" border
+                                                              @click="SelectCategory(item.id)" class=" image-content">
+                                                        <div class="card-item">
+                                                            <h4 class="mt-3 ml-3"> {{ item.name }} </h4>
+                                                            <div class="card-image">
+                                                                <img :src="'img/categories/'+item.photo" alt=""
+                                                                     class="card-img">
+                                                            </div>
+                                                        </div>
+                                                    </el-radio>
+                                                </div>
+                                            </swiper-slide>
+
+
+
+                                        </swiper>
                             </div>
+
 
                             <h3 style="color: #000;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS
                                 FOUND</strong></h3>
@@ -274,7 +335,8 @@
                                                         <div class="d-atr-group row">
                                                             <ul class="d-atr col-md-8">
                                                                 <li v-for="specification in vehicle.specifications">
-                                                                    <img style="width:15%; margin-right: 5px;" v-if="specification.icon"
+                                                                    <img style="width:15%; margin-right: 5px;"
+                                                                         v-if="specification.icon"
                                                                          :src="'assets/images/icons/' + specification.icon + '.svg'"/>
                                                                     <span> {{
                                                                             specification.option
@@ -409,13 +471,14 @@
 </template>
 
 <script setup>
-import {onMounted, ref, watchEffect, computed} from "vue";
+import {onMounted, onBeforeMount, ref, watchEffect, computed} from "vue";
 import {useForm, Link, router} from "@inertiajs/vue3";
 import HeaderOne from "../components/HeaderOne.vue";
 import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/vue';
 import Footer from "../components/Footer.vue";
-import Loader from "../components/Loader.vue"
-
+import Loader from "../components/Loader.vue";
+import {Swiper, SwiperSlide} from 'swiper/vue';
+import {Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
 const isOpen = ref(false)
 
 const closeModal = () => {
@@ -702,7 +765,6 @@ const setParams = async () => {
 
     await getVehicles();
 }
-
 onMounted(() => {
     setParams();
 })
@@ -889,5 +951,118 @@ onMounted(() => {
 :root {
     --gutter: 20px;
 }
+
+
+.card-item {
+    width: 15%;
+
+}
+
+.slide-container {
+    max-width: 1120px;
+    width: 90%;
+    height: 15%;
+    .el-radio.is-bordered .el-radio__input {
+        display: none !important;
+    }
+
+    .is-checked {
+        .card-item {
+            border-color: #f4d849;
+
+            h4 {
+                color: #f4d849;
+            }
+        }
+    }
+}
+
+.slide-content {
+    overflow: hidden;
+    border-radius: 10px;
+
+}
+
+.card {
+    border-radius: 10px;
+    background-color: #FFF;
+    height: 90%;
+    margin-right: .5%;
+
+}
+
+.image-content,
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-content {
+    position: relative;
+    padding: 25px 0;
+}
+
+.card-image {
+    position: relative;
+    height: 120px;
+    width: 120px;
+}
+
+.card-image .card-img {
+    height: 80%;
+    width: 100%;
+}
+
+
+.button:hover {
+    background: #f4d640;
+}
+
+.swiper-navBtn {
+    color: #f4d640 !important;
+    transition: color 0.3s ease;
+}
+
+.swiper-navBtn:hover {
+    color: #ae9519 !important;
+}
+
+.swiper {
+    margin-left: 0;
+}
+
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+    font-size: 35px;
+}
+
+.swiper-button-next {
+    color: #f4d640;
+}
+
+.swiper-button-prev {
+    color: #f4d640;
+}
+
+.swiper-pagination-bullet {
+    background-color: #f4d640;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #f4d640;
+}
+
+@media screen and (max-width: 768px) {
+    .slide-content {
+        margin: 0 10px;
+    }
+
+    .swiper-navBtn {
+        display: none;
+    }
+}
+
 
 </style>
