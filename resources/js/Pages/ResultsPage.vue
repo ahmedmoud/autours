@@ -961,7 +961,7 @@ onMounted(() => {
 .slide-container {
     max-width: 1120px;
     width: 90%;
-    height: 15%;
+    height: 1%;
     .el-radio.is-bordered .el-radio__input {
         display: none !important;
     }
