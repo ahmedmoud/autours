@@ -174,15 +174,16 @@
                         </div>
 
                     </div>
-                    <div class="container bg-white col-md-6 offset-md-0 pt-5 pl-5 mt-4" >
+                    <Loader v-if="loading"  />
+                    <div v-else class="container bg-white col-md-6 offset-md-0 pt-5 pl-5 mt-4" >
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <div id="slider-carousel">
                                     <h3 class="text-nowrap" style="margin-left: -20px;">{{ vehicle.name }} - <small class="text-nowrap">{{ vehicle?.category?.name }}</small></h3>
                                     <div class="row"></div>
                                     <div class="item">
-                                        <img class="item w-150"
-                                             :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"
+                                        <img  
+                                             :src=" '/img/vehicles/' + vehicle?.photo "
                                              width="250" height="150"/>
                                     </div>
                                     <div class="spacer-30"></div>
@@ -192,7 +193,7 @@
 
                             <div class="col-md-6 row">
                                 <div class=" row ">
-                                    <h4 class="col-md-5 text-nowrap">{{ currency + ' ' + vehicle.final_price }}</h4>
+                                    <h4 class="col-md-4 text-nowrap">{{ currency + ' ' + vehicle.final_price }}</h4>
                                     <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
                                         day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
@@ -517,7 +518,7 @@ import Footer from "../components/Footer.vue";
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import ProgressBar from 'primevue/progressbar';
 import 'primevue/resources/themes/aura-light-amber/theme.css'
-
+import Loader from '../components/Loader.vue'
 const isOpen = ref(false)
 
 const closeModal = () => {
@@ -569,7 +570,7 @@ const user = ref('')
 const rental_terms = ref(false)
 const value = ref(0);
 const id = ref('')
-const vehicle = ref('')
+const vehicle = ref([])
 const currency = ref('')
 const date = ref([]);
 const priceTax = ref("");
@@ -633,61 +634,43 @@ const openRentalTerms = (vehicle) => {
     isOpen.value = true
     activeRentalTerms.value = vehicle.rental_terms
 }
-const setParams = async () => {
+const setParams =  () => {
     let urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has('pickupLoc')) {
-        form.pickupLoc = urlParams.get('pickupLoc')
+        form.pickupLoc =  urlParams.get('pickupLoc')
     }
     if (urlParams.has('date_from')) {
-        form.date_from = urlParams.get('date_from')
+        form.date_from =  urlParams.get('date_from')
 
     }
     if (urlParams.has('date_to')) {
-        form.date_to = urlParams.get('date_to')
+        form.date_to =  urlParams.get('date_to')
 
     }
 
     if (urlParams.has('time_from')) {
-        form.time_from = urlParams.get('time_from')
+        form.time_from =  urlParams.get('time_from')
     }
     if (urlParams.has('time_to')) {
-        form.time_to = urlParams.get('time_to')
+        form.time_to =  urlParams.get('time_to')
     }
 
     if (urlParams.has('date')) {
-        form.date = urlParams.get('date')
+        form.date =   urlParams.get('date')
     }
     if (urlParams.has('id')) {
-        id.value = urlParams.get('id')
-        form.id = urlParams.get('id')
+        id.value =   urlParams.get('id')
+        form.id =  urlParams.get('id')
     }
     getVehicle()
 }
 
-const showMoreIncluded = (vehicle_id) => {
-    var elements = document.querySelectorAll('.vehicle-' + vehicle_id);
-    const showMoreElement = document.getElementById('show-more' + vehicle_id);
-// Loop through each element to apply the display toggle logic
-    elements.forEach(function (element) {
-        const display = element.style.display;
-
-        if (display === 'none') {
-            element.style.display = '';
-            showMoreElement.textContent = 'Show less ...';
-        } else {
-            element.style.display = 'none';
-            showMoreElement.textContent = 'Show more ...';
-        }
-    });
-}
 
 
 const getVehicle = async () => {
     try {
-        setTimeout(() => {
-            value.value += 1;
-        }, 200);
+
         loading.value = true
 
 
@@ -717,22 +700,6 @@ const getVehicle = async () => {
     }
 }
 
-const fetchVehicles = async () => {
-    try {
-        const response = await axios.post("/filter/vehicles");
-        date.value = response.data.date;
-        console.log(response.data)
-        priceTax.value = response.data.priceTax;
-        daysNumber.value = '';
-        daysNumber.value = response.data.days;
-    } catch (error) {
-        if (!error.response.data.status) {
-            $toast.error('Please Select Date and pickup', {position: 'top'})
-            router.get('/')
-        }
-        console.error(error);
-    }
-};
 
 const book = async () => {
     try {
