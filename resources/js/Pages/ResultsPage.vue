@@ -249,48 +249,6 @@
                                                 </el-radio>
                                             </div>
                                         </swiper-slide>
-                                        <swiper-slide v-for="item in filteredCategories">
-                                            <div class="card ">
-                                                <el-radio v-model="category" :label="item.id" size="large" border
-                                                          @click="SelectCategory(item.id)" class=" image-content">
-                                                    <div class="card-item">
-                                                        <h4 class="mt-3 ml-3"> {{ item.name }} </h4>
-                                                        <div class="card-image">
-                                                            <img :src="'img/categories/'+item.photo" alt=""
-                                                                 class="card-img">
-                                                        </div>
-                                                    </div>
-                                                </el-radio>
-                                            </div>
-                                        </swiper-slide>
-                                        <swiper-slide v-for="item in filteredCategories">
-                                            <div class="card ">
-                                                <el-radio v-model="category" :label="item.id" size="large" border
-                                                          @click="SelectCategory(item.id)" class=" image-content">
-                                                    <div class="card-item">
-                                                        <h4 class="mt-3 ml-3"> {{ item.name }} </h4>
-                                                        <div class="card-image">
-                                                            <img :src="'img/categories/'+item.photo" alt=""
-                                                                 class="card-img">
-                                                        </div>
-                                                    </div>
-                                                </el-radio>
-                                            </div>
-                                        </swiper-slide>
-                                        <swiper-slide v-for="item in filteredCategories">
-                                            <div class="card ">
-                                                <el-radio v-model="category" :label="item.id" size="large" border
-                                                          @click="SelectCategory(item.id)" class=" image-content">
-                                                    <div class="card-item">
-                                                        <h4 class="mt-3 ml-3"> {{ item.name }} </h4>
-                                                        <div class="card-image">
-                                                            <img :src="'img/categories/'+item.photo" alt=""
-                                                                 class="card-img">
-                                                        </div>
-                                                    </div>
-                                                </el-radio>
-                                            </div>
-                                        </swiper-slide>
 
 
                                 </swiper>
