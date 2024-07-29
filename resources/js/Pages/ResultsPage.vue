@@ -229,7 +229,7 @@
                         <div v-else class="col-lg-9">
                                 <swiper
                                     :modules="[Navigation, Pagination, Scrollbar, A11y]"
-                                    :slides-per-view="5"
+                                    :slides-per-view="6"
                                     :space-between="5"
                                     navigation
                                     :class="'slide-container  mt-5'"
