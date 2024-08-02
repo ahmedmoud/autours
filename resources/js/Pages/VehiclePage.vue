@@ -192,7 +192,7 @@
                             </div>
 
                             <div class="col-md-6 row">
-                                <div class=" row ">
+                                <div class=" row mt-1">
                                     <h4 class="col-md-4 text-nowrap" style="font-size: 1.2vw">{{ currency + ' ' + vehicle.final_price }}</h4>
                                     <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
                                         day{{ daysNumber < 2 ? '' : 's' }} -
