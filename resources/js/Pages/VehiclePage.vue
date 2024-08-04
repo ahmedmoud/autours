@@ -181,7 +181,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div id="slider-carousel">
-                                    <h3 class="text-nowrap" style="margin-left: -20px; font-size: 1.5vw;">{{ vehicle.name }} - <small class="text-nowrap">{{ vehicle?.category?.name }}</small></h3>
+                                    <h3 class="text-nowrap" style="margin-left: -20px; font-size: 1.3vw;">{{ vehicle.name }} - <small class="text-nowrap">{{ vehicle?.category?.name }}</small></h3>
                                     <div class="row"></div>
                                     <div class="item">
                                         <img
@@ -195,7 +195,7 @@
 
                             <div class="col-md-6 row">
                                 <div class=" row mt-1">
-                                    <h4 class="col-md-4 text-nowrap" style="font-size: 1.2vw">{{ currency + ' ' + vehicle.final_price }}</h4>
+                                    <h4 class="col-md-4 text-nowrap" style="font-size: 1.1vw">{{ currency + ' ' + vehicle.final_price }}</h4>
                                     <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
                                         day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
