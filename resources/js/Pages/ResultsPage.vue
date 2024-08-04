@@ -202,7 +202,7 @@
                                                 <div class="row col-md-12" v-if="option.vehicle_count">
                                                     <div class="col-md-11 row"><strong class="col-md-7 ">{{ option.value }}
                                                         {{
-                                                            item.name == 'Number Of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
+                                                            item.name == 'Number Of seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
                                                         }}
                                                         <small
                                                             style="font-size: 14px;">({{
