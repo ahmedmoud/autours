@@ -43,19 +43,21 @@
             </div>
 
             <section id="section-car-details">
-                <div class="col-md-12 mt-3 offset-3">
-                    <span class="p-1 mr-1 mt-2 btn-main col-md-2"
-                          style=" background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span
-                        class="ti ti-circle-number-1 mr-1"/>Choose Your Location</span>
-                    <span class="p-1 mr-1 btn-main mt-2 col-md-2"
-                          style="background: #f9d602; color: #000; font-family: Arial, sans-serif;"><span
-                        class="ti ti-circle-number-2 mr-1"/>Choose Your Car</span>
-                    <span class="p-1 btn-main mt-2 active col-md-2"
-                          style=" background: rgb(155,147,84);color: #000; font-family: Arial, sans-serif;"><span
-                        class="ti ti-circle-number-3 mr-1"/>Reserve Your Car</span>
+                <div class="col-md-12 mb-3   mt-1 top-buttons">
+                    <button class="mr-1 mt-2 btn steps-button "
+                            style="width:420px; background: #f9d602; color: #000;"><span
+                        class="ti ti-circle-number-1 mr-1"/>Choose Your Location
+                    </button>
+                    <button class="mr-1 btn mt-2 steps-button active" style="width:420px; background: #f9d602; color: #000; "
+                           ><span
+                        class="ti ti-circle-number-2 mr-2"/>Choose Your Car
+                    </button>
+                    <button class="btn mt-2 steps-button"  style="width:420px; background: rgb(155,147,84);color: #000;"><span
+                        class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
+                    </button>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 offset-1 mt-4" >
+                <div class="row" style="margin-left: 6%;">
+                    <div class="col-md-3 offset-1 mt-4 " >
 
                         <div class="p-1 col-11" style="background-color: #e1e1e1; ">
                             <h5 class="p-2">YOUR SEARCH DETAILS</h5>
@@ -891,4 +893,30 @@ li::before {
     margin-left: 2px;
 }
 
+@media (min-width: 1700px) {
+    .included-font {
+        font-size: 12px;
+    }
+    .top-buttons {
+        margin-left: 15%;
+    }
+}
+
+@media (max-width: 1699px) {
+    .included-font {
+        font-size: 11px;
+    }
+    .top-buttons {
+        margin-left: 10%;
+    }
+}
+
+@media (max-width: 1500px) {
+    .included-font {
+        font-size: 9.5px;
+    }
+    .top-buttons {
+        margin-left: 8%;
+    }
+}
 </style>

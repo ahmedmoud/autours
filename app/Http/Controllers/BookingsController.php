@@ -9,6 +9,7 @@ use App\Events\NewRental;
 use App\Events\NewRentalRequest;
 use App\Http\Requests\BookCarRequest;
 use App\Http\Requests\CancelBookingRequest;
+use App\Lib\Log\ServerError;
 use App\Models\CurrencyRate;
 use App\Models\RentalStatus;
 use App\Services\VehicleService;
@@ -28,6 +29,7 @@ use Inertia\Inertia;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Mpdf\Mpdf;
 
 class BookingsController extends Controller
 {
@@ -301,5 +303,36 @@ class BookingsController extends Controller
             'data' => $rental,
             'message' => ''
         ], StatusCodes::SUCCESS);
+    }
+
+    public function bookingInvoice(Request $request)
+    {
+        try {
+            ob_clean();
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename=invoice.pdf');
+            header('Content-Transfer-Encoding: binary');
+            header('Accept-Ranges: bytes');
+
+            $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => 'A4', 'font' => 'frutiger', 'tempDir' => public_path() . '/tmp', 'orientation' => 'L']);
+            $mpdf->setFooter('{nb} / {PAGENO}');
+
+            $mpdf->SetTitle('Booking Invoice');
+
+            $html = view('rental-invoice.supplier', [])->render();
+            $mpdf->WriteHTML($html);
+            $mpdf->Output('invoice.pdf', 'D');
+            dd(1);
+            return response()->json([
+                'status' => 1,
+                'msg' => 'Download started'
+            ], StatusCodes::SUCCESS);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 0,
+                'msg' => 'error happened'
+            ], StatusCodes::SERVER_ERROR);
+
+        }
     }
 }

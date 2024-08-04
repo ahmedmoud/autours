@@ -200,7 +200,7 @@
                                         <div style="margin-top: -35px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
                                                 <div class="row col-md-12" v-if="option.vehicle_count">
-                                                    <div class="row"><strong class="col-md-8 ">{{ option.value }}
+                                                    <div class="col-md-11 row"><strong class="col-md-7 ">{{ option.value }}
                                                         {{
                                                             item.name == 'Number Of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
                                                         }}
@@ -232,7 +232,7 @@
                                     :slides-per-view="6"
                                     :space-between="5"
                                     navigation
-                                    :class="'slide-container  mt-5'"
+                                    :class="'slide-container  mt-2'"
                                 >
 
                                         <swiper-slide v-for="item in filteredCategories">
@@ -309,9 +309,7 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div
-                                                class=" rounded-2  mb-3  py-1   justify-content-between align-items-center col-md-9"
-                                                style="background: #edecec; ">
+                                            <div class="row rounded-2 mb-3 py-1 " style="background: #edecec; width: 76.5%;">
                                                 <div class="d-supplier">
                                                     <div class="col-md-3 mt-2 d-img w-100"
                                                          style="height: 60px; margin-left: -15px;">
@@ -352,8 +350,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div
-                                                    class="de-item-list col-md-9 justify-content-between align-items-center bg-light-gray">
+                                                <div class="de-item-list col-md-9 justify-content-between align-items-center bg-light-gray" style="width: 94%">
                                                     <div class="row col-md-8">
                                                         <p class="primary bold mb-0" style="color: #5e9007;">What is
                                                             Included!</p>

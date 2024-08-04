@@ -178,6 +178,7 @@ Route::middleware(['customer'])->group(function () {
     Route::post('/book/vehicles', [BookingsController::class, 'book']);
         Route::inertia('/my-bookings','MyBookings' );
         Route::post('/cancel/booking',[BookingsController::class, 'cancelBooking'] );
+        Route::post('/invoice/booking',[BookingsController::class, 'bookingInvoice'] );
 });
 //$user = User::query()->find(3);
 //$rental = Rental::query()->find(11);

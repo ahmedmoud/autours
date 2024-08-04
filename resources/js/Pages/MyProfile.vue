@@ -122,7 +122,7 @@
                                                     <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: black;"
                                                                    @click="cancelBooking(rental)"><i class="fa fa-repeat"/>&nbsp;Cancel
                                                     </CDropdownItem>
-                                                    <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: black;"
+                                                    <CDropdownItem @click="downloadInvoice(rental)" :disabled="loading" class="cursor-pointer" style="color: black;"
                                                     ><i class="fa fa-download"/>&nbsp;Download&nbsp;invoice
                                                     </CDropdownItem>
 
@@ -374,6 +374,48 @@ const cancelBooking = async (rental) => {
         if (response.status) {
             $toast.warning('Rental has been Cancelled', {position: 'top'})
             getUser()
+        }
+        loading.value = false
+    } catch (e) {
+
+        loading.value = false
+        $toast.error(e.response.data.message, {position: 'top'})
+    }
+}
+const downloadFile = (response, filename) => {
+    // It is necessary to create a new blob object with mime-type explicitly set
+    // otherwise only Chrome works like it should
+    var newBlob = new Blob([response], {type: 'application/pdf'})
+
+    // IE doesn't allow using a blob object directly as link href
+    // instead it is necessary to use msSaveOrOpenBlob
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(newBlob)
+        return
+    }
+
+    // For other browsers:
+    // Create a link pointing to the ObjectURL containing the blob.
+    const data = window.URL.createObjectURL(newBlob)
+    var link = document.createElement('a')
+    link.href = data
+    link.download = filename + '.pdf'
+    link.click()
+    setTimeout(function () {
+        // For Firefox it is necessary to delay revoking the ObjectURL
+        window.URL.revokeObjectURL(data)
+    }, 100)
+}
+const downloadInvoice = async (rental) => {
+    try {
+        loading.value = true
+        const response = await axios.post('/invoice/booking', rental);
+
+        console.log(response.status)
+        if (response.status) {
+            // console.log(response)
+            // downloadFile(response.data, 'invoice')
+            $toast.success('Downloading The invoice', {position: 'top'})
         }
         loading.value = false
     } catch (e) {
