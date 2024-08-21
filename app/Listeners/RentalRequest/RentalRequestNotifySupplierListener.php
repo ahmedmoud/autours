@@ -4,7 +4,7 @@ namespace App\Listeners\RentalRequest;
 
 use App\Events\NewRental;
 use App\Events\NewRentalRequest;
-use App\Mail\NewRental\NewBookingSupplier;
+use App\Mail\NewRental\UpdateBookingSupplier;
 use App\Mail\RentalRequest\NewBookingRequestSupplier;
 use App\Models\Branch;
 use App\Models\User;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\NewRental;
+namespace App\Mail\UpdateRental;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewBookingSupplier extends Mailable
+class UpdateBookingAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 //    public $theme = "custom.css";
@@ -26,7 +26,7 @@ class NewBookingSupplier extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Booking Request - '.$this->body->customer->name.' - '.$this->body->order_number,
+            subject: 'Booking Change',
         );
     }
 
@@ -36,7 +36,7 @@ class NewBookingSupplier extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'email.booking.new.supplier',
+            markdown: 'email.booking.update.admin',
             with: [
                 'body' => $this->body,
             ],

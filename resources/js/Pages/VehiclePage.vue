@@ -48,16 +48,17 @@
                             style="width:420px; background: #f9d602; color: #000;"><span
                         class="ti ti-circle-number-1 mr-1"/>Choose Your Location
                     </button>
-                    <button class="mr-1 btn mt-2 steps-button active" style="width:420px; background: #f9d602; color: #000; "
-                           ><span
+                    <button class="mr-1 btn mt-2 steps-button " style="width:420px; background: #f9d602; color: #000; "
+                    ><span
                         class="ti ti-circle-number-2 mr-2"/>Choose Your Car
                     </button>
-                    <button class="btn mt-2 steps-button"  style="width:420px; background: rgb(155,147,84);color: #000;"><span
+                    <button class="btn mt-2 steps-button active"
+                            style="width:420px; background: rgb(155,147,84);color: #000;"><span
                         class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
                     </button>
                 </div>
-                <div class="row" style="margin-left: 6%;">
-                    <div class="col-md-3 offset-1 mt-4 " >
+                <div class="row">
+                    <div class="col-md-3 offset-1 mt-4 ">
 
                         <div class="p-1 col-11" style="background-color: #e1e1e1; ">
                             <h5 class="p-2">YOUR SEARCH DETAILS</h5>
@@ -108,14 +109,59 @@
                                             />
                                         </div>
                                         <div class="form-control-wrap col-md-5">
-                                            <el-time-picker
-                                                v-model="form.time_from"
-                                                placeholder="Start Time"
-                                                size="large"
-                                                format="HH:mm"
-                                                value-format="HH:mm"
-                                            />
+                                            <select  class="form-control rounded-1"
+                                                    v-model="form.time_from">
+                                                <option value="00:00" selected>00:00</option>
+                                                <option value="00:30">00:30</option>
+                                                <option value="01:00">01:00</option>
+                                                <option value="01:30">01:30</option>
+                                                <option value="02:00">02:00</option>
+                                                <option value="02:30">02:30</option>
+                                                <option value="03:00">03:00</option>
+                                                <option value="03:30">03:30</option>
+                                                <option value="04:00">04:00</option>
+                                                <option value="04:30">04:30</option>
+                                                <option value="05:00">05:00</option>
+                                                <option value="05:30">05:30</option>
+                                                <option value="06:00">06:00</option>
+                                                <option value="06:30">06:30</option>
+                                                <option value="07:00">07:00</option>
+                                                <option value="07:30">07:30</option>
+                                                <option value="08:00">08:00</option>
+                                                <option value="08:30">08:30</option>
+                                                <option value="09:00">09:00</option>
+                                                <option value="09:30">09:30</option>
+                                                <option value="10:00" selected>10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00">12:00</option>
+                                                <option value="12:30">12:30</option>
+                                                <option value="13:00">13:00</option>
+                                                <option value="13:30">13:30</option>
+                                                <option value="14:00">14:00</option>
+                                                <option value="14:30">14:30</option>
+                                                <option value="15:00">15:00</option>
+                                                <option value="15:30">15:30</option>
+                                                <option value="16:00">16:00</option>
+                                                <option value="16:30">16:30</option>
+                                                <option value="17:00">17:00</option>
+                                                <option value="17:30">17:30</option>
+                                                <option value="18:00">18:00</option>
+                                                <option value="18:30">18:30</option>
+                                                <option value="19:00">19:00</option>
+                                                <option value="19:30">19:30</option>
+                                                <option value="20:00">20:00</option>
+                                                <option value="20:30">20:30</option>
+                                                <option value="21:00">21:00</option>
+                                                <option value="21:30">21:30</option>
+                                                <option value="22:00">22:00</option>
+                                                <option value="22:30">22:30</option>
+                                                <option value="23:00">23:00</option>
+                                                <option value="23:30">23:30</option>
+                                            </select>
                                         </div>
+
                                     </div>
                                     <div class="mb-3 row">
                                         <div class="form-control-wrap col-md-7">
@@ -130,13 +176,57 @@
                                             />
                                         </div>
                                         <div class="form-control-wrap col-md-5">
-                                            <el-time-picker
-                                                v-model="form.time_to"
-                                                placeholder="End Time"
-                                                size="large"
-                                                format="HH:mm"
-                                                value-format="HH:mm"
-                                            />
+                                            <select  class="form-control rounded-1"
+                                                     v-model="form.time_to">
+                                                <option value="00:00" selected>00:00</option>
+                                                <option value="00:30">00:30</option>
+                                                <option value="01:00">01:00</option>
+                                                <option value="01:30">01:30</option>
+                                                <option value="02:00">02:00</option>
+                                                <option value="02:30">02:30</option>
+                                                <option value="03:00">03:00</option>
+                                                <option value="03:30">03:30</option>
+                                                <option value="04:00">04:00</option>
+                                                <option value="04:30">04:30</option>
+                                                <option value="05:00">05:00</option>
+                                                <option value="05:30">05:30</option>
+                                                <option value="06:00">06:00</option>
+                                                <option value="06:30">06:30</option>
+                                                <option value="07:00">07:00</option>
+                                                <option value="07:30">07:30</option>
+                                                <option value="08:00">08:00</option>
+                                                <option value="08:30">08:30</option>
+                                                <option value="09:00">09:00</option>
+                                                <option value="09:30">09:30</option>
+                                                <option value="10:00" selected>10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00">12:00</option>
+                                                <option value="12:30">12:30</option>
+                                                <option value="13:00">13:00</option>
+                                                <option value="13:30">13:30</option>
+                                                <option value="14:00">14:00</option>
+                                                <option value="14:30">14:30</option>
+                                                <option value="15:00">15:00</option>
+                                                <option value="15:30">15:30</option>
+                                                <option value="16:00">16:00</option>
+                                                <option value="16:30">16:30</option>
+                                                <option value="17:00">17:00</option>
+                                                <option value="17:30">17:30</option>
+                                                <option value="18:00">18:00</option>
+                                                <option value="18:30">18:30</option>
+                                                <option value="19:00">19:00</option>
+                                                <option value="19:30">19:30</option>
+                                                <option value="20:00">20:00</option>
+                                                <option value="20:30">20:30</option>
+                                                <option value="21:00">21:00</option>
+                                                <option value="21:30">21:30</option>
+                                                <option value="22:00">22:00</option>
+                                                <option value="22:30">22:30</option>
+                                                <option value="23:00">23:00</option>
+                                                <option value="23:30">23:30</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="  ">
@@ -176,17 +266,20 @@
                         </div>
 
                     </div>
-                    <Loader v-if="loading"  />
-                    <div v-else class="container bg-white col-md-6 offset-md-0 pt-5 pl-5 mt-4" >
+                    <Loader v-if="loading"/>
+                    <div v-else class="container bg-white col-md-6 offset-md-0 pt-5 pl-5 mt-4">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div id="slider-carousel">
-                                    <h3 class="text-nowrap" style="margin-left: -20px; font-size: 1.3vw;">{{ vehicle.name }} - <small class="text-nowrap">{{ vehicle?.category?.name }}</small></h3>
+                                    <h3 class="text-nowrap" style="margin-left: -20px; font-size: 1.3vw;">
+                                        {{ vehicle.name }} - <small class="text-nowrap">{{
+                                            vehicle?.category?.name
+                                        }}</small></h3>
                                     <div class="row"></div>
                                     <div class="item">
                                         <img
-                                             :src=" '/img/vehicles/' + vehicle?.photo "
-                                             width="250" height="150"/>
+                                            :src=" '/img/vehicles/' + vehicle?.photo "
+                                            width="250" height="150"/>
                                     </div>
                                     <div class="spacer-30"></div>
 
@@ -195,7 +288,8 @@
 
                             <div class="col-md-6 row">
                                 <div class=" row mt-1">
-                                    <h4 class="col-md-4 text-nowrap" style="font-size: 1.1vw">{{ currency + ' ' + vehicle.final_price }}</h4>
+                                    <h4 class="col-md-4 text-nowrap" style="font-size: 1.1vw">
+                                        {{ currency + ' ' + vehicle.final_price }}</h4>
                                     <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
                                         day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
@@ -203,24 +297,27 @@
                                         day </p>
                                 </div>
                                 <div class="row de-spec text-nowrap">
-                                    <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
-                                         class="">
-                                        <span class="d-title">
-                                            <img  style="width: 15%; margin-right: 2px;" :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
-                                             {{ specification.option }} {{specification.name == 'Number of Seats' ? 'Seats' : specification.name == 'Doors' ? 'Doors' : '' }}
+                                    <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications" class="col-md-6">
+                                        <span>
+                                            <img style="width: 35%; margin-right: 2px;"
+                                                 :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
+                                             {{
+                                                specification.option
+                                            }} {{
+                                                specification.name == 'Number of Seats' ? 'Seats' : specification.name == 'Doors' ? 'Doors' : ''
+                                            }}
                                         </span>
                                     </div>
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
-                            <div class=" rounded-2 py-1 mb-2   justify-content-between align-items-center col-md-11"
-                                style="background: #edecec; ">
+                            <div class=" rounded-2 py-1 mb-2 ml-1" style="background: #edecec; width: 90%; margin-top: -2%; ">
                                 <div class="d-supplier">
                                     <div class="col-md-2 d-img w-100" style="height: 50px">
                                         <img :src="'/img/' + vehicle?.supplier?.logo" height="50"
-                                             width="50" alt=""/>
+                                             width="80" alt=""/>
                                     </div>
-                                    <div class="col-md-3 row">
+                                    <div class="col-md-2 row">
                                         <div>
                                                             <span style="font-size: medium;"
                                                                   class="text-nowrap">{{
@@ -228,11 +325,12 @@
                                                                 }}</span>
                                         </div>
                                         <div>
-                                            <small><a class="cursor-pointer text-primary" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
+                                            <small><a class="cursor-pointer text-primary" href="javascript:void(0);"
+                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <span class="py-2 px-1 rounded-1"
+                                        <span class="py-2 px-1 rounded-1 ml-3"
                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
                                     </div>
                                     <div class="col-md-3">
@@ -240,38 +338,47 @@
                                                             style="font-size: medium;">(&nbsp;<strong
                                                             style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
+                                    <div class="col-md-4 ">
+                                        <p class="text-nowrap mt-2" style="font-size: 15px;"><i class="fa fa-location"/>
+                                            &nbsp;Address:&nbsp;&nbsp;<small
+                                                style="font-size: 12px;">{{ vehicle?.supplier?.address }}</small></p>
+                                        <p style="margin-top: -20px;"><strong class="text-nowrap"
+                                                                              style="font-size: 15px;"><i
+                                            class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy: <small
+                                            style="font-size: 12px; margin-top: -10px;" class="text-nowrap"> Full to
+                                            Full </small></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class=" row ml-1 rounded-2 col-md-11 bg-light-gray pt-1 ">
-                                <div class="row col-md-8">
+                            <div class=" row ml-1 rounded-2 bg-light-gray pt-1 " style="width: 90%; ">
+                                <div class="row col-md-12">
                                     <p class="primary bold m-0" style="color: #5e9007;">What is Included!</p>
-                                    <ul class="row" >
-                                        <li class="col-md-6" style="height: 20px"
-                                            v-for="(item, index) in vehicle.included ">
-                                            <div class="row" v-if="index < 140">
-                                                <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
-                                                   style="color: green;"/>
-                                                <p class="col-md-10 text-nowrap" style="font-size: 80%;">
-                                                    {{ item.what_is_included }}</p>
-                                            </div>
-                                            <div :class="'row text-nowrap vehicle-'+vehicle.id"
-                                                 style="display: none;" v-else>
-                                                <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
-                                                   style="color: green;"/>
-                                                <p class="col-md-10 text-nowrap" style="font-size: 13px;">
-                                                    {{ item.what_is_included }}</p>
-                                            </div>
-                                        </li>
+                                    <ul class="row">
+                                        <div class="col-md-5">
+                                            <li v-for="(item, index) in vehicle?.included?.slice(0 , (vehicle?.included?.length) /2)"
+                                                style="height: 20px">
+                                                <div class="row" v-if="index <= (vehicle?.included?.length - 1) / 2">
+                                                    <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
+                                                       style="color: green;"/>
+                                                    <p class="col-md-10 text-nowrap" style="font-size: 0.9vw;">
+                                                        {{ item.what_is_included }}</p>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-3 align-content-center" style="font-size: 2.5vw; color: rgb(94, 144, 7);"><i class="fa fa-plus-circle"/></div>
+
+                                        <div class="col-md-4">
+                                            <li v-for="(item, index) in vehicle?.included?.slice( (vehicle?.included?.length-1) /2 +1 ,  vehicle?.included?.length)" style="height: 20px">
+                                                <div class="row" >
+                                                    <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
+                                                       style="color: green;"/>
+                                                    <p class="col-md-10 text-nowrap" style="font-size: 0.9vw;">
+                                                        {{ item.what_is_included }}</p>
+                                                </div>
+                                            </li>
+                                        </div>
 
                                     </ul>
-                                </div>
-                                <div class="row mb-5 col-md-4">
-                                    <div class="col-md-12 mt-5">
-                                        <p class="text-nowrap"><i class="fa fa-location"/>Address:&nbsp;<small>{{vehicle?.supplier?.address }}</small></p>
-                                    </div>
-                                    <div class="row col-md-12 text-nowrap" style="margin-top: -20px">
-                                       <p> <strong class="text-nowrap"><i class="fa fa-gas-pump"/></strong>
-                                        Fuel Policy: <small class="text-nowrap"> Full to Full </small></p></div>
                                 </div>
                             </div>
 
@@ -479,10 +586,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <el-checkbox  class="mr-2"/> Remember me on this device. <br/>
-                                    <el-checkbox v-model="rental_terms" class="mr-2"/> I confirm that i have read, understood and agree with the
-                                    <a class="cursor-pointer text-primary " style="text-decoration: underline;" href="javascript:void(0);" @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> .<br/>
-                                    <el-checkbox  class="mr-2"/> Subscribe me to the promotional emails.
+                                    <el-checkbox class="mr-2"/>
+                                    Remember me on this device. <br/>
+                                    <el-checkbox v-model="rental_terms" class="mr-2"/>
+                                    I confirm that i have read, understood and agree with the
+                                    <a class="cursor-pointer text-primary " style="text-decoration: underline;"
+                                       href="javascript:void(0);"
+                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> .<br/>
+                                    <el-checkbox class="mr-2"/>
+                                    Subscribe me to the promotional emails.
                                     <hr/>
                                     <ProgressBar v-if="loading" mode="indeterminate" style="height: 6px"></ProgressBar>
 
@@ -521,6 +633,7 @@ import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import ProgressBar from 'primevue/progressbar';
 import 'primevue/resources/themes/aura-light-amber/theme.css'
 import Loader from '../components/Loader.vue'
+
 const isOpen = ref(false)
 
 const closeModal = () => {
@@ -636,38 +749,37 @@ const openRentalTerms = (vehicle) => {
     isOpen.value = true
     activeRentalTerms.value = vehicle.rental_terms
 }
-const setParams =  () => {
+const setParams = () => {
     let urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has('pickupLoc')) {
-        form.pickupLoc =  urlParams.get('pickupLoc')
+        form.pickupLoc = urlParams.get('pickupLoc')
     }
     if (urlParams.has('date_from')) {
-        form.date_from =  urlParams.get('date_from')
+        form.date_from = urlParams.get('date_from')
 
     }
     if (urlParams.has('date_to')) {
-        form.date_to =  urlParams.get('date_to')
+        form.date_to = urlParams.get('date_to')
 
     }
 
     if (urlParams.has('time_from')) {
-        form.time_from =  urlParams.get('time_from')
+        form.time_from = urlParams.get('time_from')
     }
     if (urlParams.has('time_to')) {
-        form.time_to =  urlParams.get('time_to')
+        form.time_to = urlParams.get('time_to')
     }
 
     if (urlParams.has('date')) {
-        form.date =   urlParams.get('date')
+        form.date = urlParams.get('date')
     }
     if (urlParams.has('id')) {
-        id.value =   urlParams.get('id')
-        form.id =  urlParams.get('id')
+        id.value = urlParams.get('id')
+        form.id = urlParams.get('id')
     }
     getVehicle()
 }
-
 
 
 const getVehicle = async () => {
@@ -715,9 +827,9 @@ const book = async () => {
             $toast.error("You are not a customer!", {position: 'top'})
             return;
         }
-        if(rental_terms != true) {
-            $toast.error("Please Approve on the rental terms !")
-
+        if (rental_terms != true) {
+            $toast.error("Please Approve on the rental terms !", {position: 'top'})
+            return;
         }
 
         bookingForm.id = id.value;
@@ -897,8 +1009,9 @@ li::before {
     .included-font {
         font-size: 12px;
     }
+
     .top-buttons {
-        margin-left: 15%;
+        margin-left: 12%;
     }
 }
 
@@ -906,8 +1019,9 @@ li::before {
     .included-font {
         font-size: 11px;
     }
+
     .top-buttons {
-        margin-left: 10%;
+        margin-left: 7%;
     }
 }
 
@@ -915,8 +1029,9 @@ li::before {
     .included-font {
         font-size: 9.5px;
     }
+
     .top-buttons {
-        margin-left: 8%;
+        margin-left: 5%;
     }
 }
 </style>

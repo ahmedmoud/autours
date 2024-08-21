@@ -183,6 +183,7 @@ class BookingsController extends Controller
                     if ($count < 10)
                         $suffix_count = '0'. $suffix_count;
             }
+            $oldRental = null;
             $item->order_number =  $prefix.'ATR'.$suffix_count;
             $item->vehicle_id = $request->id;
             $item->price = $vehicleWithPrice->final_price;
@@ -195,13 +196,16 @@ class BookingsController extends Controller
             $item->currency = $request->currency;
             $item->number_of_days = $diffInDays;
             if ($request->old_rental_id) {
-                Rental::query()->find($request->old_rental_id)->delete();
+                $OldRental = Rental::query()->find($request->old_rental_id);
+                $OldRental->delete();
                 $item->old_rental_id = $request->old_rental_id;
             }
             $item->save();
 
             DB::commit();
-
+            if($request->old_rental_id) {
+                event(new UpdateBooking($oldRental, $item));
+            }
             if ($vehicle->instant_confirmation)
                 event(new NewRental($item->id));
             else

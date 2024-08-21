@@ -26,7 +26,7 @@ class CancelBookingCustomer extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Booking',
+            subject: 'Booking Cancellation Confirmation - Your Rental Car Reservation',
         );
     }
 

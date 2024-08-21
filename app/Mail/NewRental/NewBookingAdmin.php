@@ -26,7 +26,7 @@ class NewBookingAdmin extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Booking',
+            subject: 'New Car Rental Booking Notification',
         );
     }
 

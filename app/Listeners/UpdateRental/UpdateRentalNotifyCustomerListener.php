@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Listeners\NewRental;
+namespace App\Listeners\UpdateRental;
 
 use App\Events\NewRental;
-use App\Mail\NewRental\NewBookingCustomer;
+use App\Mail\UpdateRental\UpdateBookingCustomer;
 use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class NotifyCustomerListener implements ShouldQueue
+class UpdateRentalNotifyCustomerListener implements ShouldQueue
 {
-    /*
+    /**
      * Create the event listener.
      */
     public function __construct()
@@ -30,6 +30,6 @@ class NotifyCustomerListener implements ShouldQueue
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
 
         $body = $event->rental;
-        $status = Mail::to($user->email)->send(new NewBookingCustomer($body));
+        $status = Mail::to($user->email)->send(new UpdateBookingCustomer($body));
     }
 }

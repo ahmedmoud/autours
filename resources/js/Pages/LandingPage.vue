@@ -7,11 +7,12 @@
     <div class="jumbotron jumbotron-fluid"
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px; display:flex;  justify-content: center;">
 
-        <div class="jumbotron-fluid" style="width: 75%;" >
-            <h1 class="p-fontsize" style="color: #ffffff;"><strong><span style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy.</strong></h1>
+        <div class="jumbotron-fluid" style="width: 75%;">
+            <h1 class="p-fontsize" style="color: #ffffff;"><strong><span
+                style="color: rgb(249, 214, 2)">Car Rentals</span> - Search, Book & Enjoy.</strong></h1>
             <FloatSearchForm/>
             <h1 class="py-3 p-fontsize" style=" color: #ffffff;">
-                <strong>  Looking for a vehicle? You're at the right place!<br/></strong>
+                <strong> Looking for a vehicle? You're at the right place!<br/></strong>
             </h1>
             <div class="text-white font-weight-bold included-part">
 
@@ -24,117 +25,189 @@
     <div class="my-4" style="background: #FFFFFF">
         <div class="container">
             <div class="row" style="justify-content: center;">
-                <div v-for="logo in logos" class="col-md-1 py-2 align-self-center">
+                <div v-for="logo in logos" class="col-md-1 py-2 ">
                     <img :src="'img/company_logos/' + logo" class="mx-auto d-block" width="100" height="40"/>
                 </div>
             </div>
         </div>
     </div>
     <!-- three-blcok -->
-    <div class="my-5" style=" background: #f9d602; height: 200px; display: flex; align-items: flex-end; justify-content: center; ">
-        <h2 class="mb-5 font-weight-bold">Why book a car rental <br/> with Autours?</h2>
+    <div class="" style=" background: #f9d602; height: 167px; display: flex; align-items: center;  ">
+        <img src="images/background/autours-left.png"/>
+        <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%;">Why Autours?</p>
+        <img style=" position:absolute; left: 95.7%;" src="images/background/autours-right.png"/>
     </div>
 
-    <div class="container my-5 py-2">
+    <div class=" my-5 py-2">
         <div class="row">
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
-                 class="col-md-4 text-center">
-                <img src="img/feature-1.png" width="250px" alt="Phishing Detect" class="mx-auto my-4">
-                <h4>Pas de frais cachés</h4>
-                <p>Une fois que vous avez payé, vous êtes tranquilles. Pas de surprise de dernière minute.</p>
+                 class="col-md-3 text-center">
+                <img src="images/icons/home-icon1.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>Variety<br> Of Cars</h5>
+                <p style="font-size: 20px; color: #595555;">Choose from a wide<br> range of cars to meet all<br> your
+                    needs.</p>
             </div>
-            <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000" data-aos-once="true"
-                 class="col-md-4 text-center">
-                <img src="img/feature-1.png" width="250px" alt="Phishing Detect" class="mx-auto my-4">
-                <h4>Anti-spam</h4>
-                <p>Lorem ipsum dolor sit amet porro his no his deleniti</p>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-2 text-center">
+                <img src="images/icons/home-icon2.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>24/7<br> Customer Service</h5>
+                <p style="font-size: 20px; color: #595555;">Continuous support avail-<br> able around the clock, <br>
+                    everyday of the week.</p>
             </div>
-            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true"
-                 class="col-md-4 text-center">
-                <img src="img/feature-1.png" width="250px" alt="Phishing Detect" class="mx-auto my-4">
-                <h4>Phishing Detect</h4>
-                <p>Ne error antiopam usu. Sed vocen concludaturque ea</p>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-2 text-center">
+                <img src="images/icons/home-icon3.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>Present in<br>9 Arab Countries</h5>
+                <p style="font-size: 20px; color: #595555;">We're present in 9 Arab countries, bringing our services
+                    closer to you throughout the region.</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-2 text-center">
+                <img src="images/icons/home-icon4.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>Multiple and secure<br>payment options</h5>
+                <p style="font-size: 20px; color: #595555;">We offer multiple and secure payment options, ensuring
+                    flexibility and safety for all your transactions.</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-2 text-center">
+                <img src="images/icons/home-icon5.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>Instant<br>Confirmation</h5>
+                <p style="font-size: 20px; color: #595555;">Receive Instant Confirmation, ensuring your booking is
+                    secured immediately.</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-3 text-center">
+                <img src="images/icons/home-icon8.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>No visa<br>or hidden fees</h5>
+                <p style="font-size: 20px; color: #595555;">No extra fees when using your<br> credit card & We offer
+                    transparent<br> pricing with no undisclosed costs.</p>
             </div>
 
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-2 text-center">
+                <img src="images/icons/home-icon7.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>Multilingual<br>customer service</h5>
+                <p style="font-size: 20px; color: #595555;">Our team available to<br> support you in multiple languages.
+                </p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-2 text-center">
+                <img src="images/icons/home-icon6.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>Free Booking<br>Modifications</h5>
+                <p style="font-size: 20px; color: #595555;">Easily modify your booking,<br> without any charges.</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-2 text-center">
+                <img src="images/icons/home-icon9.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>Free<br>Cancellation</h5>
+                <p style="font-size: 20px; color: #595555;">Enjoy the option of free Cancellation without any addtional
+                    cahrges.</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
+                 class="col-md-2 text-center">
+                <img src="images/icons/home-icon10.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <h5>Global<br>Rental Companies</h5>
+                <p style="font-size: 20px; color: #595555;">We partner with the best global rental companies to ensure
+                    high-quality service.</p>
+            </div>
+
+
         </div>
+
     </div>
     <!-- images -->
-    <div class="my-5 py-2" style="background: #f9d602">
-        <div class="container  ">
-            <h2 class="text-center font-weight-bold my-5">Popular car rental locations worldwide</h2>
-            <section>
-                <div class="card">
+
+    <div class="my-5 " style="background: #f9d602">
+        <div style="background-color: #000; height: 25px;"></div>
+        <div>
+            <p class="text-center " style="font-size: 5vw; font-weight: 1000 !important; margin-top: 5%; left: 32%;">
+                WHERE WE ARE</p>
+            <div class="where_we_are_section my-5">
+                <div class="card" style="height: 90%; width: 15%;">
                     <div class="card__img">
-                        <img
-                            src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
-                            alt="Big Ben">
-                        <!-- <span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>4.5</span> -->
+                        <img src="images/countries/saudi.jpg" alt="Big Ben">
                         <div class="card__overlay">
-                            <h2>London</h2>
-                            <p>Big Ben</p>
+                            <h4 class="text-center">KINGDOM OF<br> SAUDI ARABIA</h4>
                         </div>
                     </div>
                 </div>
-                <div class="card">
+
+                <div class="card" style="width: 20%; height: 33.5%;">
                     <div class="card__img">
                         <img
-                            src="https://images.unsplash.com/photo-1581010864468-c972b8705439?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            src="images/countries/bahrain.jpg"
+                            alt="bahain">
+
+                        <div class="card__overlay">
+                            <h4 class="text-center">B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;N</h4>
+                        </div>
+
+                    </div>
+                    <div class="card__img mt-3">
+                        <img
+                            src="images/countries/qatar.png"
+                            alt="qatar">
+
+                        <div class="card__overlay">
+                            <h4 class="text-center">Q&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;R</h4>
+                        </div>
+
+                    </div>
+
+                    <div class="card__img mt-2">
+                        <img
+                            src="images/countries/bahrain.jpg"
+                            alt="bahain">
+
+                        <div class="card__overlay">
+                            <h4 class="text-center">B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;N</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card" style="width: 60%; height: 29.5%;">
+                    <div class="card__img">
+                        <img
+                            src="images/countries/uae.jpg"
                             alt="Eiffel Tower">
 
                         <div class="card__overlay">
-                            <h2>Paris</h2>
-                            <p>Eiffel Tower</p>
+                            <h4>UNITED ARAB EMIRATES</h4>
                         </div>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card__img">
-                        <img
-                            src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1096&q=80"
-                            alt="Colosseum">
+                    <div class="row">
+                        <div class="card__img mt-2" style="height: 150%; width: 50%;">
+                            <img
+                                src="images/countries/egypt.jpg"
+                                alt="Eiffel Tower">
 
-                        <div class="card__overlay">
-                            <h2>Rome</h2>
-                            <p>Colosseum</p>
+                            <div class="card__overlay">
+                                <h4 class="text-center">E&nbsp;&nbsp;&nbsp;&nbsp;G&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;&nbsp;&nbsp;T</h4>
+                            </div>
+                        </div>
+                        <div class="card__img mt-2" style="height: 150%; width: 50%;">
+                            <img
+                                src="images/countries/oman.jpg"
+                                alt="Eiffel Tower">
+
+                            <div class="card__overlay">
+                                <h4 class="text-center">O&nbsp;&nbsp;&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;N</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" style="height: 90%; width: 15%;">
                     <div class="card__img">
                         <img
-                            src="https://images.unsplash.com/photo-1581473483413-313a5afffb08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=714&q=80"
+                            src="images/countries/jordan.jpg"
                             alt="Pisa Tower">
                         <div class="card__overlay">
-                            <h2>Pisa</h2>
-                            <p>Pisa Tower</p>
+                            <h4 class="text-center">JORDAN</h4>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card__img">
-                        <img
-                            src="https://images.unsplash.com/photo-1585155967849-91c736589c84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80"
-                            alt="">
-                        <div class="card__overlay">
-                            <h2>New York</h2>
-                            <p>Statue of Liberty</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__img">
-                        <img
-                            src="https://images.unsplash.com/photo-1527915676329-fd5ec8a12d4b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
-                            alt="Sydney Opera House">
-                        <div class="card__overlay">
-                            <h2>Sydney</h2>
-                            <p>Sydney Opera House</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
+            </div>
         </div>
     </div>
     <!-- feature (skew background) -->
@@ -303,7 +376,7 @@ const form = useForm({
     pickupLoc: '',
     date: '',
 });
-const logos = ref(["europcar.png","avis.png","alamo.png","sixt.png","national.jpg","dollar.png","hertz.png","thrifty.jpeg","budget.jpg","enterprise.svg.png"])
+const logos = ref(["europcar.png", "avis.png", "alamo.png", "sixt.png", "national.jpg", "dollar.png", "hertz.png", "thrifty.jpeg", "budget.jpg", "enterprise.svg.png"])
 const date = ref('')
 const countries = ref('')
 const location = ref('')
@@ -407,13 +480,13 @@ onMounted(() => {
 @import '../../css/custom.css';
 
 @media screen and (max-width: 800px) {
-     .p-fontsize{
+    .p-fontsize {
         font-size: 5vw;
     }
-    .included-part{
+    .included-part {
         display: none;
     }
-    .jumbotron-fluid{
+    .jumbotron-fluid {
         width: 100%;
     }
 }
@@ -608,14 +681,10 @@ $color: white;
     }
 }
 
-section {
-    display: grid;
-    grid-template-columns:25% 30% 15% 25%;
-    gap: 15px;
-    place-content: center;
-    grid-template-rows: 50% 50%;
+.where_we_are_section {
+    display: flex;
+    gap: 8px;
     height: 80vh;
-    min-height: 460px;
     padding: max(2vh, 1.5rem);
 
     img {
@@ -642,45 +711,8 @@ section {
     }
 
     .card {
-        border-radius: 25px;
+        border-radius: 25%;
         box-shadow: -2px 4px 15px rgb(0 0 0 / 26%);
-
-        @include mQ(470px) {
-            grid-column: span 1;
-        }
-
-        &:nth-child(2) {
-            grid-column: 2/3;
-            grid-row: span 2;
-
-            @include mQ(690px) {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-        }
-
-        &:nth-child(3) {
-            grid-column: span 2;
-
-            @include mQ(690px) {
-                grid-column: 2/4;
-                grid-row: 1/2;
-            }
-        }
-
-        @include mQ(690px) {
-            &:nth-child(6) {
-                grid-column: 2/4;
-                grid-row: 2/3;
-            }
-        }
-
-        @include mQ(470px) {
-
-            &:nth-child(5) {
-                grid-column: span 2;
-            }
-        }
 
         p {
             font-size: clamp(0.9rem, 0.8750rem + 0.1250vw, 1rem);
@@ -700,12 +732,13 @@ section {
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                content: "";
+
                 color: #fff;
                 padding: clamp(0.938rem, 5vw, 1.563rem);
                 background: rgb(2, 2, 46);
-                background: linear-gradient(0deg, rgb(0 0 0 / 57%) 0%, rgb(255 255 255 / 0%) 100%);
-                width: 100%;
+                background: linear-gradient(0deg, rgb(0 0 0 / 60%) 0%, rgba(207, 12, 12, 0) 100%);
+                width: 96%;
+                margin-left: 2%;
                 height: 100%;
                 border-radius: 25px;
                 display: flex;
@@ -713,31 +746,7 @@ section {
                 flex-direction: column;
             }
 
-            span {
-                position: absolute;
-                top: 25px;
-                left: min(2vmax, 1.563rem);
-                color: #ff7b29;
-                background: #fff;
-                border-radius: 50px;
-                padding: 2px 8px 2px 6px;
-                display: flex;
-                box-shadow: 0px 1px 20px #0000002b;
 
-                @include mQ(690px) {
-                    top: 20px;
-                }
-
-                @include mQ(470px) {
-                    top: 15px;
-                }
-
-                svg {
-                    fill: #ff7b29;
-                    width: 20px;
-                    margin-right: 2px;
-                }
-            }
         }
     }
 }

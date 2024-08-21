@@ -4192,7 +4192,6 @@ footer.footer-light h5 {
     margin-top: 0;
     font-family: var(--title-font);
     font-weight: 600;
-    color: #3F4254;
 }
 
 .dark-scheme h1,
@@ -11666,7 +11665,6 @@ i.bg-color-secondary {
 }
 .de-spec .d-value{
     font-weight: 600;
-    color:#3F4254;
 }
 .dark-scheme .de-spec .d-value{
     color:#ffffff;
@@ -11989,7 +11987,6 @@ input[type="range"]::-moz-range-thumb {
 .d-supplier span{
     font-size: 11px;
     font-weight: 600;
-    color: #3F4254;
 }
 .d-text h4{
     margin: 0;
