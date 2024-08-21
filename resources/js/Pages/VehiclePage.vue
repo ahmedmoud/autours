@@ -819,16 +819,22 @@ const book = async () => {
     try {
         loading.value = true;
         if (user.value === '' || user.value === null || user.value === undefined) {
+
             register();
+            loading.value = false;
             return
         }
 
         if (user.value.role !== 'customer') {
             $toast.error("You are not a customer!", {position: 'top'})
+            loading.value = false;
+
             return;
         }
         if (rental_terms != true) {
             $toast.error("Please Approve on the rental terms !", {position: 'top'})
+            loading.value = false;
+
             return;
         }
 
