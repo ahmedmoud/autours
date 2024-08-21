@@ -117,98 +117,97 @@
     </div>
     <!-- images -->
 
-    <div class="my-5 " style="background: #f9d602">
+    <div class="my-5 " style="background: #f9d602; ">
         <div style="background-color: #000; height: 25px;"></div>
         <div>
-            <p class="text-center " style="font-size: 5vw; font-weight: 1000 !important; margin-top: 5%; left: 32%;">
-                WHERE WE ARE</p>
+            <p class="text-center " style="font-size: 5vw; font-weight: 1000 !important; margin-top: 5%; left: 32%;">WHERE WE ARE</p>
             <div class="where_we_are_section my-5">
-                <div class="card" style="height: 90%; width: 15%;">
+                <div class="card" style="height: 90%; width: 15%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
                     <div class="card__img">
                         <img src="images/countries/saudi.jpg" alt="Big Ben">
                         <div class="card__overlay">
-                            <h4 class="text-center">KINGDOM OF<br> SAUDI ARABIA</h4>
+                            <p style="font-size: 1vw; font-weight: 1000;" class="text-center">KINGDOM OF<br> SAUDI ARABIA</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="card" style="width: 20%; height: 33.5%;">
-                    <div class="card__img">
+                <div class="card" style="width: 25%; height: 28.5%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);" >
+                    <div class=" card__img">
                         <img
-                            src="images/countries/bahrain.jpg"
-                            alt="bahain">
+                            src="images/countries/bahrain.jpg" alt="bahrain">
 
                         <div class="card__overlay">
-                            <h4 class="text-center">B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;N</h4>
+                            <p style="font-size: 1vw; font-weight: 1000;" class="text-center">B&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;H&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;N</p>
                         </div>
 
                     </div>
                     <div class="card__img mt-3">
-                        <img
-                            src="images/countries/qatar.png"
+                        <img src="images/countries/qatar.png"
                             alt="qatar">
 
                         <div class="card__overlay">
-                            <h4 class="text-center">Q&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;R</h4>
+                            <p style="font-size: 1vw; font-weight: 1000;" class="text-center">Q&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;R</p>
                         </div>
 
                     </div>
 
                     <div class="card__img mt-2">
                         <img
-                            src="images/countries/bahrain.jpg"
-                            alt="bahain">
+                            src="images/countries/kuwait.jpg"
+                            alt="bahrain">
 
                         <div class="card__overlay">
-                            <h4 class="text-center">B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;N</h4>
+                            <p style="font-size: 1.3vw; font-weight: 1000;" class="text-center">K&nbsp;&nbsp;u&nbsp;&nbsp;w&nbsp;&nbsp;a&nbsp;&nbsp;i&nbsp;&nbsp;t</p>
                         </div>
 
                     </div>
                 </div>
-                <div class="card" style="width: 60%; height: 29.5%;">
+                <div class="card" style="width: 40%; height: 29.5%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);" >
                     <div class="card__img">
                         <img
                             src="images/countries/uae.jpg"
                             alt="Eiffel Tower">
 
                         <div class="card__overlay">
-                            <h4>UNITED ARAB EMIRATES</h4>
+                            <p style="font-size: 1vw; font-weight: 1000;">UNITED ARAB EMIRATES</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="card__img mt-2" style="height: 150%; width: 50%;">
+                    <div style="display: flex; gap: 2%">
+                        <div class="card__img mt-2" style="height: 195%; width: 50%;">
                             <img
                                 src="images/countries/egypt.jpg"
                                 alt="Eiffel Tower">
 
                             <div class="card__overlay">
-                                <h4 class="text-center">E&nbsp;&nbsp;&nbsp;&nbsp;G&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;&nbsp;&nbsp;T</h4>
+                                <p style="font-size: 1vw; font-weight: 1000;" class="text-center">E&nbsp;&nbsp;&nbsp;&nbsp;G&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;&nbsp;&nbsp;T</p>
                             </div>
                         </div>
-                        <div class="card__img mt-2" style="height: 150%; width: 50%;">
+                        <div class="card__img mt-2" style="height: 195%; width: 50%;">
                             <img
                                 src="images/countries/oman.jpg"
                                 alt="Eiffel Tower">
 
                             <div class="card__overlay">
-                                <h4 class="text-center">O&nbsp;&nbsp;&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;N</h4>
+                                <p style="font-size: 1.2vw; font-weight: 1000;" class="text-center">O&nbsp;&nbsp;&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;N</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card" style="height: 90%; width: 15%;">
+                <div class="card" style="height: 90%; width: 15%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
                     <div class="card__img">
                         <img
                             src="images/countries/jordan.jpg"
                             alt="Pisa Tower">
                         <div class="card__overlay">
-                            <h4 class="text-center">JORDAN</h4>
+                            <p style="font-size: 1vw; font-weight: 1000;" class="text-center">JORDAN</p>
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
+        <div style="background-color: #000; height: 25px;"></div>
+
     </div>
     <!-- feature (skew background) -->
     <div class="jumbotron jumbotron-fluid feature" id="feature-first">
@@ -603,7 +602,6 @@ $color: white;
         }
 
         .content {
-            height: 0;
             background: rgba(244, 216, 73, 0.7);
             height: 300px;
             position: relative;
@@ -712,7 +710,6 @@ $color: white;
 
     .card {
         border-radius: 25%;
-        box-shadow: -2px 4px 15px rgb(0 0 0 / 26%);
 
         p {
             font-size: clamp(0.9rem, 0.8750rem + 0.1250vw, 1rem);
@@ -732,21 +729,17 @@ $color: white;
                 position: absolute;
                 bottom: 0;
                 left: 0;
-
                 color: #fff;
                 padding: clamp(0.938rem, 5vw, 1.563rem);
+                width: 100%;
+                height: 100%;
                 background: rgb(2, 2, 46);
                 background: linear-gradient(0deg, rgb(0 0 0 / 60%) 0%, rgba(207, 12, 12, 0) 100%);
-                width: 96%;
-                margin-left: 2%;
-                height: 100%;
                 border-radius: 25px;
                 display: flex;
                 justify-content: flex-end;
                 flex-direction: column;
             }
-
-
         }
     }
 }
