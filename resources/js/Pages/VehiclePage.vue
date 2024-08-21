@@ -831,7 +831,7 @@ const book = async () => {
 
             return;
         }
-        if (rental_terms != true) {
+        if (rental_terms.value !== true) {
             $toast.error("Please Approve on the rental terms !", {position: 'top'})
             loading.value = false;
 
