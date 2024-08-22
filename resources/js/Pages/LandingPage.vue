@@ -131,7 +131,7 @@
                     </div>
                 </div>
 
-                <div class="card" style="width: 25%; height: 28.5%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);" >
+                <div class="card" style="width: 25%; height: 29%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);" >
                     <div class=" card__img">
                         <img
                             src="images/countries/bahrain.jpg" alt="bahrain">
@@ -162,7 +162,7 @@
 
                     </div>
                 </div>
-                <div class="card" style="width: 40%; height: 29.5%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);" >
+                <div class="card" style="width: 40%; height: 31%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);" >
                     <div class="card__img">
                         <img
                             src="images/countries/uae.jpg"
@@ -210,50 +210,46 @@
 
     </div>
     <!-- feature (skew background) -->
-    <div class="jumbotron jumbotron-fluid feature" id="feature-first">
-        <div class="container my-5">
-            <div class="row justify-content-between text-center text-md-left">
-                <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true" class="col-md-6">
-                    <h2 class="font-weight-bold">Take a look inside</h2>
-                    <p class="my-4">Te iisque labitur eos, nec sale argumentum scribentur no,
-                        <br> augue disputando in vim. Erat fugit sit at, ius lorem deserunt deterruisset no.</p>
-                    <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-blue">Learn More</a>
-                </div>
-                <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true"
-                     class="col-md-6 align-self-center">
-                    <img src="img/feature-1.png" alt="Take a look inside" class="mx-auto d-block">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- feature (green background) -->
-    <div class="jumbotron jumbotron-fluid feature" id="feature-last">
-        <div class="container">
-            <div class="row justify-content-between text-center text-md-left">
-                <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" class="col-md-6 flex-md-last">
-                    <h2 class="font-weight-bold">Safe and reliable</h2>
-                    <p class="my-4">
-                        Duo suas detracto maiestatis ad, commodo lucilius invenire nec ad,
-                        <br> eum et oratio disputationi. Falli lobortis his ad
-                    </p>
-                    <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-blue">Learn More</a>
-                </div>
-                <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true"
-                     class="col-md-6 align-self-center flex-md-first">
-                    <img src="img/feature-2.png" alt="Safe and reliable" class="mx-auto d-block">
-                </div>
-            </div>
-        </div>
+    <div class="jumbotron  " style="height: 70%;">
+        <p  style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%;">OUR FLEET</p>
+
+            <swiper
+                :modules="[Navigation, Pagination, Scrollbar, A11y]"
+                :slides-per-view="2"
+                :space-between="10"
+                loop
+                navigation
+                class="mt-5"
+            >
+                <swiper-slide v-for="item in [1,2,3]">
+                    <div class="text-center">
+                            <div class="">
+                                <h4 class="mt-3 ml-3">F&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;Z&nbsp;&nbsp;&nbsp;&nbsp;E </h4>
+                                <div class="">
+                                    <img :src="'images/swiper/swiper' + item+ '.png'" alt=""
+                                         height="350" >
+                                </div>
+                                <p style="font-size: 20px;">EASY-GOING & PUNCHY MOVE<br> AROUNDS</p>
+                            </div>
+                    </div>
+
+                </swiper-slide>
+
+
+            </swiper>
+
     </div>
 
+    <div style="background-color: #000; height: 25px;"></div>
+
     <!-- price table -->
-    <div class="container my-5 py-2" id="price-table">
+        <div class=" " style="background: rgb(244, 216, 73);" id="price-table">
         <h2 class="text-center font-weight-bold d-block mb-3">FAQ</h2>
-        <div class="acc d-flex">
-            <div class='wrapper w-50'>
+        <div class="container acc d-flex">
+            <div class='wrapper w-25 '>
                 <input id='pictures' type='checkbox'>
                 <label for='pictures'>
-                    <p>Why book a car rental with Autours?</p>
+                    <p>Why book a car with Autours?</p>
                     <div class='lil_arrow'></div>
                     <div class='content'>
                         <ul>
@@ -310,7 +306,47 @@
                 </label>
 
             </div>
-            <div class='wrapper w-50 mx-4'>
+            <div class='wrapper w-25 '>
+                <input id='financial' type='checkbox'>
+                <label for='financial'>
+                    <p>Invoicing & financial</p>
+                    <div class='lil_arrow'></div>
+                    <div class='content'>
+                        <ul>
+                            <li>
+                                <a href='#'>Invoicing Templates</a>
+                            </li>
+                            <li>
+                                <a href='#'>Invoice Archives</a>
+                            </li>
+                            <li>
+                                <a href='#'>Send Invoice</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <span></span>
+                </label>
+                <input id='settings' type='checkbox'>
+                <label for='settings'>
+                    <p>System Settings</p>
+                    <div class='lil_arrow'></div>
+                    <div class='content'>
+                        <ul>
+                            <li>
+                                <a href='#'>User Settings</a>
+                            </li>
+                            <li>
+                                <a href='#'>Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href='#'>Do something cool</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <span></span>
+                </label>
+            </div>
+            <div class='wrapper w-25 '>
                 <input id='financial' type='checkbox'>
                 <label for='financial'>
                     <p>Invoicing & financial</p>
@@ -352,6 +388,8 @@
             </div>
         </div>
     </div>
+    <div style="background-color: #000; height: 25px;"></div>
+
     <!-- contact -->
     <Contactus/>
     <!-- copyright -->
@@ -367,7 +405,8 @@ import SearchForm from "./SearchForm.vue";
 import FloatSearchForm from "./FloatSearchForm.vue";
 import Footer from "../components/Footer.vue"
 import Contactus from "../components/Contactus.vue"
-
+import {Swiper, SwiperSlide} from 'swiper/vue';
+import {Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
 
 const user = ref('')
 

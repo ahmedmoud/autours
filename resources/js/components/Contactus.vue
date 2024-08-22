@@ -3,26 +3,34 @@
 </script>
 
 <template>
-    <div class="jumbotron jumbotron-fluid" id="contact" style="background: #f4d849;">
-        <div class="container my-5">
-            <div class="row justify-content-between">
-                <div class="col-md-6 text-black">
-                    <h2 class="font-weight-bold">Contact Us</h2>
-                    <p class="my-4">
-                        Te iisque labitur eos, nec sale argumentum scribentur,
-                        <br> augue disputando in vim. Erat fugit sit at, ius lorem.
-                    </p>
-                    <ul class="list-unstyled">
-                        <li>Email : company_email@com</li>
-                        <li>Phone : 361-688-5824</li>
-                        <li>Address : 4826 White Avenue, Corpus Christi, Texas</li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
+    <div class="row jumbotron-fluid" id="contact" style="background: #ffffff;">
+        <div class="col-md-6 container my-5 text-center">
+            <p style="font-size: 4vw; font-weight: 1000;">Contact Us</p>
 
+            <div class="row">
+                <div class="col-md-5 text-black mt-4">
+
+                    <div class="row">
+                        <img class="col-md-2" src="images/icons/email.png"/>
+                        <div class="col-md-4 mt-2" style="font-size: 1.7vw; color: #5c5656;">info@autours.net</div>
+                    </div>
+                    <div class="row mt-5">
+                        <img class="col-md-2" src="images/icons/whatsapp.png"/>
+                        <div class="col-md-7 mt-2" style="font-size: 1.7vw; color: #5c5656;">361-688-5824</div>
+
+                    </div>
+                    <div class="row mt-5">
+                        <img class="col-md-2" src="images/icons/location.png"/>
+                        <div class="col-md-10 mt-2 text-nowrap " style="font-size: 1.7vw; color: #5c5656;">4826 White
+                            Avenue,Corpus Christi,Texas
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-2"><img src="images/background/contactus.png"/></div>
+
     </div>
 </template>
 
