@@ -271,8 +271,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div id="slider-carousel">
-                                    <h3 class="text-nowrap" style="margin-left: -20px; font-size: 1.3vw;">
-                                        {{ vehicle.name }} - <small class="text-nowrap">{{
+                                    <h3 class="" style="margin-left: -20px; font-size: 1.3vw;">
+                                        {{ vehicle.name }} - <small class="">{{
                                             vehicle?.category?.name
                                         }}</small></h3>
                                     <div class="row"></div>
