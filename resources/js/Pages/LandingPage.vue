@@ -391,6 +391,7 @@
     <div style="background-color: #000; height: 25px;"></div>
 
     <!-- contact -->
+    <Contactus/>
     <!-- copyright -->
     <Footer/>
     </body>
