@@ -267,11 +267,11 @@
 
                     </div>
                     <Loader v-if="loading"/>
-                    <div v-else class="container bg-white col-md-6 offset-md-0 pt-5 pl-5 mt-4">
+                    <div v-else class="container bg-white col-md-7 offset-md-0 pt-5 pl-5 mt-4">
                         <div class="row">
                             <div class="col-md-4">
-                                <div id="slider-carousel">
-                                    <h3 class="" style="margin-left: -20px; font-size: 1.3vw;">
+                                <div id="slider-carousel text-nowrap">
+                                    <h3 class="" style="margin-left: -20px; font-size: 1.3vw; text-wrap: nowrap;">
                                         {{ vehicle.name }} - <small class="">{{
                                             vehicle?.category?.name
                                         }}</small></h3>
@@ -356,7 +356,7 @@
                                     <ul class="row">
                                         <div class="col-md-5">
                                             <li v-for="(item, index) in vehicle?.included?.slice(0 , (vehicle?.included?.length) /2)"
-                                                style="height: 20px">
+                                                style="height: 30px">
                                                 <div class="row" v-if="index <= (vehicle?.included?.length - 1) / 2">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
@@ -368,7 +368,7 @@
                                         <div class="col-md-3 align-content-center" style="font-size: 2.5vw; color: rgb(94, 144, 7);"><i class="fa fa-plus-circle"/></div>
 
                                         <div class="col-md-4">
-                                            <li v-for="(item, index) in vehicle?.included?.slice( (vehicle?.included?.length-1) /2 +1 ,  vehicle?.included?.length)" style="height: 20px">
+                                            <li v-for="(item, index) in vehicle?.included?.slice( (vehicle?.included?.length-1) /2 +1 ,  vehicle?.included?.length)" style="height: 30px">
                                                 <div class="row" >
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>

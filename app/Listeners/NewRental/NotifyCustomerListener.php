@@ -30,6 +30,9 @@ class NotifyCustomerListener implements ShouldQueue
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
 
         $body = $event->rental;
+        info("====================>");
+        info(env("MAIL_USERNAME"));
+        info(env("MAIL_PASSWORD"));
         $status = Mail::to($user->email)->send(new NewBookingCustomer($body));
     }
 }

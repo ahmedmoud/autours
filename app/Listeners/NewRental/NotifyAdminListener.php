@@ -26,7 +26,7 @@ class NotifyAdminListener implements ShouldQueue
     {
         $user = User::query()->where('role','admin')->first();
         $event->rental->vehicle = $event->rental->vehicle;
-        $event->rental->vehicle->category = Category::query()->find($event->rental->vehicle->category->id);
+        $event->rental->vehicle->category = Category::query()->find($event->rental->vehicle->category_id);
         $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_loc)->first();
         $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();

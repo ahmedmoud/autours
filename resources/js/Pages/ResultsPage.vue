@@ -284,9 +284,9 @@
                                         <div style="margin-top: -35px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
                                                 <div class="row col-md-12" v-if="option.vehicle_count">
-                                                    <div class="col-md-11 row"><strong class="col-md-7 ">{{ option.value }}
+                                                    <div class="col-md-11 text-nowrap row"><strong class="col-md-7 ">{{ option.value }}
                                                         {{
-                                                            item.name == 'Number Of seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
+                                                            item.name == 'Number of seats' || item.name == 'Number of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
                                                         }}
                                                         <small
                                                             style="font-size: 14px;">({{
@@ -311,14 +311,15 @@
                         </div>
 
                         <div v-else class="col-lg-9">
-                                <swiper
+                              <div class="col-md-12">
+                                  <swiper
                                     :modules="[Navigation, Pagination, Scrollbar, A11y]"
                                     :slides-per-view="6"
                                     :space-between="5"
                                     navigation
+
                                     :class="'slide-container  mt-2'"
                                 >
-
                                         <swiper-slide v-for="item in filteredCategories">
                                             <div class="card ">
                                                 <el-radio v-model="category" :label="item.id" size="large" border
@@ -334,9 +335,8 @@
                                             </div>
                                         </swiper-slide>
 
-
                                 </swiper>
-
+                              </div>
 
                             <h3 style="color: #000;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS
                                 FOUND</strong></h3>
@@ -431,6 +431,14 @@
                                                                   style="color: #000; font-size: .8vw;">Instant Confirmation</span>
                                                         </button>
                                                     </div>
+                                                    <div v-if="!vehicle.instant_confirmation" class="col-md-2">
+                                                        <button class="scv-badge badge-white be_media" tabindex="0">
+                                                            <i style="color: gold;"
+                                                               class="mt-1 px-2 fa fa-ban fa-xl be_media-left be_media-middle"/>
+                                                            <span class="scv-inst-text text-nowrap"
+                                                                  style="color: #000; font-size: .8vw;">Needs Confirmation</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -480,7 +488,7 @@
                                                             vehicle.final_price
                                                         }} {{ selectedCurrency }}</span>
                                                     <a class="btn-main select-btn cursor-pointer text-white"
-                                                       @click="goToBookingPage(vehicle.id)">Select
+                                                       @click="goToBookingPage(vehicle.id)">Booking
                                                         <svg width="25" height="25" fill="currentColor"
                                                              viewBox="0 2 20 20"
                                                              xmlns="http://www.w3.org/2000/svg">
@@ -1077,11 +1085,20 @@ onMounted(() => {
 }
 
 .swiper-button-next {
-    color: #f4d640;
+    color: rgba(0, 0, 0, 0);
+    background-image: url("images/icons/next.svg");
+    width: 70px;
+    height: 70px;
+    background-repeat: no-repeat;
+
 }
 
 .swiper-button-prev {
-    color: #f4d640;
+    color: rgba(0, 0, 0, 0);
+    background-image: url("images/icons/prev.svg");
+    width: 70px;
+    height: 70px;
+    background-repeat: no-repeat;
 }
 
 .swiper-pagination-bullet {

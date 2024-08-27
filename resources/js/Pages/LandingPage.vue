@@ -117,21 +117,64 @@
     </div>
     <!-- images -->
 
-    <div class="my-5 " style="background: #f9d602; ">
+    <div class="mt-5 " style="background: #f9d602; ">
         <div style="background-color: #000; height: 25px;"></div>
+
+
         <div>
-            <p class="text-center " style="font-size: 5vw; font-weight: 1000 !important; margin-top: 5%; left: 32%;">WHERE WE ARE</p>
-            <div class="where_we_are_section my-5">
-                <div class="card" style="height: 90%; width: 15%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
+            <p class="text-center " style="font-size: 5vw; font-weight: 1000 !important; margin-top: 5%; left: 32%;">
+                WHERE WE ARE</p>
+            <!--            <div class="row col-md-12">-->
+            <!--                <div class="col-md-2"-->
+            <!--                     style=" border-radius: 15%; height: 90%;  background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">-->
+            <!--                    <div style="position: relative; height: 100%;">-->
+            <!--                        <img style="border-radius: 15%;" src="images/countries/saudi.jpg">-->
+            <!--                        <div class="card_img">-->
+            <!--                            <p style="font-size: 1vw; font-weight: 1000;  line-height: 1.4;" class="text-center">KINGDOM-->
+            <!--                                OF<br> SAUDI ARABIA</p>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-3">-->
+            <!--                    <div style="position: relative; height: 20%;">-->
+            <!--                        <img style="border-radius: 15%;" src="images/countries/bahrain.jpg" alt="bahrain">-->
+            <!--                        <div class="card_img">-->
+            <!--                            <p style="font-size: 1vw; font-weight: 1000;  line-height: 1.4;" class="text-center">B&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;H&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;N</p>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                    <div style="position: relative; height: 20%;">-->
+            <!--                        <img style="border-radius: 15%;" src="images/countries/qatar.png" alt="qatar">-->
+            <!--                        <div class="card_img">-->
+            <!--                            <p style="font-size: 1vw; font-weight: 1000;  line-height: 1.4;" class="text-center">Q&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;R</p>-->
+            <!--                        </div>-->
+
+            <!--                    </div>-->
+
+            <!--                    <div style="position: relative; height: 20%;">-->
+            <!--                        <img style="border-radius: 15%; height: 20%;" src="images/countries/kuwait.jpg" alt="kuwait">-->
+            <!--                        <div class="card_img" >-->
+            <!--                            <p style="font-size: 1vw; font-weight: 1000;  line-height: 1.4;" class="text-center">K&nbsp;&nbsp;U&nbsp;&nbsp;W&nbsp;&nbsp;A&nbsp;&nbsp;I&nbsp;&nbsp;T</p>-->
+            <!--                        </div>-->
+
+            <!--                    </div>-->
+            <!--                </div>-->
+
+            <!--            </div>-->
+            <!--           -->
+            <div class="where_we_are_section mt-5">
+                <div class="card"
+                     style="height: 90%; width: 15%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
                     <div class="card__img">
                         <img src="images/countries/saudi.jpg" alt="Big Ben">
                         <div class="card__overlay">
-                            <p style="font-size: 1vw; font-weight: 1000;" class="text-center">KINGDOM OF<br> SAUDI ARABIA</p>
+                            <p style="font-size: 1vw; font-weight: 1000;" class="text-center">KINGDOM OF<br> SAUDI
+                                ARABIA</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="card" style="width: 25%; height: 29%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);" >
+                <div class="card"
+                     style="width: 25%; height: 29%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
                     <div class=" card__img">
                         <img
                             src="images/countries/bahrain.jpg" alt="bahrain">
@@ -143,7 +186,7 @@
                     </div>
                     <div class="card__img mt-3">
                         <img src="images/countries/qatar.png"
-                            alt="qatar">
+                             alt="qatar">
 
                         <div class="card__overlay">
                             <p style="font-size: 1vw; font-weight: 1000;" class="text-center">Q&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;R</p>
@@ -162,8 +205,9 @@
 
                     </div>
                 </div>
-                <div class="card" style="width: 40%; height: 31%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);" >
-                    <div class="card__img">
+                <div class="card"
+                     style="width: 40%; height: 100%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
+                    <div class="card__img" style="height: 29%;">
                         <img
                             src="images/countries/uae.jpg"
                             alt="Eiffel Tower">
@@ -172,20 +216,21 @@
                             <p style="font-size: 1vw; font-weight: 1000;">UNITED ARAB EMIRATES</p>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 2%">
-                        <div class="card__img mt-2" style="height: 195%; width: 50%;">
+                    <div class="d-flex mt-3">
+                        <div class="card__img mr-3" style="width: 100%; height: 205%">
                             <img
                                 src="images/countries/egypt.jpg"
-                                alt="Eiffel Tower">
+                            >
 
                             <div class="card__overlay">
                                 <p style="font-size: 1vw; font-weight: 1000;" class="text-center">E&nbsp;&nbsp;&nbsp;&nbsp;G&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;&nbsp;&nbsp;T</p>
                             </div>
                         </div>
-                        <div class="card__img mt-2" style="height: 195%; width: 50%;">
+                        <div class="card__img " style="width: 100%; height: 205% ">
                             <img
+
                                 src="images/countries/oman.jpg"
-                                alt="Eiffel Tower">
+                                alt="Eiffel Tower"/>
 
                             <div class="card__overlay">
                                 <p style="font-size: 1.2vw; font-weight: 1000;" class="text-center">O&nbsp;&nbsp;&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;N</p>
@@ -193,7 +238,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="height: 90%; width: 15%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
+                <div class="card"
+                     style="height: 90%; width: 15%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
                     <div class="card__img">
                         <img
                             src="images/countries/jordan.jpg"
@@ -206,44 +252,73 @@
 
             </div>
         </div>
-        <div style="background-color: #000; height: 25px;"></div>
 
     </div>
     <!-- feature (skew background) -->
-    <div class="jumbotron  " style="height: 70%;">
-        <p  style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%;">OUR FLEET</p>
+    <div class="jumbotron" style="height: 100%; background-image: url('images/background/our_fleet.png')">
+        <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%; margin-top: 40px;">OUR
+            FLEET</p>
 
-            <swiper
-                :modules="[Navigation, Pagination, Scrollbar, A11y]"
-                :slides-per-view="2"
-                :space-between="10"
-                loop
-                navigation
-                class="mt-5"
-            >
-                <swiper-slide v-for="item in [1,2,3]">
-                    <div class="text-center">
-                            <div class="">
-                                <h4 class="mt-3 ml-3">F&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;Z&nbsp;&nbsp;&nbsp;&nbsp;E </h4>
-                                <div class="">
-                                    <img :src="'images/swiper/swiper' + item+ '.png'" alt=""
-                                         height="350" >
-                                </div>
-                                <p style="font-size: 20px;">EASY-GOING & PUNCHY MOVE<br> AROUNDS</p>
-                            </div>
+        <swiper
+            :modules="[Navigation, Pagination, Scrollbar, A11y]"
+            :slides-per-view="3"
+            :space-between="5"
+            loop
+            navigation
+            style="margin-top: 10%;"
+        >
+            <swiper-slide v-for="item in [1,2,3,4,5,6,7]">
+                <div class="text-center" style="background: url('images/background/our_fleet_card.png');">
+                    <div class="">
+                        <div class="">
+                            <img :src="'images/swiper/swiper' + item+ '.png'" alt=""
+                                 height="550">
+                        </div>
                     </div>
+                </div>
 
-                </swiper-slide>
-
-
-            </swiper>
-
+            </swiper-slide>
+        </swiper>
     </div>
 
-    <div style="background-color: #000; height: 25px;"></div>
+    <div class="jumbotron jumbotron-fluid"
+         style=" background-image: url(images/background/be-supplier.png);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px;   align-content: center;">
+
+
+        <div class="row" >
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+            <button
+                style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; ">
+                S U B M I T
+            </button>
+            <input placeholder="W R I T E   Y O U R    M A I L   H E R E" type="text"
+                   style="width: 40%; border-color: #000; color: #000; background-color: rgba(0,0,0,0); border-width: 6px; border-radius: 0px 20px 20px 0px"/>
+        </div>
+        </div>
+    </div>
+    <div style="background-color: #000; height: 30px;"></div>
+
+    <div class="jumbotron jumbotron-fluid"
+         style=" background-image: url(images/background/offers.png);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px;   align-content: center;">
+
+
+        <div class="row" style="margin-top: 10%;">
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <button
+                    style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; ">
+                    S U B M I T
+                </button>
+                <input placeholder="W R I T E   Y O U R    M A I L   H E R E" type="text"
+                       style="width: 40%; border-color: #000; color: #000; background-color: rgba(0,0,0,0); border-width: 6px; border-radius: 0px 20px 20px 0px"/>
+            </div>
+        </div>
+    </div>
+    <div style="background-color: #000; height: 30px;"></div>
 
     <!-- price table -->
-        <div class=" " style="background: rgb(244, 216, 73);" id="price-table">
+    <div class=" " style="background: rgb(244, 216, 73);" id="price-table">
         <h2 class="text-center font-weight-bold d-block mb-3">FAQ</h2>
         <div class="container acc d-flex">
             <div class='wrapper w-25 '>
@@ -388,9 +463,11 @@
             </div>
         </div>
     </div>
-    <div style="background-color: #000; height: 25px;"></div>
+
 
     <!-- contact -->
+    <div style="background-color: #000; height: 30px;"></div>
+
     <Contactus/>
     <!-- copyright -->
     <Footer/>
@@ -510,12 +587,44 @@ onMounted(() => {
     getVehicles();
     getLogos();
     getUser();
+    var el = document.getElementsByClassName("swiper-button-next")
+    if (el.length) {
+        el[0].style.color = '#00000000'
+        var image = 'images/icons/next.svg'
+        el[0].style.backgroundImage = 'url("' + image + '")'
+        el[0].style.backgroundRepeat = 'no-repeat'
+        el[0].style.width = 150
+        el[0].style.height = 150
+        el[0].style.marginTop = '-10%'
+    }
+    var el = document.getElementsByClassName("swiper-button-prev")
+    if (el.length) {
+        el[0].style.color = '#00000000'
+        var image = 'images/icons/prev.svg'
+        el[0].style.backgroundImage = 'url("' + image + '")'
+        el[0].style.backgroundRepeat = 'no-repeat'
+        el[0].style.width = 150
+        el[0].style.height = 150
+        el[0].style.marginTop = '-10%'
+    }
 
 })
+
+
 </script>
 
 <style lang="scss" scoped>
 @import '../../css/custom.css';
+
+
+//. {
+//    color: rgba(244, 214, 64, 0) !important;
+//}
+
+.swiper-button-prev {
+    color: #f4d640 !important;
+}
+
 
 @media screen and (max-width: 800px) {
     .p-fontsize {
@@ -783,9 +892,26 @@ $color: white;
     }
 }
 
+.card_img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    padding: clamp(0.938rem, 5vw, 1.563rem);
+    width: 100%;
+    height: 100%;
+    background: rgb(2, 2, 46);
+    background: linear-gradient(0deg, rgb(0 0 0 / 60%) 0%, rgba(207, 12, 12, 0) 100%);
+    border-radius: 15%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
 .search-form {
     background: #1c1b1bd4;
 
 }
+
 
 </style>
