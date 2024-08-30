@@ -93,8 +93,7 @@ button {
 
 /********** price table **********/
 #price-table {
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
+    padding-bottom: 3rem !important;
 }
 
 #price-table__premium {
