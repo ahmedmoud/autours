@@ -2,7 +2,7 @@
     <header-one/>
 
     <body>
-    <!-- banner -->
+    <!-- banner search form-->
 
     <div class="jumbotron jumbotron-fluid"
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px; display:flex;  justify-content: center;">
@@ -20,8 +20,7 @@
         </div>
     </div>
 
-    <!--    <search-form/>-->
-    <!-- client -->
+    <!-- clients -->
     <div class="my-4" style="background: #FFFFFF">
         <div class="container">
             <div class="row" style="justify-content: center;">
@@ -31,15 +30,18 @@
             </div>
         </div>
     </div>
-    <!-- three-blcok -->
+
+    <!-- why autours -->
     <div class="" style=" background: #f9d602; height: 167px; display: flex; align-items: center;  ">
         <img src="images/background/autours-left.png"/>
         <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%;">Why Autours?</p>
         <img style=" position:absolute; left: 95.7%;" src="images/background/autours-right.png"/>
     </div>
 
-    <div class=" my-5 py-2">
-        <div class="row">
+
+    <!-- services -->
+    <div class="my-5 py-2 ">
+        <div class="" style="display: ruby">
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-3 text-center">
                 <img src="images/icons/home-icon1.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
@@ -115,52 +117,14 @@
         </div>
 
     </div>
-    <!-- images -->
 
+    <!-- WHERE WE ARE -->
     <div class="mt-5 " style="background: #f9d602; ">
         <div style="background-color: #000; height: 25px;"></div>
 
 
         <div>
-            <p class="text-center " style="font-size: 5vw; font-weight: 1000 !important; margin-top: 5%; left: 32%;">
-                WHERE WE ARE</p>
-            <!--            <div class="row col-md-12">-->
-            <!--                <div class="col-md-2"-->
-            <!--                     style=" border-radius: 15%; height: 90%;  background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">-->
-            <!--                    <div style="position: relative; height: 100%;">-->
-            <!--                        <img style="border-radius: 15%;" src="images/countries/saudi.jpg">-->
-            <!--                        <div class="card_img">-->
-            <!--                            <p style="font-size: 1vw; font-weight: 1000;  line-height: 1.4;" class="text-center">KINGDOM-->
-            <!--                                OF<br> SAUDI ARABIA</p>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="col-md-3">-->
-            <!--                    <div style="position: relative; height: 20%;">-->
-            <!--                        <img style="border-radius: 15%;" src="images/countries/bahrain.jpg" alt="bahrain">-->
-            <!--                        <div class="card_img">-->
-            <!--                            <p style="font-size: 1vw; font-weight: 1000;  line-height: 1.4;" class="text-center">B&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;H&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;N</p>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                    <div style="position: relative; height: 20%;">-->
-            <!--                        <img style="border-radius: 15%;" src="images/countries/qatar.png" alt="qatar">-->
-            <!--                        <div class="card_img">-->
-            <!--                            <p style="font-size: 1vw; font-weight: 1000;  line-height: 1.4;" class="text-center">Q&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;R</p>-->
-            <!--                        </div>-->
-
-            <!--                    </div>-->
-
-            <!--                    <div style="position: relative; height: 20%;">-->
-            <!--                        <img style="border-radius: 15%; height: 20%;" src="images/countries/kuwait.jpg" alt="kuwait">-->
-            <!--                        <div class="card_img" >-->
-            <!--                            <p style="font-size: 1vw; font-weight: 1000;  line-height: 1.4;" class="text-center">K&nbsp;&nbsp;U&nbsp;&nbsp;W&nbsp;&nbsp;A&nbsp;&nbsp;I&nbsp;&nbsp;T</p>-->
-            <!--                        </div>-->
-
-            <!--                    </div>-->
-            <!--                </div>-->
-
-            <!--            </div>-->
-            <!--           -->
+            <p class="text-center " style="font-size: 5vw; font-weight: 1000 !important; margin-top: 5%; left: 32%;">WHERE WE ARE</p>
             <div class="where_we_are_section mt-5">
                 <div class="card"
                      style="height: 90%; width: 15%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
@@ -254,7 +218,11 @@
         </div>
 
     </div>
-    <!-- feature (skew background) -->
+
+    <div style="background-color: #000; height: 30px;"></div>
+
+
+    <!-- OUR Fleet -->
     <div class="jumbotron" style="height: 100%; background-image: url('images/background/our_fleet.png')">
         <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%; margin-top: 40px;">OUR
             FLEET</p>
@@ -281,11 +249,14 @@
         </swiper>
     </div>
 
+    <div style="background-color: #000; height: 30px;"></div>
+
+    <!-- Be Supplier -->
     <div class="jumbotron jumbotron-fluid"
          style=" background-image: url(images/background/be-supplier.png);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px;   align-content: center;">
 
 
-        <div class="row" >
+        <div class="" style="display: ruby" >
             <div class="col-md-6"></div>
             <div class="col-md-6">
             <button
@@ -299,13 +270,15 @@
     </div>
     <div style="background-color: #000; height: 30px;"></div>
 
+
+    <!-- Be Supplier -->
     <div class="jumbotron jumbotron-fluid"
          style=" background-image: url(images/background/offers.png);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px;   align-content: center;">
 
 
-        <div class="row" style="margin-top: 10%;">
+        <div class="" style="display: ruby">
             <div class="col-md-1"></div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="margin-top: 10%;">
                 <button
                     style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; ">
                     S U B M I T
@@ -321,142 +294,159 @@
     <div class=" " style="background: rgb(244, 216, 73);" id="price-table">
         <h2 class="text-center font-weight-bold d-block mb-3">FAQ</h2>
         <div class="container acc d-flex">
-            <div class='wrapper w-25 '>
-                <input id='pictures' type='checkbox'>
-                <label for='pictures'>
-                    <p>Why book a car with Autours?</p>
+            <div class='wrapper w-25' style="background-color: rgba(255,255,255,0);">
+                <input id='why_autours' type='checkbox'>
+                <label for='why_autours' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">Can I receive a specific make model color of the car?</p>
                     <div class='lil_arrow'></div>
-                    <div class='content'>
-                        <ul>
-                            <li>
-                                <a href='#'>Design briefs</a>
-                            </li>
-                            <li>
-                                <a href='#'>Non Disclosure</a>
-                            </li>
-                            <li>
-                                <a href='#'>Company Brochure</a>
-                            </li>
-                        </ul>
+                    <div class='content' style="color: black;">
+                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                            The cars displayed online are just examples of<br>
+                            the vehicles the customer may get, and unfortunately, we cannot<br>
+                             guarantee the exact make or model,or aspects <br>
+                            such as the color of the car. Autours, guarantee the <br>
+                            category of the car, seating capacity,transmission and<br>
+                            boot space.The model of vehicle the customer will receive <br>
+                            will depend on availability in the rental supplier's fleet <br>
+                            at the collection time.
+                        </div>
                     </div>
                     <span></span>
                 </label>
-                <input id='jobs' type='checkbox'>
-                <label for='jobs'>
-                    <p>Upcoming Jobs</p>
+                <input id='instant_confirmation' type='checkbox'>
+                <label for='instant_confirmation' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">What is an instant confirmation?</p>
                     <div class='lil_arrow'></div>
-                    <div class='content'>
-                        <ul>
-                            <li>
-                                <a href='#'>Weekly Forecast</a>
-                            </li>
-                            <li>
-                                <a href='#'>Timescales</a>
-                            </li>
-                            <li>
-                                <a href='#'>Quotes</a>
-                            </li>
-                        </ul>
+                    <div class='content' style="color: black;">
+                        <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
+                            <p>At Autours, we value your time and strive to provide <br>
+                                a seamless booking experience. With our instant confirmation <br>
+                                feature, you can book with confidence <br>
+                                and get on the road faster.</p>
+                        </div>
                     </div>
                     <span></span>
                 </label>
-                <input id='events' type='checkbox'>
-                <label for='events'>
-                    <p>Events & Task Management</p>
+                <input id='driving_licence' type='checkbox'>
+                <label for='driving_licence' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">What are the driving license requirements?</p>
                     <div class='lil_arrow'></div>
-                    <div class='content'>
-                        <ul>
-                            <li>
-                                <a href='#'>Calendar</a>
-                            </li>
-                            <li>
-                                <a href='#'>Important Dates</a>
-                            </li>
-                            <li>
-                                <a href='#'>Someting Event related</a>
-                            </li>
-                        </ul>
+                    <div class='content' style="color: black;">
+                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                            <p>To rent a car with Autours, <br>you need to meet the following driving license requirements:</p>
+                            <ul style="color: black;">
+                                <li style="color: black;"><strong>Minimum Age:</strong> You must be at least 21 years old.</li>
+                                <li style="color: black;"><strong>Valid Driving License:</strong> You must possess a valid driver's<br> license issued from your country of residence.</li>
+                                <li style="color: black;"><strong>International Drivers:</strong> International customers must present<br>
+                                    a valid international driver's permit (IDP) along with <br>their original driver's license.</li>
+                            </ul>
+                        </div>
                     </div>
                     <span></span>
                 </label>
+            </div>
+            <div class='wrapper w-25' style="background-color: rgba(255,255,255,0);">
+                <input id='collect_car' type='checkbox'>
+                <label for='collect_car' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">What do I need to bring to collect the car?</p>
+                    <div class='lil_arrow'></div>
+                    <div class='content' style="color: black;">
+                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                            When collecting your rental car from Autours, <br>please ensure you have the following items:<br>
+                            • Booking Confirmation: Make sure to have your booking confirmation <br> details handy, either in print or on your mobile device.<br>
+                            • Driving License: Bring a valid driving license issued from your <br> country of residence. International customers should also <br> carry a valid international driver's permit (IDP) if required.<br>
+<!--                            • Payment Method: Have a credit card in the primary driver's name for any necessary payments or deposits.-->
+<!--                            • Additional Driver's Information: If you plan to add an additional driver, ensure they meet all required criteria and have their driving license ready.-->
+<!--                            These items are essential to facilitate a smooth and efficient car collection process. If you have any specific inquiries about what to bring when collecting your car, please don't hesitate to contact us.-->
+                        </div>
+                    </div>
+                    <span></span>
+                </label>
+                <input id='canellation_policy' type='checkbox'>
+                <label for='canellation_policy' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">What is the cancellation policy?</p>
+                    <div class='lil_arrow'></div>
+                    <div class='content' style="color: black;">
+                        <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
+                            Our cancellation policy at Autours is designed to <br> provide flexibility and convenience:<br>
+                            • Free Cancellation: You can cancel<br> your booking free of charge up to 24<br> hours before the scheduled pick-up time.
+                            • Late Cancellation: Cancellations made<br> less than 24 hours before pick-up<br> may incur a cancellation fee.
+                            • No-shows: If you do not collect your<br> rental car and do not cancel the booking<br> in advance, a no-show fee may apply.
+                            Please review the specific terms and conditions related to cancellations during the booking process. For further assistance or to cancel a booking, please contact our customer support team.
 
-            </div>
-            <div class='wrapper w-25 '>
-                <input id='financial' type='checkbox'>
-                <label for='financial'>
-                    <p>Invoicing & financial</p>
-                    <div class='lil_arrow'></div>
-                    <div class='content'>
-                        <ul>
-                            <li>
-                                <a href='#'>Invoicing Templates</a>
-                            </li>
-                            <li>
-                                <a href='#'>Invoice Archives</a>
-                            </li>
-                            <li>
-                                <a href='#'>Send Invoice</a>
-                            </li>
-                        </ul>
+
+                        </div>
                     </div>
                     <span></span>
                 </label>
-                <input id='settings' type='checkbox'>
-                <label for='settings'>
-                    <p>System Settings</p>
+                <input id='how_to_cancel' type='checkbox'>
+                <label for='how_to_cancel' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">How do I cancel my booking?</p>
                     <div class='lil_arrow'></div>
                     <div class='content'>
-                        <ul>
-                            <li>
-                                <a href='#'>User Settings</a>
-                            </li>
-                            <li>
-                                <a href='#'>Edit Profile</a>
-                            </li>
-                            <li>
-                                <a href='#'>Do something cool</a>
-                            </li>
-                        </ul>
+                        <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
+                        To cancel your booking with Autours, follow these simple steps:<br>
+                        1. Visit Our Website: Log in to your account on our website.<br>
+                        2. Find Your Booking: Navigate to the bookings section where your reservation is listed.<br>
+                        3. Initiate Cancellation: Select the booking you wish to cancel and follow the prompts to initiate the cancellation process.<br>
+                        4. Contact Customer Support: If you encounter any issues or need assistance, feel free to contact our customer support team directly.<br>
+                        Please note:<br>
+                        • Cancellations made at least 24 hours before your scheduled pick-up time are typically free of charge.<br>
+                        • Late cancellations may incur fees as per our cancellation policy.<br>
+                        • Ensure to review the cancellation terms and conditions applicable to your booking.<br>
+                           For further assistance or to cancel your booking, please don't hesitate to reach out to us.<br>
+                        </div>
                     </div>
                     <span></span>
                 </label>
             </div>
-            <div class='wrapper w-25 '>
-                <input id='financial' type='checkbox'>
-                <label for='financial'>
-                    <p>Invoicing & financial</p>
+            <div class='wrapper w-25' style="background-color: rgba(255,255,255,0);">
+                <input id='update_booking' type='checkbox'>
+                <label for='update_booking' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">Can I change the booking to different date & time? </p>
                     <div class='lil_arrow'></div>
-                    <div class='content'>
-                        <ul>
-                            <li>
-                                <a href='#'>Invoicing Templates</a>
-                            </li>
-                            <li>
-                                <a href='#'>Invoice Archives</a>
-                            </li>
-                            <li>
-                                <a href='#'>Send Invoice</a>
-                            </li>
-                        </ul>
+                    <div class='content' style="color: black;">
+                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                            Yes, many car rental companies allow customers to change their<br> booking to a different date and time, although this may depend <br> on the company's policies and the terms and conditions of the <br> rental agreement. Here’s how you can present this option<br> on your website:
+                            Change Your Booking Date & Time<br>
+                            We understand that plans can change. <br> At Autours, you have the flexibility to modify <br> your booking to a different date and time. Here’s how it works:
+                            • Easy Modifications: Log into your account and navigate to your bookings. Select the reservation you wish to modify and choose your new preferred date and time.
+                            • No Hidden Fees: Enjoy the convenience of changing your booking without worrying about hidden fees. Please note that changes are subject to availability and any difference in rental rates.
+                            • Customer Support: If you need assistance, our customer support team is here to help. Contact us via email or phone, and we’ll guide you through the process.
+                        </div>
                     </div>
                     <span></span>
                 </label>
-                <input id='settings' type='checkbox'>
-                <label for='settings'>
-                    <p>System Settings</p>
+                <input id='insurance_excess' type='checkbox'>
+                <label for='insurance_excess' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">What is an insurance excess?</p>
                     <div class='lil_arrow'></div>
-                    <div class='content'>
-                        <ul>
-                            <li>
-                                <a href='#'>User Settings</a>
-                            </li>
-                            <li>
-                                <a href='#'>Edit Profile</a>
-                            </li>
-                            <li>
-                                <a href='#'>Do something cool</a>
-                            </li>
-                        </ul>
+                    <div class='content' style="color: black;">
+                        <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
+                            Insurance excess, also known as a deductible,<br> is the amount you are liable to pay towards <br> the cost of any damage or loss to the rental<br> vehicle during the rental period.<br>
+                            • How it Works: If there is damage to the car,<br> the insurance excess is the maximum amount you would<br> have to pay out of pocket before the insurance<br> coverage kicks in.
+                            • Example: If the insurance excess is $500 and there is $1,000 worth of damage to the vehicle, you would pay $500 and the insurance would cover the remaining $500.
+                            • Coverage Options: <br>Some rental agreements offer options to reduce<br> the excess through additional insurance or<br> waivers, which can be purchased for added peace of mind.<br>
+                            It's important to review your rental <br>agreement to understand the specific<br> terms and conditions related to insurance excess<br>. If you have any questions regarding insurance<br> coverage or excess, feel free <br>to contact us for clarification.<br>
+                            This explanation provides clarity on what <br>insurance excess entails and helps customers <br>understand their financial responsibility in<br> case of any damage to the rental vehicle.
+                        </div>
+                    </div>
+                    <span></span>
+                </label>
+                <input id='collision_damage' type='checkbox'>
+                <label for='collision_damage' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                    <p style="font-size: 14px;">What is Collision Damage Waiver (CDW)?</p>
+                    <div class='lil_arrow'></div>
+                    <div class='content' style="color: black;">
+                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                            Collision Damage Waiver (CDW) is an optional insurance <br> coverage that reduces the renter's financial responsibility <br>(excess) in case of damage to the rental vehicle.<br>
+                            • Coverage: CDW typically covers damage<br> to the rental vehicle due to collision,<br> theft, and vandalism.
+                            • Financial Protection: By purchasing CDW,<br> the renter can often reduce their liability to pay the full<br> cost of damages down to a <br>lower amount or eliminate it altogether, depending <br>on the terms of the waiver.<br>
+                            • Exclusions: CDW may not cover certain damages,<br> such as those resulting from negligent use of <br>the vehicle or driving under the influence.<br>
+                            It's important to carefully review the <br>terms and conditions of the CDW offered by Autours to <br>understand the coverage limits, exclusions, and<br> any additional fees associated with this option.<br>
+                            For more information or to add CDW to your<br> rental, please contact our customer support team.<br>
+                            This explanation provides a clear understanding of<br> what Collision Damage Waiver (CDW) is and its benefits for<br> renters considering additional insurance coverage<br> for their rental vehicle.
+                        </div>
                     </div>
                     <span></span>
                 </label>
@@ -465,9 +455,8 @@
     </div>
 
 
-    <!-- contact -->
     <div style="background-color: #000; height: 30px;"></div>
-
+    <!-- contact -->
     <Contactus/>
     <!-- copyright -->
     <Footer/>
@@ -763,8 +752,8 @@ $color: white;
             -webkit-transition: transform 0.8s;
             transition: transform 0.8s;
             -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border-top: 2px solid rgba(0, 0, 0, 0.33);
-            border-right: 2px solid rgba(0, 0, 0, 0.33);
+            border-top: 2px solid rgb(0, 0, 0);
+            border-right: 2px solid rgb(0, 0, 0);
             float: right;
             position: relative;
             top: -30px;

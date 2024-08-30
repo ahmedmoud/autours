@@ -4,7 +4,7 @@
 
 <template>
     <div class=" jumbotron-fluid" id="contact" style="background: #ffffff;">
-        <div class="row">
+        <div class="" style="display: ruby">
             <div class="col-md-6 offset-2  my-5 text-center">
                 <p style="font-size: 4vw; font-weight: 1000;">Contact Us</p>
 

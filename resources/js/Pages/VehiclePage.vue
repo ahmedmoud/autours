@@ -269,7 +269,7 @@
                     <Loader v-if="loading"/>
                     <div v-else class="container bg-white col-md-7 offset-md-0 pt-5 pl-5 mt-4">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div id="slider-carousel text-nowrap">
                                     <h3 class="" style="margin-left: -20px; font-size: 1.3vw; text-wrap: nowrap;">
                                         {{ vehicle.name }} - <small class="">{{
