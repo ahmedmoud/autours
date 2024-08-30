@@ -697,7 +697,6 @@ $color: white;
         background: white;
         border-radius: 4px;
         position: relative;
-        box-shadow: 0px 2px rgba(0, 0, 0, 0.12);
 
         p {
             display: block;
