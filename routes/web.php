@@ -194,4 +194,5 @@ Route::middleware(['customer'])->group(function () {
 //
 //Route::view('/email', 'email.booking.request.supplier',['body' =>  $rental]);
 Route::get('/booking/update-status', [BookingsController::class, 'updateBookingStatus']);
+Route::get('/send-email', [BookingsController::class, 'updateBookingStatus']);
 

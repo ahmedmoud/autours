@@ -260,10 +260,10 @@
             <div class="col-md-6"></div>
             <div class="col-md-6">
             <button
-                style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; ">
+                style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; " @click="sendEmail('supplier')">
                 S U B M I T
             </button>
-            <input placeholder="W R I T E   Y O U R    M A I L   H E R E" type="text"
+            <input v-model="supplier_email" placeholder="W R I T E   Y O U R    M A I L   H E R E" type="text"
                    style="width: 40%; border-color: #000; color: #000; background-color: rgba(0,0,0,0); border-width: 6px; border-radius: 0px 20px 20px 0px"/>
         </div>
         </div>
@@ -280,10 +280,10 @@
             <div class="col-md-1"></div>
             <div class="col-md-6" style="margin-top: 10%;">
                 <button
-                    style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; ">
+                    style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; " @click="sendEmail('offers')">
                     S U B M I T
                 </button>
-                <input placeholder="W R I T E   Y O U R    M A I L   H E R E" type="text"
+                <input v-model="offers_email"  placeholder="  W R I T E   Y O U R    M A I L   H E R E" type="text"
                        style="width: 40%; border-color: #000; color: #000; background-color: rgba(0,0,0,0); border-width: 6px; border-radius: 0px 20px 20px 0px"/>
             </div>
         </div>
@@ -297,7 +297,7 @@
             <div class='wrapper w-25' style="background-color: rgba(255,255,255,0);">
                 <input id='why_autours' type='checkbox'>
                 <label for='why_autours' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
-                    <p style="font-size: 14px;">Can I receive a specific make model color of the car?</p>
+                    <p style="font-size: 14px;">Can I receive a specific color of the car model ?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
@@ -311,7 +311,6 @@
                             at the collection time.
                         </div>
                     </div>
-                    <span></span>
                 </label>
                 <input id='instant_confirmation' type='checkbox'>
                 <label for='instant_confirmation' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
@@ -325,7 +324,6 @@
                                 and get on the road faster.</p>
                         </div>
                     </div>
-                    <span></span>
                 </label>
                 <input id='driving_licence' type='checkbox'>
                 <label for='driving_licence' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
@@ -342,7 +340,6 @@
                             </ul>
                         </div>
                     </div>
-                    <span></span>
                 </label>
             </div>
             <div class='wrapper w-25' style="background-color: rgba(255,255,255,0);">
@@ -473,6 +470,9 @@ import Footer from "../components/Footer.vue"
 import Contactus from "../components/Contactus.vue"
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+const $toast = useToast();
 
 const user = ref('')
 
@@ -491,6 +491,8 @@ const locations = {
 }
 
 const vehicles = ref([])
+const offers_email = ref("")
+const supplier_email = ref("")
 
 const getLogos = async () => {
     try {
@@ -568,6 +570,31 @@ const getUser = async () => {
         const response = await axios.get('/get/user/data');
         user.value = response.data;
     } catch (error) {
+        console.error(error);
+    }
+}
+
+const sendEmail = async (type) => {
+    try {
+        if (type === 'offers' && (offers_email.value === '' || offers_email.value === undefined || offers_email.value === null || offers_email.value === []) ){
+            alert("please type your email first");
+            return;
+        }
+        if (type === 'supplier' && (supplier_email.value === '' || supplier_email.value === undefined || supplier_email.value === null || supplier_email.value === []) ){
+            alert("please type your email first");
+            return;
+        }
+        const body = {
+            type: type,
+            email: type === 'supplier' ? supplier_email.value : offers_email.value
+        }
+        const response = await axios.post('/send-email', body);
+        if (response.status) {
+            $toast.success("email sent successfully !" , {position: 'top'})
+        }
+
+    } catch (error) {
+        $toast.error("cannot send email now !" , {position: 'top'})
         console.error(error);
     }
 }
