@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\SendEmail;
+use App\Events\SendEmailEvent;
 use App\Http\Requests\SendEmailRequest;
 
 class EmailController extends Controller
@@ -17,7 +17,10 @@ class EmailController extends Controller
     public function sendEmail(SendEmailRequest $request)
     {
         if ($request->type == 'offers') {
-            event(new SendEmail($request->type, $request->email));
+            event(new SendEmailEvent($request->type, $request->email));
+        }
+        if ($request->type == 'supplier') {
+            event(new SendEmailEvent($request->type, $request->email));
         }
         return response()->json(['status' => 1]);
     }
