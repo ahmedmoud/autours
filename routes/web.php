@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\IncludedController;
 use App\Http\Controllers\ProfitsController;
 use App\Http\Controllers\RentalTermsController;
@@ -194,5 +195,5 @@ Route::middleware(['customer'])->group(function () {
 //
 //Route::view('/email', 'email.booking.request.supplier',['body' =>  $rental]);
 Route::get('/booking/update-status', [BookingsController::class, 'updateBookingStatus']);
-Route::post('/send-email', [BookingsController::class, 'updateBookingStatus']);
+Route::post('/send-email', [EmailController::class, 'sendEmail']);
 

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\CancelRental;
 use App\Events\NewRental;
 use App\Events\NewRentalRequest;
+use App\Events\SendEmailEvent;
 use App\Events\UpdateRental;
 use App\Listeners\CancelRental\CancelRentalAdminListener;
 use App\Listeners\CancelRental\CancelRentalCustomerListener;
@@ -13,6 +14,8 @@ use App\Listeners\NewRental\NotifyAdminListener;
 use App\Listeners\NewRental\NotifyCustomerListener;
 use App\Listeners\NewRental\NotifySupplierListener;
 use App\Listeners\RentalRequest\RentalRequestNotifySupplierListener;
+use App\Listeners\SendEmail;
+use App\Listeners\UpdateRental\UpdateRentalNotifyAdminListener;
 use App\Listeners\UpdateRental\UpdateRentalNotifyCustomerListener;
 use App\Listeners\UpdateRental\UpdateRentalNotifySupplierListener;
 use Illuminate\Auth\Events\Registered;
@@ -48,6 +51,9 @@ class EventServiceProvider extends ServiceProvider
             UpdateRentalNotifySupplierListener::class,
             UpdateRentalNotifyAdminListener::class
 
+        ],
+        SendEmailEvent::class => [
+            SendEmail::class,
         ]
     ];
 
