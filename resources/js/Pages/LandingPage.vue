@@ -293,83 +293,76 @@
     <!-- price table -->
     <div class=" " style="background: rgb(244, 216, 73);" id="price-table">
         <h2 class="text-center font-weight-bold d-block mb-3">FAQ</h2>
-        <div class="container acc d-flex">
-            <div class='wrapper w-25' style="background-color: rgba(255,255,255,0);">
+        <div class=" mx-5 acc d-flex">
+            <div class='wrapper' style="background-color: rgba(255,255,255,0); width: 35%;">
                 <input id='why_autours' type='checkbox'>
-                <label for='why_autours' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='why_autours' class="faq_label">
                     <p style="font-size: 14px;">Can I receive a specific color of the car model ?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
-                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
-                            The cars displayed online are just examples of<br>
-                            the vehicles the customer may get, and unfortunately, we cannot<br>
-                             guarantee the exact make or model,or aspects <br>
-                            such as the color of the car. Autours, guarantee the <br>
-                            category of the car, seating capacity,transmission and<br>
-                            boot space.The model of vehicle the customer will receive <br>
-                            will depend on availability in the rental supplier's fleet <br>
-                            at the collection time.
+                        <div style="position: relative; margin-left: 15px; font-size: 12px; max-width: 400px; width: 80%; font-weight: 200;">
+                            The cars displayed online are just examples of the vehicles the customer may get, and unfortunately,<br>
+                            we cannot guarantee the exact make or model,or aspects such as the color of the car.Autours,guarantee<br>
+                            the category of the car, seating capacity,transmission and boot space.The model of vehicle the customer<br>
+                            will receive will depend on availability in the rental supplier's fleet at the collection time.
                         </div>
                     </div>
                 </label>
                 <input id='instant_confirmation' type='checkbox'>
-                <label for='instant_confirmation' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='instant_confirmation' class="faq_label">
                     <p style="font-size: 14px;">What is an instant confirmation?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
-                            <p>At Autours, we value your time and strive to provide <br>
-                                a seamless booking experience. With our instant confirmation <br>
-                                feature, you can book with confidence <br>
-                                and get on the road faster.</p>
+                            <p>At Autours, we value your time and strive to provide a seamless booking experience.<br>
+                                With our instant confirmation feature, you can book with confidence and get on the<br> road faster.
+                            </p>
                         </div>
                     </div>
                 </label>
                 <input id='driving_licence' type='checkbox'>
-                <label for='driving_licence' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='driving_licence' class="faq_label">
                     <p style="font-size: 14px;">What are the driving license requirements?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
-                            <p>To rent a car with Autours, <br>you need to meet the following driving license requirements:</p>
-                            <ul style="color: black;">
-                                <li style="color: black;"><strong>Minimum Age:</strong> You must be at least 21 years old.</li>
-                                <li style="color: black;"><strong>Valid Driving License:</strong> You must possess a valid driver's<br> license issued from your country of residence.</li>
-                                <li style="color: black;"><strong>International Drivers:</strong> International customers must present<br>
-                                    a valid international driver's permit (IDP) along with <br>their original driver's license.</li>
-                            </ul>
+                            <p>To rent a car with Autours, you need to meet the following driving license requirements:</p>
+                               <strong>Minimum Age:</strong> You must be at least 21 years old.<br>
+                               <strong>Valid Driving License:</strong> You must possess a valid driver's license issued from your country of residence.<br>
+                                <strong>International Drivers:</strong> International customers must present a valid international driver's permit (IDP) <br> along with their original driver's license.
                         </div>
                     </div>
                 </label>
             </div>
-            <div class='wrapper w-25' style="background-color: rgba(255,255,255,0);">
+            <div class='wrapper ' style="background-color: rgba(255,255,255,0); width: 35%;">
                 <input id='collect_car' type='checkbox'>
-                <label for='collect_car' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='collect_car' class="faq_label">
                     <p style="font-size: 14px;">What do I need to bring to collect the car?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
-                            When collecting your rental car from Autours, <br>please ensure you have the following items:<br>
-                            • Booking Confirmation: Make sure to have your booking confirmation <br> details handy, either in print or on your mobile device.<br>
-                            • Driving License: Bring a valid driving license issued from your <br> country of residence. International customers should also <br> carry a valid international driver's permit (IDP) if required.<br>
-<!--                            • Payment Method: Have a credit card in the primary driver's name for any necessary payments or deposits.-->
-<!--                            • Additional Driver's Information: If you plan to add an additional driver, ensure they meet all required criteria and have their driving license ready.-->
+                            When collecting your rental car from Autours, please ensure you have the following items:<br>
+                            • Booking Confirmation: Make sure to have your booking confirmation details handy,<br> either in print or on your mobile device.<br>
+                            • Driving License: Bring a valid driving license issued from your  country of residence.<br> International customers should also  carry a valid international driver's permit (IDP) if required.<br>
+                            • Payment Method: Have a credit card in the primary driver's name for any necessary payments.<br>
+<!--                            • Additional Driver's Information: If you plan to add an additional driver,<br> ensure they meet all required criteria and have their driving license ready.-->
 <!--                            These items are essential to facilitate a smooth and efficient car collection process. If you have any specific inquiries about what to bring when collecting your car, please don't hesitate to contact us.-->
                         </div>
                     </div>
                     <span></span>
                 </label>
                 <input id='canellation_policy' type='checkbox'>
-                <label for='canellation_policy' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='canellation_policy' class="faq_label">
                     <p style="font-size: 14px;">What is the cancellation policy?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
-                            Our cancellation policy at Autours is designed to <br> provide flexibility and convenience:<br>
-                            • Free Cancellation: You can cancel<br> your booking free of charge up to 24<br> hours before the scheduled pick-up time.
-                            • Late Cancellation: Cancellations made<br> less than 24 hours before pick-up<br> may incur a cancellation fee.
-                            • No-shows: If you do not collect your<br> rental car and do not cancel the booking<br> in advance, a no-show fee may apply.
-                            Please review the specific terms and conditions related to cancellations during the booking process. For further assistance or to cancel a booking, please contact our customer support team.
+                            Our cancellation policy at Autours is designed to  provide flexibility and convenience:<br>
+                            • Free Cancellation: You can cancel your booking free of charge up to 24 hours.<br>
+                            • Late Cancellation: Cancellations made less than 24 hours before pick-up may incur a cancellation fee.<br>
+                            • No-shows: If you do not collect your rental car and do not cancel the booking in advance,<br> a no-show fee may apply.
+                            Please review the specific terms and conditions related to cancellations<br> during the booking process. For further assistance or to cancel a booking, please contact our customer<br>
+                            support team.
 
 
                         </div>
@@ -377,7 +370,7 @@
                     <span></span>
                 </label>
                 <input id='how_to_cancel' type='checkbox'>
-                <label for='how_to_cancel' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='how_to_cancel' class="faq_label">
                     <p style="font-size: 14px;">How do I cancel my booking?</p>
                     <div class='lil_arrow'></div>
                     <div class='content'>
@@ -385,21 +378,21 @@
                         To cancel your booking with Autours, follow these simple steps:<br>
                         1. Visit Our Website: Log in to your account on our website.<br>
                         2. Find Your Booking: Navigate to the bookings section where your reservation is listed.<br>
-                        3. Initiate Cancellation: Select the booking you wish to cancel and follow the prompts to initiate the cancellation process.<br>
-                        4. Contact Customer Support: If you encounter any issues or need assistance, feel free to contact our customer support team directly.<br>
+                        3. Initiate Cancellation: Select the booking to cancel and follow the prompts to initiate the process.<br>
+                        4. Contact Customer Support: If you encounter any issues, please contact our customer support team.<br>
                         Please note:<br>
-                        • Cancellations made at least 24 hours before your scheduled pick-up time are typically free of charge.<br>
-                        • Late cancellations may incur fees as per our cancellation policy.<br>
-                        • Ensure to review the cancellation terms and conditions applicable to your booking.<br>
-                           For further assistance or to cancel your booking, please don't hesitate to reach out to us.<br>
+                        - Cancellations made at least 24 hours before your scheduled pick-up time are typically free of charge.<br>
+                        - Late cancellations may incur fees as per our cancellation policy.<br>
+<!--                        • Ensure to review the cancellation terms and conditions applicable to your booking.<br>-->
+<!--                           For further assistance or to cancel your booking, please don't hesitate to reach out to us.<br>-->
                         </div>
                     </div>
                     <span></span>
                 </label>
             </div>
-            <div class='wrapper w-25' style="background-color: rgba(255,255,255,0);">
+            <div class='wrapper ' style="background-color: rgba(255,255,255,0); width: 35%;">
                 <input id='update_booking' type='checkbox'>
-                <label for='update_booking' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='update_booking' class="faq_label">
                     <p style="font-size: 14px;">Can I change the booking to different date & time? </p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
@@ -415,7 +408,7 @@
                     <span></span>
                 </label>
                 <input id='insurance_excess' type='checkbox'>
-                <label for='insurance_excess' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='insurance_excess' class="faq_label">
                     <p style="font-size: 14px;">What is an insurance excess?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
@@ -431,7 +424,7 @@
                     <span></span>
                 </label>
                 <input id='collision_damage' type='checkbox'>
-                <label for='collision_damage' style="border-color: black; border-radius: 25px; border-width: 3px; border-style: solid; color: #000; font-weight: 800; width: 400px;">
+                <label for='collision_damage' class="faq_label">
                     <p style="font-size: 14px;">What is Collision Damage Waiver (CDW)?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
@@ -692,7 +685,6 @@ $color: white;
 
 .acc {
     .wrapper {
-        width: 400px;
         margin: 0 auto;
         background: white;
         border-radius: 4px;
@@ -926,6 +918,16 @@ $color: white;
 .search-form {
     background: #1c1b1bd4;
 
+}
+
+.faq_label{
+    border-color: black;
+    border-radius: 25px;
+    border-width: 3px;
+    border-style: solid;
+    color: #000 !important;
+    font-weight: 800;
+    width: 90%;
 }
 
 
