@@ -687,7 +687,7 @@ const selectLocationType = (locationTypeId) => {
     if (locationType.value.indexOf(locationTypeId) >= 0) {
         locationType.value.splice(locationType.value.indexOf(locationTypeId), 1);
     } else {
-        locationType.value.push(supplier_id);
+        locationType.value.push(locationTypeId);
     }
     form.location_type_id = locationType.value
     getVehicles()
