@@ -127,7 +127,7 @@ class VehicleController extends Controller
             foreach ($locationTypes as $locationType) {
                 $locationType->vehicle_count = 0;
                 foreach ($vehicles as $vehicle) {
-                    if (isset($vehicle->locationType) && count($vehicle->locationType)  && $vehicle->locationType->location_type_id  == $locationType->id) {
+                    if (isset($vehicle->locationType) && count($vehicle->locationType)  && $vehicle->locationType[0]->location_type_id  == $locationType->id) {
                         $locationType->vehicle_count++;
                     }
                 }
