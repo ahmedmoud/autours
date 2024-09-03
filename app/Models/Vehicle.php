@@ -43,6 +43,11 @@ class Vehicle extends Model
         return $this->hasMany(Rental::class, 'vehicle_id', 'id');
     }
 
+    public function locationType(){
+        return $this->belongsToMany(LocationType::class, 'location_type_vehicle','vehicle_id','location_type_id');
+    }
+
+
     public function profit(){
         return $this->hasOne(Profit::class, 'vehicle_id', 'id');
     }

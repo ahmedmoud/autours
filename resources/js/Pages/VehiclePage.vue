@@ -365,7 +365,6 @@
                                                 </div>
                                             </li>
                                         </div>
-                                        <div class="col-md-3 align-content-center" style="font-size: 2.5vw; color: rgb(94, 144, 7);"><i class="fa fa-plus-circle"/></div>
 
                                         <div class="col-md-4">
                                             <li v-for="(item, index) in vehicle?.included?.slice( (vehicle?.included?.length-1) /2 +1 ,  vehicle?.included?.length)" style="height: 30px">
@@ -1017,7 +1016,7 @@ li::before {
     }
 
     .top-buttons {
-        margin-left: 12%;
+        margin-left: 18%;
     }
 }
 
@@ -1027,7 +1026,7 @@ li::before {
     }
 
     .top-buttons {
-        margin-left: 7%;
+        margin-left: 12%;
     }
 }
 
@@ -1037,7 +1036,7 @@ li::before {
     }
 
     .top-buttons {
-        margin-left: 5%;
+        margin-left: 6.5%;
     }
 }
 </style>

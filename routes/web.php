@@ -7,6 +7,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\IncludedController;
+use App\Http\Controllers\LocationTypesController;
 use App\Http\Controllers\ProfitsController;
 use App\Http\Controllers\RentalTermsController;
 use App\Http\Controllers\UserController;
@@ -163,6 +164,7 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::get('edit/vehicles/{id}', [VehicleController::class, 'edit']);
     Route::inertia('vehicles', 'Dashboard/Vehicles/Vehicles');
     Route::inertia('edit/vehicle', 'Dashboard/Vehicles/EditVehicle');
+    Route::get('get/location-types', [LocationTypesController::class, 'index']);
 
     Route::inertia('price-list', 'Dashboard/PriceList');
 

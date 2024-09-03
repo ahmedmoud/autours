@@ -247,14 +247,37 @@
                                         <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="max"/>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12 my-2" style="background: #fff;">
                                     <div class="row" @click="collapse('ms')">
                                         <h4 class="col-md-10" style="color: #000; margin-bottom: -30px">
-                                            Suppliers</h4> <i
+                                            Location Types</h4> <i
                                         :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-ms' "/></div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="ms">
+                                        <div class="row" v-for="locationType in filteredLocationTypes">
+                                            <div class="row" v-if="locationType?.vehicle_count">
+                                                <strong class="col-md-10 mt-2">{{
+                                                        locationType.name
+                                                    }} <small style="font-size: 14px;">
+                                                        ({{ locationType?.vehicle_count }})</small></strong>
+                                                <el-checkbox
+                                                    class="col-md-1"
+                                                    size="large"
+                                                    :model="locationType"
+                                                    @click="selectLocationType(locationType.id)"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 my-2" style="background: #fff;">
+                                    <div class="row" @click="collapse('lt')">
+                                        <h4 class="col-md-10" style="color: #000; margin-bottom: -30px">
+                                            Suppliers</h4> <i
+                                        :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-lt' "/></div>
+                                    <hr style="margin-top: 20px;"/>
+                                    <div style="margin-top: -45px;" id="lt">
                                         <div class="row" v-for="supplier in filteredSuppliers">
                                             <div class="row" v-if="supplier?.vehicle_count">
                                                 <strong class="col-md-10 mt-2">{{
@@ -541,6 +564,7 @@ const form = {
     category: '',
     supplier: '',
     booking_id: '',
+    location_type_id: '',
     specifications: []
 }
 
@@ -554,9 +578,11 @@ let vehicleIds = [];
 const loading = ref(false);
 const category = ref("");
 const supplier = ref([]);
+const locationType = ref([]);
 const filteredVehicles = ref("");
 const filteredCategories = ref("");
 const filteredSuppliers = ref("");
+const filteredLocationTypes = ref("");
 const filteredSpecifications = ref([]);
 const count = ref("");
 const price = ref(0);
@@ -657,6 +683,15 @@ const selectSupplier = (supplier_id) => {
     form.supplier = supplier.value
     getVehicles()
 }
+const selectLocationType = (locationTypeId) => {
+    if (locationType.value.indexOf(locationTypeId) >= 0) {
+        locationType.value.splice(locationType.value.indexOf(locationTypeId), 1);
+    } else {
+        locationType.value.push(supplier_id);
+    }
+    form.location_type_id = locationType.value
+    getVehicles()
+}
 
 const selectSpecification = (item, option) => {
     let found = 0;
@@ -683,6 +718,9 @@ const getVehicles = async () => {
         filteredCategories.value = response.data.filteredCategories;
         if (filteredSuppliers.value.length <= 0) {
             filteredSuppliers.value = response.data.filteredSuppliers;
+        }
+        if (filteredLocationTypes.value.length <= 0) {
+            filteredLocationTypes.value = response.data.filteredLocationTypes;
         }
         count.value = response.data.count;
 

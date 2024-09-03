@@ -113,6 +113,30 @@
                                     />
                                 </el-select>
                             </div>
+                            <div class="formbold-mb-3 col-3">
+                                <label class="formbold-form-label col-12">Location Types</label>
+                                <div class="display-none " style="color: red;" id="category">
+                                    <li>Please select Vehicle Location Type</li>
+                                </div>
+                                <el-select
+                                    v-model="locationType"
+                                    size="large"
+                                    class="col-12"
+                                    filterable
+                                    remote
+                                    reserve-keyword
+                                    placeholder="Select Location Type..."
+                                    remote-show-suffix
+                                    :loading="locationTypes.loading.value"
+                                >
+                                    <el-option
+                                        v-for="item in locationTypes.list.value"
+                                        :key="item.id"
+                                        :label="item.label"
+                                        :value="item.id"
+                                    />
+                                </el-select>
+                            </div>
                             <div class="formbold-mb-3 mb-5  col-3">
                                 <label class="formbold-form-label"> Reserve Without Confirmation </label>
                                 <el-switch
@@ -282,8 +306,15 @@ const locations = {
     options: ref([]),
 };
 const instantConfirmation = ref(false)
-
+const locationTypes = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+};
 const category = ref('')
+const locationType = ref('')
+
 const categories = {
     loading: ref(false),
     all: ref([]),
@@ -510,6 +541,7 @@ const upload = async () => {
         formData.append('update', '1');
         formData.append('instant_confirmation', instantConfirmation.value);
         formData.append('id', vehicle.id);
+        formData.append('location_types', locationType.value);
 
 
         if (!validateForm()) return;
@@ -539,7 +571,7 @@ const getData = async () => {
         const id = urlParams.get('id');
 
         const response = await axios.get('/edit/vehicles/' + id);
-        vehicle = response.data.data
+        vehicle = response?.data?.data
         name.value = vehicle.name
         pickupLoc.value = vehicle.branch.name
         category.value = vehicle.category.name
@@ -551,11 +583,13 @@ const getData = async () => {
         selectedSpecifications.value = vehicle.specifications
         selectedIncluded.value = vehicle.what_is_included
         photo.value = vehicle.photo
+        locationType.value = vehicle.location_type.length  ? vehicle.location_type[0].name : null
         instantConfirmation.value = vehicle.instant_confirmation === 1? true : false
         console.log(vehicle.included)
     } catch (e) {
+        console.log("=====error==>")
         console.log(e)
-        $toast.error(e.response.data.data.message, {position: 'top'});
+        $toast.error(e.response?.data?.message, {position: 'top'});
     }
 }
 const fetchIncluded = async () => {
@@ -574,6 +608,25 @@ const fetchIncluded = async () => {
         included.loading.value = false;
     }
 }
+const fetchLocationTypes = async () => {
+    locationTypes.loading.value = true;
+    try {
+        const response = await axios.get('/get/location-types')
+        console.log("=======>")
+        console.log(response.data.data)
+        locationTypes.all.value = response.data.data
+        locationTypes.list.value = locationTypes.all.value?.map((item) => ({
+            id: `${item.id}`,
+            label: `${item.name}`,
+            photo: `${item.name}`,
+        }))
+
+    } catch (error) {
+        console.error(error)
+    } finally {
+        locationTypes.loading.value = false;
+    }
+}
 onMounted(() => {
     fetchBranches();
     fetchCategories();
@@ -581,6 +634,7 @@ onMounted(() => {
     fetchPhotos();
     fetchSpecifications();
     fetchIncluded();
-    getData()
+    getData();
+    fetchLocationTypes()
 });
 </script>

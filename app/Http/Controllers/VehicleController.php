@@ -10,6 +10,7 @@ use App\Http\Requests\FilterVehicleRequest;
 use App\Http\Requests\GetVehiclePageRequest;
 use App\Models\CurrencyRate;
 use App\Models\Included;
+use App\Models\LocationTypeVehicle;
 use App\Models\SupplierRentalTerm;
 use App\Models\VehicleIncluded;
 use App\Models\VehicleSpecification;
@@ -75,7 +76,7 @@ class VehicleController extends Controller
                     'status' => false
                 ]);
             }
-            $query = $filteredVehicles->with('category', 'supplier', 'profit', 'included', 'branch');
+            $query = $filteredVehicles->with('category', 'supplier', 'profit', 'included', 'branch','locationType');
 
             if ($request->priceRange && $request->priceRange !== 0) {
                 $query->where('price', '<=', ($request->priceRange));
@@ -86,6 +87,10 @@ class VehicleController extends Controller
             if ($request->supplier) {
 
                 $query->whereIn('supplier', $request->supplier);
+            }
+            if ($request->location_type_id) {
+
+                $query->whereRelation('locationType','location_type_id','=', $request->location_type_id);
             }
 
             if ($request->specifications) {
@@ -108,11 +113,25 @@ class VehicleController extends Controller
                 ->select(['categories.id as id', 'categories.name as name', 'categories.photo as photo', 'categories.sort'])
                 ->orderBy('sort')
                 ->distinct('categories.id', 'sort')->get();
+            $locationTypes = LocationTypeVehicle::query()
+                ->join('vehicles', 'vehicles.id', '=', 'location_type_vehicle.vehicle_id')
+                ->join('location_types', 'location_types.id', '=', 'location_type_vehicle.location_type_id')
+                ->select(['location_types.id as id', 'location_types.name as name'])
+                ->distinct('location_types.id')->get();
+
 
             $branches = Branch::query()->where('location', $location)->get();
             $suppliers = User::query()->whereIn('id', $branches->pluck('company_id'))->get();
 
             $vehicles = $query->where('activation', true)->has('profit')->get();
+            foreach ($locationTypes as $locationType) {
+                $locationType->vehicle_count = 0;
+                foreach ($vehicles as $vehicle) {
+                    if (isset($vehicle->locationType) && count($vehicle->locationType)  && $vehicle->locationType->location_type_id  == $locationType->id) {
+                        $locationType->vehicle_count++;
+                    }
+                }
+            }
             foreach ($suppliers as $supplier) {
                 $supplier->vehicle_count = 0;
                 foreach ($vehicles as $vehicle) {
@@ -172,6 +191,7 @@ class VehicleController extends Controller
                 'filteredVehicles' => $vehicles,
                 'filteredCategories' => $categories,
                 'filteredSuppliers' => $suppliers,
+                'filteredLocationTypes' => $locationTypes,
                 'count' => $count,
                 'max' => $maxPrice,
                 'min' => $minPrice,
@@ -281,6 +301,14 @@ class VehicleController extends Controller
                 $existingVehicle->specifications = json_decode($request->specifications);
             }
 
+            if ($request->has('location_types')) {
+                LocationTypeVehicle::query()->where('vehicle_id', $existingVehicle->id)->delete();
+                    LocationTypeVehicle::query()->insert([
+                        'vehicle_id' => $existingVehicle->id,
+                        'location_type_id' => $request->location_types
+                    ]);
+            }
+
             $existingVehicle->save();
             if ($request->has('specifications')) {
                 VehicleSpecification::query()->where('vehicle_id', $existingVehicle->id)->delete();
@@ -352,6 +380,12 @@ class VehicleController extends Controller
             }
 
             $item->save();
+            if ($request->has('location_types')) {
+                    LocationTypeVehicle::query()->insert([
+                        'vehicle_id' => $item->id,
+                        'location_type_id' => $request->location_types
+                    ]);
+            }
             if ($request->has('specifications')) {
                 $specifications = json_decode($request->specifications);
                 foreach ($specifications as $specification) {
@@ -621,7 +655,7 @@ class VehicleController extends Controller
                 'status' => false
             ], StatusCodes::SERVER_ERROR);
         }
-        $vehicle = Vehicle::query()->with(['branch', 'category', 'included'])->find($id);
+        $vehicle = Vehicle::query()->with(['branch', 'category', 'included','locationType'])->find($id);
         $vehicle->what_is_included = $vehicle->included->pluck('what_is_included');
         return response()->json([
             'data' => $vehicle,
