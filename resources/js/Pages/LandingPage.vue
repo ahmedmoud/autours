@@ -44,42 +44,42 @@
         <div class="" style="display: ruby">
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-3 text-center">
-                <img src="images/icons/home-icon1.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon1.png" width="100px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
                 <h5>Variety<br> Of Cars</h5>
                 <p style="font-size: 20px; color: #595555;">Choose from a wide<br> range of cars to meet all<br> your
                     needs.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon2.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon2.png" width="120px" height="110px" alt="Phishing Detect" class="mx-auto my-1">
                 <h5>24/7<br> Customer Service</h5>
                 <p style="font-size: 20px; color: #595555;">Continuous support avail-<br> able around the clock, <br>
                     everyday of the week.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon3.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon3.png" width="100px"  alt="Phishing Detect" class="mx-auto my-1">
                 <h5>Present in<br>9 Arab Countries</h5>
                 <p style="font-size: 20px; color: #595555;">We're present in 9 Arab countries, bringing our services
                     closer to you throughout the region.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon4.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon4.png" width="100px"  alt="Phishing Detect" class="mx-auto my-1">
                 <h5>Multiple and secure<br>payment options</h5>
                 <p style="font-size: 20px; color: #595555;">We offer multiple and secure payment options, ensuring
                     flexibility and safety for all your transactions.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon5.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon5.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
                 <h5>Instant<br>Confirmation</h5>
                 <p style="font-size: 20px; color: #595555;">Receive Instant Confirmation, ensuring your booking is
                     secured immediately.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-3 text-center">
-                <img src="images/icons/home-icon8.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon8.png" width="100px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
                 <h5>No visa<br>or hidden fees</h5>
                 <p style="font-size: 20px; color: #595555;">No extra fees when using your<br> credit card & We offer
                     transparent<br> pricing with no undisclosed costs.</p>
@@ -87,27 +87,27 @@
 
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon7.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon7.png" width="120px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
                 <h5>Multilingual<br>customer service</h5>
                 <p style="font-size: 20px; color: #595555;">Our team available to<br> support you in multiple languages.
                 </p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon6.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon6.png" width="140px" height="110px"  alt="Phishing Detect" class="mx-auto my-4">
                 <h5>Free Booking<br>Modifications</h5>
                 <p style="font-size: 20px; color: #595555;">Easily modify your booking,<br> without any charges.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon9.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon9.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
                 <h5>Free<br>Cancellation</h5>
                 <p style="font-size: 20px; color: #595555;">Enjoy the option of free Cancellation without any addtional
                     cahrges.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon10.png" width="100px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="images/icons/home-icon10.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
                 <h5>Global<br>Rental Companies</h5>
                 <p style="font-size: 20px; color: #595555;">We partner with the best global rental companies to ensure
                     high-quality service.</p>
@@ -128,7 +128,7 @@
             <div class="where_we_are_section mt-5">
                 <div class="card"
                      style="height: 90%; width: 15%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
-                    <div class="card__img">
+                    <div class="card__img d-flex">
                         <img src="images/countries/saudi.jpg" alt="Big Ben">
                         <div class="card__overlay">
                             <p style="font-size: 1vw; font-weight: 1000;" class="text-center">KINGDOM OF<br> SAUDI
@@ -139,7 +139,7 @@
 
                 <div class="card"
                      style="width: 25%; height: 29%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
-                    <div class=" card__img">
+                    <div class=" card__img d-flex">
                         <img
                             src="images/countries/bahrain.jpg" alt="bahrain">
 
@@ -148,7 +148,7 @@
                         </div>
 
                     </div>
-                    <div class="card__img mt-3">
+                    <div class="card__img d-flex mt-3">
                         <img src="images/countries/qatar.png"
                              alt="qatar">
 
@@ -163,7 +163,7 @@
                             src="images/countries/kuwait.jpg"
                             alt="bahrain">
 
-                        <div class="card__overlay">
+                        <div class="card__overlay d-flex">
                             <p style="font-size: 1.3vw; font-weight: 1000;" class="text-center">K&nbsp;&nbsp;u&nbsp;&nbsp;w&nbsp;&nbsp;a&nbsp;&nbsp;i&nbsp;&nbsp;t</p>
                         </div>
 
@@ -171,17 +171,17 @@
                 </div>
                 <div class="card"
                      style="width: 40%; height: 100%; background: rgba(255,255,255,0); border-color: rgba(255,255,255,0);">
-                    <div class="card__img" style="height: 29%;">
+                    <div class="card__img d-flex" style="height: 29%;">
                         <img
                             src="images/countries/uae.jpg"
                             alt="Eiffel Tower">
 
                         <div class="card__overlay">
-                            <p style="font-size: 1vw; font-weight: 1000;">UNITED ARAB EMIRATES</p>
+                            <p style="font-size: 1vw; font-weight: 1000; " class="text-center">UNITED ARAB EMIRATES</p>
                         </div>
                     </div>
                     <div class="d-flex mt-3">
-                        <div class="card__img mr-3" style="width: 100%; height: 205%">
+                        <div class="card__img mr-3" style="width: 100%; height: 205%;">
                             <img
                                 src="images/countries/egypt.jpg"
                             >
@@ -208,7 +208,7 @@
                         <img
                             src="images/countries/jordan.jpg"
                             alt="Pisa Tower">
-                        <div class="card__overlay">
+                        <div class="card__overlay d-flex">
                             <p style="font-size: 1vw; font-weight: 1000;" class="text-center">JORDAN</p>
                         </div>
                     </div>
@@ -223,8 +223,8 @@
 
 
     <!-- OUR Fleet -->
-    <div class="jumbotron" style="height: 100%; background-image: url('images/background/our_fleet.png')">
-        <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%; margin-top: 40px;">OUR
+    <div class="jumbotron" style="height: 1000px; background-image: url('images/background/our_fleet.png')">
+        <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%; margin-top: 80px;">OUR
             FLEET</p>
 
         <swiper
@@ -233,13 +233,13 @@
             :space-between="5"
             loop
             navigation
-            style="margin-top: 10%;"
+            style="margin-top: 10%;   z-index: 0;"
         >
-            <swiper-slide v-for="item in [1,2,3,4,5,6,7]">
-                <div class="text-center" style="background: url('images/background/our_fleet_card.png');">
-                    <div class="">
-                        <div class="">
-                            <img :src="'images/swiper/swiper' + item+ '.png'" alt=""
+            <swiper-slide class="text-center swiper-image" v-for="item in [1,2,3,4,5,6,7]">
+                <div  style="pointer-events: none; background: url('images/background/our_fleet_card.png');">
+                    <div  style="">
+                        <div  style="">
+                            <img  style="" :src="'images/swiper/swiper' + item+ '.png'" alt=""
                                  height="550">
                         </div>
                     </div>
@@ -263,7 +263,7 @@
                 style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; " @click="sendEmail('supplier')">
                 S U B M I T
             </button>
-            <input v-model="supplier_email" placeholder="W R I T E   Y O U R    M A I L   H E R E" type="text"
+            <input v-model="supplier_email" placeholder="       W R I T E   Y O U R    M A I L   H E R E" type="text"
                    style="width: 40%; border-color: #000; color: #000; background-color: rgba(0,0,0,0); border-width: 6px; border-radius: 0px 20px 20px 0px"/>
         </div>
         </div>
@@ -283,7 +283,7 @@
                     style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; " @click="sendEmail('offers')">
                     S U B M I T
                 </button>
-                <input v-model="offers_email"  placeholder="  W R I T E   Y O U R    M A I L   H E R E" type="text"
+                <input v-model="offers_email"  placeholder="     W R I T E   Y O U R    M A I L   H E R E" type="text"
                        style="width: 40%; border-color: #000; color: #000; background-color: rgba(0,0,0,0); border-width: 6px; border-radius: 0px 20px 20px 0px"/>
             </div>
         </div>
@@ -297,23 +297,23 @@
             <div class='wrapper' style="background-color: rgba(255,255,255,0); width: 35%;">
                 <input id='why_autours' type='checkbox'>
                 <label for='why_autours' class="faq_label">
-                    <p style="font-size: 14px;">Can I receive a specific color of the car model ?</p>
+                    <p class="faq_question">Can I receive a specific color of the car model ?</p>
                     <div class='lil_arrow'></div>
-                    <div class='content' style="color: black;">
-                        <div style="position: relative; margin-left: 15px; font-size: 12px; max-width: 400px; width: 80%; font-weight: 200;">
-                            The cars displayed online are just examples of the vehicles the customer may get, and unfortunately,<br>
-                            we cannot guarantee the exact make or model,or aspects such as the color of the car.Autours,guarantee<br>
-                            the category of the car, seating capacity,transmission and boot space.The model of vehicle the customer<br>
+                    <div class='content' style="color: black; width: 100%">
+                        <div class="faq_answer">
+                            The cars displayed online are just examples of the vehicles the customer may get, and unfortunately,
+                            we cannot guarantee the exact make or model,or aspects such as the color of the car.Autours,guarantee
+                            the category of the car, seating capacity,transmission and boot space.The model of vehicle the customer
                             will receive will depend on availability in the rental supplier's fleet at the collection time.
                         </div>
                     </div>
                 </label>
                 <input id='instant_confirmation' type='checkbox'>
                 <label for='instant_confirmation' class="faq_label">
-                    <p style="font-size: 14px;">What is an instant confirmation?</p>
+                    <p class="faq_question">What is an instant confirmation?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
-                        <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
+                        <div class="faq_answer">
                             <p>At Autours, we value your time and strive to provide a seamless booking experience.<br>
                                 With our instant confirmation feature, you can book with confidence and get on the<br> road faster.
                             </p>
@@ -322,10 +322,10 @@
                 </label>
                 <input id='driving_licence' type='checkbox'>
                 <label for='driving_licence' class="faq_label">
-                    <p style="font-size: 14px;">What are the driving license requirements?</p>
+                    <p class="faq_question">What are the driving license requirements?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
-                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                        <div class="faq_answer">
                             <p>To rent a car with Autours, you need to meet the following driving license requirements:</p>
                                <strong>Minimum Age:</strong> You must be at least 21 years old.<br>
                                <strong>Valid Driving License:</strong> You must possess a valid driver's license issued from your country of residence.<br>
@@ -337,10 +337,10 @@
             <div class='wrapper ' style="background-color: rgba(255,255,255,0); width: 35%;">
                 <input id='collect_car' type='checkbox'>
                 <label for='collect_car' class="faq_label">
-                    <p style="font-size: 14px;">What do I need to bring to collect the car?</p>
+                    <p class="faq_question">What do I need to bring to collect the car?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
-                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                        <div class="faq_answer">
                             When collecting your rental car from Autours, please ensure you have the following items:<br>
                             • Booking Confirmation: Make sure to have your booking confirmation details handy,<br> either in print or on your mobile device.<br>
                             • Driving License: Bring a valid driving license issued from your  country of residence.<br> International customers should also  carry a valid international driver's permit (IDP) if required.<br>
@@ -353,10 +353,10 @@
                 </label>
                 <input id='canellation_policy' type='checkbox'>
                 <label for='canellation_policy' class="faq_label">
-                    <p style="font-size: 14px;">What is the cancellation policy?</p>
+                    <p class="faq_question">What is the cancellation policy?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
-                        <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
+                        <div class="faq_answer">
                             Our cancellation policy at Autours is designed to  provide flexibility and convenience:<br>
                             • Free Cancellation: You can cancel your booking free of charge up to 24 hours.<br>
                             • Late Cancellation: Cancellations made less than 24 hours before pick-up may incur a cancellation fee.<br>
@@ -371,10 +371,10 @@
                 </label>
                 <input id='how_to_cancel' type='checkbox'>
                 <label for='how_to_cancel' class="faq_label">
-                    <p style="font-size: 14px;">How do I cancel my booking?</p>
+                    <p class="faq_question">How do I cancel my booking?</p>
                     <div class='lil_arrow'></div>
                     <div class='content'>
-                        <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
+                        <div class="faq_answer">
                         To cancel your booking with Autours, follow these simple steps:<br>
                         1. Visit Our Website: Log in to your account on our website.<br>
                         2. Find Your Booking: Navigate to the bookings section where your reservation is listed.<br>
@@ -393,10 +393,10 @@
             <div class='wrapper ' style="background-color: rgba(255,255,255,0); width: 35%;">
                 <input id='update_booking' type='checkbox'>
                 <label for='update_booking' class="faq_label">
-                    <p style="font-size: 14px;">Can I change the booking to different date & time? </p>
+                    <p class="faq_question">Can I change the booking to different date & time? </p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
-                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                        <div class="faq_answer">
                             Yes, many car rental companies allow customers to change their<br> booking to a different date and time, although this may depend <br> on the company's policies and the terms and conditions of the <br> rental agreement. Here’s how you can present this option<br> on your website:
                             Change Your Booking Date & Time<br>
                             We understand that plans can change. <br> At Autours, you have the flexibility to modify <br> your booking to a different date and time. Here’s how it works:
@@ -409,10 +409,10 @@
                 </label>
                 <input id='insurance_excess' type='checkbox'>
                 <label for='insurance_excess' class="faq_label">
-                    <p style="font-size: 14px;">What is an insurance excess?</p>
+                    <p class="faq_question">What is an insurance excess?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
-                        <div style="display:inline-block;  font-size: .6vw; width: 400px; font-weight: 200;">
+                        <div class="faq_answer">
                             Insurance excess, also known as a deductible,<br> is the amount you are liable to pay towards <br> the cost of any damage or loss to the rental<br> vehicle during the rental period.<br>
                             • How it Works: If there is damage to the car,<br> the insurance excess is the maximum amount you would<br> have to pay out of pocket before the insurance<br> coverage kicks in.
                             • Example: If the insurance excess is $500 and there is $1,000 worth of damage to the vehicle, you would pay $500 and the insurance would cover the remaining $500.
@@ -425,10 +425,10 @@
                 </label>
                 <input id='collision_damage' type='checkbox'>
                 <label for='collision_damage' class="faq_label">
-                    <p style="font-size: 14px;">What is Collision Damage Waiver (CDW)?</p>
+                    <p class="faq_question">What is Collision Damage Waiver (CDW)?</p>
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
-                        <div style="display:inline-block; font-size: .6vw; width: 400px; font-weight: 200;">
+                        <div class="faq_answer">
                             Collision Damage Waiver (CDW) is an optional insurance <br> coverage that reduces the renter's financial responsibility <br>(excess) in case of damage to the rental vehicle.<br>
                             • Coverage: CDW typically covers damage<br> to the rental vehicle due to collision,<br> theft, and vandalism.
                             • Financial Protection: By purchasing CDW,<br> the renter can often reduce their liability to pay the full<br> cost of damages down to a <br>lower amount or eliminate it altogether, depending <br>on the terms of the waiver.<br>
@@ -492,6 +492,7 @@ const getLogos = async () => {
         const response = await axios.get('get/logos')
         // logos.value = response.data
     } catch (error) {
+        console.error(error)
         console.error(error)
     }
 }
@@ -862,7 +863,23 @@ $color: white;
         grid-template-columns:repeat(2, 1fr);
         grid-template-rows: repeat(3, 35%);
     }
-
+    @keyframes mymove {
+        from{background: linear-gradient(0deg, rgb(0 0 0 / 60%) 0%, rgba(207, 12, 12, 0) 100%);}
+        to {background: rgba(255, 255, 255, 0);}
+    }
+    .card:hover {
+        .card__img:hover {
+            .card__overlay{
+                position: absolute;
+                width: 2%;
+                -webkit-transition: all 1s ease-in-out;
+                -moz-transition: all 1s ease-in-out;
+                -o-transition: all 1s ease-in-out;
+                transition: all 1s ease-in-out;
+                animation: mymove 3s;
+            }
+        }
+    }
     .card {
         border-radius: 25%;
 
@@ -927,8 +944,23 @@ $color: white;
     border-style: solid;
     color: #000 !important;
     font-weight: 800;
-    width: 90%;
+    width: 95%;
 }
 
-
+.faq_answer {
+    margin-left: 15px;
+    font-size: 16px;
+    max-width: 95%;
+    font-weight: 200;
+    text-wrap: balance;
+}
+.faq_question{
+    font-size: 1vw;
+}
+.swiper-image:hover{
+    box-shadow: 20px 20px 10px gray;
+    margin-top: 20px;
+    border-radius: 45px;
+    height: 65%;
+}
 </style>

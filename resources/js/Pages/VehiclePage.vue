@@ -41,23 +41,149 @@
                     </div>
                 </div>
             </div>
+            <div v-if="autoursRentalTerms" class="modal-mask">
+                <div class="modal-wrapper" @click="$emit('close')">
+                    <div class="modal-container" style="margin: 15px 15px 150px 20% !important;" ref="target">
+                        <div class="modal-header">
+                            <slot name="header">Autours Rental Terms</slot>
+                        </div>
+                        <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
+                            <h2>Terms and Conditions</h2>
+
+                            <h3>Contract Agreement</h3>
+                            <ul>
+                                <li>Terms and Conditions, along with the website's Terms of Use and privacy policy, constitute the contract between the renter and AUTOURS Cars.</li>
+                                <li>These Terms apply to all deals for our services, superseding any other Terms.</li>
+                                <li>Acceptance of services includes acceptance of these Terms.</li>
+                            </ul>
+
+                            <h3>Modification of Terms</h3>
+                            <ul>
+                                <li>Terms may change periodically; renters should check the website for updates.</li>
+                                <li>Car hire services are subject to both supplier terms and local laws.</li>
+                            </ul>
+
+                            <h3>Booking Responsibilities</h3>
+                            <ul>
+                                <li>Bookings made through the website are governed by these Terms and the supplier's terms.</li>
+                                <li>Confirmation of acceptance is required for any booking.</li>
+                                <li>Contact for inquiries: +1-914-368-0091 or +44-208-196-9510.</li>
+                            </ul>
+
+                            <h3>Booking Confirmation</h3>
+                            <ul>
+                                <li>Renters will receive a booking confirmation voucher via email if the vehicle is available.</li>
+                                <li>Alternatives will be suggested if the requested vehicle is unavailable; acceptance is mandatory for modifications.</li>
+                                <li>Failure to accept alternatives may result in booking cancellation and potential refund.</li>
+                            </ul>
+
+                            <h3>Payment and Contract Confirmation</h3>
+                            <ul>
+                                <li>No contract for car rental exists until booking confirmation and payment are completed.</li>
+                                <li>All correspondence will be directed to the individual making the booking, even if a third party pays.</li>
+                            </ul>
+
+                            <h3>Voucher Presentation</h3>
+                            <ul>
+                                <li>Renters must present a confirmation voucher at the time of vehicle pickup.</li>
+                                <li>AUTOURS is not liable for rejected service due to failure to provide the voucher.</li>
+                            </ul>
+
+                            <h3>Liability Provisions</h3>
+                            <ul>
+                                <li>AUTOURS is not liable for charges incurred at the local level.</li>
+                                <li>Renters bear full responsibility for any damages caused due to negligence, including DUI incidents.</li>
+                            </ul>
+
+                            <h3>Limited Liability Clause</h3>
+                            <ul>
+                                <li>AUTOURS is not liable for supplier issues regarding car availability; resolution must be between the renter and the supplier.</li>
+                            </ul>
+
+                            <h3>Role of AUTOURS</h3>
+                            <ul>
+                                <li>AUTOURS acts solely as a broker and is not responsible for damages or extra charges beyond rental costs.</li>
+                                <li>Refund liability, if applicable, is limited to the deposit made at booking.</li>
+                            </ul>
+
+                            <h3>Insurance Provisions</h3>
+                            <ul>
+                                <li><strong>Collision Damage Waiver (CDW)</strong> - Reduces liability for damages, excluding intentional damages or negligent use.</li>
+                                <li><strong>Theft Waiver (TW)</strong> - Reduces liability for theft or damage due to theft. Negligence may lead to full liability for the vehicle's value.</li>
+                            </ul>
+
+                            <h3>Delivery & Collection Charges</h3>
+                            <ul>
+                                <li>Additional charges apply for out-of-hours service or delivery/collection from accommodations.</li>
+                                <li>Specific information must be provided for vehicle delivery.</li>
+                            </ul>
+
+                            <h3>Important Insurance Notes</h3>
+                            <ul>
+                                <li>Check insurance covers, especially regarding third-party exclusions for family members.</li>
+                                <li>Personal Accident Insurance (PAI) options should be reviewed before booking.</li>
+                            </ul>
+
+                            <h3>Local Deposits & Fuel Policies</h3>
+                            <ul>
+                                <li>Suppliers typically require a deposit to cover potential liabilities.</li>
+                                <li>Fuel policies may include non-refundable charges or specific return conditions.</li>
+                            </ul>
+
+                            <h3>Age Limitations</h3>
+                            <ul>
+                                <li>Minimum rental age is usually 21 years, with potential extra charges for drivers under 25 or over 65.</li>
+                                <li>Verify age policies with the car rental supplier.</li>
+                            </ul>
+
+                            <h3>Additional Drivers</h3>
+                            <ul>
+                                <li>Additional driver charges must be checked in the terms of the respective supplier.</li>
+                            </ul>
+
+                            <h3>Rental Period & Charges</h3>
+                            <ul>
+                                <li>Rental calculated on a 24-hour basis; late returns may incur additional charges.</li>
+                            </ul>
+
+                            <h3>Rental Extensions</h3>
+                            <ul>
+                                <li>Extensions should be arranged directly with the supplier and may incur higher local charges.</li>
+                            </ul>
+
+                            <h3>One-Way Rentals</h3>
+                            <ul>
+                                <li>Subject to drop-off charges; details will be provided upon booking confirmation.</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <slot name="footer">
+                                <div>
+                                    <button class="btn btn-primary" @click="closeModal()">Done</button>
+                                </div>
+                            </slot>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <section id="section-car-details">
-                <div class="col-md-12 mb-3   mt-1 top-buttons">
-                    <button class="mr-1 mt-2 btn steps-button "
-                            style="width:420px; background: #f9d602; color: #000;"><span
-                        class="ti ti-circle-number-1 mr-1"/>Choose Your Location
-                    </button>
-                    <button class="mr-1 btn mt-2 steps-button " style="width:420px; background: #f9d602; color: #000; "
-                    ><span
-                        class="ti ti-circle-number-2 mr-2"/>Choose Your Car
-                    </button>
-                    <button class="btn mt-2 steps-button active"
-                            style="width:420px; background: rgb(155,147,84);color: #000;"><span
-                        class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
-                    </button>
-                </div>
+
                 <div class="row">
+                    <div class="offset-1 col-md-12    mt-3 top-buttons">
+                        <button class="mr-1  btn steps-button "
+                                style="width:28%; background: #f9d602; color: #000;"><span
+                            class="ti ti-circle-number-1 mr-1"/>Choose Your Location
+                        </button>
+                        <button class="mr-1 btn  steps-button " style="width:28%; background: #f9d602; color: #000; "
+                        ><span
+                            class="ti ti-circle-number-2 mr-2"/>Choose Your Car
+                        </button>
+                        <button class="btn  steps-button active"
+                                style="width:27.2%; background: rgb(155,147,84);color: #000;"><span
+                            class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
+                        </button>
+                    </div>
                     <div class="col-md-3 offset-1 mt-4 ">
 
                         <div class="p-1 col-11" style="background-color: #e1e1e1; ">
@@ -325,8 +451,8 @@
                                                                 }}</span>
                                         </div>
                                         <div>
-                                            <small><a class="cursor-pointer text-primary" href="javascript:void(0);"
-                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
+                                            <div><a class="cursor-pointer text-primary text-decoration-underline" href="javascript:void(0);"
+                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -591,7 +717,8 @@
                                     I confirm that i have read, understood and agree with the
                                     <a class="cursor-pointer text-primary " style="text-decoration: underline;"
                                        href="javascript:void(0);"
-                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> .<br/>
+                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> &
+                                    <a class="cursor-pointer text-primary " style="text-decoration: underline;" href="javascript:void(0);" @click="openAutoursTerms()">Autours terms</a>.<br/>
                                     <el-checkbox class="mr-2"/>
                                     Subscribe me to the promotional emails.
                                     <hr/>
@@ -634,9 +761,11 @@ import 'primevue/resources/themes/aura-light-amber/theme.css'
 import Loader from '../components/Loader.vue'
 
 const isOpen = ref(false)
+const autoursRentalTerms = ref(false)
 
 const closeModal = () => {
     isOpen.value = false;
+    autoursRentalTerms.value = false;
 }
 
 const countryCodes = [
@@ -748,6 +877,10 @@ const openRentalTerms = (vehicle) => {
     isOpen.value = true
     activeRentalTerms.value = vehicle.rental_terms
 }
+const openAutoursTerms = () => {
+    autoursRentalTerms.value = true
+}
+
 const setParams = () => {
     let urlParams = new URLSearchParams(window.location.search);
 
@@ -1015,9 +1148,7 @@ li::before {
         font-size: 12px;
     }
 
-    .top-buttons {
-        margin-left: 18%;
-    }
+
 }
 
 @media (max-width: 1699px) {
@@ -1025,9 +1156,7 @@ li::before {
         font-size: 11px;
     }
 
-    .top-buttons {
-        margin-left: 12%;
-    }
+
 }
 
 @media (max-width: 1500px) {
@@ -1035,8 +1164,6 @@ li::before {
         font-size: 9.5px;
     }
 
-    .top-buttons {
-        margin-left: 6.5%;
-    }
+
 }
 </style>

@@ -15,6 +15,7 @@ use App\Models\SupplierRentalTerm;
 use App\Models\VehicleIncluded;
 use App\Models\VehicleSpecification;
 use App\Services\VehicleService;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
@@ -90,7 +91,9 @@ class VehicleController extends Controller
             }
             if ($request->location_type_id) {
 
-                $query->whereRelation('locationType','location_type_id','=', $request->location_type_id);
+                $query->whereHas('locationType', function (\Illuminate\Database\Eloquent\Builder $query) use ($request) {
+                                    $query->whereIn('location_type_id', $request->location_type_id);
+                });
             }
 
             if ($request->specifications) {

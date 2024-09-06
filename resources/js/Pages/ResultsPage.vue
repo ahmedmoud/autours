@@ -40,23 +40,25 @@
             </div>
 
             <div id="section-cars">
-                <div class=" col-md-12 mb-3 top-buttons">
-                    <button class="mr-1 mt-2 btn steps-button "
-                            style="width:420px; background: #f9d602; color: #000;"><span
-                        class="ti ti-circle-number-1 mr-1"/>Choose Your Location
-                    </button>
-                    <button class="mr-1 btn mt-2 steps-button active"
-                            style="width:420px; background: rgb(155,147,84);color: #000;"><span
-                        class="ti ti-circle-number-2 mr-2"/>Choose Your Car
-                    </button>
-                    <button class="btn mt-2 steps-button" style="width:420px; background: #f9d602; color: #000; "><span
-                        class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
-                    </button>
-                </div>
+
 
 
                 <div class="" style="width: 100%; padding-left: 10%;">
+
                     <div class="row">
+                        <div class=" col-md-11 mb-1  top-buttons">
+                            <button class="col-md-4   btn steps-button "
+                                    style=" background: #f9d602; color: #000;"><span
+                                class="ti ti-circle-number-1 mr-1"/>Choose Your Location
+                            </button>
+                            <button class="col-md-4   btn  steps-button active"
+                                    style=" background: rgb(155,147,84);color: #000;"><span
+                                class="ti ti-circle-number-2 mr-2"/>Choose Your Car
+                            </button>
+                            <button class="col-md-4 btn  steps-button" style=" background: #f9d602; color: #000; "><span
+                                class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
+                            </button>
+                        </div>
                         <div class="col-lg-3">
                             <div class="col-md-12 pb-4" style="background: #fff;">
                                 <div class="p-1"
@@ -426,15 +428,15 @@
                                                     <div class="col-md-2 row">
                                                         <div>
                                                             <span
-                                                                style="font-size: .85vw; margin-left: -55px; color: #000;"
+                                                                style="font-size: .95vw; margin-left: -55px; color: #000;"
                                                                 class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
                                                         <div style="margin-left: -55px; margin-top: -10px;">
-                                                            <small><a class="cursor-pointer text-primary"
+                                                            <div><a class="cursor-pointer text-primary text-decoration-underline"
                                                                       href="javascript:void(0);"
-                                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></small>
+                                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -447,12 +449,7 @@
                                                             style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
                                                     <div v-if="vehicle.instant_confirmation" class="col-md-2">
-                                                        <button class="scv-badge badge-white be_media" tabindex="0">
-                                                            <i style="color: gold;"
-                                                               class="mt-1 px-2 fa fa-check fa-xl be_media-left be_media-middle"/>
-                                                            <span class="scv-inst-text text-nowrap"
-                                                                  style="color: #000; font-size: .8vw;">Instant Confirmation</span>
-                                                        </button>
+                                                        <img  src="/images/icons/instant_confirmation.png" width="175" height="30"/>
                                                     </div>
                                                     <div v-if="!vehicle.instant_confirmation" class="col-md-2">
                                                         <button class="scv-badge badge-white be_media" tabindex="0">
@@ -494,27 +491,38 @@
                                                     </div>
                                                     <div class="row mb-5">
                                                         <div class="col-md-12">
-                                                            <p class="text-nowrap"><i class="fa fa-location"/>Address:&nbsp;<small>{{
+                                                            <p class="text-nowrap"><i class="fa fa-location"/>&nbsp;Address:&nbsp; <small>{{
                                                                     vehicle.supplier.address
                                                                 }}</small></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
-                                                            <span class="text-nowrap"><i class="fa fa-gas-pump"/></span>
+                                                            <p class="text-nowrap"><i class="fa fa-car"/>&nbsp; &nbsp;<small>{{
+                                                                    vehicle?.location_type.length ?vehicle.location_type[0]?.name : ''
+                                                                }}</small></p>
+                                                        </div>
+                                                        <div class="col-md-12" style="margin-top: -20px">
+                                                            <span class="text-nowrap"><i class="fa fa-gas-pump"/>&nbsp;</span>
                                                             Fuel Policy: <small> Full to Full </small></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 d-price d-total offset-1">
-                                                    <span class="d-days">for {{
+                                                    <span class="d-days">For {{
                                                             daysNumber
                                                         }} day{{ daysNumber < 2 ? '' : 's' }}</span>
-                                                    <span class="text-nowrap">{{
+                                                   <div class=" text-nowrap"> <h2 >{{
                                                             vehicle.final_price
-                                                        }} {{ selectedCurrency }}</span>
-                                                    <a class="btn-main select-btn cursor-pointer text-white"
+                                                        }}  <small style="font-size: 20px;">{{ selectedCurrency }}</small></h2></div>
+                                                    <a class="btn-main select-btn cursor-pointer  " style="width: 180px; border-radius: 15px;"
                                                        @click="goToBookingPage(vehicle.id)">Booking
                                                         <svg width="25" height="25" fill="currentColor"
                                                              viewBox="0 2 20 20"
                                                              xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="m8.295 16.59 4.58-4.59-4.58-4.59L9.705 6l6 6-6 6-1.41-1.41Z"></path>
+                                                        </svg>
+                                                        <svg width="25" height="25" fill="currentColor"
+                                                             viewBox="0 2 20 20"
+                                                             xmlns="http://www.w3.org/2000/svg" style="margin-left: -12%;">
                                                             <path
                                                                 d="m8.295 16.59 4.58-4.59-4.58-4.59L9.705 6l6 6-6 6-1.41-1.41Z"></path>
                                                         </svg>
@@ -977,27 +985,21 @@ onMounted(() => {
     .included-font {
         font-size: 12px;
     }
-    .top-buttons {
-        margin-left: 15%;
-    }
+
 }
 
 @media (max-width: 1699px) {
     .included-font {
         font-size: 11px;
     }
-    .top-buttons {
-        margin-left: 10%;
-    }
+
 }
 
 @media (max-width: 1500px) {
     .included-font {
         font-size: 9.5px;
     }
-    .top-buttons {
-        margin-left: 8%;
-    }
+
 }
 
 
@@ -1124,7 +1126,7 @@ onMounted(() => {
 
 .swiper-button-next {
     color: rgba(0, 0, 0, 0);
-    background-image: url("images/icons/next.svg");
+    background-image: url("/images/icons/next.svg");
     width: 70px;
     height: 70px;
     background-repeat: no-repeat;
@@ -1133,7 +1135,7 @@ onMounted(() => {
 
 .swiper-button-prev {
     color: rgba(0, 0, 0, 0);
-    background-image: url("images/icons/prev.svg");
+    background-image: url("/images/icons/prev.svg");
     width: 70px;
     height: 70px;
     background-repeat: no-repeat;
