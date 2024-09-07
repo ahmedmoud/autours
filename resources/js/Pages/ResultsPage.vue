@@ -47,16 +47,16 @@
 
                     <div class="row">
                         <div class=" col-md-11 mb-1  top-buttons">
-                            <button class="col-md-4   btn steps-button "
-                                    style=" background: #f9d602; color: #000;"><span
+                            <button class="  btn steps-button mr-2 "
+                                    style=" width: 33%;background: #f9d602; color: #000;"><span
                                 class="ti ti-circle-number-1 mr-1"/>Choose Your Location
                             </button>
-                            <button class="col-md-4   btn  steps-button active"
-                                    style=" background: rgb(155,147,84);color: #000;"><span
+                            <button  class=" mr-1  btn  steps-button active"
+                                    style="width: 33%; background: rgb(155,147,84);color: #000;"><span
                                 class="ti ti-circle-number-2 mr-2"/>Choose Your Car
                             </button>
-                            <button class="col-md-4 btn  steps-button" style=" background: #f9d602; color: #000; "><span
-                                class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
+                            <button class=" btn  steps-button" style="width: 33%; background: #f9d602; color: #000; "><span
+                                class="ti ti-circle-number-3 mr-1"/>Reserve Your Car
                             </button>
                         </div>
                         <div class="col-lg-3">
@@ -267,6 +267,28 @@
                                                     size="large"
                                                     :model="locationType"
                                                     @click="selectLocationType(locationType.id)"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 my-2" style="background: #fff;">
+                                    <div class="row" @click="collapse('cat')">
+                                        <h4 class="col-md-10" style="color: #000; margin-bottom: -30px">
+                                            Categories</h4> <i
+                                        :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-cat' "/></div>
+                                    <hr style="margin-top: 20px;"/>
+                                    <div style="margin-top: -45px;" id="cat">
+                                        <div class="row" v-for="item in filteredCategories">
+                                            <div class="row" v-if="item?.vehicle_count">
+                                                <strong class="col-md-10 mt-2">{{
+                                                        item.name
+                                                    }} <small style="font-size: 14px;">
+                                                        ({{ item?.vehicle_count }})</small></strong>
+                                                <el-checkbox
+                                                    class="col-md-1"
+                                                    size="large"
+                                                    @click="SelectCategory(item.id)"
                                                 />
                                             </div>
                                         </div>
@@ -496,9 +518,9 @@
                                                                 }}</small></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
-                                                            <p class="text-nowrap"><i class="fa fa-car"/>&nbsp; &nbsp;<small>{{
+                                                            <p class="text-nowrap"><i class="fa fa-car"/>&nbsp; &nbsp;<strong>{{
                                                                     vehicle?.location_type.length ?vehicle.location_type[0]?.name : ''
-                                                                }}</small></p>
+                                                                }}</strong></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
                                                             <span class="text-nowrap"><i class="fa fa-gas-pump"/>&nbsp;</span>
@@ -871,9 +893,7 @@ onMounted(() => {
     .steps-buttons {
         left: 0 !important;
     }
-    .steps-button {
-        width: 100% !important;
-    }
+
 }
 
 .modal-mask {

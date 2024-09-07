@@ -32,10 +32,10 @@
     </div>
 
     <!-- why autours -->
-    <div class="" style=" background: #f9d602; height: 167px; display: flex; align-items: center;  ">
-        <img src="images/background/autours-left.png"/>
-        <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%;">Why Autours?</p>
-        <img style=" position:absolute; left: 95.7%;" src="images/background/autours-right.png"/>
+    <div  style=" background: #f9d602; height: 167px; width: 100%; display: flex; align-items: center;  ">
+        <img  src="/images/background/autours-left.png"/>
+        <p style="font-size: 5vw; width: 67%; margin-left: 25%; font-weight: 1000 !important; position: relative;">Why Autours?</p>
+        <img style=" position: relative; display: flex; justify-content: right;" src="/images/background/autours-right.png"/>
     </div>
 
 
@@ -223,7 +223,7 @@
 
 
     <!-- OUR Fleet -->
-    <div class="jumbotron" style="height: 1000px; background-image: url('images/background/our_fleet.png')">
+    <div class="jumbotron" style="height: 1000px; background-image: url('/images/background/our_fleet.png')">
         <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%; margin-top: 80px;">OUR
             FLEET</p>
 
@@ -236,11 +236,11 @@
             style="margin-top: 10%;   z-index: 0;"
         >
             <swiper-slide class="text-center swiper-image" v-for="item in [1,2,3,4,5,6,7]">
-                <div  style="pointer-events: none; background: url('images/background/our_fleet_card.png');">
+                <div  style="border-radius: 100px; pointer-events: none; background: url('images/background/our_fleet_card.png');">
                     <div  style="">
                         <div  style="">
                             <img  style="" :src="'images/swiper/swiper' + item+ '.png'" alt=""
-                                 height="550">
+                                 height="550" >
                         </div>
                     </div>
                 </div>
@@ -252,13 +252,13 @@
     <div style="background-color: #000; height: 30px;"></div>
 
     <!-- Be Supplier -->
-    <div class="jumbotron jumbotron-fluid"
-         style=" background-image: url(images/background/be-supplier.png);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px;   align-content: center;">
+    <div class="jumbotron jumbotron-fluid be-supplier">
 
-
-        <div class="" style="display: ruby" >
-            <div class="col-md-6"></div>
-            <div class="col-md-6">
+        <div class="d-flex" >
+            <div class="car-move" >
+                <img src="/images/background/be-supplier-car.png" width=""/>
+            </div>
+            <div class="col-md-6 " style="margin-top: 15%;">
             <button
                 style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; " @click="sendEmail('supplier')">
                 S U B M I T
@@ -271,9 +271,8 @@
     <div style="background-color: #000; height: 30px;"></div>
 
 
-    <!-- Be Supplier -->
-    <div class="jumbotron jumbotron-fluid"
-         style=" background-image: url(images/background/offers.png);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px;   align-content: center;">
+    <!-- offers -->
+    <div class="jumbotron jumbotron-fluid offers-section">
 
 
         <div class="" style="display: ruby">
@@ -871,12 +870,12 @@ $color: white;
         .card__img:hover {
             .card__overlay{
                 position: absolute;
-                width: 2%;
+                width: 1%;
                 -webkit-transition: all 1s ease-in-out;
                 -moz-transition: all 1s ease-in-out;
                 -o-transition: all 1s ease-in-out;
                 transition: all 1s ease-in-out;
-                animation: mymove 3s;
+                animation: mymove 2.5s;
             }
         }
     }
@@ -963,4 +962,37 @@ $color: white;
     border-radius: 45px;
     height: 65%;
 }
+
+.offers-section{
+    background-image: url(/images/background/offers.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    align-content: center;
+}
+.offers-section:hover{
+    background-image: url(/images/background/offers-light.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    align-content: center;
+}
+.be-supplier {
+    background-image: url(/images/background/be-supplier-background.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    align-content: center;
+}
+.car-move{
+   margin-right:  150px;
+    transition: margin-right 1.5s ease;
+}
+.car-move:hover {
+    margin-right: 0;
+}
+
 </style>

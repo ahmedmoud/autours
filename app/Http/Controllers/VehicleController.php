@@ -135,6 +135,14 @@ class VehicleController extends Controller
                     }
                 }
             }
+            foreach ($categories as $category) {
+                $category->vehicle_count = 0;
+                foreach ($vehicles as $vehicle) {
+                    if (isset($vehicle->category)   && $vehicle->category  == $category->id) {
+                        $category->vehicle_count++;
+                    }
+                }
+            }
             foreach ($suppliers as $supplier) {
                 $supplier->vehicle_count = 0;
                 foreach ($vehicles as $vehicle) {
