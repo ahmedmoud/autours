@@ -25,7 +25,7 @@ onMounted(() => {
             <hr class="w-25"/>
             <div class="row">
                 <div class="col-md-4 " id="company">
-                    <h5 class="text-black">Company</h5>
+                    <h4 class="text-black">Company</h4>
                     <div>
                         <a href="#" class="text-black text-decoration-underline footer_link" >About us</a>
                     </div>
@@ -46,7 +46,7 @@ onMounted(() => {
                 </div>
                 <div class="col-md-4" id="support">
                     <div class="row justify-content-between">
-                        <h5 class="text-black">Support</h5>
+                        <h4 class="text-black">Support</h4>
                         <div>
                             <a href="#" class="text-black text-decoration-underline footer_link" >Manage
                                 Booking</a>
@@ -66,7 +66,7 @@ onMounted(() => {
                 </div>
                 <div class="col-md-4" id="support">
                     <div class="row justify-content-between">
-                        <h5 class="text-black">Supplier</h5>
+                        <h4 class="text-black">Supplier</h4>
                         <div>
                             <a href="#" class="text-black text-decoration-underline footer_link" >Be
                                 Supplier</a>
@@ -102,6 +102,9 @@ onMounted(() => {
                             </a>
                             <a href="https://x.com/Autours_" style="color: black" target="_blank">
                                 <i class="fa-brands fa-x-twitter fa-xl"/>
+                            </a>
+                            <a href="mailto:admin@info.net" style="color: black" target="_blank">
+                                <i class="fa fa-envelope " style="font-size: 22px;"/>
                             </a>
                         </div>
                     </div>
@@ -150,6 +153,6 @@ onMounted(() => {
 }
 
 .footer_link {
-    font-size: 22px;
+    font-size: 20px;
 }
 </style>
