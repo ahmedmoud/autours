@@ -82,7 +82,7 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8 mt-4">
+                <div class="col-md-8 mt-4" style="border-top: .1rem solid;">
                     <div class="row justify-content-between">
                         <div class="col-md-6  mb-3 align-self-center text-center text-md-left my-2">
                             Copyright © 2024.
@@ -111,7 +111,7 @@ onMounted(() => {
                     </div>
 
                 </div>
-                <div class="col-md-4 mt-4">
+                <div class="col-md-4 mt-4" >
                     <div class="row justify-content-between">
                         <div class="col-md-6  mb-3 align-self-center text-center text-md-left my-2" >
                            Payment Methods
