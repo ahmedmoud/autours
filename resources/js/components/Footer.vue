@@ -21,7 +21,8 @@ onMounted(() => {
 <template>
     <footer class="wrapper" id="copyright" style="background: rgb(249, 214, 2);">
         <div class="container">
-            <img src="/images/akrom.jpg" alt="logo" style="max-width: 150px;">
+            <img src="/images/akrom.jpg" alt="logo" width="250" height="80">
+            <h4 class="text-black ml-4">Explore by Your Own!</h4>
             <hr class="w-25"/>
             <div class="row">
                 <div class="col-md-4 " id="company">
@@ -110,7 +111,7 @@ onMounted(() => {
                     </div>
 
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4 mt-4">
                     <div class="row justify-content-between">
                         <div class="col-md-6  mb-3 align-self-center text-center text-md-left my-2" >
                            Payment Methods
