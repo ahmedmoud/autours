@@ -112,8 +112,8 @@ onMounted(() => {
                 </div>
                 <div class="col-md-4 mt-3">
                     <div class="row justify-content-between">
-                        <div class="col-md-6  mb-3 align-self-center text-center text-md-left my-2" style="color: rgb(244, 216, 73);">
-                            Copyright © 2024.
+                        <div class="col-md-6  mb-3 align-self-center text-center text-md-left my-2" >
+                           Payment Methods
                         </div>
                         <div class="d-flex align-items-center" style="gap:15px;">
                             <i class="fa fa-cc-visa " style="font-size: 30px;"/>
