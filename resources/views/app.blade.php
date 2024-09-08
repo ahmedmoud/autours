@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{url('assets/css/fontawesome/css/brands.min.css')}}" />
     <link rel="stylesheet" href="{{url('assets/css/fontawesome/css/all.min.css')}}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     @vite('resources/js/app.js')
     @inertiaHead

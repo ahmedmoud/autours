@@ -447,6 +447,8 @@
     <div style="background-color: #000; height: 30px;"></div>
     <!-- contact -->
     <Contactus/>
+    <div style="background-color: #000; height: 30px;"></div>
+
     <!-- copyright -->
     <Footer/>
     </body>
@@ -618,8 +620,6 @@ onMounted(() => {
     }
 
 })
-
-
 </script>
 
 <style lang="scss" scoped>
