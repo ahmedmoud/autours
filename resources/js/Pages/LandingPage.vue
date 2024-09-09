@@ -44,42 +44,42 @@
         <div class="" style="display: ruby">
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-3 text-center">
-                <img src="images/icons/home-icon1.png" width="100px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon1.png" width="100px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Variety<br> Of Cars</h5>
                 <p style="font-size: 20px; color: #595555;">Choose from a wide<br> range of cars to meet all<br> your
                     needs.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon2.png" width="120px" height="110px" alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon2.png" width="120px" height="110px" alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>24/7<br> Customer Service</h5>
                 <p style="font-size: 20px; color: #595555;">Continuous support avail-<br> able around the clock, <br>
                     everyday of the week.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon3.png" width="100px"  alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon3.png" width="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Present in<br>9 Arab Countries</h5>
                 <p style="font-size: 20px; color: #595555;">We're present in 9 Arab countries, bringing our services
                     closer to you throughout the region.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon4.png" width="100px"  alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon4.png" width="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Multiple and secure<br>payment options</h5>
                 <p style="font-size: 20px; color: #595555;">We offer multiple and secure payment options, ensuring
                     flexibility and safety for all your transactions.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon5.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon5.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Instant<br>Confirmation</h5>
                 <p style="font-size: 20px; color: #595555;">Receive Instant Confirmation, ensuring your booking is
                     secured immediately.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-3 text-center">
-                <img src="images/icons/home-icon8.png" width="100px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon8.png" width="100px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>No visa<br>or hidden fees</h5>
                 <p style="font-size: 20px; color: #595555;">No extra fees when using your<br> credit card & We offer
                     transparent<br> pricing with no undisclosed costs.</p>
@@ -87,27 +87,27 @@
 
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon7.png" width="120px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon7.png" width="120px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Multilingual<br>customer service</h5>
                 <p style="font-size: 20px; color: #595555;">Our team available to<br> support you in multiple languages.
                 </p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon6.png" width="140px" height="110px"  alt="Phishing Detect" class="mx-auto my-4">
+                <img src="/images/icons/home-icon6.png" width="140px" height="110px"  alt="Phishing Detect" class="mx-auto my-4 service">
                 <h5>Free Booking<br>Modifications</h5>
                 <p style="font-size: 20px; color: #595555;">Easily modify your booking,<br> without any charges.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon9.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon9.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Free<br>Cancellation</h5>
                 <p style="font-size: 20px; color: #595555;">Enjoy the option of free Cancellation without any addtional
                     cahrges.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
-                <img src="images/icons/home-icon10.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1">
+                <img src="/images/icons/home-icon10.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Global<br>Rental Companies</h5>
                 <p style="font-size: 20px; color: #595555;">We partner with the best global rental companies to ensure
                     high-quality service.</p>
@@ -993,5 +993,11 @@ $color: white;
 .car-move:hover {
     margin-right: 0;
 }
-
+.service {
+    padding:  0;
+    transition: padding .5s ease;
+}
+.service:hover {
+    padding: 15px;
+}
 </style>

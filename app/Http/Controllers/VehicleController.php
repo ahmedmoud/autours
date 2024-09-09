@@ -474,26 +474,6 @@ class VehicleController extends Controller
 
     }
 
-    public function createCategories(Request $request)
-    {
-        $item = new Category();
-
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $image_name = $request->file('photo')->getClientOriginalName() . "_" . "_category" . "." . $request->file('photo')->extension();
-            $image->move(public_path('img/categories'), $image_name);
-
-            $item->photo = $image_name;
-        }
-
-        if ($request->has('name')) {
-            $item->name = $request->name;
-        }
-
-        $item->save();
-
-        return response()->json(['message' => 'Added successfully']);
-    }
 
     public function getCategories()
     {

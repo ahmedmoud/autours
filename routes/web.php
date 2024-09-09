@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\EmailController;
@@ -118,7 +119,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/get/customers', [UserController::class, 'getCustomers']);
 
     Route::inertia('categories', 'Dashboard/Categories');
-    Route::post('post/categories', [VehicleController::class, 'createCategories']);
+    Route::post('post/categories', [CategoriesController::class, 'createCategories']);
+    Route::post('update/categories', [CategoriesController::class, 'updateCategories']);
     Route::post('delete/categories', [VehicleController::class, 'deleteCategories']);
 
     Route::inertia('specifications', 'Dashboard/Specifications');
