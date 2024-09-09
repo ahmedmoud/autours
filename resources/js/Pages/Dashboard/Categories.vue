@@ -185,6 +185,7 @@ const updateData = async () => {
         if (response.status) {
             $toast.success("Category updated Successfully", {position: "top"})
         }
+        isOpen.value = false
     } catch (error) {
         console.error(error);
     } finally {
