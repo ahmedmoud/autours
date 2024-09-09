@@ -19,9 +19,10 @@ onMounted(() => {
 </script>
 
 <template>
+    <div style="background-color: #000; height: 20px;"></div>
     <footer class="wrapper" id="copyright" style="background: rgb(249, 214, 2);">
         <div class="container">
-            <img src="/images/akrom.jpg" alt="logo" width="250" height="80">
+            <a href="/">   <img src="/images/akrom.jpg" alt="logo" width="250" height="80"></a>
             <h4 class="text-black ml-4">Explore by Your Own!</h4>
             <hr class="w-25"/>
             <div class="row">
@@ -31,7 +32,7 @@ onMounted(() => {
                         <a href="#" class="text-black text-decoration-underline footer_link" >About us</a>
                     </div>
                     <div class="mt-1">
-                        <a href="#" class="text-black text-decoration-underline footer_link" >Contact us</a>
+                        <a href="#contact" class="text-black text-decoration-underline footer_link" >Contact us</a>
                     </div>
                     <div class="mt-1">
                         <a href="#" class="text-black text-decoration-underline footer_link" >Privacy
@@ -49,18 +50,18 @@ onMounted(() => {
                     <div class="row justify-content-between">
                         <h4 class="text-black">Support</h4>
                         <div>
-                            <a href="#" class="text-black text-decoration-underline footer_link" >Manage
+                            <a href="/register" class="text-black text-decoration-underline footer_link" >Manage
                                 Booking</a>
                         </div>
                         <div class="mt-1">
-                            <a href="#" class="text-black text-decoration-underline footer_link" >FAQ</a>
+                            <a href="#price-table" class="text-black text-decoration-underline footer_link" >FAQ</a>
                         </div>
                         <div class="mt-1">
-                            <a href="#" class="text-black text-decoration-underline footer_link"
+                            <a href="#offers" class="text-black text-decoration-underline footer_link"
                                >Subscribe</a>
                         </div>
                         <div class="mt-1">
-                            <a href="#" class="text-black text-decoration-underline footer_link" >Why
+                            <a href="#why_autours?" class="text-black text-decoration-underline footer_link" >Why
                                 Autours?</a>
                         </div>
                     </div>
@@ -68,16 +69,16 @@ onMounted(() => {
                 <div class="col-md-4" id="support">
                     <div class="row justify-content-between">
                         <h4 class="text-black">Supplier</h4>
-                        <div>
-                            <a href="#" class="text-black text-decoration-underline footer_link" >Be
+                        <div v-if="!user">
+                            <a href="/register?user_type=supplier" class="text-black text-decoration-underline footer_link" >Be
                                 Supplier</a>
                         </div>
                         <div class="mt-1">
-                            <a href="#" class="text-black text-decoration-underline footer_link" >Where we
+                            <a href="#where-we-are" class="text-black text-decoration-underline footer_link" >Where we
                                 are?</a>
                         </div>
                         <div class="mt-1">
-                            <a href="#" class="text-black text-decoration-underline footer_link" >Our
+                            <a href="#our-fleet" class="text-black text-decoration-underline footer_link" >Our
                                 Fleet</a>
                         </div>
                     </div>
@@ -154,6 +155,6 @@ onMounted(() => {
 }
 
 .footer_link {
-    font-size: 20px;
+    font-size: 19px;
 }
 </style>
