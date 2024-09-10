@@ -46,15 +46,15 @@
                  class="col-md-3 text-center">
                 <img src="/images/icons/home-icon1.png" width="100px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Variety<br> Of Cars</h5>
-                <p style="font-size: 20px; color: #595555;">Choose from a wide<br> range of cars to meet all<br> your
+                <p style="font-size: 20px; color: #595555;">Choose from a wide range of <br> cars with a varaity of models <br> and colors to meet all<br> your
                     needs.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
                 <img src="/images/icons/home-icon2.png" width="120px" height="110px" alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>24/7<br> Customer Service</h5>
-                <p style="font-size: 20px; color: #595555;">Continuous support avail-<br> able around the clock, <br>
-                    everyday of the week.</p>
+                <p style="font-size: 20px; color: #595555;">Continuous support available around the clock, <br>
+                    everyday of the week at any time.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
@@ -70,12 +70,10 @@
                 <p style="font-size: 20px; color: #595555;">We offer multiple and secure payment options, ensuring
                     flexibility and safety for all your transactions.</p>
             </div>
-            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
-                 class="col-md-2 text-center">
-                <img src="/images/icons/home-icon5.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true" class="col-md-2 text-center">
+                <img src="/images/icons/home-icon5.png" width="140px" height="100px"  alt="Phishing Detect" class="mx-auto mx-1 service">
                 <h5>Instant<br>Confirmation</h5>
-                <p style="font-size: 20px; color: #595555;">Receive Instant Confirmation, ensuring your booking is
-                    secured immediately.</p>
+                <p style="font-size: 20px; color: #595555;">Receive Instant Confirmation, ensuring your booking is secured immediately Without any extra steps.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-3 text-center">
@@ -96,7 +94,7 @@
                  class="col-md-2 text-center">
                 <img src="/images/icons/home-icon6.png" width="140px" height="110px"  alt="Phishing Detect" class="mx-auto my-4 service">
                 <h5>Free Booking<br>Modifications</h5>
-                <p style="font-size: 20px; color: #595555;">Easily modify your booking,<br> without any charges.</p>
+                <p style="font-size: 20px; color: #595555;">Easily modify your booking,<br> without any charges you can change the day or duration.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">
