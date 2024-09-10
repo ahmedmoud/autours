@@ -380,45 +380,7 @@
                                                 </el-radio>
                                             </div>
                                         </swiper-slide>
-                                      <swiper-slide v-for="item in filteredCategories">
-                                          <div class="card ">
-                                              <el-radio v-model="category" :label="item.id" size="large" border
-                                                        @click="SelectCategory(item.id)" class=" image-content">
-                                                  <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
-                                                      <p class="text-black" style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
-                                                      <div style="width: 150px; height: 150px;" >
-                                                          <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
-                                                      </div>
-                                                  </div>
-                                              </el-radio>
-                                          </div>
-                                      </swiper-slide>
-                                      <swiper-slide v-for="item in filteredCategories">
-                                          <div class="card ">
-                                              <el-radio v-model="category" :label="item.id" size="large" border
-                                                        @click="SelectCategory(item.id)" class=" image-content">
-                                                  <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
-                                                      <p class="text-black" style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
-                                                      <div style="width: 150px; height: 150px;" >
-                                                          <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
-                                                      </div>
-                                                  </div>
-                                              </el-radio>
-                                          </div>
-                                      </swiper-slide>
-                                      <swiper-slide v-for="item in filteredCategories">
-                                          <div class="card ">
-                                              <el-radio v-model="category" :label="item.id" size="large" border
-                                                        @click="SelectCategory(item.id)" class=" image-content">
-                                                  <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
-                                                      <p class="text-black" style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
-                                                      <div style="width: 150px; height: 150px;" >
-                                                          <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
-                                                      </div>
-                                                  </div>
-                                              </el-radio>
-                                          </div>
-                                      </swiper-slide>
+
                                 </swiper>
 
                               </div>
