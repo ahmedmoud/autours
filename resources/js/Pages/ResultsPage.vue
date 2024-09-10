@@ -358,15 +358,15 @@
                         </div>
 
                         <div v-else class="col-lg-9">
-                              <div class="col-md-12">
+                              <div class="col-md-11">
                                   <swiper
                                     :modules="[Navigation, Pagination, Scrollbar, A11y]"
                                     :slides-per-view="6"
                                     :space-between="5"
                                     navigation
-
                                     :class="'slide-container  mt-2'"
                                 >
+
                                         <swiper-slide v-for="item in filteredCategories">
                                             <div class="card ">
                                                 <el-radio v-model="category" :label="item.id" size="large" border
@@ -380,8 +380,47 @@
                                                 </el-radio>
                                             </div>
                                         </swiper-slide>
-
+                                      <swiper-slide v-for="item in filteredCategories">
+                                          <div class="card ">
+                                              <el-radio v-model="category" :label="item.id" size="large" border
+                                                        @click="SelectCategory(item.id)" class=" image-content">
+                                                  <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
+                                                      <p class="text-black" style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
+                                                      <div style="width: 150px; height: 150px;" >
+                                                          <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
+                                                      </div>
+                                                  </div>
+                                              </el-radio>
+                                          </div>
+                                      </swiper-slide>
+                                      <swiper-slide v-for="item in filteredCategories">
+                                          <div class="card ">
+                                              <el-radio v-model="category" :label="item.id" size="large" border
+                                                        @click="SelectCategory(item.id)" class=" image-content">
+                                                  <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
+                                                      <p class="text-black" style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
+                                                      <div style="width: 150px; height: 150px;" >
+                                                          <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
+                                                      </div>
+                                                  </div>
+                                              </el-radio>
+                                          </div>
+                                      </swiper-slide>
+                                      <swiper-slide v-for="item in filteredCategories">
+                                          <div class="card ">
+                                              <el-radio v-model="category" :label="item.id" size="large" border
+                                                        @click="SelectCategory(item.id)" class=" image-content">
+                                                  <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
+                                                      <p class="text-black" style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
+                                                      <div style="width: 150px; height: 150px;" >
+                                                          <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
+                                                      </div>
+                                                  </div>
+                                              </el-radio>
+                                          </div>
+                                      </swiper-slide>
                                 </swiper>
+
                               </div>
 
                             <h3 style="color: #000;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS
@@ -1064,8 +1103,7 @@ onMounted(() => {
 }
 
 .slide-container {
-    max-width: 1120px;
-    width: 89%;
+    width: 90%;
     height: 200px ;
 
     .el-radio.is-bordered .el-radio__input {
@@ -1135,7 +1173,9 @@ onMounted(() => {
 }
 
 .swiper {
-    margin-left: 0;
+    margin-left: 40px;
+    position: static;
+    align-items: center;
 }
 
 .swiper-navBtn::before,
@@ -1149,6 +1189,7 @@ onMounted(() => {
     width: 70px;
     height: 70px;
     background-repeat: no-repeat;
+    margin-top: -35px;
 
 }
 
@@ -1158,6 +1199,9 @@ onMounted(() => {
     width: 70px;
     height: 70px;
     background-repeat: no-repeat;
+    margin-top: -35px;
+    margin-left: -25px;
+
 }
 
 .swiper-pagination-bullet {
