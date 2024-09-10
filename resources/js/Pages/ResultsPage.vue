@@ -371,11 +371,10 @@
                                             <div class="card ">
                                                 <el-radio v-model="category" :label="item.id" size="large" border
                                                           @click="SelectCategory(item.id)" class=" image-content">
-                                                    <div class="card-item">
-                                                        <h4 class="mt-3 ml-3"> {{ item.name }} </h4>
-                                                        <div class="card-image">
-                                                            <img :src="'img/categories/'+item.photo" alt=""
-                                                                 class="card-img">
+                                                    <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
+                                                        <div style="width: 150px; height: 150px; " >
+                                                            <h4 class="text-black" style="z-index: 999999999990; margin: 15% 0 0 20% ;  position: absolute;"> {{ item.name }} </h4>
+                                                            <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="150" >
                                                         </div>
                                                     </div>
                                                 </el-radio>
