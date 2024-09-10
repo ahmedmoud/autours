@@ -640,6 +640,25 @@ const sendEmail = async (type) => {
         console.error(error);
     }
 }
+
+function updateLabelStyles() {
+    // Select all checkboxes in the specified context
+    const checkboxes = document.querySelectorAll('.acc .wrapper input[type=checkbox]');
+
+    checkboxes.forEach(checkbox => {
+        // Select the corresponding label based on the checkbox state
+        const label = checkbox.nextElementSibling; // Assuming the label directly follows the checkbox
+
+        if (checkbox.checked) {
+            // Style for checked checkboxes
+            label.style.height = '450px';
+            label.style.overflowY = 'auto';
+        } else {
+            // Style for unchecked checkboxes
+            label.style.height = '70px';
+        }
+    });
+}
 onMounted(() => {
     getLocations();
     getVehicles();
@@ -666,7 +685,14 @@ onMounted(() => {
         el[0].style.marginTop = '-10%'
     }
 
+    document.querySelectorAll('.acc .wrapper input[type=checkbox]').forEach(checkbox => {
+        checkbox.addEventListener('change', updateLabelStyles); // Update styles when checked state changes
+    });
+
 })
+
+updateLabelStyles();
+
 </script>
 
 <style lang="scss" scoped>
@@ -982,13 +1008,13 @@ $color: white;
     background: #1c1b1bd4;
 
 }
-.acc .wrapper input[type=checkbox]:not(:checked) + label[data-v-0b99f485]{
-    height: 70px;
-}
-.acc .wrapper input[type=checkbox]:checked + label[data-v-0b99f485]{
-    height: 450px;
-    overflow-y: auto;
-}
+//.acc .wrapper input[type=checkbox]:not(:checked) + label[data-v-0b99f485]{
+//    height: 70px;
+//}
+//.acc .wrapper input[type=checkbox]:checked + label[data-v-0b99f485]{
+//    height: 450px;
+//    overflow-y: auto;
+//}
 
 
 
