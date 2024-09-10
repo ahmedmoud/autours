@@ -374,7 +374,7 @@
                                                     <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
                                                         <div style="width: 150px; height: 150px; " >
                                                             <h4 class="text-black" style="z-index: 999999999990; margin: 15% 0 0 20% ;  position: absolute;"> {{ item.name }} </h4>
-                                                            <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="150" >
+                                                            <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
                                                         </div>
                                                     </div>
                                                 </el-radio>
