@@ -300,10 +300,8 @@
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black; width: 100%">
                         <div class="faq_answer">
-                            The cars displayed online are just examples of the vehicles the customer may get, and unfortunately,
-                            we cannot guarantee the exact make or model,or aspects such as the color of the car.Autours,guarantee
-                            the category of the car, seating capacity,transmission and boot space.The model of vehicle the customer
-                            will receive will depend on availability in the rental supplier's fleet at the collection time.
+                            The cars displayed online are just examples of the vehicles the customer may get, and unfortunately, we cannot guarantee the exact make or model, or aspects such as the color of the car.<br><br>
+                            Autours, guarantee the category of the car, seating capacity, transmission and boot space. The model of vehicle the customer will receive will depend on availability in the rental supplier's fleet at the collection time.
                         </div>
                     </div>
                 </label>
@@ -313,9 +311,22 @@
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div class="faq_answer">
-                            <p>At Autours, we value your time and strive to provide a seamless booking experience.<br>
-                                With our instant confirmation feature, you can book with confidence and get on the<br> road faster.
-                            </p>
+                            <br>
+                            <h4 class="mt-1">Instant Confirmation</h4>
+                            <p>At Autours, we value your time and strive to provide a seamless booking experience. With our instant confirmation feature, you can book with confidence and get on the road faster.</p>
+
+                            <h5>Here’s what you need to know:</h5>
+                            <ul class="text-black">
+                                <li class="text-black"><strong>Immediate Assurance:</strong> Once you complete your booking, you will receive an immediate confirmation email. This email will include all the necessary details of your reservation.</li>
+                                <li class="text-black"><strong>No Waiting:</strong> There’s no need to wait for hours or days to know if your booking is confirmed. As soon as you finish the booking process, your confirmation is generated instantly.</li>
+                                <li class="text-black"><strong>Detailed Information:</strong> Your confirmation email will contain important information such as your reservation number, pick-up and drop-off locations, dates and times, vehicle category, and any additional services you’ve selected.</li>
+                            </ul>
+                            <h5>How it Works:</h5>
+                            <ol>
+                                <li class="text-black"><strong>Complete Your Booking:</strong> Enter your pick-up location, dates, times, and vehicle preferences. Add any extras you need.</li>
+                                <li class="text-black"><strong>Provide Your Details:</strong> Fill in your personal information and payment details.</li>
+                                <li class="text-black"><strong>Receive Confirmation:</strong> As soon as you finalize the booking, an instant confirmation email will be sent to your inbox with all the details.</li>
+                            </ol>
                         </div>
                     </div>
                 </label>
@@ -325,12 +336,23 @@
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div class="faq_answer">
-                            <p>To rent a car with Autours, you need to meet the following driving license requirements:</p>
-                               <strong>Minimum Age:</strong> You must be at least 21 years old.<br>
-                               <strong>Valid Driving License:</strong> You must possess a valid driver's license issued from your country of residence.<br>
-                                <strong>International Drivers:</strong> International customers must present a valid international driver's permit (IDP) <br> along with their original driver's license.
+                            <p>To rent a car with Autours, you need to meet the following driving license requirements:</p><br><br>
+                               <strong>Minimum Age:</strong> You must be at least 21 years old.<br><br>
+                               <strong>Valid Driving License:</strong> You must possess a valid driver's license issued from your country of residence.<br><br>
+                                <strong>International Drivers:</strong> International customers must present a valid international driver's permit (IDP)   along with their original driver's license.<br><br>
                         </div>
                     </div>
+                </label>
+                <input id='additional_driver' type='checkbox'>
+                <label for='additional_driver' class="faq_label">
+                    <p class="faq_question">What is an additional driver?</p>
+                    <div class='lil_arrow'></div>
+                    <div class='content' style="color: black;">
+                        <div class="faq_answer">
+                            An additional driver is a person other than the primary renter who is authorized to drive a rental car. When you offer an additional driver option, it means that customers can have someone else drive the car besides the person who made the reservation. This is especially useful for longer trips or when multiple people in a group need to share driving responsibilities.
+                            For your website, since you prefer the phrase "Enjoy a Free Additional Driver," this option should be prominently highlighted as a benefit. Here is a brief description you might use.     </div>
+                    </div>
+                    <span></span>
                 </label>
             </div>
             <div class='wrapper ' style="background-color: rgba(255,255,255,0); width: 35%;">
@@ -340,12 +362,12 @@
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div class="faq_answer">
-                            When collecting your rental car from Autours, please ensure you have the following items:<br>
-                            • Booking Confirmation: Make sure to have your booking confirmation details handy,<br> either in print or on your mobile device.<br>
-                            • Driving License: Bring a valid driving license issued from your  country of residence.<br> International customers should also  carry a valid international driver's permit (IDP) if required.<br>
-                            • Payment Method: Have a credit card in the primary driver's name for any necessary payments.<br>
-<!--                            • Additional Driver's Information: If you plan to add an additional driver,<br> ensure they meet all required criteria and have their driving license ready.-->
-<!--                            These items are essential to facilitate a smooth and efficient car collection process. If you have any specific inquiries about what to bring when collecting your car, please don't hesitate to contact us.-->
+                            When collecting your rental car from Autours, please ensure you have the following items:<br><br>
+                            • Booking Confirmation: Make sure to have your booking confirmation details handy,  either in print or on your mobile device.<br><br>
+                            • Driving License: Bring a valid driving license issued from your  country of residence.  International customers should also  carry a valid international driver's permit (IDP) if required.<br><br>
+                            • Payment Method: Have a credit card in the primary driver's name for any necessary payments.<br><br>
+                            • Additional Driver's Information: If you plan to add an additional driver,  ensure they meet all required criteria and have their driving license ready.
+                            These items are essential to facilitate a smooth and efficient car collection process. If you have any specific inquiries about what to bring when collecting your car, please don't hesitate to contact us.
                         </div>
                     </div>
                     <span></span>
@@ -356,11 +378,11 @@
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div class="faq_answer">
-                            Our cancellation policy at Autours is designed to  provide flexibility and convenience:<br>
-                            • Free Cancellation: You can cancel your booking free of charge up to 24 hours.<br>
-                            • Late Cancellation: Cancellations made less than 24 hours before pick-up may incur a cancellation fee.<br>
-                            • No-shows: If you do not collect your rental car and do not cancel the booking in advance,<br> a no-show fee may apply.
-                            Please review the specific terms and conditions related to cancellations<br> during the booking process. For further assistance or to cancel a booking, please contact our customer<br>
+                            Our cancellation policy at Autours is designed to  provide flexibility and convenience:<br><br>
+                            • Free Cancellation: You can cancel your booking free of charge up to 24 hours.<br><br>
+                            • Late Cancellation: Cancellations made less than 24 hours before pick-up may incur a cancellation fee.<br><br>
+                            • No-shows: If you do not collect your rental car and do not cancel the booking in advance,  a no-show fee may apply.<br><br>
+                            Please review the specific terms and conditions related to cancellations  during the booking process. For further assistance or to cancel a booking, please contact our customer
                             support team.
 
 
@@ -374,17 +396,31 @@
                     <div class='lil_arrow'></div>
                     <div class='content'>
                         <div class="faq_answer">
-                        To cancel your booking with Autours, follow these simple steps:<br>
-                        1. Visit Our Website: Log in to your account on our website.<br>
-                        2. Find Your Booking: Navigate to the bookings section where your reservation is listed.<br>
-                        3. Initiate Cancellation: Select the booking to cancel and follow the prompts to initiate the process.<br>
-                        4. Contact Customer Support: If you encounter any issues, please contact our customer support team.<br>
-                        Please note:<br>
-                        - Cancellations made at least 24 hours before your scheduled pick-up time are typically free of charge.<br>
-                        - Late cancellations may incur fees as per our cancellation policy.<br>
-<!--                        • Ensure to review the cancellation terms and conditions applicable to your booking.<br>-->
-<!--                           For further assistance or to cancel your booking, please don't hesitate to reach out to us.<br>-->
+                        To cancel your booking with Autours, follow these simple steps:<br><br>
+                        1. Visit Our Website: Log in to your account on our website.<br><br>
+                        2. Find Your Booking: Navigate to the bookings section where your reservation is listed.<br><br>
+                        3. Initiate Cancellation: Select the booking to cancel and follow the prompts to initiate the process.<br><br>
+                        4. Contact Customer Support: If you encounter any issues, please contact our customer support team.<br><br>
+                        Please note:<br><br>
+                        - Cancellations made at least 24 hours before your scheduled pick-up time are typically free of charge.<br><br>
+                        - Late cancellations may incur fees as per our cancellation policy.<br><br>
+<!--                        • Ensure to review the cancellation terms and conditions applicable to your booking. -->
+<!--                           For further assistance or to cancel your booking, please don't hesitate to reach out to us. -->
                         </div>
+                    </div>
+                    <span></span>
+                </label>
+                <input id='THW' type='checkbox'>
+                <label for='THW' class="faq_label">
+                    <p class="faq_question">What is Theft Waiver (THW)?</p>
+                    <div class='lil_arrow'></div>
+                    <div class='content' style="color: black;">
+                        <div class="faq_answer">
+                            Theft Protection is a type of cover for hire cars. It limits the driver's liability if the rental car is stolen. This means that the hire car company will not charge you the whole cost if the car gets stolen while you have it.
+
+                            There is almost always an excess, which means you will pay the first part of any repair or replacement costs.
+                             
+                            The specifics of what Theft Protection includes depends on the car hire company and where you hire the car. Theft Protection only works if you stick to the terms of the rental agreement (which you’ll sign when you collect the car). This means that if (for example) you leave the car unlocked and it is stolen, you will be liable for the whole cost of repair or replacement, not just an excess.     </div>
                     </div>
                     <span></span>
                 </label>
@@ -396,12 +432,12 @@
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div class="faq_answer">
-                            Yes, many car rental companies allow customers to change their<br> booking to a different date and time, although this may depend <br> on the company's policies and the terms and conditions of the <br> rental agreement. Here’s how you can present this option<br> on your website:
-                            Change Your Booking Date & Time<br>
-                            We understand that plans can change. <br> At Autours, you have the flexibility to modify <br> your booking to a different date and time. Here’s how it works:
-                            • Easy Modifications: Log into your account and navigate to your bookings. Select the reservation you wish to modify and choose your new preferred date and time.
-                            • No Hidden Fees: Enjoy the convenience of changing your booking without worrying about hidden fees. Please note that changes are subject to availability and any difference in rental rates.
-                            • Customer Support: If you need assistance, our customer support team is here to help. Contact us via email or phone, and we’ll guide you through the process.
+                            Yes, many car rental companies allow customers to change their  booking to a different date and time, although this may depend   on the company's policies and the terms and conditions of the   rental agreement. Here’s how you can present this option  on your website:
+                            Change Your Booking Date & Time
+                            We understand that plans can change.   At Autours, you have the flexibility to modify   your booking to a different date and time. Here’s how it works:<br><br>
+                            • Easy Modifications: Log into your account and navigate to your bookings. Select the reservation you wish to modify and choose your new preferred date and time.<br><br>
+                            • No Hidden Fees: Enjoy the convenience of changing your booking without worrying about hidden fees. Please note that changes are subject to availability and any difference in rental rates.<br><br>
+                            • Customer Support: If you need assistance, our customer support team is here to help. Contact us via email or phone, and we’ll guide you through the process.<br><br>
                         </div>
                     </div>
                     <span></span>
@@ -412,12 +448,12 @@
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div class="faq_answer">
-                            Insurance excess, also known as a deductible,<br> is the amount you are liable to pay towards <br> the cost of any damage or loss to the rental<br> vehicle during the rental period.<br>
-                            • How it Works: If there is damage to the car,<br> the insurance excess is the maximum amount you would<br> have to pay out of pocket before the insurance<br> coverage kicks in.
-                            • Example: If the insurance excess is $500 and there is $1,000 worth of damage to the vehicle, you would pay $500 and the insurance would cover the remaining $500.
-                            • Coverage Options: <br>Some rental agreements offer options to reduce<br> the excess through additional insurance or<br> waivers, which can be purchased for added peace of mind.<br>
-                            It's important to review your rental <br>agreement to understand the specific<br> terms and conditions related to insurance excess<br>. If you have any questions regarding insurance<br> coverage or excess, feel free <br>to contact us for clarification.<br>
-                            This explanation provides clarity on what <br>insurance excess entails and helps customers <br>understand their financial responsibility in<br> case of any damage to the rental vehicle.
+                            Insurance excess, also known as a deductible,  is the amount you are liable to pay towards   the cost of any damage or loss to the rental  vehicle during the rental period.<br><br>
+                            • How it Works: If there is damage to the car,  the insurance excess is the maximum amount you would  have to pay out of pocket before the insurance  coverage kicks in.<br><br>
+                            • Example: If the insurance excess is $500 and there is $1,000 worth of damage to the vehicle, you would pay $500 and the insurance would cover the remaining $500.<br><br>
+                            • Coverage Options:  Some rental agreements offer options to reduce  the excess through additional insurance or  waivers, which can be purchased for added peace of mind.<br><br>
+                            It's important to review your rental  agreement to understand the specific  terms and conditions related to insurance excess . If you have any questions regarding insurance  coverage or excess, feel free  to contact us for clarification.<br><br>
+                            This explanation provides clarity on what  insurance excess entails and helps customers  understand their financial responsibility in  case of any damage to the rental vehicle.
                         </div>
                     </div>
                     <span></span>
@@ -428,18 +464,30 @@
                     <div class='lil_arrow'></div>
                     <div class='content' style="color: black;">
                         <div class="faq_answer">
-                            Collision Damage Waiver (CDW) is an optional insurance <br> coverage that reduces the renter's financial responsibility <br>(excess) in case of damage to the rental vehicle.<br>
-                            • Coverage: CDW typically covers damage<br> to the rental vehicle due to collision,<br> theft, and vandalism.
-                            • Financial Protection: By purchasing CDW,<br> the renter can often reduce their liability to pay the full<br> cost of damages down to a <br>lower amount or eliminate it altogether, depending <br>on the terms of the waiver.<br>
-                            • Exclusions: CDW may not cover certain damages,<br> such as those resulting from negligent use of <br>the vehicle or driving under the influence.<br>
-                            It's important to carefully review the <br>terms and conditions of the CDW offered by Autours to <br>understand the coverage limits, exclusions, and<br> any additional fees associated with this option.<br>
-                            For more information or to add CDW to your<br> rental, please contact our customer support team.<br>
-                            This explanation provides a clear understanding of<br> what Collision Damage Waiver (CDW) is and its benefits for<br> renters considering additional insurance coverage<br> for their rental vehicle.
+                            Collision Damage Waiver (CDW) is an optional insurance   coverage that reduces the renter's financial responsibility  (excess) in case of damage to the rental vehicle.<br><br>
+                            • Coverage: CDW typically covers damage  to the rental vehicle due to collision,  theft, and vandalism.<br><br>
+                            • Financial Protection: By purchasing CDW,  the renter can often reduce their liability to pay the full  cost of damages down to a  lower amount or eliminate it altogether, depending  on the terms of the waiver.<br><br>
+                            • Exclusions: CDW may not cover certain damages,  such as those resulting from negligent use of  the vehicle or driving under the influence.<br><br>
+                            It's important to carefully review the  terms and conditions of the CDW offered by Autours to  understand the coverage limits, exclusions, and  any additional fees associated with this option.
+                            For more information or to add CDW to your  rental, please contact our customer support team.
+                            This explanation provides a clear understanding of  what Collision Damage Waiver (CDW) is and its benefits for  renters considering additional insurance coverage  for their rental vehicle.
+                        </div>
+                    </div>
+                    <span></span>
+                </label>
+                <input id='pai' type='checkbox'>
+                <label for='pai' class="faq_label">
+                    <p class="faq_question">What is Person accident insurance (PAI)?</p>
+                    <div class='lil_arrow'></div>
+                    <div class='content' style="color: black;">
+                        <div class="faq_answer">
+                            A Personal Accident Insurance (PAI) is an optional insurance and it pays the hospital fees if you or any passengers in the hire car are injured.
                         </div>
                     </div>
                     <span></span>
                 </label>
             </div>
+
         </div>
     </div>
 
@@ -934,6 +982,15 @@ $color: white;
     background: #1c1b1bd4;
 
 }
+.acc .wrapper input[type=checkbox]:not(:checked) + label[data-v-0b99f485]{
+    height: 70px;
+}
+.acc .wrapper input[type=checkbox]:checked + label[data-v-0b99f485]{
+    height: 450px;
+    overflow-y: auto;
+}
+
+
 
 .faq_label{
     border-color: black;
