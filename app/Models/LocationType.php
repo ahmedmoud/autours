@@ -10,4 +10,5 @@ class LocationType extends Model
     use HasFactory;
     protected $table = 'location_types';
     public $timestamps = true;
+    protected $fillable = ['name', 'icon'];
 }
