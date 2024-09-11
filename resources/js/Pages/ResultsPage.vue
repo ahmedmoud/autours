@@ -518,7 +518,7 @@
                                                                 }}</small></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
-                                                            <p class="text-nowrap"><i class="fa fa-car"/>&nbsp; &nbsp;<strong>{{
+                                                            <p class="text-nowrap"><i :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp; &nbsp;<strong>{{
                                                                     vehicle?.location_type.length ?vehicle.location_type[0]?.name : ''
                                                                 }}</strong></p>
                                                         </div>
