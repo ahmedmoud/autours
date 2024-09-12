@@ -367,6 +367,8 @@
                                     style="width: 90%;"
                                     :class="'slide-container  mt-2'"
                                 >
+
+
                                       <swiper-slide v-for="item in filteredCategories">
                                           <div class="card ">
                                               <el-radio v-model="category" :label="item.id" size="large" border
@@ -1136,7 +1138,7 @@ onMounted(() => {
 
 .swiper {
     margin-left: 40px;
-    position: static;
+    position: initial;
     align-items: center;
 }
 
@@ -1152,7 +1154,7 @@ onMounted(() => {
     height: 70px;
     background-repeat: no-repeat;
     margin-top: -35px;
-
+    margin-right: 1%;
 
 }
 

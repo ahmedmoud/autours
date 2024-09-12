@@ -261,7 +261,7 @@
                 style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; " @click="sendEmail('supplier')">
                 S U B M I T
             </button>
-            <input v-model="supplier_email" placeholder="       W R I T E   Y O U R    M A I L   H E R E" type="text"
+            <input v-model="supplier_email" placeholder="  W R I T E   Y O U R    M A I L   H E R E" type="text"
                    style="width: 40%; border-color: #000; color: #000; background-color: rgba(0,0,0,0); border-width: 6px; border-radius: 0px 20px 20px 0px"/>
         </div>
         </div>
@@ -280,7 +280,7 @@
                     style="width: 20%; color: rgb(244, 216, 73); font-weight: 700; border-color: #000; background-color: #000000; border-width: 6px; border-radius: 20px 0px 0px 20px; " @click="sendEmail('offers')">
                     S U B M I T
                 </button>
-                <input v-model="offers_email"  placeholder="     W R I T E   Y O U R    M A I L   H E R E" type="text"
+                <input v-model="offers_email"  placeholder=" W R I T E   Y O U R    M A I L   H E R E" type="text"
                        style="width: 40%; border-color: #000; color: #000; background-color: rgba(0,0,0,0); border-width: 6px; border-radius: 0px 20px 20px 0px"/>
             </div>
         </div>
@@ -681,6 +681,7 @@ onMounted(() => {
         el[0].style.width = 150
         el[0].style.height = 150
         el[0].style.marginTop = '-10%'
+        el[0].style.marginLeft = '0%'
     }
 
     document.querySelectorAll('.acc .wrapper input[type=checkbox]').forEach(checkbox => {
@@ -701,9 +702,7 @@ updateLabelStyles();
 //    color: rgba(244, 214, 64, 0) !important;
 //}
 
-.swiper-button-prev {
-    color: #f4d640 !important;
-}
+
 
 
 @media screen and (max-width: 800px) {
@@ -1041,6 +1040,9 @@ $color: white;
     margin-top: 20px;
     border-radius: 45px;
     height: 65%;
+}
+.swiper{
+    position: relative;
 }
 
 .offers-section{
