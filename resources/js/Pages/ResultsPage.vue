@@ -442,7 +442,7 @@
                                             </div>
                                             <div class="row rounded-2 mb-3 py-1 " style="background: #edecec; width: 76.5%;">
                                                 <div class="d-supplier">
-                                                    <div class="mt-2 d-img"  style="width: 10%; height: 60px; ">
+                                                    <div class="mt-2 d-img"  style="width: 15%; height: 60px; ">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="80" alt=""/>
                                                     </div>
