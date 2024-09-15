@@ -62,6 +62,6 @@ class Vehicle extends Model
     }
     public function specifications()
     {
-        return $this->hasMany(VehicleSpecification::class, 'vehicle_id','id');
+        return $this->hasMany(VehicleSpecification::class, 'vehicle_id','id')->orderBy('name');
     }
 }

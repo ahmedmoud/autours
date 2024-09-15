@@ -372,7 +372,6 @@
                                               <el-radio v-model="category" :label="item.id" size="large" border
                                                         @click="SelectCategory(item.id)" class=" image-content">
                                                   <div class="card-item" >
-                                                      <p class="text-black"  style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
                                                       <div style="width: 150px; height: 150px;" >
                                                           <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
                                                       </div>
@@ -425,10 +424,11 @@
                                                                          v-if="specification.icon"
                                                                          :src="'assets/images/icons/' + specification.icon + '.svg'"/>
                                                                     <span> {{
-                                                                            specification.option
+                                                                            specification.value
                                                                         }} {{
                                                                             specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Conditioning' ||
-                                                                            specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Transmutation' ||
+                                                                            specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Conditioner' ||
+                                                                            specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Transmission' ||
                                                                             specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Transmission' ||
                                                                             specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Fuel'
                                                                                 ? '' : specification.name?.split(' ')[specification.name?.split(' ')?.length - 1]

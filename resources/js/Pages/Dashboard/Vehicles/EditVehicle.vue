@@ -245,7 +245,7 @@
                                 <label class="formbold-form-label col-5">{{ list.name }} - <i
                                     :class="'fa fa-' + list.icon"/></label>
                                 <el-select
-                                    v-model="specification[i]"
+                                    v-model="specification[i].value"
                                     size="large"
                                     filterable
                                     remote
@@ -313,7 +313,7 @@ const locationTypes = {
     options: ref([]),
 };
 const category = ref('')
-const locationType = ref('')
+const locationType = ref({})
 
 const categories = {
     loading: ref(false),
@@ -580,10 +580,11 @@ const getData = async () => {
         weekPrice.value = vehicle.week_price
         monthPrice.value = vehicle.month_price
         specification.value = vehicle.specifications
+
         selectedSpecifications.value = vehicle.specifications
         selectedIncluded.value = vehicle.what_is_included
         photo.value = vehicle.photo
-        locationType.value = vehicle.location_type.length  ? vehicle.location_type[0].name : null
+        locationType.value = vehicle.location_type.length  ? vehicle.location_type[0] : {}
         instantConfirmation.value = vehicle.instant_confirmation === 1? true : false
         console.log(vehicle.included)
     } catch (e) {
@@ -612,8 +613,6 @@ const fetchLocationTypes = async () => {
     locationTypes.loading.value = true;
     try {
         const response = await axios.get('/get/location-types')
-        console.log("=======>")
-        console.log(response.data.data)
         locationTypes.all.value = response.data.data
         locationTypes.list.value = locationTypes.all.value?.map((item) => ({
             id: `${item.id}`,
@@ -632,7 +631,6 @@ onMounted(() => {
     fetchCategories();
     fetchSpecifications();
     fetchPhotos();
-    fetchSpecifications();
     fetchIncluded();
     getData();
     fetchLocationTypes()

@@ -77,7 +77,7 @@ class VehicleController extends Controller
                     'status' => false
                 ]);
             }
-            $query = $filteredVehicles->with('category', 'supplier', 'profit', 'included', 'branch','locationType');
+            $query = $filteredVehicles->with('category', 'supplier', 'profit', 'included', 'branch','locationType','specifications');
 
             if ($request->priceRange && $request->priceRange !== 0) {
                 $query->where('price', '<=', ($request->priceRange));
@@ -446,7 +446,7 @@ class VehicleController extends Controller
     public function getSpecifications()
     {
 
-        return response()->json(Specification::all());
+        return response()->json(Specification::query()->orderBy('name')->get());
 
     }
 
@@ -646,7 +646,7 @@ class VehicleController extends Controller
                 'status' => false
             ], StatusCodes::SERVER_ERROR);
         }
-        $vehicle = Vehicle::query()->with(['branch', 'category', 'included','locationType'])->find($id);
+        $vehicle = Vehicle::query()->with(['branch', 'category', 'included','locationType','specifications'])->find($id);
         $vehicle->what_is_included = $vehicle->included->pluck('what_is_included');
         return response()->json([
             'data' => $vehicle,
