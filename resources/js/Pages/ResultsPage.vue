@@ -42,7 +42,6 @@
             <div id="section-cars">
 
 
-
                 <div class="" style="width: 100%; padding-left: 10%;">
 
                     <div class="row">
@@ -51,11 +50,12 @@
                                     style=" width: 33%;background: #f9d602; color: #000;"><span
                                 class="ti ti-circle-number-1 mr-1"/>Choose Your Location
                             </button>
-                            <button  class=" mr-1  btn  steps-button active"
+                            <button class=" mr-1  btn  steps-button active"
                                     style="width: 33%; background: rgb(155,147,84);color: #000;"><span
                                 class="ti ti-circle-number-2 mr-2"/>Choose Your Car
                             </button>
-                            <button class=" btn  steps-button" style="width: 33%; background: #f9d602; color: #000; "><span
+                            <button class=" btn  steps-button"
+                                    style="width: 33%; background: #f9d602; color: #000; "><span
                                 class="ti ti-circle-number-3 mr-1"/>Reserve Your Car
                             </button>
                         </div>
@@ -113,8 +113,8 @@
                                                                     value-format="YYYY-MM-DD"/>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <select  class="form-control rounded-1"
-                                                             v-model="form.time_from">
+                                                    <select class="form-control rounded-1"
+                                                            v-model="form.time_from">
                                                         <option value="00:00" selected>00:00</option>
                                                         <option value="00:30">00:30</option>
                                                         <option value="01:00">01:00</option>
@@ -177,8 +177,8 @@
                                                                     value-format="YYYY-MM-DD"/>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <select  class="form-control rounded-1"
-                                                             v-model="form.time_to">
+                                                    <select class="form-control rounded-1"
+                                                            v-model="form.time_to">
                                                         <option value="00:00" selected>00:00</option>
                                                         <option value="00:30">00:30</option>
                                                         <option value="01:00">01:00</option>
@@ -280,7 +280,7 @@
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="cat">
                                         <div class="row" v-for="item in filteredCategories">
-                                            <div class="row" >
+                                            <div class="row">
                                                 <strong class="col-md-10 mt-2">{{
                                                         item.name
                                                     }} <small style="font-size: 14px;">
@@ -331,7 +331,8 @@
                                         <div style="margin-top: -35px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
                                                 <div class="row col-md-12" v-if="option.vehicle_count">
-                                                    <div class="col-md-11 text-nowrap row"><strong class="col-md-7 ">{{ option.value }}
+                                                    <div class="col-md-11 text-nowrap row"><strong
+                                                        class="col-md-7 ">{{ option.value }}
                                                         {{
                                                             item.name == 'Number of seats' || item.name == 'Number of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
                                                         }}
@@ -358,8 +359,8 @@
                         </div>
 
                         <div v-else class="col-lg-9">
-                              <div class="col-md-11">
-                                  <swiper
+                            <div class="col-md-11">
+                                <swiper
                                     :modules="[Navigation, Pagination, Scrollbar, A11y]"
                                     :slides-per-view="5"
                                     :space-between="5"
@@ -367,22 +368,25 @@
                                     style="width: 90%;"
                                     :class="'slide-container  mt-2'"
                                 >
-                                      <swiper-slide v-for="item in filteredCategories">
-                                          <div :class="category.indexOf(item.id) >= 0 ? 'card select' : 'card'"    :id="'category-' + item.id">
-                                              <el-radio v-model="category" :label="item.id" size="large" border
-                                                        @click="SelectCategory(item.id)" class=" image-content">
-                                                  <div class="card-item" >
-                                                      <div  >
-                                                          <img class="position-relative " :src="'img/categories/'+item.photo"  alt="" width="180" height="190" >
-                                                      </div>
-                                                  </div>
-                                              </el-radio>
-                                          </div>
-                                      </swiper-slide>
+                                    <swiper-slide v-for="item in filteredCategories">
+                                        <div :class="category.indexOf(item.id) >= 0 ? 'card select' : 'card'"
+                                             :id="'category-' + item.id">
+                                            <el-radio v-model="category" :label="item.id" size="large" border
+                                                      @click="SelectCategory(item.id)" class=" image-content">
+                                                <div class="card-item">
+                                                    <div>
+                                                        <img class="position-relative "
+                                                             :src="'img/categories/'+item.photo" alt="" width="180"
+                                                             height="190">
+                                                    </div>
+                                                </div>
+                                            </el-radio>
+                                        </div>
+                                    </swiper-slide>
 
                                 </swiper>
 
-                              </div>
+                            </div>
 
                             <h3 style="color: #000;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS
                                 FOUND</strong></h3>
@@ -440,9 +444,10 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="row rounded-2 mb-3 py-1 " style="background: #edecec; width: 76.5%;">
+                                            <div class="row rounded-2 mb-3 py-1 "
+                                                 style="background: #edecec; width: 76.5%;">
                                                 <div class="d-supplier">
-                                                    <div class="mt-2 d-img"  style="width: 15%; height: 60px; ">
+                                                    <div class="mt-2 d-img" style="width: 15%; height: 60px; ">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="80" alt=""/>
                                                     </div>
@@ -455,9 +460,11 @@
                                                                 }}</span>
                                                         </div>
                                                         <div style=" margin-top: -10px;">
-                                                            <div><a class="cursor-pointer text-primary text-decoration-underline"
-                                                                      href="javascript:void(0);"
-                                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
+                                                            <div><a
+                                                                class="cursor-pointer text-primary text-decoration-underline"
+                                                                href="javascript:void(0);"
+                                                                @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -469,8 +476,11 @@
                                                             style="font-size: medium; ">(&nbsp;<strong
                                                             style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
-                                                    <div v-if="vehicle.instant_confirmation" class="col-md-2">
-                                                        <img  src="/images/icons/instant_confirmation.png" width="175" height="30"/>
+                                                    <div v-if="vehicle.instant_confirmation" class="col-md-2 mt-2 text-nowrap bold">
+                                                        <div class="">
+                                                            <img class="mb-2" width="40" src="/images/icons/instant_confirmation.png"/>
+                                                          Instant Confirmation
+                                                        </div>
                                                     </div>
                                                     <div v-if="!vehicle.instant_confirmation" class="col-md-2">
                                                         <button class="scv-badge badge-white be_media" tabindex="0">
@@ -483,7 +493,9 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="de-item-list col-md-9 justify-content-between align-items-center bg-light-gray" style="width: 94%">
+                                                <div
+                                                    class="de-item-list col-md-9 justify-content-between align-items-center bg-light-gray"
+                                                    style="width: 94%">
                                                     <div class="row col-md-8">
                                                         <p class="primary bold mb-0" style="color: #5e9007;">What is
                                                             Included!</p>
@@ -512,14 +524,17 @@
                                                     </div>
                                                     <div class="row mb-5">
                                                         <div class="col-md-12">
-                                                            <p class="text-nowrap"><i class="fa fa-location"/>&nbsp;Address:&nbsp; <small>{{
-                                                                    vehicle.supplier.address
-                                                                }}</small></p>
+                                                            <p class="text-nowrap"><i class="fa fa-location"/>&nbsp;Address:&nbsp;
+                                                                <small>{{
+                                                                        vehicle.supplier.address
+                                                                    }}</small></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
-                                                            <p class="text-nowrap"><i :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp; &nbsp;<strong>{{
-                                                                    vehicle?.location_type.length ?vehicle.location_type[0]?.name : ''
-                                                                }}</strong></p>
+                                                            <p class="text-nowrap"><i
+                                                                :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp;
+                                                                &nbsp;<strong>{{
+                                                                        vehicle?.location_type.length ? vehicle.location_type[0]?.name : ''
+                                                                    }}</strong></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
                                                             <span class="text-nowrap"><i class="fa fa-gas-pump"/>&nbsp;</span>
@@ -530,10 +545,13 @@
                                                     <span class="d-days">For {{
                                                             daysNumber
                                                         }} day{{ daysNumber < 2 ? '' : 's' }}</span>
-                                                   <div class=" text-nowrap"> <h2 >{{
+                                                    <div class=" text-nowrap"><h2>{{
                                                             vehicle.final_price
-                                                        }}  <small style="font-size: 20px;">{{ selectedCurrency }}</small></h2></div>
-                                                    <a class="btn-main select-btn cursor-pointer  " style="width: 180px; border-radius: 15px;"
+                                                        }} <small style="font-size: 20px;">{{
+                                                                selectedCurrency
+                                                            }}</small></h2></div>
+                                                    <a class="btn-main select-btn cursor-pointer  "
+                                                       style="width: 180px; border-radius: 15px;"
                                                        @click="goToBookingPage(vehicle.id)">Booking
                                                         <svg width="25" height="25" fill="currentColor"
                                                              viewBox="0 2 20 20"
@@ -543,7 +561,8 @@
                                                         </svg>
                                                         <svg width="25" height="25" fill="currentColor"
                                                              viewBox="0 2 20 20"
-                                                             xmlns="http://www.w3.org/2000/svg" style="margin-left: -12%;">
+                                                             xmlns="http://www.w3.org/2000/svg"
+                                                             style="margin-left: -12%;">
                                                             <path
                                                                 d="m8.295 16.59 4.58-4.59-4.58-4.59L9.705 6l6 6-6 6-1.41-1.41Z"></path>
                                                         </svg>
@@ -696,7 +715,7 @@ const search = () => {
     router.get('/results', form)
 };
 const SelectCategory = (category_id) => {
-    const el = document.getElementById('category-'+category_id);
+    const el = document.getElementById('category-' + category_id);
     if (category.value.indexOf(category_id) >= 0) {
         category.value.splice(category.value.indexOf(category_id), 1);
     } else {
@@ -746,7 +765,7 @@ const getVehicles = async () => {
         form.pickupLoc = response.data.location;
         form.date_from = response.data.date_from
         form.date_to = response.data.date_to
-        if(filteredCategories.value.length <= 0 ){
+        if (filteredCategories.value.length <= 0) {
             filteredCategories.value = response.data.filteredCategories;
         }
         if (filteredSuppliers.value.length <= 0) {
@@ -1069,7 +1088,7 @@ onMounted(() => {
 
 .slide-container {
     width: 90%;
-    height: 200px ;
+    height: 200px;
 
     .el-radio.is-bordered .el-radio__input {
         display: none !important;
@@ -1159,12 +1178,15 @@ onMounted(() => {
     background-color: #fff;
     border-radius: 10px;
 }
-.swiper-button-next:hover{
+
+.swiper-button-next:hover {
     background-color: rgb(243, 220, 83);
 }
-.swiper-button-prev:hover{
+
+.swiper-button-prev:hover {
     background-color: rgb(243, 220, 83);
 }
+
 .swiper-button-prev {
     color: rgb(0, 0, 0);
     height: 80px;
@@ -1196,6 +1218,7 @@ onMounted(() => {
         display: none;
     }
 }
+
 .select {
     border-color: rgba(244, 214, 64, 0.49);
     border-width: thick;
