@@ -372,8 +372,8 @@
                                               <el-radio v-model="category" :label="item.id" size="large" border
                                                         @click="SelectCategory(item.id)" class=" image-content">
                                                   <div class="card-item" >
-                                                      <div style="width: 150px; height: 150px;" >
-                                                          <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
+                                                      <div  >
+                                                          <img class="position-relative " :src="'img/categories/'+item.photo"  alt="" width="180" height="190" >
                                                       </div>
                                                   </div>
                                               </el-radio>
@@ -450,12 +450,12 @@
                                                     <div class="col-md-2 row">
                                                         <div>
                                                             <span
-                                                                style="font-size: .95vw; margin-left: -55px; color: #000;"
+                                                                style="font-size: .95vw; margin-left: -100px; color: #000;"
                                                                 class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
-                                                        <div style="margin-left: -55px; margin-top: -10px;">
+                                                        <div style="margin-left: -100px; margin-top: -10px;">
                                                             <div><a class="cursor-pointer text-primary text-decoration-underline"
                                                                       href="javascript:void(0);"
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
