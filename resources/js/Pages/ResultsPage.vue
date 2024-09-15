@@ -280,7 +280,7 @@
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="cat">
                                         <div class="row" v-for="item in filteredCategories">
-                                            <div class="row" v-if="item?.vehicle_count">
+                                            <div class="row" >
                                                 <strong class="col-md-10 mt-2">{{
                                                         item.name
                                                     }} <small style="font-size: 14px;">
@@ -367,14 +367,12 @@
                                     style="width: 90%;"
                                     :class="'slide-container  mt-2'"
                                 >
-
-
                                       <swiper-slide v-for="item in filteredCategories">
-                                          <div class="card ">
+                                          <div :class="category.indexOf(item.id) >= 0 ? 'card select' : 'card'"    :id="'category-' + item.id">
                                               <el-radio v-model="category" :label="item.id" size="large" border
                                                         @click="SelectCategory(item.id)" class=" image-content">
-                                                  <div class="card-item" style="background-image: url('/img/categories/SUV- GMC Yukon.png__category.png') ">
-                                                      <p class="text-black" style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
+                                                  <div class="card-item" >
+                                                      <p class="text-black"  style="font-size: 1vw; font-weight: 900; z-index: 999999999990;   position: absolute; margin: 20px;"> {{ item.name }} </p>
                                                       <div style="width: 150px; height: 150px;" >
                                                           <img class="position-relative mt-4" :src="'img/categories/'+item.photo"  alt="" width="150" height="170" >
                                                       </div>
@@ -608,7 +606,7 @@ const locations = {
 let vehicleIds = [];
 
 const loading = ref(false);
-const category = ref("");
+const category = ref([]);
 const supplier = ref([]);
 const locationType = ref([]);
 const filteredVehicles = ref("");
@@ -684,8 +682,10 @@ const getSpecifications = async () => {
     if (vehicleIds.length <= 0) {
         vehicleIds = filteredVehicles.value.map(a => a.id)
     }
-    const response = await axios.post('get/filtered/specifications', {vehicle_ids: vehicleIds})
-    filteredSpecifications.value = response.data
+    if (filteredSpecifications.value.length <= 0) {
+        const response = await axios.post('get/filtered/specifications', {vehicle_ids: vehicleIds})
+        filteredSpecifications.value = response.data
+    }
 }
 const search = () => {
     form.category = category.value
@@ -697,13 +697,13 @@ const search = () => {
     router.get('/results', form)
 };
 const SelectCategory = (category_id) => {
-    $(".category").removeClass('col-md-2')
-    $(".category").addClass('col-md-1')
-    $(".category").addClass('category')
-
-    $("#category" + category_id).addClass('col-md-2')
-    category.value = category_id;
-    form.category = category_id
+    const el = document.getElementById('category-'+category_id);
+    if (category.value.indexOf(category_id) >= 0) {
+        category.value.splice(category.value.indexOf(category_id), 1);
+    } else {
+        category.value.push(category_id);
+    }
+    form.category = category.value
     getVehicles()
 }
 const selectSupplier = (supplier_id) => {
@@ -747,7 +747,9 @@ const getVehicles = async () => {
         form.pickupLoc = response.data.location;
         form.date_from = response.data.date_from
         form.date_to = response.data.date_to
-        filteredCategories.value = response.data.filteredCategories;
+        if(filteredCategories.value.length <= 0 ){
+            filteredCategories.value = response.data.filteredCategories;
+        }
         if (filteredSuppliers.value.length <= 0) {
             filteredSuppliers.value = response.data.filteredSuppliers;
         }
@@ -1148,24 +1150,32 @@ onMounted(() => {
 }
 
 .swiper-button-next {
-    color: rgba(0, 0, 0, 0);
-    background-image: url("/images/icons/next.svg");
-    width: 5%;
-    height: 70px;
+    color: rgb(0, 0, 0);
+    width: 4%;
+    height: 80px;
     background-repeat: no-repeat;
-    margin-top: -35px;
-    margin-right: 1%;
-
+    margin-top: -40px;
+    margin-right: 2%;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 10px;
 }
-
+.swiper-button-next:hover{
+    background-color: rgb(243, 220, 83);
+}
+.swiper-button-prev:hover{
+    background-color: rgb(243, 220, 83);
+}
 .swiper-button-prev {
-    color: rgba(0, 0, 0, 0);
-    background-image: url("/images/icons/prev.svg");
-    height: 70px;
+    color: rgb(0, 0, 0);
+    height: 80px;
     background-repeat: no-repeat;
-    margin-top: -35px;
-    margin-left: -25px;
-    width: 5%;
+    margin-top: -40px;
+    margin-left: -12px;
+    width: 4%;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 10px;
 
 }
 
@@ -1186,6 +1196,10 @@ onMounted(() => {
     .swiper-navBtn {
         display: none;
     }
+}
+.select {
+    border-color: rgba(244, 214, 64, 0.49);
+    border-width: thick;
 }
 
 

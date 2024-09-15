@@ -83,7 +83,7 @@ class VehicleController extends Controller
                 $query->where('price', '<=', ($request->priceRange));
             }
             if ($request->category) {
-                $query->where('category', $request->category);
+                $query->whereIn('category', $request->category);
             }
             if ($request->supplier) {
 
