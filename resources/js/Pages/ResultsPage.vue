@@ -442,20 +442,19 @@
                                             </div>
                                             <div class="row rounded-2 mb-3 py-1 " style="background: #edecec; width: 76.5%;">
                                                 <div class="d-supplier">
-                                                    <div class="col-md-3 mt-2 d-img w-100"
-                                                         style="height: 60px; margin-left: -15px;">
+                                                    <div class="mt-2 d-img"  style="width: 10%; height: 60px; ">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="50"
                                                              width="80" alt=""/>
                                                     </div>
-                                                    <div class="col-md-2 row">
+                                                    <div class="col-md-3 row">
                                                         <div>
                                                             <span
-                                                                style="font-size: .95vw; margin-left: -100px; color: #000;"
+                                                                style="font-size: .95vw; color: #000;"
                                                                 class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
-                                                        <div style="margin-left: -100px; margin-top: -10px;">
+                                                        <div style=" margin-top: -10px;">
                                                             <div><a class="cursor-pointer text-primary text-decoration-underline"
                                                                       href="javascript:void(0);"
                                                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
