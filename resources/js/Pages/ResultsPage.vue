@@ -482,7 +482,7 @@
                                                           Instant Confirmation
                                                         </div>
                                                     </div>
-                                                    <div v-if="!vehicle.instant_confirmation" class="col-md-2">
+                                                    <div v-else class="col-md-2">
                                                         <button class="scv-badge badge-white be_media" tabindex="0">
                                                             <i style="color: gold;"
                                                                class="mt-1 px-2 fa fa-ban fa-xl be_media-left be_media-middle"/>
