@@ -667,6 +667,7 @@ onMounted(() => {
         el[0].style.color = '#00000000'
         var image = 'images/icons/next.svg'
         el[0].style.backgroundImage = 'url("' + image + '")'
+        el[0].style.backgroundColor = 'rgba(255, 255, 255, 0)'
         el[0].style.backgroundRepeat = 'no-repeat'
         el[0].style.width = 150
         el[0].style.height = 150
@@ -677,6 +678,7 @@ onMounted(() => {
         el[0].style.color = '#00000000'
         var image = 'images/icons/prev.svg'
         el[0].style.backgroundImage = 'url("' + image + '")'
+        el[0].style.backgroundColor = 'rgba(255, 255, 255, 0)'
         el[0].style.backgroundRepeat = 'no-repeat'
         el[0].style.width = 150
         el[0].style.height = 150
@@ -1043,8 +1045,15 @@ $color: white;
 }
 .swiper{
     position: relative;
+
+}
+.swiper-button-next {
+    background-color: rgba(255, 255, 255, 0);
 }
 
+.swiper-button-prev {
+    background-color: rgba(255, 255, 255, 0);
+}
 .offers-section{
     background-image: url(/images/background/offers.png);
     background-size: cover;
