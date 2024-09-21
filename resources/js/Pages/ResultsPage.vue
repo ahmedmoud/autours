@@ -6,7 +6,7 @@
         <header-one/>
         <!-- header close -->
         <!-- content begin -->
-        <div class="" style="background: #ececec" id="content">
+        <div class="" style="background: #f7f7f7" id="content">
             <div id="top"></div>
             <!--            <ProgressBar class="col-12" mode="indeterminate" style="height: 6px"></ProgressBar>-->
 
@@ -60,12 +60,12 @@
                             </button>
                         </div>
                         <div class="col-lg-3">
-                            <div class="col-md-12 pb-4" style="background: #fff;">
+                            <div class=" pb-4" style="background: #fff; width: 100%">
                                 <div class="p-1"
-                                     style="background: #e1e1e1; width: 107.5%; margin-left: -12px; margin-top: 10px;">
+                                     style="background: #e1e1e1; width: 100%;  margin-top: 10px;">
                                     <h5 class="p-2">YOUR SEARCH DETAILS</h5>
                                 </div>
-                                <div class=" mt-3 row" style="background: #fff;">
+                                <div class=" mt-3 p-3" style="background: #fff;">
                                     <h5>PICK-UP - LOCATION </h5>
                                     <p class="col-11"><span class="  ti ti-gps"></span>&nbsp;{{ form.pickupLoc }}</p>
 
@@ -73,7 +73,7 @@
                                     <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_from }}</span>
                                 </div>
                                 <hr/>
-                                <div class=" mt-3 row" style="background: #fff;">
+                                <div class=" mt-3 p-3" style="background: #fff;">
                                     <h5>DROP-OFF - LOCATION </h5>
 
                                     <p class="col-11"><span class="  ti ti-gps"></span>&nbsp;{{ form.pickupLoc }}</p>
@@ -84,9 +84,9 @@
                             </div>
                             <div class="col-md-12 pb-4"></div>
 
-                            <div class="col-md-12 pb-4" style="background: #fff;">
+                            <div class=" pb-4" style="background: #fff;">
                                 <div class="p-2 pt-3"
-                                     style="overflow: hidden; background: #e1e1e1; width: 107.5%; margin-left: -12px;">
+                                     style="overflow: hidden; background: #e1e1e1; ">
                                     <h5>FILTER BY</h5>
                                 </div>
                                 <div class="mt-3">
@@ -362,7 +362,7 @@
                             <div class="col-md-11">
                                 <swiper
                                     :modules="[Navigation, Pagination, Scrollbar, A11y]"
-                                    :slides-per-view="5"
+                                    :slides-per-view="4"
                                     :space-between="5"
                                     navigation
                                     style="width: 90%;"
@@ -388,7 +388,7 @@
 
                             </div>
 
-                            <h3 style="color: #000;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS
+                            <h3 style="color: #000; margin-left: 1.2%;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS
                                 FOUND</strong></h3>
                             <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
                                 <div :style="getDisplayStyle(vehicle)">
@@ -502,7 +502,7 @@
                                                         <ul class="row">
                                                             <li class="col-md-6" style="height: 20px"
                                                                 v-for="(item, index) in vehicle.included ">
-                                                                <div class="row" v-if="index < 4">
+                                                                <div class="row" v-if="index < 6">
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
                                                                     <p class="col-md-10 included-font text-nowrap">
@@ -519,7 +519,7 @@
                                                             <span @click="showMoreIncluded(vehicle.id)"
                                                                   class="col-md-12 cursor-pointer"
                                                                   :id="'show-more'+ vehicle.id"
-                                                                  v-if="vehicle.included.length > 4 ">Show more ...</span>
+                                                                  v-if="vehicle.included.length > 6 ">Show more ...</span>
                                                         </ul>
                                                     </div>
                                                     <div class="row mb-5">
@@ -1119,6 +1119,10 @@ onMounted(() => {
 
 }
 
+.card:hover {
+    background-color: #f8da47;
+}
+
 .image-content,
 .card-content {
     display: flex;
@@ -1157,7 +1161,7 @@ onMounted(() => {
 }
 
 .swiper {
-    margin-left: 40px;
+    margin-left: 4%;
     position: initial;
     align-items: center;
 }
@@ -1192,7 +1196,6 @@ onMounted(() => {
     height: 80px;
     background-repeat: no-repeat;
     margin-top: -40px;
-    margin-left: -12px;
     width: 4%;
     font-weight: bold;
     background-color: #fff;

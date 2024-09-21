@@ -41,7 +41,7 @@
                                     value-format="YYYY-MM-DD"
                                     style="height: 45px;"
                                     :disabled-date="disabledDate"
-                                    class="rounded-0"
+                                    class="rounded-0 font-size"
 
                                 />
 
@@ -346,6 +346,13 @@ onMounted(() => {
     getLocations();
     getVehicles();
     getLogos();
+    // const els = document.getElementsByClassName("el-date-table__row")
+    // for(let i =0; i< els.length; i++) {
+    //     console.log(els[i].style.color = "red")
+    // }
+
+
+
 })
 
 
@@ -701,4 +708,6 @@ section {
 .danger {
     color: red;
 }
+
+
 </style>

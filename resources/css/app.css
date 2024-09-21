@@ -1351,7 +1351,7 @@ section:not(.login-section) {
 }
 
 #content.zebra section:nth-child(even){
-    background: #f6f6f6;
+    background: #f7f7f7;
 }
 
 section:not(.relative) {}
