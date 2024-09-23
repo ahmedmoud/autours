@@ -428,7 +428,7 @@
                                             <img style="width: 35%; margin-right: 2px;"
                                                  :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
                                              {{
-                                                specification.option
+                                                specification.value
                                             }} {{
                                                 specification.name == 'Number of Seats' ? 'Seats' : specification.name == 'Doors' ? 'Doors' : ''
                                             }}
