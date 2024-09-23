@@ -254,8 +254,10 @@ const getUserData = async (index) => {
         const params = {};
         if (country.value) params.country = country.value
         if (supplier.value) params.supplier = supplier.value
-        if (branch.value) branch.supplier = branch.value
-        if (selectedVehicles.value) selectedVehicles.supplier = selectedVehicles.value
+        if (branch.value) params.branch = branch.value
+        if (selectedVehicles.value) params.selectedVehicles = selectedVehicles.value
+
+        console.log(branch.value)
 
         const response = await axios.get('/get/profit', {params: params});
         tableData.value = response.data.data

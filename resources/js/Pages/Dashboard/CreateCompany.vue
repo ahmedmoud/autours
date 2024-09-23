@@ -71,11 +71,7 @@
                                         v-model="country"
                                         size="large"
                                         filterable
-                                        remote
-                                        reserve-keyword
                                         placeholder="Pickup..."
-                                        remote-show-suffix
-                                        :remote-method="remoteCountries"
                                         :loading="countries.loading.value"
                                         :on-change="getCities()"
                                         required>
@@ -196,13 +192,10 @@
                                             v-model="newBranch.country"
                                             size="large"
                                             filterable
-                                            remote
-                                            reserve-keyword
                                             placeholder="Country..."
-                                            remote-show-suffix
-                                            :remote-method="remoteCountries"
                                             :loading="countries.loading.value"
-                                            required>
+                                            required
+                                        >
                                             <el-option
                                                 v-for="item in countries.list.value"
                                                 :key="item.id"
@@ -583,19 +576,7 @@ const getCities = async () => {
         cities.loading.value = false
     }
 }
-const remoteCountries = (query) => {
-    if (query) {
-        countries.loading.value = true
-        setTimeout(() => {
-            countries.loading.value = false
-            countries.options.value = countries.list.value.filter((item) =>
-                item.label.toLowerCase().includes(query.toLowerCase())
-            )
-        }, 200)
-    } else {
-        countries.options.value = []
-    }
-}
+
 const fetchStates = async (iso) => {
     // states.loading.value = true
     try {

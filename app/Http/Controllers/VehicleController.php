@@ -32,6 +32,7 @@ use Inertia\Inertia;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use stdClass;
 
 class VehicleController extends Controller
 {
@@ -77,7 +78,7 @@ class VehicleController extends Controller
                     'status' => false
                 ]);
             }
-            $query = $filteredVehicles->with('category', 'supplier', 'profit', 'included', 'branch','locationType','specifications');
+            $query = $filteredVehicles->with('category', 'supplier', 'profit', 'included', 'branch', 'locationType', 'specifications');
 
             if ($request->priceRange && $request->priceRange !== 0) {
                 $query->where('price', '<=', ($request->priceRange));
@@ -92,7 +93,7 @@ class VehicleController extends Controller
             if ($request->location_type_id) {
 
                 $query->whereHas('locationType', function (\Illuminate\Database\Eloquent\Builder $query) use ($request) {
-                                    $query->whereIn('location_type_id', $request->location_type_id);
+                    $query->whereIn('location_type_id', $request->location_type_id);
                 });
             }
 
@@ -130,7 +131,7 @@ class VehicleController extends Controller
             foreach ($locationTypes as $locationType) {
                 $locationType->vehicle_count = 0;
                 foreach ($vehicles as $vehicle) {
-                    if (isset($vehicle->locationType) && count($vehicle->locationType)  && $vehicle->locationType[0]->id  == $locationType->id) {
+                    if (isset($vehicle->locationType) && count($vehicle->locationType) && $vehicle->locationType[0]->id == $locationType->id) {
                         $locationType->vehicle_count++;
                     }
                 }
@@ -138,7 +139,7 @@ class VehicleController extends Controller
             foreach ($categories as $category) {
                 $category->vehicle_count = 0;
                 foreach ($vehicles as $vehicle) {
-                    if (isset($vehicle->category)   && $vehicle->category  == $category->id) {
+                    if (isset($vehicle->category) && $vehicle->category == $category->id) {
                         $category->vehicle_count++;
                     }
                 }
@@ -308,16 +309,13 @@ class VehicleController extends Controller
                 $existingVehicle->category = Category::query()->where('name', $request->category)->first()->id;
             }
 
-            if ($request->has('specifications')) {
-                $existingVehicle->specifications = json_decode($request->specifications);
-            }
 
             if ($request->has('location_types')) {
                 LocationTypeVehicle::query()->where('vehicle_id', $existingVehicle->id)->delete();
-                    LocationTypeVehicle::query()->insert([
-                        'vehicle_id' => $existingVehicle->id,
-                        'location_type_id' => $request->location_types
-                    ]);
+                LocationTypeVehicle::query()->insert([
+                    'vehicle_id' => $existingVehicle->id,
+                    'location_type_id' => $request->location_types
+                ]);
             }
 
             $existingVehicle->save();
@@ -325,14 +323,18 @@ class VehicleController extends Controller
                 VehicleSpecification::query()->where('vehicle_id', $existingVehicle->id)->delete();
                 $specifications = json_decode($request->specifications);
                 foreach ($specifications as $specification) {
-                    VehicleSpecification::insert(
-                        [
-                            'vehicle_id' => $existingVehicle->id,
-                            'name' => isset($specification->name) ? $specification->name : '',
-                            'value' => isset($specification->option) ? $specification->option : '',
-                            'icon' => isset($specification->icon) ? $specification->icon : ''
-                        ]
-                    );
+                    if($specification->selectedOption !== "" ) {
+                        VehicleSpecification::insert(
+                            [
+                                'vehicle_id' => $existingVehicle->id,
+                                'name' => isset($specification->name) ? $specification->name : '',
+                                'value' => isset($specification->selectedOption) ? $specification->selectedOption : '',
+                                'icon' => isset($specification->icon) ? $specification->icon : '',
+                                'created_at' => Carbon::now()->toDateTimeString(),
+                                'updated_at' => Carbon::now()->toDateTimeString()
+                            ]
+                        );
+                    }
                 }
             }
             if ($request->has('included')) {
@@ -384,18 +386,14 @@ class VehicleController extends Controller
             if ($request->has('category')) {
                 $item->category = $request->category;
             }
-            if ($request->has('specifications')) {
 
-                $item->specifications = json_decode($request->specifications);
-
-            }
 
             $item->save();
             if ($request->has('location_types')) {
-                    LocationTypeVehicle::query()->insert([
-                        'vehicle_id' => $item->id,
-                        'location_type_id' => $request->location_types
-                    ]);
+                LocationTypeVehicle::query()->insert([
+                    'vehicle_id' => $item->id,
+                    'location_type_id' => $request->location_types
+                ]);
             }
             if ($request->has('specifications')) {
                 $specifications = json_decode($request->specifications);
@@ -465,7 +463,7 @@ class VehicleController extends Controller
                         ->where('value', $option)
                         ->whereIn('vehicle_id', $request->vehicle_ids)
                         ->count();
-                    $arrayX[] =  $x;
+                    $arrayX[] = $x;
                 }
                 $specification->options = $arrayX;
             }
@@ -500,7 +498,7 @@ class VehicleController extends Controller
 
     public function getLocations()
     {
-        $locations = Branch::pluck('location')->unique();
+        $locations = Branch::query()->orderBy('adresse')->get()->pluck('location')->unique();
         return response()->json($locations);
 
     }
@@ -597,7 +595,6 @@ class VehicleController extends Controller
     }
 
 
-
     public function createPhotos(Request $request)
     {
         $item = new VehiclesPhotos();
@@ -646,8 +643,19 @@ class VehicleController extends Controller
                 'status' => false
             ], StatusCodes::SERVER_ERROR);
         }
-        $vehicle = Vehicle::query()->with(['branch', 'category', 'included','locationType','specifications'])->find($id);
+        $vehicle = Vehicle::query()->with(['branch', 'category', 'included', 'locationType'])->find($id);
         $vehicle->what_is_included = $vehicle->included->pluck('what_is_included');
+        $vehicle->specifications = VehicleSpecification::query()->where("vehicle_id", $id)->orderBy('name')->get();
+        $specs = Specification::query()->orderBy('name')->get();
+        foreach ($specs as $spec) {
+            $spec->selectedOption = "";
+            foreach ($vehicle->specifications as $specification) {
+                if ($specification['name'] == $spec->name) {
+                    $spec->selectedOption = $specification['value'];
+                }
+            }
+        }
+        $vehicle->specifications = $specs;
         return response()->json([
             'data' => $vehicle,
             'status' => true

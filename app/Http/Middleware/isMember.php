@@ -20,7 +20,7 @@ class isMember
         if(Auth::check() && Auth::user()->role == 'active_supplier' || Auth::user()->role == 'supplier' || Auth::user()->role == 'reviewing'){
             return $next($request);
         }else{
-            return abort(402, 'Unauthorized');
+            return abort(403, 'Unauthorized');
         }
     }
 }

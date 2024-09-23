@@ -20,7 +20,7 @@ class isActiveSupplier
         if(Auth::check() && Auth::user()->role == 'active_supplier'){
             return $next($request);
         }else{
-            return abort(401, 'Unauthorized');
+            return abort(403, 'Unauthorized');
         }
     }
 }

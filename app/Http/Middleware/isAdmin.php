@@ -20,7 +20,7 @@ class isAdmin
         if(Auth::check() && Auth::user()->role == 'admin'){
             return $next($request);
         }else{
-            return abort(402, 'Unauthorized');
+            return abort(401, 'Unauthorized');
         }
     }
 }

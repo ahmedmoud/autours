@@ -1,8 +1,8 @@
 <template>
 
-    <header style="background: #f9d602">
+    <header style="background: #f9d602; height: 80px;">
         <div class="row justify-content-between">
-            <a href="/" class="col-2"><img style="max-width:150px;" src="/images/akrom.jpg" alt="logo"></a>
+            <a href="/" class="col-2"><img style="margin:-20% 0 -1% 0 " src="/img/Logo_8k.svg" width="200" alt="logo"><p style="font-size: 1.1vw; font-weight: 1000; color: black;">Explore It Your Own!</p></a>
 
             <div class="topnav" id="myTopnav">
 
@@ -140,12 +140,14 @@ body {
     text-align: center;
     //padding: 14px 16px;
     text-decoration: none;
+    height: 40px;
 
     font-size: 17px;
 }
 
 .topnav a:hover {
     background-color: rgba(206, 197, 7, 0.34);
+    height: 40px;
 }
 
 

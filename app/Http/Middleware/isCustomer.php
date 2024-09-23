@@ -20,7 +20,7 @@ class isCustomer
         if(Auth::check() && Auth::user()->role == 'customer'){
             return $next($request);
         }else{
-            return abort(403, 'Unauthorized');
+            return abort(401, 'Unauthorized');
         }
     }
 }

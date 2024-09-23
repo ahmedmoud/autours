@@ -198,21 +198,6 @@
                         <h4> What is included ? </h4>
                         <div class="row">
                             <div class="formbold-mb-3 col-6">
-                                <!--                                <MultiSelect v-model="selectedIncluded"-->
-                                <!--                                             :options="included.list.value"-->
-                                <!--                                             optionLabel="label"-->
-                                <!--                                             select-all-->
-                                <!--                                             option-value="id"-->
-                                <!--                                             optionGroupChildren="item"-->
-                                <!--                                             placeholder="Select Whats included !"-->
-                                <!--                                             class="col-md-6 p-dropdown-items "-->
-                                <!--                                >-->
-                                <!--                                    <template #optiongroup="slotProps">-->
-                                <!--                                        <div class="flex align-content-center" style="width: 250px; height: 50px;">-->
-                                <!--                                            <div>{{ slotProps.option.label }}</div>-->
-                                <!--                                        </div>-->
-                                <!--                                    </template>-->
-                                <!--                                </MultiSelect>-->
                                 <div style="height: 250px;">
                                     <el-select
                                         v-model="selectedIncluded"
@@ -244,24 +229,24 @@
                             <div v-for="(list, i) in specifications" :key="i" class="formbold-mb-3 col-6">
                                 <label class="formbold-form-label col-5">{{ list.name }} - <i
                                     :class="'fa fa-' + list.icon"/></label>
-                                <el-select
-                                    v-model="specification[i].value"
-                                    size="large"
-                                    filterable
-                                    remote
-                                    class="col-5"
-                                    reserve-keyword
-                                    placeholder="Pickup..."
-                                    remote-show-suffix
+                                <select
+                                    class="col-md-5 form-select"
+                                    @click="getSpecificationOption(list.name,list.icon, $event)"
                                 >
-                                    <el-option
+                                    <option
+                                        value=""
+                                    >
+                                        -- No Option --
+                                    </option>
+                                    <option
                                         v-for="item in list.options"
-                                        @click="getSpecificationOption(list.name, item, list.icon)"
-                                        :key="item"
-                                        :label="item"
                                         :value="item"
-                                    />
-                                </el-select>
+                                        :selected="list.selectedOption === item"
+
+                                    >
+                                        {{item}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <hr/>
@@ -333,6 +318,7 @@ const included = {
 const specification = ref([])
 const specifications = ref([])
 const selectedSpecifications = ref([])
+const vehicleSpecifications = ref([])
 let vehicle = {};
 
 const photos = {
@@ -342,25 +328,28 @@ const photos = {
     options: ref([]),
 };
 
-const getSpecificationOption = (name, option, icon) => {
+const getSpecificationOption = (name, icon, option) => {
+
     const s = {
         'name': name,
-        'option': option,
+        'selectedOption': option.target.value,
         'icon': icon,
     }
 
-    const isDuplicate = selectedSpecifications.value.some(item => (
-        item.name === name
-    ));
+        const isDuplicate = selectedSpecifications.value.some(item => (
+            item.name === name
+        ));
 
-    if (!isDuplicate) {
-        selectedSpecifications.value.push(s);
-    } else {
-        const existingItem = selectedSpecifications.value.find(item => item.name === name);
-        if (existingItem) {
-            existingItem.option = option;
+        if (!isDuplicate) {
+            if(option.target.value !== "") {
+                selectedSpecifications.value.push(s);
+            }
+        } else {
+           const existingItem = selectedSpecifications.value.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.selectedOption = s.selectedOption;
+            }
         }
-    }
 
 };
 
@@ -467,7 +456,6 @@ const remotePhotos = (query) => {
 }
 
 const validateForm = () => {
-    console.log(price.value)
     let valid = true;
     if (price.value === '' || price.value === [] || price.value === null || price.value === undefined) {
         $('#price').show();
@@ -536,13 +524,14 @@ const upload = async () => {
         formData.append('month_price', monthPrice.value);
         formData.append('pickupLoc', pickupLoc.value);
         formData.append('category', category.value);
-        formData.append('specifications', JSON.stringify(selectedSpecifications.value));
+       if(selectedSpecifications.value.length) {
+           formData.append('specifications', JSON.stringify(selectedSpecifications.value));
+       }
         formData.append('included', selectedIncluded.value);
         formData.append('update', '1');
         formData.append('instant_confirmation', instantConfirmation.value);
         formData.append('id', vehicle.id);
-        formData.append('location_types', locationType.value);
-
+        formData.append('location_types', locationType.value.id);
 
         if (!validateForm()) return;
 
@@ -557,7 +546,6 @@ const upload = async () => {
 }
 
 const open = (response) => {
-    console.log(response)
     if (response.status) {
         $toast.success('Your Vehicle Updated Successfully', {position: 'top'})
     } else {
@@ -565,7 +553,6 @@ const open = (response) => {
     }
 }
 const getData = async () => {
-    console.log(router)
     try {
         let urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
@@ -579,14 +566,12 @@ const getData = async () => {
         price.value = vehicle.price
         weekPrice.value = vehicle.week_price
         monthPrice.value = vehicle.month_price
-        specification.value = vehicle.specifications
-
+        specifications.value = vehicle.specifications
         selectedSpecifications.value = vehicle.specifications
         selectedIncluded.value = vehicle.what_is_included
         photo.value = vehicle.photo
         locationType.value = vehicle.location_type.length  ? vehicle.location_type[0] : {}
         instantConfirmation.value = vehicle.instant_confirmation === 1? true : false
-        console.log(vehicle.included)
     } catch (e) {
         console.log("=====error==>")
         console.log(e)
@@ -598,7 +583,6 @@ const fetchIncluded = async () => {
     try {
         const response = await axios.get('/get/included')
         included.all.value = response.data
-        console.log(included.all.value)
         included.list.value = included.all.value.map((item) => ({
             id: `${item.id}`,
             label: `${item.what_is_included}`,
@@ -629,7 +613,7 @@ const fetchLocationTypes = async () => {
 onMounted(() => {
     fetchBranches();
     fetchCategories();
-    fetchSpecifications();
+    // fetchSpecifications();
     fetchPhotos();
     fetchIncluded();
     getData();

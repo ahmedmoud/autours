@@ -220,29 +220,7 @@ const getLogos = async () => {
         console.error(error)
     }
 }
-const fetchCountries = async () => {
-    countries.loading.value = true;
-    loading.value = true
 
-    try {
-        const response = await axios.get('https://api.countrystatecity.in/v1/countries', {
-            headers: {
-                'X-CSCAPI-KEY': 'NVZhakViaFdtOXBJZ0xoQW1lWkJGTmlGUW1Kb05XaElGbXhocnNNOA=='
-            }
-        })
-        countries.all.value = response.data
-        countries.list.value = countries.all.value.map((item) => ({
-            id: `${item.id}`,
-            label: `${item.name}`,
-            iso: `${item.iso2}`
-        }))
-        loading.value = false
-    } catch (error) {
-        console.error(error)
-    } finally {
-        countries.loading.value = false;
-    }
-}
 const getVehicles = async () => {
     try {
         loading.value = true
@@ -270,24 +248,7 @@ const getLocations = async () => {
     }
 }
 
-const remoteLocations = (query) => {
-    if (query) {
-        locations.loading.value = true
-        loading.value = true
 
-        setTimeout(() => {
-            locations.loading.value = false
-            locations.options.value = locations.all.value.filter((item) =>
-                item.toLowerCase().includes(query.toLowerCase())
-            )
-        }, 200)
-
-        loading.value = false
-
-    } else {
-        locations.options.value = [];
-    }
-}
 
 const search = async () => {
     // loading.value = true

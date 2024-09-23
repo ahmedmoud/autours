@@ -60,19 +60,22 @@ class ProfitsController extends Controller
     public function show(Request $request)
     {
         try {
-            $query = Profit::query();
+            $query = Profit::query()->
+            rightJoin('vehicles', 'profits.vehicle_id', '=','vehicles.id' );
+
             if ($request->has('supplier')) {
                 $query->where('supplier_id', $request->supplier);
             }
+
             if ($request->has('branch')) {
                 $query->where('branch_id', $request->branch);
             }
+
             if ($request->has('selectedVehicles')) {
-                $query->whereIn('vehicle_id', explode(',',$request->selectedVehicles));
+                $query->whereIn('vehicle_id', $request->selectedVehicles);
             }
 
-            $query->
-              rightJoin('vehicles', 'profits.vehicle_id', '=','vehicles.id' )
+            $query
             ->leftJoin('branches', 'branches.id', '=', 'profits.branch_id');
 
             if ($request->has('country')) {
