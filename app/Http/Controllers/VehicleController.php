@@ -525,7 +525,9 @@ class VehicleController extends Controller
             if ($role === 'active_supplier') {
                 $vehicles->where('supplier', $id);
             }
-        } else if(!is_null($supplierId)){
+        }
+
+        if(!is_null($supplierId)){
             $vehicles->where('supplier', $supplierId);
         }
 
