@@ -78,7 +78,7 @@ class VehicleController extends Controller
                     'status' => false
                 ]);
             }
-            $query = $filteredVehicles->with('category', 'supplier', 'profit', 'included', 'branch', 'locationType', 'specifications');
+            $query = $filteredVehicles->with('category', 'supplier.fuelPolicy', 'profit', 'included', 'branch', 'locationType', 'specifications');
 
             if ($request->priceRange && $request->priceRange !== 0) {
                 $query->where('price', '<=', ($request->priceRange));
@@ -164,7 +164,7 @@ class VehicleController extends Controller
 
                     $vehicle->final_price = ($vehicle->week_price + (($vehicle->week_price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
                     $priceTax = $vehicle->profit->per_week_profit;
-                } else if ($diffInDays >= 8 && $diffInDays < 30) {
+                } else if ($diffInDays >= 8 ) {
                     $vehicle->final_price = ($vehicle->month_price + (($vehicle->month_price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
                     $priceTax = $vehicle->profit->per_month_profit;
                 }

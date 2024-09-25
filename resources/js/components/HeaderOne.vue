@@ -2,7 +2,10 @@
 
     <header style="background: #f9d602; height: 80px;">
         <div class="row justify-content-between">
-            <a href="/" class="col-2"><img style="margin:-20% 0 -1% 0 " src="/img/Logo_8k.svg" width="200" alt="logo"><p style="font-size: 1.1vw; font-weight: 1000; color: black;">Explore It Your Own!</p></a>
+            <a href="/" class="col-2 justify-content-center">
+                <img style="margin:-20% 0 -1% 0 " src="/img/Logo_8k.svg" width="200" alt="logo">
+                <p style="font-size: 1.1vw; text-wrap: nowrap; font-weight: 1000; color: black;">Explore It Your Own!</p>
+            </a>
 
             <div class="topnav" id="myTopnav">
 

@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Vehicle;
-use App\Models\Branch;
 
 class User extends Authenticatable
 {
@@ -35,7 +32,8 @@ class User extends Authenticatable
         'price_tax',
         'week_price_tax',
         'month_price_tax',
-        'year_price_tax'
+        'year_price_tax',
+        'fuel_policy_id'
     ];
 
     /**
@@ -65,5 +63,9 @@ class User extends Authenticatable
     public function branches()
     {
         return $this->hasMany(Branch::class, 'id', 'company_id');
+    }
+    public function fuelPolicy()
+    {
+        return $this->belongsTo(FuelPolicy::class,'fuel_policy_id','id');
     }
 }

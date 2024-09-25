@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\FuelPolicyController;
 use App\Http\Controllers\IncludedController;
 use App\Http\Controllers\LocationTypesController;
 use App\Http\Controllers\ProfitsController;
@@ -100,6 +101,7 @@ Route::get('/get/rentals', [BookingsController::class, 'getRentals']);
 Route::get('get/photos', [VehicleController::class, 'getPhotos']);
 Route::get('get/rental-terms', [RentalTermsController::class, 'index']);
 Route::get('get/currencies', [CurrencyController::class, 'index']);
+Route::get('get/fuel-policies', [FuelPolicyController::class, 'index']);
 Route::get('get/included', [IncludedController::class, 'index']);
 
 // Authorized only

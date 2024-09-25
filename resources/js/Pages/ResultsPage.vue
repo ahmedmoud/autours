@@ -388,7 +388,8 @@
 
                             </div>
 
-                            <h3 style="color: #000; margin-left: 1.2%;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS
+                            <h3 style="color: #000; margin-left: 1.2%;">SEARCH RESULT <strong
+                                style="color: #bdaa2f;">{{ count }} CARS
                                 FOUND</strong></h3>
                             <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
                                 <div :style="getDisplayStyle(vehicle)">
@@ -408,6 +409,7 @@
                                         </div>
                                         <div>
                                             <div class="col-md-12">
+
                                                 <div class="col-md-2 d-img">
                                                     <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid"
                                                          width="300" height="100"
@@ -416,9 +418,19 @@
                                                 <div class="d-info">
                                                     <div class="d-text">
                                                         <h4 style="color: #000;" class="text-nowrap">
-                                                            {{ vehicle.name }}
-                                                            <span
-                                                                style="font-weight: 600;color: #727272;font-size: 16px;">or&nbsp;Similar</span>
+                                                            <el-tooltip placement="right-start">
+                                                                <template style="background: #fff !important;" #content>
+                                                                    <div class=" p-3" style="font-size: 16px;">
+                                                                        The supplier company will provide you with a car
+                                                                        of the same car class <br>& similar
+                                                                        Specification but the make and more might be
+                                                                        different
+
+                                                                    </div>
+                                                                </template>
+                                                                {{ vehicle.name }} OR&nbsp;Similar
+
+                                                            </el-tooltip>
                                                         </h4>
                                                         <span>{{ vehicle?.category?.name }}</span>
                                                         <div class="d-atr-group row">
@@ -459,6 +471,7 @@
                                                                     vehicle.supplier.company
                                                                 }}</span>
                                                         </div>
+
                                                         <div style=" margin-top: -10px;">
                                                             <div><a
                                                                 class="cursor-pointer text-primary text-decoration-underline"
@@ -476,19 +489,37 @@
                                                             style="font-size: medium; ">(&nbsp;<strong
                                                             style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
-                                                    <div v-if="vehicle.instant_confirmation" class="col-md-2 mt-2 text-nowrap bold">
-                                                        <div class="">
-                                                            <img class="mb-2" width="40" src="/images/icons/instant_confirmation.png"/>
-                                                          Instant Confirmation
+                                                    <el-tooltip v-if="vehicle.instant_confirmation"
+                                                                placement="right-start">
+                                                        <template style="background: #fff !important;" #content>
+                                                            <div class=" p-3" style="font-size: 16px;">
+                                                                Receive instant booking confirmation!
+                                                            </div>
+                                                        </template>
+                                                        <div class="col-md-2 mt-2 text-nowrap bold">
+                                                            <div class="" id="instant_btn">
+                                                                <img class="mb-2" width="40"
+                                                                     src="/images/icons/instant_confirmation.png"/>
+                                                                Instant Confirmation
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div v-else class="col-md-2">
-                                                        <button class="scv-badge badge-white be_media" tabindex="0">
-                                                            <i style="font-size: 1.5vw; color: gold;"
-                                                               class="mt-1 px-2 fa fa-ban be_media-left be_media-middle"/>
-                                                            <span class="scv-inst-text text-nowrap"
-                                                                  style="color: #000; font-size: .8vw;">Needs Confirmation</span>
-                                                        </button>
+                                                    </el-tooltip>
+                                                    <div>
+                                                        <el-tooltip v-if="!vehicle.instant_confirmation"
+                                                                    placement="right-start">
+                                                            <template style="background: #fff !important;" #content>
+                                                                <div class=" p-3" style="font-size: 16px;">
+                                                                    You will receive booking confirmation after the
+                                                                    requested service availability is verified!
+                                                                </div>
+                                                            </template>
+                                                            <div class="col-md-2  text-nowrap bold">
+                                                                <div>
+                                                                    <i style="font-size: 1.8vw; color: gold;" class=" px-2 fa fa-ban be_media-left be_media-middle"/>
+                                                                   <strong class="mb-5"> On request</strong>
+                                                                </div>
+                                                            </div>
+                                                        </el-tooltip>
                                                     </div>
                                                 </div>
                                             </div>
@@ -537,8 +568,23 @@
                                                                     }}</strong></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
-                                                            <span class="text-nowrap"><i class="fa fa-gas-pump"/>&nbsp;</span>
-                                                            Fuel Policy: <small> Full to Full </small></div>
+                                                            <el-tooltip placement="right-start" trigger="hover">
+                                                                <template style="background: #fff !important;" #content>
+                                                                    <div class=" p-3" style="font-size: 16px;">
+                                                                        {{ vehicle.supplier.fuel_policy.description }}
+                                                                    </div>
+                                                                </template>
+
+                                                                <label class="text-nowrap"><i
+                                                                    class="fa fa-gas-pump"/>&nbsp;
+                                                                    Fuel Policy: <strong>
+                                                                        {{
+                                                                            vehicle.supplier.fuel_policy.name
+                                                                        }} </strong></label>
+
+                                                            </el-tooltip>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 d-price d-total offset-1">
@@ -1227,5 +1273,22 @@ onMounted(() => {
     border-width: thick;
 }
 
+.el-popper.is-dark {
+    box-shadow: 5px 5px rgba(189, 189, 189, 0.49);
+    background: #ffffff !important;
+    color: black;
+    border-color: rgba(0, 0, 0, 0.49);
+    border-width: 2px;
+    border-radius: 12px;
+    font-weight: 500;
+    text-wrap: balance;
+    font-size: 1vw;
+    inset: -7.5% auto auto -300px !important;
+}
 
+.el-popper[data-popper-placement^=right] > .el-popper__arrow {
+    top: 90% !important;
+    left: 130px !important;
+    display: none;
+}
 </style>
