@@ -454,7 +454,8 @@ const getVehicles = async () => {
     try {
         const response = await axios.get('get/vehicles', {
             params: {
-                'branch_id': branch.value
+                'branch_id': branch.value,
+                'supplier': supplier.value
             }
         });
         vehicles.all.value = response.data
