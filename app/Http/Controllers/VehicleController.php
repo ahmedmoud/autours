@@ -509,8 +509,12 @@ class VehicleController extends Controller
 
         $user = auth()->user();
         $branchId = null;
+        $supplierId = null;
         if ($request->has('branch_id')) {
             $branchId = $request->branch_id;
+        }
+        if($request->has('supplier_id')) {
+            $supplierId = $request->supplier_id;
         }
         if ($user) {
             $id = $user->id;
@@ -521,6 +525,8 @@ class VehicleController extends Controller
             if ($role === 'active_supplier') {
                 $vehicles->where('supplier', $id);
             }
+        } else if(!is_null($supplierId)){
+            $vehicles->where('supplier', $supplierId);
         }
 
         if ($branchId != null) {
