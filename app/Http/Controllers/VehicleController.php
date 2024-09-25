@@ -513,8 +513,8 @@ class VehicleController extends Controller
         if ($request->has('branch_id')) {
             $branchId = $request->branch_id;
         }
-        if($request->has('supplier_id')) {
-            $supplierId = $request->supplier_id;
+        if($request->has('supplier')) {
+            $supplierId = $request->supplier;
         }
         if ($user) {
             $id = $user->id;
