@@ -52,7 +52,9 @@
 
                             <h3>Contract Agreement</h3>
                             <ul>
-                                <li>Terms and Conditions, along with the website's Terms of Use and privacy policy, constitute the contract between the renter and AUTOURS Cars.</li>
+                                <li>Terms and Conditions, along with the website's Terms of Use and privacy policy,
+                                    constitute the contract between the renter and AUTOURS Cars.
+                                </li>
                                 <li>These Terms apply to all deals for our services, superseding any other Terms.</li>
                                 <li>Acceptance of services includes acceptance of these Terms.</li>
                             </ul>
@@ -65,62 +67,89 @@
 
                             <h3>Booking Responsibilities</h3>
                             <ul>
-                                <li>Bookings made through the website are governed by these Terms and the supplier's terms.</li>
+                                <li>Bookings made through the website are governed by these Terms and the supplier's
+                                    terms.
+                                </li>
                                 <li>Confirmation of acceptance is required for any booking.</li>
                                 <li>Contact for inquiries: +1-914-368-0091 or +44-208-196-9510.</li>
                             </ul>
 
                             <h3>Booking Confirmation</h3>
                             <ul>
-                                <li>Renters will receive a booking confirmation voucher via email if the vehicle is available.</li>
-                                <li>Alternatives will be suggested if the requested vehicle is unavailable; acceptance is mandatory for modifications.</li>
-                                <li>Failure to accept alternatives may result in booking cancellation and potential refund.</li>
+                                <li>Renters will receive a booking confirmation voucher via email if the vehicle is
+                                    available.
+                                </li>
+                                <li>Alternatives will be suggested if the requested vehicle is unavailable; acceptance
+                                    is mandatory for modifications.
+                                </li>
+                                <li>Failure to accept alternatives may result in booking cancellation and potential
+                                    refund.
+                                </li>
                             </ul>
 
                             <h3>Payment and Contract Confirmation</h3>
                             <ul>
-                                <li>No contract for car rental exists until booking confirmation and payment are completed.</li>
-                                <li>All correspondence will be directed to the individual making the booking, even if a third party pays.</li>
+                                <li>No contract for car rental exists until booking confirmation and payment are
+                                    completed.
+                                </li>
+                                <li>All correspondence will be directed to the individual making the booking, even if a
+                                    third party pays.
+                                </li>
                             </ul>
 
                             <h3>Voucher Presentation</h3>
                             <ul>
                                 <li>Renters must present a confirmation voucher at the time of vehicle pickup.</li>
-                                <li>AUTOURS is not liable for rejected service due to failure to provide the voucher.</li>
+                                <li>AUTOURS is not liable for rejected service due to failure to provide the voucher.
+                                </li>
                             </ul>
 
                             <h3>Liability Provisions</h3>
                             <ul>
                                 <li>AUTOURS is not liable for charges incurred at the local level.</li>
-                                <li>Renters bear full responsibility for any damages caused due to negligence, including DUI incidents.</li>
+                                <li>Renters bear full responsibility for any damages caused due to negligence, including
+                                    DUI incidents.
+                                </li>
                             </ul>
 
                             <h3>Limited Liability Clause</h3>
                             <ul>
-                                <li>AUTOURS is not liable for supplier issues regarding car availability; resolution must be between the renter and the supplier.</li>
+                                <li>AUTOURS is not liable for supplier issues regarding car availability; resolution
+                                    must be between the renter and the supplier.
+                                </li>
                             </ul>
 
                             <h3>Role of AUTOURS</h3>
                             <ul>
-                                <li>AUTOURS acts solely as a broker and is not responsible for damages or extra charges beyond rental costs.</li>
+                                <li>AUTOURS acts solely as a broker and is not responsible for damages or extra charges
+                                    beyond rental costs.
+                                </li>
                                 <li>Refund liability, if applicable, is limited to the deposit made at booking.</li>
                             </ul>
 
                             <h3>Insurance Provisions</h3>
                             <ul>
-                                <li><strong>Collision Damage Waiver (CDW)</strong> - Reduces liability for damages, excluding intentional damages or negligent use.</li>
-                                <li><strong>Theft Waiver (TW)</strong> - Reduces liability for theft or damage due to theft. Negligence may lead to full liability for the vehicle's value.</li>
+                                <li><strong>Collision Damage Waiver (CDW)</strong> - Reduces liability for damages,
+                                    excluding intentional damages or negligent use.
+                                </li>
+                                <li><strong>Theft Waiver (TW)</strong> - Reduces liability for theft or damage due to
+                                    theft. Negligence may lead to full liability for the vehicle's value.
+                                </li>
                             </ul>
 
                             <h3>Delivery & Collection Charges</h3>
                             <ul>
-                                <li>Additional charges apply for out-of-hours service or delivery/collection from accommodations.</li>
+                                <li>Additional charges apply for out-of-hours service or delivery/collection from
+                                    accommodations.
+                                </li>
                                 <li>Specific information must be provided for vehicle delivery.</li>
                             </ul>
 
                             <h3>Important Insurance Notes</h3>
                             <ul>
-                                <li>Check insurance covers, especially regarding third-party exclusions for family members.</li>
+                                <li>Check insurance covers, especially regarding third-party exclusions for family
+                                    members.
+                                </li>
                                 <li>Personal Accident Insurance (PAI) options should be reviewed before booking.</li>
                             </ul>
 
@@ -132,28 +161,35 @@
 
                             <h3>Age Limitations</h3>
                             <ul>
-                                <li>Minimum rental age is usually 21 years, with potential extra charges for drivers under 25 or over 65.</li>
+                                <li>Minimum rental age is usually 21 years, with potential extra charges for drivers
+                                    under 25 or over 65.
+                                </li>
                                 <li>Verify age policies with the car rental supplier.</li>
                             </ul>
 
                             <h3>Additional Drivers</h3>
                             <ul>
-                                <li>Additional driver charges must be checked in the terms of the respective supplier.</li>
+                                <li>Additional driver charges must be checked in the terms of the respective supplier.
+                                </li>
                             </ul>
 
                             <h3>Rental Period & Charges</h3>
                             <ul>
-                                <li>Rental calculated on a 24-hour basis; late returns may incur additional charges.</li>
+                                <li>Rental calculated on a 24-hour basis; late returns may incur additional charges.
+                                </li>
                             </ul>
 
                             <h3>Rental Extensions</h3>
                             <ul>
-                                <li>Extensions should be arranged directly with the supplier and may incur higher local charges.</li>
+                                <li>Extensions should be arranged directly with the supplier and may incur higher local
+                                    charges.
+                                </li>
                             </ul>
 
                             <h3>One-Way Rentals</h3>
                             <ul>
-                                <li>Subject to drop-off charges; details will be provided upon booking confirmation.</li>
+                                <li>Subject to drop-off charges; details will be provided upon booking confirmation.
+                                </li>
                             </ul>
                         </div>
                         <div class="modal-footer">
@@ -235,7 +271,7 @@
                                             />
                                         </div>
                                         <div class="form-control-wrap col-md-5">
-                                            <select  class="form-control rounded-1"
+                                            <select class="form-control rounded-1"
                                                     v-model="form.time_from">
                                                 <option value="00:00" selected>00:00</option>
                                                 <option value="00:30">00:30</option>
@@ -302,8 +338,8 @@
                                             />
                                         </div>
                                         <div class="form-control-wrap col-md-5">
-                                            <select  class="form-control rounded-1"
-                                                     v-model="form.time_to">
+                                            <select class="form-control rounded-1"
+                                                    v-model="form.time_to">
                                                 <option value="00:00" selected>00:00</option>
                                                 <option value="00:30">00:30</option>
                                                 <option value="01:00">01:00</option>
@@ -423,7 +459,8 @@
                                         day </p>
                                 </div>
                                 <div class="row de-spec text-nowrap">
-                                    <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications" class="col-md-6">
+                                    <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
+                                         class="col-md-6">
                                         <span>
                                             <img style="width: 35%; margin-right: 2px;"
                                                  :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
@@ -437,7 +474,8 @@
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
-                            <div class=" rounded-2 py-1 mb-2 ml-1" style="background: #edecec; width: 90%; margin-top: -2%; ">
+                            <div class=" rounded-2 py-1 mb-2 ml-1"
+                                 style="background: #edecec; width: 90%; margin-top: -2%; ">
                                 <div class="d-supplier">
                                     <div class="col-md-2 d-img w-100" style="height: 50px">
                                         <img :src="'/img/' + vehicle?.supplier?.logo" height="50"
@@ -451,8 +489,9 @@
                                                                 }}</span>
                                         </div>
                                         <div>
-                                            <div><a class="cursor-pointer text-primary text-decoration-underline" href="javascript:void(0);"
-                                                      @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
+                                            <div><a class="cursor-pointer text-primary text-decoration-underline"
+                                                    href="javascript:void(0);"
+                                                    @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -468,11 +507,21 @@
                                         <p class="text-nowrap mt-2" style="font-size: 15px;"><i class="fa fa-location"/>
                                             &nbsp;Address:&nbsp;&nbsp;<small
                                                 style="font-size: 12px;">{{ vehicle?.supplier?.address }}</small></p>
-                                        <p style="margin-top: -20px;"><strong class="text-nowrap"
-                                                                              style="font-size: 15px;"><i
-                                            class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy: <small
-                                            style="font-size: 12px; margin-top: -10px;" class="text-nowrap"> Full to
-                                            Full </small></p>
+                                        <div>
+                                            <el-tooltip placement="right-start">
+                                                <template  #content>
+                                                    <div class=" p-3" style="font-size: 16px;">
+                                                        {{vehicle?.supplier?.fuel_policy?.description}}
+                                                    </div>
+                                                </template>
+                                                <p style="margin-top: -20px;"><strong class="text-nowrap"
+                                                                                      style="font-size: 15px;"><i
+                                                    class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy: <strong
+                                                    class="text-nowrap">{{ vehicle?.supplier?.fuel_policy?.name }} </strong>
+                                                </p>
+                                            </el-tooltip>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -493,8 +542,9 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <li v-for="(item, index) in vehicle?.included?.slice( (vehicle?.included?.length-1) /2 +1 ,  vehicle?.included?.length)" style="height: 30px">
-                                                <div class="row" >
+                                            <li v-for="(item, index) in vehicle?.included?.slice( (vehicle?.included?.length-1) /2 +1 ,  vehicle?.included?.length)"
+                                                style="height: 30px">
+                                                <div class="row">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
                                                     <p class="col-md-10 text-nowrap" style="font-size: 0.9vw;">
@@ -718,7 +768,8 @@
                                     <a class="cursor-pointer text-primary " style="text-decoration: underline;"
                                        href="javascript:void(0);"
                                        @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> &
-                                    <a class="cursor-pointer text-primary " style="text-decoration: underline;" href="javascript:void(0);" @click="openAutoursTerms()">Autours terms</a>.<br/>
+                                    <a class="cursor-pointer text-primary " style="text-decoration: underline;"
+                                       href="javascript:void(0);" @click="openAutoursTerms()">Autours terms</a>.<br/>
                                     <el-checkbox class="mr-2"/>
                                     Subscribe me to the promotional emails.
                                     <hr/>
@@ -1165,5 +1216,18 @@ li::before {
     }
 
 
+}
+
+.el-popper.is-dark {
+    box-shadow: 5px 5px rgba(189, 189, 189, 0.49);
+    background: #ffffff !important;
+    color: black;
+    border-color: rgba(0, 0, 0, 0.49);
+    border-width: 2px;
+    border-radius: 12px;
+    font-weight: 500;
+    text-wrap: balance;
+    font-size: 1vw;
+    inset: -7.5% auto auto -300px !important;
 }
 </style>

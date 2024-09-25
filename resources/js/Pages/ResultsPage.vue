@@ -419,7 +419,7 @@
                                                     <div class="d-text">
                                                         <h4 style="color: #000;" class="text-nowrap">
                                                             <el-tooltip placement="right-start">
-                                                                <template style="background: #fff !important;" #content>
+                                                                <template  #content>
                                                                     <div class=" p-3" style="font-size: 16px;">
                                                                         The supplier company will provide you with a car
                                                                         of the same car class <br>& similar
@@ -491,7 +491,7 @@
                                                     </div>
                                                     <el-tooltip v-if="vehicle.instant_confirmation"
                                                                 placement="right-start">
-                                                        <template style="background: #fff !important;" #content>
+                                                        <template  #content>
                                                             <div class=" p-3" style="font-size: 16px;">
                                                                 Receive instant booking confirmation!
                                                             </div>
@@ -507,7 +507,7 @@
                                                     <div>
                                                         <el-tooltip v-if="!vehicle.instant_confirmation"
                                                                     placement="right-start">
-                                                            <template style="background: #fff !important;" #content>
+                                                            <template  #content>
                                                                 <div class=" p-3" style="font-size: 16px;">
                                                                     You will receive booking confirmation after the
                                                                     requested service availability is verified!
@@ -569,7 +569,7 @@
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
                                                             <el-tooltip placement="right-start" trigger="hover">
-                                                                <template style="background: #fff !important;" #content>
+                                                                <template  #content>
                                                                     <div class=" p-3" style="font-size: 16px;">
                                                                         {{ vehicle.supplier.fuel_policy.description }}
                                                                     </div>
