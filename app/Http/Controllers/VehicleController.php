@@ -498,7 +498,7 @@ class VehicleController extends Controller
 
     public function getLocations()
     {
-        $locations = Branch::query()->orderBy('adresse')->get()->pluck('location')->unique();
+        $locations = Branch::query()->orderBy('location')->get()->pluck('location')->unique();
         return response()->json($locations);
 
     }
