@@ -12,6 +12,7 @@ use App\Http\Requests\CancelBookingRequest;
 use App\Lib\Log\ServerError;
 use App\Models\CurrencyRate;
 use App\Models\RentalStatus;
+use App\Models\VehicleIncluded;
 use App\Services\VehicleService;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -69,8 +70,22 @@ class BookingsController extends Controller
                 ], StatusCodes::FORBIDDEN);
             }
             $rental->start_date = new Carbon($rental->start_date);
+            $cancel24PolicyId = VehicleIncluded::query()->where('vehicle_id',$rental->vehicle_id)->where('included_id', 1)->first();
+            $cancel48PolicyId = VehicleIncluded::query()->where('vehicle_id',$rental->vehicle_id)->where('included_id', 1)->first();
 
-            if ($rental->start_date->diffInDays($today) <= 2 && !$rental->fareApproval) {
+            if ($rental->start_date->diffInDays($today) <= 2 && !is_null($cancel48PolicyId) ) {
+                return response()->json([
+                    'data' => [],
+                    'message' => "There will be a fare to cancel"
+                ], StatusCodes::FORBIDDEN);
+            }
+            if ($rental->start_date->diffInDays($today) <= 1 && !is_null($cancel24PolicyId) ) {
+                return response()->json([
+                    'data' => [],
+                    'message' => "There will be a fare to cancel"
+                ], StatusCodes::FORBIDDEN);
+            }
+            if (is_null($cancel24PolicyId) && is_null($cancel48PolicyId) ) {
                 return response()->json([
                     'data' => [],
                     'message' => "There will be a fare to cancel"

@@ -420,12 +420,11 @@
                                                         <h4 style="color: #000;" class="text-nowrap">
                                                             <el-tooltip placement="right-start">
                                                                 <template  #content>
-                                                                    <div class=" p-3" style="font-size: 16px;">
+                                                                    <div >
                                                                         The supplier company will provide you with a car
                                                                         of the same car class <br>& similar
                                                                         Specification but the make and more might be
-                                                                        different
-
+                                                                        different.
                                                                     </div>
                                                                 </template>
                                                                 {{ vehicle.name }} OR&nbsp;Similar
@@ -492,7 +491,7 @@
                                                     <el-tooltip v-if="vehicle.instant_confirmation"
                                                                 placement="right-start">
                                                         <template  #content>
-                                                            <div class=" p-3" style="font-size: 16px;">
+                                                            <div class="" >
                                                                 Receive instant booking confirmation!
                                                             </div>
                                                         </template>
@@ -508,7 +507,7 @@
                                                         <el-tooltip v-if="!vehicle.instant_confirmation"
                                                                     placement="right-start">
                                                             <template  #content>
-                                                                <div class=" p-3" style="font-size: 16px;">
+                                                                <div class="" >
                                                                     You will receive booking confirmation after the
                                                                     requested service availability is verified!
                                                                 </div>
@@ -536,14 +535,32 @@
                                                                 <div class="row" v-if="index < 6">
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
+                                                                    <el-tooltip v-if="item.description.length" placement="right-start" trigger="hover">
+                                                                        <template  #content>
+                                                                            <div class="" style="font-size: 16px;">
+                                                                                {{ item.description }}
+                                                                            </div>
+                                                                        </template>
                                                                     <p class="col-md-10 included-font text-nowrap">
+                                                                        {{ item.what_is_included }}</p>
+                                                                    </el-tooltip>
+                                                                    <p v-else class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                                 <div :class="'row text-nowrap vehicle-'+vehicle.id"
                                                                      style="display: none;" v-else>
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
+                                                                    <el-tooltip v-if="item.description.length" placement="right-start" trigger="hover">
+                                                                        <template  #content>
+                                                                            <div class="" style="font-size: 16px;">
+                                                                                {{ item.description }}
+                                                                            </div>
+                                                                        </template>
                                                                     <p class="col-md-10 text-nowrap included-font">
+                                                                        {{ item.what_is_included }}</p>
+                                                                    </el-tooltip>
+                                                                    <p v-else class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                             </li>
@@ -570,7 +587,7 @@
                                                         <div class="col-md-12" style="margin-top: -20px">
                                                             <el-tooltip placement="right-start" trigger="hover">
                                                                 <template  #content>
-                                                                    <div class=" p-3" style="font-size: 16px;">
+                                                                    <div class="" style="font-size: 16px;">
                                                                         {{ vehicle.supplier.fuel_policy.description }}
                                                                     </div>
                                                                 </template>
@@ -1277,18 +1294,20 @@ onMounted(() => {
     box-shadow: 5px 5px rgba(189, 189, 189, 0.49);
     background: #ffffff !important;
     color: black;
-    border-color: rgba(0, 0, 0, 0.49);
+    border-color: rgba(0, 0, 0, 0.72);
     border-width: 2px;
     border-radius: 12px;
     font-weight: 500;
     text-wrap: balance;
-    font-size: 1vw;
-    inset: -7.5% auto auto -300px !important;
+    font-size: .8vw !important;
+    inset: -60px auto auto -150px !important;
+    height: auto;
 }
 
 .el-popper[data-popper-placement^=right] > .el-popper__arrow {
     top: 90% !important;
     left: 130px !important;
+    transform: translate(0px, 0px) !important;
     display: none;
 }
 </style>

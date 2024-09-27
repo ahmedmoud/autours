@@ -434,9 +434,20 @@
                             <div class="col-md-5">
                                 <div id="slider-carousel text-nowrap">
                                     <h3 class="" style="margin-left: -20px; font-size: 1.3vw; text-wrap: nowrap;">
-                                        {{ vehicle.name }} - <small class="">{{
-                                            vehicle?.category?.name
-                                        }}</small></h3>
+                                        <el-tooltip placement="right-start">
+                                            <template #content>
+                                                <div>
+                                                    The supplier company will provide you with a car
+                                                    of the same car class <br>& similar
+                                                    Specification but the make and more might be
+                                                    different.
+                                                </div>
+                                            </template>
+                                            {{ vehicle.name }} - <small class="">{{
+                                                vehicle?.category?.name
+                                            }}</small>
+                                        </el-tooltip>
+                                    </h3>
                                     <div class="row"></div>
                                     <div class="item">
                                         <img
@@ -508,16 +519,18 @@
                                             &nbsp;Address:&nbsp;&nbsp;<small
                                                 style="font-size: 12px;">{{ vehicle?.supplier?.address }}</small></p>
                                         <div>
-                                            <el-tooltip placement="right-start">
-                                                <template  #content>
+                                            <el-tooltip placement="bottom">
+                                                <template #content>
                                                     <div class=" p-3" style="font-size: 16px;">
-                                                        {{vehicle?.supplier?.fuel_policy?.description}}
+                                                        {{ vehicle?.supplier?.fuel_policy?.description }}
                                                     </div>
                                                 </template>
                                                 <p style="margin-top: -20px;"><strong class="text-nowrap"
                                                                                       style="font-size: 15px;"><i
                                                     class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy: <strong
-                                                    class="text-nowrap">{{ vehicle?.supplier?.fuel_policy?.name }} </strong>
+                                                    class="text-nowrap">{{
+                                                        vehicle?.supplier?.fuel_policy?.name
+                                                    }} </strong>
                                                 </p>
                                             </el-tooltip>
                                         </div>
@@ -1227,7 +1240,13 @@ li::before {
     border-radius: 12px;
     font-weight: 500;
     text-wrap: balance;
-    font-size: 1vw;
+    font-size: .5vw;
     inset: -7.5% auto auto -300px !important;
+}
+
+.el-popper[data-popper-placement^=right] > .el-popper__arrow {
+    top: 90% !important;
+    left: 130px !important;
+    display: none;
 }
 </style>

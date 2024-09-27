@@ -130,7 +130,7 @@
                                     :loading="locationTypes.loading.value"
                                 >
                                     <el-option
-                                        v-for="item in locationTypes.list.value"
+                                        v-for="item in locationTypes?.list.value"
                                         :key="item.id"
                                         :label="item.label"
                                         :value="item.id"
@@ -531,7 +531,7 @@ const upload = async () => {
         formData.append('update', '1');
         formData.append('instant_confirmation', instantConfirmation.value);
         formData.append('id', vehicle.id);
-        formData.append('location_types', locationType.value.id);
+        formData.append('location_types', locationType.value);
 
         if (!validateForm()) return;
 

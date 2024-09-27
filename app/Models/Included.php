@@ -9,6 +9,6 @@ class Included extends Model
 {
     protected $table = 'included';
     public $timestamps = true;
-    protected $fillable = ['what_is_included'];
+    protected $fillable = ['what_is_included','description'];
     use HasFactory;
 }
