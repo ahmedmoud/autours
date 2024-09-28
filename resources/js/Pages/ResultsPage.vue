@@ -535,7 +535,7 @@
                                                                 <div class="row" v-if="index < 6">
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
-                                                                    <el-tooltip v-if="item.description.length" placement="right-start" trigger="hover">
+                                                                    <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
                                                                         <template  #content>
                                                                             <div class="" style="font-size: 16px;">
                                                                                 {{ item.description }}
@@ -551,7 +551,7 @@
                                                                      style="display: none;" v-else>
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                                        style="color: green;"/>
-                                                                    <el-tooltip v-if="item.description.length" placement="right-start" trigger="hover">
+                                                                    <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
                                                                         <template  #content>
                                                                             <div class="" style="font-size: 16px;">
                                                                                 {{ item.description }}

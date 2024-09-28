@@ -20,16 +20,13 @@
                             <slot name="header"> Rental Terms</slot>
                         </div>
                         <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
-                            <CAccordion>
-                                <CAccordionItem v-for="(item,index) in activeRentalTerms" :item-key="index">
-                                    <CAccordionHeader>
-                                        <div v-html="item.title"></div>
-                                    </CAccordionHeader>
-                                    <CAccordionBody>
-                                        <div v-html="item.description"></div>
-                                    </CAccordionBody>
-                                </CAccordionItem>
-                            </CAccordion>
+                            <h2>Terms and Conditions</h2>
+                            <div  v-for="(item,index) in activeRentalTerms" :item-key="index">
+                                <h3 v-html="item.title"></h3>
+                                <ul>
+                                    <div v-html="item.description"></div>
+                                </ul>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <slot name="footer">
@@ -548,7 +545,16 @@
                                                 <div class="row" v-if="index <= (vehicle?.included?.length - 1) / 2">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
-                                                    <p class="col-md-10 text-nowrap" style="font-size: 0.9vw;">
+                                                    <el-tooltip v-if="item.description.length" placement="right-start" trigger="hover">
+                                                        <template  #content>
+                                                            <div class="" style="font-size: 16px;">
+                                                                {{ item.description }}
+                                                            </div>
+                                                        </template>
+                                                        <p class="col-md-10 text-nowrap included-font" style="font-size: 0.9vw;">
+                                                            {{ item.what_is_included }}</p>
+                                                    </el-tooltip>
+                                                    <p v-else class="col-md-10 included-font text-nowrap" style="font-size: 0.9vw;">
                                                         {{ item.what_is_included }}</p>
                                                 </div>
                                             </li>
@@ -560,7 +566,16 @@
                                                 <div class="row">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
-                                                    <p class="col-md-10 text-nowrap" style="font-size: 0.9vw;">
+                                                    <el-tooltip v-if="item.description.length" placement="right-start" trigger="hover">
+                                                        <template  #content>
+                                                            <div class="" style="font-size: 16px;">
+                                                                {{ item.description }}
+                                                            </div>
+                                                        </template>
+                                                        <p class="col-md-10 text-nowrap included-font" style="font-size: 0.9vw;">
+                                                            {{ item.what_is_included }}</p>
+                                                    </el-tooltip>
+                                                    <p v-else class="col-md-10 included-font text-nowrap" style="font-size: 0.9vw;">
                                                         {{ item.what_is_included }}</p>
                                                 </div>
                                             </li>

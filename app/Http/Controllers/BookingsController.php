@@ -71,7 +71,7 @@ class BookingsController extends Controller
             }
             $rental->start_date = new Carbon($rental->start_date);
             $cancel24PolicyId = VehicleIncluded::query()->where('vehicle_id',$rental->vehicle_id)->where('included_id', 1)->first();
-            $cancel48PolicyId = VehicleIncluded::query()->where('vehicle_id',$rental->vehicle_id)->where('included_id', 1)->first();
+            $cancel48PolicyId = VehicleIncluded::query()->where('vehicle_id',$rental->vehicle_id)->where('included_id', 48)->first();
 
             if ($rental->start_date->diffInDays($today) <= 2 && !is_null($cancel48PolicyId) ) {
                 return response()->json([
