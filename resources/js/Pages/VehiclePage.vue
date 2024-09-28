@@ -430,21 +430,18 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div id="slider-carousel text-nowrap">
-                                    <h3 class="" style="margin-left: -20px; font-size: 1.3vw; text-wrap: nowrap;">
+                                    <h4 class="" style="margin-left: -20px; font-size: 1.3vw; text-wrap: nowrap;">
                                         <el-tooltip placement="right-start">
-                                            <template #content>
-                                                <div>
-                                                    The supplier company will provide you with a car
-                                                    of the same car class <br>& similar
-                                                    Specification but the make and more might be
-                                                    different.
+                                            <template  #content>
+                                                <div >
+                                                    The supplier will provide a car with same class and specifications, though the make may vary.
                                                 </div>
                                             </template>
-                                            {{ vehicle.name }} - <small class="">{{
-                                                vehicle?.category?.name
-                                            }}</small>
+                                            {{ vehicle.name }} OR&nbsp;Similar
+
                                         </el-tooltip>
-                                    </h3>
+                                        </h4>
+                                        <span>{{ vehicle?.category?.name }}</span>
                                     <div class="row"></div>
                                     <div class="item">
                                         <img
@@ -566,7 +563,7 @@
                                                 <div class="row">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
-                                                    <el-tooltip v-if="item.description.length" placement="right-start" trigger="hover">
+                                                    <el-tooltip v-if="item.description?.length" placement="right-start" trigger="hover">
                                                         <template  #content>
                                                             <div class="" style="font-size: 16px;">
                                                                 {{ item.description }}
@@ -1256,10 +1253,10 @@ li::before {
     font-weight: 500;
     text-wrap: balance;
     font-size: .5vw;
-    inset: -7.5% auto auto -300px !important;
+    inset: -30px auto auto -300px !important;
 }
 
-.el-popper[data-popper-placement^=right] > .el-popper__arrow {
+ .el-popper__arrow {
     top: 90% !important;
     left: 130px !important;
     display: none;

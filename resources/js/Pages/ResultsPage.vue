@@ -421,10 +421,7 @@
                                                             <el-tooltip placement="right-start">
                                                                 <template  #content>
                                                                     <div >
-                                                                        The supplier company will provide you with a car
-                                                                        of the same car class <br>& similar
-                                                                        Specification but the make and more might be
-                                                                        different.
+                                                                        The supplier will provide a car with same class and specifications, though the make may vary.
                                                                     </div>
                                                                 </template>
                                                                 {{ vehicle.name }} OR&nbsp;Similar
@@ -581,7 +578,7 @@
                                                             <p class="text-nowrap"><i
                                                                 :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp;
                                                                 &nbsp;<strong>{{
-                                                                        vehicle?.location_type.length ? vehicle.location_type[0]?.name : ''
+                                                                        vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
                                                                     }}</strong></p>
                                                         </div>
                                                         <div class="col-md-12" style="margin-top: -20px">
@@ -759,7 +756,6 @@ const collapse = (menu) => {
 }
 const getSpecifications = async () => {
 
-    console.log(filteredVehicles.value)
     if (vehicleIds.length <= 0) {
         vehicleIds = filteredVehicles.value.map(a => a.id)
     }
@@ -1300,7 +1296,7 @@ onMounted(() => {
     font-weight: 500;
     text-wrap: balance;
     font-size: .8vw !important;
-    inset: -60px auto auto -150px !important;
+    inset: -40px auto auto -150px !important;
     height: auto;
 }
 
