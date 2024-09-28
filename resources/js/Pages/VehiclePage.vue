@@ -542,7 +542,7 @@
                                                 <div class="row" v-if="index <= (vehicle?.included?.length - 1) / 2">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
-                                                    <el-tooltip v-if="item.description.length" placement="right-start" trigger="hover">
+                                                    <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
                                                         <template  #content>
                                                             <div class="" style="font-size: 16px;">
                                                                 {{ item.description }}
@@ -563,7 +563,7 @@
                                                 <div class="row">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
-                                                    <el-tooltip v-if="item.description?.length" placement="right-start" trigger="hover">
+                                                    <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
                                                         <template  #content>
                                                             <div class="" style="font-size: 16px;">
                                                                 {{ item.description }}
