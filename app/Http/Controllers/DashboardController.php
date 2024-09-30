@@ -34,7 +34,7 @@ class DashboardController extends Controller
                 ['confirmed'=> RentalStatuses::CONFIRMED, 'reconciled'=> RentalStatuses::RECONCILED]);
 
             $NumberOfActiveSuppliers = new StdClass();
-            $NumberOfActiveSuppliers->currentYear = DB::select('SELECT EXTRACT(YEAR FROM created_at) as year,COUNT(*) FROM users
+            $NumberOfActiveSuppliers->currentYear = DB::select('SELECT EXTRACT(YEAR FROM created_at) as year,COUNT(*) as count FROM users
                                                                     WHERE role = :role
                                                                     AND EXTRACT(YEAR FROM created_at) = :year
                                                                     GROUP BY EXTRACT(YEAR FROM created_at)
@@ -42,7 +42,7 @@ class DashboardController extends Controller
                 ['role'=> 'active_supplier', 'year'=> Carbon::now()->year]);
 
 
-            $NumberOfActiveSuppliers->monthly = DB::select('SELECT EXTRACT(MONTH FROM created_at) as month,COUNT(*) FROM users
+            $NumberOfActiveSuppliers->monthly = DB::select('SELECT EXTRACT(MONTH FROM created_at) as month,COUNT(*) as count FROM users
                                                   WHERE role = :role
                                                    GROUP BY EXTRACT(MONTH FROM created_at)',
                                                  ['role'=> 'active_supplier']);
