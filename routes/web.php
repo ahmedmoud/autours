@@ -6,6 +6,7 @@ use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FuelPolicyController;
 use App\Http\Controllers\IncludedController;
@@ -154,6 +155,9 @@ Route::middleware(['admin'])->group(function () {
     Route::inertia('photos', 'Dashboard/Photos');
     Route::post('post/photos', [VehicleController::class, 'createPhotos']);
     Route::post('delete/photos', [VehicleController::class, 'deletePhotos']);
+
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+
 });
 
 Route::middleware(['member'])->group(function () {
