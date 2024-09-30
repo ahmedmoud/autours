@@ -1,5 +1,31 @@
 <template>
     <div class="card">
+        <div v-if="isOpen" class="modal-mask">
+            <div class="modal-wrapper" @click="$emit('close')">
+                <div v-if="loading"><Loader/></div>
+                <div v-else class="modal-container" ref="target">
+                    <div class="modal-header">
+                        <slot name="header"> Rental Review</slot>
+                    </div>
+                    <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
+                        <h2>Customer Feedback</h2>
+                        <div  v-for="(item,index) in activeRental?.rental_rates" :item-key="index">
+                            <div class="row col-md-12 ">
+                                <div class="col-md-6 text-nowrap">{{item.question.objective}} </div>
+                                <div class="col-md-6 text-nowrap">  <CProgressBar style="border-radius: 10px;"   :value="item.rate * 10">{{item.rate}} / 10</CProgressBar> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <slot name="footer">
+                            <div>
+                                <button class="btn btn-primary" @click="closeModal()">Done</button>
+                            </div>
+                        </slot>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="formbold-mb-3 col-md-2">
@@ -100,6 +126,11 @@
                             {{moment(scope.row.end_date).diff(moment(scope.row.start_date), 'days')}}
                         </template>
                     </el-table-column>
+                    <el-table-column label="Review" align="center" prop="rate">
+                        <template #default="scope">
+                            <a @click="openReviewDetails(scope.row.id)" href="#">{{scope.row.rate}}</a>
+                        </template>
+                    </el-table-column>
                     <el-table-column align="right">
                         <template #header>
                             <el-input v-model="search" size="small" placeholder="Type to search"/>
@@ -134,7 +165,8 @@
 <script setup>
 import {onMounted, computed, ref} from 'vue'
 import moment from "moment/moment.js";
-
+import Loader from '../../components/Loader.vue'
+import {CProgressBar} from "@coreui/vue";
 const search = ref('')
 const tableData = ref([])
 const loading = ref(false)
@@ -144,6 +176,7 @@ const supplier = ref('')
 const branch = ref('')
 const reference = ref('')
 const date_range = ref('')
+const isOpen = ref(false)
 const countries = {
     loading: ref(false),
     all: ref([]),
@@ -162,17 +195,37 @@ const branches = {
     list: ref([]),
     options: ref([]),
 };
-
+const activeRental = ref({})
 const order_statuses = {
     loading: ref(false),
     all: ref([]),
     list: ref([]),
     options: ref([]),
 }
+const openReviewDetails = async (rental_id) =>  {
+    try {
+
+        loading.value = true
+
+        const response = await axios.get('/rental/rate/' + rental_id, {})
+        console.log(response)
+        if (response.data.status) {
+            isOpen.value = true
+            activeRental.value = response.data.data
+        }
+        loading.value = false
+    } catch (e) {
+        loading.value = false
+    }
+
+}
+
+const closeModal = () => {
+    isOpen.value = false;
+}
 const fetchCountries = async () => {
     countries.loading.value = true;
     try {
-        //
         const response = await axios.get('/get/countries', {})
         countries.all.value = response.data
         console.log(response);
@@ -287,5 +340,24 @@ onMounted(() => {
         width: 100%;
         margin: 0;
     }
+}
+
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+    width: 900px;
+    margin: 150px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
 }
 </style>

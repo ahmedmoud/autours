@@ -11,6 +11,7 @@ use App\Http\Requests\BookCarRequest;
 use App\Http\Requests\CancelBookingRequest;
 use App\Lib\Log\ServerError;
 use App\Models\CurrencyRate;
+use App\Models\RentalRate;
 use App\Models\RentalStatus;
 use App\Models\VehicleIncluded;
 use App\Services\VehicleService;
@@ -349,9 +350,24 @@ class BookingsController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 0,
-                'msg' => 'error happened'
+                'msg' => $e->getMessage()
             ], StatusCodes::SERVER_ERROR);
 
+        }
+    }
+
+    public function getRate( $id)
+    {
+        try {
+            return response()->json([
+                "status" => true,
+                'data' => Rental::query()->with(['rentalRates.question'])->find($id)
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "status" => 0,
+                "message" => $e->getMessage(),
+            ], StatusCodes::SERVER_ERROR);
         }
     }
 }
