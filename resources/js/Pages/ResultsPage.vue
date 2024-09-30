@@ -492,7 +492,7 @@
                                                             }}
                                                         </h5><span
                                                             style="font-size: medium; ">(&nbsp;<strong
-                                                            style="color: #f9d602">{{vehicle.supplier.rentals.length}}&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                                            style="color: #f9d602">{{vehicle.supplier_number_of_reviews}}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
                                                     <el-tooltip v-if="vehicle.instant_confirmation"
                                                                 placement="right-start">

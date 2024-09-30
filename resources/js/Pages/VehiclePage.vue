@@ -513,7 +513,7 @@
                                                                                     ''
                                                             }}</h5><span
                                                             style="font-size: medium;">(&nbsp;<strong
-                                                            style="color: #f9d602">{{vehicle.supplier.rentals.length}}&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                                            style="color: #f9d602">{{vehicle.supplier_number_of_reviews}}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
                                     <div class="col-md-4 ">
                                         <p class="text-nowrap mt-2" style="font-size: 15px;"><i class="fa fa-location"/>
