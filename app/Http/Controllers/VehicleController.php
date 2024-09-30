@@ -191,7 +191,7 @@ class VehicleController extends Controller
                                         JOIN rate_questions on rate_questions.id = rental_rates.question_id
                                         WHERE supplier_id = :supplier_id
                                         Group By rate_questions.objective',['supplier_id' => $vehicle->supplier]);
-                $vehicle->supplier_rate = $rentals->sum('rate') / ($rentals->count() || 1);
+                $vehicle->supplier_rate = round($rentals->sum('rate') / ($rentals->count() || 1), 1);
                 $vehicle->supplier_number_of_reviews = $rentals->count();
                 $vehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $vehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
             }
