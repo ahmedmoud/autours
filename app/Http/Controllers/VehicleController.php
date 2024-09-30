@@ -187,7 +187,7 @@ class VehicleController extends Controller
             foreach ($vehicles as $vehicle) {
                 $rentals = Rental::query()->where('supplier_id', $vehicle->supplier)->whereNotNull('rate')->get();
 
-                $vehicle->supplier_rate = $rentals->sum('rate') / $rentals->count();
+                $vehicle->supplier_rate = $rentals->sum('rate') / ($rentals->count() || 1);
                 $vehicle->supplier_number_of_reviews = $rentals->count();
                 $vehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $vehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
             }
@@ -585,7 +585,7 @@ class VehicleController extends Controller
             $selectedVehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $selectedVehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
 
             $rentals = Rental::query()->where('supplier_id', $selectedVehicle->supplier)->whereNotNull('rate')->get();
-            $selectedVehicle->supplier_rate = $rentals->sum('rate') / $rentals->count();
+            $selectedVehicle->supplier_rate = $rentals->sum('rate') / ($rentals->count() || 1) ;
             $selectedVehicle->supplier_number_of_reviews = $rentals->count();
 
             return response()->json([
