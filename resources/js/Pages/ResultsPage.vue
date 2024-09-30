@@ -783,7 +783,7 @@ const search = () => {
     form.category = category.value
     form.currency = localStorage.getItem('currency') ?? 'USD';
     let urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('booking_id')) {
+    if (urlParams.has('booking_id') && urlParams.get('booking_id') != null) {
         form.booking_id = urlParams.get('booking_id')
     }
     router.get('/results', form)
@@ -942,7 +942,7 @@ const goToBookingPage = async (vehicle_id) => {
     form.id = vehicle_id;
     let uri = '/vehicles/book'
     let urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('booking_id')) {
+    if (urlParams.has('booking_id') && urlParams.get("booking_id") !=null && urlParams.get("booking_id") != "") {
         console.log("=======>")
         console.log(urlParams.get("booking_id"))
         form.booking_id = urlParams.get('booking_id')

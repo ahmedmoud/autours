@@ -15,7 +15,8 @@
                                 </div>
 
                             </div>
-                            <Chart type="bar" :data="BarChartData" :options="chartOptions" />
+                            <Chart type="bar" :data="BarChartData" :options="chartOptions"/>
+                            <Chart type="line" :data="LineChartData" class="h-[30rem]"/>
 
                         </div>
                     </div>
@@ -26,14 +27,17 @@
                             <!-- Yearly Breakup -->
                             <div class="card overflow-hidden">
                                 <div class="card-body p-4">
-                                    <h5 class="card-title mb-9 fw-semibold">Current year Number of suppliers {{currentYearNumberOfSupplier[0].year}}</h5>
+                                    <h5 class="card-title mb-9 fw-semibold">Current year Number of suppliers
+                                        {{ currentYearNumberOfSupplier[0]?.year }}</h5>
                                     <div class="row align-items-center">
                                         <div class="col-5">
-                                            <h4 class="fw-semibold mb-3">{{currentYearNumberOfSupplier[0].count}}</h4>
+                                            <h4 class="fw-semibold mb-3">{{ currentYearNumberOfSupplier[0]?.count }}
+                                                Companies</h4>
                                         </div>
                                         <div class="col-4">
                                             <div class="d-flex justify-content-center">
-                                                <Chart type="doughnut" :data="DoghnutChartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+                                                <Chart type="doughnut" :data="DoghnutChartData" :options="chartOptions"
+                                                       class="w-full md:w-[30rem]"/>
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +53,8 @@
                                             <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
                                             <h4 class="fw-semibold mb-3">$6,820</h4>
                                             <div class="d-flex align-items-center pb-1">
-                          <span class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                          <span
+                              class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
                             <i class="ti ti-arrow-down-right text-danger"></i>
                           </span>
                                                 <p class="text-dark me-1 fs-3 mb-0">+9%</p>
@@ -62,11 +67,13 @@
                                                     class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
                                                     <i class="ti ti-currency-dollar fs-6"></i>
                                                 </div>
+
                                             </div>
                                         </div>
+                                        <Chart type="pie" :data="PieChartData" :options="chartOptions"
+                                               class="w-full md:w-[30rem]"/>
                                     </div>
                                 </div>
-                                <div id="earning"></div>
                             </div>
                         </div>
                     </div>
@@ -80,67 +87,15 @@
                                 <h5 class="card-title fw-semibold">Recent Transactions</h5>
                             </div>
                             <ul class="timeline-widget mb-0 position-relative mb-n5">
-                                <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30</div>
+                                <li v-for="item in latestTransaction" class="timeline-item d-flex position-relative overflow-hidden">
+                                    <div class="timeline-time text-dark flex-shrink-0 text-end">{{moment(item.updated_at).format("LT")}}</div>
                                     <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                     <span
                                         class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John Doe of
-                                        $385.90
+                                    <div class="timeline-desc fs-3 text-dark mt-n1">New rentals {{item.order_number}} with {{item.price}}$
                                     </div>
-                                </li>
-                                <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
-                                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                        <span
-                                            class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
-                                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                                    </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                                    </div>
-                                </li>
-                                <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                    <span
-                                        class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                                    </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of $64.95 to
-                                        Michael
-                                    </div>
-                                </li>
-                                <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                    <span
-                                        class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
-                                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                                    </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                                    </div>
-                                </li>
-                                <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                    <span
-                                        class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
-                                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                                    </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New arrival recorded
-                                    </div>
-                                </li>
-                                <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                    <span
-                                        class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                                    </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment Done</div>
                                 </li>
                             </ul>
                         </div>
@@ -252,112 +207,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 col-xl-3">
+                <div v-for="vehicle in latestVehicles" class="col-sm-6 col-xl-3">
                     <div class="card overflow-hidden rounded-2">
                         <div class="position-relative">
-                            <a href="javascript:void(0)"><img src="../../../assets/images/products/s4.jpg"
-                                                              class="card-img-top rounded-0" alt="..."></a>
-                            <a href="javascript:void(0)"
-                               class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                                class="ti ti-basket fs-4"></i></a></div>
+                            <a href="javascript:void(0)">
+                                <img :src="'/img/vehicles/' + vehicle.photo" width="250" height="250" class="card-img-top rounded-0" alt="..."></a>
+                          </div>
                         <div class="card-body pt-3 p-4">
-                            <h6 class="fw-semibold fs-4">Boat Headphone</h6>
+                            <h6 class="fw-semibold fs-4">{{vehicle.name}}</h6>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h6 class="fw-semibold fs-4 mb-0">$50 <span class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span>
-                                </h6>
-                                <ul class="list-unstyled d-flex align-items-center mb-0">
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="card overflow-hidden rounded-2">
-                        <div class="position-relative">
-                            <a href="javascript:void(0)"><img src="../../../assets/images/products/s5.jpg"
-                                                              class="card-img-top rounded-0" alt="..."></a>
-                            <a href="javascript:void(0)"
-                               class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                                class="ti ti-basket fs-4"></i></a></div>
-                        <div class="card-body pt-3 p-4">
-                            <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h6 class="fw-semibold fs-4 mb-0">$650 <span class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span>
-                                </h6>
-                                <ul class="list-unstyled d-flex align-items-center mb-0">
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="card overflow-hidden rounded-2">
-                        <div class="position-relative">
-                            <a href="javascript:void(0)"><img src="../../../assets/images/products/s7.jpg"
-                                                              class="card-img-top rounded-0" alt="..."></a>
-                            <a href="javascript:void(0)"
-                               class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                                class="ti ti-basket fs-4"></i></a></div>
-                        <div class="card-body pt-3 p-4">
-                            <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h6 class="fw-semibold fs-4 mb-0">$150 <span class="ms-2 fw-normal text-muted fs-3"><del>$200</del></span>
-                                </h6>
-                                <ul class="list-unstyled d-flex align-items-center mb-0">
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                                    <li><a class="" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="card overflow-hidden rounded-2">
-                        <div class="position-relative">
-                            <a href="javascript:void(0)"><img src="../../../assets/images/products/s11.jpg"
-                                                              class="card-img-top rounded-0" alt="..."></a>
-                            <a href="javascript:void(0)"
-                               class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                                class="ti ti-basket fs-4"></i></a></div>
-                        <div class="card-body pt-3 p-4">
-                            <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h6 class="fw-semibold fs-4 mb-0">$285 <span class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span>
+                                <h6 class="fw-semibold fs-4 mb-0">{{vehicle.price}} <span class="ms-2 fw-normal text-muted fs-3"> USD</span>
                                 </h6>
                                 <ul class="list-unstyled d-flex align-items-center mb-0">
                                     <li><a class="me-1" href="javascript:void(0)"><i
@@ -388,12 +247,16 @@
 import {onMounted, ref} from 'vue'
 import Chart from 'primevue/chart';
 import moment from "moment";
+
 const BarChartData = ref();
+const PieChartData = ref();
 const DoghnutChartData = ref();
+const LineChartData = ref();
 const chartOptions = ref();
 const user = ref('');
 const currentYearNumberOfSupplier = ref('')
-
+const latestTransaction = ref();
+const latestVehicles = ref();
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -418,7 +281,7 @@ const getAdminCharts = async () => {
     try {
         const response = await axios.get('/dashboard');
         const SalesData = response.data.data.supplierRevenue
-        BarChartData.value =  {
+        BarChartData.value = {
             labels: SalesData.map(item => item.supplier_name),
             datasets: [
                 {
@@ -446,230 +309,59 @@ const getAdminCharts = async () => {
                 }
             ]
         }
-    } catch (error) {
-        console.log(error);
-    }
-}
-const getSupplierCharts = async () => {
-    try {
-        const response = await axios.get('/dashboard');
-        console.log(response)
-    } catch (error) {
-        console.log(error);
-    }
-}
-onMounted(() => {
-    getUser()
-})
-$(function () {
 
+        const RentalsData = response.data.data.numberOfRentalsMonthly
+        LineChartData.value = {
+            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "12"].map(item => moment(item, 'M').format('MMM')),
+            datasets: [
+                {
+                    label: 'Cancelled Rentals',
+                    data: RentalsData.cancelled.map(item => item.count),
+                    fill: true,
+                    borderColor: getRandomColor(),
+                    tension: 0.4
 
-    // =====================================
-    // Profit
-    // =====================================
-    var chart = {
-        series: [
-            {name: "Earnings this month:", data: [355, 390, 300, 350, 390, 180, 355, 390]},
-            {name: "Expense this month:", data: [280, 250, 325, 215, 250, 310, 280, 250]},
-        ],
-
-        chart: {
-            type: "bar",
-            height: 345,
-            offsetX: -15,
-            toolbar: {show: true},
-            foreColor: "#adb0bb",
-            fontFamily: 'inherit',
-            sparkline: {enabled: false},
-        },
-
-
-        colors: ["#5D87FF", "#49BEFF"],
-
-
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: "35%",
-                borderRadius: [6],
-                borderRadiusApplication: 'end',
-                borderRadiusWhenStacked: 'all'
-            },
-        },
-        markers: {size: 0},
-
-        dataLabels: {
-            enabled: false,
-        },
-
-
-        legend: {
-            show: false,
-        },
-
-
-        grid: {
-            borderColor: "rgba(0,0,0,0.1)",
-            strokeDashArray: 3,
-            xaxis: {
-                lines: {
-                    show: false,
                 },
-            },
-        },
+                {
+                    label: 'Done Rentals',
+                    data: RentalsData.done.map(item => item.count),
+                    fill: true,
+                    borderColor: getRandomColor(),
+                    tension: 0.4
 
-        xaxis: {
-            type: "category",
-            categories: ["16/08", "17/08", "18/08", "19/08", "20/08", "21/08", "22/08", "23/08"],
-            labels: {
-                style: {cssClass: "grey--text lighten-2--text fill-color"},
-            },
-        },
-
-
-        yaxis: {
-            show: true,
-            min: 0,
-            max: 400,
-            tickAmount: 4,
-            labels: {
-                style: {
-                    cssClass: "grey--text lighten-2--text fill-color",
-                },
-            },
-        },
-        stroke: {
-            show: true,
-            width: 3,
-            lineCap: "butt",
-            colors: ["transparent"],
-        },
-
-
-        tooltip: {theme: "light"},
-
-        responsive: [
-            {
-                breakpoint: 600,
-                options: {
-                    plotOptions: {
-                        bar: {
-                            borderRadius: 3,
-                        }
-                    },
                 }
-            }
-        ]
+            ]
+        }
 
+            PieChartData.value = {
+                labels: ['A', 'B', 'C'],
+                datasets: [
+                    {
+                        data: [540, 325, 702],
+                        backgroundColor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "12"].map(() => getRandomColor()),
+                        hoverBackgroundColor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "12"].map(() => getRandomColor()),
+                    }
+                ]
+            };
+        latestTransaction.value = response.data.data.latestRentalsTransactions
+        latestVehicles  .value = response.data.data.latestVehicles
 
-    };
-
-    var chart = new ApexCharts(document.querySelector("#chart"), chart);
-    chart.render();
-
-
-    // =====================================
-    // Breakup
-    // =====================================
-    var breakup = {
-        color: "#adb5bd",
-        series: [38, 40, 25],
-        labels: ["2022", "2021", "2020"],
-        chart: {
-            width: 180,
-            type: "donut",
-            fontFamily: "Plus Jakarta Sans', sans-serif",
-            foreColor: "#adb0bb",
-        },
-        plotOptions: {
-            pie: {
-                startAngle: 0,
-                endAngle: 360,
-                donut: {
-                    size: '75%',
-                },
-            },
-        },
-        stroke: {
-            show: false,
-        },
-
-        dataLabels: {
-            enabled: false,
-        },
-
-        legend: {
-            show: false,
-        },
-        colors: ["#5D87FF", "#ecf2ff", "#F9F9FD"],
-
-        responsive: [
-            {
-                breakpoint: 991,
-                options: {
-                    chart: {
-                        width: 150,
-                    },
-                },
-            },
-        ],
-        tooltip: {
-            theme: "dark",
-            fillSeriesColor: false,
-        },
-    };
-
-    var chart = new ApexCharts(document.querySelector("#breakup"), breakup);
-    chart.render();
-
-
-    // =====================================
-    // Earning
-    // =====================================
-    var earning = {
-        chart: {
-            id: "sparkline3",
-            type: "area",
-            height: 60,
-            sparkline: {
-                enabled: true,
-            },
-            group: "sparklines",
-            fontFamily: "Plus Jakarta Sans', sans-serif",
-            foreColor: "#adb0bb",
-        },
-        series: [
-            {
-                name: "Earnings",
-                color: "#49BEFF",
-                data: [25, 66, 20, 40, 12, 58, 20],
-            },
-        ],
-        stroke: {
-            curve: "smooth",
-            width: 2,
-        },
-        fill: {
-            colors: ["#f3feff"],
-            type: "solid",
-            opacity: 0.05,
-        },
-
-        markers: {
-            size: 0,
-        },
-        tooltip: {
-            theme: "dark",
-            fixed: {
-                enabled: true,
-                position: "right",
-            },
-            x: {
-                show: false,
-            },
-        },
-    };
-    new ApexCharts(document.querySelector("#earning"), earning).render();
-})
+        } catch
+        (error)
+        {
+            console.log(error);
+        }
+    }
+    const getSupplierCharts = async () => {
+        try {
+            const response = await axios.get('/dashboard');
+            console.log(response)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    onMounted(() => {
+        getUser()
+    })
 
 </script>

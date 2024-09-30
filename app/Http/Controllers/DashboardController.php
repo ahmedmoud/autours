@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\RentalStatuses;
 use App\Enums\StatusCodes;
+use App\Models\Rental;
+use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use stdClass;
@@ -46,9 +48,20 @@ class DashboardController extends Controller
                                                   WHERE role = :role
                                                    GROUP BY EXTRACT(MONTH FROM created_at)',
                                                  ['role'=> 'active_supplier']);
-
+            $numberOfRentalsMonthly = new StdClass();
+            $numberOfRentalsMonthly->cancelled = DB::select('SELECT COUNT(*) as count, EXTRACT(MONTH FROM created_at) AS month FROM rentals
+                                                                    WHERE order_status = :cancelled
+                                                                    GROUP BY EXTRACT(MONTH FROM created_at)',
+                ['cancelled'=> RentalStatuses::CANCELED]);
+            $numberOfRentalsMonthly->done = DB::select('SELECT COUNT(*) as count, EXTRACT(MONTH FROM created_at) AS month FROM rentals
+                                                                    WHERE order_status <> :cancelled
+                                                                    GROUP BY EXTRACT(MONTH FROM created_at)',
+                ['cancelled'=> RentalStatuses::CANCELED]);
             $charts->supplierRevenue = $supplierRevenue;
             $charts->NumberOfActiveSuppliers = $NumberOfActiveSuppliers;
+            $charts->numberOfRentalsMonthly = $numberOfRentalsMonthly;
+            $charts->latestRentalsTransactions = Rental::query()->orderBy('updated_at', 'desc')->limit(5)->get();
+            $charts->latestVehicles = Vehicle::query()->orderBy('created_at', 'desc')->limit(4)->get();
             return response()->json([
                 "status" => true,
                 "data" => $charts,
