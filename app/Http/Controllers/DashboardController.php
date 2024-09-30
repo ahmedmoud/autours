@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\RentalStatuses;
 use App\Enums\StatusCodes;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use stdClass;
 
@@ -32,7 +33,22 @@ class DashboardController extends Controller
                                              ',
                 ['confirmed'=> RentalStatuses::CONFIRMED, 'reconciled'=> RentalStatuses::RECONCILED]);
 
+            $NumberOfActiveSuppliers = new StdClass();
+            $NumberOfActiveSuppliers->currentYear = DB::select('SELECT EXTRACT(YEAR FROM created_at) as year,COUNT(*) FROM users
+                                                                    WHERE role = :role
+                                                                    AND EXTRACT(YEAR FROM created_at) = :year
+                                                                    GROUP BY EXTRACT(YEAR FROM created_at)
+                                                   ',
+                ['role'=> 'active_supplier', 'year'=> Carbon::now()->year]);
+
+
+            $NumberOfActiveSuppliers->monthly = DB::select('SELECT EXTRACT(MONTH FROM created_at) as month,COUNT(*) FROM users
+                                                  WHERE role = :role
+                                                   GROUP BY EXTRACT(MONTH FROM created_at)',
+                                                 ['role'=> 'active_supplier']);
+
             $charts->supplierRevenue = $supplierRevenue;
+            $charts->NumberOfActiveSuppliers = $NumberOfActiveSuppliers;
             return response()->json([
                 "status" => true,
                 "data" => $charts,

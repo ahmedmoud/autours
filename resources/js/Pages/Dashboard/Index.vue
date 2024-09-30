@@ -26,34 +26,14 @@
                             <!-- Yearly Breakup -->
                             <div class="card overflow-hidden">
                                 <div class="card-body p-4">
-                                    <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
+                                    <h5 class="card-title mb-9 fw-semibold">Current year Number of suppliers {{currentYearNumberOfSupplier[0].year}}</h5>
                                     <div class="row align-items-center">
-                                        <div class="col-8">
-                                            <h4 class="fw-semibold mb-3">$36,358</h4>
-                                            <div class="d-flex align-items-center mb-3">
-                          <span
-                              class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-up-left text-success"></i>
-                          </span>
-                                                <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                                                <p class="fs-3 mb-0">last year</p>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="me-4">
-                                                <span
-                                                    class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                                                    <span class="fs-2">2023</span>
-                                                </div>
-                                                <div>
-                                                <span
-                                                    class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                                                    <span class="fs-2">2023</span>
-                                                </div>
-                                            </div>
+                                        <div class="col-5">
+                                            <h4 class="fw-semibold mb-3">{{currentYearNumberOfSupplier[0].count}}</h4>
                                         </div>
                                         <div class="col-4">
                                             <div class="d-flex justify-content-center">
-                                                <div id="breakup"></div>
+                                                <Chart type="doughnut" :data="DoghnutChartData" :options="chartOptions" class="w-full md:w-[30rem]" />
                                             </div>
                                         </div>
                                     </div>
@@ -69,8 +49,7 @@
                                             <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
                                             <h4 class="fw-semibold mb-3">$6,820</h4>
                                             <div class="d-flex align-items-center pb-1">
-                          <span
-                              class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                          <span class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
                             <i class="ti ti-arrow-down-right text-danger"></i>
                           </span>
                                                 <p class="text-dark me-1 fs-3 mb-0">+9%</p>
@@ -408,10 +387,12 @@
 <script setup>
 import {onMounted, ref} from 'vue'
 import Chart from 'primevue/chart';
+import moment from "moment";
 const BarChartData = ref();
+const DoghnutChartData = ref();
 const chartOptions = ref();
 const user = ref('');
-
+const currentYearNumberOfSupplier = ref('')
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -436,21 +417,37 @@ const getUser = async () => {
 const getAdminCharts = async () => {
     try {
         const response = await axios.get('/dashboard');
+        const SalesData = response.data.data.supplierRevenue
         BarChartData.value =  {
-            labels: response.data.data.supplierRevenue.map(item => item.supplier_name),
+            labels: SalesData.map(item => item.supplier_name),
             datasets: [
                 {
-                    label: 'Sales',
-                    data: response.data.data.supplierRevenue.map(item => item.profit),
-                    backgroundColor: response.data.data.supplierRevenue.map(item => getRandomColor()),
-                    borderColor: response.data.data.supplierRevenue.map(item => getRandomColor()),
+                    label: 'Revenue',
+                    data: SalesData.map(item => item.profit),
+                    backgroundColor: SalesData.map(item => getRandomColor()),
+                    borderColor: SalesData.map(item => getRandomColor()),
                     borderWidth: 2,
                     borderRadius: 12
                 }
             ]
         };
+
+        const SuppliersData = response.data.data.NumberOfActiveSuppliers
+        currentYearNumberOfSupplier.value = SuppliersData.currentYear
+        DoghnutChartData.value = {
+            supplierCount: SuppliersData.monthly.map(item => item.count),
+            labels: SuppliersData.monthly.map(item => moment(item.month, 'M').format('MMMM')),
+            datasets: [
+                {
+                    data: SuppliersData.monthly.map(item => item.count),
+                    backgroundColor: SuppliersData.monthly.map(item => getRandomColor()),
+                    hoverBackgroundColor: SuppliersData.monthly.map(item => getRandomColor()),
+
+                }
+            ]
+        }
     } catch (error) {
-        console.log(error.response.data);
+        console.log(error);
     }
 }
 const getSupplierCharts = async () => {
