@@ -68,4 +68,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(FuelPolicy::class,'fuel_policy_id','id');
     }
+    public function rentals()
+    {
+        return $this->hasMany(Rental::class, 'supplier_id', 'id');
+
+    }
+
 }

@@ -78,7 +78,7 @@ class VehicleController extends Controller
                     'status' => false
                 ]);
             }
-            $query = $filteredVehicles->with('category', 'supplier.fuelPolicy', 'profit', 'included', 'branch', 'locationType', 'specifications');
+            $query = $filteredVehicles->with('category', 'supplier.fuelPolicy', 'supplier.rentals.rentalRates', 'profit', 'included', 'branch', 'locationType', 'specifications');
 
             if ($request->priceRange && $request->priceRange !== 0) {
                 $query->where('price', '<=', ($request->priceRange));
@@ -164,7 +164,7 @@ class VehicleController extends Controller
 
                     $vehicle->final_price = ($vehicle->week_price + (($vehicle->week_price * $vehicle->profit->per_week_profit) / 100)) * $diffInDays;
                     $priceTax = $vehicle->profit->per_week_profit;
-                } else if ($diffInDays >= 8 ) {
+                } else if ($diffInDays >= 8) {
                     $vehicle->final_price = ($vehicle->month_price + (($vehicle->month_price * $vehicle->profit->per_month_profit) / 100)) * $diffInDays;
                     $priceTax = $vehicle->profit->per_month_profit;
                 }
@@ -185,6 +185,10 @@ class VehicleController extends Controller
             $count = $vehicles->count();
 
             foreach ($vehicles as $vehicle) {
+                $rentals = Rental::query()->where('supplier_id', $vehicle->supplier)->whereNotNull('rate')->get();
+
+                $vehicle->supplier_rate = $rentals->sum('rate') / $rentals->count();
+                $vehicle->supplier_number_of_reviews = $rentals->count();
                 $vehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $vehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
             }
             $vehicles = $vehicles->toArray();
@@ -323,7 +327,7 @@ class VehicleController extends Controller
                 VehicleSpecification::query()->where('vehicle_id', $existingVehicle->id)->delete();
                 $specifications = json_decode($request->specifications);
                 foreach ($specifications as $specification) {
-                    if($specification->selectedOption !== "" ) {
+                    if ($specification->selectedOption !== "") {
                         VehicleSpecification::insert(
                             [
                                 'vehicle_id' => $existingVehicle->id,
@@ -513,7 +517,7 @@ class VehicleController extends Controller
         if ($request->has('branch_id')) {
             $branchId = $request->branch_id;
         }
-        if($request->has('supplier')) {
+        if ($request->has('supplier')) {
             $supplierId = $request->supplier;
         }
         if ($user) {
@@ -527,7 +531,7 @@ class VehicleController extends Controller
             }
         }
 
-        if(!is_null($supplierId)){
+        if (!is_null($supplierId)) {
             $vehicles->where('supplier', $supplierId);
         }
 
@@ -556,7 +560,7 @@ class VehicleController extends Controller
 
             $location = $request->location;
             $currency = $request->currency;
-            $selectedVehicle = Vehicle::where('id', $request->id)->with('category', 'supplier.fuelPolicy', 'branch', 'included','specifications')->first();
+            $selectedVehicle = Vehicle::where('id', $request->id)->with('category', 'supplier.fuelPolicy', 'branch', 'included', 'specifications','supplier.fuelPolicy', 'supplier.rentals.rentalRates')->first();
 
             $startDate = Carbon::parse($request->date_from);
             $endDate = Carbon::parse($request->date_to);
@@ -579,6 +583,10 @@ class VehicleController extends Controller
             }
             $selectedVehicle->final_price = round($selectedVehicle->final_price, 2);
             $selectedVehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $selectedVehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
+
+            $rentals = Rental::query()->where('supplier_id', $selectedVehicle->supplier)->whereNotNull('rate')->get();
+            $selectedVehicle->supplier_rate = $rentals->sum('rate') / $rentals->count();
+            $selectedVehicle->supplier_number_of_reviews = $rentals->count();
 
             return response()->json([
                 'data' => [

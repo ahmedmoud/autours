@@ -501,12 +501,19 @@
                                     </div>
                                     <div class="col-md-2">
                                         <span class="py-2 px-1 rounded-1 ml-3"
-                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
+                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{vehicle.supplier_rate}}/10</span>
                                     </div>
                                     <div class="col-md-3">
-                                                        <span class="be_media-body"><h5>Good</h5><span
+                                                        <span class="be_media-body"><h5> {{
+                                                                vehicle?.supplier_rate >= 1 && vehicle?.supplier_rate <= 2 ? 'Terrible':
+                                                                    vehicle?.supplier_rate > 2 && vehicle?.supplier_rate <= 4 ? 'Ok':
+                                                                        vehicle?.supplier_rate > 4 && vehicle?.supplier_rate <= 6 ? 'Good':
+                                                                            vehicle?.supplier_rate > 6 && vehicle?.supplier_rate <= 8 ? 'Ver Good':
+                                                                                vehicle?.supplier_rate > 8 && vehicle?.supplier_rate <= 10 ? 'Excellent':
+                                                                                    ''
+                                                            }}</h5><span
                                                             style="font-size: medium;">(&nbsp;<strong
-                                                            style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                                            style="color: #f9d602">{{vehicle.supplier.rentals.length}}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
                                     <div class="col-md-4 ">
                                         <p class="text-nowrap mt-2" style="font-size: 15px;"><i class="fa fa-location"/>
@@ -515,16 +522,13 @@
                                         <div>
                                             <el-tooltip placement="bottom">
                                                 <template #content>
-                                                    <div class=" p-3" style="font-size: 16px;">
+                                                    <div>
                                                         {{ vehicle?.supplier?.fuel_policy?.description }}
                                                     </div>
                                                 </template>
-                                                <p style="margin-top: -20px;"><strong class="text-nowrap"
-                                                                                      style="font-size: 15px;"><i
-                                                    class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy: <strong
-                                                    class="text-nowrap">{{
-                                                        vehicle?.supplier?.fuel_policy?.name
-                                                    }} </strong>
+                                                <p style="margin-top: -20px;">
+                                                    <strong class="text-nowrap" style="font-size: 15px;"><i class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
+                                                    <strong class="text-nowrap">{{vehicle?.supplier?.fuel_policy?.name}} </strong>
                                                 </p>
                                             </el-tooltip>
                                         </div>
@@ -1259,6 +1263,7 @@ li::before {
  .el-popper__arrow {
     top: 90% !important;
     left: 130px !important;
-    display: none;
+     transform: translate(0px, 0px);
+    display: none !important;
 }
 </style>

@@ -21,12 +21,18 @@ class Rental extends Model
         'end_date',
         'start_time',
         'end_time',
+        'comment',
+        'rate'
     ];
 
     public function vehicle() {
         return $this->belongsTo(Vehicle::class, 'vehicle_id', 'id');
     }
 
+    public function supplier()
+    {
+        return $this->belongsTo(User::class, 'supplier_id', 'id');
+    }
 
     public function customer() {
         return $this->belongsTo(User::class, 'customer_id', 'id');
@@ -35,6 +41,9 @@ class Rental extends Model
 
     public function status() {
         return $this->belongsTo(RentalStatus::class, 'order_status', 'id');
+    }
+    public function rentalRates() {
+        return $this->hasMany(RentalRate::class, 'rental_id', 'id');
     }
 
 }

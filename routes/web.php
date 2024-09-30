@@ -11,6 +11,7 @@ use App\Http\Controllers\FuelPolicyController;
 use App\Http\Controllers\IncludedController;
 use App\Http\Controllers\LocationTypesController;
 use App\Http\Controllers\ProfitsController;
+use App\Http\Controllers\RatesController;
 use App\Http\Controllers\RentalTermsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
@@ -202,5 +203,7 @@ Route::middleware(['customer'])->group(function () {
 //Route::view('/email', 'email.booking.request.supplier',['body' =>  $rental]);
 Route::get('/booking/update-status', [BookingsController::class, 'updateBookingStatus']);
 Route::inertia('/rentals/rate', 'RentalRate');
+Route::get('/get/rating/questions',[RatesController::class, 'index'] );
+Route::post('/rating',[RatesController::class, 'store'] );
 
 

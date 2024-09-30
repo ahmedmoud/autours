@@ -421,7 +421,7 @@
                                                             <el-tooltip placement="right-start">
                                                                 <template  #content>
                                                                     <div >
-                                                                        The supplier will provide a car with same class and specifications, though the make may vary.
+                                                                        The supplier will provide a car with same class and specifications,<br> though the make may vary.
                                                                     </div>
                                                                 </template>
                                                                 {{ vehicle.name }} OR&nbsp;Similar
@@ -478,12 +478,21 @@
                                                     </div>
                                                     <div>
                                                         <span class="py-2 px-1 rounded-1"
-                                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">7.1/10</span>
+                                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{vehicle?.supplier_rate}}/10</span>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <span class="be_media-body"><h5 style="margin-bottom: -5px;">Good</h5><span
+                                                        <span class="be_media-body"><h5 style="margin-bottom: -5px;">
+                                                            {{
+                                                                vehicle?.supplier_rate >= 1 && vehicle?.supplier_rate <= 2 ? 'Terrible':
+                                                                vehicle?.supplier_rate > 2 && vehicle?.supplier_rate <= 4 ? 'Ok':
+                                                                vehicle?.supplier_rate > 4 && vehicle?.supplier_rate <= 6 ? 'Good':
+                                                                vehicle?.supplier_rate > 6 && vehicle?.supplier_rate <= 8 ? 'Ver Good':
+                                                                vehicle?.supplier_rate > 8 && vehicle?.supplier_rate <= 10 ? 'Excellent':
+                                                                    ''
+                                                            }}
+                                                        </h5><span
                                                             style="font-size: medium; ">(&nbsp;<strong
-                                                            style="color: #f9d602">1000&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                                            style="color: #f9d602">{{vehicle.supplier.rentals.length}}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
                                                     <el-tooltip v-if="vehicle.instant_confirmation"
                                                                 placement="right-start">
