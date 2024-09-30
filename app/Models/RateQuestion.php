@@ -9,4 +9,5 @@ class RateQuestion extends Model
 {
     use HasFactory;
     public $timestamps = true;
+    protected $fillable = ['objective', 'question'];
 }

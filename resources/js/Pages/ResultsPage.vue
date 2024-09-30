@@ -17,16 +17,13 @@
                             <slot name="header"> Rental Terms</slot>
                         </div>
                         <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
-                            <CAccordion>
-                                <CAccordionItem v-for="(item,index) in activeRentalTerms" :item-key="index">
-                                    <CAccordionHeader>
-                                        <div v-html="item.title"></div>
-                                    </CAccordionHeader>
-                                    <CAccordionBody>
-                                        <div v-html="item.description"></div>
-                                    </CAccordionBody>
-                                </CAccordionItem>
-                            </CAccordion>
+                            <h2>Terms and Conditions</h2>
+                            <div  v-for="(item,index) in activeRentalTerms" :item-key="index">
+                                <h3 v-html="item.title"></h3>
+                                <ul>
+                                    <div v-html="item.description"></div>
+                                </ul>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <slot name="footer">
@@ -476,10 +473,19 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <el-tooltip v-if="vehicle.instant_confirmation" placement="right-start">
+                                                        <template  #content >
+                                                            <h5>Customers Feedback!</h5>
+                                                            <div class="row col-md-12 text-nowrap" style="width: 500px" v-for="rentalReview in vehicle?.questions_rate">
+                                                                <div class="col-md-6 text-nowrap">{{rentalReview.objective}} </div>
+                                                                <div class="col-md-6 text-nowrap">  <CProgressBar style="border-radius: 10px;"   :value="rentalReview.total_rate * 10">{{rentalReview.total_rate}} / 10</CProgressBar> </div>
+                                                            </div>
+                                                        </template>
                                                     <div>
                                                         <span class="py-2 px-1 rounded-1"
                                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{vehicle?.supplier_rate}}/10</span>
                                                     </div>
+                                                    </el-tooltip>
                                                     <div class="col-md-3">
                                                         <span class="be_media-body"><h5 style="margin-bottom: -5px;">
                                                             {{
@@ -659,7 +665,7 @@
 import {onMounted, onBeforeMount, ref, watchEffect, computed} from "vue";
 import {useForm, Link, router} from "@inertiajs/vue3";
 import HeaderOne from "../components/HeaderOne.vue";
-import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/vue';
+import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody, CProgressBar} from '@coreui/vue';
 import Footer from "../components/Footer.vue";
 import Loader from "../components/Loader.vue";
 import {Swiper, SwiperSlide} from 'swiper/vue';
