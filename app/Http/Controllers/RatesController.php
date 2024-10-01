@@ -56,7 +56,7 @@ class RatesController extends Controller
                 "success" => false,
                 "data" => [
                     "questions" => RateQuestion::query()->orderBy('id')->get(),
-                    "rental" => Rental::query()->find($request->id)->with(['vehicle', 'supplier'])->first(),
+                    "rental" => Rental::query()->find($request->id)->with(['vehicle', 'supplier']),
                 ]
             ]);
         } catch (\Exception $e) {
