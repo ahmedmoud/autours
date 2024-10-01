@@ -34,6 +34,8 @@ class Rating extends Command
             ->whereDate('end_date','<', Carbon::now()->toDateString())
             ->whereDate('end_date','>=', Carbon::now()->subDays(5)->toDateString())
             ->with(['customer'])->get();
+        $this->info($rentalsHasNoReview);
+        return;
         foreach ($rentalsHasNoReview as $rentalHasNoReview) {
             $rentalHasNoReview->review_form_link = url('rentals/rate?id='. $rentalHasNoReview->id .'&key=' .encrypt(base64_encode($rentalHasNoReview->customer->email .','. Carbon::now()->addDays(2)->toDateString()), env('APP_KEY')));
             Mail::to($rentalHasNoReview->customer->email)->send(new RentalRateRequestMail\RentalRateRequestMail($rentalHasNoReview));
