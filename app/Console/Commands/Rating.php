@@ -33,6 +33,7 @@ class Rating extends Command
         $rentalsHasNoReview = Rental::query()->whereIn('order_status', [RentalStatuses::CONFIRMED, RentalStatuses::RECONCILED])
             ->whereDate('end_date','<', Carbon::now()->toDateString())
             ->whereDate('end_date','>=', Carbon::now()->subDays(5)->toDateString())
+            ->whereNull('rate')
             ->with(['customer'])->get();
         $this->info($rentalsHasNoReview);
         return;
