@@ -110,93 +110,45 @@
                                     <thead class="text-dark fs-4">
                                     <tr>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Id</h6>
+                                            <h6 class="fw-semibold mb-0">Rental Id</h6>
                                         </th>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Assigned</h6>
+                                            <h6 class="fw-semibold mb-0">Customer</h6>
                                         </th>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Name</h6>
+                                            <h6 class="fw-semibold mb-0">Vehicle</h6>
                                         </th>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Priority</h6>
+                                            <h6 class="fw-semibold mb-0">status</h6>
                                         </th>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Budget</h6>
+                                            <h6 class="fw-semibold mb-0">Price</h6>
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
+                                    <tr v-for="item in latestCustomerTransactions">
+                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">#{{item.order_number}}</h6></td>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                                            <span class="fw-normal">Web Designer</span>
+                                            <h6 class="fw-semibold mb-1">{{item.customer.name}}</h6>
+                                            <span class="fw-normal">{{item.customer.phone_num}}</span>
                                         </td>
                                         <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">Elite Admin</p>
+                                            <p class="mb-0 fw-normal">{{item.vehicle.name}}</p>
                                         </td>
                                         <td class="border-bottom-0">
                                             <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
+                                                <span :class="
+                                                item.order_status == 1 ? 'badge rounded-3 fw-semibold bg-primary' :
+                                                item.order_status == 2 ? 'badge rounded-3 fw-semibold bg-success' :
+                                                item.order_status == 3 ? 'badge rounded-3 fw-semibold bg-danger' :
+                                                item.order_status == 4 ? 'badge rounded-3 fw-semibold bg-warning' :
+                                                item.order_status == 7 ? 'badge rounded-3 fw-semibold bg-dark' :
+                                                 '' ">{{item.status.name_en}}</span>
                                             </div>
                                         </td>
                                         <td class="border-bottom-0">
                                             <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">2</h6></td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-1">Andrew McDownland</h6>
-                                            <span class="fw-normal">Project Manager</span>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">Real Homes WP Theme</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-secondary rounded-3 fw-semibold">Medium</span>
-                                            </div>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0 fs-4">$24.5k</h6>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">3</h6></td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-1">Christopher Jamil</h6>
-                                            <span class="fw-normal">Project Manager</span>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">MedicalPro WP Theme</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-danger rounded-3 fw-semibold">High</span>
-                                            </div>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0 fs-4">$12.8k</h6>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">4</h6></td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                                            <span class="fw-normal">Frontend Engineer</span>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">Hosting Press HTML</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                                            </div>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -237,7 +189,7 @@
                 </div>
             </div>
             <div class="py-6 px-6 text-center">
-                <p class="mb-0 fs-4">Design and Developed by </p>
+                <p class="mb-0 fs-4">Design and Developed by @Autours</p>
             </div>
         </div>
     </div>
@@ -257,6 +209,7 @@ const user = ref('');
 const currentYearNumberOfSupplier = ref('')
 const latestTransaction = ref();
 const latestVehicles = ref();
+const latestCustomerTransactions = ref();
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -272,6 +225,8 @@ const getUser = async () => {
         user.value = response.data;
         if (response.data?.role === "admin") {
             getAdminCharts()
+        } else {
+            getSupplierCharts()
         }
     } catch (error) {
         console.log(error);
@@ -296,7 +251,7 @@ const getAdminCharts = async () => {
         };
 
         const SuppliersData = response.data.data.NumberOfActiveSuppliers
-        currentYearNumberOfSupplier.value = SuppliersData.currentYear
+        currentYearNumberOfSupplier.value = SuppliersData?.currentYear
         DoghnutChartData.value = {
             supplierCount: SuppliersData.monthly.map(item => item.count),
             labels: SuppliersData.monthly.map(item => moment(item.month, 'M').format('MMMM')),
@@ -344,8 +299,8 @@ const getAdminCharts = async () => {
                 ]
             };
         latestTransaction.value = response.data.data.latestRentalsTransactions
-        latestVehicles  .value = response.data.data.latestVehicles
-
+        latestVehicles.value = response.data.data.latestVehicles
+        latestCustomerTransactions.value = response.data.data.customerTransactions
         } catch
         (error)
         {
@@ -354,8 +309,73 @@ const getAdminCharts = async () => {
     }
     const getSupplierCharts = async () => {
         try {
-            const response = await axios.get('/dashboard');
-            console.log(response)
+            const response = await axios.get('/supplier-dashboard');
+            const SalesData = response.data.data.supplierRevenue
+            BarChartData.value = {
+                labels: SalesData.map(item => item.branch_name),
+                datasets: [
+                    {
+                        label: 'Revenue',
+                        data: SalesData.map(item => item.profit),
+                        backgroundColor: SalesData.map(() => getRandomColor()),
+                        borderColor: SalesData.map(() => getRandomColor()),
+                        borderWidth: 2,
+                        borderRadius: 12
+                    }
+                ]
+            };
+
+            const SuppliersData = response.data.data.NumberOfActiveVehicles
+            currentYearNumberOfSupplier.value = SuppliersData?.currentYear
+            DoghnutChartData.value = {
+                supplierCount: SuppliersData.monthly.map(item => item.count),
+                labels: SuppliersData.monthly.map(item => moment(item.month, 'M').format('MMMM')),
+                datasets: [
+                    {
+                        data: SuppliersData.monthly.map(item => item.count),
+                        backgroundColor: SuppliersData.monthly.map(item => getRandomColor()),
+                        hoverBackgroundColor: SuppliersData.monthly.map(item => getRandomColor()),
+
+                    }
+                ]
+            }
+
+            const RentalsData = response.data.data.numberOfRentalsMonthly
+            LineChartData.value = {
+                labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "12"].map(item => moment(item, 'M').format('MMM')),
+                datasets: [
+                    {
+                        label: 'Cancelled Rentals',
+                        data: RentalsData.cancelled.map(item => item.count),
+                        fill: true,
+                        borderColor: getRandomColor(),
+                        tension: 0.4
+
+                    },
+                    {
+                        label: 'Done Rentals',
+                        data: RentalsData.done.map(item => item.count),
+                        fill: true,
+                        borderColor: getRandomColor(),
+                        tension: 0.4
+
+                    }
+                ]
+            }
+
+            PieChartData.value = {
+                labels: ['A', 'B', 'C'],
+                datasets: [
+                    {
+                        data: [540, 325, 702],
+                        backgroundColor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "12"].map(() => getRandomColor()),
+                        hoverBackgroundColor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "12"].map(() => getRandomColor()),
+                    }
+                ]
+            };
+            latestTransaction.value = response.data.data.latestRentalsTransactions
+            latestVehicles.value = response.data.data.latestVehicles
+            latestCustomerTransactions.value = response.data.data.customerTransactions
         } catch (error) {
             console.log(error);
         }

@@ -185,6 +185,8 @@ Route::middleware(['active_supplier'])->group(function () {
 
     Route::post('accept/rentals', [VehicleController::class, 'acceptRentals']);
     Route::post('delete/rentals', [VehicleController::class, 'deleteRentals']);
+    Route::get('/supplier-dashboard', [DashboardController::class, 'supplierDashboard']);
+
 });
 
 Route::middleware(['customer'])->group(function () {
