@@ -4,7 +4,7 @@
 
 <template>
     <div class="col-md-2" >
-        <div class="loader"></div>
+       <img  src="/gif/loading.gif" />
     </div>
 
 </template>

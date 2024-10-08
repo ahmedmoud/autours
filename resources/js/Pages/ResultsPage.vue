@@ -1,9 +1,13 @@
 <template>
 
     <body>
-    <div id="wrapper">
+    <header-one/>
+
+    <div v-if="loading" class="col-lg-5" >
+        <Loader />
+    </div>
+    <div v-else id="wrapper">
         <!-- header begin -->
-        <header-one/>
         <!-- header close -->
         <!-- content begin -->
         <div class="" style="background: #f7f7f7" id="content">
@@ -351,11 +355,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="loading" class="col-lg-5" style=" margin-top: 10%; margin-left: 10%;">
-                            <Loader style=" margin-top: 40%; margin-left: 25%;"/>
-                        </div>
 
-                        <div v-else class="col-lg-9">
+
+                        <div  class="col-lg-9">
                             <div class="col-md-11">
                                 <swiper
                                     :modules="[Navigation, Pagination, Scrollbar, A11y]"
@@ -432,7 +434,7 @@
                                                                     <img style="width:15%; margin-right: 5px;"
                                                                          v-if="specification.icon"
                                                                          :src="'assets/images/icons/' + specification.icon + '.svg'"/>
-                                                                    <span> {{
+                                                                    <span class="text-nowrap"> {{
                                                                             specification.value
                                                                         }} {{
                                                                             specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Conditioning' ||

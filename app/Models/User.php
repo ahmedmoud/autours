@@ -33,7 +33,8 @@ class User extends Authenticatable
         'week_price_tax',
         'month_price_tax',
         'year_price_tax',
-        'fuel_policy_id'
+        'fuel_policy_id',
+        'password_reset_key'
     ];
 
     /**

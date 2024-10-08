@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Enums\StatusCodes;
+use App\Http\Requests\ForgetPasswordRequest;
+use App\Http\Requests\SetNewPasswordRequest;
+use App\Mail\UsersEmail\ForgetPasswordEmail;
 use App\Models\Rental;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Branch;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Testing\Concerns\Has;
 use MongoDB\Driver\Session;
 
 class UserController extends Controller
@@ -205,6 +210,105 @@ class UserController extends Controller
             return response()->json([
                 'data' =>[],
                 'message' => 'Server Error'
+            ], StatusCodes::SERVER_ERROR);
+        }
+    }
+
+    public function forgetPassword(ForgetPasswordRequest $request)
+    {
+        try {
+            $user = User::query()->where('email', $request->email)->first();
+            $forgetPasswordLink = url() . '/new-password-form?key='. base64_encode(encrypt($request->email .','. Carbon::now()->toDateString(), env('APP_KEY')));
+            $user->password_reset_key = $forgetPasswordLink;
+
+            $user->save();
+            $user->setNewPasswordLink = $forgetPasswordLink;
+
+            event(new ForgetPasswordEmail($user));
+            return response()->json([
+                'status' => true,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => true,
+            ]);
+        }
+    }
+    public function ValidateForgetPasswordKey(Request $request)
+    {
+
+        try {
+            if (!$request->has("key")) {
+                return response()->json([
+                    'status' => false,
+                    'message' => ''
+                ], StatusCodes::SERVER_ERROR);
+            }
+            $decryptedKey = explode(',', decrypt(base64_decode($request->key), env('APP_KEY')));
+            $email = $decryptedKey[0];
+            $date = $decryptedKey[1];
+            if (!Carbon::now()->isSameDay($date)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => ''
+                ], StatusCodes::FORBIDDEN);
+            }
+            $user = User::query()->where('email', $email)->first();
+            if (is_null($user) || is_null($user->password_reset_key) || $user->password_reset_key != $request->key){
+                return response()->json([
+                    'status' => false,
+                    'message' => ''
+                ], StatusCodes::FORBIDDEN);
+            }
+            return response()->json([
+                'status' => true,
+                'data' => $user,
+                'message' => 'key validated'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => ''
+            ], StatusCodes::SERVER_ERROR);
+        }
+    }
+    public function setNewPassword(SetNewPasswordRequest $request)
+    {
+        try {
+            if (!$request->has("key")) {
+                return response()->json([
+                    'status' => false,
+                    'message' => ''
+                ], StatusCodes::SERVER_ERROR);
+            }
+            $decryptedKey = explode(',', decrypt(base64_decode($request->key), env('APP_KEY')));
+            $email = $decryptedKey[0];
+            $date = $decryptedKey[1];
+            if (!Carbon::now()->isSameDay($date)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => ''
+                ], StatusCodes::FORBIDDEN);
+            }
+            $user = User::query()->where('email', $email)->first();
+            if (is_null($user)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => ''
+                ], StatusCodes::FORBIDDEN);
+            }
+
+            $user->password = Hash::make($request->newPassword);
+            $user->password_reset_key = null;
+            $user->save();
+            return response()->json([
+                'status' => true,
+                'message' => 'password has been reset successfully '
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
             ], StatusCodes::SERVER_ERROR);
         }
     }

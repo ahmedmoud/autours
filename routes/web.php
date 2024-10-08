@@ -44,7 +44,7 @@ Route::get('/v2', function () {
     return Inertia::render('LandingPagev2');
 });
 
-Route::group(['prefix'=>'/booking'], function(){
+Route::group(['prefix' => '/booking'], function () {
     Route::get('/{id}', [BookingsController::class, 'show'])->middleware('customer');
 
 });
@@ -70,7 +70,7 @@ Route::get('get/categories', [VehicleController::class, 'getCategories']);
 Route::get('get/specifications', [VehicleController::class, 'getSpecifications']);
 Route::post('get/filtered/specifications', [VehicleController::class, 'getFilteredSpecifications']);
 
-Route::get('results',  [VehicleController::class, 'index'])->name('results');
+Route::get('results', [VehicleController::class, 'index'])->name('results');
 
 Route::inertia('/supplier/login', 'Auth/SupplierLogin');
 Route::inertia('/supplier/signup', 'Auth/SupplierRegister');
@@ -144,7 +144,6 @@ Route::middleware(['admin'])->group(function () {
     Route::post('update/rental-terms/status', [RentalTermsController::class, 'approveOrReject']);
 
 
-
     Route::inertia('memberships', 'Dashboard/Memberships');
     Route::get('get/requests', [UserController::class, 'memberships']);
     Route::post('accept/requests', [UserController::class, 'acceptMemberships']);
@@ -182,7 +181,6 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::post('select-rental-terms', [RentalTermsController::class, 'assignRentalTerms']);
 
 
-
     Route::post('accept/rentals', [VehicleController::class, 'acceptRentals']);
     Route::post('delete/rentals', [VehicleController::class, 'deleteRentals']);
     Route::get('/supplier-dashboard', [DashboardController::class, 'supplierDashboard']);
@@ -191,9 +189,9 @@ Route::middleware(['active_supplier'])->group(function () {
 
 Route::middleware(['customer'])->group(function () {
     Route::post('/book/vehicles', [BookingsController::class, 'book']);
-        Route::inertia('/my-bookings','MyBookings' );
-        Route::post('/cancel/booking',[BookingsController::class, 'cancelBooking'] );
-        Route::post('/invoice/booking',[BookingsController::class, 'bookingInvoice'] );
+    Route::inertia('/my-bookings', 'MyBookings');
+    Route::post('/cancel/booking', [BookingsController::class, 'cancelBooking']);
+    Route::post('/invoice/booking', [BookingsController::class, 'bookingInvoice']);
 });
 //$user = User::query()->find(3);
 //$rental = Rental::query()->find(11);
@@ -210,7 +208,11 @@ Route::middleware(['customer'])->group(function () {
 //Route::view('/email', 'email.booking.request.supplier',['body' =>  $rental]);
 Route::get('/booking/update-status', [BookingsController::class, 'updateBookingStatus']);
 Route::inertia('/rentals/rate', 'RentalRate');
-Route::get('/get/rating/questions',[RatesController::class, 'index'] );
-Route::post('/rating',[RatesController::class, 'store'] );
+Route::get('/get/rating/questions', [RatesController::class, 'index']);
+Route::post('/rating', [RatesController::class, 'store']);
+Route::post('/forget-password', [UserController::class, 'forgetPassword']);
+Route::inertia('/new-password-form', 'Auth/NewPasswordForm');
+Route::post('/validate-forget-password-key', [UserController::class, 'validateForgetPasswordKey']);
+Route::post('/save-new-password', [UserController::class, 'setNewPassword']);
 
 

@@ -3,7 +3,8 @@
 
     <div id="wrapper">
         <!-- content begin -->
-        <div class="no-bottom no-top" id="content">
+        <div class="no-bottom no-top" id="content"
+             style="background-image: url('/images/background/manage-booking-div.jpg')">
             <div id="top"></div>
             <!-- section begin -->
             <section id="subheader" class="jarallax ">
@@ -20,11 +21,34 @@
             </section>
             <!-- section close -->
             <section aria-label="section">
-                <div class="">
+                <div class=" col-md-6 flip-container">
+                    <div id="forgetPassword" class="flipper display-none offset-5">
+                        <div class="front">
+                            <p style="font-size: 50px; margin-top: 5%; margin-left: 20%; font-weight: 1000;">
+                                Forget Password</p>
+                            <form class="mt-5">
+                                <div class="col-md-8" style="left: 15%">
+                                    <input placeholder="E-mail" class="input-text mt-4" v-model="forgetPasswordEmail"/>
+                                </div>
+                                <a style="left: 40%;" class="btn-main mt-4  rounded-5"
+                                   @click="sendForgetPasswordEmail()">Submit</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div :class="RegisterForm.user_type === 'supplier' ? 'register-form' : ''">
                     <div class="row">
                         <div class="row">
-                            <div  v-if="RegisterForm.user_type === 'supplier'" class="col-md-5 ml-5 " style="height: 350px; overflow-y: scroll; scrollbar-width: thin;">
-                                <p>Become a car rental supplier!
+                            <div v-if="RegisterForm.user_type === 'supplier'"
+                                 class="col-md-5 ml-5  mt-4 supplier-notice"
+                                 style=" height: 350px; scrollbar-gutter: auto;
+                                            overflow-y: scroll;
+                                            scrollbar-width: thin;
+
+                                            scrollbar-color: black rgba(255,255,255,0);
+">
+                                <p style="    border-color: black;
+                                            border-width: 10px;">Become a car rental supplier!
                                     Autours is a company operating in the tourism field since its establishment in
                                     2005, with car rental bookings being our main area of expertise.
                                     We provide you a great chance to increase the business, as through our
@@ -55,39 +79,46 @@
                             </div>
 
                             <div class=" col-md-6 flip-container">
-                                <div :class="RegisterForm.user_type !== 'supplier' ? 'flipper offset-5' : 'flipper' "  v-bind:class="(RegisterForm.supplier) ? 'flip' : ''" id="flipper">
+
+                                <div :class="RegisterForm.user_type !== 'supplier' ? 'flipper offset-5' : 'flipper' "
+                                     v-bind:class="(RegisterForm.supplier) ? 'flip' : ''" id="flipper">
                                     <div class="front">
-                                        <h3 class="title my-3">Manage Booking</h3>
+                                        <p style="font-size: 50px; margin-top: 5%; margin-left: 20%; font-weight: 1000;">
+                                            Manage Booking</p>
                                         <form class="form-border" @submit.prevent="manageBooking">
 
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-12 mt-3">
                                                     <div class="field-set">
-                                                        <label>Email Address</label>
-                                                        <input v-model="loginForm.email" type="email"
-                                                               class="formbold-form-input"/>
+                                                        <input placeholder="E-mail" v-model="loginForm.email"
+                                                               type="email" class="input-text"/>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-12">
+                                                <div class="col-md-12 mt-3">
                                                     <div class="field-set">
-                                                        <label>Password</label>
                                                         <input v-model="loginForm.password" type='password'
-                                                               name='password' id='password' class="form-control">
+                                                               name='password' placeholder="Password" id='password'
+                                                               class="input-text">
                                                     </div>
                                                 </div>
 
 
-                                                <div class=" mt-2 row">
+                                                <div class=" mt-5 row">
                                                     <div id='submit' class="pull-left col-md-8">
                                                         <button type='submit' id='send_message'
-                                                                class="btn-main color-2" :disabled="loading">Continue
+                                                                class="btn-main color-2 rounded-5" :disabled="loading">
+                                                            LOGIN
                                                             <span><i
                                                                 class="fa fa-arrow-right ml-2"/></span></button>
                                                     </div>
                                                     <div id='submit' class="mt-4 col-md-4 ">
                                                         <a class="flipbutton cursor-pointer" id="loginButton"
                                                            v-on:click="createAccount()">Create my account →</a>
+                                                    </div>
+                                                    <div id='submit' class="mt-4 col-md-4 ">
+                                                        <a class="flipbutton cursor-pointer" id="loginButton"
+                                                           v-on:click="forgetPassword()">Forget Your Password ? </a>
                                                     </div>
 
                                                     <div id='mail_success' class='success'>Your message has been sent
@@ -107,61 +138,63 @@
 
                                     <div class="back">
                                         <h3 class="title my-3">Register</h3>
-                                        <form class="form-border" autocomplete="off"  @submit.prevent="postUserData">
+                                        <form class="form-border" autocomplete="off" @submit.prevent="postUserData">
 
-                                            <div class="row">
+                                            <div class="row ">
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mt-3">
                                                     <div class="field-set">
-                                                        <label>Name </label>
                                                         <input v-model="RegisterForm.name" type="text"
-                                                               class="formbold-form-input"/>
+                                                               placeholder="Full name" class="input-text"/>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mt-3">
                                                     <div class="field-set">
-                                                        <label>Email Address</label>
-                                                        <input v-model="RegisterForm.email" type="email" id="email"  name="email" class="formbold-form-input"/>
+                                                        <input v-model="RegisterForm.email" type="email" id="email"
+                                                               placeholder="E-mail" name="email" class="input-text"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="field-set">
-                                                        <label>Country</label>
-                                                        <input v-model="RegisterForm.country" type="text" class="formbold-form-input"/>
+                                                        <input v-model="RegisterForm.country" type="text"
+                                                               placeholder="Country" class="input-text"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="field-set">
-                                                        <label>Code</label>
-                                                        <input v-model="RegisterForm.code" type='text' name='code' placeholder=" " autocomplete="false"  id='code' class="form-control">
+                                                        <input v-model="RegisterForm.code" type='text' name='code'
+                                                               placeholder="+20" autocomplete="false" id='code'
+                                                               class="input-text">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="field-set">
-                                                        <label>Phone</label>
-                                                        <input v-model="RegisterForm.phone" autocomplete="false" type='text' name='phone' id='phone' class="form-control">
+                                                        <input v-model="RegisterForm.phone" autocomplete="false"
+                                                               placeholder="phone number" type='text' name='phone'
+                                                               id='phone' class="input-text">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="field-set">
-                                                        <label>Password</label>
-                                                        <input v-model="RegisterForm.password" type="password" name="password" id="password" class="formbold-form-input"/>
+                                                        <input v-model="RegisterForm.password" type="password"
+                                                               placeholder="Passwrod" name="password" id="password"
+                                                               class="input-text"/>
                                                     </div>
                                                 </div>
-
 
 
                                                 <div class="col-md-12 mt-2 row">
 
                                                     <div id='submit' class="pull-left col-md-8 ">
                                                         <button type='submit' id='send_message'
-                                                                class="btn-main color-2">Register <span><i
-                                                            class="fa fa-arrow-right ml-2"/></span></button>
+                                                                class="btn-main color-2 rounded-5 mt-4">Register
+                                                            <span><i
+                                                                class="fa fa-arrow-right ml-2"/></span></button>
                                                     </div>
-                                                    <div class="col-md-4 mt-4">
+                                                    <div class="col-md-4 mt-5">
                                                         <a class="flipbutton cursor-pointer" id="registerButton"
                                                            v-on:click="LoginToMyAccount()">Manage My Booking →</a></div>
 
@@ -244,7 +277,7 @@ const fetchCountries = async () => {
         countries.loading.value = false;
     }
 }
-
+const forgetPasswordEmail = ref('')
 const loading = ref(false);
 const postUserData = async () => {
     loading.value = true
@@ -304,6 +337,11 @@ const manageBooking = async () => {
         $toast.error($error.response.data.message, {position: 'top'})
     }
 };
+const forgetPassword = () => {
+    $("#flipper").hide();
+    $(".supplier-notice").hide();
+    $("#forgetPassword").show();
+}
 const createAccount = () => {
     document.querySelector("#flipper").classList.toggle("flip");
 }
@@ -321,6 +359,16 @@ const getUserData = async () => {
         }
     } catch (error) {
         console.error(error);
+    }
+}
+const sendForgetPasswordEmail = async () => {
+    try {
+        const response = await axios.post('/forget-password');
+        $toast.success("Email Sent Successfully to reset password", {position: "top"});
+        router.get('/')
+
+    } catch (e) {
+        console.log(e)
     }
 }
 onBeforeMount(() => {
@@ -358,7 +406,8 @@ onMounted(() => {
     left: 5%;
     height: 450px;
     position: relative;
-    background: #f5f5f5;
+    background-image: url('/images/background/manage-booking-form.png');
+    background-repeat: no-repeat;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
@@ -371,6 +420,7 @@ onMounted(() => {
     /*background-color: rgba(0,0,0,.3);*/
     position: absolute;
     padding: 10px 30px;
+
     top: 0;
     left: 0;
     right: 0;
@@ -379,6 +429,7 @@ onMounted(() => {
 }
 
 .front {
+
     z-index: 2;
     /* for firefox 31 */
     transform: rotateY(0deg);
@@ -425,4 +476,14 @@ input {
     }
 }
 
+.input-text {
+    border-radius: 50px !important;
+    border-width: 3px !important;
+    border-color: black !important;
+}
+
+.register-form {
+    background-image: url('/images/background/manage-booking-form.png');
+    background-repeat: no-repeat;
+}
 </style>
