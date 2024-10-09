@@ -110,13 +110,7 @@ class VehicleController extends Controller
             $maxPrice = 0;
             $minPrice = 10000000;
 
-            $categories = Category::query()
-                ->join('vehicles', 'vehicles.category', '=', 'categories.id')
-                ->join('branches', 'branches.id', '=', 'vehicles.pickup_loc')
-                ->where('branches.location', $location)
-                ->select(['categories.id as id', 'categories.name as name', 'categories.photo as photo', 'categories.sort'])
-                ->orderBy('sort')
-                ->distinct('categories.id', 'sort')->get();
+
             $locationTypes = LocationTypeVehicle::query()
                 ->join('vehicles', 'vehicles.id', '=', 'location_type_vehicle.vehicle_id')
                 ->join('location_types', 'location_types.id', '=', 'location_type_vehicle.location_type_id')
@@ -136,6 +130,14 @@ class VehicleController extends Controller
                     }
                 }
             }
+            $categories = Category::query()
+                ->join('vehicles', 'vehicles.category', '=', 'categories.id')
+                ->join('branches', 'branches.id', '=', 'vehicles.pickup_loc')
+                ->where('branches.location', $location)
+                ->whereIn('vehicles.id', $vehicles->pluck('id')->toArray())
+                ->select(['categories.id as id', 'categories.name as name', 'categories.photo as photo', 'categories.sort'])
+                ->orderBy('sort')
+                ->distinct('categories.id', 'sort')->get();
             foreach ($categories as $category) {
                 $category->vehicle_count = 0;
                 foreach ($vehicles as $vehicle) {

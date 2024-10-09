@@ -368,7 +368,7 @@
                                     <swiper-slide v-for="item in filteredCategories">
                                         <div :class="category.indexOf(item.id) >= 0 ? 'card select' : 'card'"
                                              :id="'category-' + item.id">
-                                            <el-radio v-model="category" :label="item.id" size="large" border
+                                            <el-radio  :label="item.id" size="large" border
                                                       @click="SelectCategory(item.id)" class=" image-content">
                                                 <div class="card-item">
                                                     <div>
@@ -428,12 +428,12 @@
                                                         </h4>
                                                         <span>{{ vehicle?.category?.name }}</span>
                                                         <div class="d-atr-group row">
-                                                            <ul class="d-atr col-md-8">
-                                                                <li v-for="specification in vehicle.specifications">
+                                                            <ul class="d-atr col-md-8 text-nowrap">
+                                                                <li v-for="specification in vehicle.specifications" >
                                                                     <img style="width:15%; margin-right: 5px;"
                                                                          v-if="specification.icon"
                                                                          :src="'assets/images/icons/' + specification.icon + '.svg'"/>
-                                                                    <span class="text-nowrap"> {{
+                                                                    <span> {{
                                                                             specification.value
                                                                         }} {{
                                                                             specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Conditioning' ||
@@ -790,8 +790,8 @@ const search = () => {
     router.get('/results', form)
 };
 const SelectCategory = (category_id) => {
-    const el = document.getElementById('category-' + category_id);
-    if (category.value.indexOf(category_id) >= 0) {
+
+    if (category.value?.indexOf(category_id) >= 0) {
         category.value.splice(category.value.indexOf(category_id), 1);
     } else {
         category.value.push(category_id);
