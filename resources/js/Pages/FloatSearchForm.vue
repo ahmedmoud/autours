@@ -1,7 +1,7 @@
 <template>
     <div class="form-layout">
-            <Loader style="left: 400px; top: 100px;" v-if="loading"/>
-        <form v-if="!loading" @submit.prevent="search">
+            <Loader style="left: 30%" v-if="loading"/>
+        <form v-else @submit.prevent="search">
             <div>
                 <div class="row">
 

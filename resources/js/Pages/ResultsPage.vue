@@ -3,10 +3,8 @@
     <body>
     <header-one/>
 
-    <div v-if="loading" class="col-lg-5" >
-        <Loader />
-    </div>
-    <div v-else id="wrapper">
+
+    <div  id="wrapper">
         <!-- header begin -->
         <!-- header close -->
         <!-- content begin -->
@@ -387,10 +385,11 @@
 
                             </div>
 
-                            <h3 style="color: #000; margin-left: 1.2%;">SEARCH RESULT <strong
-                                style="color: #bdaa2f;">{{ count }} CARS
-                                FOUND</strong></h3>
-                            <div v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
+                            <h3 style="color: #000; margin-left: 1.2%;">SEARCH RESULT <strong style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
+                            <div v-if="loading" class="col-lg-5" >
+                                <Loader />
+                            </div>
+                            <div v-else v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
                                 <div :style="getDisplayStyle(vehicle)">
                                     <div class="de-item-list mb-3 p-4 ">
                                         <div class="close"

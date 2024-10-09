@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div class="col-md-2" >
-       <img  src="/gif/loading.gif" />
+    <div class="col-md-2" style="left: 50%" >
+       <img  src="/gif/loading.gif" height="200" width="400" />
     </div>
 
 </template>
