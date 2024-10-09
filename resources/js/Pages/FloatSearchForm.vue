@@ -6,15 +6,8 @@
                 <div class="row">
 
                     <label class="text-white">Select Pickup Location</label>
-                    <!--                        <div class="col-md-5 mt-2 location-input">-->
-                    <!--                            <select class="form-control form-select bg-white" style=" height: 45px;" v-model="form.pickupLoc">-->
-                    <!--                                <option disabled selected value="" style="font-size: 20px;" class="el-select-dropdown">     Select Your Location...</option>-->
-                    <!--                                <option  class="el-select-dropdown" style="font-size: 20px;" v-for="item in locations.all.value" :value="item"> {{ item }}</option>-->
-                    <!--                            </select>-->
-
-                    <!--                        </div>-->
-                    <Dropdown v-model="form.pickupLoc" :options="locations?.all?.value" :placeholder="form.pickupLoc"
-                              filter filter-icon="fa fa-search fa-l" class="col-md-5 md:w-14rem mt-2 ml-4 rounded-0">
+                    <AutoComplete v-model="form.pickupLoc" :class="'col-md-5'" optionLabel="name"
+                                  :suggestions="filteredLocations" @complete="suggest" placeholder="Enter your Location">
                         <template #value="slotProps">
                             <div v-if="slotProps.value" class="flex align-items-center">
                                 <div>{{ slotProps.value }}</div>
@@ -25,7 +18,22 @@
                                 <div>{{ slotProps.option }}&nbsp;<i class="fa fa-plane-departure"/></div>
                             </div>
                         </template>
-                    </Dropdown>
+
+                    </AutoComplete>
+
+<!--                    <Dropdown v-model="form.pickupLoc" :options="locations?.all?.value" :placeholder="form.pickupLoc"-->
+<!--                              filter filter-icon="fa fa-search fa-l" class="col-md-5 md:w-14rem mt-2 ml-4 rounded-0">-->
+<!--                        <template #value="slotProps">-->
+<!--                            <div v-if="slotProps.value" class="flex align-items-center">-->
+<!--                                <div>{{ slotProps.value }}</div>-->
+<!--                            </div>-->
+<!--                        </template>-->
+<!--                        <template #option="slotProps">-->
+<!--                            <div class="flex align-items-center">-->
+<!--                                <div>{{ slotProps.option }}&nbsp;<i class="fa fa-plane-departure"/></div>-->
+<!--                            </div>-->
+<!--                        </template>-->
+<!--                    </Dropdown>-->
                     <div class="col-md-7 row">
                         <div class=" col-md-7 mt-2 date-input">
                             <div class=" ">
@@ -154,7 +162,7 @@
                         </div>
                     </div>
                 </div>
-                <button class=" position-relative float-right px-5 mt-2"
+                <button class=" position-relative float-right px-5 mt-2" @click="search"
                         style="font-weight: bold; top: 30px; height:60px;  background: rgb(249, 214, 2); color: #000;">
                     SEARCH CARS
                 </button>
@@ -181,10 +189,11 @@ import {router, useForm} from '@inertiajs/vue3';
 import Loader from '../components/Loader.vue'
 import Dropdown from 'primevue/dropdown';
 import 'primevue/resources/themes/aura-light-amber/theme.css'
+import AutoComplete from 'primevue/autocomplete';
 
 const value = ref()
 const form = useForm({
-    pickupLoc: ref('Enter Your destination!'),
+    pickupLoc: ref(),
     date: ref(''),
     date_from: ref(''),
     date_to: ref(''),
@@ -199,6 +208,8 @@ const locations = {
     options: ref([]),
     loading: ref(false),
 }
+
+const filteredLocations = ref()
 const loading = ref(false);
 var field = ''
 const vehicles = ref([])
@@ -247,7 +258,16 @@ const getLocations = async () => {
         locations.loading.value = false;
     }
 }
+const suggest = (event) => {
+        if (!event.query.trim().length) {
+            filteredLocations.value = [...locations.all.value];
+        } else {
 
+            filteredLocations.value = locations.all.value.filter((location) => {
+                return location.toLowerCase().startsWith(event.query.toLowerCase());
+            });
+        }
+}
 
 
 const search = async () => {
@@ -307,11 +327,14 @@ onMounted(() => {
     getLocations();
     getVehicles();
     getLogos();
-    // const els = document.getElementsByClassName("el-date-table__row")
-    // for(let i =0; i< els.length; i++) {
-    //     console.log(els[i].style.color = "red")
-    // }
-
+    // $('.p-autocomplete-input').addClass('custom-autocomplete');
+    setTimeout(() => {
+        const el = document.getElementsByClassName('p-autocomplete-input');
+        el[0].style.width = '100%'
+        el[0].style.height = '45px'
+        el[0].style.borderRadius = 0
+        el[0].style.marginTop = 7
+    }, 100)
 
 
 })
