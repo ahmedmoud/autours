@@ -264,7 +264,7 @@ const suggest = (event) => {
         } else {
 
             filteredLocations.value = locations.all.value.filter((location) => {
-                return location.toLowerCase().startsWith(event.query.toLowerCase());
+                return location.toLowerCase().includes(event.query.toLowerCase());
             });
         }
 }
