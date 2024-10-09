@@ -18,7 +18,7 @@
                         <div class="modal-header">
                             <slot name="header"> Rental Terms</slot>
                         </div>
-                        <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
+                        <div class="modal-body overflow-y-auto" style="height: 450px;">
                             <h2>Terms and Conditions</h2>
                             <div  v-for="(item,index) in activeRentalTerms" :item-key="index">
                                 <h3 v-html="item.title"></h3>
