@@ -601,7 +601,7 @@
                                                             <el-tooltip placement="right-start" trigger="hover">
                                                                 <template  #content>
                                                                     <div class="" style="font-size: 16px;">
-                                                                        {{ vehicle.supplier.fuel_policy.description }}
+                                                                        {{ vehicle?.fuel_policy?.description }}
                                                                     </div>
                                                                 </template>
 
@@ -609,7 +609,7 @@
                                                                     class="fa fa-gas-pump"/>&nbsp;
                                                                     Fuel Policy: <strong>
                                                                         {{
-                                                                            vehicle.supplier.fuel_policy.name
+                                                                            vehicle?.fuel_policy?.name
                                                                         }} </strong></label>
 
                                                             </el-tooltip>

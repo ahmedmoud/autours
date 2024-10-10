@@ -21,6 +21,7 @@ class Vehicle extends Model
         'category',
         'specifications',
         'description',
+        'fuel_policy_id'
     ];
 
     protected $casts = [
@@ -63,5 +64,9 @@ class Vehicle extends Model
     public function specifications()
     {
         return $this->hasMany(VehicleSpecification::class, 'vehicle_id','id')->orderBy('name');
+    }
+    public function fuelPolicy()
+    {
+        return $this->belongsTo(FuelPolicy::class,'fuel_policy_id','id');
     }
 }

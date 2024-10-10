@@ -137,6 +137,27 @@
                                     />
                                 </el-select>
                             </div>
+                            <div class="formbold-mb-3 col-3 " >
+                                <label class="form bold-form-label">Fuel Policy</label>
+                                <div class="countries">
+                                    <el-select
+                                        v-model="fuelPolicy"
+                                        size="large"
+                                        filterable
+                                        placeholder="Select Fuel Policy..."
+                                        :loading="fuelPolicies.loading.value"
+                                        required>
+
+                                        <el-option
+                                            v-for="item in fuelPolicies.list.value"
+                                            :aria-selected="item.id == fuelPolicy.value"
+                                            :key="item.label"
+                                            :label="item.label"
+                                            :value="item.id"
+                                        />
+                                    </el-select>
+                                </div>
+                            </div>
                             <div class="formbold-mb-3 mb-5  col-3">
                                 <label class="formbold-form-label"> Reserve Without Confirmation </label>
                                 <el-switch
@@ -299,6 +320,13 @@ const locationTypes = {
 };
 const category = ref('')
 const locationType = ref({})
+const fuelPolicy = ref();
+const fuelPolicies = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+}
 
 const categories = {
     loading: ref(false),
@@ -531,10 +559,16 @@ const upload = async () => {
         formData.append('update', '1');
         formData.append('instant_confirmation', instantConfirmation.value);
         formData.append('id', vehicle.id);
-        formData.append('location_types', locationType.value);
+        if(!isNaN( locationType.value)) {
+            formData.append('location_types', locationType.value);
+        }
+        if(!isNaN( fuelPolicy.value))
+        formData.append('fuel_policy', fuelPolicy.value);
 
         if (!validateForm()) return;
 
+        console.log("====>")
+        console.log(locationType.value)
         const response = await axios.post('/post/vehicles', formData);
         open(response.data);
 
@@ -570,12 +604,31 @@ const getData = async () => {
         selectedSpecifications.value = vehicle.specifications
         selectedIncluded.value = vehicle.what_is_included
         photo.value = vehicle.photo
-        locationType.value = vehicle.location_type.length  ? vehicle.location_type[0] : {}
+        locationType.value = vehicle.location_type.length  ? vehicle.location_type[0].name : null
+        fuelPolicy.value = vehicle.fuel_policy.name
         instantConfirmation.value = vehicle.instant_confirmation === 1? true : false
     } catch (e) {
         console.log("=====error==>")
         console.log(e)
         $toast.error(e.response?.data?.message, {position: 'top'});
+    }
+}
+
+const fetchFuelPolicies = async () => {
+    fuelPolicies.loading.value = true;
+    try {
+        //
+        const response = await axios.get('/get/fuel-policies', {})
+        fuelPolicies.all.value = response.data
+        fuelPolicies.list.value = fuelPolicies.all.value.map((item) => ({
+            id: `${item.id}`,
+            label: `${item.name}`,
+            value: `${item.name}`,
+        }))
+    } catch (error) {
+        console.error(error)
+    } finally {
+        fuelPolicies.loading.value = false;
     }
 }
 const fetchIncluded = async () => {
@@ -618,5 +671,6 @@ onMounted(() => {
     fetchIncluded();
     getData();
     fetchLocationTypes()
+    fetchFuelPolicies()
 });
 </script>

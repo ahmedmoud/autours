@@ -523,12 +523,12 @@
                                             <el-tooltip placement="bottom">
                                                 <template #content>
                                                     <div>
-                                                        {{ vehicle?.supplier?.fuel_policy?.description }}
+                                                        {{ vehicle?.fuel_policy?.description }}
                                                     </div>
                                                 </template>
                                                 <p style="margin-top: -20px;">
                                                     <strong class="text-nowrap" style="font-size: 15px;"><i class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
-                                                    <strong class="text-nowrap">{{vehicle?.supplier?.fuel_policy?.name}} </strong>
+                                                    <strong class="text-nowrap">{{vehicle?.fuel_policy?.name}} </strong>
                                                 </p>
                                             </el-tooltip>
                                         </div>

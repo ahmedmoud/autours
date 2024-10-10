@@ -137,6 +137,25 @@
                                     />
                                 </el-select>
                             </div>
+                            <div class="formbold-mb-3 col-3 " >
+                                <label class="form bold-form-label">Fuel Policy</label>
+                                <div class="countries">
+                                    <el-select
+                                        v-model="fuelPolicy"
+                                        size="large"
+                                        filterable
+                                        placeholder="Select Fuel Policy..."
+                                        :loading="fuelPolicies.loading.value"
+                                        required>
+                                        <el-option
+                                            v-for="item in fuelPolicies.list.value"
+                                            :key="item.label"
+                                            :label="item.label"
+                                            :value="item.id"
+                                        />
+                                    </el-select>
+                                </div>
+                            </div>
                             <div class="formbold-mb-3 mb-5  col-3">
                                 <label class="formbold-form-label"> Reserve Without Confirmation </label>
                                     <el-switch
@@ -294,6 +313,13 @@ const locationTypes = {
     list: ref([]),
     options: ref([]),
 };
+const fuelPolicy = ref('');
+const fuelPolicies = {
+    loading: ref(false),
+    all: ref([]),
+    list: ref([]),
+    options: ref([]),
+}
 
 const category = ref('')
 const locationType = ref('')
@@ -354,6 +380,24 @@ const fetchSpecifications = async () => {
         console.error(error);
     } finally {
 
+    }
+}
+
+const fetchFuelPolicies = async () => {
+    fuelPolicies.loading.value = true;
+    try {
+        //
+        const response = await axios.get('get/fuel-policies', {})
+        fuelPolicies.all.value = response.data
+        fuelPolicies.list.value = fuelPolicies.all.value.map((item) => ({
+            id: `${item.id}`,
+            label: `${item.name}`,
+            value: `${item.name}`,
+        }))
+    } catch (error) {
+        console.error(error)
+    } finally {
+        fuelPolicies.loading.value = false;
     }
 }
 
@@ -548,6 +592,10 @@ const validateForm = () => {
         $toast.error('Please select location type', { position: 'top'});
         valid = false;
     }
+    if (fuelPolicy.value === '' || fuelPolicy.value === [] || fuelPolicy.value === null || fuelPolicy.value === undefined) {
+        $toast.error('Please select Fuel Policy', { position: 'top'});
+        valid = false;
+    }
     return valid;
 }
 const upload = async () => {
@@ -565,6 +613,7 @@ const upload = async () => {
         formData.append('included', selectedIncluded.value);
         formData.append('instant_confirmation', instantConfirmation.value);
         formData.append('location_types', locationType.value);
+        formData.append('fuel_policy', fuelPolicy.value);
 
         if (!validateForm()) return;
 
@@ -598,6 +647,7 @@ onMounted(() => {
     fetchSpecifications();
     fetchPhotos();
     fetchIncluded();
+    fetchFuelPolicies();
     fetchLocationTypes();
 });
 </script>

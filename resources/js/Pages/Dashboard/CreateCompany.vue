@@ -141,25 +141,7 @@
                                     </el-select>
                                 </div>
                             </div>
-                            <div class="formbold-mb-3 col-md-6 mt-3" v-if="supplier || activeSupplier">
-                                <label class="form bold-form-label">Fuel Policy</label>
-                                <div class="countries">
-                                    <el-select
-                                        v-model="fuelPolicy"
-                                        size="large"
-                                        filterable
-                                        placeholder="Select Fuel Policy..."
-                                        :loading="fuelPolicies.loading.value"
-                                        required>
-                                        <el-option
-                                            v-for="item in fuelPolicies.list.value"
-                                            :key="item.label"
-                                            :label="item.label"
-                                            :value="item.id"
-                                        />
-                                    </el-select>
-                                </div>
-                            </div>
+
                             <div class="formbold-mb-3 col-md-12 mt-3" v-if="supplier || activeSupplier">
                                 <label v-if="supplier || activeSupplier || reviewing"
                                        class="form bold-form-label col-md-6">
@@ -332,7 +314,6 @@ const city = ref('');
 const phone_num = ref('');
 const address = ref('');
 const language = ref('');
-const fuelPolicy = ref('');
 const oldPass = ref('');
 const newPass = ref('');
 const confirmNewPass = ref('');
@@ -557,23 +538,7 @@ const fetchCurrencies = async () => {
         currencies.loading.value = false;
     }
 }
-const fetchFuelPolicies = async () => {
-    fuelPolicies.loading.value = true;
-    try {
-        //
-        const response = await axios.get('get/fuel-policies', {})
-        fuelPolicies.all.value = response.data
-        fuelPolicies.list.value = fuelPolicies.all.value.map((item) => ({
-            id: `${item.id}`,
-            label: `${item.name}`,
-            value: `${item.name}`,
-        }))
-    } catch (error) {
-        console.error(error)
-    } finally {
-        fuelPolicies.loading.value = false;
-    }
-}
+
 
 const getCitiesForBranches = async () => {
     try {
@@ -723,7 +688,6 @@ onMounted(() => {
     fetchCountries();
     fetchBranches();
     fetchCurrencies()
-    fetchFuelPolicies()
 });
 
 </script>

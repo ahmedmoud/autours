@@ -22,7 +22,16 @@ class CreateEditVehicle extends FormRequest
     public function rules(): array
     {
         return [
-            'update'=>'nullable|between:1,2',
+            'update' => 'nullable|between:1,2',
+            'photo' => 'required|string|between:1,1000',
+            'name' => 'required|string|between:2,1000',
+            'description' => 'required|string|between:5,1000',
+            'price' => 'required|numeric|between:1,999999.99',
+            'week_price' => 'required|numeric|between:1,999999.99',
+            'month_price' => 'required|numeric|between:1,999999.99',
+            'specifications' => 'required',
+            'included' => 'required|string',
+            'instant_confirmation' => 'required',
         ];
     }
 }
