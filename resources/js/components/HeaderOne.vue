@@ -40,7 +40,7 @@
                             <CDropdownMenu>
                                 <CDropdownItem class="cursor-pointer " v-for="currency in currencies"
                                                v-on:click="changeCurrency(currency.name)">
-                                    <p class="text-black ">{{ getUnicodeFlagIcon(currency.flag) }} {{ currency.name }}</p>
+                                    <p class="text-black "><img style="margin-right: 25px" :src="'https://flagsapi.com/' + currency.flag + '/shiny/32.png'"> {{ currency.name }}</p>
                                 </CDropdownItem>
                             </CDropdownMenu>
                         </CDropdown>
