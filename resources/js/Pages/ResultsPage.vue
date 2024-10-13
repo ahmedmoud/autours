@@ -460,7 +460,7 @@
                                                     <div class="col-md-3 row">
                                                         <div>
                                                             <span
-                                                                style="font-size: .95vw; color: #000;"
+                                                                style="font-size: 110%; color: #000;"
                                                                 class="text-nowrap">{{
                                                                     vehicle.supplier.company
                                                                 }}</span>
