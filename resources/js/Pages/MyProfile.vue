@@ -24,12 +24,20 @@
                                         </div>
                                         <div class="text-center">
                                             <i class="fa fa-cancel fs-6 d-block mb-2"></i>
-                                            <h4 class="mb-0 fw-semibold lh-1">{{ user?.rentals?.filter(function(item) { return item.order_status === 3}).length }}</h4>
+                                            <h4 class="mb-0 fw-semibold lh-1">{{
+                                                    user?.rentals?.filter(function (item) {
+                                                        return item.order_status === 3
+                                                    }).length
+                                                }}</h4>
                                             <p class="mb-0 fs-4">Cancelled</p>
                                         </div>
                                         <div class="text-center">
                                             <i class="fa fa-check fs-6 d-block mb-2"></i>
-                                            <h4 class="mb-0 fw-semibold lh-1">{{ user?.rentals?.filter(function(item) { return item.order_status === 2}).length }}</h4>
+                                            <h4 class="mb-0 fw-semibold lh-1">{{
+                                                    user?.rentals?.filter(function (item) {
+                                                        return item.order_status === 2
+                                                    }).length
+                                                }}</h4>
                                             <p class="mb-0 fs-4">Confirmed</p>
                                         </div>
                                     </div>
@@ -119,10 +127,13 @@
                                                 <CDropdownToggle component="a" style="color: rgba(30, 30, 30, 1);"><i
                                                     class="fa fa-bars"/></CDropdownToggle>
                                                 <CDropdownMenu>
-                                                    <CDropdownItem :disabled="loading" class="cursor-pointer" style="color: black;"
-                                                                   @click="cancelBooking(rental)"><i class="fa fa-repeat"/>&nbsp;Cancel
+                                                    <CDropdownItem :disabled="loading" class="cursor-pointer"
+                                                                   style="color: black;"
+                                                                   @click="cancelBooking(rental)"><i
+                                                        class="fa fa-repeat"/>&nbsp;Cancel
                                                     </CDropdownItem>
-                                                    <CDropdownItem @click="downloadInvoice(rental)" :disabled="loading" class="cursor-pointer" style="color: black;"
+                                                    <CDropdownItem @click="downloadInvoice(rental)" :disabled="loading"
+                                                                   class="cursor-pointer" style="color: black;"
                                                     ><i class="fa fa-download"/>&nbsp;Download&nbsp;invoice
                                                     </CDropdownItem>
 
@@ -131,7 +142,7 @@
                                         </div>
                                         <div>
                                             <img :src="'img/vehicles/'+ rental.vehicle.photo" alt="Image"
-                                                 height="250" width="400" >
+                                                 height="250" width="400">
                                         </div>
                                         <!-- avatar -->
 
@@ -148,7 +159,7 @@
                                             <p>#{{ rental.order_number }}</p>
 
                                             <p><strong> Start Date:</strong> {{ rental.start_date }} </p>
-                                            <p><strong> End Date:</strong>  {{ rental.end_date }}</p>
+                                            <p><strong> End Date:</strong> {{ rental.end_date }}</p>
                                             <p>
                                                 {{ rental.vehicle.branch.location }}
                                             </p>
@@ -161,9 +172,10 @@
                                                 : rental.status.id=== 4 ? 'btn btn-warning'
                                                  : 'btn btn-primary' ">{{ rental.status.name_en }}</a>
                                                     <button class="btn btn-warning"
-                                                    v-if="moment(rental.start_date).isAfter(moment(Date.now())) && rental.order_status == 2"
+                                                            v-if="moment(rental.start_date).isAfter(moment(Date.now())) && rental.order_status == 2"
                                                             @click="updateReservation(rental.id)"
-                                                    ><i class="fa fa-pencil"/>&nbsp; Modify </button>
+                                                    ><i class="fa fa-pencil"/>&nbsp; Modify
+                                                    </button>
 
 
                                                 </div>
@@ -383,40 +395,40 @@ const cancelBooking = async (rental) => {
     }
 }
 const downloadFile = (response, filename) => {
-    // It is necessary to create a new blob object with mime-type explicitly set
-    // otherwise only Chrome works like it should
-    var newBlob = new Blob([response], {type: 'application/pdf'})
+    try {
 
-    // IE doesn't allow using a blob object directly as link href
-    // instead it is necessary to use msSaveOrOpenBlob
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-        window.navigator.msSaveOrOpenBlob(newBlob)
-        return
-    }
+        // It is necessary to create a new blob object with mime-type explicitly set
+        // otherwise only Chrome works like it should
+        var newBlob = new Blob([response], {type: 'application/pdf'})
 
-    // For other browsers:
-    // Create a link pointing to the ObjectURL containing the blob.
-    const data = window.URL.createObjectURL(newBlob)
-    var link = document.createElement('a')
-    link.href = data
-    link.download = filename + '.pdf'
-    link.click()
-    setTimeout(function () {
-        // For Firefox it is necessary to delay revoking the ObjectURL
+        // IE doesn't allow using a blob object directly as link href
+        // instead it is necessary to use msSaveOrOpenBlob
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveOrOpenBlob(newBlob)
+            return
+        }
+
+        // For other browsers:
+        // Create a link pointing to the ObjectURL containing the blob.
+        const data = window.URL.createObjectURL(newBlob)
+        var link = document.createElement('a')
+        link.style.display = 'none';
+        link.href = data
+        link.download = filename + '.pdf'
+        document.body.appendChild(link);
+        link.click()
         window.URL.revokeObjectURL(data)
-    }, 100)
+    } catch (e) {
+        console.log("Error: " , e)
+    }
 }
 const downloadInvoice = async (rental) => {
     try {
         loading.value = true
-        const response = await axios.post('/invoice/booking', rental);
+        const response = await axios.get('/invoice/booking', {responseType: 'blob'})
+        downloadFile(response.data, 'file')
+        console.log(response)
 
-        console.log(response.status)
-        if (response.status) {
-            // console.log(response)
-            // downloadFile(response.data, 'invoice')
-            $toast.success('Downloading The invoice', {position: 'top'})
-        }
         loading.value = false
     } catch (e) {
 
@@ -426,7 +438,7 @@ const downloadInvoice = async (rental) => {
 
 }
 const updateReservation = (item_id) => {
-   window.location.href = '/update-booking?booking_id='+item_id
+    window.location.href = '/update-booking?booking_id=' + item_id
     // router.get('/update-booking/'+item_id)
 }
 const updatePhoto = () => {

@@ -191,21 +191,9 @@ Route::middleware(['customer'])->group(function () {
     Route::post('/book/vehicles', [BookingsController::class, 'book']);
     Route::inertia('/my-bookings', 'MyBookings');
     Route::post('/cancel/booking', [BookingsController::class, 'cancelBooking']);
-    Route::post('/invoice/booking', [BookingsController::class, 'bookingInvoice']);
+    Route::get('/invoice/booking', [BookingsController::class, 'bookingInvoice']);
 });
-//$user = User::query()->find(3);
-//$rental = Rental::query()->find(11);
-//$rental->vehicle = $rental->vehicle;
-//$rental->branch = Branch::query()->where('id', $rental->vehicle->pickup_loc)->first();
-//$rental->supplier = User::query()->where('id', $rental->vehicle->supplier)->first();
-//$rental->customer = User::query()->where('id', $rental->customer_id)->first();
-//$rental->request = new \stdClass();
-//$rental->request->rental_id =  11;
-//$rental->request->api_key = env('api-key');
-//$rental->request->timestamp = Carbon::now()->toDateTime();
-//
-//
-//Route::view('/email', 'email.booking.request.supplier',['body' =>  $rental]);
+
 Route::get('/booking/update-status', [BookingsController::class, 'updateBookingStatus']);
 Route::inertia('/rentals/rate', 'RentalRate');
 Route::get('/get/rating/questions', [RatesController::class, 'index']);
@@ -214,5 +202,7 @@ Route::post('/forget-password', [UserController::class, 'forgetPassword']);
 Route::inertia('/new-password-form', 'Auth/NewPasswordForm');
 Route::post('/validate-forget-password-key', [UserController::class, 'validateForgetPasswordKey']);
 Route::post('/save-new-password', [UserController::class, 'setNewPassword']);
-
+Route::inertia('/contact-us', 'ContactUs' );
+Route::inertia('/about-us', 'AboutUs' );
+Route::view('/invoice','rental-invoice.supplier');
 

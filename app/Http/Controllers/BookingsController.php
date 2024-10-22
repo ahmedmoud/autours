@@ -336,13 +336,11 @@ class BookingsController extends Controller
 
             $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => 'A4', 'font' => 'frutiger', 'tempDir' => public_path() . '/tmp', 'orientation' => 'L']);
             $mpdf->setFooter('{nb} / {PAGENO}');
-
             $mpdf->SetTitle('Booking Invoice');
 
             $html = view('rental-invoice.supplier', [])->render();
             $mpdf->WriteHTML($html);
             $mpdf->Output('invoice.pdf', 'D');
-            dd(1);
             return response()->json([
                 'status' => 1,
                 'msg' => 'Download started'
