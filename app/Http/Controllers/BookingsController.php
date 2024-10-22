@@ -346,6 +346,7 @@ class BookingsController extends Controller
                 'msg' => 'Download started'
             ], StatusCodes::SUCCESS);
         } catch (\Exception $e) {
+            info($e->getMessage());
             return response()->json([
                 'status' => 0,
                 'msg' => $e->getMessage()
