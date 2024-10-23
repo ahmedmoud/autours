@@ -85,7 +85,7 @@
                     <h3 style="font-size: 1.2em; margin-bottom: 0.5em;">Pick-up</h3>
                     <p style="margin-bottom: 0.5em;">{{isset($rental) ? \Carbon\Carbon::parse($rental->start_date)->format("d M Y") .' '. \Carbon\Carbon::parse($rental->start_date)->dayName
                         . ', ' . \Carbon\Carbon::parse($rental->start_time)->format("h i A") : ''}}</p>
-                    <p style="margin-bottom: 0.5em;">{{isset($rental) ? $rental->vehicle->branch->location . ' ' . count($rental->vehicle->locationType) ? $rental->vehicle->locationType[0]->name  : '': ''}}</p>
+                    <p style="margin-bottom: 0.5em;">{{isset($rental) ? $rental->vehicle->branch->location . ' ' : ''}}</p>
                     <p style="margin-bottom: 0.5em;">Address: {{isset($rental) ? $rental->vehicle->branch->adresse : ''}}</p>
                     <p style="margin-bottom: 0.5em;">Business hours: 08:00-23:00 (Sunday)</p>
                     <p style="margin-bottom: 0.5em;">Phone: {{isset($rental)? $rental->supplier->phone_num : ' '}}</p>
@@ -96,7 +96,7 @@
                     <h3 style="font-size: 1.2em; margin-bottom: 0.5em;">Drop-off</h3>
                     <p style="margin-bottom: 0.5em;">{{isset($rental) ? \Carbon\Carbon::parse($rental->end_date)->format("d M Y") .' '. \Carbon\Carbon::parse($rental->start_date)->dayName
                         . ', ' . \Carbon\Carbon::parse($rental->end_time)->format("h i A") : ''}}</p>
-                    <p style="margin-bottom: 0.5em;">{{isset($rental) ? $rental->vehicle->branch->location . ' ' . count($rental->vehicle->locationType) ? $rental->vehicle->locationType[0]->name  : '': ''}}</p>
+                    <p style="margin-bottom: 0.5em;">{{isset($rental) ? $rental->vehicle->branch->location . ' ' : ''}}</p>
                     <p style="margin-bottom: 0.5em;">Address: {{isset($rental) ? $rental->vehicle->branch->adresse : ''}}</p>
                     <p style="margin-bottom: 0.5em;">Business hours: 08:00-23:00 (Sunday)</p>
                     <p style="margin-bottom: 0.5em;">Phone: {{isset($rental)? $rental->supplier->phone_num : ' '}}</p>
