@@ -42,42 +42,42 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 mt-5">
+    <div >
+        <div >
             <img width="300" height="100" src="http://staging.autours.net/img/4k-logo.png"/>
         </div>
-        <div class="col-md-6" style="margin-top: 10%;">
+        <div  style="margin-top: 3%; margin-left: 1%;">
             <p><strong>Booking number:</strong> DC-6528272</p>
         </div>
     </div>
 
-    <div class="row p-4" style="background: #efeded; border-radius: 15px;">
-        <div class="col-md-6"><h3>Customer Name</h3>
+    <div style="display: flex; width: 100%; background: #efeded; border-radius: 15px; padding: 1%;">
+        <div style="display: inline-block; width: 48%; padding-right: 2%; vertical-align: top; ">
+            <h3>Customer Name</h3>
             <p>Mr. Ahmed El Said Mohamed Fadl</p>
         </div>
-        <div>
+        <div style="display: inline-block; width: 48%; vertical-align: top;">
             <h3>Supplier</h3>
             <p>BLITZ - Blitz Car Rentals</p>
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <h3>Pick-up</h3>
-            <p>29 October 2023, Sunday, 20:00</p>
-            <p>Dubai Int. Airport (DXB) - Meet & Greet</p>
-            <p>Address: Dubai International Airport, 67 Airport Rd, Garhoud, Dubai</p>
-            <p>Business hours: 08:00-23:00 (Sunday)</p>
-            <p>Phone: 00971523804237</p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;">
+        <div style="width: 48%; margin-bottom: 20px;">
+            <h3 style="font-size: 1.2em; margin-bottom: 0.5em;">Pick-up</h3>
+            <p style="margin-bottom: 0.5em;">29 October 2023, Sunday, 20:00</p>
+            <p style="margin-bottom: 0.5em;">Dubai Int. Airport (DXB) - Meet & Greet</p>
+            <p style="margin-bottom: 0.5em;">Address: Dubai International Airport, 67 Airport Rd, Garhoud, Dubai</p>
+            <p style="margin-bottom: 0.5em;">Business hours: 08:00-23:00 (Sunday)</p>
+            <p style="margin-bottom: 0.5em;">Phone: 00971523804237</p>
         </div>
-
-        <div class="col-md-6">
-            <h3>Drop-off</h3>
-            <p>3 November 2023, Friday, 20:00</p>
-            <p>Dubai Int. Airport (DXB) - Meet & Greet</p>
-            <p>Address: Dubai International Airport, 67 Airport Rd, Garhoud, Dubai</p>
-            <p>Business hours: 08:00 - 23:00 (Friday)</p>
-            <p>Phone: 00971523804237</p>
+        <div style="width: 48%; margin-bottom: 20px;">
+            <h3 style="font-size: 1.2em; margin-bottom: 0.5em;">Drop-off</h3>
+            <p style="margin-bottom: 0.5em;">3 November 2023, Friday, 20:00</p>
+            <p style="margin-bottom: 0.5em;">Dubai Int. Airport (DXB) - Meet & Greet</p>
+            <p style="margin-bottom: 0.5em;">Address: Dubai International Airport, 67 Airport Rd, Garhoud, Dubai</p>
+            <p style="margin-bottom: 0.5em;">Business hours: 08:00 - 23:00 (Friday)</p>
+            <p style="margin-bottom: 0.5em;">Phone: 00971523804237</p>
         </div>
     </div>
 
