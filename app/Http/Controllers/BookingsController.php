@@ -328,7 +328,7 @@ class BookingsController extends Controller
     public function bookingInvoice(Request $request)
     {
         try {
-            $rental = Rental::query()->with('supplier','vehicle.branch','vehicle.locationType','customer')->find(42);
+            $rental = Rental::query()->with('supplier','vehicle.branch','vehicle.vehicle_specifications','vehicle.included','vehicle.locationType','vehicle.vehicle_category','customer')->find(42);
 
             ob_clean();
             header('Content-type: application/pdf');
@@ -338,7 +338,7 @@ class BookingsController extends Controller
 
             $mpdf = new Mpdf([
                 'mode' => 'utf-8',
-                'format' => 'A4',
+                'format' => [280, 280],
                 'font' => 'frutiger',
                 'tempDir' => public_path() . '/tmp',
                 'orientation' => 'L',

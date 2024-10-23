@@ -31,6 +31,9 @@ class Vehicle extends Model
     public function category() {
         return $this->belongsTo(Category::class, 'category', 'id');
     }
+    public function vehicle_category() {
+        return $this->belongsTo(Category::class, 'category', 'id');
+    }
 
     public function supplier() {
         return $this->belongsTo(User::class, 'supplier', 'id');
@@ -62,6 +65,10 @@ class Vehicle extends Model
         $this->rental_terms =  SupplierRentalTerm::query()->where('supplier_id', $this->supplier)->join('rental_terms','rental_terms.id', '=','supplier_rental_terms.rental_term_id')->select(['title','description'])->get();
     }
     public function specifications()
+    {
+        return $this->hasMany(VehicleSpecification::class, 'vehicle_id','id')->orderBy('name');
+    }
+    public function vehicle_specifications()
     {
         return $this->hasMany(VehicleSpecification::class, 'vehicle_id','id')->orderBy('name');
     }
