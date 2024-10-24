@@ -65,7 +65,7 @@
     <table class="border-color">
         <tr class="border-color">
             <td class="border-color" style=" width: 50%; text-align: left;">
-                <img width="300" height="100" src="/img/4k-logo.png"/>
+                <img width="300" height="100" src="img/4k_logo.png"/>
             </td>
             <td class="border-color" style=" width: 50%; text-align: right; ">
                 <p><strong>Booking number:</strong> {{isset($rental) ? $rental->order_number : ''}}</p>
