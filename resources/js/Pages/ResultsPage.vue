@@ -620,6 +620,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 d-price d-total offset-1">
+                                                    <p style="color: green; text-wrap: nowrap" v-if="vehicle.promo.length"><i style="font-size: 18px" class="fa fa-check fa-xl" /> {{vehicle.promo }}</p>
                                                     <span class="d-days">For {{
                                                             daysNumber
                                                         }} day{{ daysNumber < 2 ? '' : 's' }}</span>

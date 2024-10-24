@@ -187,6 +187,10 @@ class VehicleController extends Controller
             $count = $vehicles->count();
 
             foreach ($vehicles as $vehicle) {
+                $vehicle->promo = DB::select('SELECT what_is_included as promotion FROM promos JOIN included ON included.id = promos.included_id  WHERE vehicle_id = :vehicle_id', ['vehicle_id' => $vehicle->id]);
+                if ($vehicle->promo && count($vehicle->promo)) {
+                    $vehicle->promo = $vehicle->promo[0]->promotion;
+                }
                 $rentals = Rental::query()->where('supplier_id', $vehicle->supplier)->with('rentalRates.question')->whereNotNull('rate')->get();
                 $vehicle->questions_rate = DB::select('SELECT objective, sum(rental_rates.rate)/count(rental_rates.id)  as total_rate FROM rentals
                                         JOIN rental_rates on rental_rates.rental_id = rentals.id
@@ -383,7 +387,7 @@ class VehicleController extends Controller
                 $item->price = $request->price;
             }
             if ($request->has('fuel_policy')) {
-                $item->fuel_policy_id = $request->fuel_policy        ;
+                $item->fuel_policy_id = $request->fuel_policy;
             }
 
             if ($request->has('week_price')) {
@@ -549,7 +553,7 @@ class VehicleController extends Controller
         if ($branchId != null) {
             $vehicles->where('pickup_loc', $branchId);
         }
-        $data = $vehicles->with('category', 'supplier', 'branch','fuelPolicy')->orderBy('id')->get();
+        $data = $vehicles->with('category', 'supplier', 'branch', 'fuelPolicy')->orderBy('id')->get();
         foreach ($data as $vehicle) {
             $vehicle->activation = $vehicle->activation == 1 ? true : false;
 
@@ -571,7 +575,7 @@ class VehicleController extends Controller
 
             $location = $request->location;
             $currency = $request->currency;
-            $selectedVehicle = Vehicle::where('id', $request->id)->with('category', 'fuelPolicy', 'branch', 'included', 'specifications', 'supplier.fuelPolicy', 'supplier.rentals.rentalRates','fuelPolicy')->first();
+            $selectedVehicle = Vehicle::where('id', $request->id)->with('category', 'fuelPolicy', 'branch', 'included', 'specifications', 'supplier.fuelPolicy', 'supplier.rentals.rentalRates', 'fuelPolicy')->first();
 
             $startDate = Carbon::parse($request->date_from);
             $endDate = Carbon::parse($request->date_to);
@@ -670,7 +674,7 @@ class VehicleController extends Controller
                 'status' => false
             ], StatusCodes::SERVER_ERROR);
         }
-        $vehicle = Vehicle::query()->with(['branch', 'category', 'included', 'locationType','fuelPolicy'])->find($id);
+        $vehicle = Vehicle::query()->with(['branch', 'category', 'included', 'locationType', 'fuelPolicy'])->find($id);
         $vehicle->what_is_included = $vehicle->included->pluck('what_is_included');
         $vehicle->specifications = VehicleSpecification::query()->where("vehicle_id", $id)->orderBy('name')->get();
         $specs = Specification::query()->orderBy('name')->get();

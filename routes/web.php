@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PromosController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\FuelPolicyController;
 use App\Http\Controllers\IncludedController;
@@ -112,6 +113,8 @@ Route::middleware(['admin_or_supplier'])->group(function () {
     Route::inertia('rentals/admin', 'Dashboard/AdminRentals');
     Route::inertia('rentals/supplier', 'Dashboard/Rentals');
     Route::post('post/rental-terms', [RentalTermsController::class, 'insert']);
+    Route::get('get/profit', [ProfitsController::class, 'show']);
+
 
 });
 Route::middleware(['admin'])->group(function () {
@@ -149,7 +152,6 @@ Route::middleware(['admin'])->group(function () {
     Route::post('accept/requests', [UserController::class, 'acceptMemberships']);
     Route::post('delete/requests', [UserController::class, 'deleteMemberships']);
     Route::post('profit/upload', [ProfitsController::class, 'upload']);
-    Route::get('get/profit', [ProfitsController::class, 'show']);
 
     Route::inertia('photos', 'Dashboard/Photos');
     Route::post('post/photos', [VehicleController::class, 'createPhotos']);
@@ -187,6 +189,10 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::post('accept/rentals', [VehicleController::class, 'acceptRentals']);
     Route::post('delete/rentals', [VehicleController::class, 'deleteRentals']);
     Route::get('/supplier-dashboard', [DashboardController::class, 'supplierDashboard']);
+    Route::post('/promo', [PromosController::class, 'store']);
+    Route::delete('/promo/{id}', [PromosController::class, 'destroy']);
+    Route::get('/promo', [PromosController::class, 'index']);
+
 
 });
 
