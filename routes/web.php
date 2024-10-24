@@ -194,7 +194,7 @@ Route::middleware(['customer'])->group(function () {
     Route::post('/book/vehicles', [BookingsController::class, 'book']);
     Route::inertia('/my-bookings', 'MyBookings');
     Route::post('/cancel/booking', [BookingsController::class, 'cancelBooking']);
-    Route::get('/invoice/booking', [BookingsController::class, 'bookingInvoice']);
+    Route::get('/invoice/booking/{id}', [BookingsController::class, 'bookingInvoice']);
 });
 
 Route::get('/booking/update-status', [BookingsController::class, 'updateBookingStatus']);

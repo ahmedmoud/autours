@@ -65,7 +65,7 @@
     <table class="border-color">
         <tr class="border-color">
             <td class="border-color" style=" width: 50%; text-align: left;">
-                <img width="300" height="100" src="http://staging.autours.net/img/4k-logo.png"/>
+                <img width="300" height="100" src="/img/4k-logo.png"/>
             </td>
             <td class="border-color" style=" width: 50%; text-align: right; ">
                 <p><strong>Booking number:</strong> {{isset($rental) ? $rental->order_number : ''}}</p>
@@ -80,7 +80,7 @@
             </td>
             <td class="border-color" style=" width: 50%;">
                 <h3>Supplier</h3>
-                <p>{{isset($rental) ?  $rental->supplier : ''}}</p>
+                <p>{{isset($rental) ?  $rental->supplier->name : ''}}</p>
             </td>
         </tr>
     </table>
@@ -97,7 +97,7 @@
                     <p style="margin-bottom: 0.5em;">
                         Address: {{isset($rental) ? $rental->vehicle->branch->adresse : ''}}</p>
                     <p style="margin-bottom: 0.5em;">Business hours: 08:00-23:00 (Sunday)</p>
-                    <p style="margin-bottom: 0.5em;">Phone: {{isset($rental)? $rental->supplier : ' '}}</p>
+                    <p style="margin-bottom: 0.5em;">Phone: {{isset($rental)? $rental->supplier->phone_num : ' '}}</p>
                 </div>
             </td>
             <td class="border-color" style=" width: 50%;">
@@ -109,7 +109,7 @@
                     <p style="margin-bottom: 0.5em;">
                         Address: {{isset($rental) ? $rental->vehicle->branch->adresse : ''}}</p>
                     <p style="margin-bottom: 0.5em;">Business hours: 08:00-23:00 (Sunday)</p>
-                    <p style="margin-bottom: 0.5em;">Phone: {{isset($rental)? $rental->supplier : ' '}}</p>
+                    <p style="margin-bottom: 0.5em;">Phone: {{isset($rental)? $rental->supplier->phone_num : ' '}}</p>
                 </div>
             </td>
         </tr>

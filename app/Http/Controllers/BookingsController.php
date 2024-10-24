@@ -71,22 +71,22 @@ class BookingsController extends Controller
                 ], StatusCodes::FORBIDDEN);
             }
             $rental->start_date = new Carbon($rental->start_date);
-            $cancel24PolicyId = VehicleIncluded::query()->where('vehicle_id',$rental->vehicle_id)->where('included_id', 1)->first();
-            $cancel48PolicyId = VehicleIncluded::query()->where('vehicle_id',$rental->vehicle_id)->where('included_id', 48)->first();
+            $cancel24PolicyId = VehicleIncluded::query()->where('vehicle_id', $rental->vehicle_id)->where('included_id', 1)->first();
+            $cancel48PolicyId = VehicleIncluded::query()->where('vehicle_id', $rental->vehicle_id)->where('included_id', 48)->first();
 
-            if ($rental->start_date->diffInDays($today) <= 2 && !is_null($cancel48PolicyId) ) {
+            if ($rental->start_date->diffInDays($today) <= 2 && !is_null($cancel48PolicyId)) {
                 return response()->json([
                     'data' => [],
                     'message' => "There will be a fare to cancel"
                 ], StatusCodes::FORBIDDEN);
             }
-            if ($rental->start_date->diffInDays($today) <= 1 && !is_null($cancel24PolicyId) ) {
+            if ($rental->start_date->diffInDays($today) <= 1 && !is_null($cancel24PolicyId)) {
                 return response()->json([
                     'data' => [],
                     'message' => "There will be a fare to cancel"
                 ], StatusCodes::FORBIDDEN);
             }
-            if (is_null($cancel24PolicyId) && is_null($cancel48PolicyId) ) {
+            if (is_null($cancel24PolicyId) && is_null($cancel48PolicyId)) {
                 return response()->json([
                     'data' => [],
                     'message' => "There will be a fare to cancel"
@@ -123,7 +123,7 @@ class BookingsController extends Controller
             $rentals->where('order_number', $request->order_number);
         }
         if ($request->has('date_range') && $request->date_range) {
-            $rentals->whereBetween('created_at' ,[$request->date_range[0],$request->date_range[1]]);
+            $rentals->whereBetween('created_at', [$request->date_range[0], $request->date_range[1]]);
         }
         $data = $rentals->with('vehicle.supplier', 'vehicle.branch', 'status', 'customer')->orderBy('id', 'desc')->get();
 
@@ -149,7 +149,7 @@ class BookingsController extends Controller
             $rentals->where('order_number', $request->order_number);
         }
         if ($request->has('date_range') && $request->date_range) {
-            $rentals->whereBetween('created_at' ,[$request->date_range[0],$request->date_range[1]]);
+            $rentals->whereBetween('created_at', [$request->date_range[0], $request->date_range[1]]);
 
         }
 
@@ -162,10 +162,10 @@ class BookingsController extends Controller
         $data = $rentals->with('vehicle.supplier', 'vehicle.branch', 'status', 'customer')->orderBy('id', 'desc')->get();
 
         return response()->json(
-           [
-               'rentals' => $data,
-               'rental_statuses' => RentalStatus::query()->get()
-           ]
+            [
+                'rentals' => $data,
+                'rental_statuses' => RentalStatus::query()->get()
+            ]
         );
     }
 
@@ -191,16 +191,16 @@ class BookingsController extends Controller
 
             $prefix = $vehicle->branch->country ? strtoupper($vehicle->branch->country[0]) . strtoupper($vehicle->branch->country[1]) : null;
             $count = Rental::query()->count();
-            $suffix_count= $count;
+            $suffix_count = $count;
             if ($count < 1000) {
-                $suffix_count = '0'.$suffix_count;
+                $suffix_count = '0' . $suffix_count;
                 if ($count < 100)
                     $suffix_count = '0' . $suffix_count;
-                    if ($count < 10)
-                        $suffix_count = '0'. $suffix_count;
+                if ($count < 10)
+                    $suffix_count = '0' . $suffix_count;
             }
             $oldRental = null;
-            $item->order_number =  $prefix.'ATR'.$suffix_count;
+            $item->order_number = $prefix . 'ATR' . $suffix_count;
             $item->vehicle_id = $request->id;
             $item->price = $vehicleWithPrice->final_price;
             $item->profit_margin = $vehicleWithPrice->rate;
@@ -219,7 +219,7 @@ class BookingsController extends Controller
             $item->save();
 
             DB::commit();
-            if($request->old_rental_id) {
+            if ($request->old_rental_id) {
                 event(new UpdateBooking($oldRental, $item));
             }
             if ($vehicle->instant_confirmation)
@@ -303,14 +303,14 @@ class BookingsController extends Controller
 
     public function show($id)
     {
-        if (!is_numeric($id)  || $id < 0) {
+        if (!is_numeric($id) || $id < 0) {
             return response()->json([
                 'status' => 0,
                 'data' => [],
                 'message' => 'id not valid'
             ], StatusCodes::BAD_REQUEST);
         }
-        $rental = Rental::query()->where('id', $id)->with('vehicle','vehicle.branch')->first();
+        $rental = Rental::query()->where('id', $id)->with('vehicle', 'vehicle.branch')->first();
         if (is_null($rental)) {
             return response()->json([
                 'status' => 0,
@@ -325,38 +325,46 @@ class BookingsController extends Controller
         ], StatusCodes::SUCCESS);
     }
 
-    public function bookingInvoice(Request $request)
+    public function bookingInvoice($id)
     {
         try {
-            $rental = Rental::query()->with('supplier','vehicle.branch','vehicle.vehicle_specifications','vehicle.included','vehicle.locationType','vehicle.vehicle_category','customer')->find(42);
+            if (is_int((int)$id) && $id > 0) {
+                $rental = Rental::query()->with('supplier', 'vehicle.branch', 'vehicle.vehicle_specifications', 'vehicle.included', 'vehicle.locationType', 'vehicle.vehicle_category', 'customer')->find($id);
 
-            ob_clean();
-            header('Content-type: application/pdf');
-            header('Content-Disposition: inline; filename=invoice.pdf');
-            header('Content-Transfer-Encoding: binary');
-            header('Accept-Ranges: bytes');
+                ob_clean();
+                header('Content-type: application/pdf');
+                header('Content-Disposition: inline; filename=invoice.pdf');
+                header('Content-Transfer-Encoding: binary');
+                header('Accept-Ranges: bytes');
 
-            $mpdf = new Mpdf([
-                'mode' => 'utf-8',
-                'format' => [280, 280],
-                'font' => 'frutiger',
-                'tempDir' => public_path() . '/tmp',
-                'orientation' => 'L',
-            ]);
-            $mpdf->setFooter('{nb} / {PAGENO}');
-            $mpdf->SetTitle('Booking Invoice');
-            $mpdf->shrink_tables_to_fit = 1;
+                $mpdf = new Mpdf([
+                    'mode' => 'utf-8',
+                    'format' => [280, 280],
+                    'font' => 'frutiger',
+                    'tempDir' => public_path() . '/tmp',
+                    'orientation' => 'L',
+                ]);
+                $mpdf->setFooter('{nb} / {PAGENO}');
+                $mpdf->SetTitle('Booking Invoice');
+                $mpdf->shrink_tables_to_fit = 1;
 
-            $mpdf->autoScriptToLang = true;
+                $mpdf->autoScriptToLang = true;
 
-            $mpdf->autoLangToFont = true;
-            $html = view('rental-invoice.supplier', ['rental' => $rental])->render();
-            $mpdf->WriteHTML($html);
-            $mpdf->Output('invoice.pdf', 'D');
-            return response()->json([
-                'status' => 1,
-                'msg' => 'Download started'
-            ], StatusCodes::SUCCESS);
+                $mpdf->autoLangToFont = true;
+                $html = view('rental-invoice.supplier', ['rental' => $rental])->render();
+                $mpdf->WriteHTML($html);
+                $mpdf->Output('invoice.pdf', 'D');
+                return response()->json([
+                    'status' => 1,
+                    'msg' => 'Download started'
+                ], StatusCodes::SUCCESS);
+            } else {
+                return response()->json([
+                    'status' => 0,
+                    'msg' => 'Rental not exists'
+                ], StatusCodes::SERVER_ERROR);
+            }
+
         } catch (\Exception $e) {
             info($e->getMessage());
             return response()->json([
@@ -367,7 +375,7 @@ class BookingsController extends Controller
         }
     }
 
-    public function getRate( $id)
+    public function getRate($id)
     {
         try {
             return response()->json([

@@ -425,7 +425,7 @@ const downloadFile = (response, filename) => {
 const downloadInvoice = async (rental) => {
     try {
         loading.value = true
-        const response = await axios.get('/invoice/booking', {responseType: 'blob'})
+        const response = await axios.get('/invoice/booking/' + rental.id, {responseType: 'blob'})
         downloadFile(response.data, 'file')
         console.log(response)
 
