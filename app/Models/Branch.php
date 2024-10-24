@@ -16,7 +16,9 @@ class Branch extends Model
         'location',
         'adresse',
         'company_id',
-        'currency'
+        'currency',
+        'lat',
+        'lng'
     ];
 
     public function company() {

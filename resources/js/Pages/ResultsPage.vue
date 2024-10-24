@@ -585,7 +585,9 @@
                                                     </div>
                                                     <div class="row mb-5">
                                                         <div class="col-md-12">
-                                                            <p class="text-nowrap"><i class="fa fa-location"/>&nbsp;Address:&nbsp;
+                                                            <p class="text-nowrap">
+                                                                <a target="_blank"  :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle.branch.lat+','+vehicle.branch.lng">
+                                                                <i class="fa fa-location"/></a> &nbsp;Address:&nbsp;
                                                                 <small>{{
                                                                         vehicle.supplier.address
                                                                     }}</small></p>

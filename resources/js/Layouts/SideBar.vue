@@ -147,6 +147,11 @@
                             <i class="ti ti-list" aria-hidden="true"></i>
                             <span>My Rental Terms</span></a>
                     </li>
+                    <li class="sidebar-item" v-if="supplier || activeSupplier">
+                        <a class="sidebar-link" href="/promos">
+                            <i class="ti ti-list" aria-hidden="true"></i>
+                            <span>Promos</span></a>
+                    </li>
 
                     <li class="sidebar-item" v-if="admin">
                         <a class="sidebar-link" href="/rental-terms">
@@ -158,6 +163,11 @@
                         <a class="sidebar-link" href="/included">
                             <i class="ti ti-feather" aria-hidden="true"></i>
                             <span>What is included ?</span></a>
+                    </li>
+                    <li class="sidebar-item " v-if="admin">
+                        <a class="sidebar-link" href="/subscribers">
+                            <i class="ti ti-mail" aria-hidden="true"></i>
+                            <span>Subscribers</span></a>
                     </li>
 
                     <li class="sidebar-item">

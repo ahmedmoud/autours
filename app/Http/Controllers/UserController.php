@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\StatusCodes;
+use App\Http\Requests\CreateBranchRequest;
 use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\SetNewPasswordRequest;
 use App\Mail\UsersEmail\ForgetPasswordEmail;
@@ -135,7 +136,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function createBranch(Request $request)
+    public function createBranch(CreateBranchRequest $request)
     {
         $branch = new Branch();
 
@@ -145,6 +146,8 @@ class UserController extends Controller
         $branch->country = $request->country;
         $branch->city = $request->city;
         $branch->phone = $request->phone;
+        $branch->lat = $request->lat;
+        $branch->lng = $request->lng;
         $branch->email = $request->email;
         $branch->company_id = auth()->user()->id;
         $branch->currency = $request->currency;

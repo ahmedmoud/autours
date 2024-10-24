@@ -7,7 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmailController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\FuelPolicyController;
 use App\Http\Controllers\IncludedController;
 use App\Http\Controllers\LocationTypesController;
@@ -156,6 +156,8 @@ Route::middleware(['admin'])->group(function () {
     Route::post('delete/photos', [VehicleController::class, 'deletePhotos']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/get/subscribers', [SubscriberController::class, 'index']);
+    Route::inertia('/subscribers','Dashboard/SubscribersList');
 
 });
 
@@ -172,6 +174,7 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::get('edit/vehicles/{id}', [VehicleController::class, 'edit']);
     Route::inertia('vehicles', 'Dashboard/Vehicles/Vehicles');
     Route::inertia('edit/vehicle', 'Dashboard/Vehicles/EditVehicle');
+    Route::inertia('promos', 'Dashboard/Promos');
     Route::get('get/location-types', [LocationTypesController::class, 'index']);
     Route::get('/rental/rate/{id}', [BookingsController::class, 'getRate']);
 
@@ -204,5 +207,5 @@ Route::post('/validate-forget-password-key', [UserController::class, 'validateFo
 Route::post('/save-new-password', [UserController::class, 'setNewPassword']);
 Route::inertia('/contact-us', 'ContactUs' );
 Route::inertia('/about-us', 'AboutUs' );
-Route::view('/invoice','rental-invoice.supplier');
+Route::post('/send-email',[SubscriberController::class,'sendEmail']);
 

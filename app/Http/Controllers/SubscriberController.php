@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Events\SendEmailEvent;
 use App\Http\Requests\SendEmailRequest;
+use App\Models\Subscriber;
 
-class EmailController extends Controller
+class SubscriberController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -14,9 +16,19 @@ class EmailController extends Controller
     {
     }
 
+    public function index()
+    {
+        return Subscriber::all();
+    }
     public function sendEmail(SendEmailRequest $request)
     {
         if ($request->type == 'offers') {
+
+            Subscriber::query()->insert([
+                'email' => $request->email,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
             event(new SendEmailEvent($request->type, $request->email));
         }
         if ($request->type == 'supplier') {
