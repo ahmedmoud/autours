@@ -25,6 +25,9 @@ class Rental extends Model
         'rate'
     ];
 
+    protected $casts = [
+        'rate' => 'decimal:1'
+    ];
     public function vehicle() {
         return $this->belongsTo(Vehicle::class, 'vehicle_id', 'id');
     }
