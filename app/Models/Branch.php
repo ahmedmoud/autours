@@ -17,6 +17,7 @@ class Branch extends Model
         'adresse',
         'company_id',
         'currency',
+        'country',
         'lat',
         'lng'
     ];

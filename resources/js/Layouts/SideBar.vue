@@ -149,8 +149,13 @@
                     </li>
                     <li class="sidebar-item" v-if="supplier || activeSupplier">
                         <a class="sidebar-link" href="/promos">
-                            <i class="ti ti-list" aria-hidden="true"></i>
+                            <i class="ti ti-gift" aria-hidden="true"></i>
                             <span>Promos</span></a>
+                    </li>
+                    <li class="sidebar-item" v-if="supplier || activeSupplier">
+                        <a class="sidebar-link" href="/reviews">
+                            <i class="ti ti-check" aria-hidden="true"></i>
+                            <span>Rental Reviews</span></a>
                     </li>
 
                     <li class="sidebar-item" v-if="admin">

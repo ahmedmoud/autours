@@ -148,8 +148,19 @@ class BookingsController extends Controller
         if ($request->has('order_number') && $request->order_number) {
             $rentals->where('order_number', $request->order_number);
         }
+        if ($request->has('country') && $request->country) {
+            $rentals->whereHas('vehicle', function ($query) {
+                return $query->whereHas('branch', function ($query) {
+                    $query->where('country', request()->country);
+                });
+            });
+        }
         if ($request->has('date_range') && $request->date_range) {
             $rentals->whereBetween('created_at', [$request->date_range[0], $request->date_range[1]]);
+
+        }
+        if ($request->has('has_review') && $request->has_review) {
+            $rentals->whereHas('rentalRates');
 
         }
 

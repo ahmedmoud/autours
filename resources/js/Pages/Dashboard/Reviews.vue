@@ -15,6 +15,10 @@
                                 <div class="col-md-6 text-nowrap">  <CProgressBar style="border-radius: 10px;"   :value="item.rate * 10">{{item.rate}} / 10</CProgressBar> </div>
                             </div>
                         </div>
+                        <div class="mt-5 ml-2" v-if="activeRental?.comment">
+                            <label>Comment</label>
+                            <Textarea class="col-md-12" disabled rows="5"> {{activeRental.comment}} </Textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <slot name="footer">
@@ -105,19 +109,13 @@
                 </div>
             </div>
 
-            <h2 class="mb-4">Rentals</h2>
+            <h2 class="mb-4">Reviews</h2>
             <div class=" d-flex">
                 <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
                     <el-table-column label="Booking Reference" prop="order_number"/>
                     <el-table-column label="Vehicle" prop="vehicle.name"/>
                     <el-table-column label="Customer Name" prop="customer.name"/>
                     <el-table-column label="Country" prop="customer.country"/>
-                    <el-table-column label="Total Price" prop="supplier_price">
-                        <template #default="scope">
-                            {{scope.row.price}} {{scope.row.currency}}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Rental Status" prop="status.name_en"/>
                     <el-table-column label="Started At" prop="start_date"/>
                     <el-table-column label="Ended At" prop="end_date"/>
 
@@ -128,7 +126,7 @@
                     </el-table-column>
                     <el-table-column label="Review" align="center" prop="rate">
                         <template #default="scope">
-                            <a @click="openReviewDetails(scope.row.id)" href="#">{{scope.row.rate}}</a>
+                            <a class="btn btn-primary col-md-6" @click="openReviewDetails(scope.row.id)" href="#">{{scope.row.rate}} <i class="fa fa-star"/></a>
                         </template>
                     </el-table-column>
                     <el-table-column align="right">
@@ -136,24 +134,6 @@
                             <el-input v-model="search" size="small" placeholder="Type to search"/>
                         </template>
 
-                        <template v-if="role === 'active_supplier'" #default="scope">
-                            <el-button
-                                v-if="scope.row.order_status === 0" size="small"
-                                type="success"
-                                @click="handleAccept(scope.$index, scope.row)"
-                            >Activate
-                            </el-button>
-
-                            <el-button
-                                v-if="scope.row.order_status === 0 || scope.row.order_status === 1"
-                                size="small"
-                                type="danger"
-                                @click="handleDelete(scope.$index, scope.row)"
-                            >{{
-                                    scope.row.order_status === 0 ? 'Delete' : (scope.row.order_status === 1 ? 'Disable' : '')
-                                }}
-                            </el-button>
-                        </template>
 
                     </el-table-column>
                 </el-table>
@@ -260,13 +240,15 @@ const getData = async () => {
             country: "",
             order_status: "",
             order_number: "",
-            date_range: ""
+            date_range: "",
+            has_review: 1
         };
-        if (country.value !== [] || country.value != null || country.value !== undefined || country.value !== "") {
-            params.country = country.value
-        }
+
         if (order_status.value !== [] || order_status.value != null || order_status.value !== undefined || order_status.value !== "") {
             params.order_status = order_status.value
+        }
+        if (country.value !== [] || country.value != null || country.value !== undefined || country.value !== "") {
+            params.country = country.value
         }
         if (reference.value !== [] || reference.value != null || reference.value !== undefined || reference.value !== "") {
 
@@ -275,7 +257,6 @@ const getData = async () => {
         if (date_range.value !== [] || date_range.value != null || date_range.value !== undefined || date_range.value !== "") {
             params.date_range =  date_range.value
         }
-        console.log(params)
         const response = await axios.get('/get/rentals', {params});
         tableData.value = response.data.rentals;
         order_statuses.all.value = response.data.rental_statuses;
