@@ -274,7 +274,12 @@ const getData = async () => {
 }
 
 const filterTableData = computed(() => {
-        return tableData.value.filter((data) => !search.value || data.vehicle.name.toLowerCase().includes(search.value.toLowerCase()))
+        return tableData.value.filter((data) =>
+            !search.value
+            || data.vehicle.name.toLowerCase().includes(search.value.toLowerCase())
+            || data.order_number.toLowerCase().includes(search.value.toLowerCase())
+
+        )
     }
 )
 
