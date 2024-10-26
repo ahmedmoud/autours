@@ -94,6 +94,7 @@ class ProfitsController extends Controller
             ])->get();
             return response()->json([
                 'data' => $data,
+                'supplier_id' => auth()->user()->id,
                 'message' => 'profits returned successfully'
             ], 200);
         } catch (\Exception $e) {

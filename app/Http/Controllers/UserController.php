@@ -160,10 +160,16 @@ class UserController extends Controller
     public function getBranch(Request $request)
     {
         $companyId = auth()->user()->id;
+
+
+        $branches = Branch::query();
         if ($request->has('company_id')) {
-            $companyId = $request->company_id;
+            $branches->where('company_id', $request->company_id);
         }
-        return response()->json(Branch::where('company_id', $companyId)->get());
+        if ($request->has('country')) {
+            $branches->where('country', $request->country);
+        }
+        return response()->json($branches->get());
     }
 
     public function deleteBranch(Request $request)

@@ -49,34 +49,13 @@
                   placeholder="Countries..."
                   remote-show-suffix
                   :loading="countries.loading.value"
-                  v-on:change="getSuppliers()"
+                  v-on:change="getBranches()"
                   required>
                 <el-option
                     v-for="item in countries.list.value"
                     :key="item.id"
                     :label="item.label"
                     :value="item.label"
-                />
-              </el-select>
-            </div>
-            <div class="formbold-mb-3 col-md-2">
-              <label class="formbold-form-label">Suppliers</label>
-              <el-select
-                  v-model="supplier"
-                  size="large"
-                  filterable
-                  remote
-                  reserve-keyword
-                  v-on:change="getBranches()"
-                  placeholder="Suppliers..."
-                  remote-show-suffix
-                  :loading="suppliers.loading.value"
-                  required>
-                <el-option
-                    v-for="item in suppliers.list.value"
-                    :key="item.id"
-                    :label="item.label"
-                    :value="item.id"
                 />
               </el-select>
             </div>
@@ -293,6 +272,7 @@ const getVehiclesData = async (index) => {
 
     const response = await axios.get('/get/profit', {params: params});
     vehicleTableData.value = response.data.data
+    supplier.value = response.data.supplier_id
     for (const key in vehicleTableData.value[index]) {
       data.value[key] = vehicleTableData.value[index][key] || '';
     }
@@ -303,35 +283,14 @@ const getVehiclesData = async (index) => {
   }
 }
 
-const getSuppliers = async () => {
-  try {
-    suppliers.loading.value = true
-    if (country.value) {
-      const response = await axios.get(`get/suppliers`, {
-        params: {
-          'country': country.value
-        }
-      })
-      suppliers.all.value = response.data
-      suppliers.list.value = suppliers.all.value.map((item) => ({
-        value: `${item.name}`,
-        label: `${item.name}`,
-        id: `${item.id}`,
-      }))
 
-    }
-  } catch (error) {
-    console.error(error)
-  } finally {
-    suppliers.loading.value = false
-  }
-}
 
 const getBranches = async () => {
   try {
     const response = await axios.get('get/branches', {
       params: {
-        'company_id': supplier.value
+        'company_id': supplier.value,
+        'country' : country.value
       }
     });
     branches.all.value = response.data
@@ -350,7 +309,6 @@ const getVehicles = async () => {
     const response = await axios.get('get/vehicles', {
       params: {
         'branch_id': branch.value,
-        'supplier': supplier.value
       }
     });
     vehicles.all.value = response.data
