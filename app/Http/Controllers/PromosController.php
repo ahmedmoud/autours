@@ -31,9 +31,9 @@ class PromosController extends Controller
                 $promo->vehicle_id = $vehicle_id;
                 $promo->supplier_id = auth()->user()->id;
                 $promo->save();
-                return response()->json(['status' => true]);
-
             }
+            return response()->json(['status' => true]);
+
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], StatusCodes::SERVER_ERROR);
         }

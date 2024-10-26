@@ -33,9 +33,105 @@
         </div>
       </div>
       <div v-if="selectedIncluded">
+        <hr/>
         <h2>Select Vehicle</h2>
         <div class="card">
 
+          <div class="row p-3">
+            <div class="formbold-mb-3 col-md-2">
+              <label class="formbold-form-label">Country</label>
+              <el-select
+                  v-model="country"
+                  size="large"
+                  filterable
+                  remote
+                  reserve-keyword
+                  placeholder="Countries..."
+                  remote-show-suffix
+                  :loading="countries.loading.value"
+                  v-on:change="getSuppliers()"
+                  required>
+                <el-option
+                    v-for="item in countries.list.value"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.label"
+                />
+              </el-select>
+            </div>
+            <div class="formbold-mb-3 col-md-2">
+              <label class="formbold-form-label">Suppliers</label>
+              <el-select
+                  v-model="supplier"
+                  size="large"
+                  filterable
+                  remote
+                  reserve-keyword
+                  v-on:change="getBranches()"
+                  placeholder="Suppliers..."
+                  remote-show-suffix
+                  :loading="suppliers.loading.value"
+                  required>
+                <el-option
+                    v-for="item in suppliers.list.value"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.id"
+                />
+              </el-select>
+            </div>
+            <div class="formbold-mb-3 col-md-2">
+              <label class="formbold-form-label">Branches</label>
+              <el-select
+                  v-model="branch"
+                  size="large"
+                  filterable
+                  remote
+                  reserve-keyword
+                  v-on:change="getVehicles()"
+                  placeholder="Branches..."
+                  remote-show-suffix
+                  :loading="branches.loading.value"
+                  required>
+                <el-option
+                    v-for="item in branches.list.value"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.id"
+                />
+              </el-select>
+            </div>
+            <div class="formbold-mb-3 col-md-2">
+              <label class="formbold-form-label">Vehicles</label>
+              <el-select
+                  v-model="selectedVehicles"
+                  size="large"
+                  filterable
+                  remote
+                  multiple
+                  reserve-keyword
+                  placeholder="Vehicles..."
+                  remote-show-suffix
+                  :loading="vehicles.loading.value"
+                  required>
+                <el-option
+                    v-for="item in vehicles.list.value"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.id"
+                >
+                  <div class="d-flex" style="gap:10px;">
+                    <img :src="'img/vehicles/' + item.photo" style="width:50px;">
+                    {{ item.label }}
+                  </div>
+                </el-option>
+              </el-select>
+            </div>
+            <div class="mt-4 col-md-1">
+              <button class="mt-2 btn btn-primary col-md-12" type="button" @click="getVehiclesData">Search</button>
+            </div>
+          </div>
+          <hr/>
           <div class="card-body">
             <el-table :data="vehicleFilterTableData" style="width: 100%" :loading="loading" stripe>
               <el-table-column label="What is included?" prop="what_is_included">
@@ -56,6 +152,7 @@
 
           </div>
         </div>
+
         <button class="btn btn-primary" @click="AddPromo()"> Add Promo</button>
       </div>
     </div>
@@ -76,6 +173,33 @@ const loading = ref(false)
 const selectedIncluded = ref("")
 const selectedVehicles = ref([])
 const promos = ref([])
+const countries = {
+  loading: ref(false),
+  all: ref([]),
+  list: ref([]),
+  options: ref([]),
+};
+const suppliers = {
+  loading: ref(false),
+  all: ref([]),
+  list: ref([]),
+  options: ref([]),
+};
+const branches = {
+  loading: ref(false),
+  all: ref([]),
+  list: ref([]),
+  options: ref([]),
+};
+const vehicles = {
+  loading: ref(false),
+  all: ref([]),
+  list: ref([]),
+  options: ref([]),
+};
+const branch = ref('')
+const country = ref('')
+const supplier = ref('')
 const getData = async () => {
   try {
     loading.value = true;
@@ -131,8 +255,7 @@ const filterTableData = computed(() => {
       if (typeof search.value === 'string')
         return tableData.value.filter((data) => !search.value || data.what_is_included != undefined || data.what_is_included.toLowerCase().includes(search.value.toLowerCase()))
       else search.value = ''
-    }
-)
+    })
 const vehicleFilterTableData = computed(() => {
 
   const dataArray = Array.isArray(vehicleTableData.value) ? vehicleTableData.value : [];
@@ -163,6 +286,10 @@ const getVehiclesData = async (index) => {
   try {
     loading.value = true
     const params = {};
+    if (country.value) params.country = country.value
+    if (supplier.value) params.supplier = supplier.value
+    if (branch.value) params.branch = branch.value
+    if (selectedVehicles.value) params.selectedVehicles = selectedVehicles.value
 
     const response = await axios.get('/get/profit', {params: params});
     vehicleTableData.value = response.data.data
@@ -175,10 +302,92 @@ const getVehiclesData = async (index) => {
     loading.value = false;
   }
 }
+
+const getSuppliers = async () => {
+  try {
+    suppliers.loading.value = true
+    if (country.value) {
+      const response = await axios.get(`get/suppliers`, {
+        params: {
+          'country': country.value
+        }
+      })
+      suppliers.all.value = response.data
+      suppliers.list.value = suppliers.all.value.map((item) => ({
+        value: `${item.name}`,
+        label: `${item.name}`,
+        id: `${item.id}`,
+      }))
+
+    }
+  } catch (error) {
+    console.error(error)
+  } finally {
+    suppliers.loading.value = false
+  }
+}
+
+const getBranches = async () => {
+  try {
+    const response = await axios.get('get/branches', {
+      params: {
+        'company_id': supplier.value
+      }
+    });
+    branches.all.value = response.data
+    branches.list.value = branches.all.value.map((item) => ({
+      value: `${item.name}`,
+      label: `${item.name}`,
+      id: `${item.id}`,
+    }))
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getVehicles = async () => {
+  try {
+    const response = await axios.get('get/vehicles', {
+      params: {
+        'branch_id': branch.value,
+        'supplier': supplier.value
+      }
+    });
+    vehicles.all.value = response.data
+    vehicles.list.value = vehicles.all.value.map((item) => ({
+      value: `${item.name}`,
+      label: `${item.name}`,
+      id: `${item.id}`,
+      photo: `${item.photo}`,
+    }))
+  } catch (error) {
+    console.error(error);
+  }
+};
+const fetchCountries = async () => {
+  countries.loading.value = true;
+  try {
+    //
+    const response = await axios.get('/get/countries', {})
+    countries.all.value = response.data
+    console.log(response);
+    countries.list.value = countries.all.value.map((item) => ({
+      id: `${item}`,
+      label: `${item}`,
+      iso: `${item}`
+    }))
+  } catch (error) {
+    console.error(error)
+  } finally {
+    countries.loading.value = false;
+  }
+}
+
 onMounted(() => {
   getData()
   getVehiclesData()
   getPromos()
+  fetchCountries()
 
 });
 
