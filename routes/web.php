@@ -115,11 +115,13 @@ Route::middleware(['admin_or_supplier'])->group(function () {
     Route::post('post/rental-terms', [RentalTermsController::class, 'insert']);
     Route::get('get/profit', [ProfitsController::class, 'show']);
 
+    Route::get('/rental/rate/{id}', [BookingsController::class, 'getRate']);
 
 });
 Route::middleware(['admin'])->group(function () {
     Route::get('/get/rentals/admin', [BookingsController::class, 'getAdminRentals']);
     Route::get('/get/supplier/invoice', [BookingsController::class, 'getSupplierInvoices']);
+    Route::inertia('admin-reviews', 'Dashboard/AdminReviews');
 
     Route::inertia('margin', 'Dashboard/ProfitMargin');
     Route::inertia('customers', 'Dashboard/Customers');
@@ -179,7 +181,6 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::inertia('promos', 'Dashboard/Promos');
     Route::inertia('reviews', 'Dashboard/Reviews');
     Route::get('get/location-types', [LocationTypesController::class, 'index']);
-    Route::get('/rental/rate/{id}', [BookingsController::class, 'getRate']);
 
     Route::inertia('price-list', 'Dashboard/PriceList');
 

@@ -157,6 +157,11 @@
                             <i class="ti ti-check" aria-hidden="true"></i>
                             <span>Rental Reviews</span></a>
                     </li>
+                    <li class="sidebar-item" v-if="admin">
+                        <a class="sidebar-link" href="/admin-reviews">
+                            <i class="ti ti-check" aria-hidden="true"></i>
+                            <span>Rental Reviews</span></a>
+                    </li>
 
                     <li class="sidebar-item" v-if="admin">
                         <a class="sidebar-link" href="/rental-terms">
