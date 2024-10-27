@@ -15,10 +15,7 @@
                                 <div class="col-md-6 text-nowrap">  <CProgressBar style="border-radius: 10px;"   :value="item.rate * 10">{{item.rate}} / 10</CProgressBar> </div>
                             </div>
                         </div>
-                        <div class="mt-5 ml-2" v-if="activeRental?.comment">
-                            <label>Comment</label>
-                            <Textarea class="col-md-12" disabled rows="5"> {{activeRental.comment}} </Textarea>
-                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <slot name="footer">
