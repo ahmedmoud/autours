@@ -73,9 +73,6 @@ class ProfitsController extends Controller
                 $query->where('branch_id', $request->branch);
             }
 
-            if ($request->has('selectedVehicles')) {
-                $query->whereIn('vehicles.id', $request->selectedVehicles);
-            }
 
             $query
             ->leftJoin('branches', 'branches.id', '=', 'profits.branch_id');
