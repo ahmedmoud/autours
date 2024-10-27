@@ -74,7 +74,7 @@ class ProfitsController extends Controller
             }
 
             if ($request->has('selectedVehicles')) {
-                $query->whereIn('vehicle_id', $request->selectedVehicles);
+                $query->whereIn('vehicles.id', $request->selectedVehicles);
             }
 
             $query
