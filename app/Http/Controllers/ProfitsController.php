@@ -60,7 +60,7 @@ class ProfitsController extends Controller
     public function show(Request $request)
     {
         try {
-            $query = Profit::query()->rightJoin('vehicles', 'profits.vehicle_id', '=','vehicles.id' );
+            $query = Profit::query()->leftJoin('vehicles', 'profits.vehicle_id', '=','vehicles.id' );
 
             if ($request->has('supplier')) {
                 $query->where('supplier_id', $request->supplier);
@@ -73,6 +73,9 @@ class ProfitsController extends Controller
                 $query->where('branch_id', $request->branch);
             }
 
+            if ($request->has('selectedVehicles')) {
+                $query->whereIn('vehicles.id', $request->selectedVehicles);
+            }
 
             $query
             ->leftJoin('branches', 'branches.id', '=', 'profits.branch_id');
