@@ -217,7 +217,7 @@ onMounted(() => {
 
 .modal-container {
     width: 900px;
-    margin: 150px auto;
+    margin: 5% 25%;
     padding: 20px 30px;
     background-color: #fff;
     border-radius: 2px;
