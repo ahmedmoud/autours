@@ -64,6 +64,9 @@ class ProfitsController extends Controller
 
             if ($request->has('supplier')) {
                 $query->where('supplier_id', $request->supplier);
+            } elseif (auth()->user() && auth()->user()->role == 'active_supplier') {
+                $query->where('supplier_id', auth()->user()->id);
+
             }
 
             if ($request->has('branch')) {
