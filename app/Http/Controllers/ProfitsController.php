@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusCodes;
 use App\Models\Profit;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
@@ -60,25 +61,24 @@ class ProfitsController extends Controller
     public function show(Request $request)
     {
         try {
-            $query = Profit::query()->rightJoin('vehicles', 'profits.vehicle_id', '=','vehicles.id' );
+            $query = Vehicle::query()->leftJoin('profits', 'profits.vehicle_id', '=','vehicles.id' );
 
             if ($request->has('supplier')) {
-                $query->where('supplier_id', $request->supplier);
+                $query->where('vehicles.supplier', $request->supplier);
             } elseif (auth()->user() && auth()->user()->role == 'active_supplier') {
                 $query->where('supplier_id', auth()->user()->id);
 
             }
 
             if ($request->has('branch')) {
-                $query->where('branch_id', $request->branch);
+                $query->where('pickup_loc', $request->branch);
             }
 
             if ($request->has('selectedVehicles')) {
                 $query->whereIn('vehicles.id', $request->selectedVehicles);
             }
 
-            $query
-            ->leftJoin('branches', 'branches.id', '=', 'profits.branch_id');
+            $query->leftJoin('branches', 'branches.id', '=', 'vehicles.pickup_loc');
 
             if ($request->has('country')) {
                 $query->where('branches.country', $request->country);
@@ -104,7 +104,7 @@ class ProfitsController extends Controller
             return response()->json([
                 'data' => $e->getMessage(),
                 'message' => 'there is an error'
-            ], 200);
+            ], StatusCodes::SERVER_ERROR);
         }
     }
 
