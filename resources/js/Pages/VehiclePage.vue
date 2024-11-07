@@ -21,7 +21,7 @@
                         </div>
                         <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
                             <h2>Terms and Conditions</h2>
-                            <div  v-for="(item,index) in activeRentalTerms" :item-key="index">
+                            <div v-for="(item,index) in activeRentalTerms" :item-key="index">
                                 <h3 v-html="item.title"></h3>
                                 <ul>
                                     <div v-html="item.description"></div>
@@ -431,17 +431,20 @@
                             <div class="col-md-5">
                                 <div id="slider-carousel text-nowrap">
                                     <h4 class="" style="margin-left: -20px; font-size: 1.3vw; text-wrap: nowrap;">
+
+                                        {{ vehicle.name }} OR&nbsp;Similar
                                         <el-tooltip placement="right-start">
-                                            <template  #content>
-                                                <div >
-                                                    The supplier will provide a car with same class and specifications, though the make may vary.
+                                            <template #content>
+                                                <div>
+                                                    The supplier will provide a car with same class and specifications,
+                                                    though the make may vary.
                                                 </div>
                                             </template>
-                                            {{ vehicle.name }} OR&nbsp;Similar
+                                            <i class="fas fa-info-circle" style="color: #7373e1"/>
+                                         </el-tooltip>
 
-                                        </el-tooltip>
-                                        </h4>
-                                        <span>{{ vehicle?.category?.name }}</span>
+                                    </h4>
+                                    <span>{{ vehicle?.category?.name }}</span>
                                     <div class="row"></div>
                                     <div class="item">
                                         <img
@@ -501,19 +504,19 @@
                                     </div>
                                     <div class="col-md-2">
                                         <span class="py-2 px-1 rounded-1 ml-3"
-                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{vehicle.supplier_rate}}/10</span>
+                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{ vehicle.supplier_rate }}/10</span>
                                     </div>
                                     <div class="col-md-3">
                                                         <span class="be_media-body"><h5> {{
-                                                                vehicle?.supplier_rate >= 1 && vehicle?.supplier_rate <= 2 ? 'Terrible':
-                                                                    vehicle?.supplier_rate > 2 && vehicle?.supplier_rate <= 4 ? 'Ok':
-                                                                        vehicle?.supplier_rate > 4 && vehicle?.supplier_rate <= 6 ? 'Good':
-                                                                            vehicle?.supplier_rate > 6 && vehicle?.supplier_rate <= 8 ? 'Ver Good':
-                                                                                vehicle?.supplier_rate > 8 && vehicle?.supplier_rate <= 10 ? 'Excellent':
+                                                                vehicle?.supplier_rate >= 1 && vehicle?.supplier_rate <= 2 ? 'Terrible' :
+                                                                    vehicle?.supplier_rate > 2 && vehicle?.supplier_rate <= 4 ? 'Ok' :
+                                                                        vehicle?.supplier_rate > 4 && vehicle?.supplier_rate <= 6 ? 'Good' :
+                                                                            vehicle?.supplier_rate > 6 && vehicle?.supplier_rate <= 8 ? 'Ver Good' :
+                                                                                vehicle?.supplier_rate > 8 && vehicle?.supplier_rate <= 10 ? 'Excellent' :
                                                                                     ''
                                                             }}</h5><span
                                                             style="font-size: medium;">(&nbsp;<strong
-                                                            style="color: #f9d602">{{vehicle.supplier_number_of_reviews}}&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                                            style="color: #f9d602">{{ vehicle.supplier_number_of_reviews }}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
                                     <div class="col-md-4 ">
                                         <p class="text-nowrap mt-2" style="font-size: 15px;"><i class="fa fa-location"/>
@@ -527,8 +530,10 @@
                                                     </div>
                                                 </template>
                                                 <p style="margin-top: -20px;">
-                                                    <strong class="text-nowrap" style="font-size: 15px;"><i class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
-                                                    <strong class="text-nowrap">{{vehicle?.fuel_policy?.name}} </strong>
+                                                    <strong class="text-nowrap" style="font-size: 15px;"><i
+                                                        class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
+                                                    <strong
+                                                        class="text-nowrap">{{ vehicle?.fuel_policy?.name }} </strong>
                                                 </p>
                                             </el-tooltip>
                                         </div>
@@ -546,16 +551,19 @@
                                                 <div class="row" v-if="index <= (vehicle?.included?.length - 1) / 2">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
-                                                    <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
-                                                        <template  #content>
+                                                    <el-tooltip v-if="item?.description?.length" placement="right-start"
+                                                                trigger="hover">
+                                                        <template #content>
                                                             <div class="" style="font-size: 16px;">
                                                                 {{ item.description }}
                                                             </div>
                                                         </template>
-                                                        <p class="col-md-10 text-nowrap included-font" style="font-size: 0.9vw;">
-                                                            {{ item.what_is_included }}</p>
+                                                        <p class="col-md-10 text-nowrap included-font"
+                                                           style="font-size: 0.9vw;">
+                                                            {{ item.what_is_included }} <i class="fas fa-info-circle" style="color: #7373e1"/></p>
                                                     </el-tooltip>
-                                                    <p v-else class="col-md-10 included-font text-nowrap" style="font-size: 0.9vw;">
+                                                    <p v-else class="col-md-10 included-font text-nowrap"
+                                                       style="font-size: 0.9vw;">
                                                         {{ item.what_is_included }}</p>
                                                 </div>
                                             </li>
@@ -567,16 +575,19 @@
                                                 <div class="row">
                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
                                                        style="color: green;"/>
-                                                    <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
-                                                        <template  #content>
+                                                    <el-tooltip v-if="item?.description?.length" placement="right-start"
+                                                                trigger="hover">
+                                                        <template #content>
                                                             <div class="" style="font-size: 16px;">
                                                                 {{ item.description }}
                                                             </div>
                                                         </template>
-                                                        <p class="col-md-10 text-nowrap included-font" style="font-size: 0.9vw;">
+                                                        <p class="col-md-10 text-nowrap included-font"
+                                                           style="font-size: 0.9vw;">
                                                             {{ item.what_is_included }}</p>
                                                     </el-tooltip>
-                                                    <p v-else class="col-md-10 included-font text-nowrap" style="font-size: 0.9vw;">
+                                                    <p v-else class="col-md-10 included-font text-nowrap"
+                                                       style="font-size: 0.9vw;">
                                                         {{ item.what_is_included }}</p>
                                                 </div>
                                             </li>
@@ -1062,7 +1073,7 @@ const book = async () => {
         if (resposne.status) {
             $toast.success("Thank You for your payment!", {position: 'top', duration: 1000})
             $toast.success("Your Booking has been placed successfully", {position: 'top'})
-            router.get('/my-profile')
+            window.location.href = '/my-profile'
             loading.value = false;
         }
     } catch (e) {
@@ -1260,10 +1271,10 @@ li::before {
     inset: -30px auto auto -300px !important;
 }
 
- .el-popper__arrow {
+.el-popper__arrow {
     top: 90% !important;
     left: 130px !important;
-     transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
     display: none !important;
 }
 </style>

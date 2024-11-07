@@ -416,14 +416,16 @@
                                                 <div class="d-info">
                                                     <div class="d-text">
                                                         <h4 style="color: #000;" class="text-nowrap">
+
+                                                                {{ vehicle.name }} OR&nbsp;Similar
+
                                                             <el-tooltip placement="right-start">
                                                                 <template  #content>
                                                                     <div >
                                                                         The supplier will provide a car with same class and specifications,<br> though the make may vary.
                                                                     </div>
                                                                 </template>
-                                                                {{ vehicle.name }} OR&nbsp;Similar
-
+                                                            <i class="fas fa-info-circle" style="color: #6969d8;"></i>
                                                             </el-tooltip>
                                                         </h4>
                                                         <span>{{ vehicle?.category?.name }}</span>
@@ -512,7 +514,7 @@
                                                             <div class="" id="instant_btn">
                                                                 <img class="mb-2" width="40"
                                                                      src="/images/icons/instant_confirmation.png"/>
-                                                                Instant Confirmation
+                                                                Instant Confirmation  <i class="fas fa-info-circle" style="color: #6969d8;"></i>
                                                             </div>
                                                         </div>
                                                     </el-tooltip>
@@ -528,10 +530,11 @@
                                                             <div class="col-md-2  text-nowrap bold">
                                                                 <div>
                                                                     <i style="font-size: 1.8vw; color: gold;" class=" px-2 fa fa-ban be_media-left be_media-middle"/>
-                                                                   <strong class="mb-5"> On request</strong>
+                                                                    <strong class="mb-5"> On request  <i class="fas fa-info-circle" style="color: #6969d8;"></i></strong>
                                                                 </div>
                                                             </div>
                                                         </el-tooltip>
+
                                                     </div>
                                                 </div>
                                             </div>

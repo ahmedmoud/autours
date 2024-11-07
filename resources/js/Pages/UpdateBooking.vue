@@ -188,99 +188,121 @@
                         </div>
 
                     </div>
-                    <div class="container bg-white col-md-6 offset-md-0 p-5 h-50" style=" margin-top: 1.7%">
-                        <div class="row g-5">
-                            <div class="col-lg-4">
-                                <div id="slider-carousel" class="owl-carousel">
-                                    <h3>{{ vehicle.name }}</h3>
-                                    <div class="row"><span>{{ vehicle.category?.name }}</span></div>
-                                    <div class="item w-100">
-                                        <img class="item w-150"
-                                             :src="vehicle.photo ? '/img/vehicles/' + vehicle.photo : ''" alt="photo"
-                                             width="250" height="150"/>
-                                    </div>
-                                    <div class="spacer-30"></div>
+                    <Loader v-if="loading"/>
+                    <div v-else class="container bg-white col-md-6 offset-md-0 p-5 h-50" style=" margin-top: 1.7%">
+                        <div class="row ">
+                                <div class="col-md-5">
+                                    <div id="slider-carousel text-nowrap">
+                                        <h4 class="" style="margin-left: -20px; font-size: 1.3vw; text-wrap: nowrap;">
 
-                                </div>
-                            </div>
+                                            {{ vehicle.name }} OR&nbsp;Similar
+                                            <el-tooltip placement="right-start">
+                                                <template #content>
+                                                    <div>
+                                                        The supplier will provide a car with same class and specifications,
+                                                        though the make may vary.
+                                                    </div>
+                                                </template>
+                                            </el-tooltip>
 
-                            <div class="col-lg-6">
-                                <div class=" row ">
-                                    <h4 class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</h4>
-                                    <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
-                                        day{{ daysNumber < 2 ? '' : 's' }} -
-                                        {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
-                                        / per
-                                        day </p>
-                                </div>
-                                <div class="de-spec">
-                                    <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
-                                         class="row text-nowrap">
-                                        <span class="d-title"><i :class="'fa fa-' + specification.icon"/> &nbsp;{{
-                                                specification.name
-                                            }}</span>
-                                        <span class="d-value">{{ specification.option }}</span>
-                                    </div>
-                                </div>
-                                <div class="spacer-single"></div>
-                            </div>
-
-                            <div class="row bg-light-gray mt-5 item-list p-0 ">
-                                <div class="row mt-4">
-                                    <div class="col-lg-2">
-                                        <img width="100" height="70" :src="'/img/' + vehicle?.supplier?.logo" alt=""/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="col-md-4"><p style="font-size: medium; white-space: nowrap;">
-                                            {{ vehicle?.supplier?.company }}</p></div>
-                                        <div class="col-md-8"><small><a class="cursor-pointer text-primary"
-                                                                        style="white-space: nowrap;"
-                                                                        href="javascript:void(0);"
-                                                                        @click="openRentalTerms(vehicle)">Rental
-                                            Terms</a></small></div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="col-md-3 mb-2">
-                                            <button class=" btn-primary"><span
-                                                style="background-color: #f9d602;padding: 0.5em 0.4em;font-size: 1.0em;font-weight: 600;">7.1/10</span>
-                                            </button>
+                                        </h4>
+                                        <p>{{ vehicle?.category?.name }}</p>
+                                        <div class="row"></div>
+                                        <div class="">
+                                            <img
+                                                :src=" '/img/vehicles/' + vehicle?.photo "
+                                                width="350" height="200"/>
                                         </div>
-                                        <div class="col-lg-12 row">
-                                            <span class="be_media-body col-lg-12"><strong>Good</strong><span
-                                                style="font-size: medium;">(<strong style="color: #f9d602">1000</strong>&nbsp;+&nbsp;Reviews)</span></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="col-md-12">
-                                            <p><strong><i class="fa fa-location"/>Address: </strong>{{
-                                                    vehicle?.supplier?.address
-                                                }}</p>
-                                        </div>
-                                        <div v-if="vehicle.instant_confirmation" class="col-md-2">
-                                            <button class="scv-badge badge-white be_media pr-3" tabindex="0">
-                                                <i style="color: gold;"
-                                                   class="mt-3 ml-2 mr-2 fa fa-bolt fa-xl be_media-left be_media-middle"/>
-                                                <span class="scv-inst-text">Instant Confirmation</span>
-                                            </button>
-                                        </div>
+                                        <div class="spacer-30"></div>
 
                                     </div>
                                 </div>
 
-                                <div class=" row col-lg-12">
-                                    <strong class="primary mb-5" style="color: #5e9007;">What is Included!</strong>
-                                    <ul class="row col-lg-12">
-                                        <li class="col-lg-4" style="margin-top: -4%" v-for="item in vehicle.included ">
-                                            <div class="row">
-                                                <i class="col-1 fa fa-check fa-l mt-2" style="color: green;"/>
-                                                <p class="col-md-10 text-nowrap" style="font-size: 13px;">
-                                                    {{ item.what_is_included }}.</p>
+                                <div class="col-md-6 row">
+                                    <div class=" row mt-1">
+                                        <h4 class="col-md-4 text-nowrap" style="font-size: 1.1vw">
+                                            {{ currency + ' ' + vehicle.final_price }}</h4>
+                                        <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
+                                            day{{ daysNumber < 2 ? '' : 's' }} -
+                                            {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
+                                            / per
+                                            day </p>
+                                    </div>
+                                    <div class="row de-spec text-nowrap">
+                                        <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
+                                             class="col-md-6">
+                                        <span>
+                                            <img style="width: 35%; margin-right: 2px;"
+                                                 :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
+                                             {{
+                                                specification.value
+                                            }} {{
+                                                specification.name == 'Number of Seats' ? 'Seats' : specification.name == 'Doors' ? 'Doors' : ''
+                                            }}
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="spacer-single"></div>
+                                </div>
+                                <div class=" rounded-2 py-1 mb-2 ml-1"
+                                     style="background: #edecec; width: 90%; margin-top: -2%; ">
+                                    <div class="d-supplier">
+                                        <div class="col-md-2 d-img w-100" style="height: 50px">
+                                            <img :src="'/img/' + vehicle?.supplier?.logo" height="50"
+                                                 width="80" alt=""/>
+                                        </div>
+                                        <div class="col-md-2 row">
+                                            <div>
+                                                            <span style="font-size: medium;"
+                                                                  class="text-nowrap">{{
+                                                                    vehicle?.supplier?.company
+                                                                }}</span>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            <div>
+                                                <div><a class="cursor-pointer text-primary text-decoration-underline"
+                                                        href="javascript:void(0);"
+                                                        @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                        <span class="py-2 px-1 rounded-1 ml-3"
+                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{ vehicle.supplier_rate }}/10</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                                        <span class="be_media-body"><h5> {{
+                                                                vehicle?.supplier_rate >= 1 && vehicle?.supplier_rate <= 2 ? 'Terrible' :
+                                                                    vehicle?.supplier_rate > 2 && vehicle?.supplier_rate <= 4 ? 'Ok' :
+                                                                        vehicle?.supplier_rate > 4 && vehicle?.supplier_rate <= 6 ? 'Good' :
+                                                                            vehicle?.supplier_rate > 6 && vehicle?.supplier_rate <= 8 ? 'Ver Good' :
+                                                                                vehicle?.supplier_rate > 8 && vehicle?.supplier_rate <= 10 ? 'Excellent' :
+                                                                                    ''
+                                                            }}</h5><span
+                                                            style="font-size: medium;">(&nbsp;<strong
+                                                            style="color: #f9d602">{{ vehicle.supplier_number_of_reviews }}&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <p class="text-nowrap mt-2" style="font-size: 15px;"><i class="fa fa-location"/>
+                                                &nbsp;Address:&nbsp;&nbsp;<small
+                                                    style="font-size: 12px;">{{ vehicle?.supplier?.address }}</small></p>
+                                            <div>
+                                                <el-tooltip placement="bottom">
+                                                    <template #content>
+                                                        <div>
+                                                            {{ vehicle?.fuel_policy?.description }}
+                                                        </div>
+                                                    </template>
+                                                    <p style="margin-top: -20px;">
+                                                        <strong class="text-nowrap" style="font-size: 15px;"><i
+                                                            class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
+                                                        <strong
+                                                            class="text-nowrap">{{ vehicle?.fuel_policy?.name }} </strong>
+                                                    </p>
+                                                </el-tooltip>
+                                            </div>
 
-                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="de-box row col-lg-12 mt-5 mb25" v-if="priceDiff > 0">
                                 <div class="col-lg-12">
                                     <div class="">
@@ -389,6 +411,7 @@ import {usePage, useForm} from '@inertiajs/vue3';
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import HeaderOne from '../components/HeaderOne.vue'
+import Loader from '../components/Loader.vue'
 import {router} from "@inertiajs/vue3";
 import {CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/vue';
 import Footer from "../components/Footer.vue";

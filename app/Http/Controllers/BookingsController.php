@@ -353,10 +353,6 @@ class BookingsController extends Controller
                 $rental = Rental::query()->with('supplier', 'vehicle.branch', 'vehicle.vehicle_specifications', 'vehicle.included', 'vehicle.locationType', 'vehicle.vehicle_category', 'customer')->find($id);
 
                 ob_clean();
-                header('Content-type: application/pdf');
-                header('Content-Disposition: inline; filename=invoice.pdf');
-                header('Content-Transfer-Encoding: binary');
-                header('Accept-Ranges: bytes');
 
                 $mpdf = new Mpdf([
                     'mode' => 'utf-8',
@@ -364,13 +360,12 @@ class BookingsController extends Controller
                     'font' => 'frutiger',
                     'tempDir' => public_path() . '/tmp',
                     'orientation' => 'L',
+
                 ]);
                 $mpdf->setFooter('{nb} / {PAGENO}');
                 $mpdf->SetTitle('Booking Invoice');
-                $mpdf->shrink_tables_to_fit = 1;
-
+                $mpdf->SetMargins(0,0,10);
                 $mpdf->autoScriptToLang = true;
-
                 $mpdf->autoLangToFont = true;
                 $html = view('rental-invoice.supplier', ['rental' => $rental])->render();
                 $mpdf->WriteHTML($html);
