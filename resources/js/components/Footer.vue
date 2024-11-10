@@ -31,7 +31,7 @@ onMounted(() => {
                         <a href="#" class="text-black text-decoration-underline footer_link" >About us</a>
                     </div>
                     <div class="mt-1">
-                        <a href="#contact" class="text-black text-decoration-underline footer_link" >Contact us</a>
+                        <a href="/contact-us" class="cursor-pointer text-black text-decoration-underline footer_link" >Contact us</a>
                     </div>
                     <div class="mt-1">
                         <a href="#" class="text-black text-decoration-underline footer_link" >Privacy
