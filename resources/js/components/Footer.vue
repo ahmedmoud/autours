@@ -28,7 +28,7 @@ onMounted(() => {
                 <div class="col-md-4 " id="company">
                     <h4 class="text-black">Company</h4>
                     <div>
-                        <a href="#" class="text-black text-decoration-underline footer_link" >About us</a>
+                        <a href="/about-us" class="text-black text-decoration-underline footer_link" >About us</a>
                     </div>
                     <div class="mt-1">
                         <a href="/contact-us" class="cursor-pointer text-black text-decoration-underline footer_link" >Contact us</a>

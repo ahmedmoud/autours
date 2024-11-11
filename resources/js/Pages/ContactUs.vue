@@ -9,7 +9,10 @@
         <div class="no-bottom no-top zebra" id="content">
             <div id="top"></div>
 
-            <div style="margin-left: 40%; width: 15%;"><h1>Contact Us</h1></div>
+            <div style="margin-left: 40%; width: 15%; ">
+                <div style="background:#ffd100; height: 2%; margin-bottom: -15%;"></div>
+                <h1>Contact us</h1>
+            </div>
             <div class="contact-info row">
                 <div class="col-lg-3 offset-1">
                     <div
@@ -26,35 +29,53 @@
                     </div>
                     <div
                         style="background-image: url('/assets/images/icons/Email-icom.png');  width: 220px; height: 148px; justify-content: center; display: flex;">
-                        <p style="color: gold; font-weight: bold; margin-top: 25%;">
-                            Email Us <br>Info@autours.net
-                        </p>
+                        <a href="mailto:admin@info.net" style="color: gold; font-weight: bold; margin-top: 25%; "
+                           target="_blank">
+
+                            <p>
+                                Email Us <br>Info@autours.net
+                            </p>
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-6 my-5 row">
-                    <form>
+                    <form class="col-md-12">
                         <input class="col-md-6 contact_form" type="text" placeholder="First name" required>
                         <input class="col-md-6 contact_form" type="text" placeholder="Last name" required>
                         <input class="col-md-6 contact_form" type="email" placeholder="E-mail Address" required>
                         <input class="col-md-6 contact_form" type="tel" placeholder="Phone number" required>
-                        <textarea class="contact_form" placeholder="Message" rows="4" v-model="form.message" type="text"
-                                  required/>
                         <div class="col-md-12">
-                            <button class="btn btn-primary text-black p-3 mt-3" onclick="()=> event.preventDefault()" type="submit">SUBMIT</button>
+                        <textarea class="w-100 contact_form" placeholder="   Message..." rows="5"
+                                  v-model="form.message" type="text" required>
+
+                        </textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <button class=" btn btn-primary text-black p-3 mt-3" onclick="()=> event.preventDefault()"
+                                    type="submit">SUBMIT
+                            </button>
                         </div>
 
                     </form>
                 </div>
                 <div class="my-5">
-                    <a href="#" class="mx-5"><img width="30" height="60" src="/assets/images/icons/f.png"
-                                                  alt="Facebook"></a>
-                    <a href="#" class="mx-5"><img width="60" height="60" src="/assets/images/icons/n.png"
-                                                  alt="Instgram"></a>
-                    <a href="#" class="mx-5"><img width="60" height="60" src="/assets/images/icons/x.png" alt="Twitter"></a>
-                    <a href="#" class="mx-5"><img width="60" height="60" src="/assets/images/icons/t.png" alt="TikTok"></a>
-                    <a href="#" class="mx-5"><img width="60" height="60" src="/assets/images/icons/in.png"
-                                                  alt="LinkedIn"></a>
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=61560740824598" class="mx-5"><img
+                        width="30" height="60" src="/assets/images/icons/f.png"
+                        alt="Facebook"></a>
+                    <a target="_blank" href="https://www.instagram.com/autours_/" class="mx-5"><img width="60"
+                                                                                                    height="60"
+                                                                                                    src="/assets/images/icons/n.png"
+                                                                                                    alt="Instgram"></a>
+                    <a target="_blank" href="https://x.com/Autours_" class="mx-5"><img width="60" height="60"
+                                                                                       src="/assets/images/icons/x.png"
+                                                                                       alt="Twitter"></a>
+                    <a target="_blank" href="#" class="mx-5"><img width="60" height="60"
+                                                                  src="/assets/images/icons/t.png" alt="TikTok"></a>
+                    <a target="_blank" href="https://www.linkedin.com/company/autours/" class="mx-5"><img width="60"
+                                                                                                          height="60"
+                                                                                                          src="/assets/images/icons/in.png"
+                                                                                                          alt="LinkedIn"></a>
                 </div>
             </div>
 
@@ -113,7 +134,6 @@ form input, form textarea {
 }
 
 
-
 footer {
     text-align: center;
     padding: 20px;
@@ -135,7 +155,7 @@ footer img {
 
 .contact_form {
     background: rgb(255, 229, 140);
-    border-radius: 50px;
+    border-radius: 30px;
 }
 
 input::placeholder,
