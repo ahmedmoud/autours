@@ -33,7 +33,7 @@ class NotifyCustomerListener implements ShouldQueue
         $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
         $event->rental->fuelPolicy = Vehicle::query()->where('id', $event->rental->vehicle->id)->with('fuelPolicy')->first();
-        $event->rental->cancelationPolicy = Included::query()->whereIn('included_id', [1,48])->first();
+        $event->rental->cancelationPolicy = Included::query()->whereIn('id', [1,48])->first();
 
         $body = $event->rental;
 
