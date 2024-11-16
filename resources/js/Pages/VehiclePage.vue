@@ -469,13 +469,18 @@
                                 <div class="row de-spec text-nowrap">
                                     <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
                                          class="col-md-6">
-                                        <span>
                                             <img style="width: 35%; margin-right: 2px;"
                                                  :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
-                                             {{
+                                        <span>
+                                           {{
                                                 specification.value
                                             }} {{
-                                                specification.name == 'Number of Seats' ? 'Seats' : specification.name == 'Doors' ? 'Doors' : ''
+                                                specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Conditioning' ||
+                                                specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Conditioner' ||
+                                                specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Transmission' ||
+                                                specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Transmission' ||
+                                                specification.name?.split(' ')[specification.name?.split(' ').length - 1] == 'Fuel'
+                                                    ? '' : specification.name?.split(' ')[specification.name?.split(' ')?.length - 1]
                                             }}
                                         </span>
                                     </div>
