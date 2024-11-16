@@ -40,6 +40,7 @@
                 </div>
 
                 <div class="col-lg-8 my-5 row">
+                    <h1>Get in touch </h1>
                     <form class="col-md-12">
                         <input class="col-md-6 contact_form" type="text" placeholder="First name" required>
                         <input class="col-md-6 contact_form" type="text" placeholder="Last name" required>
@@ -150,7 +151,8 @@ footer img {
 }
 
 #top {
-    margin-top: 6%;
+    margin-top: 8%;
+
 }
 
 .contact_form {
