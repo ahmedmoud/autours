@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div class=" d-flex" style="margin-top: 50px ;">
                         <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
-                            <el-table-column label="Company" prop="company"/>
+                            <el-table-column label="Company" prop="name"/>
                             <el-table-column label="Status" prop="">
                                 <template #default="scope">
                                     <div v-if="scope.row.role === 'under_review'">Under review</div>
