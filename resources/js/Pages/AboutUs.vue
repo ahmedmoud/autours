@@ -14,7 +14,7 @@
             </div>
             <div class="row">
                 <div class="ml-5 mr-5">
-                    <div style="font-size: 20px;">
+                    <div style="font-family: sans-serif; font-size: 20px;">
                         <h3>At Autours, we strive to empower companies to reach a wide range of customers.</h3>
                         As a partner on our platform, we provide you with the opportunity to grow your business and
                         expand
@@ -38,7 +38,7 @@
                 <div style="margin-left: 25%; margin-top: 5%; margin-bottom: 5%;">
                     <p style="font-size: 100px; font-weight: 1000;"> Why Choose Us</p>
                 </div>
-                <div class=" row offset-1">
+                <div class=" row offset-2">
                     <div class="col-md-2 mr-4">
                         <img height="102" src="/assets/images/icons/car-icon.png"/>
                         <h3 class="mt-4 ml-4">ALL BRANDS</h3>
@@ -65,11 +65,11 @@
                         <div class="ml-5">
                             <h1>Our Vision</h1>
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <img width="348" src="/assets/images/backgrounds/Our-Goals.png"/>
                                 </div>
-                                <div class="col-md-6">
-                                    <p class="mt-5">
+                                <div class="col-md-5">
+                                    <p style="font-family: sans-serif;" class="mt-5">
                                         To be the preferred partner for car
                                         rental companies in the region by
                                         providing an innovative platform
@@ -86,19 +86,19 @@
                     <div class="col-md-6 ">
                         <h1>Our Goal</h1>
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <img width="348" src="/assets/images/backgrounds/Our-Vision.png"/>
                             </div>
-                            <div class="col-md-6">
-                                <p class="mt-3">
-                                    ïSupport companies in reaching new
+                            <div class="col-md-5">
+                                <p style="font-family: sans-serif;" class="mt-3">
+                                    Support companies in reaching new
                                     markets through our platform.
                                     ïProvide analytical tools and reports to help
                                     companies improve their performance.
                                     ïStrengthen collaboration between Autours
                                     and its partners to ensure a smooth and
                                     successful rental experience.
-                                    ïAchieve sustainable growth for partnered
+                                    Achieve sustainable growth for partnered
                                     companies through transparency and
                                     continuous development.
                                 </p>
