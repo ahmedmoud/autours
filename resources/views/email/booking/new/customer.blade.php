@@ -10,7 +10,6 @@ Booking Details:<br>
 - Pickup Date and Time:  {{\Carbon\Carbon::parse(json_decode($body)->start_date)->toDateString()}} {{\Carbon\Carbon::parse(json_decode($body)->start_time)->toTimeString()}}<br>
 - Drop-off Date and Time:  {{\Carbon\Carbon::parse(json_decode($body)->end_date)->toDateString()}} {{\Carbon\Carbon::parse(json_decode($body)->end_time)->toTimeString()}}<br>
 - Pickup Location: {{json_decode($body)->branch->adresse}}<br>
-- Location Types: {{json_decode($body)->locationType ? json_decode($body)->locationType->locationType[0]->name : ''}}<br>
 - Address: {{json_decode($body)->branch->adresse}}<br>
 - Rental Duration:  {{\Carbon\Carbon::parse(json_decode($body)->start_date)->diffInDays(\Carbon\Carbon::parse(json_encode($body->end_date))) }}<br>
 - Supplier Name:  {{json_decode($body)->supplier->name}}<br>
