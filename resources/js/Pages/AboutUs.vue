@@ -39,7 +39,7 @@
                     <p style="font-size: 100px; font-weight: 1000;"> Why Choose Us</p>
                 </div>
                 <div class=" row offset-2">
-                    <div class="col-md-2 mr-4">
+                    <div class="col-md-2 mr-5">
                         <img height="102" src="/assets/images/icons/car-icon.png"/>
                         <h3 class="mt-4 ml-4">ALL BRANDS</h3>
                     </div>
