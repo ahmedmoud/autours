@@ -63,9 +63,9 @@
                 <div class="row py-5 mt-3" style="background: rgb(249, 214, 2)">
                     <div class="col-md-6">
                         <div class="ml-5">
-                            <h1>Our Vision</h1>
+                            <h1 class="ml-4">Our Vision</h1>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div  class=" col-md-6">
                                     <img width="348" src="/assets/images/backgrounds/Our-Goals.png"/>
                                 </div>
                                 <div class="col-md-5">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 ">
-                        <h1>Our Goal</h1>
+                        <h1 class="ml-1">Our Goal</h1>
                         <div class="row">
                             <div class="col-md-6">
                                 <img width="348" src="/assets/images/backgrounds/Our-Vision.png"/>
@@ -93,9 +93,9 @@
                                 <p style="font-family: sans-serif;" class="mt-3">
                                     Support companies in reaching new
                                     markets through our platform.
-                                    ïProvide analytical tools and reports to help
+                                    Provide analytical tools and reports to help
                                     companies improve their performance.
-                                    ïStrengthen collaboration between Autours
+                                    Strengthen collaboration between Autours
                                     and its partners to ensure a smooth and
                                     successful rental experience.
                                     Achieve sustainable growth for partnered
