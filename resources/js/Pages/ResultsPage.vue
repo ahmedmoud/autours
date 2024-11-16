@@ -417,7 +417,7 @@
                                                     <div class="d-text">
                                                         <h4 style="color: #000;" class="text-nowrap">
 
-                                                                {{ vehicle.name }} OR&nbsp;Similar
+                                                                {{ vehicle.name }} Or&nbsp;Similar
 
                                                             <el-tooltip placement="right-start">
                                                                 <template  #content>
