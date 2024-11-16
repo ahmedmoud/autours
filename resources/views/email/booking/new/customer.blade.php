@@ -16,8 +16,6 @@ Booking Details:<br>
 <br>
 If you have any questions or need further assistance, please contact our customer service.<br>
 Important Information:<br>
-• Fuel Policy: {{json_decode($body)->fuelPolicy->fuelPolicy}} <br>
-• Free Cancellation: {{json_decode($body)->cancelationPolicy->what_is_included}} <br>
 • Car Model Notice: The car model you have booked is subject to availability. You may receive a similar vehicle based on the supplier’s fleet at the time of pickup.
 Should you have any questions or require further assistance, please feel free to contact our customer service.<br>
 Best regards,<br><br>
