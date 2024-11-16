@@ -52,7 +52,7 @@
 
             </div>
 
-            <div class="col-md-3 offset-1 "><img style="width: 102.8%" src="/images/background/contactus.png"/></div>
+            <div class="col-md-3 offset-1 "><img style="width: 102.9%" src="/images/background/contactus.png"/></div>
         </div>
 
     </div>
