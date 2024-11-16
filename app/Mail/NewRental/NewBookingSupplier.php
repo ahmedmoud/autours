@@ -26,7 +26,7 @@ class NewBookingSupplier extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Booking Request  ',
+            subject: 'New Booking Request - '.$this->body->rental?->customer?->name.' - '.$this->body->rental->order_number,
         );
     }
 
