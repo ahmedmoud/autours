@@ -469,9 +469,10 @@
                                 <div class="row de-spec text-nowrap">
                                     <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
                                          class="col-md-6">
-                                            <img style="width: 35%; margin-right: 2px;"
-                                                 :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
-                                        <span>
+
+                                        <span class="text-nowrap">
+                                                    <img style="width: 35%; margin-right: 2px;"
+                                                         :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
                                            {{
                                                 specification.value
                                             }} {{
