@@ -11,7 +11,7 @@
 
             <div style="margin-left: 40%; width: 15%; ">
                 <div style="background:#ffd100; height: 2%; margin-bottom: -15%;"></div>
-                <h1>Contact us</h1>
+                <h1 class="text-nowrap">Contact us</h1>
             </div>
             <div class="contact-info row">
                 <div class="col-lg-2 offset-1">
