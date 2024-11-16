@@ -14,7 +14,7 @@
                 <h1>Contact us</h1>
             </div>
             <div class="contact-info row">
-                <div class="col-lg-3 offset-1">
+                <div class="col-lg-2 offset-1">
                     <div
                         class="my-3"
                         style="background-image: url('/assets/images/icons/whatsapp-icon.png');  width: 220px; height: 148px; justify-content: center; display: flex;">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 my-5 row">
+                <div class="col-lg-8 my-5 row">
                     <form class="col-md-12">
                         <input class="col-md-6 contact_form" type="text" placeholder="First name" required>
                         <input class="col-md-6 contact_form" type="text" placeholder="Last name" required>
