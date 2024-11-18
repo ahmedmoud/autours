@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Enums\StatusCodes;
+use App\Events\NewSupplier;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Rental;
@@ -96,7 +97,7 @@ class RegisterController extends Controller
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
             }
-
+            event(new NewSupplier($request->email));
             return response()->json([
                 'data' => [],
                 'status' => true

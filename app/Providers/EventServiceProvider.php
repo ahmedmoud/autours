@@ -5,13 +5,13 @@ namespace App\Providers;
 use App\Events\CancelRental;
 use App\Events\NewRental;
 use App\Events\NewRentalRequest;
+use App\Events\NewSupplier;
 use App\Events\SendEmailEvent;
 use App\Events\UpdateRental;
 use App\Listeners\CancelRental\CancelRentalAdminListener;
 use App\Listeners\CancelRental\CancelRentalCustomerListener;
 use App\Listeners\CancelRental\CancelRentalSupplierListener;
-use App\Listeners\NewRental\NotifyAdminListener;
-use App\Listeners\NewRental\NotifyCustomerListener;
+use App\Listeners\NewRental\NewSupplierToAdmin;
 use App\Listeners\NewRental\NotifySupplierListener;
 use App\Listeners\RentalRequest\RentalRequestNotifySupplierListener;
 use App\Listeners\SendEmail;
@@ -34,9 +34,9 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         NewRental::class => [
-            NotifyCustomerListener::class,
             NotifySupplierListener::class,
-            NotifyAdminListener::class
+            NotifySupplierListener::class,
+            NewSupplierToAdmin::class
         ],
         CancelRental::class => [
             CancelRentalCustomerListener::class,
@@ -53,6 +53,9 @@ class EventServiceProvider extends ServiceProvider
 
         ],
         SendEmailEvent::class => [
+            SendEmail::class,
+        ],
+        NewSupplier::class => [
             SendEmail::class,
         ]
     ];
