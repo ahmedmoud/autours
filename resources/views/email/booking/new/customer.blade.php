@@ -13,7 +13,7 @@ Booking Details:<br>
 • Address: {{json_decode($body)->branch->adresse}}<br>
 • Rental Duration:  {{\Carbon\Carbon::parse(json_decode($body)->start_date)->diffInDays(\Carbon\Carbon::parse(json_decode($body)->end_date)) }}<br>
 • Supplier Name:  {{json_decode($body)->supplier->name}}<br>
-• Amount :  {{ ceil( json_decode($body)->supplier_price +  ( json_decode($body)->supplier_price * (json_decode($body)->profit / 100) ) ) . ' ' . json_decode($body)->currency }}<br>
+• Amount :  {{ ceil( json_decode($body)->price ) . ' ' . json_decode($body)->currency }}<br>
 <br>
 If you have any questions or need further assistance, please contact our customer service.<br>
 Important Information:<br>
