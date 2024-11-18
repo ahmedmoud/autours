@@ -28,8 +28,7 @@ class CreateBranchRequest extends FormRequest
             'country' =>  'required|string',
             'city' =>  'required|string',
             'phone' =>  'required|string',
-            'lat' =>  'required',
-            'lng' =>  'required',
+
             'email' =>  'required|string|email',
             'currency' =>  'required|string',
         ];

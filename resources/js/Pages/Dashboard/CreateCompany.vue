@@ -312,7 +312,8 @@
 <script setup>
 import {onMounted, ref} from 'vue'
 import {router} from "@inertiajs/vue3";
-
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 const logo = ref('');
 const image = ref('');
 const name = ref('');
@@ -332,6 +333,7 @@ const countries = {
     list: ref([]),
     options: ref([]),
 };
+const $toast = useToast();
 
 const cities = {
     loading: ref(false),
@@ -460,13 +462,9 @@ const deleteRow = async (index, row) => {
 const open = () => {
     console.log(formStatus)
     if (formStatus.value === true) {
-        ElMessage({
-            showClose: true,
-            message: 'Updated successfully.',
-            type: 'success',
-        })
+        $toast.success("branch created successfully.", {position: "top"})
     } else {
-        ElMessage.error('Oops, wrong password.')
+        $toast.error("branch not created.", {position: "top"})
     }
 }
 
