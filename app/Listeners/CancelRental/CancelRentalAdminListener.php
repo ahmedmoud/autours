@@ -3,7 +3,7 @@
 namespace App\Listeners\CancelRental;
 
 use App\Events\CancelRental;
-use App\Mail\CancelRental\CancelBookingAdmin;
+use App\Mail\CancelRental\NewSupplierEmailAdmin;
 use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,6 +31,6 @@ class CancelRentalAdminListener implements ShouldQueue
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
 
         $body = $event->rental;
-        $status = Mail::to($user->email)->send(new CancelBookingAdmin($body));
+        $status = Mail::to($user->email)->send(new NewSupplierEmailAdmin($body));
     }
 }

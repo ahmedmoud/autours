@@ -672,9 +672,7 @@ const upload = async () => {
     if (language.value) {
         formData.append('language', language.value);
     }
-    if (fuelPolicy.value) {
-        formData.append('fuel_policy_id', fuelPolicy.value);
-    }
+
     try {
         const response = await axios.post('upload', formData);
         if (response.data.message === 0) {
