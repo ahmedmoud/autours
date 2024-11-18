@@ -32,6 +32,6 @@ class NotifyAdminListener implements ShouldQueue
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
 
         $body = $event->rental;
-        $status = Mail::to('admin@autours.net')->send(new NewBookingAdmin($body));
+        $status = Mail::to("admin@autours.net")->send(new NewBookingAdmin($body));
     }
 }
