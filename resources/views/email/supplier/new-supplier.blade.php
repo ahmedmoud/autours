@@ -46,6 +46,8 @@
         <li><strong>Phone:</strong> {{json_decode($body)->phone_num}}</li>
     </ul>
 
+    <p>To review the supplier's registration details and manage their account, please visit the following link:</p>
+    <p><a href="{{url('/memberships')}}">View Supplier Details</a></p>
 
     <p>If you have any questions or require further assistance, please do not hesitate to reach out.</p>
 
