@@ -32,7 +32,7 @@ class NotifySupplierListener implements ShouldQueue
          $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
 
         $body = $event->rental;
-        $status = Mail::to('admin@autours.net')->send(new NewBookingSupplier($body));
+        $status = Mail::to($event->rental->supplier->email)->send(new NewBookingSupplier($body));
 
 
     }
