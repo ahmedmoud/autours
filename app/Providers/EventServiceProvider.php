@@ -11,8 +11,11 @@ use App\Events\UpdateRental;
 use App\Listeners\CancelRental\CancelRentalAdminListener;
 use App\Listeners\CancelRental\CancelRentalCustomerListener;
 use App\Listeners\CancelRental\CancelRentalSupplierListener;
-use App\Listeners\NewRental\NewSupplierToAdmin;
+use App\Listeners\NewRental\NotifyAdminListener;
+use App\Listeners\NewRental\NotifyCustomerListener;
 use App\Listeners\NewRental\NotifySupplierListener;
+use App\Listeners\NewSupplier\NotifyNewSupplier;
+use App\Listeners\NewSupplier\NotifyNewSupplierToAdmin;
 use App\Listeners\RentalRequest\RentalRequestNotifySupplierListener;
 use App\Listeners\SendEmail;
 use App\Listeners\UpdateRental\UpdateRentalNotifyAdminListener;
@@ -34,9 +37,9 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         NewRental::class => [
+            NotifyCustomerListener::class,
             NotifySupplierListener::class,
-            NotifySupplierListener::class,
-            NewSupplierToAdmin::class
+            NotifyAdminListener::class
         ],
         CancelRental::class => [
             CancelRentalCustomerListener::class,
@@ -56,7 +59,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmail::class,
         ],
         NewSupplier::class => [
-            SendEmail::class,
+            NotifyNewSupplier::class,
+            NotifyNewSupplierToAdmin::class
         ]
     ];
 
