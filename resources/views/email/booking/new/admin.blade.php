@@ -14,7 +14,7 @@ Booking Details:<br>
 - Pick-Up Location: {{json_decode($body)->branch->adresse}}<br>
 
 - Total Amount :  {{ ceil( json_decode($body)->price)  . ' ' . json_decode($body)->currency }}<br>
-- Supplier Amount :  {{ ceil( json_decode($body)->price)  . ' ' . json_decode($body)->currency }}<br>
+- Supplier Amount :  {{ ceil( json_decode($body)->supplier_price)  . ' ' . json_decode($body)->currency }}<br>
 - Profit Percentage: {{ json_decode($body)->profit_margin . '%' }}<br>
 - Profit Amount: {{ json_decode($body)->price - json_decode($body)->supplier_price   . ' ' . json_decode($body)->currency }}<br>
 
