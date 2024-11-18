@@ -27,6 +27,6 @@ class NotifyNewSupplierToAdmin implements ShouldQueue
     public function handle(NewSupplier $event): void
     {
         $body = $event->user;
-         Mail::to($event->user->email)->send(new NewSupplierEmailAdmin($body));
+         Mail::to("contact@autours.net")->send(new NewSupplierEmailAdmin($body));
     }
 }
