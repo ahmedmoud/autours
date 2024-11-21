@@ -365,7 +365,7 @@ const getSpecificationOption = (name, icon, option) => {
     }
 
         const isDuplicate = selectedSpecifications.value.some(item => (
-            item.name === name
+            item?.name === name
         ));
 
         if (!isDuplicate) {
@@ -373,7 +373,7 @@ const getSpecificationOption = (name, icon, option) => {
                 selectedSpecifications.value.push(s);
             }
         } else {
-           const existingItem = selectedSpecifications.value.find(item => item.name === name);
+           const existingItem = selectedSpecifications.value.find(item => item?.name === name);
             if (existingItem) {
                 existingItem.selectedOption = s.selectedOption;
             }
@@ -399,7 +399,7 @@ const fetchCategories = async () => {
         categories.all.value = response.data
         categories.list.value = categories.all.value.map((item) => ({
             id: `${item.id}`,
-            label: `${item.name}`,
+            label: `${item?.name}`,
         }))
     } catch (error) {
         console.error(error)
@@ -429,7 +429,7 @@ const fetchBranches = async () => {
         locations.all.value = response.data
         locations.list.value = locations.all.value.map((item) => ({
             id: `${item.id}`,
-            label: `${item.name}`,
+            label: `${item?.name}`,
         }))
     } catch (error) {
         console.error(error)
@@ -459,7 +459,7 @@ const fetchPhotos = async () => {
         photos.all.value = response.data
         photos.list.value = photos.all.value.map((item) => ({
             id: `${item.id}`,
-            label: `${item.name}`,
+            label: `${item?.name}`,
             photo: `${item.photo}`,
         }))
     } catch (error) {
@@ -593,9 +593,9 @@ const getData = async () => {
 
         const response = await axios.get('/edit/vehicles/' + id);
         vehicle = response?.data?.data
-        name.value = vehicle.name
-        pickupLoc.value = vehicle.branch.name
-        category.value = vehicle.category.name
+        name.value = vehicle?.name
+        pickupLoc.value = vehicle.branch?.name
+        category.value = vehicle.category?.name
         description.value = vehicle.description
         price.value = vehicle.price
         weekPrice.value = vehicle.week_price
@@ -604,8 +604,8 @@ const getData = async () => {
         selectedSpecifications.value = vehicle.specifications
         selectedIncluded.value = vehicle.what_is_included
         photo.value = vehicle.photo
-        locationType.value = vehicle.location_type.length  ? vehicle.location_type[0].name : null
-        fuelPolicy.value = vehicle.fuel_policy.name
+        locationType.value = vehicle.location_type.length  ? vehicle.location_type[0]?.name : null
+        fuelPolicy.value = vehicle.fuel_policy?.name
         instantConfirmation.value = vehicle.instant_confirmation === 1? true : false
     } catch (e) {
         console.log("=====error==>")
@@ -622,8 +622,8 @@ const fetchFuelPolicies = async () => {
         fuelPolicies.all.value = response.data
         fuelPolicies.list.value = fuelPolicies.all.value.map((item) => ({
             id: `${item.id}`,
-            label: `${item.name}`,
-            value: `${item.name}`,
+            label: `${item?.name}`,
+            value: `${item?.name}`,
         }))
     } catch (error) {
         console.error(error)
@@ -653,8 +653,8 @@ const fetchLocationTypes = async () => {
         locationTypes.all.value = response.data.data
         locationTypes.list.value = locationTypes.all.value?.map((item) => ({
             id: `${item.id}`,
-            label: `${item.name}`,
-            photo: `${item.name}`,
+            label: `${item?.name}`,
+            photo: `${item?.name}`,
         }))
 
     } catch (error) {
