@@ -487,7 +487,7 @@ const handleDelete = async (index, row) => {
             return;
         }
         loading.value = true;
-        const response = await axios.post('delete/vehicles', row);
+        const response = await axios.post('delete/vehicles/' +row.id );
         tableData.value = response.data;
     } catch (error) {
         console.error(error);

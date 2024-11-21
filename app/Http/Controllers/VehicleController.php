@@ -705,10 +705,21 @@ class VehicleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        Vehicle::where('id', $request->id)->delete();
-        return $this->show($request->id);
+        try {
+
+            Vehicle::query()->where('id', $id)->delete();
+            return response([
+                'status' => true,
+                'message' => 'deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     public function store(Request $request)

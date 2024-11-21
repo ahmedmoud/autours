@@ -174,7 +174,7 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::inertia('vehicle', 'Dashboard/Vehicles/CreateVehicle');
     Route::post('post/vehicles', [VehicleController::class, 'create']);
     Route::post('update/vehicles/activation', [VehicleController::class, 'updateActivation']);
-    Route::post('delete/vehicles', [VehicleController::class, 'destroy']);
+    Route::post('delete/vehicles/{id}', [VehicleController::class, 'destroy']);
     Route::get('edit/vehicles/{id}', [VehicleController::class, 'edit']);
     Route::inertia('vehicles', 'Dashboard/Vehicles/Vehicles');
     Route::inertia('edit/vehicle', 'Dashboard/Vehicles/EditVehicle');
