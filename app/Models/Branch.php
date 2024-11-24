@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Vehicle;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Branch extends Model
 {
     use HasFactory;
-
+        use SoftDeletes;
     protected $fillable = [
         'name',
         'location',
