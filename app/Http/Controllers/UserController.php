@@ -230,7 +230,7 @@ class UserController extends Controller
     {
         try {
             $user = User::query()->where('email', $request->email)->first();
-            $forgetPasswordLink = url() . '/new-password-form?key='. base64_encode(encrypt($request->email .','. Carbon::now()->toDateString(), env('APP_KEY')));
+            $forgetPasswordLink = url('/') . '/new-password-form?key='. base64_encode(encrypt($request->email .','. Carbon::now()->toDateString(), env('APP_KEY')));
             $user->password_reset_key = $forgetPasswordLink;
 
             $user->save();

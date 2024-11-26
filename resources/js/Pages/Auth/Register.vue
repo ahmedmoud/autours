@@ -30,7 +30,7 @@
                                 <div class="col-md-8" style="left: 15%">
                                     <input placeholder="E-mail" class="input-text mt-4" v-model="forgetPasswordEmail"/>
                                 </div>
-                                <a style="left: 40%;" class="btn-main mt-4  rounded-5"
+                                <a style="left: 40%;" class="cursor-pointer btn-main mt-4  rounded-5"
                                    @click="sendForgetPasswordEmail()">Submit</a>
                             </form>
                         </div>
@@ -368,6 +368,7 @@ const sendForgetPasswordEmail = async () => {
         router.get('/')
 
     } catch (e) {
+        $toast.error("Something went wrong")
         console.log(e)
     }
 }
