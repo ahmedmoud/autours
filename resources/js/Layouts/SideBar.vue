@@ -28,7 +28,7 @@
                         <span class="hide-menu"></span>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/index" aria-expanded="false">
+                        <a :class="  ['sidebar-link', isActive('index') ? 'active' : '']" href="/index" aria-expanded="false">
                                                <span>
                                                   <i class="ti ti-layout-dashboard"></i>
                                               </span>
@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/company" aria-expanded="false">
+                        <a :class="  ['sidebar-link', isActive('company') ? 'active' : '']" href="/company" aria-expanded="false">
                             <span><i class="ti ti-user-circle"></i></span>
                             <span class="hide-menu">My Profile</span>
                         </a>
@@ -44,50 +44,50 @@
 
                     <div v-if="admin">
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/margin">
+                            <a :class="  ['sidebar-link', isActive('margin') ? 'active' : '']" href="/margin">
                                 <i class="ti ti-zoom-money"></i>
                                 <span>Profit Margin</span></a>
                         </li>
                         <!---->
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/photos">
+                            <a :class="  ['sidebar-link', isActive('photos') ? 'active' : '']" href="/photos">
                                 <i class="ti ti-photo"></i>
                                 <span>Vehicles Photos</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/categories">
+                            <a :class="  ['sidebar-link', isActive('categories') ? 'active' : '']" href="/categories">
                                 <i class="ti ti-category"></i>
                                 <span>Categories</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/specifications">
+                            <a :class="  ['sidebar-link', isActive('specifications') ? 'active' : '']" href="/specifications">
                                 <i class="ti ti-car-turbine"></i>
                                 <span>Specifications</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/memberships">
+                            <a :class="  ['sidebar-link', isActive('memberships') ? 'active' : '']" href="/memberships">
                                 <i class="ti ti-key" aria-hidden="true"></i>
                                 <span>Memberships</span></a>
                         </li>
                         <!--                        <li class="sidebar-item">-->
-                        <!--                            <a class="sidebar-link" href="/vehicles">-->
+                        <!--                            <a :class="  ['sidebar-link', isActive('photos') ? 'active' : '']" href="/vehicles">-->
                         <!--                                <i class="ti ti-car" aria-hidden="true"></i>-->
                         <!--                                <span>Vehicles</span></a>-->
                         <!--                        </li>-->
                     </div>
                     <div v-if="activeSupplier">
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/vehicle">
+                            <a :class="  ['sidebar-link', isActive('vehicle') ? 'active' : '']" href="/vehicle">
                                 <span><i class="ti ti-car-crash"></i></span>
                                 <span>Crete a Vehicle</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/price-list">
+                            <a :class="  ['sidebar-link', isActive('price-list') ? 'active' : '']" href="/price-list">
                                 <span><i class="ti ti-zoom-money"></i></span>
                                 <span>Price List</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/vehicles">
+                            <a :class="  ['sidebar-link', isActive('vehicles') ? 'active' : '']" href="/vehicles">
                                 <span><i class="ti ti-car"></i></span>
 
                                 <span>My Vehicles</span></a>
@@ -96,92 +96,92 @@
 
                     <div v-if="supplier || activeSupplier || reviewing">
                         <li class="sidebar-item active">
-                            <a class="sidebar-link" href="/membership">
+                            <a :class="  ['sidebar-link', isActive('membership') ? 'active' : '']" href="/membership">
                                 <i class="ti ti-gift-card" aria-hidden="true"></i>
                                 <span>Membership</span></a>
                         </li>
                     </div>
 
                     <li class="sidebar-item " v-if="admin">
-                        <a class="sidebar-link" href="/customers">
+                        <a :class="  ['sidebar-link', isActive('customers') ? 'active' : '']" href="/customers">
                             <i class="ti ti-users" aria-hidden="true"></i>
                             <span>Customers</span></a>
                     </li>
 
                     <ul class="sidebar-item " v-if="admin" @click="openChild('rentals')">
-                        <a class="sidebar-link" href="#">
+                        <a :class="  ['sidebar-link', isActive('photos') ? 'active' : '']" href="#">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
                             <span>Rentals</span></a>
                     </ul>
 
                     <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
-                        <a class="sidebar-link" href="/rentals/admin">
+                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']" href="/rentals/admin">
                             <i class="ti ti-paper-bag" aria-hidden="true"></i>
                             <span>All Rentals</span></a>
                     </li>
                     <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
-                        <a class="sidebar-link" href="/rentals/admin?status=2">
+                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']" href="/rentals/admin?status=2">
                             <i class="ti ti-checks" aria-hidden="true"></i>
                             <span>Confirmed</span></a>
                     </li>
                     <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
-                        <a class="sidebar-link" href="/rentals/admin?status=4">
+                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']" href="/rentals/admin?status=4">
                             <i class="ti ti-loader" aria-hidden="true"></i>
                             <span>Pending</span></a>
                     </li>
                     <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
-                        <a class="sidebar-link" href="/rentals/admin?status=3">
+                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']" href="/rentals/admin?status=3">
                             <i class="ti ti-forbid" aria-hidden="true"></i>
                             <span>Canceled</span></a>
                     </li>
 
                     <ul class="sidebar-item parent-item" v-if="activeSupplier" @click="openChild('rentals')">
-                        <a class="sidebar-link" href="/rentals/supplier">
+                        <a :class="  ['sidebar-link', isActive('rentals/supplier') ? 'active' : '']" href="/rentals/supplier">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
                             <span>Rentals</span></a>
                     </ul>
 
 
                     <li class="sidebar-item" v-if="supplier || activeSupplier">
-                        <a class="sidebar-link" href="/supplier-rental-terms">
+                        <a :class="  ['sidebar-link', isActive('supplier-rental-terms') ? 'active' : '']" href="/supplier-rental-terms">
                             <i class="ti ti-list" aria-hidden="true"></i>
                             <span>My Rental Terms</span></a>
                     </li>
                     <li class="sidebar-item" v-if="supplier || activeSupplier">
-                        <a class="sidebar-link" href="/promos">
+                        <a :class="  ['sidebar-link', isActive('promos') ? 'active' : '']" href="/promos">
                             <i class="ti ti-gift" aria-hidden="true"></i>
                             <span>Promos</span></a>
                     </li>
                     <li class="sidebar-item" v-if="supplier || activeSupplier">
-                        <a class="sidebar-link" href="/reviews">
+                        <a :class="  ['sidebar-link', isActive('reviews') ? 'active' : '']" href="/reviews">
                             <i class="ti ti-check" aria-hidden="true"></i>
                             <span>Rental Reviews</span></a>
                     </li>
                     <li class="sidebar-item" v-if="admin">
-                        <a class="sidebar-link" href="/admin-reviews">
+                        <a :class="  ['sidebar-link', isActive('admin-reviews') ? 'active' : '']" href="/admin-reviews">
                             <i class="ti ti-check" aria-hidden="true"></i>
                             <span>Rental Reviews</span></a>
                     </li>
 
                     <li class="sidebar-item" v-if="admin">
-                        <a class="sidebar-link" href="/rental-terms">
+                        <a :class="  ['sidebar-link', isActive('rental-terms') ? 'active' : '']" href="/rental-terms">
                             <i class="ti ti-list" aria-hidden="true"></i>
                             <span>Rental Terms</span></a>
                     </li>
 
                     <li class="sidebar-item " v-if="admin">
-                        <a class="sidebar-link" href="/included">
+                        <a :class="  ['sidebar-link', isActive('included') ? 'active' : '']" href="/included">
                             <i class="ti ti-feather" aria-hidden="true"></i>
                             <span>What is included ?</span></a>
                     </li>
                     <li class="sidebar-item " v-if="admin">
-                        <a class="sidebar-link" href="/subscribers">
+                        <a :class="  ['sidebar-link', isActive('subscribers') ? 'active' : '']" href="/subscribers">
                             <i class="ti ti-mail" aria-hidden="true"></i>
                             <span>Subscribers</span></a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/logout">
+                        <a :class="  ['sidebar-link', isActive('photos') ? 'active' : '']" href="/logout">
                             <i class="ti ti-logout" aria-hidden="true"></i>
                             <span>Sign Out</span></a>
 
@@ -244,6 +244,10 @@ const getUser = async () => {
     } catch (error) {
         console.error(error);
     }
+}
+
+const isActive = (name) => {
+   return window.location.href.split('/').pop() === name
 }
 
 onMounted(() => {

@@ -15,11 +15,11 @@
             <!-- section close -->
             <div v-if="isOpen" class="modal-mask">
                 <div class="modal-wrapper" @click="$emit('close')">
-                    <div class="modal-container" ref="target">
+                    <div class="modal-container" style="margin: 15px 15px 150px 20% !important;" ref="target">
                         <div class="modal-header">
                             <slot name="header"> Rental Terms</slot>
                         </div>
-                        <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
+                        <div class="modal-body overflow-y-auto" style="max-height: 50%">
                             <h2>Terms and Conditions</h2>
                             <div v-for="(item,index) in activeRentalTerms" :item-key="index">
                                 <h3 v-html="item.title"></h3>
@@ -44,7 +44,7 @@
                         <div class="modal-header">
                             <slot name="header">Autours Rental Terms</slot>
                         </div>
-                        <div class="modal-body overflow-y-auto" style="max-height: calc(100vh - 210px);">
+                        <div class="modal-body overflow-y-auto" style="max-height: 50%;">
                             <h2>Terms and Conditions</h2>
 
                             <h3>Contract Agreement</h3>
@@ -426,41 +426,42 @@
 
                     </div>
                     <Loader v-if="loading"/>
-                    <div v-else class="container bg-white col-md-7 offset-md-0 pt-5 pl-5 mt-4">
+                    <div v-else class="container bg-white col-md-6 offset-md-0 pt-5 pl-5 mt-4">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div>
+                                <h4 class="" style=" font-size: 1.3vw; text-wrap: nowrap;">
+                                    {{ vehicle.name }} OR&nbsp;Similar
+                                    <el-tooltip placement="right-start">
+                                        <template #content>
+                                            <div>
+                                                The supplier will provide a car with same class and specifications,
+                                                though the make may vary.
+                                            </div>
+                                        </template>
+                                        <i class="fas fa-info-circle" style="color: #7373e1"/>
+                                    </el-tooltip>
+
+                                </h4>
+                                <h5>{{ vehicle?.category?.name }}</h5>
+                            </div>
+                            <div class="col-md-5">
                                 <div id="slider-carousel text-nowrap">
-                                    <h4 class="" style="margin-left: -20px; font-size: 1.3vw; text-wrap: nowrap;">
-
-                                        {{ vehicle.name }} OR&nbsp;Similar
-                                        <el-tooltip placement="right-start">
-                                            <template #content>
-                                                <div>
-                                                    The supplier will provide a car with same class and specifications,
-                                                    though the make may vary.
-                                                </div>
-                                            </template>
-                                            <i class="fas fa-info-circle" style="color: #7373e1"/>
-                                         </el-tooltip>
-
-                                    </h4>
-                                    <span>{{ vehicle?.category?.name }}</span>
                                     <div class="row"></div>
                                     <div class="item">
                                         <img
                                             :src=" '/img/vehicles/' + vehicle?.photo "
-                                            width="250" height="150"/>
+                                            width="300" height="180"/>
                                     </div>
                                     <div class="spacer-30"></div>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-6 row">
-                                <div class=" row mt-1">
-                                    <h4 class="col-md-4 text-nowrap" style="font-size: 1.1vw">
-                                        {{ currency + ' ' + vehicle.final_price }}</h4>
-                                    <p class="col-md-7 text-nowrap"> For {{ daysNumber }}
+                            <div class="row col-md-6">
+                                <div class=" row">
+                                    <h3 class="mb-3 col-md-4 text-nowrap">
+                                        {{ currency + ' ' + vehicle.final_price }}</h3>
+                                    <p class="col-md-7 text-nowrap" style="color: green;"> <i class="fa fa-arrow-right"/> For {{ daysNumber }}
                                         day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
                                         / per
@@ -470,8 +471,8 @@
                                     <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
                                          class="col-md-6">
 
-                                        <span class="text-nowrap">
-                                                    <img style="width: 35%; margin-right: 2px;"
+                                        <span class="text-nowrap" style="margin-top: -7%">
+                                                    <img style="width: 45%; margin-right: 2px;"
                                                          :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
                                            {{
                                                 specification.value
@@ -488,6 +489,7 @@
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
+
                             <div class=" rounded-2 py-1 mb-2 ml-1"
                                  style="background: #edecec; width: 90%; margin-top: -2%; ">
                                 <div class="d-supplier">
@@ -525,9 +527,9 @@
                                                             style="color: #f9d602">{{ vehicle.supplier_number_of_reviews }}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
                                     <div class="col-md-4 ">
-                                        <p class="text-nowrap mt-2" style="font-size: 15px;"><i class="fa fa-location"/>
+                                        <p class="text-nowrap mt-2" style="font-size: 18px;"><i class="fa fa-location"/>
                                             &nbsp;Address:&nbsp;&nbsp;<small
-                                                style="font-size: 12px;">{{ vehicle?.supplier?.address }}</small></p>
+                                                style="font-size: 18px;">{{ vehicle?.supplier?.address }}</small></p>
                                         <div>
                                             <el-tooltip placement="bottom">
                                                 <template #content>
