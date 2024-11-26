@@ -363,7 +363,7 @@ const getUserData = async () => {
 }
 const sendForgetPasswordEmail = async () => {
     try {
-        const response = await axios.post('/forget-password');
+        const response = await axios.post('/forget-password', {email: forgetPasswordEmail.value});
         $toast.success("Email Sent Successfully to reset password", {position: "top"});
         router.get('/')
 
