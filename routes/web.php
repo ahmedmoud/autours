@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
@@ -91,7 +92,6 @@ Route::post('upload', [UserController::class, 'upload']);
 
 Route::post('/upload/branch', [UserController::class, 'createBranch']);
 Route::get('get/branches', [UserController::class, 'getBranch']);
-Route::post('delete/branches', [UserController::class, 'deleteBranch']);
 
 Route::post('filter/vehicles', [VehicleController::class, 'filter']);
 Route::get('get/vehicles', [VehicleController::class, 'show']);
@@ -172,6 +172,10 @@ Route::middleware(['member'])->group(function () {
 
 Route::middleware(['active_supplier'])->group(function () {
     Route::inertia('vehicle', 'Dashboard/Vehicles/CreateVehicle');
+    Route::inertia('branches', 'Dashboard/Branches');
+    Route::get('get/branches', [BranchesController::class, 'index']);
+    Route::post('delete/branches', [UserController::class, 'deleteBranch']);
+
     Route::post('post/vehicles', [VehicleController::class, 'create']);
     Route::post('update/vehicles/activation', [VehicleController::class, 'updateActivation']);
     Route::post('delete/vehicles/{id}', [VehicleController::class, 'destroy']);

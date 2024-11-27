@@ -178,7 +178,7 @@ class UserController extends Controller
     public function deleteBranch(Request $request)
     {
         Branch::where('id', $request->id)->delete();
-        return $this->getBranch();
+        return response()->json(['message' => 'Branch deleted successfully']);
 
     }
 

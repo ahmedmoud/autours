@@ -41,6 +41,12 @@
                             <span class="hide-menu">My Profile</span>
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a :class="  ['sidebar-link', isActive('branches') ? 'active' : '']" href="/branches" aria-expanded="false">
+                            <span><i class="ti ti-building-store"></i></span>
+                            <span class="hide-menu">My Branches</span>
+                        </a>
+                    </li>
 
                     <div v-if="admin">
                         <li class="sidebar-item">
