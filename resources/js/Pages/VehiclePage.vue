@@ -459,9 +459,9 @@
 
                             <div class="row col-md-6">
                                 <div class=" row">
-                                    <h3 class="mb-3 col-md-4 text-nowrap">
+                                    <h3 class="mb-3 col-md-6 text-nowrap">
                                         {{ currency + ' ' + vehicle.final_price }}</h3>
-                                    <p class="col-md-7 text-nowrap" style="color: green;"> <i class="fa fa-arrow-right"/> For {{ daysNumber }}
+                                    <p class="col-md-6 text-nowrap" style="color: green;"> <i class="fa fa-arrow-right"/> For {{ daysNumber }}
                                         day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
                                         / per
@@ -491,7 +491,7 @@
                             </div>
 
                             <div class=" rounded-2 py-1 mb-2 ml-1"
-                                 style="background: #edecec; width: 90%; margin-top: -2%; ">
+                                 style="background: #edecec; width: 90%; margin-top: -3%; ">
                                 <div class="d-supplier">
                                     <div class="col-md-2 d-img w-100" style="height: 50px">
                                         <img :src="'/img/' + vehicle?.supplier?.logo" height="50"

@@ -19,12 +19,12 @@
                             </template>
 
                             <template #default="scope">
-<!--                                <el-button-->
-<!--                                    size="small"-->
-<!--                                    type="warning"-->
-<!--                                    @click="handleEdit(scope.$index, scope.row)"-->
-<!--                                >Edit-->
-<!--                                </el-button>-->
+                                <el-button
+                                    size="small"
+                                    type="warning"
+                                    @click="handleEdit(scope.$index, scope.row)"
+                                >Edit
+                                </el-button>
                                 <el-button
                                     size="small"
                                     type="danger"
@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import {useForm} from '@inertiajs/vue3';
+import {router, useForm} from '@inertiajs/vue3';
 import {onMounted, computed, ref} from 'vue'
 import {CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem} from "@coreui/vue";
 
@@ -58,7 +58,7 @@ const $toast = useToast()
 const getData = async () => {
     try {
         loading.value = true;
-        const response = await axios.get('get/branches');
+        const response = await axios.get('/get/branches');
         tableData.value = response.data;
     } catch (error) {
         console.error(error);
@@ -77,8 +77,7 @@ const handle = (event) => {
 }
 
 const handleEdit = (index, row) => {
-    isOpen.value = true
-    editCategory.value = row;
+    router.get('/branches/show',{id: row.id})
 }
 
 const handleDelete = async (index, row) => {
@@ -89,7 +88,7 @@ const handleDelete = async (index, row) => {
         if (confirmation !== true) {
             return
         }
-        const response = await axios.post('delete/branches', row);
+        const response = await axios.post('/delete/branches', row);
         await getData()
         tableData.value = response.data;
     } catch (error) {
@@ -105,43 +104,6 @@ const form = useForm({
 
 const image = ref('')
 
-const postData = async () => {
-    try {
-        const formData = new FormData();
-        formData.append('photo', image.value);
-        formData.append('name', form.name);
-        const response = await axios.post('post/categories', formData);
-    } catch (error) {
-        console.error(error);
-    } finally {
-        getData();
-        form.reset();
-    }
-};
-
-const updateData = async () => {
-    try {
-        const formData = new FormData();
-        formData.append('photo', image.value);
-        formData.append('name', editCategory.value.name);
-        formData.append('id', editCategory.value.id);
-        console.log(formData)
-        const response = await axios.post('update/categories', formData);
-        if (response.status) {
-            $toast.success("Category updated Successfully", {position: "top"})
-        }
-        isOpen.value = false
-    } catch (error) {
-        console.error(error);
-    } finally {
-        getData();
-        form.reset();
-    }
-};
-const closeModal = () => {
-    isOpen.value = false;
-    editCategory.value = {}
-}
 
 onMounted(() => {
         getData()

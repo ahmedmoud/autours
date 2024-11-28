@@ -31,4 +31,30 @@ class BranchesController extends Controller
 
     }
 
+    public function edit(){
+        try {
+            return Inertia::render('Dashboard/Branches/Edit');
+        } catch (\Exception $e) {
+            info($e->getMessage());
+            return response()->json([
+                'error' => 'Not Found'
+            ], 404);
+        }
+    }
+    public function show($id){
+        try {
+            $branch = Branch::query()->find($id);
+            return  response()->json([
+                'data' => $branch
+            ]);
+        } catch (\Exception $e) {
+            info($e->getMessage());
+            return response()->json([
+                'error' => 'Not Found'
+            ], 404);
+        }
+    }
+
+
+
 }

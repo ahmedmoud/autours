@@ -539,14 +539,11 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div
-                                                    class="de-item-list col-md-9 justify-content-between align-items-center bg-light-gray"
-                                                    style="width: 94%">
-                                                    <div class="row col-md-8">
-                                                        <p class="primary bold mb-0" style="color: #5e9007;">What is
-                                                            Included!</p>
+                                                <div class="  rounded-2 bg-light-gray row ml-1" style="width: 75%; height: 50%;">
+                                                    <div class="row col-md-8" >
+                                                        <p class="primary bold" style="color: #5e9007;">What is Included!</p>
                                                         <ul class="row">
-                                                            <li class="col-md-6" style="height: 20px"
+                                                            <li class="col-md-6" style="margin-top: -5%"
                                                                 v-for="(item, index) in vehicle.included ">
                                                                 <div class="row" v-if="index < 6">
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
@@ -557,26 +554,24 @@
                                                                                 {{ item.description }}
                                                                             </div>
                                                                         </template>
-                                                                    <p class="col-md-10 included-font text-nowrap">
+                                                                    <p style="font-size: 12px; font-weight: 600" class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                     </el-tooltip>
-                                                                    <p v-else class="col-md-10 included-font text-nowrap">
+                                                                    <p v-else style="font-size: 12px; font-weight: 600" class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
-                                                                <div :class="'row text-nowrap vehicle-'+vehicle.id"
-                                                                     style="display: none;" v-else>
-                                                                    <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
-                                                                       style="color: green;"/>
+                                                                <div :class="'row text-nowrap vehicle-'+vehicle.id" style="display: none;" v-else>
+                                                                    <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap" style="color: green;"/>
                                                                     <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
                                                                         <template  #content>
                                                                             <div class="" style="font-size: 16px;">
                                                                                 {{ item.description }}
                                                                             </div>
                                                                         </template>
-                                                                    <p class="col-md-10 text-nowrap included-font">
+                                                                    <p style="font-size: 12px; font-weight: 600" class="col-md-10 text-nowrap included-font">
                                                                         {{ item.what_is_included }}</p>
                                                                     </el-tooltip>
-                                                                    <p v-else class="col-md-10 included-font text-nowrap">
+                                                                    <p style="font-size: 12px; font-weight: 600" v-else  class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                             </li>
@@ -586,23 +581,16 @@
                                                                   v-if="vehicle.included.length > 6 ">Show more ...</span>
                                                         </ul>
                                                     </div>
-                                                    <div class="row mb-5">
-                                                        <div class="col-md-12">
+                                                    <div class=" col-md-4 ">
+                                                        <div class="mt-2">
                                                             <p class="text-nowrap">
                                                                 <a target="_blank"  :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle.branch.lat+','+vehicle.branch.lng">
                                                                 <i class="fa fa-location"/></a> &nbsp;Address:&nbsp;
-                                                                <small>{{
+                                                                {{
                                                                         vehicle.supplier.address
-                                                                    }}</small></p>
+                                                                    }}</p>
                                                         </div>
-                                                        <div class="col-md-12" style="margin-top: -20px">
-                                                            <p class="text-nowrap"><i
-                                                                :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp;
-                                                                &nbsp;<strong>{{
-                                                                        vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
-                                                                    }}</strong></p>
-                                                        </div>
-                                                        <div class="col-md-12" style="margin-top: -20px">
+                                                        <div style="margin-top: -5%">
                                                             <el-tooltip placement="right-start" trigger="hover">
                                                                 <template  #content>
                                                                     <div class="" style="font-size: 16px;">
@@ -619,11 +607,19 @@
 
                                                             </el-tooltip>
                                                         </div>
+                                                        <div style="margin-top: -2%">
+                                                            <p class="text-nowrap"><i
+                                                                :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp;
+                                                                &nbsp;<strong>{{
+                                                                        vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
+                                                                    }}</strong></p>
+                                                        </div>
+
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 d-price d-total offset-1">
-                                                    <p style="color: green; text-wrap: nowrap" v-if="vehicle.promo.length"><i style="font-size: 18px" class="fa fa-check fa-xl" /> {{vehicle.promo }}</p>
+                                                    <p style="color: green; text-wrap: nowrap; font-weight: 600" v-if="vehicle.promo.length"><i style="font-size: 18px" class="fa fa-check fa-xl" /> {{vehicle.promo }}</p>
                                                     <span class="d-days">For {{
                                                             daysNumber
                                                         }} day{{ daysNumber < 2 ? '' : 's' }}</span>
