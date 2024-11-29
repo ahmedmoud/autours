@@ -60,7 +60,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $check = Auth::check();
-        if($check){
+        if ($check) {
             return json_encode($user->role);
         } else {
             return 'null';
@@ -89,7 +89,7 @@ class UserController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if(isset($user->language))
+        if (isset($user->language))
             $user->language = explode(',', auth()->user()->language);
         return $user;
 
@@ -117,11 +117,12 @@ class UserController extends Controller
     public function suppliers(Request $request)
     {
         $query = User::query()->where('role', 'active_supplier');
-        if($request->has('country')) {
+        if ($request->has('country')) {
             $query->where('country', $request->country);
         }
         return $query->get();
     }
+
     public function acceptMemberships(Request $request)
     {
         User::where('id', $request->id)->update(['role' => 'active_supplier']);
@@ -139,23 +140,34 @@ class UserController extends Controller
      */
     public function createBranch(CreateBranchRequest $request)
     {
-        $branch = new Branch();
+        try {
 
-        $branch->name = $request->name;
-        $branch->location = $request->location;
-        $branch->adresse = $request->adresse;
-        $branch->country = $request->country;
-        $branch->city = $request->city;
-        $branch->phone = $request->phone;
-        $branch->lat = $request->lat;
-        $branch->lng = $request->lng;
-        $branch->email = $request->email;
-        $branch->company_id = auth()->user()->id;
-        $branch->currency = $request->currency;
+            $branch = new Branch();
 
-        $branch->save();
+            $branch->name = $request->name;
+            $branch->location = $request->location;
+            $branch->adresse = $request->adresse;
+            $branch->country = $request->country;
+            $branch->city = $request->city;
+            $branch->phone = $request->phone;
+            $branch->lat = $request->lat;
+            $branch->lng = $request->lng;
+            $branch->email = $request->email;
+            $branch->company_id = auth()->user()->id;
+            $branch->currency = $request->currency;
 
-        return response(1);
+            $branch->save();
+
+            return response()->json([
+                'message' => 'Branch created successfully',
+                'status' => true
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'status' => false
+            ], StatusCodes::SERVER_ERROR);
+        }
     }
 
     public function getBranch(Request $request)
@@ -193,7 +205,7 @@ class UserController extends Controller
                     'message' => 'no logged in User'
                 ], StatusCodes::FORBIDDEN);
             }
-            $user->rentals = Rental::query()->where('customer_id',$user->id)->with(['vehicle.supplier','vehicle.branch','status'])->orderBy('id','desc')->get();
+            $user->rentals = Rental::query()->where('customer_id', $user->id)->with(['vehicle.supplier', 'vehicle.branch', 'status'])->orderBy('id', 'desc')->get();
             return response()->json([
                 'data' => $user
             ]);
@@ -201,7 +213,7 @@ class UserController extends Controller
             info("error while getting the user profile");
             info($e->getMessage());
             return response()->json([
-                'data' =>[],
+                'data' => [],
                 'message' => 'Server Error'
             ], StatusCodes::SERVER_ERROR);
         }
@@ -216,11 +228,11 @@ class UserController extends Controller
                 'data' => $data,
                 'status' => 1
             ]);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             info("error while getting the customers");
             info($e->getMessage());
             return response()->json([
-                'data' =>[],
+                'data' => [],
                 'message' => 'Server Error'
             ], StatusCodes::SERVER_ERROR);
         }
@@ -230,7 +242,7 @@ class UserController extends Controller
     {
         try {
             $user = User::query()->where('email', $request->email)->first();
-            $forgetPasswordLink = url('/') . '/new-password-form?key='. base64_encode(encrypt($request->email .','. Carbon::now()->toDateString(), env('APP_KEY')));
+            $forgetPasswordLink = url('/') . '/new-password-form?key=' . base64_encode(encrypt($request->email . ',' . Carbon::now()->toDateString(), env('APP_KEY')));
             $user->password_reset_key = $forgetPasswordLink;
 
             $user->save();
@@ -246,6 +258,7 @@ class UserController extends Controller
             ]);
         }
     }
+
     public function ValidateForgetPasswordKey(Request $request)
     {
 
@@ -266,7 +279,7 @@ class UserController extends Controller
                 ], StatusCodes::FORBIDDEN);
             }
             $user = User::query()->where('email', $email)->first();
-            if (is_null($user) || is_null($user->password_reset_key) || $user->password_reset_key != $request->key){
+            if (is_null($user) || is_null($user->password_reset_key) || $user->password_reset_key != $request->key) {
                 return response()->json([
                     'status' => false,
                     'message' => ''
@@ -284,6 +297,7 @@ class UserController extends Controller
             ], StatusCodes::SERVER_ERROR);
         }
     }
+
     public function setNewPassword(SetNewPasswordRequest $request)
     {
         try {

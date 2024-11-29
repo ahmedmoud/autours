@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusCodes;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
@@ -27,11 +28,12 @@ class BranchesController extends Controller
     public function index(Request $request)
     {
 
-      return Branch::query()->where('company_id', Auth::id())->get();
+        return Branch::query()->where('company_id', Auth::id())->get();
 
     }
 
-    public function edit(){
+    public function edit()
+    {
         try {
             return Inertia::render('Dashboard/Branches/Edit');
         } catch (\Exception $e) {
@@ -41,10 +43,12 @@ class BranchesController extends Controller
             ], 404);
         }
     }
-    public function show($id){
+
+    public function show($id)
+    {
         try {
             $branch = Branch::query()->find($id);
-            return  response()->json([
+            return response()->json([
                 'data' => $branch
             ]);
         } catch (\Exception $e) {
@@ -55,6 +59,41 @@ class BranchesController extends Controller
         }
     }
 
+    public function store(Request $request)
+    {
+
+    }
+
+    public function update(Request $request)
+    {
+
+        try {
+            $branch = Branch::query()->find( $request->id);
+            $branch->name = $request->name;
+            $branch->location = $request->country.','.$request->city.',' . $request->abriviation;
+            $branch->adresse = $request->adresse;
+            $branch->email = $request->email;
+            $branch->phone = $request->phone;
+            $branch->country = $request->country;
+            $branch->city = $request->cityy;
+            $branch->currency = $request->currency;
+            $branch->lat = $request->lat;
+            $branch->lng = $request->lng;
+            $branch->save();
+            return response()->json([
+                'data' => $branch,
+                'status' => true,
+                'message' => 'branch updated successfully'
+            ]);
+        } catch (\Exception $e) {
+            info($e->getMessage());
+            dd($e->getMessage());
+            return response()->json([
+                'error' => 'something went wrong'
+            ], StatusCodes::SERVER_ERROR);
+        }
+
+    }
 
 
 }

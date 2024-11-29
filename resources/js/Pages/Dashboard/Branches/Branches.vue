@@ -4,6 +4,9 @@
     <div class="card">
         <div class="card-body">
             <h2 class="mb-4">Branches</h2>
+            <div class="col-md-3 my-3">
+                <button class="btn btn-primary" @click="() => router.get('/branches/add')"> Add New Branch <i class="fa fa-plus"/> </button>
+            </div>
             <div class="card">
                 <div class=" d-flex justify-content-center col-md-12">
                     <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
@@ -77,13 +80,13 @@ const handle = (event) => {
 }
 
 const handleEdit = (index, row) => {
-    router.get('/branches/show',{id: row.id})
+    router.get('/branches/show', {id: row.id})
 }
 
 const handleDelete = async (index, row) => {
     try {
         loading.value = true;
-         const confirmation = confirm("Are you sure you want to delete " + row.name + " branch")
+        const confirmation = confirm("Are you sure you want to delete " + row.name + " branch")
 
         if (confirmation !== true) {
             return

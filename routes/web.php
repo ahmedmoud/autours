@@ -176,7 +176,9 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::get('get/branches', [BranchesController::class, 'index']);
     Route::post('delete/branches', [UserController::class, 'deleteBranch']);
     Route::inertia('/branches/show', 'Dashboard/Branches/Edit');
+    Route::inertia('/branches/add', 'Dashboard/Branches/Add');
     Route::get('/branches/edit/{id}', [BranchesController::class, 'show']);
+    Route::post('/branches/update', [BranchesController::class, 'update']);
 
     Route::post('post/vehicles', [VehicleController::class, 'create']);
     Route::post('update/vehicles/activation', [VehicleController::class, 'updateActivation']);

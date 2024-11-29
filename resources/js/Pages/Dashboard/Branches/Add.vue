@@ -3,8 +3,9 @@
 
     <div class="card">
         <div class="card-body">
-            <h2 class="mb-4">Edit Branches</h2>
+            <h2 class="mb-4">Add New Branch</h2>
             <div class=" justify-content-center col-md-12">
+
                 <div v-if="!loading" class="row">
                     <div class="formbold-mb-3 col-md-3">
                         <label class="formbold-form-label">Name</label>
@@ -135,7 +136,7 @@
                     <el-form-item>
                         <div class="row">
                             <div class="col-md-3">
-                                <el-button type="primary" @click="editBranch">Save Branch</el-button>
+                                <el-button type="primary" @click="addBranch">Save Branch</el-button>
                             </div>
                             <div class="col-md-3">
                                 <el-button class="btn btn-danger" @click="cancel">Cancel</el-button>
@@ -215,18 +216,7 @@ const currencies = {
     options: ref([]),
 }
 
-const getBranch = async () => {
-    try {
-        loading.value = true
-        const resp = await axios.get('/branches/edit/' + id.value)
-        newBranch.value = resp.data.data
-        loading.value = false
-        console.log(resp.data)
-    } catch (e) {
-        loading.value = false
-        console.log(e)
-    }
-}
+
 
 const getRole = async () => {
     try {
@@ -267,17 +257,15 @@ const fetchCountries = async () => {
     }
 }
 
-const editBranch = async () => {
+const addBranch = async () => {
+    newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
     try {
-        const response = await axios.post('/branches/update', newBranch.value);
-        console.log(response)
-        if (response.data.status) {
-            $toast.success('Branch updated successfully', {position: 'top'})
+        const response = await axios.post('/upload/branch', newBranch.value);
+        if (response.data.message === 0) {
         }
-    } catch (e) {
-        $toast.error('Something went wrong', {position: 'top'})
 
-        console.log(e)
+    } catch (error) {
+        console.error(error);
     }
 }
 const cancel = () => {
@@ -348,12 +336,6 @@ const getCities = async () => {
 }
 
 onMounted(async () => {
-        let urlParams = new URLSearchParams(window.location.search);
-
-        if (urlParams.has('id')) {
-            id.value = await urlParams.get('id')
-        }
-        await getBranch();
         await getRole()
         await fetchCurrencies()
         await fetchCountries()
@@ -362,22 +344,4 @@ onMounted(async () => {
 </script>
 <style>
 
-.modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-container {
-    width: 900px;
-    margin: 5% 25%;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-}
 </style>
