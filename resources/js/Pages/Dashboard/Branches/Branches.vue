@@ -28,6 +28,7 @@
                                     @click="handleEdit(scope.$index, scope.row)"
                                 >Edit
                                 </el-button>
+
                                 <el-button
                                     size="small"
                                     type="danger"
@@ -82,7 +83,9 @@ const handle = (event) => {
 const handleEdit = (index, row) => {
     router.get('/branches/show', {id: row.id})
 }
-
+const assignCarToBranch = (row) => {
+    router.get('/branches/cars', {id: row.id})
+}
 const handleDelete = async (index, row) => {
     try {
         loading.value = true;
