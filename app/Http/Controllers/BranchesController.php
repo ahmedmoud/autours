@@ -48,6 +48,10 @@ class BranchesController extends Controller
     {
         try {
             $branch = Branch::query()->find($id);
+            $ad = explode(',',$branch->location);
+            if(count($ad) > 0 ) {
+                $branch->abriviation = $ad[count($ad) - 1];
+            }
             return response()->json([
                 'data' => $branch
             ]);
