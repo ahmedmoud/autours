@@ -6,6 +6,7 @@ use App\Enums\StatusCodes;
 use App\Events\NewRental;
 use App\Http\Requests\BookCarRequest;
 use App\Http\Requests\CreateEditVehicle;
+use App\Http\Requests\EditVehiclePrice;
 use App\Http\Requests\FilterVehicleRequest;
 use App\Http\Requests\GetVehiclePageRequest;
 use App\Models\CurrencyRate;
@@ -276,7 +277,7 @@ class VehicleController extends Controller
         return redirect()->intended('results');
     }
 
-    public function updatePrice(Request $request)
+    public function updatePrice(EditVehiclePrice $request)
     {
         try {
 
