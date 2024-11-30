@@ -182,6 +182,7 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::inertia('/branches/cars', 'Dashboard/Branches/Cars');
 
     Route::post('post/vehicles', [VehicleController::class, 'create']);
+    Route::post('/edit-vehicle-price', [VehicleController::class, 'updatePrice']);
     Route::post('update/vehicles/activation', [VehicleController::class, 'updateActivation']);
     Route::post('delete/vehicles/{id}', [VehicleController::class, 'destroy']);
     Route::get('edit/vehicles/{id}', [VehicleController::class, 'edit']);

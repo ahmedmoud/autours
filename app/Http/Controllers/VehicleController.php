@@ -197,7 +197,7 @@ class VehicleController extends Controller
                                         JOIN rate_questions on rate_questions.id = rental_rates.question_id
                                         WHERE supplier_id = :supplier_id
                                         Group By rate_questions.objective', ['supplier_id' => $vehicle->supplier]);
-                $vehicle->supplier_rate = round($rentals->sum('rate') / ($rentals->count() <= 0 ?  1 : $rentals->count()), 1);
+                $vehicle->supplier_rate = round($rentals->sum('rate') / ($rentals->count() <= 0 ? 1 : $rentals->count()), 1);
                 $vehicle->supplier_number_of_reviews = $rentals->count();
                 $vehicle->rental_terms = SupplierRentalTerm::query()->where('supplier_id', $vehicle->supplier)->join('rental_terms', 'rental_terms.id', '=', 'supplier_rental_terms.rental_term_id')->select(['title', 'description'])->get();
             }
@@ -274,6 +274,33 @@ class VehicleController extends Controller
         ]);
 
         return redirect()->intended('results');
+    }
+
+    public function updatePrice(Request $request)
+    {
+        try {
+
+            $existingVehicle = Vehicle::find($request->id);
+
+            if ($request->has('price')) {
+                $existingVehicle->price = $request->price;
+            }
+
+            if ($request->has('week_price')) {
+                $existingVehicle->week_price = $request->week_price;
+            }
+
+            if ($request->has('month_price')) {
+                $existingVehicle->month_price = $request->month_price;
+            }
+            $existingVehicle->save();
+            return response()->json([
+                'data' => $existingVehicle,
+                'status' => true
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([], StatusCodes::SERVER_ERROR);
+        }
     }
 
     public function create(CreateEditVehicle $request)

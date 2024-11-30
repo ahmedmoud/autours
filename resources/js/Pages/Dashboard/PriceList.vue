@@ -111,7 +111,7 @@ const update = async ($index) => {
 
 
         formData.append('update', '1');
-        const response = await axios.post('post/vehicles', formData);
+        const response = await axios.post('/edit-vehicle-price', formData);
         $toast.success('Price List updated successfully to ' + tableData.value[$index].name, {position: 'top'});
 
     } catch (error) {
