@@ -75,7 +75,7 @@ class BranchesController extends Controller
             $branch->email = $request->email;
             $branch->phone = $request->phone;
             $branch->country = $request->country;
-            $branch->city = $request->cityy;
+            $branch->city = $request->city;
             $branch->currency = $request->currency;
             $branch->lat = $request->lat;
             $branch->lng = $request->lng;
