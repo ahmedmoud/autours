@@ -12,7 +12,7 @@ Car Model: {{json_decode($body)->vehicle->name}}<br>
 Pick-Up Date & Time: {{\Carbon\Carbon::parse(json_decode($body)->start_date)->toDateString()}} {{\Carbon\Carbon::parse(json_decode($body)->start_time)->toTimeString()}}<br>
 Drop off Date & Time: {{\Carbon\Carbon::parse(json_decode($body)->end_date)->toDateString()}} {{\Carbon\Carbon::parse(json_decode($body)->end_time)->toTimeString()}}<br>
 Pick-Up Location: {{json_decode($body)->branch->adresse}}<br>
-Rental Amount: {{json_decode($body)->supplier_price . ' ' . json_decode($body)->currency}}<br>
+Rental Amount: {{json_decode($body)->supplier_price . ' ' . json_decode($body)->branch->currency}}<br>
 Action Required:<br>
 
 Please confirm the availability of the requested vehicle and provide any necessary details or documentation required to<br>

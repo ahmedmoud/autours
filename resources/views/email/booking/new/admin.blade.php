@@ -13,10 +13,10 @@ Booking Details:<br>
 - Drop-off Date and Time: {{\Carbon\Carbon::parse(json_decode($body)->end_date)->toDateString()}} {{\Carbon\Carbon::parse(json_decode($body)->end_time)->toTimeString()}}<br>
 - Pick-Up Location: {{json_decode($body)->branch->adresse}}<br>
 
-- Total Amount :  {{ ceil( json_decode($body)->price)  . ' ' . json_decode($body)->currency }}<br>
-- Supplier Amount :  {{ ceil( json_decode($body)->supplier_price)  . ' ' . json_decode($body)->currency }}<br>
+- Total Amount :  {{ round( json_decode($body)->price, 2)  . ' ' . json_decode($body)->currency }}<br>
+- Supplier Amount :  {{ ceil( json_decode($body)->supplier_price)  . ' ' . json_decode($body)->branch->currency }}<br>
 - Profit Percentage: {{ json_decode($body)->profit_margin . '%' }}<br>
-- Profit Amount: {{ json_decode($body)->price - json_decode($body)->supplier_price   . ' ' . json_decode($body)->currency }}<br>
+- Profit Amount: {{ json_decode($body)->price - ((json_decode($body)->price * json_decode($body)->profit_margin) / 100)  . ' ' . json_decode($body)->currency }}<br>
 
 Action Required:<br>
 <br><br>

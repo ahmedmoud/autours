@@ -30,6 +30,7 @@ class NotifySupplierListener implements ShouldQueue
          $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_loc)->first();
          $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
          $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
+        $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_loc)->first();
 
         $body = $event->rental;
         $status = Mail::to($event->rental->supplier->email)->send(new NewBookingSupplier($body));
