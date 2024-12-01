@@ -8,6 +8,7 @@ Booking Details:<br>
 
 - Reservation Number: {{json_decode($body)->order_number}}<br>
 - Customer's Name: {{json_decode($body)->customer->name}}<br>
+- Supplier Name: {{json_decode($body)->supplier->name}}<br>
 - Car Model: {{json_decode($body)->vehicle->name}}<br>
 - Pick-Up Date & Time: {{\Carbon\Carbon::parse(json_decode($body)->start_date)->toDateString()}} {{\Carbon\Carbon::parse(json_decode($body)->start_time)->toTimeString()}}<br>
 - Drop-off Date and Time: {{\Carbon\Carbon::parse(json_decode($body)->end_date)->toDateString()}} {{\Carbon\Carbon::parse(json_decode($body)->end_time)->toTimeString()}}<br>
