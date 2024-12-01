@@ -173,7 +173,6 @@ Route::middleware(['member'])->group(function () {
 Route::middleware(['active_supplier'])->group(function () {
     Route::inertia('vehicle', 'Dashboard/Vehicles/CreateVehicle');
     Route::inertia('branches', 'Dashboard/Branches/Branches');
-    Route::get('get/branches', [BranchesController::class, 'index']);
     Route::post('delete/branches', [UserController::class, 'deleteBranch']);
     Route::inertia('/branches/show', 'Dashboard/Branches/Edit');
     Route::inertia('/branches/add', 'Dashboard/Branches/Add');
