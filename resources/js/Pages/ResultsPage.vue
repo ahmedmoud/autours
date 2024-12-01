@@ -539,9 +539,9 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class=" mt-1 rounded-2 bg-light-gray row ml-1" style="width: 75%; height: 50%;">
+                                                <div class=" rounded-2 bg-light-gray row ml-1" style="width: 75%; height: 50%;">
                                                     <div class="row col-md-8" >
-                                                        <p class="primary bold" style="color: #5e9007;">What is Included!</p>
+                                                        <p class="primary bold pt-2" style="color: #5e9007;">What is Included!</p>
                                                         <ul class="row">
                                                             <li class="col-md-6" style="margin-top: -5%"
                                                                 v-for="(item, index) in vehicle.included ">
@@ -585,7 +585,7 @@
                                                         <div class="mt-2">
                                                             <p class="text-nowrap">
                                                                 <a target="_blank"  :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle.branch.lat+','+vehicle.branch.lng">
-                                                                <i class="fa fa-location"/></a> &nbsp;Address:&nbsp;
+                                                                    <i class="fa fa-earth" style="color: navy;"/></a> &nbsp;Address:&nbsp;
                                                                 {{
                                                                         vehicle.supplier.address
                                                                     }}</p>
@@ -607,10 +607,10 @@
 
                                                             </el-tooltip>
                                                         </div>
-                                                        <div style="margin-top: -2%">
-                                                            <p class="text-nowrap"><i
+                                                        <div style="margin-top: -1%">
+                                                            <p class=""><i
                                                                 :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp;
-                                                                &nbsp;Location Policy: <strong>{{
+                                                                &nbsp;Location Type: <strong>{{
                                                                         vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
                                                                     }}</strong></p>
                                                         </div>
