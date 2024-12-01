@@ -17,7 +17,7 @@ Booking Details:<br>
 - Total Amount :  {{ round( json_decode($body)->price, 2)  . ' ' . json_decode($body)->currency }}<br>
 - Supplier Amount :  {{ ceil( json_decode($body)->supplier_price)  . ' ' . json_decode($body)->branch->currency }}<br>
 - Profit Percentage: {{ json_decode($body)->profit_margin . '%' }}<br>
-- Profit Amount: {{ json_decode($body)->price - (json_decode($body)->price / ((json_decode($body)->profit_margin / 100) + 1) )  . ' ' . json_decode($body)->currency }}<br>
+- Profit Amount: {{ round(json_decode($body)->price - (json_decode($body)->price / ((json_decode($body)->profit_margin / 100) + 1) ), 2 ) . ' ' . json_decode($body)->currency }}<br>
 
 Action Required:<br>
 <br><br>
