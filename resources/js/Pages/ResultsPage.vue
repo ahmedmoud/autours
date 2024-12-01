@@ -539,7 +539,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="  rounded-2 bg-light-gray row ml-1" style="width: 75%; height: 50%;">
+                                                <div class=" mt-1 rounded-2 bg-light-gray row ml-1" style="width: 75%; height: 50%;">
                                                     <div class="row col-md-8" >
                                                         <p class="primary bold" style="color: #5e9007;">What is Included!</p>
                                                         <ul class="row">
@@ -554,10 +554,10 @@
                                                                                 {{ item.description }}
                                                                             </div>
                                                                         </template>
-                                                                    <p style="font-size: 12px; font-weight: 600" class="col-md-10 included-font text-nowrap">
+                                                                    <p style="font-size: 12px; " class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                     </el-tooltip>
-                                                                    <p v-else style="font-size: 12px; font-weight: 600" class="col-md-10 included-font text-nowrap">
+                                                                    <p v-else style="font-size: 12px; " class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                                 <div :class="'row text-nowrap vehicle-'+vehicle.id" style="display: none;" v-else>
@@ -568,10 +568,10 @@
                                                                                 {{ item.description }}
                                                                             </div>
                                                                         </template>
-                                                                    <p style="font-size: 12px; font-weight: 600" class="col-md-10 text-nowrap included-font">
+                                                                    <p style="font-size: 12px; " class="col-md-10 text-nowrap included-font">
                                                                         {{ item.what_is_included }}</p>
                                                                     </el-tooltip>
-                                                                    <p style="font-size: 12px; font-weight: 600" v-else  class="col-md-10 included-font text-nowrap">
+                                                                    <p style="font-size: 12px; " v-else  class="col-md-10 included-font text-nowrap">
                                                                         {{ item.what_is_included }}</p>
                                                                 </div>
                                                             </li>
@@ -610,7 +610,7 @@
                                                         <div style="margin-top: -2%">
                                                             <p class="text-nowrap"><i
                                                                 :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp;
-                                                                &nbsp;<strong>{{
+                                                                &nbsp;Location Policy: <strong>{{
                                                                         vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
                                                                     }}</strong></p>
                                                         </div>
