@@ -9,6 +9,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PromosController;
+use App\Http\Controllers\SpecificationsController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\FuelPolicyController;
 use App\Http\Controllers\IncludedController;
@@ -69,7 +70,7 @@ Route::inertia('index', 'Dashboard/Index')->middleware('admin_or_supplier');
 Route::inertia('suppliers', 'Dashboard/Suppliers');
 
 Route::get('get/categories', [VehicleController::class, 'getCategories']);
-Route::get('get/specifications', [VehicleController::class, 'getSpecifications']);
+Route::get('get/specifications', [SpecificationsController::class, 'index']);
 Route::post('get/filtered/specifications', [VehicleController::class, 'getFilteredSpecifications']);
 
 Route::get('results', [VehicleController::class, 'index'])->name('results');
@@ -133,8 +134,9 @@ Route::middleware(['admin'])->group(function () {
     Route::post('delete/categories', [VehicleController::class, 'deleteCategories']);
 
     Route::inertia('specifications', 'Dashboard/Specifications');
-    Route::post('post/specifications', [VehicleController::class, 'createSpecifications']);
-    Route::post('delete/specifications', [VehicleController::class, 'deleteSpecifications']);
+    Route::post('post/specifications', [SpecificationsController::class, 'create']);
+    Route::post('specifications/update', [SpecificationsController::class, 'update']);
+    Route::post('delete/specifications', [SpecificationsController::class, 'destroy']);
     Route::post('rentals/reconcile', [BookingsController::class, 'reconcile']);
 
 

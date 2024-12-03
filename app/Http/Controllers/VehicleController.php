@@ -470,31 +470,9 @@ class VehicleController extends Controller
         ]);
     }
 
-    public function createSpecifications(Request $request)
-    {
-        $item = new Specification();
 
-        if ($request->has('name')) {
-            $item->name = $request->name;
-        }
-        if ($request->has('icon')) {
-            $item->icon = $request->icon;
-        }
-        if ($request->has('options')) {
-            $item->options = json_decode($request->options);
-        }
 
-        $item->save();
 
-        return response()->json(['message' => 'Added successfully']);
-    }
-
-    public function getSpecifications()
-    {
-
-        return response()->json(Specification::query()->orderBy('name')->get());
-
-    }
 
     public function getFilteredSpecifications(Request $request)
     {
@@ -536,13 +514,6 @@ class VehicleController extends Controller
 
     }
 
-    public function deleteSpecifications(Request $request)
-    {
-        Specification::where('id', $request->id)->delete();
-
-        return $this->getSpecifications();
-
-    }
 
     public function getLocations()
     {
