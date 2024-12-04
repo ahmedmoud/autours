@@ -27,7 +27,7 @@ class UserController extends Controller
 
         if ($request->hasFile('logo')) {
             $image = $request->file('logo');
-            $image_name = Auth::user()->name . "_logo" . "." . $request->file('logo')->extension();
+            $image_name = Auth::user()->name . "_logo". md5(Carbon::now()->toDateString()) . "." . $request->file('logo')->extension();
             $image->move(public_path('img'), $image_name);
 
             $updateData['logo'] = $image_name;
