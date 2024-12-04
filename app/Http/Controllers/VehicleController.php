@@ -351,7 +351,7 @@ class VehicleController extends Controller
             }
 
             if ($request->has('category')) {
-                $existingVehicle->category = $request->has('category');
+                $existingVehicle->category = $request->get('category');
             }
 
 
