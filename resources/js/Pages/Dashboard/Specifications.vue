@@ -165,7 +165,7 @@ const dynamicTags = ref([])
 const inputVisible = ref(false)
 const InputRef = ref(false)
 const openEditDialog = ref(false)
-
+const selectedSpecID = ref()
 const handleClose = (tag) => {
     dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
 }
@@ -211,13 +211,13 @@ const handle = (event) => {
     image.value = event.target.files[0]
 }
 
-const handleEdit = async (index, row) => {
+const handleEdit = async () => {
     try {
         const formData = new FormData();
         const options = dynamicTags.value;
         formData.append('name', form.name);
         formData.append('icon', form.icon);
-        formData.append('id', row.id);
+        formData.append('id', selectedSpecID.value);
         formData.append('options', JSON.stringify(options));
         const response = await axios.post('/specifications/update', formData);
 
@@ -235,6 +235,7 @@ const editDialog = (index, item) => {
     dynamicTags.value = item.options
     form.name = item.name
     form.icon = item.icon
+    selectedSpecID.value = item.id
     console.log(index, item)
     openEditDialog.value = true;
 }
