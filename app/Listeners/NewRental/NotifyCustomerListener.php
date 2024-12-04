@@ -9,6 +9,7 @@ use App\Models\Included;
 use App\Models\LocationType;
 use App\Models\User;
 use App\Models\Vehicle;
+use App\Models\VehicleIncluded;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
@@ -33,7 +34,7 @@ class NotifyCustomerListener implements ShouldQueue
         $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
         $event->rental->fuelPolicy = Vehicle::query()->where('id', $event->rental->vehicle->id)->with('fuelPolicy')->first();
-        $event->rental->cancelationPolicy = Included::query()->whereIn('id', [1,48])->first();
+        $event->rental->cancelationPolicy = Included::query()->whereIn('id', VehicleIncluded::query()->where('vehicle_id', $event->rental->vehicle->id)->get()->pluck('id')->toArray())->get();
 
         $body = $event->rental;
 

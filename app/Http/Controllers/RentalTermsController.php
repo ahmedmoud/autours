@@ -34,7 +34,7 @@ class RentalTermsController extends Controller
     {
         $terms = RentalTerms::query();
         if (\auth()->user()->role == 'active_supplier') {
-            $terms = $terms->where('status', 2)->get();
+            $terms = $terms->where('created_by', \auth()->user()->id)->get();
             $selected = SupplierRentalTerm::query()
                 ->where('supplier_id', \auth()->user()->id)
                 ->get()->pluck('rental_term_id')->toArray();

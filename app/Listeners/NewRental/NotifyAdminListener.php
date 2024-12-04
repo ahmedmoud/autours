@@ -5,7 +5,9 @@ namespace App\Listeners\NewRental;
 use App\Mail\NewRental\NewBookingAdmin;
 use App\Models\Branch;
 use App\Models\Category;
+use App\Models\Included;
 use App\Models\User;
+use App\Models\VehicleIncluded;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
@@ -31,7 +33,10 @@ class NotifyAdminListener implements ShouldQueue
         $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();
         $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_loc)->first();
+        $event->rental->cancelationPolicy = Included::query()->
+        whereIn('id', VehicleIncluded::query()->whereIn('included_id', [1,48])->where('vehicle_id', $event->rental->vehicle->id)->get()->pluck('included_id')->toArray())->first();
+
         $body = $event->rental;
-        $status = Mail::to("admin@autours.net")->send(new NewBookingAdmin($body));
+        $status = Mail::to("ahmedmoud@ymail.com")->send(new NewBookingAdmin($body));
     }
 }

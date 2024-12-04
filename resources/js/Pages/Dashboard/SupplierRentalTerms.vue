@@ -10,7 +10,7 @@
                     <el-table :data="filterTableData" style="width: 100%" :loading="loading" stripe>
                         <el-table-column width="100" label="Select">
                             <template #default="scope">
-                            <el-checkbox  :checked="scope.row.selected" size="large" v-on:click="selectTerm(scope.row)"/>
+                            <el-checkbox :disabled="scope.row.status === 3" :checked="scope.row.selected" size="large" v-on:click="selectTerm(scope.row)"/>
                             </template>
                         </el-table-column>
                         <el-table-column label="Title">
@@ -24,6 +24,13 @@
                                 <div v-html="scope.row.description"></div>
                             </template>
                         </el-table-column>
+                        <el-table-column label="Status">
+                            <template #default="scope">
+                                <div class="warning" v-if="scope.row.status === 1"> Pending </div>
+                                <div class="warning" v-else-if="scope.row.status === 2"> Approved </div>
+                            </template>
+                        </el-table-column>
+
                         <el-table-column align="right">
                             <template #header>
                                 <el-input v-model="search" size="small" placeholder="Type to search"/>

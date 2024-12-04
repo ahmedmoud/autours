@@ -24,7 +24,7 @@ Action Required:<br>
 Payment Information:<br>
 • The customer has successfully completed the payment for this booking via the Autours platform.<br>
 Additional Information:<br>
-• The customer has selected the Free Cancellation option, allowing them to cancel up to 24 hours before the pick-up time.<br>
+• The customer has selected the Free Cancellation option, allowing them to cancel up to {{json_decode($body)->cancelationPolicy->id == 48 ? '48' : '' }} {{ json_decode($body)->cancelationPolicy->id == 1 ? '24' : ''}} hours before the pick-up time.<br>
 Please ensure that the booking is recorded in the system, and everything is in order for a smooth transaction with the supplier.<br>
 Should you require any further information, please do not hesitate to contact me.<br>
 Best regards,<br>

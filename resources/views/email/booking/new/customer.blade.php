@@ -17,6 +17,7 @@ Booking Details:<br>
 <br>
 If you have any questions or need further assistance, please contact our customer service.<br>
 Important Information:<br>
+• The customer has selected the Free Cancellation option, allowing them to cancel up to  {{json_decode($body)->cancelationPolicy->id == 48 ? '48' : '' }} {{ json_decode($body)->cancelationPolicy->id == 1 ? '24' : ''}} hours before the pick-up time.<br>
 • Car Model Notice: The car model you have booked is subject to availability. You may receive a similar vehicle based on the supplier’s fleet at the time of pickup.
 Should you have any questions or require further assistance, please feel free to contact our customer service.<br>
 Best regards,<br><br>
