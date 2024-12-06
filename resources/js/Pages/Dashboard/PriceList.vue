@@ -32,6 +32,12 @@
                                 </template>
                             </el-table-column>
 
+                            <el-table-column label="Branch Name" prop="branch">
+                                <template #default="scope">
+                                        {{scope.row.branch.name}} - {{scope.row.branch.location}}
+                                </template>
+                            </el-table-column>
+
                             <el-table-column label="Actions">
                                 <template #default="scope">
                                         <button class="btn" @click="update(scope.$index)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
