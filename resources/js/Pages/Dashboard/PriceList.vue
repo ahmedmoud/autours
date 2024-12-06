@@ -32,7 +32,7 @@
                                 </template>
                             </el-table-column>
 
-                            <el-table-column label="Branch Name" prop="branch">
+                            <el-table-column label="Branch Name - Location" prop="branch">
                                 <template #default="scope">
                                         {{scope.row.branch.name}} - {{scope.row.branch.location}}
                                 </template>
