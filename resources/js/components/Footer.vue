@@ -119,7 +119,7 @@ onMounted(() => {
                         <div class="d-flex align-items-center" style="gap:15px;">
                             <i class="fa fa-cc-visa " style="font-size: 30px;"/>
                             <i class="fa fa-cc-mastercard " style="font-size: 30px;"/>
-                            <img width="50" height="27" src="https://www.knet.com.kw/wp-content/uploads/2019/07/KNETLogo.svg" class="header_logo header-logo" alt="The Shared Electronic Banking Services">
+                            <img width="40" height="27" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4eNosrQ0IdADpD6KuIkJRBpW04ZD5T3Geeg&s" class="header_logo header-logo" alt="The Shared Electronic Banking Services">
 
                         </div>
                     </div>
