@@ -251,6 +251,11 @@ const getLocations = async () => {
     try {
         const response = await axios.get('/get/locations')
         locations.all.value = Object.values(response.data)
+            const el = document.getElementsByClassName('p-autocomplete-input');
+            el[0].style.width = '100%'
+            el[0].style.height = '45px'
+            el[0].style.borderRadius = 0
+            el[0].style.marginTop = 7
         loading.value = false
     } catch (error) {
         console.error(error)
@@ -328,13 +333,7 @@ onMounted(() => {
     getVehicles();
     getLogos();
     // $('.p-autocomplete-input').addClass('custom-autocomplete');
-    setTimeout(() => {
-        const el = document.getElementsByClassName('p-autocomplete-input');
-        el[0].style.width = '100%'
-        el[0].style.height = '45px'
-        el[0].style.borderRadius = 0
-        el[0].style.marginTop = 7
-    }, 500)
+
 
 
 })
