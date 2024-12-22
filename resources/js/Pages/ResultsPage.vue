@@ -455,9 +455,9 @@
                                             <div class="row rounded-2 mb-3 py-1 "
                                                  style="background: #edecec; width: 76.5%;">
                                                 <div class="d-supplier">
-                                                    <div class="mt-2 d-img" style="width: 12%; height: 60px; ">
-                                                        <img :src="'img/' + vehicle.supplier.logo" height="50"
-                                                             width="80" alt=""/>
+                                                    <div class="mt-1 d-img" style="width: 12%; height: 60px; ">
+                                                        <img :src="'img/' + vehicle.supplier.logo" height="60"
+                                                             width="95" alt=""/>
                                                     </div>
                                                     <div class="col-md-3 row">
                                                         <div>
@@ -583,7 +583,7 @@
                                                     </div>
                                                     <div class=" col-md-4 ">
                                                         <div class="mt-2">
-                                                            <p class="text-nowrap">
+                                                            <p class="">
                                                                 <a target="_blank"  :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle.branch.lat+','+vehicle.branch.lng">
                                                                     <i class="fa fa-earth" style="color: navy;"/></a> &nbsp;Address:&nbsp;
                                                                 {{

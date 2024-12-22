@@ -21,7 +21,7 @@ return new class extends Migration {
             [
                 'currency_from' => 'SAR',
                 'currency_to' => 'EGP',
-                'rate' => '8.23',
+                'rate' => '13.55',
             ],
             [
                 'currency_from' => 'SAR',
@@ -59,7 +59,7 @@ return new class extends Migration {
             [
                 'currency_from' => 'QAR',
                 'currency_to' => 'EGP',
-                'rate' => '8.48',
+                'rate' => '14.01',
             ],
             [
                 'currency_from' => 'QAR',
@@ -97,7 +97,7 @@ return new class extends Migration {
             [
                 'currency_from' => 'OMR',
                 'currency_to' => 'EGP',
-                'rate' => '80.33',
+                'rate' => '132.23',
             ],
             [
                 'currency_from' => 'OMR',
@@ -135,7 +135,7 @@ return new class extends Migration {
             [
                 'currency_from' => 'KWD',
                 'currency_to' => 'EGP',
-                'rate' => '100.45',
+                'rate' => '165.23',
             ],
             [
                 'currency_from' => 'KWD',
@@ -173,7 +173,7 @@ return new class extends Migration {
             [
                 'currency_from' => 'BHD',
                 'currency_to' => 'EGP',
-                'rate' => '82.06',
+                'rate' => '135.02',
             ],
             [
                 'currency_from' => 'BHD',
@@ -208,27 +208,37 @@ return new class extends Migration {
             [
                 'currency_from' => 'EGP',
                 'currency_to' => 'SAR',
-                'rate' => '0.12',
+                'rate' => '0.074',
             ],
             [
                 'currency_from' => 'EGP',
                 'currency_to' => 'QAR',
-                'rate' => '0.12',
+                'rate' => '0.072',
             ],
             [
                 'currency_from' => 'EGP',
                 'currency_to' => 'OMR',
-                'rate' => '0.012',
+                'rate' => '0.0076',
             ],
             [
                 'currency_from' => 'EGP',
                 'currency_to' => 'KWD',
-                'rate' => '0.0100',
+                'rate' => '0.0060',
             ],
             [
                 'currency_from' => 'EGP',
                 'currency_to' => 'BHD',
-                'rate' => '0.012',
+                'rate' => '0.0074',
+            ],
+            [
+                'currency_from' => 'EGP',
+                'currency_to' => 'AED',
+                'rate' => '0.072',
+            ],
+            [
+                'currency_from' => 'EGP',
+                'currency_to' => 'USD',
+                'rate' => '0.02',
             ],
         ]);
 
@@ -258,6 +268,16 @@ return new class extends Migration {
                 'currency_to' => 'BHD',
                 'rate' => '0.38',
             ],
+            [
+                'currency_from' => 'USD',
+                'currency_to' => 'AED',
+                'rate' => '3.67',
+            ],
+            [
+                'currency_from' => 'USD',
+                'currency_to' => 'EGP',
+                'rate' => '50.88',
+            ],
         ]);
 
         CurrencyRate::query()->insert([
@@ -285,6 +305,16 @@ return new class extends Migration {
                 'currency_from' => 'AED',
                 'currency_to' => 'BHD',
                 'rate' => '0.10',
+            ],
+            [
+                'currency_from' => 'AED',
+                'currency_to' => 'USD',
+                'rate' => '0.27',
+            ],
+            [
+                'currency_from' => 'AED',
+                'currency_to' => 'EGP',
+                'rate' => '13.85',
             ],
         ]);
     }
