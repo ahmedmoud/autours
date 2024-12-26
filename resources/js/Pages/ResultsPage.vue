@@ -455,9 +455,9 @@
                                             <div class="row rounded-2 mb-3 py-1 "
                                                  style="background: #edecec; width: 76.5%;">
                                                 <div class="d-supplier">
-                                                    <div class="mt-1 d-img" style="width: 12%; height: 60px; ">
-                                                        <img :src="'img/' + vehicle.supplier.logo" height="60"
-                                                             width="95" alt=""/>
+                                                    <div class="mt-2 d-img" style="width: 14%; height: 60px; ">
+                                                        <img :src="'img/' + vehicle.supplier.logo" height="50"
+                                                             width="90" alt=""/>
                                                     </div>
                                                     <div class="col-md-3 row">
                                                         <div>
@@ -489,7 +489,7 @@
                                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{vehicle?.supplier_rate}}/10</span>
                                                     </div>
                                                     </el-tooltip>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <span class="be_media-body"><h5 style="margin-bottom: -5px;">
                                                             {{
                                                                 vehicle?.supplier_rate >= 1 && vehicle?.supplier_rate <= 2 ? 'Terrible':
@@ -512,9 +512,7 @@
                                                         </template>
                                                         <div class="col-md-2 mt-2 text-nowrap bold">
                                                             <div class="" id="instant_btn">
-                                                                <img class="mb-2" width="40"
-                                                                     src="/images/icons/instant_confirmation.png"/>
-                                                                Instant Confirmation  <i class="fas fa-info-circle" style="color: #6969d8;"></i>
+                                                                <p style="font-size: 1vw;"><img class="mb-2" width="40" src="/images/icons/instant_confirmation.png"/> Instant Confirmation <i class="fas fa-info-circle" style="color: #6969d8;"></i></p>
                                                             </div>
                                                         </div>
                                                     </el-tooltip>
@@ -529,8 +527,10 @@
                                                             </template>
                                                             <div class="col-md-2  text-nowrap bold">
                                                                 <div>
-                                                                    <i style="font-size: 1.8vw; color: gold;" class=" px-2 fa fa-ban be_media-left be_media-middle"/>
-                                                                    <strong class="mb-5"> On request  <i class="fas fa-info-circle" style="color: #6969d8;"></i></strong>
+                                                                    <p style="font-size: 1vw">
+                                                                        <i style="font-size: 1.8vw; color: gold;" class=" px-2 fa fa-ban be_media-left be_media-middle"/>
+                                                                    <strong class="mb-5"> On request  <i class=" fas fa-info-circle" style="color: #6969d8;"></i></strong>
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </el-tooltip>
