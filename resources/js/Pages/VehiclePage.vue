@@ -642,7 +642,7 @@
                                                     }}</strong></p>
                                             <p class="text-nowrap" style="font-size: .8vw"><i
                                                 class="fa fa-map-marker" style="font-size: 1.3vw"/>&nbsp;
-                                                &nbsp;Pickup Location: <strong>{{
+                                                &nbsp;Pickup: <strong>{{
                                                         vehicle?.branch ? vehicle.branch.location : ''
                                                     }}</strong></p>
                                         </div>
