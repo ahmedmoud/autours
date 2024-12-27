@@ -426,11 +426,11 @@
 
                     </div>
                     <Loader v-if="loading"/>
-                    <div v-else class="container bg-white col-md-6 offset-md-0 pt-5 pl-5 mt-4">
+                    <div v-else class="container bg-white col-md-7 offset-md-0 pt-5 pl-5 mt-4">
                         <div class="row">
                             <div>
                                 <h4 class="" style=" font-size: 1.3vw; text-wrap: nowrap;">
-                                    {{ vehicle.name }} OR&nbsp;Similar
+                                    {{ vehicle.name }} <small style="font-weight: 50; ">OR&nbsp;Similar</small>&nbsp
                                     <el-tooltip placement="right-start">
                                         <template #content>
                                             <div>
@@ -444,10 +444,10 @@
                                 </h4>
                                 <h5>{{ vehicle?.category?.name }}</h5>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <div id="slider-carousel text-nowrap">
                                     <div class="row"></div>
-                                    <div class="item">
+                                    <div class="">
                                         <img
                                             :src=" '/img/vehicles/' + vehicle?.photo "
                                             width="300" height="180"/>
@@ -458,7 +458,7 @@
                             </div>
 
                             <div class="row col-md-6">
-                                <div class=" row">
+                                <div class=" ml-3 row">
                                     <h3 class="mb-3 col-md-6 text-nowrap">
                                         {{ currency + ' ' + vehicle.final_price }}</h3>
                                     <p class="col-md-6 text-nowrap" style="color: green;"> <i class="fa fa-arrow-right"/> For {{ daysNumber }}
@@ -467,11 +467,11 @@
                                         / per
                                         day </p>
                                 </div>
-                                <div class="row de-spec text-nowrap">
+                                <div class="col-md-8 row de-spec text-nowrap">
                                     <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
                                          class="col-md-6">
 
-                                        <span class="text-nowrap" style="margin-top: -7%">
+                                        <span class="text-nowrap" style="margin-top: -10%">
                                                     <img style="width: 45%; margin-right: 2px;"
                                                          :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
                                            {{
@@ -486,6 +486,40 @@
                                             }}
                                         </span>
                                     </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <el-tooltip v-if="vehicle.instant_confirmation"
+                                                placement="right-start">
+                                        <template  #content>
+                                            <div class="" >
+                                                Receive instant booking confirmation!
+                                            </div>
+                                        </template>
+                                        <div class="col-md-2 mt-2 text-nowrap bold">
+                                            <div class="" id="instant_btn">
+                                                <p style="font-size: 1vw;"><img class="mb-2" width="40" src="/images/icons/instant_confirmation.png"/> Instant Confirmation <i class="fas fa-info-circle" style="color: #6969d8;"></i></p>
+                                            </div>
+                                        </div>
+                                    </el-tooltip>
+
+                                    <el-tooltip v-if="!vehicle.instant_confirmation"
+                                    placement="right-start">
+                                    <template  #content>
+                                        <div class="" >
+                                            You will receive booking confirmation after the
+                                            requested service availability is verified!
+                                        </div>
+                                    </template>
+                                    <div class="col-md-2  text-nowrap bold">
+                                        <div>
+                                            <p style="font-size: 1vw">
+                                                <i style="font-size: 1.8vw; color: gold;" class=" px-2 fa fa-ban be_media-left be_media-middle"/>
+                                                <strong class="mb-5"> On request  <i class=" fas fa-info-circle" style="color: #6969d8;"></i></strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    </el-tooltip>
+
                                 </div>
                                 <div class="spacer-single"></div>
                             </div>
@@ -522,9 +556,9 @@
                                                                             vehicle?.supplier_rate > 6 && vehicle?.supplier_rate <= 8 ? 'Ver Good' :
                                                                                 vehicle?.supplier_rate > 8 && vehicle?.supplier_rate <= 10 ? 'Excellent' :
                                                                                     ''
-                                                            }}</h5><span
-                                                            style="font-size: medium;">(&nbsp;<strong
-                                                            style="color: #f9d602">{{ vehicle.supplier_number_of_reviews }}&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                                            }}</h5>
+                                                            <span style="font-size: medium;">(&nbsp;
+                                                                <strong style="color: #f9d602">{{ vehicle.supplier_number_of_reviews }}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
                                     <div class="col-md-4 ">
                                         <p class="text-nowrap mt-2" style="font-size: 18px;"><i class="fa fa-location"/>
@@ -553,7 +587,7 @@
                                 <div class="row col-md-12">
                                     <p class="primary bold m-0" style="color: #5e9007;">What is Included!</p>
                                     <ul class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <li v-for="(item, index) in vehicle?.included?.slice(0 , (vehicle?.included?.length) /2)"
                                                 style="height: 30px">
                                                 <div class="row" v-if="index <= (vehicle?.included?.length - 1) / 2">
@@ -600,6 +634,19 @@
                                                 </div>
                                             </li>
                                         </div>
+                                        <div class="col-md-3">
+                                            <p class=""><i
+                                                :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp;
+                                                &nbsp;Location Type: <strong>{{
+                                                        vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
+                                                    }}</strong></p>
+                                            <p class="text-nowrap"><i
+                                                class="fa fa-map-marker fa-2xl"/>&nbsp;
+                                                &nbsp;Pickup Location: <strong>{{
+                                                        vehicle?.branch ? vehicle.branch.location : ''
+                                                    }}</strong></p>
+                                        </div>
+
 
                                     </ul>
                                 </div>
