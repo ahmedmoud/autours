@@ -636,12 +636,12 @@
                                         </div>
                                         <div class="col-md-3">
                                             <p class=""><i
-                                                :class="'fa fa-'+vehicle.location_type[0]?.icon "/>&nbsp;
-                                                &nbsp;Location Type: <strong>{{
+                                                :class="'fa fa-'+vehicle?.location_type?.length > 0 ? vehicle?.location_type[0].icon : '' "/>&nbsp;
+                                                &nbsp;Location Type: <strong class="text-nowrap">{{
                                                         vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
                                                     }}</strong></p>
-                                            <p class="text-nowrap"><i
-                                                class="fa fa-map-marker fa-2xl"/>&nbsp;
+                                            <p class=""><i
+                                                class="fa fa-map-marker" style="font-size: 1.3vw"/>&nbsp;
                                                 &nbsp;Pickup Location: <strong>{{
                                                         vehicle?.branch ? vehicle.branch.location : ''
                                                     }}</strong></p>
