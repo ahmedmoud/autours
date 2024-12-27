@@ -635,12 +635,12 @@
                                             </li>
                                         </div>
                                         <div class="col-md-3">
-                                            <p v-if="vehicle?.location_type?.length"><i
-                                                :class="'text-nowrap fa fa-'+ vehicle?.location_type[0].icon  "/>&nbsp;
+                                            <p class="text-nowrap" v-if="vehicle?.location_type?.length"><i
+                                                :class="' fa fa-'+ vehicle?.location_type[0].icon  "/>&nbsp;
                                                 &nbsp;Location Type: <strong class="text-nowrap">{{
                                                         vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
                                                     }}</strong></p>
-                                            <p class=""><i
+                                            <p class="text-nowrap" style="font-size: .8vw"><i
                                                 class="fa fa-map-marker" style="font-size: 1.3vw"/>&nbsp;
                                                 &nbsp;Pickup Location: <strong>{{
                                                         vehicle?.branch ? vehicle.branch.location : ''
