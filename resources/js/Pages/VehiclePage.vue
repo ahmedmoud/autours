@@ -635,8 +635,8 @@
                                             </li>
                                         </div>
                                         <div class="col-md-3">
-                                            <p class=""><i
-                                                :class="'fa fa-'+vehicle?.location_type?.length > 0 ? vehicle?.location_type[0].icon : '' "/>&nbsp;
+                                            <p v-if="vehicle?.location_type?.length"><i
+                                                :class="'text-nowrap fa fa-'+ vehicle?.location_type[0].icon  "/>&nbsp;
                                                 &nbsp;Location Type: <strong class="text-nowrap">{{
                                                         vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
                                                     }}</strong></p>
