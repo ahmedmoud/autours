@@ -563,7 +563,7 @@
                                     <div class="col-md-4 ">
                                         <p class="text-nowrap mt-2" style="font-size: 18px;">
                                             <a target="_blank"  :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle?.branch?.lat+','+vehicle?.branch?.lng">
-                                            <i class="fa fa-earth"/></a>
+                                            <i class="fa fa-earth" style="color: navy;"/></a>
                                             &nbsp;Address:&nbsp;&nbsp;<small
                                                 style="font-size: 18px;">{{ vehicle?.supplier?.address }}</small></p>
                                         <div>
