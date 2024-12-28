@@ -433,8 +433,8 @@
                                     {{ vehicle.name }} <small style="font-weight: 50; ">OR&nbsp;Similar</small>&nbsp
                                     <el-tooltip placement="right-start">
                                         <template #content>
-                                            <div>
-                                                The supplier will provide a car with same class and specifications,
+                                            <div style="font-size: 1vw;">
+                                                The supplier will provide a car with same class and specifications,<br>
                                                 though the make may vary.
                                             </div>
                                         </template>
@@ -491,7 +491,7 @@
                                     <el-tooltip v-if="vehicle.instant_confirmation"
                                                 placement="right-start">
                                         <template  #content>
-                                            <div class="" >
+                                            <div style="font-size: 1vw;">
                                                 Receive instant booking confirmation!
                                             </div>
                                         </template>
@@ -505,8 +505,8 @@
                                     <el-tooltip v-if="!vehicle.instant_confirmation"
                                     placement="right-start">
                                     <template  #content>
-                                        <div class="" >
-                                            You will receive booking confirmation after the
+                                        <div style="font-size: 1vw;" >
+                                            You will receive booking confirmation after the<br>
                                             requested service availability is verified!
                                         </div>
                                     </template>
@@ -561,21 +561,22 @@
                                                                 <strong style="color: #f9d602">{{ vehicle.supplier_number_of_reviews }}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
                                     <div class="col-md-4 ">
-                                        <p class="text-nowrap mt-2" style="font-size: 18px;"><i class="fa fa-location"/>
+                                        <p class="text-nowrap mt-2" style="font-size: 18px;">
+                                            <a target="_blank"  :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle?.branch?.lat+','+vehicle?.branch?.lng">
+                                            <i class="fa fa-earth"/></a>
                                             &nbsp;Address:&nbsp;&nbsp;<small
                                                 style="font-size: 18px;">{{ vehicle?.supplier?.address }}</small></p>
                                         <div>
                                             <el-tooltip placement="bottom">
                                                 <template #content>
-                                                    <div>
+                                                    <div style="font-size: 1vw;">
                                                         {{ vehicle?.fuel_policy?.description }}
                                                     </div>
                                                 </template>
                                                 <p style="margin-top: -20px;">
-                                                    <strong class="text-nowrap" style="font-size: 15px;"><i
+                                                    <strong class="text-nowrap" style="font-size: 1vw;"><i
                                                         class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
-                                                    <strong
-                                                        class="text-nowrap">{{ vehicle?.fuel_policy?.name }} </strong>
+                                                    <strong class="text-nowrap">{{ vehicle?.fuel_policy?.name }} </strong>
                                                 </p>
                                             </el-tooltip>
                                         </div>
@@ -596,7 +597,7 @@
                                                     <el-tooltip v-if="item?.description?.length" placement="right-start"
                                                                 trigger="hover">
                                                         <template #content>
-                                                            <div class="" style="font-size: 16px;">
+                                                            <div class="" style="font-size: 1vw;">
                                                                 {{ item.description }}
                                                             </div>
                                                         </template>
@@ -620,7 +621,7 @@
                                                     <el-tooltip v-if="item?.description?.length" placement="right-start"
                                                                 trigger="hover">
                                                         <template #content>
-                                                            <div class="" style="font-size: 16px;">
+                                                            <div class="" style="font-size: 1vw;">
                                                                 {{ item.description }}
                                                             </div>
                                                         </template>

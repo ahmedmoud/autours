@@ -421,7 +421,7 @@
 
                                                             <el-tooltip placement="right-start">
                                                                 <template  #content>
-                                                                    <div >
+                                                                    <div style="font-size: 1vw;">
                                                                         The supplier will provide a car with same class and specifications,<br> though the make may vary.
                                                                     </div>
                                                                 </template>
@@ -506,7 +506,7 @@
                                                     <el-tooltip v-if="vehicle.instant_confirmation"
                                                                 placement="right-start">
                                                         <template  #content>
-                                                            <div class="" >
+                                                            <div style="font-size: 1vw;" >
                                                                 Receive instant booking confirmation!
                                                             </div>
                                                         </template>
@@ -520,7 +520,7 @@
                                                         <el-tooltip v-if="!vehicle.instant_confirmation"
                                                                     placement="right-start">
                                                             <template  #content>
-                                                                <div class="" >
+                                                                <div style="font-size: 1vw;" >
                                                                     You will receive booking confirmation after the
                                                                     requested service availability is verified!
                                                                 </div>
@@ -550,7 +550,7 @@
                                                                        style="color: green;"/>
                                                                     <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
                                                                         <template  #content>
-                                                                            <div class="" style="font-size: 16px;">
+                                                                            <div class="" style="font-size: 1vw;">
                                                                                 {{ item.description }}
                                                                             </div>
                                                                         </template>
@@ -564,7 +564,7 @@
                                                                     <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap" style="color: green;"/>
                                                                     <el-tooltip v-if="item?.description?.length" placement="right-start" trigger="hover">
                                                                         <template  #content>
-                                                                            <div class="" style="font-size: 16px;">
+                                                                            <div class="" style="font-size: 1vw;">
                                                                                 {{ item.description }}
                                                                             </div>
                                                                         </template>
@@ -593,7 +593,7 @@
                                                         <div style="margin-top: -5%">
                                                             <el-tooltip placement="right-start" trigger="hover">
                                                                 <template  #content>
-                                                                    <div class="" style="font-size: 16px;">
+                                                                    <div class="" style="font-size: 1vw;">
                                                                         {{ vehicle?.fuel_policy?.description }}
                                                                     </div>
                                                                 </template>
