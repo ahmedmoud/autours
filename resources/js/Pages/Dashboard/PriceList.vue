@@ -40,8 +40,8 @@
 
                             <el-table-column label="Actions">
                                 <template #default="scope">
-                                        <button class="btn" @click="update(scope.$index)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
-                                        <el-switch size="large" v-model="tableData[scope.$index].activation" :value="scope.row.activation" @click="changeVehicleStatus(scope.$index)"></el-switch>
+                                        <button class="btn" @click="update(scope.row)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
+                                        <el-switch size="large" v-model="tableData[scope.$index].activation" :value="scope.row.activation" @click="changeVehicleStatus(scope.row)"></el-switch>
                                 </template>
                                 <template #header>
                                     <el-input v-model="search" size="large" placeholder="Type to search"/>
@@ -91,34 +91,34 @@ const getData = async (index, row) => {
     }
 }
 
-const update = async ($index) => {
+const update = async ($item) => {
     const $toast = useToast();
 
     try {
         loading.value = true;
         const formData = new FormData();
 
-        if(tableData.value[$index].price == null || tableData.value[$index].price <= 0 || isNaN(tableData.value[$index].price)) {
+        if($item.price == null || $item.price <= 0 || isNaN($item.price)) {
             $toast.error('price should be numeric and more than 0', {position: 'top'})
             return
         }
-        if(tableData.value[$index].week_price == null || tableData.value[$index].week_price <= 0 || isNaN(tableData.value[$index].week_price)) {
+        if($item.week_price == null || $item.week_price <= 0 || isNaN($item.week_price)) {
             $toast.error('price should be numeric and more than 0', {position: 'top'})
             return
         }
-        if(tableData.value[$index].month_price == null || tableData.value[$index].month_price <= 0 || isNaN(tableData.value[$index].month_price)) {
+        if($item.month_price == null || $item.month_price <= 0 || isNaN($item.month_price)) {
             $toast.error('price should be numeric and more than 0', {position: 'top'})
             return
         }
-        formData.append('id', tableData.value[$index].id);
-        formData.append('price', tableData.value[$index].price);
-        formData.append('week_price', tableData.value[$index].week_price);
-        formData.append('month_price', tableData.value[$index].month_price);
+        formData.append('id', $item.id);
+        formData.append('price', $item.price);
+        formData.append('week_price', $item.week_price);
+        formData.append('month_price', $item.month_price);
 
 
         formData.append('update', '1');
         const response = await axios.post('/edit-vehicle-price', formData);
-        $toast.success('Price List updated successfully to ' + tableData.value[$index].name, {position: 'top'});
+        $toast.success('Price List updated successfully to ' + $item.name, {position: 'top'});
 
     } catch (error) {
         $toast.error(error.message, {position: 'top'});
@@ -138,19 +138,19 @@ const open = () => {
         ElMessage.error('Oops, wrong password.')
     }
 }
-const changeVehicleStatus = async ($index) => {
+const changeVehicleStatus = async ($item) => {
 
     loading.value = true;
     const $toast = useToast();
 
     try {
         const formData = new FormData();
-        const activation = tableData.value[$index].activation ? 1 : 0;
+        const activation = $item.activation ? 1 : 0;
         formData.append('activation', activation);
-        formData.append('vehicle_id', tableData.value[$index].id);
+        formData.append('vehicle_id', $item.id);
 
         const response = await axios.post('update/vehicles/activation', formData);
-        $toast.success('Activation Status  updated successfully to ' + tableData.value[$index].name, {position: 'top'});
+        $toast.success('Activation Status  updated successfully to ' + $item.name, {position: 'top'});
     } catch (error) {
         $toast.error(error.message, {position: 'top'});
     } finally {

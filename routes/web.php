@@ -226,5 +226,6 @@ Route::post('/validate-forget-password-key', [UserController::class, 'validateFo
 Route::post('/save-new-password', [UserController::class, 'setNewPassword']);
 Route::inertia('/contact-us', 'ContactUs' );
 Route::inertia('/about-us', 'AboutUs' );
+Route::inertia('/why_autours', 'WhyAutours' );
 Route::post('/send-email',[SubscriberController::class,'sendEmail']);
 

@@ -60,7 +60,7 @@ onMounted(() => {
                                >Subscribe</a>
                         </div>
                         <div class="mt-1">
-                            <a href="#why_autours?" class="text-black text-decoration-underline footer_link" >Why
+                            <a href="/why_autours" class="text-black text-decoration-underline footer_link" >Why
                                 Autours?</a>
                         </div>
                     </div>
