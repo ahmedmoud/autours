@@ -269,6 +269,8 @@ const fetchCountries = async () => {
 
 const editBranch = async () => {
     try {
+        newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
+
         const response = await axios.post('/branches/update', newBranch.value);
         console.log(response)
         if (response.data.status) {

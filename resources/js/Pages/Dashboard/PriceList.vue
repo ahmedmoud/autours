@@ -40,7 +40,7 @@
 
                             <el-table-column label="Actions">
                                 <template #default="scope">
-                                        <button class="btn" @click="update(scope.row)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
+                                        <button class="btn" @click="update(scope.row, scope.$index)"><i style="color:green;" class="fa fa-check fa-2x"/></button>
                                         <el-switch size="large" v-model="tableData[scope.$index].activation" :value="scope.row.activation" @click="changeVehicleStatus(scope.row)"></el-switch>
                                 </template>
                                 <template #header>
@@ -91,29 +91,30 @@ const getData = async (index, row) => {
     }
 }
 
-const update = async ($item) => {
+const update = async ($item, $index) => {
     const $toast = useToast();
 
     try {
         loading.value = true;
         const formData = new FormData();
+        console.log(tableData.value[$index])
 
-        if($item.price == null || $item.price <= 0 || isNaN($item.price)) {
+        if(tableData.value[$index].price == null || tableData.value[$index].price <= 0 || isNaN(tableData.value[$index].price)) {
             $toast.error('price should be numeric and more than 0', {position: 'top'})
             return
         }
-        if($item.week_price == null || $item.week_price <= 0 || isNaN($item.week_price)) {
+        if(tableData.value[$index].week_price == null || tableData.value[$index].week_price <= 0 || isNaN(tableData.value[$index].week_price)) {
             $toast.error('price should be numeric and more than 0', {position: 'top'})
             return
         }
-        if($item.month_price == null || $item.month_price <= 0 || isNaN($item.month_price)) {
+        if(tableData.value[$index].month_price == null || tableData.value[$index].month_price <= 0 || isNaN(tableData.value[$index].month_price)) {
             $toast.error('price should be numeric and more than 0', {position: 'top'})
             return
         }
         formData.append('id', $item.id);
-        formData.append('price', $item.price);
-        formData.append('week_price', $item.week_price);
-        formData.append('month_price', $item.month_price);
+        formData.append('price', tableData.value[$index].price);
+        formData.append('week_price', tableData.value[$index].week_price);
+        formData.append('month_price', tableData.value[$index].month_price);
 
 
         formData.append('update', '1');
