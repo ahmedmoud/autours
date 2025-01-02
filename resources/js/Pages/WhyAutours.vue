@@ -8,27 +8,95 @@
         <!-- content begin -->
         <div class="no-bottom no-top zebra" id="content">
             <div id="top"></div>
-            <div style="margin-left: 40%; width: 15%; ">
-                <div style="background:#ffd100; height: 1%; margin-bottom: -15%;"></div>
-                <h1 class="text-nowrap">Why &nbsp; Autours</h1>
+            <div class="offset-4 mb-3">
+               <img src="/images/why_autours/ttile.png">
             </div>
-            <p  style="font-size: 1.3vw;" class="mx-5"> Whether you are a supplier looking fto expand your reach or a renter of a vehicle, Autours is your trusted partner in the car rental market. Join us today and experience the Autours difference! </p>
-            <img class="ml-ح1" width="1900" src="/images/why_autours_customer.jpg"/>
-            <div class="row">
-                <div class="offset-1">
-                    <div class="col-md-3" style="background:#ffd100; height: 3%; margin-bottom: -3%;"></div>
-                    <h2>Customers</h2>
-                    <p>At Autours, we strive to provide an exceptional car rental experience tailored to your needs. Here’s why choosing us is the right decision:</p>
+            <p style="font-size: 1.2vw;" class="mx-5"> Whether you are a supplier looking fto expand your reach or a
+                renter of a vehicle, Autours is your trusted partner in the car rental market. Join us today and
+                experience the Autours difference! </p>
+            <img style="width: 100%" src="/images/why_autours_customer.jpg"/>
+            <div class="row mt-5">
+                <div class="offset-4 mb-3">
+                    <img class="offset-1" src="/images/why_autours/customers.png"/>
                 </div>
-                <div class="offset-4">
-                    <ul>
-                        <li><strong>Diverse Fleet:</strong> A wide range of vehicles tailored to your needs, from economy cars to SUVs.</li>
-                        <li><strong>Competitive Pricing:</strong> Transparent pricing model with no hidden fees for added value.</li>
-                        <li><strong>Seamless Booking Experience:</strong> Secure and user-friendly online reservations.</li>
-                        <li><strong>Flexible Rental Periods:</strong> Choose from hourly to monthly rentals.</li>
-                        <li><strong>Quality Assurance:</strong> High standards of safety and maintenance for all vehicles.</li>
-                        <li><strong>Exceptional Customer Service:</strong> 24/7 assistance for all your queries and concerns.</li>
-                    </ul>
+
+                <div class="offset-1">
+                    <div class=" offset-1 ">
+                        <p style="font-size: 25px">At Autours, we strive to provide an exceptional car rental experience
+                            tailored to your needs. Hereís why choosing us is the right
+                            decision:</p>
+
+                    </div>
+
+
+                    <div class="mb-5">
+                        <div class="offset-4 ">
+                            <img style="margin-left: 8%" src="/images/why_autours/drivers-fleet.png"/>
+                        </div>
+                        <div class="offset-2" style="font-size: 20px;">
+                            We offer a wide range of vehicles to suit any occasion, from compact cars for city driving
+                            to
+                            spacious SUVs for
+                            family trips.<br> Whatever your needs, you’ll find the perfect vehicle with us.
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div  class="offset-4 ">
+                            <img  style="margin-left: 7%" src="/images/why_autours/pricing.png"/>
+                        </div>
+                        <div class="offset-2" style="font-size: 20px;">
+                            Our transparent pricing model ensures you get the best value for your rental. With no hidden
+                            fees and flexible
+                            rental options,<br> we make it easy for you to find a deal that fits your budget
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="offset-4 ">
+                            <img src="/images/why_autours/seamless.png"/>
+                        </div>
+                        <div class="offset-2" style="font-size: 20px;">
+                            Our system is designed for your convenience. With a straightforward booking process, you can
+                            secure your
+                            vehicle in just a few clicks.<br> Plus, our customer support team is always ready to assist
+                            you with any inquiries.
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="offset-4 ">
+                            <img src="/images/why_autours/felx.png"/>
+                        </div>
+                        <div class="offset-2" style="font-size: 20px;">
+                            Whether you need a car for a day, a week, or longer, Autours offers flexible rental periods
+                            to accommodate your
+                            schedule. <br>We understand that plans can change, so we provide easy options for modifications
+                            and extensions.
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="offset-4 ">
+                            <img src="/images/why_autours/quality.png"/>
+                        </div>
+                        <div class="offset-2" style="font-size: 20px;">
+                            All our vehicles undergo regular maintenance checks to ensure they meet the highest safety
+                            and quality
+                            standards. <br>You can drive with confidence knowing that your rented car is reliable and
+                            well-maintained.
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="offset-4 ">
+                            <img src="/images/why_autours/extra.png"/>
+                        </div>
+                        <div class="offset-2" style="font-size: 20px;">
+                            Enjoy benefits like Free cancellation, Free amendments, and Instant confirmation when you
+                            book with Autours,<br>
+                            ensuring a hassle-free experience that adapts to your needs.
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
