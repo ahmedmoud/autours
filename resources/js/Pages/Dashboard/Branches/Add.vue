@@ -267,11 +267,15 @@ const fetchCountries = async () => {
 }
 
 const addBranch = async () => {
-    if (newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3) {
+    if(newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3){
         if (newBranch.value.pickup_type === 'Airport') {
             $toast.error('please enter a valid abbreviation', {position: "top"})
+            newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
             return
         }
+        newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}  `;
+    } else {
+        newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}  `;
     }
     newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
     try {
