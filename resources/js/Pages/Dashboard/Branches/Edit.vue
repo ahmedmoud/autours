@@ -282,7 +282,7 @@ const fetchCountries = async () => {
 const editBranch = async () => {
     try {
         if (newBranch.value.pickup_type === 'Airport') {
-            if (newBranch.value.abriviation || newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3) {
+            if ( newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3) {
                 $toast.error('please enter a valid abbreviation', {position: "top"})
                 return
             }
