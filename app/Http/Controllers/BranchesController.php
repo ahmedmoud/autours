@@ -50,6 +50,7 @@ class BranchesController extends Controller
             $branch = Branch::query()->find($id);
             $ad = explode(',',$branch->location);
             if(count($ad) > 0 ) {
+                if($branch->location_type == 'Airport')
                 $branch->abriviation = $ad[count($ad) - 1];
             }
             return response()->json([
