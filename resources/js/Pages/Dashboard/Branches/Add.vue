@@ -170,6 +170,7 @@ const newBranch = ref({
     state: '',
     phone: '',
     email: '',
+    pickup_type: '',
     abriviation: '',
     address: '',
     currency: '',
@@ -187,7 +188,7 @@ const location_types = [
         icon: 'hotel'
     },
     {
-        name: 'Building',
+        name: 'Downtown',
         icon: 'building'
     }];
 const states = {
@@ -224,7 +225,6 @@ const currencies = {
     list: ref([]),
     options: ref([]),
 }
-
 
 
 const getRole = async () => {
@@ -267,9 +267,11 @@ const fetchCountries = async () => {
 }
 
 const addBranch = async () => {
-    if(newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3){
-        $toast.error('please enter a valid abbreviation', {position: "top"})
-        return
+    if (newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3) {
+        if (newBranch.value.pickup_type === 'Airport') {
+            $toast.error('please enter a valid abbreviation', {position: "top"})
+            return
+        }
     }
     newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
     try {

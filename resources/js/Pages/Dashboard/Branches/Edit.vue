@@ -188,7 +188,7 @@ const location_types = [
         icon: 'hotel'
     },
     {
-        name: 'Building',
+        name: 'Downtown',
         icon: 'building'
     }];
 const states = {
@@ -282,8 +282,10 @@ const fetchCountries = async () => {
 const editBranch = async () => {
     try {
         if(newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3){
-            $toast.error('please enter a valid abbreviation', {position: "top"})
-            return
+            if (newBranch.value.pickup_type === 'Airport') {
+                $toast.error('please enter a valid abbreviation', {position: "top"})
+                return
+            }
         }
         newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
 
