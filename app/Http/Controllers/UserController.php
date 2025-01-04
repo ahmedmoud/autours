@@ -148,6 +148,7 @@ class UserController extends Controller
             $branch->location = $request->location;
             $branch->adresse = $request->adresse;
             $branch->country = $request->country;
+            $branch->location_type = $request->pickup_type;
             $branch->city = $request->city;
             $branch->phone = $request->phone;
             $branch->lat = $request->lat;

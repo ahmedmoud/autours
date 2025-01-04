@@ -61,31 +61,28 @@
                                 />
                             </el-select>
                             <el-select
-                                v-model="newBranch.state"
+                                v-model="newBranch.pickup_type"
                                 size="large"
                                 filterable
                                 class="col-md-3"
-
                                 remote
                                 reserve-keyword
-                                placeholder="Pickup..."
+                                placeholder="location type..."
                                 remote-show-suffix
-                                :remote-method="remoteStates"
-                                :loading="states.loading.value"
                                 required>
                                 <el-option
-                                    v-for="item in states.list.value"
-                                    :key="item.id"
-                                    :label="item.label"
-                                    :value="item.label"
+                                    v-for="item in location_types"
+                                    :key="item.name"
+                                    :label="item.name"
+                                    :value="item.name"
                                 />
                             </el-select>
 
                             <div class="formbold-mb-3">
 
-                                <div class="input-with-percent ">
+                                <div class="input-with-percent">
                                     <input v-model="newBranch.abriviation" maxlength="3" type="text"
-                                           placeholder="Abriviation"
+                                           placeholder="Abbreviations"
                                            style="padding: 6px 22px; text-transform: uppercase;"
 
                                            class="formbold-form-input " required/>
@@ -174,12 +171,26 @@ const newBranch = ref({
     phone: '',
     email: '',
     abriviation: '',
+    pickup_type: '',
     address: '',
     currency: '',
     lat: '',
     lng: ''
 });
 
+const location_types = [
+    {
+        name: 'Airport',
+        icon: 'plan-departure'
+    },
+    {
+        name: 'Hotel',
+        icon: 'hotel'
+    },
+    {
+        name: 'Building',
+        icon: 'building'
+    }];
 const states = {
     loading: ref(false),
     all: ref([]),
@@ -220,6 +231,7 @@ const getBranch = async () => {
         loading.value = true
         const resp = await axios.get('/branches/edit/' + id.value)
         newBranch.value = resp.data.data
+        newBranch.value.pickup_type = resp.data.data.location_type
         loading.value = false
         console.log(resp.data)
     } catch (e) {
@@ -269,6 +281,10 @@ const fetchCountries = async () => {
 
 const editBranch = async () => {
     try {
+        if(newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3){
+            $toast.error('please enter a valid abbreviation', {position: "top"})
+            return
+        }
         newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
 
         const response = await axios.post('/branches/update', newBranch.value);

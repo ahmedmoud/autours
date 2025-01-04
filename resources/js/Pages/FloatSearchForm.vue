@@ -15,25 +15,11 @@
                         </template>
                         <template #option="slotProps">
                             <div class="flex align-items-center">
-                                <div>{{ slotProps.option }}&nbsp;<i class="fa fa-plane-departure"/></div>
+                                <div>{{ slotProps.option.location }}&nbsp;&nbsp; <i :class=" slotProps.option.location_type === 'Airport' ? 'fa fa-plane-departure' : slotProps.option.location_type === 'Building' ? 'fa fa-building' : 'fa fa-hotel'"/></div>
                             </div>
                         </template>
 
                     </AutoComplete>
-
-<!--                    <Dropdown v-model="form.pickupLoc" :options="locations?.all?.value" :placeholder="form.pickupLoc"-->
-<!--                              filter filter-icon="fa fa-search fa-l" class="col-md-5 md:w-14rem mt-2 ml-4 rounded-0">-->
-<!--                        <template #value="slotProps">-->
-<!--                            <div v-if="slotProps.value" class="flex align-items-center">-->
-<!--                                <div>{{ slotProps.value }}</div>-->
-<!--                            </div>-->
-<!--                        </template>-->
-<!--                        <template #option="slotProps">-->
-<!--                            <div class="flex align-items-center">-->
-<!--                                <div>{{ slotProps.option }}&nbsp;<i class="fa fa-plane-departure"/></div>-->
-<!--                            </div>-->
-<!--                        </template>-->
-<!--                    </Dropdown>-->
                     <div class="col-md-7 row">
                         <div class=" col-md-7 mt-2 date-input">
                             <div class=" ">
@@ -267,11 +253,11 @@ const getLocations = async () => {
 }
 const suggest = (event) => {
         if (!event.query.trim().length) {
-            filteredLocations.value = [...locations.all.value];
+            filteredLocations.value = [...locations.all.value.location];
         } else {
 
             filteredLocations.value = locations.all.value.filter((location) => {
-                return location.toLowerCase().includes(event.query.toLowerCase());
+                return location.location.toLowerCase().includes(event.query.toLowerCase());
             });
         }
 }

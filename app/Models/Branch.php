@@ -20,7 +20,8 @@ class Branch extends Model
         'currency',
         'country',
         'lat',
-        'lng'
+        'lng',
+        'location_type'
     ];
 
     public function company() {

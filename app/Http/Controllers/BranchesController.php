@@ -74,13 +74,14 @@ class BranchesController extends Controller
         try {
             $branch = Branch::query()->find( $request->id);
             $branch->name = $request->name;
-            $branch->location = $request->country.','.$request->city.',' . $request->abriviation;
+            $branch->location = $request->location;
             $branch->adresse = $request->adresse;
             $branch->email = $request->email;
             $branch->phone = $request->phone;
             $branch->country = $request->country;
             $branch->city = $request->city;
             $branch->currency = $request->currency;
+            $branch->location_type = $request->pickup_type;
             $branch->lat = $request->lat;
             $branch->lng = $request->lng;
             $branch->save();
@@ -91,7 +92,6 @@ class BranchesController extends Controller
             ]);
         } catch (\Exception $e) {
             info($e->getMessage());
-            dd($e->getMessage());
             return response()->json([
                 'error' => 'something went wrong'
             ], StatusCodes::SERVER_ERROR);

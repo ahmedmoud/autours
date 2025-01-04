@@ -50,7 +50,6 @@
                                 reserve-keyword
                                 placeholder="City..."
                                 remote-show-suffix
-                                :remote-method="remoteCountries"
                                 :loading="branchCities.loading.value"
                                 @click="getCitiesForBranches()"
                                 required>
@@ -62,23 +61,20 @@
                                 />
                             </el-select>
                             <el-select
-                                v-model="newBranch.state"
+                                v-model="newBranch.pickup_type"
                                 size="large"
                                 filterable
                                 class="col-md-3"
-
                                 remote
                                 reserve-keyword
-                                placeholder="Pickup..."
+                                placeholder="location type..."
                                 remote-show-suffix
-                                :remote-method="remoteStates"
-                                :loading="states.loading.value"
                                 required>
                                 <el-option
-                                    v-for="item in states.list.value"
-                                    :key="item.id"
-                                    :label="item.label"
-                                    :value="item.label"
+                                    v-for="item in location_types"
+                                    :key="item.name"
+                                    :label="item.name"
+                                    :value="item.name"
                                 />
                             </el-select>
 
@@ -181,6 +177,19 @@ const newBranch = ref({
     lng: ''
 });
 
+const location_types = [
+    {
+        name: 'Airport',
+        icon: 'plan-departure'
+    },
+    {
+        name: 'Hotel',
+        icon: 'hotel'
+    },
+    {
+        name: 'Building',
+        icon: 'building'
+    }];
 const states = {
     loading: ref(false),
     all: ref([]),
@@ -258,6 +267,10 @@ const fetchCountries = async () => {
 }
 
 const addBranch = async () => {
+    if(newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3){
+        $toast.error('please enter a valid abbreviation', {position: "top"})
+        return
+    }
     newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
     try {
         const response = await axios.post('/upload/branch', newBranch.value);

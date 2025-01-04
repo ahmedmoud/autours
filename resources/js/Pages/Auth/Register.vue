@@ -1,10 +1,9 @@
 <template>
     <header-one/>
 
-    <div id="wrapper">
+    <div id="">
         <!-- content begin -->
-        <div class="no-bottom no-top" id="content"
-             style="background-image: url('/images/background/manage-booking-div.jpg')">
+        <section class="no-bottom no-top" style="width:110%; background-image: url('/images/background/manage-booking-div.jpg')">
             <div id="top"></div>
             <!-- section begin -->
             <section id="subheader" class="jarallax ">
@@ -90,8 +89,8 @@
                                             <div class="row">
                                                 <div class="col-md-12 mt-3">
                                                     <div class="field-set">
-                                                        <input placeholder="E-mail" v-model="loginForm.email"
-                                                               type="email" class="input-text"/>
+                                                        <input  placeholder="E-mail" v-model="loginForm.email"
+                                                               type="email" class="col-md-10 input-text"/>
                                                     </div>
                                                 </div>
 
@@ -99,7 +98,7 @@
                                                     <div class="field-set">
                                                         <input v-model="loginForm.password" type='password'
                                                                name='password' placeholder="Password" id='password'
-                                                               class="input-text">
+                                                               class="col-md-10 input-text">
                                                     </div>
                                                 </div>
 
@@ -219,7 +218,7 @@
                     </div>
                 </div>
             </section>
-        </div>
+        </section>
         <!-- content close -->
     </div>
     <Footer/>
