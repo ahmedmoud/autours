@@ -52,6 +52,8 @@ class BranchesController extends Controller
             if(count($ad) > 0 ) {
                 if($branch->location_type == 'Airport')
                 $branch->abriviation = $ad[count($ad) - 1];
+                else
+                    $branch->abriviation = null;
             }
             return response()->json([
                 'data' => $branch
