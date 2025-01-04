@@ -73,7 +73,7 @@ onMounted(() => {
                                 Supplier</a>
                         </div>
                         <div class="mt-1">
-                            <a href="#where-we-are" class="text-black text-decoration-underline footer_link" >Where we
+                            <a href="/where-we-are" class="text-black text-decoration-underline footer_link" >Where we
                                 are?</a>
                         </div>
                         <div class="mt-1">

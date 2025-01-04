@@ -31,7 +31,7 @@
 
                     <div class="mb-5">
                         <div class="offset-4 ">
-                            <img style="margin-left: 8%" src="/images/why_autours/drivers-fleet.png"/>
+                            <img style="margin-left: 12%" src="/images/why_autours/drivers-fleet.png"/>
                         </div>
                         <div class="offset-2" style="font-size: 20px;">
                             We offer a wide range of vehicles to suit any occasion, from compact cars for city driving
