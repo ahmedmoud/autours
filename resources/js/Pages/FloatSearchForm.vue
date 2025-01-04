@@ -15,7 +15,7 @@
                         </template>
                         <template #option="slotProps">
                             <div class="flex align-items-center">
-                                <div>{{ slotProps.option.location }}&nbsp;&nbsp; {{slotProps.option.location_type !== 'Airport' ? slotProps.option.location_type : ''}} &nbsp;&nbsp;<i :class=" slotProps.option.location_type === 'Airport' ? 'fa fa-plane-arrival' : slotProps.option.location_type === 'Downtown' ? 'fa fa-building' : 'fa fa-hotel'"/></div>
+                                <div>{{ slotProps.option.location }}&nbsp;&nbsp; <i :class=" slotProps.option.location_type === 'Airport' ? 'fa fa-plane-arrival' : slotProps.option.location_type === 'Downtown' ? 'fa fa-building' : 'fa fa-hotel'"/></div>
                             </div>
                         </template>
 
