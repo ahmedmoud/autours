@@ -6,7 +6,7 @@
                 <div class="row">
 
                     <label class="text-white">Select Pickup Location</label>
-                    <AutoComplete v-model="form.pickupLoc" :class="'col-md-5'" optionLabel="name"
+                    <AutoComplete v-model="form.pickupLoc" v-on:item-select="selectLocation($event)" :class="'col-md-5'" optionLabel="name"
                                   :suggestions="filteredLocations" @complete="suggest" placeholder="Enter your Location">
                         <template #value="slotProps">
                             <div v-if="slotProps.value" class="flex align-items-center">
@@ -205,7 +205,10 @@ const disabledDate = (time) => {
     return time < date
 }
 
-
+const selectLocation = ($event) => {
+    console.log(form.pickupLoc)
+    form.pickupLoc = form.pickupLoc.location
+}
 const getLogos = async () => {
     try {
         loading.value = true
@@ -269,8 +272,7 @@ const search = async () => {
     form.date_from = form.date[0];
     form.date_to = form.date[1];
 
-    console.log("here")
-    console.log(form.date[0])
+    console.log(form.pickupLoc)
     if (form.date[0] == undefined || form.date_from.value === null) {
         alert('Please Select Start Date.')
         loading.value = false
