@@ -284,13 +284,11 @@ const editBranch = async () => {
         if(newBranch.value.abriviation === null || newBranch.value.abriviation === [] || newBranch.value.abriviation === '' || newBranch.value.abriviation.length !== 3){
             if (newBranch.value.pickup_type === 'Airport') {
                 $toast.error('please enter a valid abbreviation', {position: "top"})
-                newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${newBranch.value.abriviation.toUpperCase()})`;
                 return
             }
-            newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}  `;
-        } else {
-            newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}  `;
         }
+        let abb = newBranch.value.pickup_type === 'Airport' ? newBranch.value.abriviation : newBranch.value.pickup_type
+        newBranch.value.location = `${newBranch.value.country}, ${newBranch.value.city}, (${abb})`;
         const response = await axios.post('/branches/update', newBranch.value);
         console.log(response)
         if (response.data.status) {
