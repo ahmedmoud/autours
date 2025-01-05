@@ -25,7 +25,7 @@ We appreciate your prompt attention to this booking and look forward to your con
 Payment Information:<br>
 • Please note that the full rental amount has been paid directly to Autours. Ensure the car is prepared and available at the designated pickup address.<br>
 Important Information:<br>
-• The customer has selected the Free Cancellation option, allowing them to cancel up to  {{count(json_decode($body)->cancelationPolicy) && json_decode($body)->cancelationPolicy[0]->id == 48 ? '48' : '' }} {{ json_decode($body)->cancelationPolicy->id == 1 ? '24' : ''}} hours before the pick-up time.<br>
+{{--• The customer has selected the Free Cancellation option, allowing them to cancel up to  {{count(json_decode($body)->cancelationPolicy) && json_decode($body)->cancelationPolicy[0]->id == 48 ? '48' : '' }} {{ json_decode($body)->cancelationPolicy->id == 1 ? '24' : ''}} hours before the pick-up time.<br>--}}
 • Please confirm that the car will be ready as per the booking details provided.<br>
 If you have any questions or require additional information, please do not hesitate to contact us.<br>
 Thank you for your continued partnership.<br>
