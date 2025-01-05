@@ -206,7 +206,6 @@ const disabledDate = (time) => {
 }
 
 const selectLocation = ($event) => {
-    console.log(form.pickupLoc)
     form.pickupLoc = form.pickupLoc.location
 }
 const getLogos = async () => {
