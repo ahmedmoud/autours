@@ -99,8 +99,8 @@
                                                            remote-show-suffix
                                                            :remote-method="remoteLocations"
                                                            :loading="locations.loading.value">
-                                                    <el-option v-for="item in locations.all.value" :label="item"
-                                                               :value="item"/>
+                                                    <el-option v-for="item in locations.all.value" :label="item.location"
+                                                               :value="item.location"/>
                                                 </el-select>
                                             </div>
                                             <div class="mb-3 row">
@@ -285,6 +285,7 @@
                                                     }} <small style="font-size: 14px;">
                                                         ({{ item?.vehicle_count }})</small></strong>
                                                 <el-checkbox
+                                                    style="width: 30px !important;"
                                                     class="col-md-1"
                                                     size="large"
                                                     @click="SelectCategory(item.id)"
@@ -593,7 +594,7 @@
                                                         <div style="margin-top: -5%">
                                                             <el-tooltip placement="right-start" trigger="hover">
                                                                 <template  #content>
-                                                                    <div class="" style="font-size: 1vw;">
+                                                                    <div class="" style="font-size: .8vw;">
                                                                         {{ vehicle?.fuel_policy?.description }}
                                                                     </div>
                                                                 </template>
