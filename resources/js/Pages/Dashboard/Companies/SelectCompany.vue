@@ -64,9 +64,9 @@ const changeCompany = async (companyId) => {
         form.selectedCompany = companyId
         const response = await axios.post('/change-company', form);
         if (response.data.success) {
-            isOpen.value = false
             $toast.success('parent has been assigned successfully', {position: "top"})
         }
+        window.location.reload()
         await getData()
         tableData.value = response.data;
     } catch (error) {
