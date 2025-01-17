@@ -28,7 +28,8 @@
                         <span class="hide-menu"></span>
                     </li>
                     <li class="sidebar-item">
-                        <a :class="  ['sidebar-link', isActive('index') ? 'active' : '']" href="/index" aria-expanded="false">
+                        <a :class="  ['sidebar-link', isActive('index') ? 'active' : '']" href="/index"
+                           aria-expanded="false">
                                                <span>
                                                   <i class="ti ti-layout-dashboard"></i>
                                               </span>
@@ -36,18 +37,26 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a :class="  ['sidebar-link', isActive('company') ? 'active' : '']" href="/company" aria-expanded="false">
+                        <a :class="  ['sidebar-link', isActive('company') ? 'active' : '']" href="/company"
+                           aria-expanded="false">
                             <span><i class="ti ti-user-circle"></i></span>
                             <span class="hide-menu">My Profile</span>
                         </a>
                     </li>
+                    <li class="sidebar-item" v-if="admin">
+                        <a :class="  ['sidebar-link', isActive('compan') ? 'active' : '']" href="/companies"
+                           aria-expanded="false">
+                            <span><i class="ti ti-building-store"></i></span>
+                            <span class="hide-menu">My Companies</span>
+                        </a>
+                    </li>
                     <li class="sidebar-item" v-if="activeSupplier">
-                        <a :class="  ['sidebar-link', isActive('branches') ? 'active' : '']" href="/branches" aria-expanded="false">
+                        <a :class="  ['sidebar-link', isActive('branches') ? 'active' : '']" href="/branches"
+                           aria-expanded="false">
                             <span><i class="ti ti-building-store"></i></span>
                             <span class="hide-menu">My Branches</span>
                         </a>
                     </li>
-
                     <div v-if="admin">
                         <li class="sidebar-item">
                             <a :class="  ['sidebar-link', isActive('margin') ? 'active' : '']" href="/margin">
@@ -66,7 +75,8 @@
                                 <span>Categories</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a :class="  ['sidebar-link', isActive('specifications') ? 'active' : '']" href="/specifications">
+                            <a :class="  ['sidebar-link', isActive('specifications') ? 'active' : '']"
+                               href="/specifications">
                                 <i class="ti ti-car-turbine"></i>
                                 <span>Specifications</span></a>
                         </li>
@@ -126,30 +136,35 @@
                             <span>All Rentals</span></a>
                     </li>
                     <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
-                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']" href="/rentals/admin?status=2">
+                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']"
+                           href="/rentals/admin?status=2">
                             <i class="ti ti-checks" aria-hidden="true"></i>
                             <span>Confirmed</span></a>
                     </li>
                     <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
-                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']" href="/rentals/admin?status=4">
+                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']"
+                           href="/rentals/admin?status=4">
                             <i class="ti ti-loader" aria-hidden="true"></i>
                             <span>Pending</span></a>
                     </li>
                     <li class="ml-5 sidebar-item child-item-rentals display-none" v-if="admin">
-                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']" href="/rentals/admin?status=3">
+                        <a :class="  ['sidebar-link', isActive('rentals/admin') ? 'active' : '']"
+                           href="/rentals/admin?status=3">
                             <i class="ti ti-forbid" aria-hidden="true"></i>
                             <span>Canceled</span></a>
                     </li>
 
                     <ul class="sidebar-item parent-item" v-if="activeSupplier" @click="openChild('rentals')">
-                        <a :class="  ['sidebar-link', isActive('rentals/supplier') ? 'active' : '']" href="/rentals/supplier">
+                        <a :class="  ['sidebar-link', isActive('rentals/supplier') ? 'active' : '']"
+                           href="/rentals/supplier">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
                             <span>Rentals</span></a>
                     </ul>
 
 
                     <li class="sidebar-item" v-if="supplier || activeSupplier">
-                        <a :class="  ['sidebar-link', isActive('supplier-rental-terms') ? 'active' : '']" href="/supplier-rental-terms">
+                        <a :class="  ['sidebar-link', isActive('supplier-rental-terms') ? 'active' : '']"
+                           href="/supplier-rental-terms">
                             <i class="ti ti-list" aria-hidden="true"></i>
                             <span>My Rental Terms</span></a>
                     </li>
@@ -253,7 +268,7 @@ const getUser = async () => {
 }
 
 const isActive = (name) => {
-   return window.location.href.split('/').pop() === name
+    return window.location.href.split('/').pop() === name
 }
 
 onMounted(() => {

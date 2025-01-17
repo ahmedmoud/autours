@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_companies', function (Blueprint $table) {
-            $table->unsignedBigInteger('company_id')->nullable();
-            $table->string('sub_company_id')->nullable()->change();
-            $table->dropUnique('email');
-        });
+      Schema::table('users', function (Blueprint $table) {
+          $table->unsignedBigInteger('parent_company_id')->nullable();
+      });
     }
 
     /**

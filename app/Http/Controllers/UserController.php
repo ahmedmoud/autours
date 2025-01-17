@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\StatusCodes;
 use App\Http\Requests\CreateBranchRequest;
+use App\Http\Requests\Dashboard\AssignParentRequest;
 use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\SetNewPasswordRequest;
 use App\Mail\UsersEmail\ForgetPasswordEmail;
@@ -14,11 +15,25 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Branch;
 use Illuminate\Support\Facades\Hash;
-use Inertia\Testing\Concerns\Has;
-use MongoDB\Driver\Session;
 
 class UserController extends Controller
 {
+
+    public function assignCompanies(AssignParentRequest $request)
+    {
+        try {
+            User::query()->where('id', $request->selectedCompany)->update([
+                'parent_company_id' => $request->parentCompany,
+                'role' => 'active_supplier'
+            ]);
+            return response(['success' => true]);
+        } catch (\Exception $exception) {
+            info($exception->getMessage());
+            return response([
+                'success' => false
+            ], StatusCodes::SERVER_ERROR);
+        }
+    }
 
     public function upload(Request $request)
     {
@@ -27,7 +42,7 @@ class UserController extends Controller
 
         if ($request->hasFile('logo')) {
             $image = $request->file('logo');
-            $image_name = Auth::user()->name . "_logo". md5(Carbon::now()->toDateString()) . "." . $request->file('logo')->extension();
+            $image_name = Auth::user()->name . "_logo" . md5(Carbon::now()->toDateString()) . "." . $request->file('logo')->extension();
             $image->move(public_path('img'), $image_name);
 
             $updateData['logo'] = $image_name;
@@ -42,20 +57,23 @@ class UserController extends Controller
             }
         }
 
-//        if ($request->has('oldPass') && Hash::check($request->oldPass, $user->password)) {
-//
-//        } else{
-//            return response()->json(['message' => 0]);
-//        }
-
 
         $user->update($updateData);
 
         return response()->json(['message' => 1]);
 
-        // return response()->json(['message' => 'No file uploaded'], 400);
     }
 
+    public function changeCompany(Request $request)
+    {
+        $user = User::query()->where('id',$request->selectedCompany)->first();
+
+        if ($user) {
+            Auth::login($user); // Log in the new user
+            $request->session()->regenerate();
+        }
+
+    }
     public function role()
     {
         $user = Auth::user();
@@ -93,6 +111,21 @@ class UserController extends Controller
             $user->language = explode(',', auth()->user()->language);
         return $user;
 
+    }
+
+    public function Companies()
+    {
+        if (\auth()->user()->role == 'admin') {
+            return User::query()
+                ->whereIn('role', ['active_supplier', 'under_review'])
+                ->with(['parent'])
+                ->get();
+        } else {
+            return User::query()
+                ->whereIn('role', ['active_supplier', 'under_review'])
+                ->where('parent_company_id', \auth()->user()->id)
+                ->get();
+        }
     }
 
     public function getLogos()

@@ -3,7 +3,8 @@
 
     <div id="">
         <!-- content begin -->
-        <section class="no-bottom no-top" style="width:110%; background-image: url('/images/background/manage-booking-div.jpg')">
+        <section class="no-bottom no-top"
+                 style="width:110%; background-image: url('/images/background/manage-booking-div.jpg')">
             <div id="top"></div>
             <!-- section begin -->
             <section id="subheader" class="jarallax ">
@@ -89,7 +90,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 mt-3">
                                                     <div class="field-set">
-                                                        <input  placeholder="E-mail" v-model="loginForm.email"
+                                                        <input placeholder="E-mail" v-model="loginForm.email"
                                                                type="email" class="col-md-10 input-text"/>
                                                     </div>
                                                 </div>
@@ -302,6 +303,8 @@ const postUserData = async () => {
                 window.location.href = '/'
             }, 1000)
         }
+        loading.value = false
+
     } catch ($error) {
         loading.value = false
         $toast.error($error.response.data.message, {position: 'top'})
@@ -324,7 +327,13 @@ const manageBooking = async () => {
         if (response.data.status) {
             $toast.success('You Have Successfully Logged In', {position: 'top'})
             setTimeout(function () {
+                console.log(response.data.children)
                 if (response.data.user_type !== 'customer') {
+                    if (response.data.children) {
+
+                        window.location.href = '/select-company'
+                        return;
+                    }
                     window.location.href = '/index'
                 } else {
                     window.location.href = '/'

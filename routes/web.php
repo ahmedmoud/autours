@@ -65,7 +65,7 @@ Route::inertia('/my-profile', 'MyProfile');
 Route::inertia('/update-booking', 'UpdateBooking');
 Route::get('/my-current-user-profile', [UserController::class, 'profile']);
 
-Route::inertia('company', 'Dashboard/CreateCompany');
+Route::inertia('company', 'Dashboard/Companies/CreateCompany');
 Route::inertia('index', 'Dashboard/Index')->middleware('admin_or_supplier');
 Route::inertia('suppliers', 'Dashboard/Suppliers');
 
@@ -88,6 +88,8 @@ Route::post('/post/user/data', [RegisterController::class, 'store']);
 Route::get('/get/logos', [UserController::class, 'getLogos']);
 Route::get('get/priceTax', [UserController::class, 'priceTax']);
 Route::get('/get/user/data', [UserController::class, 'index']);
+Route::get('/get/companies', [UserController::class, 'Companies']);
+Route::post('/assign-parent', [UserController::class, 'assignCompanies']);
 Route::get('get/user/role', [UserController::class, 'role']);
 Route::post('upload', [UserController::class, 'upload']);
 
@@ -129,6 +131,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/get/customers', [UserController::class, 'getCustomers']);
 
     Route::inertia('categories', 'Dashboard/Categories');
+    Route::inertia('companies', 'Dashboard/Companies/AssignParent');
     Route::post('post/categories', [CategoriesController::class, 'createCategories']);
     Route::post('update/categories', [CategoriesController::class, 'updateCategories']);
     Route::post('delete/categories', [VehicleController::class, 'deleteCategories']);
@@ -194,6 +197,8 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::get('get/location-types', [LocationTypesController::class, 'index']);
 
     Route::inertia('price-list', 'Dashboard/PriceList');
+    Route::inertia('/select-company', 'Dashboard/Companies/SelectCompany');
+    Route::post('/change-company', [UserController::class, 'changeCompany']);
 
     Route::inertia('supplier-rental-terms', 'Dashboard/SupplierRentalTerms');
     Route::post('select-rental-terms', [RentalTermsController::class, 'assignRentalTerms']);

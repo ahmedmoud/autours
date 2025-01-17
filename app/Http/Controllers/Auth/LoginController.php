@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Enums\StatusCodes;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Inertia\Inertia;
+use function Symfony\Component\Translation\t;
 
 class LoginController extends Controller
 {
@@ -56,26 +58,30 @@ class LoginController extends Controller
                 'email' => ['required', 'email'],
                 'password' => ['required'],
             ]);
+
+
+            $user = User::query()->where('email', $request->email)->with(['children'])->first();
+
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-//                return redirect()->intended('/index');
             }
-        if(\auth()->user()) {
+            if (\auth()->user()) {
+                return response()->json([
+                    'data' => [],
+                    'status' => true,
+                    'children' => count($user->children),
+                    'user_type' => \auth()->user()->role
+                ]);
+            }
             return response()->json([
-                'data' => [],
-                'status' => true,
-                'user_type' => \auth()->user()->role
-            ]);
-        }
-            return response()->json([
-                'message' =>['Credentials not valid'],
+                'message' => ['Credentials not valid'],
                 'status' => false,
             ], StatusCodes::SERVER_ERROR);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage(),
                 'status' => false
-            ]);
+            ], status:StatusCodes::SERVER_ERROR);
         }
 
     }
