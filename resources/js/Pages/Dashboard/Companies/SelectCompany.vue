@@ -66,7 +66,7 @@ const changeCompany = async (companyId) => {
         if (response.data.success) {
             $toast.success('parent has been assigned successfully', {position: "top"})
         }
-        window.location.reload()
+        window.location.href = '/company'
         await getData()
         tableData.value = response.data;
     } catch (error) {
