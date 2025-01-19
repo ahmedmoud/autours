@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PaymentMethodsController;
 use App\Http\Controllers\PromosController;
 use App\Http\Controllers\SpecificationsController;
 use App\Http\Controllers\SubscriberController;
@@ -199,6 +200,9 @@ Route::middleware(['active_supplier'])->group(function () {
     Route::inertia('price-list', 'Dashboard/PriceList');
     Route::inertia('/select-company', 'Dashboard/Companies/SelectCompany');
     Route::post('/change-company', [UserController::class, 'changeCompany']);
+    Route::get('/get/payment_methods', [PaymentMethodsController::class, 'index']);
+    Route::inertia('/supplier/payment_methods', 'Dashboard/Companies/PaymentMethods');
+    Route::post('/payment_methods', [PaymentMethodsController::class, 'store']);
 
     Route::inertia('supplier-rental-terms', 'Dashboard/SupplierRentalTerms');
     Route::post('select-rental-terms', [RentalTermsController::class, 'assignRentalTerms']);

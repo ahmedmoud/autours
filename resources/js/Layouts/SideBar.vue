@@ -57,12 +57,19 @@
                             <span class="hide-menu">My Branches</span>
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a :class="  ['sidebar-link', isActive('payment') ? 'active' : '']" href="/supplier/payment_methods">
+                            <i class="ti ti-credit-card"></i>
+                            <span>Payment Methods</span></a>
+                    </li>
                     <div v-if="admin">
                         <li class="sidebar-item">
                             <a :class="  ['sidebar-link', isActive('margin') ? 'active' : '']" href="/margin">
                                 <i class="ti ti-zoom-money"></i>
                                 <span>Profit Margin</span></a>
                         </li>
+
+
                         <!---->
                         <li class="sidebar-item">
                             <a :class="  ['sidebar-link', isActive('photos') ? 'active' : '']" href="/photos">
