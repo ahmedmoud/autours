@@ -574,7 +574,7 @@ class VehicleController extends Controller
 
             $location = $request->location;
             $currency = $request->currency;
-            $selectedVehicle = Vehicle::where('id', $request->id)->with('locationType','category', 'fuelPolicy', 'branch', 'included', 'specifications', 'supplier.fuelPolicy', 'supplier.rentals.rentalRates', 'fuelPolicy')->first();
+            $selectedVehicle = Vehicle::where('id', $request->id)->with('locationType','category', 'fuelPolicy', 'branch', 'included', 'specifications', 'supplier.fuelPolicy', 'supplier.rentals.rentalRates','supplier.paymentMethods', 'fuelPolicy')->first();
 
             $startDate = Carbon::parse($request->date_from);
             $endDate = Carbon::parse($request->date_to);

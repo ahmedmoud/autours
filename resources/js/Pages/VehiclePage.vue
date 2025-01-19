@@ -461,7 +461,8 @@
                                 <div class=" ml-3 row">
                                     <h3 class="mb-3 col-md-4 text-nowrap">
                                         {{ currency + ' ' + vehicle.final_price }}</h3>
-                                    <p class="col-md-6 text-nowrap" style="color: green;"> <i class="fa fa-arrow-right"/> For {{ daysNumber }}
+                                    <p class="col-md-6 text-nowrap" style="color: green;"><i class="fa fa-arrow-right"/>
+                                        For {{ daysNumber }}
                                         day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
                                         / per
@@ -490,34 +491,39 @@
                                 <div class="col-md-2">
                                     <el-tooltip v-if="vehicle.instant_confirmation"
                                                 placement="right-start">
-                                        <template  #content>
+                                        <template #content>
                                             <div style="font-size: 1vw;">
                                                 Receive instant booking confirmation!
                                             </div>
                                         </template>
                                         <div class="col-md-2 mt-2 text-nowrap bold">
                                             <div class="" id="instant_btn">
-                                                <p style="font-size: 1vw;"><img class="mb-2" width="40" src="/images/icons/instant_confirmation.png"/> Instant Confirmation <i class="fas fa-info-circle" style="color: #6969d8;"></i></p>
+                                                <p style="font-size: 1vw;"><img class="mb-2" width="40"
+                                                                                src="/images/icons/instant_confirmation.png"/>
+                                                    Instant Confirmation <i class="fas fa-info-circle"
+                                                                            style="color: #6969d8;"></i></p>
                                             </div>
                                         </div>
                                     </el-tooltip>
 
                                     <el-tooltip v-if="!vehicle.instant_confirmation"
-                                    placement="right-start">
-                                    <template  #content>
-                                        <div style="font-size: 1vw;" >
-                                            You will receive booking confirmation after the<br>
-                                            requested service availability is verified!
+                                                placement="right-start">
+                                        <template #content>
+                                            <div style="font-size: 1vw;">
+                                                You will receive booking confirmation after the<br>
+                                                requested service availability is verified!
+                                            </div>
+                                        </template>
+                                        <div class="col-md-2  text-nowrap bold">
+                                            <div>
+                                                <p style="font-size: 1vw">
+                                                    <i style="font-size: 1.8vw; color: gold;"
+                                                       class=" px-2 fa fa-ban be_media-left be_media-middle"/>
+                                                    <strong class="mb-5"> On request <i class=" fas fa-info-circle"
+                                                                                        style="color: #6969d8;"></i></strong>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </template>
-                                    <div class="col-md-2  text-nowrap bold">
-                                        <div>
-                                            <p style="font-size: 1vw">
-                                                <i style="font-size: 1.8vw; color: gold;" class=" px-2 fa fa-ban be_media-left be_media-middle"/>
-                                                <strong class="mb-5"> On request  <i class=" fas fa-info-circle" style="color: #6969d8;"></i></strong>
-                                            </p>
-                                        </div>
-                                    </div>
                                     </el-tooltip>
 
                                 </div>
@@ -546,7 +552,9 @@
                                     </div>
                                     <div class="col-md-2">
                                         <span class="py-2 px-1 rounded-1 ml-3"
-                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{ vehicle.supplier_rate }}/10</span>
+                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{
+                                                vehicle.supplier_rate
+                                            }}/10</span>
                                     </div>
                                     <div class="col-md-3">
                                                         <span class="be_media-body"><h5> {{
@@ -558,14 +566,17 @@
                                                                                     ''
                                                             }}</h5>
                                                             <span style="font-size: medium;">(&nbsp;
-                                                                <strong style="color: #f9d602">{{ vehicle.supplier_number_of_reviews }}&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                                                <strong style="color: #f9d602">{{
+                                                                        vehicle.supplier_number_of_reviews
+                                                                    }}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                     </div>
                                     <div class="col-md-4 ">
                                         <p class="text-nowrap mt-2" style="font-size: 18px;">
-                                            <a target="_blank"  :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle?.branch?.lat+','+vehicle?.branch?.lng">
-                                            <i class="fa fa-earth" style="color: navy;"/></a>
+                                            <a target="_blank"
+                                               :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle?.branch?.lat+','+vehicle?.branch?.lng">
+                                                <i class="fa fa-earth" style="color: navy;"/></a>
                                             &nbsp;Address:&nbsp;&nbsp;<small
-                                                style="font-size: 18px;">{{ vehicle?.supplier?.address }}</small></p>
+                                            style="font-size: 18px;">{{ vehicle?.supplier?.address }}</small></p>
                                         <div>
                                             <el-tooltip placement="bottom">
                                                 <template #content>
@@ -576,7 +587,9 @@
                                                 <p style="margin-top: -20px;">
                                                     <strong class="text-nowrap" style="font-size: 1vw;"><i
                                                         class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
-                                                    <strong class="text-nowrap">{{ vehicle?.fuel_policy?.name }} </strong>
+                                                    <strong class="text-nowrap">{{
+                                                            vehicle?.fuel_policy?.name
+                                                        }} </strong>
                                                 </p>
                                             </el-tooltip>
                                         </div>
@@ -603,7 +616,8 @@
                                                         </template>
                                                         <p class="col-md-10 text-nowrap included-font"
                                                            style="font-size: 0.9vw;">
-                                                            {{ item.what_is_included }} <i class="fas fa-info-circle" style="color: #7373e1"/></p>
+                                                            {{ item.what_is_included }} <i class="fas fa-info-circle"
+                                                                                           style="color: #7373e1"/></p>
                                                     </el-tooltip>
                                                     <p v-else class="col-md-10 included-font text-nowrap"
                                                        style="font-size: 0.9vw;">
@@ -786,74 +800,100 @@
                                                 </form>
                                             </div><!-- end col -->
                                             <div class="col-lg-12" v-else-if="user && user.role === 'customer' ">
-                                                <form method="post" @submit.prevent="register">
-                                                    <div class="row">
-                                                        <div class=" formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">Name On Card</label>
-                                                            <div class="countries">
-                                                                <el-input
-                                                                    v-model="bookingForm.name_on_card"
-                                                                    size="large"
-                                                                    filterable
-                                                                    remote
-                                                                    reserve-keyword
-                                                                    placeholder="Name on Card..."
-                                                                    remote-show-suffix
-                                                                    :disabled="loading"
-                                                                    required>
-                                                                </el-input>
+                                                <div class="card" v-if="vehicle?.supplier?.payment_methods?.length > 0">
+                                                    <div class="card-header"> Select payment method</div>
+                                                    <div class="card-body">
+                                                        <el-radio-group v-model="selectedMethod" @change="selectMethod">
+                                                            <div v-for="item in vehicle.supplier.payment_methods"
+                                                                 :key="item.name" class="col-md-12 ">
+                                                                <el-radio :label="item.id" :model-value="item.id">
+                                                                    {{ item.name }}
+                                                                </el-radio>
                                                             </div>
-                                                        </div>
-                                                        <div class="formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">Card Number</label>
-                                                            <div class="row">
-                                                                <el-input
-                                                                    v-model="bookingForm.card_number"
-                                                                    size="large"
-                                                                    filterable
-                                                                    remote
-                                                                    reserve-keyword
-                                                                    placeholder="Enter front card number..."
-                                                                    remote-show-suffix
-                                                                    :disabled="loading"
-                                                                    required>
-                                                                </el-input>
-                                                            </div>
-                                                        </div>
-                                                        <div class=" formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">CVV</label>
-                                                            <el-input
-                                                                v-model="bookingForm.CVV"
-                                                                size="large"
-                                                                class="col-md-4"
-                                                                filterable
-                                                                remote
-                                                                reserve-keyword
-                                                                placeholder="CVV..."
-                                                                :disabled="loading"
+                                                            <
+                                                        </el-radio-group>
+                                                    </div>
+                                                    <div v-if="selectedMethod === 3 || selectedMethod === 2">
+                                                        <div class="card-header">Enter You card data</div>
+                                                        <div class="card-body">
+                                                            <form
+                                                                  method="post"
+                                                                  @submit.prevent="register">
+                                                                <div class="row">
+                                                                    <div class=" formbold-mb-3 col-md-6">
+                                                                        <label class="formbold-form-label">Name On
+                                                                            Card</label>
+                                                                        <div class="countries">
+                                                                            <el-input
+                                                                                v-model="bookingForm.name_on_card"
+                                                                                size="large"
+                                                                                filterable
+                                                                                remote
+                                                                                reserve-keyword
+                                                                                placeholder="Name on Card..."
+                                                                                remote-show-suffix
+                                                                                :disabled="loading"
+                                                                                required>
+                                                                            </el-input>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="formbold-mb-3 col-md-6">
+                                                                        <label class="formbold-form-label">Card
+                                                                            Number</label>
+                                                                        <div class="row">
+                                                                            <el-input
+                                                                                v-model="bookingForm.card_number"
+                                                                                size="large"
+                                                                                filterable
+                                                                                remote
+                                                                                reserve-keyword
+                                                                                placeholder="Enter front card number..."
+                                                                                remote-show-suffix
+                                                                                :disabled="loading"
+                                                                                required>
+                                                                            </el-input>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class=" formbold-mb-3 col-md-6">
+                                                                        <label class="formbold-form-label">CVV</label>
+                                                                        <el-input
+                                                                            v-model="bookingForm.CVV"
+                                                                            size="large"
+                                                                            class="col-md-4"
+                                                                            filterable
+                                                                            remote
+                                                                            reserve-keyword
+                                                                            placeholder="CVV..."
+                                                                            :disabled="loading"
 
-                                                                remote-show-suffix
-                                                                required>
-                                                            </el-input>
-                                                        </div>
+                                                                            remote-show-suffix
+                                                                            required>
+                                                                        </el-input>
+                                                                    </div>
 
-                                                        <div class="row formbold-mb-3 col-md-6">
-                                                            <label class="formbold-form-label">Exp Date</label>
-                                                            <el-input
-                                                                v-model="bookingForm.card_exp_date"
-                                                                size="large"
-                                                                class="col-md-4"
-                                                                filterable
-                                                                remote
-                                                                :disabled="loading"
-                                                                reserve-keyword
-                                                                placeholder="YY/MM"
-                                                                remote-show-suffix
-                                                                required>
-                                                            </el-input>
+                                                                    <div class="row formbold-mb-3 col-md-6">
+                                                                        <label class="formbold-form-label">Exp
+                                                                            Date</label>
+                                                                        <el-input
+                                                                            v-model="bookingForm.card_exp_date"
+                                                                            size="large"
+                                                                            class="col-md-4"
+                                                                            filterable
+                                                                            remote
+                                                                            :disabled="loading"
+                                                                            reserve-keyword
+                                                                            placeholder="YY/MM"
+                                                                            remote-show-suffix
+                                                                            required>
+                                                                        </el-input>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -966,7 +1006,10 @@ const date = ref([]);
 const priceTax = ref("");
 const daysNumber = ref("");
 const loading = ref(false);
-
+const selectedMethod = ref(false);
+const selectMethod = () => {
+    console.log(selectedMethod.value)
+}
 const form = useForm({
     id: "",
     pickupLoc: "",
@@ -1065,8 +1108,6 @@ const getVehicle = async () => {
     try {
 
         loading.value = true
-
-
         form.id = id.value;
         form.currency = localStorage.getItem('currency') ?? 'USD';
 
