@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('payment_method_id');
             $table->timestamps();
         });
-        Schema::table('payment_methods_supplier', function (Blueprint $table) {
+        Schema::table('payment_method_supplier', function (Blueprint $table) {
             $table->foreign('supplier_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
         });
