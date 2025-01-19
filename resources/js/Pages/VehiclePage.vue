@@ -416,10 +416,24 @@
                                     <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price }}</p>
                                 </div>
                                 <hr style="margin-bottom: 5%;"/>
-                                <div class="row">
+                                <div class="row" v-if="selectedMethod === 2">
                                     <strong class="col-md-8">Pay Now</strong>
-                                    <strong class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</strong>
+                                    <strong  class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</strong>
                                 </div>
+                                <div class="row" v-if="selectedMethod === 3">
+                                    <strong class="col-md-8">Pay Now</strong>
+                                    <strong class="col-md-4">{{ currency + ' ' + vehicle.profit_price }}</strong>
+                                    <strong class="col-md-8">Pay at office</strong>
+                                    <strong  class="col-md-4">{{ currency + ' ' + (vehicle.final_price - vehicle.profit_price) }}</strong>
+                                </div>
+
+                                <div class="row" v-if="selectedMethod === 1">
+                                    <strong class="col-md-8">Pay Now</strong>
+                                    <strong class="col-md-4">{{ currency + ' 0' }}</strong>
+                                    <strong class="col-md-8">Pay at office</strong>
+                                    <strong  class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</strong>
+                                </div>
+
                                 <hr style="margin-top: 1%;"/>
                             </div>
                         </div>
@@ -800,7 +814,7 @@
                                                 </form>
                                             </div><!-- end col -->
                                             <div class="col-lg-12" v-else-if="user && user.role === 'customer' ">
-                                                <div class="card" v-if="vehicle?.supplier?.payment_methods?.length > 0">
+                                                <div style="border-radius: 10px;    background-color: #FFF; height: 90%; margin-right: 0.5%;" v-if="vehicle?.supplier?.payment_methods?.length > 0">
                                                     <div class="card-header"> Select payment method</div>
                                                     <div class="card-body">
                                                         <el-radio-group v-model="selectedMethod" @change="selectMethod">
@@ -810,15 +824,14 @@
                                                                     {{ item.name }}
                                                                 </el-radio>
                                                             </div>
-                                                            <
                                                         </el-radio-group>
                                                     </div>
                                                     <div v-if="selectedMethod === 3 || selectedMethod === 2">
                                                         <div class="card-header">Enter You card data</div>
                                                         <div class="card-body">
                                                             <form
-                                                                  method="post"
-                                                                  @submit.prevent="register">
+                                                                method="post"
+                                                                @submit.prevent="register">
                                                                 <div class="row">
                                                                     <div class=" formbold-mb-3 col-md-6">
                                                                         <label class="formbold-form-label">Name On
@@ -1122,6 +1135,9 @@ const getVehicle = async () => {
 
         date.value = response.data.data.date
         daysNumber.value = response.data.data.days
+        if (vehicle.value.supplier?.payment_methods?.length === 1) {
+            selectedMethod.value = vehicle.value.supplier.payment_methods[0].id
+        }
         loading.value = false
 
     } catch (error) {

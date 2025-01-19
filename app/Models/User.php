@@ -83,7 +83,7 @@ class User extends Authenticatable
         return $this->hasMany(User::class, 'parent_company_id', 'id');
     }
     public function paymentMethods() {
-        return $this->belongsToMany(PaymentMethod::class, 'payment_method_supplier','supplier_id', 'id');
+        return $this->belongsToMany(PaymentMethod::class, 'payment_method_supplier','supplier_id', 'payment_method_id');
     }
 
 }

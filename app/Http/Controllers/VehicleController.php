@@ -12,6 +12,8 @@ use App\Http\Requests\GetVehiclePageRequest;
 use App\Models\CurrencyRate;
 use App\Models\Included;
 use App\Models\LocationTypeVehicle;
+use App\Models\PaymentMethod;
+use App\Models\PaymentMethodSupplier;
 use App\Models\SupplierRentalTerm;
 use App\Models\VehicleIncluded;
 use App\Models\VehicleSpecification;
@@ -79,7 +81,7 @@ class VehicleController extends Controller
                     'status' => false
                 ]);
             }
-            $query = $filteredVehicles->with('category', 'fuelPolicy', 'supplier.rentals.rentalRates', 'profit', 'included', 'branch', 'locationType', 'specifications');
+            $query = $filteredVehicles->with('category', 'fuelPolicy', 'supplier.rentals.rentalRates','supplier.paymentMethods', 'profit', 'included', 'branch', 'locationType', 'specifications');
 
             if ($request->priceRange && $request->priceRange !== 0) {
                 $query->where('price', '<=', ($request->priceRange));
@@ -95,6 +97,13 @@ class VehicleController extends Controller
 
                 $query->whereHas('locationType', function (\Illuminate\Database\Eloquent\Builder $query) use ($request) {
                     $query->whereIn('location_type_id', $request->location_type_id);
+                });
+            }
+
+            if ($request->payment_methods) {
+
+                $query->whereHas('supplier.paymentMethods', function (\Illuminate\Database\Eloquent\Builder $query) use ($request) {
+                    $query->whereIn('payment_method_id', $request->payment_methods);
                 });
             }
 
@@ -121,13 +130,22 @@ class VehicleController extends Controller
 
             $branches = Branch::query()->where('location', $location)->get();
             $suppliers = User::query()->whereIn('id', $branches->pluck('company_id'))->get();
-
+            $paymentMethods = PaymentMethod::query()->whereIn('id', PaymentMethodSupplier::query()->whereIn('supplier_id', $branches->pluck('company_id')->toArray())->get()->pluck('payment_method_id')->toArray())->get();
             $vehicles = $query->where('activation', true)->has('profit')->get();
             foreach ($locationTypes as $locationType) {
                 $locationType->vehicle_count = 0;
                 foreach ($vehicles as $vehicle) {
                     if (isset($vehicle->locationType) && count($vehicle->locationType) && $vehicle->locationType[0]->id == $locationType->id) {
                         $locationType->vehicle_count++;
+                    }
+                }
+            }
+
+            foreach ($paymentMethods as $paymentMethod) {
+                $paymentMethod->vehicle_count = 0;
+                foreach ($vehicles as $vehicle) {
+                    if (isset($vehicle->supplier->payment_methods) && count($vehicle->supplier->payment_methods) && $vehicle->supplier->payment_methods[0]->id == $paymentMethod->id) {
+                        $paymentMethod->vehicle_count++;
                     }
                 }
             }
@@ -219,6 +237,7 @@ class VehicleController extends Controller
                 'filteredCategories' => $categories,
                 'filteredSuppliers' => $suppliers,
                 'filteredLocationTypes' => $locationTypes,
+                'paymentMethods' => $paymentMethods,
                 'count' => $count,
                 'max' => $maxPrice,
                 'min' => $minPrice,
@@ -582,10 +601,15 @@ class VehicleController extends Controller
 
             if ($diffInDays >= '1' && $diffInDays < '3') {
                 $selectedVehicle->final_price = ($selectedVehicle->price + (($selectedVehicle->price * $selectedVehicle->profit->per_day_profit) / 100)) * $diffInDays;
+                $selectedVehicle->profit_price =  (($selectedVehicle->price * $selectedVehicle->profit->per_day_profit) / 100) * $diffInDays;
             } else if ($diffInDays >= '3' && $diffInDays <= '7') {
                 $selectedVehicle->final_price = ($selectedVehicle->week_price + (($selectedVehicle->week_price * $selectedVehicle->profit->per_week_profit) / 100)) * $diffInDays;
+                $selectedVehicle->profit_price =  (($selectedVehicle->week_price * $selectedVehicle->profit->per_week_profit) / 100) * $diffInDays;
+
             } else if ($diffInDays >= '8' && $diffInDays < '30') {
                 $selectedVehicle->final_price = ($selectedVehicle->month_price + (($selectedVehicle->month_price * $selectedVehicle->profit->per_month_profit) / 100)) * $diffInDays;
+                $selectedVehicle->profit_price =  (($selectedVehicle->month_price * $selectedVehicle->profit->per_month_profit) / 100) * $diffInDays;
+
             }
 
 
