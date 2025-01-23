@@ -251,92 +251,102 @@
                                 </div>
                                 <div class="col-md-12 my-2" style="background: #fff;">
                                     <div class="row" @click="collapse('ms')">
-                                        <h4 class="col-md-10" style="color: #000; margin-bottom: -30px">
+                                        <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
                                             Location Types</h4> <i
                                         :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-ms' "/></div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="ms">
                                         <div class="row" v-for="locationType in filteredLocationTypes">
                                             <div class="row" v-if="locationType?.vehicle_count">
-                                                <strong class="col-md-10 mt-2">{{
+                                                <strong class="col-md-10   mt-3">{{
                                                         locationType.name
                                                     }} <small style="font-size: 14px;">
                                                         ({{ locationType?.vehicle_count }})</small></strong>
-                                                <el-checkbox
-                                                    class="col-md-1"
-                                                    size="large"
-                                                    :model="locationType"
+
+                                                <Checkbox
+                                                    binary
+                                                    :model-value="checkIfLocationTypeSelected(locationType.id)"
+                                                    class="col-md-2  mt-3"
                                                     @click="selectLocationType(locationType.id)"
                                                 />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 my-2" style="background: #fff;">
+                                <div class="col-md-12 my-5" style="background: #fff;">
                                     <div class="row" @click="collapse('cat')">
-                                        <h4 class="col-md-10" style="color: #000; margin-bottom: -30px">
+                                        <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
                                             Categories</h4> <i
                                         :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-cat' "/></div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="cat">
                                         <div class="row" v-for="item in filteredCategories">
                                             <div class="row">
-                                                <strong class="col-md-10 mt-2">{{
+                                                <strong class="col-md-10 mt-3">{{
                                                         item.name
                                                     }} <small style="font-size: 14px;">
                                                         ({{ item?.vehicle_count }})</small></strong>
-                                                <el-checkbox
-                                                    style="width: 30px !important;"
-                                                    class="col-md-1"
-                                                    size="large"
+
+                                                <Checkbox
+                                                    binary
+                                                    :model-value="checkIfCategorySelected(item.id)"
+                                                    class="col-md-2  mt-3"
                                                     @click="SelectCategory(item.id)"
                                                 />
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 my-2" style="background: #fff;">
+                                <div class="col-md-12 my-5" style="background: #fff;">
                                     <div class="row" @click="collapse('lt')">
-                                        <h4 class="col-md-10" style="color: #000; margin-bottom: -30px">
+                                        <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
                                             Suppliers</h4> <i
                                         :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-lt' "/></div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="lt">
                                         <div class="row" v-for="supplier in filteredSuppliers">
                                             <div class="row" v-if="supplier?.vehicle_count">
-                                                <strong class="col-md-10 mt-2">{{
+                                                <strong class="col-md-10 mt-3">{{
                                                         supplier.company
                                                     }} <small style="font-size: 14px;">
                                                         ({{ supplier?.vehicle_count }})</small></strong>
-                                                <el-checkbox
-                                                    class="col-md-1"
-                                                    size="large"
+
+
+                                                <Checkbox
+                                                    binary
+                                                    :model-value="checkIfSupplierSelected(supplier.id)"
+                                                    class="col-md-2  mt-3"
                                                     @click="selectSupplier(supplier.id)"
                                                 />
+
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 my-2" style="background: #fff;">
+                                <div class="col-md-12 my-5" style="background: #fff;">
                                     <div class="row" @click="collapse('payment')">
-                                        <h4 class="col-md-10" style="color: #000; margin-bottom: -30px">
+                                        <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
                                             Payment Methods</h4> <i
-                                        :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-payment' "/></div>
+                                        :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-payment' "/>
+                                    </div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="payment">
                                         <div class="row" v-for="paymentMethod in paymentMethods">
-                                            <div class="row" >
-                                                <strong class="col-md-10 mt-2">{{
+                                            <div class="row">
+                                                <strong class="col-md-10 mt-3">{{
                                                         paymentMethod.name
                                                     }}
-<!--                                                    <small style="font-size: 14px;">({{ paymentMethod?.vehicle_count }})</small>-->
+                                                    <!--                                                    <small style="font-size: 14px;">({{ paymentMethod?.vehicle_count }})</small>-->
                                                 </strong>
-                                                <el-checkbox
-                                                    class="col-md-1"
-                                                    size="large"
-                                                    :model="selectedPaymentMethod"
+
+                                                <Checkbox
+                                                    binary
+                                                    :model-value="checkIfPaymentMethodSelected(paymentMethod.id)"
+                                                    class="col-md-2  mt-3"
                                                     @click="selectPaymentMethod(paymentMethod.id)"
                                                 />
                                             </div>
@@ -346,7 +356,7 @@
 
                                 <div v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
                                     <div class="col-md-12 my-2  ">
-                                        <div @click="collapse(item.id)" class="row"><h4 class="col-md-10"
+                                        <div @click="collapse(item.id)" class="row"><h4 class="col-md-9 mr-3"
                                                                                         style="color: #000; margin-bottom: -30px">
                                             {{ item.name }}</h4>
                                             <i :class="'col-md-2 fa fa-arrow-down cursor-pointer ' +  'pointer-arrow-' + item.id"/>
@@ -354,11 +364,12 @@
                                         <hr style="margin-top: 20px"/>
                                         <div style="margin-top: -35px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
-                                                <div class="row col-md-12" v-if="option.vehicle_count">
-                                                    <div class="col-md-11 text-nowrap row"><strong
-                                                        class="col-md-7 ">{{ option.value }}
+                                                <div class="row " v-if="option.vehicle_count">
+                                                    <div class="col-md-10 my-2 text-nowrap ">
+                                                        <strong class="col-md-9 ">{{ option.value }}
                                                         {{
-                                                            item.name == 'Number of seats' || item.name == 'Number of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
+                                                            item.name == 'Number of seats' ||
+                                                            item.name == 'Number of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
                                                         }}
                                                         <small
                                                             style="font-size: 14px;">({{
@@ -366,11 +377,12 @@
                                                             }})</small>
                                                     </strong>
                                                     </div>
-                                                    <el-checkbox
-                                                        class="col-md-1 "
-                                                        size="large"
-                                                        :model="specification[i]"
-                                                        @click="selectSpecification(item, option)"/>
+                                                    <Checkbox
+                                                        binary
+                                                        :model-value="checkIfSpecificationSelected(item, option)"
+                                                        class="col-md-2  mt-3"
+                                                        @click="selectSpecification(item, option)"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -524,7 +536,9 @@
                                                         </template>
                                                         <div>
                                                         <span class="py-2 px-1 rounded-1"
-                                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{ vehicle?.supplier_rate }}/10</span>
+                                                              style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{
+                                                                vehicle?.supplier_rate
+                                                            }}/10</span>
                                                         </div>
                                                     </el-tooltip>
                                                     <div class="col-md-2">
@@ -539,7 +553,9 @@
                                                             }}
                                                         </h5><span
                                                             style="font-size: medium; ">(&nbsp;<strong
-                                                            style="color: #f9d602">{{ vehicle.supplier_number_of_reviews }}&nbsp;</strong>+&nbsp;reviews)</span></span>
+                                                            style="color: #f9d602">{{
+                                                                vehicle.supplier_number_of_reviews
+                                                            }}&nbsp;</strong>+&nbsp;reviews)</span></span>
                                                     </div>
                                                     <el-tooltip v-if="vehicle.instant_confirmation"
                                                                 placement="right-start">
@@ -733,6 +749,8 @@ import Footer from "../components/Footer.vue";
 import Loader from "../components/Loader.vue";
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
+import Checkbox from 'primevue/checkbox';
+import 'primevue/resources/themes/aura-light-amber/theme.css'
 
 const isOpen = ref(false)
 
@@ -854,6 +872,10 @@ const search = () => {
     }
     router.get('/results', form)
 };
+
+const checkIfCategorySelected = (category_id) => {
+    return (category.value?.indexOf(category_id) >= 0)
+}
 const SelectCategory = (category_id) => {
 
     if (category.value?.indexOf(category_id) >= 0) {
@@ -864,6 +886,10 @@ const SelectCategory = (category_id) => {
     form.category = category.value
     getVehicles()
 }
+
+const checkIfSupplierSelected = (supplier_id) => {
+    return supplier.value.indexOf(supplier_id) >= 0
+}
 const selectSupplier = (supplier_id) => {
     if (supplier.value.indexOf(supplier_id) >= 0) {
         supplier.value.splice(supplier.value.indexOf(supplier_id), 1);
@@ -872,6 +898,9 @@ const selectSupplier = (supplier_id) => {
     }
     form.supplier = supplier.value
     getVehicles()
+}
+const checkIfPaymentMethodSelected = (payment_method_id) => {
+    return (selectedPaymentMethod.value.indexOf(payment_method_id) >= 0);
 }
 const selectPaymentMethod = (payment_method_id) => {
     if (selectedPaymentMethod.value.indexOf(payment_method_id) >= 0) {
@@ -882,6 +911,11 @@ const selectPaymentMethod = (payment_method_id) => {
     form.payment_methods = selectedPaymentMethod.value
     getVehicles()
 }
+
+const checkIfLocationTypeSelected = (locationTypeId) =>
+{
+    return locationType.value.indexOf(locationTypeId) >= 0;
+}
 const selectLocationType = (locationTypeId) => {
     if (locationType.value.indexOf(locationTypeId) >= 0) {
         locationType.value.splice(locationType.value.indexOf(locationTypeId), 1);
@@ -890,9 +924,23 @@ const selectLocationType = (locationTypeId) => {
     }
     form.location_type_id = locationType.value
     getVehicles()
+
 }
 
+const checkIfSpecificationSelected = (item, option) => {
+    let found = 0;
+
+    for (let i = 0; i < form.specifications.length; i++) {
+        if (form.specifications[i].name === item.name && form.specifications[i].option === option) {
+            found = 1
+        }
+    }
+
+    return found === 1
+
+}
 const selectSpecification = (item, option) => {
+    console.log("here")
     let found = 0;
     for (let i = 0; i < form.specifications.length; i++) {
         if (form.specifications[i].name === item.name) {
@@ -902,6 +950,8 @@ const selectSpecification = (item, option) => {
     }
     if (found === 0) {
         form.specifications.push({name: item.name, option: option})
+    } else  {
+        form.specifications.splice(form.specifications.indexOf({name: item.name, option: option}))
     }
     getVehicles()
 }
