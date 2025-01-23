@@ -22,7 +22,8 @@ class Rental extends Model
         'start_time',
         'end_time',
         'comment',
-        'rate'
+        'rate',
+        'payment_method_id'
     ];
 
     protected $casts = [
@@ -48,5 +49,7 @@ class Rental extends Model
     public function rentalRates() {
         return $this->hasMany(RentalRate::class, 'rental_id', 'id');
     }
-
+    public function paymentMethod() {
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id', 'id');
+    }
 }

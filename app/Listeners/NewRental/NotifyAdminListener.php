@@ -6,6 +6,7 @@ use App\Mail\NewRental\NewBookingAdmin;
 use App\Models\Branch;
 use App\Models\Category;
 use App\Models\Included;
+use App\Models\PaymentMethod;
 use App\Models\User;
 use App\Models\VehicleIncluded;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -28,6 +29,7 @@ class NotifyAdminListener implements ShouldQueue
     {
         $user = User::query()->where('role','admin')->first();
         $event->rental->vehicle = $event->rental->vehicle;
+        $event->rental->paymentMethod = PaymentMethod::query()->find($event->rental->payment_method_id);
         $event->rental->vehicle->category = Category::query()->find($event->rental->vehicle->category_id);
         $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_loc)->first();
         $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();

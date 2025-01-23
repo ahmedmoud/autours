@@ -7,6 +7,7 @@ use App\Mail\NewRental\NewBookingCustomer;
 use App\Models\Branch;
 use App\Models\Included;
 use App\Models\LocationType;
+use App\Models\PaymentMethod;
 use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleIncluded;
@@ -30,6 +31,7 @@ class NotifyCustomerListener implements ShouldQueue
         $user = User::query()->find($event->rental->customer_id);
         $event->rental->location_type = Vehicle::query()->where('id', $event->rental->vehicle->id)->with('locationType')->first();
         $event->rental->vehicle = $event->rental->vehicle;
+        $event->rental->paymentMethod = PaymentMethod::query()->find($event->rental->payment_method_id);
         $event->rental->branch = Branch::query()->where('id', $event->rental->vehicle->pickup_loc)->first();
         $event->rental->supplier = User::query()->where('id', $event->rental->vehicle->supplier)->first();
         $event->rental->customer = User::query()->where('id', $event->rental->customer_id)->first();

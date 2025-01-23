@@ -203,10 +203,12 @@ class BookingsController extends Controller
 //                throw new \Exception("Sorry There is no enough stock to book this car!");
 //            }
 
+            $supplierPaymentMethod = User::query()->with(['paymentMethods'])->find($vehicleWithPrice->supplier);
             $vehicle = Vehicle::query()->with('branch')->find($request->id);
             $item = new Rental();
             $item->customer_id = auth()->user()->id;
             $item->supplier_id = $vehicleWithPrice->supplier;
+            $item->payment_method_id = count($supplierPaymentMethod->paymentMethods ) ? $supplierPaymentMethod->paymentMethods[0]->id : null;
 
             $item->order_status = $vehicle->instant_confirmation >= 1 ? RentalStatuses::CONFIRMED : RentalStatuses::PENDING;
 

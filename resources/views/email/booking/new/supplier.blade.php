@@ -25,6 +25,32 @@ We appreciate your prompt attention to this booking and look forward to your con
 Payment Information:<br>
 • Please note that the full rental amount has been paid directly to Autours. Ensure the car is prepared and available at the designated pickup address.<br>
 Important Information:<br>
+
+
+@isset(json_decode($body)->paymentMethod)
+    @if(json_decode($body)->paymentMethod?->id == 2)
+        <div>
+            - Pay in Full:<br>
+            The full rental amount has been paid directly to Autours. Please ensure the car is prepared and available at the designated pickup address.<br>
+        </div>
+    @endif
+    @if(json_decode($body)->paymentMethod?->id == 3)
+        <div>
+            - Pay Partially:<br>
+            A portion of the rental amount has been paid to Autours.<br>
+            The remaining balance of  {{json_decode($body)->supplier_price . ' ' . json_decode($body)->branch->currency}} is to be collected from the customer upon pickup.<br>
+        </div>
+    @endif
+    @if(json_decode($body)->paymentMethod?->id == 1)
+        <div>
+            - Pay on Arrival:<br>
+            The customer will pay the full rental amount of  {{json_decode($body)->price . ' ' . json_decode($body)->branch->currency}} directly at the time of pickup.<br>
+            Please ensure you collect the payment accordingly.<br><br>
+        </div>
+    @endif
+@endisset
+
+
 {{--• The customer has selected the Free Cancellation option, allowing them to cancel up to  {{count(json_decode($body)->cancelationPolicy) && json_decode($body)->cancelationPolicy[0]->id == 48 ? '48' : '' }} {{ json_decode($body)->cancelationPolicy->id == 1 ? '24' : ''}} hours before the pick-up time.<br>--}}
 • Please confirm that the car will be ready as per the booking details provided.<br>
 If you have any questions or require additional information, please do not hesitate to contact us.<br>
