@@ -55,11 +55,15 @@ const activeMethod = async (selectedMethodId) => {
     try {
         loading.value = true;
         const response = await axios.post('/payment_methods', {selectedMethodId: selectedMethodId});
-        tableData.value = response.data.data.payment_methods;
-        $toast.success('Method has been added', {position: "top"})
+        tableData.value = response?.data?.data?.payment_methods;
+        $toast.success(response.data.message, {position: "top"})
     } catch (error) {
-        console.error(error);
+        console.log(error)
+        if(error?.response?.status === 403) {
+          $toast.error(error.response.data.message, {position: 'top'});
+        }
     } finally {
+        await getData();
         loading.value = false;
     }
 }
@@ -76,7 +80,7 @@ const getData = async () => {
 }
 
 const filterTableData = computed(() => {
-      return tableData.value.filter((data) => !search.value || data.name.toLowerCase().includes(search.value.toLowerCase()))
+      return tableData?.value?.filter((data) => !search.value || data.name.toLowerCase().includes(search.value.toLowerCase()))
     }
 )
 

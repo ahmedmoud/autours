@@ -57,7 +57,7 @@
                             <span class="hide-menu">My Branches</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
+                    <li class="sidebar-item" v-if="activeSupplier">
                         <a :class="  ['sidebar-link', isActive('payment') ? 'active' : '']" href="/supplier/payment_methods">
                             <i class="ti ti-credit-card"></i>
                             <span>Payment Methods</span></a>

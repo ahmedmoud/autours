@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusCodes;
 use App\Models\PaymentMethod;
 use App\Models\PaymentMethodSupplier;
 use Illuminate\Http\Request;
@@ -59,7 +60,16 @@ class PaymentMethodsController extends Controller
         try {
             if (PaymentMethodSupplier::query()->where('supplier_id', \auth()->id())->where('payment_method_id', $request->selectedMethodId)->exists()) {
                 PaymentMethodSupplier::query()->where('supplier_id', \auth()->id())->where('payment_method_id', $request->selectedMethodId)->delete();
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Method has been removed']);
             } else {
+                if(PaymentMethodSupplier::query()->where('supplier_id', \auth()->user()->id)->count() >= 1) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Can not use more than one method'
+                    ], StatusCodes::FORBIDDEN);
+                }
                 $paymentMethod = new PaymentMethodSupplier();
                 $paymentMethod->supplier_id = \auth()->user()->id;
                 $paymentMethod->payment_method_id = $request->selectedMethodId;
