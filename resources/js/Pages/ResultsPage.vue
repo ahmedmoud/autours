@@ -249,7 +249,7 @@
                                         <el-slider class="col-md-12" v-model="priceRange" :min="min" :max="max"/>
                                     </div>
                                 </div>
-                                <div class="col-md-12 my-2" style="background: #fff;">
+                                <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('ms')">
                                         <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
                                             Location Types</h4> <i
@@ -258,10 +258,10 @@
                                     <div style="margin-top: -45px;" id="ms">
                                         <div class="row" v-for="locationType in filteredLocationTypes">
                                             <div class="row" v-if="locationType?.vehicle_count">
-                                                <strong class="col-md-10   mt-3">{{
+                                                <div class="col-md-10   mt-3">{{
                                                         locationType.name
                                                     }} <small style="font-size: 14px;">
-                                                        ({{ locationType?.vehicle_count }})</small></strong>
+                                                        ({{ locationType?.vehicle_count }})</small></div>
 
                                                 <Checkbox
                                                     binary
@@ -273,19 +273,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 my-5" style="background: #fff;">
+                                <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('cat')">
                                         <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
-                                            Categories</h4> <i
-                                        :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-cat' "/></div>
+                                            Categories</h4> <i :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-cat' "/></div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="cat">
                                         <div class="row" v-for="item in filteredCategories">
                                             <div class="row">
-                                                <strong class="col-md-10 mt-3">{{
+                                                <div class="col-md-10 mt-3">{{
                                                         item.name
                                                     }} <small style="font-size: 14px;">
-                                                        ({{ item?.vehicle_count }})</small></strong>
+                                                        ({{ item?.vehicle_count }})</small></div>
 
                                                 <Checkbox
                                                     binary
@@ -299,7 +298,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 my-5" style="background: #fff;">
+                                <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('lt')">
                                         <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
                                             Suppliers</h4> <i
@@ -308,10 +307,10 @@
                                     <div style="margin-top: -45px;" id="lt">
                                         <div class="row" v-for="supplier in filteredSuppliers">
                                             <div class="row" v-if="supplier?.vehicle_count">
-                                                <strong class="col-md-10 mt-3">{{
+                                                <div class="col-md-10 mt-3">{{
                                                         supplier.company
                                                     }} <small style="font-size: 14px;">
-                                                        ({{ supplier?.vehicle_count }})</small></strong>
+                                                        ({{ supplier?.vehicle_count }})</small></div>
 
 
                                                 <Checkbox
@@ -327,7 +326,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 my-5" style="background: #fff;">
+                                <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('payment')">
                                         <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
                                             Payment Methods</h4> <i
@@ -337,11 +336,11 @@
                                     <div style="margin-top: -45px;" id="payment">
                                         <div class="row" v-for="paymentMethod in paymentMethods">
                                             <div class="row">
-                                                <strong class="col-md-10 mt-3">{{
+                                                <div class="col-md-10 mt-3">{{
                                                         paymentMethod.name
                                                     }}
                                                     <!--                                                    <small style="font-size: 14px;">({{ paymentMethod?.vehicle_count }})</small>-->
-                                                </strong>
+                                                </div>
 
                                                 <Checkbox
                                                     binary
@@ -355,7 +354,7 @@
                                 </div>
 
                                 <div v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
-                                    <div class="col-md-12 my-2  ">
+                                    <div class="col-md-12 my-4  ">
                                         <div @click="collapse(item.id)" class="row"><h4 class="col-md-9 mr-3"
                                                                                         style="color: #000; margin-bottom: -30px">
                                             {{ item.name }}</h4>
@@ -366,7 +365,7 @@
                                             <div class="row" v-for="option in item.options">
                                                 <div class="row " v-if="option.vehicle_count">
                                                     <div class="col-md-10 my-2 text-nowrap ">
-                                                        <strong class="col-md-9 ">{{ option.value }}
+                                                        <div class="col-md-9 ">{{ option.value }}
                                                         {{
                                                             item.name == 'Number of seats' ||
                                                             item.name == 'Number of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
@@ -375,7 +374,7 @@
                                                             style="font-size: 14px;">({{
                                                                 option.vehicle_count
                                                             }})</small>
-                                                    </strong>
+                                                    </div>
                                                     </div>
                                                     <Checkbox
                                                         binary
@@ -548,8 +547,7 @@
                                                                     vehicle?.supplier_rate > 2 && vehicle?.supplier_rate <= 4 ? 'Ok' :
                                                                         vehicle?.supplier_rate > 4 && vehicle?.supplier_rate <= 6 ? 'Good' :
                                                                             vehicle?.supplier_rate > 6 && vehicle?.supplier_rate <= 8 ? 'Ver Good' :
-                                                                                vehicle?.supplier_rate > 8 && vehicle?.supplier_rate <= 10 ? 'Excellent' :
-                                                                                    ''
+                                                                                vehicle?.supplier_rate > 8 && vehicle?.supplier_rate <= 10 ? 'Excellent' : ''
                                                             }}
                                                         </h5><span
                                                             style="font-size: medium; ">(&nbsp;<strong
@@ -750,7 +748,7 @@ import Loader from "../components/Loader.vue";
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
 import Checkbox from 'primevue/checkbox';
-import 'primevue/resources/themes/aura-light-amber/theme.css'
+import 'primevue/resources/themes/fluent-light/theme.css'
 
 const isOpen = ref(false)
 
@@ -1446,4 +1444,6 @@ onMounted(() => {
     transform: translate(0px, 0px) !important;
     display: none;
 }
+
+
 </style>

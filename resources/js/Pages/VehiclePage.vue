@@ -405,7 +405,7 @@
                                     day </p>
                                 <div class="row">
                                     <p class="col-md-8">Rental Cost</p>
-                                    <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price }}</p>
+                                    <p class="col-md-3">{{ currency + '&nbsp' + parseFloat(vehicle.final_price).toFixed(2) }}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col-md-8">Extras</p>
@@ -413,25 +413,25 @@
                                 </div>
                                 <div class="row">
                                     <p class="col-md-8">Total Rental Cost</p>
-                                    <p class="col-md-3">{{ currency + '&nbsp' + vehicle.final_price }}</p>
+                                    <p class="col-md-3">{{ currency + '&nbsp' + parseFloat(vehicle.final_price).toFixed(2) }}</p>
                                 </div>
                                 <hr style="margin-bottom: 5%;"/>
                                 <div class="row" v-if="selectedMethod === 2">
                                     <strong class="col-md-8">Pay Now</strong>
-                                    <strong  class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</strong>
+                                    <strong  class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.final_price).toFixed(2) }}</strong>
                                 </div>
                                 <div class="row" v-if="selectedMethod === 3">
                                     <strong class="col-md-8">Pay Now</strong>
-                                    <strong class="col-md-4">{{ currency + ' ' + vehicle.profit_price }}</strong>
+                                    <strong class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.profit_price).toFixed(2) }}</strong>
                                     <strong class="col-md-8">Pay at office</strong>
-                                    <strong  class="col-md-4">{{ currency + ' ' + (vehicle.final_price - vehicle.profit_price) }}</strong>
+                                    <strong  class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.final_price - vehicle.profit_price).toFixed(2) }}</strong>
                                 </div>
 
                                 <div class="row" v-if="selectedMethod === 1">
                                     <strong class="col-md-8">Pay Now</strong>
                                     <strong class="col-md-4">{{ currency + ' 0' }}</strong>
                                     <strong class="col-md-8">Pay at office</strong>
-                                    <strong  class="col-md-4">{{ currency + ' ' + vehicle.final_price }}</strong>
+                                    <strong  class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.final_price).toFixed(2) }}</strong>
                                 </div>
 
                                 <hr style="margin-top: 1%;"/>
@@ -473,7 +473,7 @@
 
                             <div class="row col-md-6">
                                 <div class=" ml-3 row">
-                                    <h3 class="mb-3 col-md-4 text-nowrap">
+                                    <h3 class="mb-3 col-md-5 text-nowrap">
                                         {{ currency + ' ' + vehicle.final_price }}</h3>
                                     <p class="col-md-6 text-nowrap" style="color: green;"><i class="fa fa-arrow-right"/>
                                         For {{ daysNumber }}
