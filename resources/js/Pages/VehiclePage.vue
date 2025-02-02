@@ -549,7 +549,7 @@
                                 <div class="d-supplier">
                                     <div class="col-md-2 d-img w-100" style="height: 50px">
                                         <img :src="'/img/' + vehicle?.supplier?.logo" height="50"
-                                             width="80" alt=""/>
+                                             width="120" alt=""/>
                                     </div>
                                     <div class="col-md-2 row">
                                         <div>

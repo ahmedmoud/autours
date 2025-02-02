@@ -329,7 +329,7 @@
                                 <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('payment')">
                                         <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
-                                            Payment Methods</h4> <i
+                                            Payment Types</h4> <i
                                         :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-payment' "/>
                                     </div>
                                     <hr style="margin-top: 20px;"/>
