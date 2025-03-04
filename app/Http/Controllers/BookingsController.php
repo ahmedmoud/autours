@@ -147,6 +147,9 @@ class BookingsController extends Controller
     {
 
         $user = auth()->user();
+        if(!$user) {
+            abort(401);
+        }
         $id = $user->id;
         $role = $user->role;
 
