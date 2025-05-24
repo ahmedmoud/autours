@@ -2,27 +2,27 @@
 
     <header style="background: #f9d602; height: 85px;">
         <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" @click="closeNav()">&times;</a>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/">Home</a>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/register">Booking</a>
+                <div class="row" style=" background: #f9d602; margin-top: -60px;">
+                    <a style="width:20%; margin-top: 3%;" href="javascript:void(0)" class="col-md-10"><i @click="closeNav()" class="fa fa-arrow-left"/></a>
+                    <a style="width:20%;" href="/"> <img src="/img/4k-logo.png" width="150" alt="logo"></a>
+                </div>
+            <a v-if="!user" class="nav-link col-md-2  text-black " href="/"><i class="fa fa-home"/> Home</a>
+            <a v-if="!user" class="nav-link col-md-2  text-black " href="/register"><i class="fa fa-car"/> Booking</a>
             <a v-else-if="user.role !== 'customer'" class="nav-link col-md-2 text-black "
                href="/company"><span>My&nbsp;console</span></a>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/contact-us">Contact&nbsp;us</a>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/about-us">About&nbsp;us</a>
-            <a v-if="user.role === 'customer'" class="col-md-2" @click="() => router.get('/my-profile')">&nbsp;&nbsp;My&nbsp;Profile</a>
-            <a v-if="user.role === 'customer'" class="col-md-2" @click="() => router.get('/logout')">&nbsp;&nbsp;Log&nbsp;Out</a>
+            <a v-if="!user" class="nav-link col-md-2  text-black " href="/contact-us"><i class="fa fa-phone"/> Contact&nbsp;us</a>
+            <a v-if="!user" class="nav-link col-md-2  text-black " href="/about-us"><i class="fa fa-book"/> About&nbsp;us</a>
+            <a v-if="user.role === 'customer'" class="col-md-2" @click="() => router.get('/my-profile')"><i class="fa fa-user"/> My&nbsp;Profile</a>
+            <a v-if="user.role === 'customer'" class="col-md-2" @click="() => router.get('/logout')"><i class="fa fa-log-out"/> Log&nbsp;Out</a>
         </div>
 
 
         <div class="row align-items-center justify-content-between">
             <div class="col-6 col-md-2 d-flex justify-content-start">
-                <a href="/">
-                    <img src="/img/4k-logo.png" width="200" alt="logo">
-                </a>
+                <a href="/"><img src="/img/4k-logo.png" width="200" alt="logo"></a>
             </div>
-            <div class="mobile-nav-icon col-1 col-md-2  justify-content-end">
-                <a class=" icon text-black" href="javascript:void(0);"
-                   @click="myFunction()">
+            <div class="mobile-nav-icon col-1 col-md-1  justify-content-end">
+                <a class=" icon text-black" href="javascript:void(0);" @click="myFunction()">
                     <i class="fa fa-bars"/>
                 </a>
             </div>
@@ -226,10 +226,8 @@ body {
 
 .sidenav .closebtn {
     position: absolute;
-    top: 0;
-    right: 25px;
+    top: 80px;
     font-size: 36px;
-    margin-left: 50px;
 }
 
 

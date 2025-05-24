@@ -7,16 +7,8 @@
     <div class="jumbotron jumbotron-fluid"
          style="background-image: url(img/banner-bk.jpg);background-size: cover;background-position: center; background-repeat: no-repeat; height: 600px; display:flex;  justify-content: center;">
 
-        <div class="jumbotron-fluid" style="width: 75%;">
-            <h1 class="p-fontsize" style="color: #ffffff;"><strong><span>Car Rentals</span> - Search, Book & Enjoy.</strong></h1>
             <FloatSearchForm/>
-            <h1 class="py-3 p-fontsize" style=" color: #ffffff;">
-                <strong> Looking for a vehicle? You're at the right place!<br/></strong>
-            </h1>
-            <div class="text-white font-weight-bold included-part">
 
-            </div>
-        </div>
     </div>
 
     <!-- clients -->
@@ -699,25 +691,6 @@ updateLabelStyles();
 @import '../../css/custom.css';
 
 
-//. {
-//    color: rgba(244, 214, 64, 0) !important;
-//}
-
-
-
-
-@media screen and (max-width: 800px) {
-    .p-fontsize {
-        font-size: 5vw;
-    }
-    .included-part {
-        display: none;
-    }
-    .jumbotron-fluid {
-        width: 100%;
-    }
-}
-
 
 #banner {
     position: relative;
@@ -1006,14 +979,6 @@ $color: white;
     background: #1c1b1bd4;
 
 }
-//.acc .wrapper input[type=checkbox]:not(:checked) + label[data-v-0b99f485]{
-//    height: 70px;
-//}
-//.acc .wrapper input[type=checkbox]:checked + label[data-v-0b99f485]{
-//    height: 450px;
-//    overflow-y: auto;
-//}
-
 
 
 .faq_label{

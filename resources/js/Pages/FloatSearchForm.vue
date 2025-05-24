@@ -1,46 +1,56 @@
 <template>
-    <div class="form-layout">
+    <div class="jumbotron-fluid">
+        <h1 class="p-fontsize" style="color: #ffffff;"><strong><span>Car Rentals</span> - Search, Book & Enjoy.</strong>
+        </h1>
+        <div class="form-layout">
             <Loader style="left: 30%" v-if="loading"/>
-        <form v-else @submit.prevent="search">
-            <div>
-                <div class="row">
+            <form v-else @submit.prevent="search">
+                <div>
+                    <div class="row">
+                        <label class="text-white">Select Pickup Location</label>
+                        <AutoComplete v-model="form.pickupLoc" v-on:item-select="selectLocation($event)"
+                                      :class="'col-md-5'" optionLabel="name"
+                                      :suggestions="filteredLocations" @complete="suggest"
+                                      placeholder="Enter your Location">
+                            <template #value="slotProps">
+                                <div v-if="slotProps.value" class="flex align-items-center">
+                                    <div>{{ slotProps.value }}</div>
+                                </div>
+                            </template>
+                            <template #option="slotProps">
+                                <div class="flex align-items-center">
+                                    <div>{{ slotProps.option.location }}&nbsp;&nbsp; <i
+                                        :class=" slotProps.option.location_type === 'Airport' ? 'fa fa-plane-arrival' : slotProps.option.location_type === 'Downtown' ? 'fa fa-building' : 'fa fa-hotel'"/>
+                                    </div>
+                                </div>
+                            </template>
 
-                    <label class="text-white">Select Pickup Location</label>
-                    <AutoComplete v-model="form.pickupLoc" v-on:item-select="selectLocation($event)" :class="'col-md-5'" optionLabel="name"
-                                  :suggestions="filteredLocations" @complete="suggest" placeholder="Enter your Location">
-                        <template #value="slotProps">
-                            <div v-if="slotProps.value" class="flex align-items-center">
-                                <div>{{ slotProps.value }}</div>
+                        </AutoComplete>
+
+                        <div class="col-md-3  ">
+                            <div class=" mt-2 ">
+                                <div class=" ">
+                                    <el-date-picker
+                                        v-model="form.date"
+                                        type="daterange"
+                                        range-separator="TO"
+                                        start-placeholder="Start date"
+                                        end-placeholder="End date"
+                                        size="large"
+                                        required="true"
+                                        format="YYYY/MM/DD"
+                                        value-format="YYYY-MM-DD"
+                                        style="height: 45px;"
+                                        :disabled-date="disabledDate"
+                                        class="rounded-0 font-size"
+
+                                    />
+
+                                </div>
                             </div>
-                        </template>
-                        <template #option="slotProps">
-                            <div class="flex align-items-center">
-                                <div>{{ slotProps.option.location }}&nbsp;&nbsp; <i :class=" slotProps.option.location_type === 'Airport' ? 'fa fa-plane-arrival' : slotProps.option.location_type === 'Downtown' ? 'fa fa-building' : 'fa fa-hotel'"/></div>
-                            </div>
-                        </template>
 
-                    </AutoComplete>
-                    <div class="col-md-7 row">
-                        <div class=" col-md-7 mt-2 date-input">
-                            <div class=" ">
-                                <el-date-picker
-                                    v-model="form.date"
-                                    type="daterange"
-                                    range-separator="TO"
-                                    start-placeholder="Start date"
-                                    end-placeholder="End date"
-                                    size="large"
-                                    required="true"
-                                    format="YYYY/MM/DD"
-                                    value-format="YYYY-MM-DD"
-                                    style="height: 45px;"
-                                    :disabled-date="disabledDate"
-                                    class="rounded-0 font-size"
-
-                                />
-
-                            </div>
                         </div>
+
                         <div class=" col-md-2 mt-2 time-input">
                             <select style="height: 45px;" class=" w-100 form-control rounded-0"
                                     v-model="form.time_from">
@@ -95,7 +105,8 @@
                             </select>
                         </div>
                         <div class=" col-md-2 mt-2 time-input">
-                            <select style="height: 45px;" class=" w-100 form-control rounded-0" v-model="form.time_to">
+                            <select style="height: 45px;" class=" w-100 form-control rounded-0"
+                                    v-model="form.time_to">
                                 <option value="00:00">00:00</option>
                                 <option value="00:30">00:30</option>
                                 <option value="01:00">01:00</option>
@@ -147,25 +158,47 @@
                             </select>
                         </div>
                     </div>
+                    <button class="search-button  px-5 mt-2" @click="search">
+                        SEARCH CARS
+                    </button>
+                    <a class="mobile-currency col-md-2">
+                        <CDropdown togglerText="Dropdown button" class="mt-1 ">
+                            <CDropdownToggle class="text-black " component="a" style="color: rgba(30, 30, 30, 1);">
+                               {{selectedCurrency }}
+                            </CDropdownToggle>
+                            <CDropdownMenu>
+                                <CDropdownItem class="cursor-pointer " v-for="currency in currencies"
+                                               v-on:click="changeCurrency(currency.name)">
+                                    <p class="text-black "><img style="margin-right: 25px"
+                                                                :src="'https://flagsapi.com/' + currency.flag + '/shiny/32.png'">
+                                        {{ currency.name }}</p>
+                                </CDropdownItem>
+                            </CDropdownMenu>
+                        </CDropdown>
+                    </a>
+                    <p class="col-md-12 text-white position-relative float-right included-part" style="top: 10px">
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free
+                        Cancellation
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No
+                        Credit
+                        card fees
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No
+                        hidden
+                        fees
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free
+                        amendment
+                    </p>
                 </div>
-                <button class=" position-relative float-right px-5 mt-2" @click="search"
-                        style="font-weight: bold; top: 30px; height:60px;  background: rgb(249, 214, 2); color: #000;">
-                    SEARCH CARS
-                </button>
-                <p class="col-md-12 text-white position-relative float-right included-part" style="top: 10px">
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free
-                    Cancellation
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No Credit
-                    card fees
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No hidden
-                    fees
-                    <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free
-                    amendment
-                </p>
-            </div>
 
-        </form>
+            </form>
 
+        </div>
+        <h1 class="py-3 p-fontsize" style=" color: #ffffff;">
+            <strong> Looking for a vehicle? You're at the right place!<br/></strong>
+        </h1>
+        <div class="text-white font-weight-bold included-part">
+
+        </div>
     </div>
 </template>
 
@@ -176,6 +209,9 @@ import Loader from '../components/Loader.vue'
 import Dropdown from 'primevue/dropdown';
 import 'primevue/resources/themes/aura-light-amber/theme.css'
 import AutoComplete from 'primevue/autocomplete';
+import {CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle} from "@coreui/vue";
+
+import getUnicodeFlagIcon from 'country-flag-icons/unicode'
 
 const value = ref()
 const form = useForm({
@@ -194,11 +230,18 @@ const locations = {
     options: ref([]),
     loading: ref(false),
 }
-
+let selectedCurrency = ref('USD');
 const filteredLocations = ref()
 const loading = ref(false);
 var field = ''
 const vehicles = ref([])
+
+let currencies = [
+    {name: 'USD', flag: getUnicodeFlagIcon('US')},
+    {name: 'AED', flag: getUnicodeFlagIcon('AE')},
+    {name: 'EGP', flag: getUnicodeFlagIcon('EG')}
+];
+
 const disabledDate = (time) => {
     const date = new Date();
     date.setHours(0, 0, 0, 0)
@@ -254,14 +297,14 @@ const getLocations = async () => {
     }
 }
 const suggest = (event) => {
-        if (!event.query.trim().length) {
-            filteredLocations.value = [...locations.all.value.location];
-        } else {
+    if (!event.query.trim().length) {
+        filteredLocations.value = [...locations.all.value.location];
+    } else {
 
-            filteredLocations.value = locations.all.value.filter((location) => {
-                return location.location.toLowerCase().includes(event.query.toLowerCase());
-            });
-        }
+        filteredLocations.value = locations.all.value.filter((location) => {
+            return location.location.toLowerCase().includes(event.query.toLowerCase());
+        });
+    }
 }
 
 
@@ -316,13 +359,27 @@ const search = async () => {
     loading.value = false
 
 }
-
+const getCurrencies = async () => {
+    try {
+        const response = await axios.get('/get/currencies');
+        currencies = response.data
+    } catch (error) {
+        console.log(error.response.data.message);
+    }
+}
+const changeCurrency = (currency) => {
+    selectedCurrency.value = currency
+    localStorage.removeItem('currency')
+    localStorage.setItem('currency', currency)
+    window.location.reload()
+}
 onMounted(() => {
+    selectedCurrency.value = localStorage.getItem('currency') ?? 'USD'
     getLocations();
     getVehicles();
     getLogos();
+    getCurrencies()
     // $('.p-autocomplete-input').addClass('custom-autocomplete');
-
 
 
 })
@@ -363,18 +420,7 @@ header {
 
 $easing: cubic-bezier(0.680, -0.550, 0.265, 1.550);
 $color: white;
-@media screen and (max-width: 800px) {
 
-    .date-input {
-        width: 30%;
-    }
-    .time-input {
-        width: 20%;
-    }
-    .location-input {
-        width: 97%;
-    }
-}
 
 .form-layout {
     position: relative;
@@ -536,149 +582,208 @@ $color: white;
 }
 
 // images
+/*
+//@mixin mQ($px) {
+//    @media screen and (max-width: $px) {
+//        @content;
+//    }
+//}
 
-@mixin mQ($px) {
-    @media screen and (max-width: $px) {
-        @content;
-    }
-}
-
-section {
-    display: grid;
-    grid-template-columns:25% 30% 15% 25%;
-    gap: 15px;
-    place-content: center;
-    grid-template-rows: 50% 50%;
-    height: 80vh;
-    min-height: 460px;
-    padding: max(2vh, 1.5rem);
-
-    img {
-        width: 100%;
-        display: block;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    h2 {
-        color: white;
-        font-size: clamp(1rem, 0.8750rem + 0.6250vw, 1.5rem);
-        line-height: 1.3;
-        font-weight: 700;
-    }
-
-    @include mQ(690px) {
-        height: 65vh;
-    }
-
-    @include mQ(470px) {
-        grid-template-columns:repeat(2, 1fr);
-        grid-template-rows: repeat(3, 35%);
-    }
-
-    .card {
-        border-radius: 25px;
-        box-shadow: -2px 4px 15px rgb(0 0 0 / 26%);
-
-        @include mQ(470px) {
-            grid-column: span 1;
-        }
-
-        &:nth-child(2) {
-            grid-column: 2/3;
-            grid-row: span 2;
-
-            @include mQ(690px) {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-        }
-
-        &:nth-child(3) {
-            grid-column: span 2;
-
-            @include mQ(690px) {
-                grid-column: 2/4;
-                grid-row: 1/2;
-            }
-        }
-
-        @include mQ(690px) {
-            &:nth-child(6) {
-                grid-column: 2/4;
-                grid-row: 2/3;
-            }
-        }
-
-        @include mQ(470px) {
-
-            &:nth-child(5) {
-                grid-column: span 2;
-            }
-        }
-
-        p {
-            font-size: clamp(0.9rem, 0.8750rem + 0.1250vw, 1rem);
-            line-height: 1.4;
-        }
-
-
-        img {
-            border-radius: 25px;
-        }
-
-        .card__img {
-            position: relative;
-            height: 100%;
-
-            .card__overlay {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                content: "";
-                color: #fff;
-                padding: clamp(0.938rem, 5vw, 1.563rem);
-                background: rgb(2, 2, 46);
-                background: linear-gradient(0deg, rgb(0 0 0 / 57%) 0%, rgb(255 255 255 / 0%) 100%);
-                width: 100%;
-                height: 100%;
-                border-radius: 25px;
-                display: flex;
-                justify-content: flex-end;
-                flex-direction: column;
-            }
-
-            span {
-                position: absolute;
-                top: 25px;
-                left: min(2vmax, 1.563rem);
-                color: #ff7b29;
-                background: #fff;
-                border-radius: 50px;
-                padding: 2px 8px 2px 6px;
-                display: flex;
-                box-shadow: 0px 1px 20px #0000002b;
-
-                @include mQ(690px) {
-                    top: 20px;
-                }
-
-                @include mQ(470px) {
-                    top: 15px;
-                }
-
-                svg {
-                    fill: #ff7b29;
-                    width: 20px;
-                    margin-right: 2px;
-                }
-            }
-        }
-    }
-}
+//section {
+//    display: grid;
+//    grid-template-columns:25% 30% 15% 25%;
+//    gap: 15px;
+//    place-content: center;
+//    grid-template-rows: 50% 50%;
+//    height: 80vh;
+//    min-height: 460px;
+//    padding: max(2vh, 1.5rem);
+//
+//    img {
+//        width: 100%;
+//        display: block;
+//        height: 100%;
+//        object-fit: cover;
+//    }
+//
+//    h2 {
+//        color: white;
+//        font-size: clamp(1rem, 0.8750rem + 0.6250vw, 1.5rem);
+//        line-height: 1.3;
+//        font-weight: 700;
+//    }
+//
+//    @include mQ(690px) {
+//        height: 65vh;
+//    }
+//
+//    @include mQ(470px) {
+//        grid-template-columns:repeat(2, 1fr);
+//        grid-template-rows: repeat(3, 35%);
+//    }
+//
+//    .card {
+//        border-radius: 25px;
+//        box-shadow: -2px 4px 15px rgb(0 0 0 / 26%);
+//
+//        @include mQ(470px) {
+//            grid-column: span 1;
+//        }
+//
+//        &:nth-child(2) {
+//            grid-column: 2/3;
+//            grid-row: span 2;
+//
+//            @include mQ(690px) {
+//                grid-column: span 1;
+//                grid-row: span 1;
+//            }
+//        }
+//
+//        &:nth-child(3) {
+//            grid-column: span 2;
+//
+//            @include mQ(690px) {
+//                grid-column: 2/4;
+//                grid-row: 1/2;
+//            }
+//        }
+//
+//        @include mQ(690px) {
+//            &:nth-child(6) {
+//                grid-column: 2/4;
+//                grid-row: 2/3;
+//            }
+//        }
+//
+//        @include mQ(470px) {
+//
+//            &:nth-child(5) {
+//                grid-column: span 2;
+//            }
+//        }
+//
+//        p {
+//            font-size: clamp(0.9rem, 0.8750rem + 0.1250vw, 1rem);
+//            line-height: 1.4;
+//        }
+//
+//
+//        img {
+//            border-radius: 25px;
+//        }
+//
+//        .card__img {
+//            position: relative;
+//            height: 100%;
+//
+//            .card__overlay {
+//                position: absolute;
+//                bottom: 0;
+//                left: 0;
+//                content: "";
+//                color: #fff;
+//                padding: clamp(0.938rem, 5vw, 1.563rem);
+//                background: rgb(2, 2, 46);
+//                background: linear-gradient(0deg, rgb(0 0 0 / 57%) 0%, rgb(255 255 255 / 0%) 100%);
+//                width: 100%;
+//                height: 100%;
+//                border-radius: 25px;
+//                display: flex;
+//                justify-content: flex-end;
+//                flex-direction: column;
+//            }
+//
+//            span {
+//                position: absolute;
+//                top: 25px;
+//                left: min(2vmax, 1.563rem);
+//                color: #ff7b29;
+//                background: #fff;
+//                border-radius: 50px;
+//                padding: 2px 8px 2px 6px;
+//                display: flex;
+//                box-shadow: 0px 1px 20px #0000002b;
+//
+//                @include mQ(690px) {
+//                    top: 20px;
+//                }
+//
+//                @include mQ(470px) {
+//                    top: 15px;
+//                }
+//
+//                svg {
+//                    fill: #ff7b29;
+//                    width: 20px;
+//                    margin-right: 2px;
+//                }
+//            }
+//        }
+//    }
+//}*/
 
 .danger {
     color: red;
+}
+
+.jumbotron-fluid {
+    width: 75%;
+}
+
+.search-button {
+    font-weight: bold;
+    top: 30px;
+    height: 60px;
+    background: rgb(249, 214, 2);
+    color: #000;
+    position: relative;
+    float: right;
+}
+
+.mobile-currency {
+    display: none;
+}
+
+@media screen and (max-width: 999px) {
+    .jumbotron-fluid {
+        width: 100%;
+    }
+    .date-input {
+        width: 100% !important;
+    }
+    .time-input {
+        width: 50%;
+    }
+
+    .p-fontsize {
+        margin: 0 20px 0 20px;
+        font-size: 5vw;
+    }
+    .search-button {
+        width: 70%;
+        font-weight: bold;
+        top: 0;
+        height: 60px;
+        background: rgb(249, 214, 2);
+        color: #000;
+        position: relative;
+        float: left;
+    }
+
+    .form-layout {
+        height: 300px;
+    }
+    .mobile-currency {
+        display: block;
+        background: #06b606;
+        text-align: center;
+        width: 28%;
+        float: right;
+        top: 10px;
+        height: 55px;
+        align-content: center;
+    }
 }
 
 
