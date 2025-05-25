@@ -25,7 +25,7 @@ onMounted(() => {
             <a href="/">   <img src="/img/4k-logo.png" alt="logo" width="250" height="80"></a>
             <hr class="w-25"/>
             <div class="row">
-                <div class="col-md-4 " id="company">
+                <div class="col-4 col-md-4 " id="company">
                     <h4 class="text-black">Company</h4>
                     <div>
                         <a href="/about-us" class="text-black text-decoration-underline footer_link" >About us</a>
@@ -45,7 +45,7 @@ onMounted(() => {
                         <a href="#" class="text-black text-decoration-underline footer_link" >Site Map</a>
                     </div>
                 </div>
-                <div class="col-md-4" id="support">
+                <div class="col-4 col-md-4" id="support">
                     <div class="row justify-content-between">
                         <h4 class="text-black">Support</h4>
                         <div>
@@ -65,7 +65,7 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" id="support">
+                <div class="col-4 col-md-4" id="support">
                     <div class="row justify-content-between">
                         <h4 class="text-black">Supplier</h4>
                         <div v-if="!user">

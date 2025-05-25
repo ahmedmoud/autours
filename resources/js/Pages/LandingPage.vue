@@ -15,15 +15,15 @@
     <div class="my-4" style="background: #FFFFFF">
         <div class="container">
             <div class="row" style="justify-content: center;">
-                <div v-for="logo in logos" class="col-md-1 py-2 ">
-                    <img :src="'img/company_logos/' + logo" class="mx-auto d-block" width="100" height="40"/>
+                <div v-for="logo in logos" class="col-2 col-md-2 py-2 ">
+                    <img :src="'img/company_logos/' + logo" class="mx-auto d-block" width="90" height="35"/>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- why autours -->
-    <div  style=" background: #f9d602; height: 167px; width: 100%; display: flex; align-items: center;" id="why_autours?">
+    <div class="web-content" style=" background: #f9d602; height: 167px; width: 100%; display: flex; align-items: center;" id="why_autours?">
         <img  src="/images/background/autours-left.png"/>
         <p style="font-size: 5vw; width: 67%; margin-left: 25%; font-weight: 1000 !important; position: relative;">Why Autours?</p>
         <img style=" position: relative; display: flex; justify-content: right;" src="/images/background/autours-right.png"/>
@@ -31,7 +31,7 @@
 
 
     <!-- services -->
-    <div class="my-5 py-2">
+    <div class="web-content my-5 py-2">
         <div class="" style="display: ruby">
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-3 text-center">
@@ -108,7 +108,7 @@
     </div>
 
     <!-- WHERE WE ARE -->
-    <div class="mt-5 " style="background: #f9d602;" id="where-we-are">
+    <div class="mt-5 web-content" style="background: #f9d602;" id="where-we-are">
         <div style="background-color: #000; height: 20px;"></div>
 
 
@@ -208,11 +208,11 @@
 
     </div>
 
-    <div style="background-color: #000; height: 20px;"></div>
+    <div class="web-content" style="background-color: #000; height: 20px;"></div>
 
 
     <!-- OUR Fleet -->
-    <div id="our-fleet" class="jumbotron" style="height: 1000px; background-image: url('/images/background/our_fleet.png')">
+    <div  id="our-fleet" class="jumbotron web-content" style="height: 1000px; background-image: url('/images/background/our_fleet.png')">
         <p style="font-size: 5vw; font-weight: 1000 !important; position: absolute; left: 32%; margin-top: 80px;">OUR
             FLEET</p>
 
@@ -238,10 +238,10 @@
         </swiper>
     </div>
 
-    <div style="background-color: #000; height: 20px;"></div>
+    <div class="web-content" style="background-color: #000; height: 20px;"></div>
 
     <!-- Be Supplier -->
-    <div class="jumbotron jumbotron-fluid be-supplier">
+    <div class="jumbotron jumbotron-fluid be-supplier web-content">
 
         <div class="d-flex" >
             <div class="car-move" >
@@ -257,14 +257,14 @@
         </div>
         </div>
     </div>
-    <div style="background-color: #000; height: 20px;"></div>
+    <div class="web-content" style="background-color: #000; height: 20px;"></div>
 
 
     <!-- offers -->
-    <div id="offers" class="jumbotron jumbotron-fluid offers-section">
+    <div id="offers" class="jumbotron jumbotron-fluid offers-section web-content">
 
 
-        <div class="" style="display: ruby">
+        <div class="web-content" style="display: ruby">
             <div class="col-md-1"></div>
             <div class="col-md-6" style="margin-top: 10%;">
                 <button
@@ -276,10 +276,10 @@
             </div>
         </div>
     </div>
-    <div style="background-color: #000; height: 20px;"></div>
+    <div class="web-content" style="background-color: #000; height: 20px;"></div>
 
     <!-- price table -->
-    <div style="background: rgb(244, 216, 73);" id="price-table">
+    <div class="web-content" style="background: rgb(244, 216, 73);" id="price-table">
         <h2 class="text-center font-weight-bold d-block mb-3">FAQ</h2>
         <div class=" mx-5 acc d-flex">
             <div class='wrapper' style="background-color: rgba(255,255,255,0); width: 35%;">
@@ -483,7 +483,7 @@
 
     <div style="background-color: #000; height: 20px;"></div>
     <!-- contact -->
-    <Contactus/>
+    <Contactus class="web-content"/>
 
     <!-- copyright -->
     <Footer/>
@@ -705,7 +705,11 @@ updateLabelStyles();
         background-color: rgba($color: #000000, $alpha: .5);
     }
 }
-
+@media screen and (max-width: 999px){
+    .web-content {
+        display: none !important;
+    }
+}
 header {
     width: 100%;
     position: static;

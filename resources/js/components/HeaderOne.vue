@@ -18,7 +18,7 @@
 
 
         <div class="row align-items-center justify-content-between">
-            <div class="col-6 col-md-2 d-flex justify-content-start">
+            <div class="col-7 col-md-7 d-flex justify-content-start">
                 <a href="/"><img src="/img/4k-logo.png" width="200" alt="logo"></a>
             </div>
             <div class="mobile-nav-icon col-1 col-md-1  justify-content-end">
@@ -28,18 +28,10 @@
             </div>
 
 
+            <div class="row topnav  justify-content-end align-items-center col-5 col-md-5 " id="myTopnav">
 
-
-            <div class="topnav col-md-8" id="myTopnav">
-
-                <div class="row menu-responsive">
-                    <a v-if="!user" class="nav-link col-md-2  text-black " href="/">Home</a>
                     <a v-if="!user" class="nav-link col-md-2  text-black " href="/register">Booking</a>
-                    <a v-else-if="user.role !== 'customer'" class="nav-link col-md-2 text-black "
-                       href="/company"><span>My&nbsp;console</span></a>
-                    <a v-if="!user" class="nav-link col-md-2  text-black " href="/contact-us">Contact&nbsp;us</a>
-                    <a v-if="!user" class="nav-link col-md-2  text-black " href="/about-us">About&nbsp;us</a>
-
+                    <a v-else-if="user.role !== 'customer'" class="nav-link col-md-2 text-black " href="/company"><span>My&nbsp;console</span></a>
 
                     <a v-if="user.role === 'customer'" class="col-md-2">
                         <CDropdown togglerText="Dropdown button" class="mt-1">
@@ -75,7 +67,6 @@
                             </CDropdownMenu>
                         </CDropdown>
                     </a>
-                </div>
             </div>
 
         </div>
@@ -143,17 +134,13 @@ body {
 }
 
 .topnav {
-    justify-content: flex-end !important;
-    align-self: center !important;
+    align-content: end;
     background-color: rgb(249, 214, 2);
 }
 
 .topnav a {
-    align-items: end;
     display: block;
     color: #f2f2f2;
-    text-align: center;
-    text-decoration: none;
     height: 40px;
     font-size: 17px;
 }
@@ -212,9 +199,9 @@ body {
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 10px 8px 8px 30px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 17px;
     color: #000000;
     display: block;
     transition: 0.3s;
