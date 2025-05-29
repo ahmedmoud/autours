@@ -6,12 +6,12 @@
         <header-one/>
         <!-- header close -->
         <!-- content begin -->
-        <div class="no-bottom no-top zebra" id="content">
+        <div class="no-bottom no-top zebra text-center" id="content">
             <div id="top"></div>
-            <div class="offset-3 mb-3">
-                <img src="/images/where_we_are/title.png">
+            <div class="mb-3">
+                <img width="800" style="margin-top: 40px;" src="/images/where_we_are/title.png" >
             </div>
-            <p style="font-size: 1.2vw;" class="mx-5"> A Journey through Eight Vibrant Destinations
+            <p  class="mx-5"> A Journey through Eight Vibrant Destinations
                 At our car rental service, we believe that the journey is just as important as the destination. With our
                 presence in eight stunning
                 locations Egypt, Jordan, Saudi Arabia, Bahrain, Qatar, Kuwait, the UAE, and Oman we invite you to
@@ -19,8 +19,6 @@
                 culture, history, and adventure that each of these countries has to offer. </p>
             <img style="width: 99.5%; margin-left: .2%; height: 900px;" src="/images/where_we_are/banner.png"/>
             <div class="row mt-5">
-
-
                 <div class="ml-5">
                     <div class="mb-5">
                         <h2><i class="fa fa-location-pin mr-2" style="color: #ecd875; font-size: 60px;"/> EGYPT: THE
@@ -37,9 +35,15 @@
                         </p>
 
                         <div class="row">
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/4.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/5.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/6.png"/></div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/4.png" class="img-fluid w-100 h-auto" alt="Image 1"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/5.png" class="img-fluid w-100 h-auto" alt="Image 2"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/6.png" class="img-fluid w-100 h-auto" alt="Image 3"/>
+                            </div>
                         </div>
 
                     </div>
@@ -54,9 +58,15 @@
                         </p>
 
                         <div class="row">
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/8.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/19.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/20.png"/></div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/8.png" class="img-fluid w-100 h-auto" alt="Image 1"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/19.png" class="img-fluid w-100 h-auto" alt="Image 2"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/20.png" class="img-fluid w-100 h-auto" alt="Image 3"/>
+                            </div>
                         </div>
 
                     </div>
@@ -71,9 +81,15 @@
                         </p>
 
                         <div class="row">
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/24.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/22.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/23.png"/></div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/24.png" class="img-fluid w-100 h-auto" alt="Image 1"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/22.png" class="img-fluid w-100 h-auto" alt="Image 2"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/23.png" class="img-fluid w-100 h-auto" alt="Image 3"/>
+                            </div>
                         </div>
 
                     </div>
@@ -88,9 +104,15 @@
                         </p>
 
                         <div class="row">
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/12.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/11.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/10.png"/></div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/12.png" class="img-fluid w-100 h-auto" alt="Image 1"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/11.png" class="img-fluid w-100 h-auto" alt="Image 2"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/10.png" class="img-fluid w-100 h-auto" alt="Image 3"/>
+                            </div>
                         </div>
 
                     </div>
@@ -104,9 +126,15 @@
                         </p>
 
                         <div class="row">
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/15.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/14.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/13.png"/></div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/15.png" class="img-fluid w-100 h-auto" alt="Image 1"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/14.png" class="img-fluid w-100 h-auto" alt="Image 2"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/13.png" class="img-fluid w-100 h-auto" alt="Image 3"/>
+                            </div>
                         </div>
 
                     </div>
@@ -121,9 +149,15 @@
                         </p>
 
                         <div class="row">
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/18.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/17.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/16.png"/></div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/18.png" class="img-fluid w-100 h-auto" alt="Image 1"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/17.png" class="img-fluid w-100 h-auto" alt="Image 2"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/16.png" class="img-fluid w-100 h-auto" alt="Image 3"/>
+                            </div>
                         </div>
 
                     </div>
@@ -137,17 +171,23 @@
                         </p>
 
                         <div class="row">
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/2.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/25.png"/></div>
-                            <div class="col-md-4"><img width="500" src="/images/where_we_are/3.png"/></div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/2.png" class="img-fluid w-100 h-auto" alt="Image 1"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/25.png" class="img-fluid w-100 h-auto" alt="Image 2"/>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 mb-4">
+                                <img src="/images/where_we_are/3.png" class="img-fluid w-100 h-auto" alt="Image 3"/>
+                            </div>
                         </div>
 
                     </div>
 
 
                 </div>
-                <div>
-                    <div class="offset-3"><img src="/images/where_we_are/conc.png"/></div>
+                <div >
+                    <div class="col-4 col-sm-4 col-md-4 mb-4 conc"> <img width="500" class=" h-auto" src="/images/where_we_are/conc.png"/></div>
                     <div class="ml-5">
                         <p style="font-size: 25px">
                             Each of these eight destinations offers a unique story waiting to be discovered. With our car rental service, you can embark on a
@@ -184,4 +224,23 @@ onMounted(() => {
 #top {
     margin-top: 7%;
 }
+.conc {
+   margin-left: 30%;
+}
+@media (max-width: 999px) {
+    p {
+        font-size: 2vw !important;
+    }
+    .conc {
+        margin-left: 15%;
+    }
+    h2 {
+        font-size: 4vw;
+    }
+
+    .fa-location-pin {
+        font-size: 30px !important;
+    }
+}
+
 </style>

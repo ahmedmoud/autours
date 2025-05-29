@@ -7,7 +7,7 @@
                     <a style="width:20%;" href="/"> <img src="/img/4k-logo.png" width="150" alt="logo"></a>
                 </div>
             <a v-if="!user" class="nav-link col-md-2  text-black " href="/"><i class="fa fa-home"/> Home</a>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/register"><i class="fa fa-car"/> Booking</a>
+            <a v-if="!user" class="nav-link col-md-2  text-black " href="/register"><i class="fa fa-car"/>&nbsp;Bookings</a>
             <a v-else-if="user.role !== 'customer'" class="nav-link col-md-2 text-black "
                href="/company"><span>My&nbsp;console</span></a>
             <a v-if="!user" class="nav-link col-md-2  text-black " href="/contact-us"><i class="fa fa-phone"/> Contact&nbsp;us</a>
@@ -30,7 +30,7 @@
 
             <div class="row topnav  justify-content-end align-items-center col-5 col-md-5 " id="myTopnav">
 
-                    <a v-if="!user" class="nav-link col-md-2  text-black " href="/register">Booking</a>
+                    <a v-if="!user" class="nav-link col-md-3  text-black " href="/register">Manage&nbsp;Booking</a>
                     <a v-else-if="user.role !== 'customer'" class="nav-link col-md-2 text-black " href="/company"><span>My&nbsp;console</span></a>
 
                     <a v-if="user.role === 'customer'" class="col-md-2">

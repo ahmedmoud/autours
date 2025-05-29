@@ -3,8 +3,7 @@
 
     <div id="">
         <!-- content begin -->
-        <section class="no-bottom no-top"
-                 style="width:110%; background-image: url('/images/background/manage-booking-div.jpg')">
+        <section class="no-bottom no-top" style="width:110%; background-image: url('/images/background/manage-booking-div.jpg')">
             <div id="top"></div>
             <!-- section begin -->
             <section id="subheader" class="jarallax ">
@@ -12,7 +11,6 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <!--                                <h2>View / Manage Booking</h2>-->
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -21,7 +19,7 @@
             </section>
             <!-- section close -->
             <section aria-label="section">
-                <div class=" col-md-6 flip-container">
+                <div class="col-md-6 flip-container">
                     <div id="forgetPassword" class="flipper display-none offset-5">
                         <div class="front">
                             <p style="font-size: 50px; margin-top: 5%; margin-left: 20%; font-weight: 1000;">
@@ -33,6 +31,12 @@
                                 <a style="left: 40%;" class="cursor-pointer btn-main mt-4  rounded-5"
                                    @click="sendForgetPasswordEmail()">Submit</a>
                             </form>
+                            <div class=" mt-5 row">
+                                <div id='submit' class="mt-4 col-md-4 ">
+                                    <a class="flipbutton cursor-pointer" id="loginButton"
+                                       v-on:click="createAccount()">Create my account →</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,13 +82,12 @@
                                 </p>
                             </div>
 
-                            <div class=" col-md-6 flip-container">
+                            <div class="col-12 col-md-6 flip-container">
 
                                 <div :class="RegisterForm.user_type !== 'supplier' ? 'flipper offset-5' : 'flipper' "
                                      v-bind:class="(RegisterForm.supplier) ? 'flip' : ''" id="flipper">
                                     <div class="front">
-                                        <p style="font-size: 50px; margin-top: 5%; margin-left: 20%; font-weight: 1000;">
-                                            Manage Booking</p>
+                                        <p style="font-size: 3vw; margin-top: 5%; margin-left: 20%; font-weight: 1000;">Manage Booking</p>
                                         <form class="form-border" @submit.prevent="manageBooking">
 
                                             <div class="row">
@@ -470,20 +473,6 @@ input {
     text-align: left !important;
 }
 
-@media screen and (max-width: 1000px) {
-
-    .flip-container {
-        width: 100%;
-
-    }
-
-    .flipper {
-        top: -120px;
-        width: 100%;
-        left: 0;
-        background: #ffffff;
-    }
-}
 
 .input-text {
     border-radius: 50px !important;

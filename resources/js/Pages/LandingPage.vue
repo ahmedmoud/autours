@@ -15,7 +15,7 @@
     <div class="my-4" style="background: #FFFFFF">
         <div class="container">
             <div class="row" style="justify-content: center;">
-                <div v-for="logo in logos" class="col-2 col-md-2 py-2 ">
+                <div v-for="logo in logos" class="col-md-1 py-2 " style="width: 20%;">
                     <img :src="'img/company_logos/' + logo" class="mx-auto d-block" width="90" height="35"/>
                 </div>
             </div>
