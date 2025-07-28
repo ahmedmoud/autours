@@ -479,31 +479,36 @@
                                             <!-- Supplier & Review -->
                                             <div class="row bg-light p-2 rounded mb-2 g-2 flex-md-nowrap align-items-center">
                                                 <div class="col-2 col-md-3 text-center">
-                                                    <img :src="'img/' + vehicle.supplier.logo" alt="" class="img-fluid" style="max-height: 50px" />
+                                                    <img :src="'img/' + vehicle.supplier.logo" alt="" class="img-fluid"   />
                                                 </div>
 
                                                 <div class="col-3 col-md-3">
-                                                    <strong>{{ vehicle.supplier.company }}</strong><br />
-                                                    <a href="javascript:void(0);" @click="openRentalTerms(vehicle)" class="text-decoration-underline text-nowrap">
+                                                    <div style="margin-bottom: -10px;" class="ml-2">{{ vehicle.supplier.company }}</div>
+                                                    <a href="javascript:void(0);" @click="openRentalTerms(vehicle)" style="font-size: 13px;" class="text-decoration-underline  text-nowrap">
                                                         Rental Terms
                                                     </a>
                                                 </div>
 
-                                                <div class="col-2 col-md-3">
-                                                    <span class="badge bg-warning text-dark">{{ vehicle.supplier_rate }}/10</span>
+                                                <div class="col-3 col-md-3 ml-1">
+                                                    <span class="badge bg-warning text-dark ml-3">{{ vehicle.supplier_rate }}/10</span>
                                                     <div>
-                                                        <small>{{ vehicle.supplier_rate }} ({{ vehicle.supplier_number_of_reviews }}+ reviews)</small>
+                                                        <small class="text-nowrap"> ({{ vehicle.supplier_number_of_reviews }}+ reviews)</small>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-2 col-md-3 d-flex align-items-center">
+                                                <div class="col-2 col-md-3 d-flex mt-2">
                                                     <img
                                                         v-if="vehicle.instant_confirmation"
                                                         src="/images/icons/instant_confirmation.png"
-                                                        width="30"
-                                                        class="me-1"
+                                                        width="20"
+                                                        height="20"
+                                                        class="mt-3 mr-2"
                                                     />
-                                                    <strong>{{ vehicle.instant_confirmation ? 'Instant Confirmation' : 'On Request' }}</strong>
+
+                                                    <div v-if="vehicle.instant_confirmation">
+                                                        <p style="font-size: 13px; margin-bottom: -10px;" class="bold">Instant </p>
+                                                        <p style="font-size: 13px;" class="bold">Confirmation</p></div>
+                                                    <div v-else class="bold"> <p style="font-size: 13px;"> On Request</p></div>
                                                 </div>
                                             </div>
 
@@ -511,15 +516,14 @@
                                             <div class="mt-2">
                                                 <p class="fw-bold text-success">What is Included!</p>
                                                 <ul class="list-unstyled row">
-                                                    <li v-for="(item, index) in vehicle.included" :key="index" class="col-6 mb-1">
-                                                        <i class="fa fa-check text-success me-2"></i>
+                                                    <li v-for="(item, index) in vehicle.included" :key="index" class="col-6 ">
                                                         <el-tooltip v-if="item.description" placement="top">
                                                             <template #content>
                                                                 {{ item.description }}
                                                             </template>
-                                                            <span class="small">{{ item.what_is_included }}</span>
+                                                            <span class="small text-nowrap"><i class="fa fa-check text-success me-2"/> {{ item.what_is_included }}</span>
                                                         </el-tooltip>
-                                                        <span v-else class="small">{{ item.what_is_included }}</span>
+                                                        <span v-else class="small text-nowrap"><i class="fa fa-check text-success me-2"/> {{ item.what_is_included }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
