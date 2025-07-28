@@ -406,11 +406,11 @@
                                     style="width: 100%;"
                                     :class="'slide-container mt-2'"
                                     :breakpoints="{
-      0: { slidesPerView: 1.2 },
-      576: { slidesPerView: 2 },
-      768: { slidesPerView: 3 },
-      992: { slidesPerView: 4 }
-    }"
+                                              0: { slidesPerView: 1.2 },
+                                              576: { slidesPerView: 2 },
+                                              768: { slidesPerView: 3 },
+                                              992: { slidesPerView: 4 }
+                                              }"
                                 >
                                     <swiper-slide v-for="item in filteredCategories" :key="item.id">
                                         <div :class="category.indexOf(item.id) >= 0 ? 'card select' : 'card'" :id="'category-' + item.id">
@@ -445,63 +445,113 @@
                             </div>
 
                             <div v-if="!loading" v-for="(vehicle, mobileIndex) in priceFiltered" :key="mobileIndex" class="mb-4 mobile-card px-2">
-                                <div class="de-item-list bg-white position-relative rounded shadow-sm p-3">
-
-                                    <!-- Close Icon -->
-                                    <div class="position-absolute top-0 end-0 mt-2 me-2" @click="hideItem(mobileIndex)" style="cursor: pointer;">
-                                        <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24">
-                                            <!-- SVG PATHS -->
-                                        </svg>
+                                <div class="  p-3 position-relative" style="background: #fff; border-radius: 1%; height: 78% !important;">
+                                    <!-- Close Button -->
+                                    <div class="position-absolute top-0 end-0 m-2 cursor-pointer" @click="hideItem(mobileIndex)">
+                                      <i class="fa fa-close"/>
                                     </div>
 
-                                    <!-- Responsive Row -->
-                                    <div class="row align-items-center">
-                                        <!-- Vehicle Image -->
-                                        <div class="col-12 col-md-3 text-center mb-3 mb-md-0">
-                                            <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid" style="max-height: 120px;" />
+                                    <!-- Vehicle Info -->
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-10 col-md-3 text-center">
+                                            <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid rounded" :alt="vehicle.name" />
                                         </div>
 
-                                        <!-- Vehicle Info -->
-                                        <div class="col-12 col-md-5 mb-3 mb-md-0">
-                                            <h5 class="fw-bold">
-                                                {{ vehicle.name }} Or Similar
+                                        <div class="col-12 col-md-9">
+                                            <h5 class="text-dark">{{ vehicle.name }} Or Similar
                                                 <el-tooltip placement="right-start">
                                                     <template #content>
-                                                        <div style="font-size: 14px;">
-                                                            Supplier may offer a similar car of the same category/specs.
-                                                        </div>
+                                                        The supplier will provide a car in the same class.
                                                     </template>
-                                                    <i class="fas fa-info-circle text-primary ms-1"></i>
+                                                    <i class="fas fa-info-circle text-primary ms-2"></i>
                                                 </el-tooltip>
                                             </h5>
-                                            <p>{{ vehicle?.category?.name }}</p>
+                                            <p class="mb-1">{{ vehicle?.category?.name }}</p>
 
-                                            <div class="d-flex flex-wrap gap-2 small">
-                                                <div v-if="vehicle.passenger_count"><i class="fas fa-users me-1"></i>{{ vehicle.passenger_count }} Passengers</div>
-                                                <div v-if="vehicle.luggage_count"><i class="fas fa-suitcase-rolling me-1"></i>{{ vehicle.luggage_count }} Bags</div>
-                                                <div v-if="vehicle.door_count"><i class="fas fa-door-open me-1"></i>{{ vehicle.door_count }} Doors</div>
-                                                <div v-if="vehicle.transmission_type"><i class="fas fa-cogs me-1"></i>{{ vehicle.transmission_type }}</div>
-                                                <div v-if="vehicle.ac"><i class="fas fa-snowflake me-1"></i> A/C</div>
+                                            <!-- Specs -->
+                                            <div class="d-flex flex-wrap gap-2 mb-2">
+                                                <div v-for="specification in vehicle.specifications" class="d-flex align-items-center">
+                                                    <img v-if="specification.icon" :src="'assets/images/icons/' + specification.icon + '.svg'" class="me-2" style="width:20px" />
+                                                    <small>{{ specification.value }} {{ (specification.name) }}</small>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <!-- Price + Button -->
-                                        <div class="col-12 col-md-4 text-center text-md-end">
-                                            <div>
-                                                <span v-if="vehicle.promo" class="text-success fw-semibold d-block">{{ vehicle.promo }}</span>
-                                                <p class="mb-1 d-days">For {{ daysNumber }} day{{ daysNumber > 1 ? 's' : '' }}</p>
-                                                <h4 class="fw-bold">{{ vehicle.final_price }} <small>{{ selectedCurrency }}</small></h4>
+                                            <!-- Supplier & Review -->
+                                            <div class="row bg-light p-2 rounded mb-2 g-2 flex-md-nowrap align-items-center">
+                                                <div class="col-2 col-md-3 text-center">
+                                                    <img :src="'img/' + vehicle.supplier.logo" alt="" class="img-fluid" style="max-height: 50px" />
+                                                </div>
+
+                                                <div class="col-3 col-md-3">
+                                                    <strong>{{ vehicle.supplier.company }}</strong><br />
+                                                    <a href="javascript:void(0);" @click="openRentalTerms(vehicle)" class="text-decoration-underline text-nowrap">
+                                                        Rental Terms
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-2 col-md-3">
+                                                    <span class="badge bg-warning text-dark">{{ vehicle.supplier_rate }}/10</span>
+                                                    <div>
+                                                        <small>{{ vehicle.supplier_rate }} ({{ vehicle.supplier_number_of_reviews }}+ reviews)</small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2 col-md-3 d-flex align-items-center">
+                                                    <img
+                                                        v-if="vehicle.instant_confirmation"
+                                                        src="/images/icons/instant_confirmation.png"
+                                                        width="30"
+                                                        class="me-1"
+                                                    />
+                                                    <strong>{{ vehicle.instant_confirmation ? 'Instant Confirmation' : 'On Request' }}</strong>
+                                                </div>
                                             </div>
-                                            <button class="btn btn-warning w-100 mt-2" @click="goToBookingPage(vehicle.id)">
-                                                Booking <i class="fas fa-arrow-right ms-1"></i>
-                                            </button>
+
+                                            <!-- What's Included -->
+                                            <div class="mt-2">
+                                                <p class="fw-bold text-success">What is Included!</p>
+                                                <ul class="list-unstyled row">
+                                                    <li v-for="(item, index) in vehicle.included" :key="index" class="col-6 mb-1">
+                                                        <i class="fa fa-check text-success me-2"></i>
+                                                        <el-tooltip v-if="item.description" placement="top">
+                                                            <template #content>
+                                                                {{ item.description }}
+                                                            </template>
+                                                            <span class="small">{{ item.what_is_included }}</span>
+                                                        </el-tooltip>
+                                                        <span v-else class="small">{{ item.what_is_included }}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <!-- Fuel Policy and Location -->
+                                            <div class="row mt-3 g-2">
+                                                <div class="col-12 col-md-6">
+                                                    <el-tooltip placement="top">
+                                                        <template #content>
+                                                            {{ vehicle?.fuel_policy?.description }}
+                                                        </template>
+                                                        <span><i class="fa fa-gas-pump me-1"></i>Fuel Policy: <strong>{{ vehicle?.fuel_policy?.name }}</strong></span>
+                                                    </el-tooltip>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <i :class="'fa fa-' + vehicle.location_type[0]?.icon + ' me-1'"></i>Location Type:
+                                                    <strong>{{ vehicle.location_type[0]?.name }}</strong>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Footer Info -->
-                                    <div class="mt-3 border-top pt-2 small">
-                                        <p><i class="fa fa-map-marker-alt text-primary me-1"></i> {{ vehicle.supplier.address }}</p>
-                                        <p><i class="fa fa-gas-pump me-1"></i> Fuel Policy: <strong>{{ vehicle?.fuel_policy?.name }}</strong></p>
+                                    <!-- Pricing and Booking -->
+                                    <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
+                                        <div>
+                                            <p class="mb-0 text-success" v-if="vehicle.promo.length"><i class="fa fa-check me-1"></i>{{ vehicle.promo }}</p>
+                                            <span class="text-muted">For {{ daysNumber }} day{{ daysNumber > 1 ? 's' : '' }}</span>
+                                            <h4 class="mb-0">{{ vehicle.final_price }} <small>{{ selectedCurrency }}</small></h4>
+                                        </div>
+                                        <button class="btn btn-primary mt-2 col-12" @click="goToBookingPage(vehicle.id)">
+                                            Booking <i class="fa fa-arrow-right ms-2"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
