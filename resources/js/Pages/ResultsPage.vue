@@ -398,34 +398,44 @@
 
 
                         <div class="col-lg-9">
-                            <div class="col-md-11">
+                            <div class="col-12 col-md-11">
                                 <swiper
                                     :modules="[Navigation, Pagination, Scrollbar, A11y]"
-                                    :slides-per-view="4"
                                     :space-between="5"
                                     navigation
-                                    style="width: 90%;"
-                                    :class="'slide-container  mt-2'"
+                                    style="width: 100%;"
+                                    :class="'slide-container mt-2'"
+                                    :breakpoints="{
+      0: { slidesPerView: 1.2 },
+      576: { slidesPerView: 2 },
+      768: { slidesPerView: 3 },
+      992: { slidesPerView: 4 }
+    }"
                                 >
-                                    <swiper-slide v-for="item in filteredCategories">
-                                        <div :class="category.indexOf(item.id) >= 0 ? 'card select' : 'card'"
-                                             :id="'category-' + item.id">
-                                            <el-radio :label="item.id" size="large" border
-                                                      @click="SelectCategory(item.id)" class=" image-content">
+                                    <swiper-slide v-for="item in filteredCategories" :key="item.id">
+                                        <div :class="category.indexOf(item.id) >= 0 ? 'card select' : 'card'" :id="'category-' + item.id">
+                                            <el-radio
+                                                :label="item.id"
+                                                size="large"
+                                                border
+                                                @click="SelectCategory(item.id)"
+                                                class="image-content"
+                                            >
                                                 <div class="card-item">
-                                                    <div>
-                                                        <img class="position-relative "
-                                                             :src="'img/categories/'+item.photo" alt="" width="180"
-                                                             height="190">
-                                                    </div>
+                                                    <img
+                                                        class="position-relative"
+                                                        :src="'img/categories/' + item.photo"
+                                                        alt=""
+                                                        width="180"
+                                                        height="190"
+                                                    />
                                                 </div>
                                             </el-radio>
                                         </div>
                                     </swiper-slide>
-
                                 </swiper>
-
                             </div>
+
 
                             <h3 style="color: #000; margin-left: 1.2%;">SEARCH RESULT <strong
                                 style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
