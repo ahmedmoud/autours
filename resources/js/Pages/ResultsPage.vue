@@ -41,25 +41,32 @@
             <div id="section-cars">
 
 
-                <div class="" style="width: 100%; padding-left: 10%;">
+
+                <div class="w-100  ps-md-5 ps-lg-5" >
+                    <div class="col-md-11 mb-1 top-buttons d-flex flex-wrap flex-md-nowrap justify-content-between">
+                        <button class="btn steps-button mr-md-2 mb-2 mb-md-0 w-100 w-md-33"
+                                style="background: #f9d602; color: #000;">
+                            <span class="ti ti-circle-number-1 mr-1"></span>Choose Your Location
+                        </button>
+                        <button class="btn steps-button active mr-md-2 mb-2 mb-md-0 w-100 w-md-33"
+                                style="background: rgb(155,147,84); color: #000;">
+                            <span class="ti ti-circle-number-2 mr-1"></span>Choose Your Car
+                        </button>
+                        <button class="btn steps-button w-100 w-md-33"
+                                style="background: #f9d602; color: #000;">
+                            <span class="ti ti-circle-number-3 mr-1"></span>Reserve Your Car
+                        </button>
+                    </div>
 
                     <div class="row">
-                        <div class=" col-md-11 mb-1  top-buttons">
-                            <button class="  btn steps-button mr-2 "
-                                    style=" width: 33%;background: #f9d602; color: #000;"><span
-                                class="ti ti-circle-number-1 mr-1"/>Choose Your Location
-                            </button>
-                            <button class=" mr-1  btn  steps-button active"
-                                    style="width: 33%; background: rgb(155,147,84);color: #000;"><span
-                                class="ti ti-circle-number-2 mr-2"/>Choose Your Car
-                            </button>
-                            <button class=" btn  steps-button"
-                                    style="width: 33%; background: #f9d602; color: #000; "><span
-                                class="ti ti-circle-number-3 mr-1"/>Reserve Your Car
-                            </button>
+
+                        <div class="hidden filter-by">
+                            <div>
+                                <button id="filter-btn" @click="filters()" class="col-md-11 bg-white btn btn-main  mt-2"><i class="fa fa-filter"/> Filter by</button>
+                            </div>
                         </div>
-                        <div class="col-lg-3">
-                            <div class=" pb-4" style="background: #fff; width: 100%">
+                        <div class="col-12 col-md-8 col-lg-3 mobile-filters">
+                            <div class=" pb-4 bg-white">
                                 <div class="p-1"
                                      style="background: #e1e1e1; width: 100%;  margin-top: 10px;">
                                     <h5 class="p-2">YOUR SEARCH DETAILS</h5>
@@ -251,14 +258,13 @@
                                 </div>
                                 <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('ms')">
-                                        <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
-                                            Location Types</h4> <i
-                                        :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-ms' "/></div>
+                                        <h4 class="col-md-9 col-10 mr-3" style="color: #000; margin-bottom: -30px">
+                                            Location Types</h4> <i :class="'col-md-2 col-1  fa fa-arrow-down cursor-pointer  pointer-arrow-ms' "/></div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="ms">
                                         <div class="row" v-for="locationType in filteredLocationTypes">
                                             <div class="row" v-if="locationType?.vehicle_count">
-                                                <div class="col-md-10   mt-3">{{
+                                                <div class="col-md-10 col-10  mt-3">{{
                                                         locationType.name
                                                     }} <small style="font-size: 14px;">
                                                         ({{ locationType?.vehicle_count }})</small></div>
@@ -266,7 +272,7 @@
                                                 <Checkbox
                                                     binary
                                                     :model-value="checkIfLocationTypeSelected(locationType.id)"
-                                                    class="col-md-2  mt-3"
+                                                    class="col-md-2 col-2 mt-3"
                                                     @click="selectLocationType(locationType.id)"
                                                 />
                                             </div>
@@ -275,13 +281,13 @@
                                 </div>
                                 <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('cat')">
-                                        <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
-                                            Categories</h4> <i :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-cat' "/></div>
+                                        <h4 class="col-md-9 col-10 mr-3" style="color: #000; margin-bottom: -30px">
+                                            Categories</h4> <i :class="'col-md-2 col-1  fa fa-arrow-down cursor-pointer  pointer-arrow-cat' "/></div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="cat">
                                         <div class="row" v-for="item in filteredCategories">
                                             <div class="row">
-                                                <div class="col-md-10 mt-3">{{
+                                                <div class="col-md-10 col-10 mt-3">{{
                                                         item.name
                                                     }} <small style="font-size: 14px;">
                                                         ({{ item?.vehicle_count }})</small></div>
@@ -289,7 +295,7 @@
                                                 <Checkbox
                                                     binary
                                                     :model-value="checkIfCategorySelected(item.id)"
-                                                    class="col-md-2  mt-3"
+                                                    class="col-md-2 col-2 mt-3"
                                                     @click="SelectCategory(item.id)"
                                                 />
 
@@ -300,14 +306,14 @@
 
                                 <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('lt')">
-                                        <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
+                                        <h4 class="col-md-9 col-10 mr-3" style="color: #000; margin-bottom: -30px">
                                             Suppliers</h4> <i
-                                        :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-lt' "/></div>
+                                        :class="'col-md-2 col-1 fa fa-arrow-down cursor-pointer  pointer-arrow-lt' "/></div>
                                     <hr style="margin-top: 20px;"/>
                                     <div style="margin-top: -45px;" id="lt">
                                         <div class="row" v-for="supplier in filteredSuppliers">
                                             <div class="row" v-if="supplier?.vehicle_count">
-                                                <div class="col-md-10 mt-3">{{
+                                                <div class="col-md-10 col-10 mt-3">{{
                                                         supplier.company
                                                     }} <small style="font-size: 14px;">
                                                         ({{ supplier?.vehicle_count }})</small></div>
@@ -316,7 +322,7 @@
                                                 <Checkbox
                                                     binary
                                                     :model-value="checkIfSupplierSelected(supplier.id)"
-                                                    class="col-md-2  mt-3"
+                                                    class="col-md-2  col-2 mt-3"
                                                     @click="selectSupplier(supplier.id)"
                                                 />
 
@@ -326,17 +332,17 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 my-4" style="background: #fff;">
+                                <div class="col-md-12 my-5" style="background: #fff;">
                                     <div class="row" @click="collapse('payment')">
-                                        <h4 class="col-md-9 mr-3" style="color: #000; margin-bottom: -30px">
+                                        <h4 class="col-md-9 col-10 mr-3" style="color: #000; margin-bottom: -30px">
                                             Payment Types</h4> <i
-                                        :class="'col-md-2 fa fa-arrow-down cursor-pointer  pointer-arrow-payment' "/>
+                                        :class="'col-md-2 col-1 fa fa-arrow-down cursor-pointer  pointer-arrow-payment' "/>
                                     </div>
-                                    <hr style="margin-top: 20px;"/>
-                                    <div style="margin-top: -45px;" id="payment">
+                                    <hr class="my-5"/>
+                                    <div style="margin-top: -10px;" id="payment">
                                         <div class="row" v-for="paymentMethod in paymentMethods">
                                             <div class="row">
-                                                <div class="col-md-10 mt-3">{{
+                                                <div class="col-md-10 col-10 mt-3">{{
                                                         paymentMethod.name
                                                     }}
                                                     <!--                                                    <small style="font-size: 14px;">({{ paymentMethod?.vehicle_count }})</small>-->
@@ -345,7 +351,7 @@
                                                 <Checkbox
                                                     binary
                                                     :model-value="checkIfPaymentMethodSelected(paymentMethod.id)"
-                                                    class="col-md-2  mt-3"
+                                                    class="col-md-2 col-2  mt-3"
                                                     @click="selectPaymentMethod(paymentMethod.id)"
                                                 />
                                             </div>
@@ -355,17 +361,17 @@
 
                                 <div v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
                                     <div class="col-md-12 my-4  ">
-                                        <div @click="collapse(item.id)" class="row"><h4 class="col-md-9 mr-3"
+                                        <div @click="collapse(item.id)" class="row"><h4 class="col-md-9 col-10 mr-3"
                                                                                         style="color: #000; margin-bottom: -30px">
                                             {{ item.name }}</h4>
-                                            <i :class="'col-md-2 fa fa-arrow-down cursor-pointer ' +  'pointer-arrow-' + item.id"/>
+                                            <i :class="'col-md-2 col-1 fa fa-arrow-down cursor-pointer ' +  'pointer-arrow-' + item.id"/>
                                         </div>
                                         <hr style="margin-top: 20px"/>
                                         <div style="margin-top: -35px" :id="item.id">
                                             <div class="row" v-for="option in item.options">
                                                 <div class="row " v-if="option.vehicle_count">
-                                                    <div class="col-md-10 my-2 text-nowrap ">
-                                                        <div class="col-md-9 ">{{ option.value }}
+                                                    <div class="col-md-10 col-10 my-2 text-nowrap ">
+                                                        <div class="col-md-9 col-9 ">{{ option.value }}
                                                         {{
                                                             item.name == 'Number of seats' ||
                                                             item.name == 'Number of Seats' ? 'Seats' : item.name == 'Doors' ? 'Doors' : ''
@@ -379,7 +385,7 @@
                                                     <Checkbox
                                                         binary
                                                         :model-value="checkIfSpecificationSelected(item, option)"
-                                                        class="col-md-2  mt-3"
+                                                        class="col-md-2 col-2  mt-3"
                                                         @click="selectSpecification(item, option)"
                                                     />
                                                 </div>
@@ -423,10 +429,74 @@
 
                             <h3 style="color: #000; margin-left: 1.2%;">SEARCH RESULT <strong
                                 style="color: #bdaa2f;">{{ count }} CARS FOUND</strong></h3>
-                            <div v-if="loading" class="col-lg-5">
+
+                            <div v-if="loading" class="col-lg-5 ">
                                 <Loader/>
                             </div>
-                            <div v-else v-for="(vehicle, index) in priceFiltered" :key="index" class="row col-md-11">
+
+                            <div v-if="!loading" v-for="(vehicle, mobileIndex) in priceFiltered" :key="mobileIndex" class="mb-4 mobile-card px-2">
+                                <div class="de-item-list bg-white position-relative rounded shadow-sm p-3">
+
+                                    <!-- Close Icon -->
+                                    <div class="position-absolute top-0 end-0 mt-2 me-2" @click="hideItem(mobileIndex)" style="cursor: pointer;">
+                                        <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24">
+                                            <!-- SVG PATHS -->
+                                        </svg>
+                                    </div>
+
+                                    <!-- Responsive Row -->
+                                    <div class="row align-items-center">
+                                        <!-- Vehicle Image -->
+                                        <div class="col-12 col-md-3 text-center mb-3 mb-md-0">
+                                            <img :src="'img/vehicles/' + vehicle.photo" class="img-fluid" style="max-height: 120px;" />
+                                        </div>
+
+                                        <!-- Vehicle Info -->
+                                        <div class="col-12 col-md-5 mb-3 mb-md-0">
+                                            <h5 class="fw-bold">
+                                                {{ vehicle.name }} Or Similar
+                                                <el-tooltip placement="right-start">
+                                                    <template #content>
+                                                        <div style="font-size: 14px;">
+                                                            Supplier may offer a similar car of the same category/specs.
+                                                        </div>
+                                                    </template>
+                                                    <i class="fas fa-info-circle text-primary ms-1"></i>
+                                                </el-tooltip>
+                                            </h5>
+                                            <p>{{ vehicle?.category?.name }}</p>
+
+                                            <div class="d-flex flex-wrap gap-2 small">
+                                                <div v-if="vehicle.passenger_count"><i class="fas fa-users me-1"></i>{{ vehicle.passenger_count }} Passengers</div>
+                                                <div v-if="vehicle.luggage_count"><i class="fas fa-suitcase-rolling me-1"></i>{{ vehicle.luggage_count }} Bags</div>
+                                                <div v-if="vehicle.door_count"><i class="fas fa-door-open me-1"></i>{{ vehicle.door_count }} Doors</div>
+                                                <div v-if="vehicle.transmission_type"><i class="fas fa-cogs me-1"></i>{{ vehicle.transmission_type }}</div>
+                                                <div v-if="vehicle.ac"><i class="fas fa-snowflake me-1"></i> A/C</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Price + Button -->
+                                        <div class="col-12 col-md-4 text-center text-md-end">
+                                            <div>
+                                                <span v-if="vehicle.promo" class="text-success fw-semibold d-block">{{ vehicle.promo }}</span>
+                                                <p class="mb-1 d-days">For {{ daysNumber }} day{{ daysNumber > 1 ? 's' : '' }}</p>
+                                                <h4 class="fw-bold">{{ vehicle.final_price }} <small>{{ selectedCurrency }}</small></h4>
+                                            </div>
+                                            <button class="btn btn-warning w-100 mt-2" @click="goToBookingPage(vehicle.id)">
+                                                Booking <i class="fas fa-arrow-right ms-1"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Footer Info -->
+                                    <div class="mt-3 border-top pt-2 small">
+                                        <p><i class="fa fa-map-marker-alt text-primary me-1"></i> {{ vehicle.supplier.address }}</p>
+                                        <p><i class="fa fa-gas-pump me-1"></i> Fuel Policy: <strong>{{ vehicle?.fuel_policy?.name }}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-if="!loading" v-for="(vehicle, index) in priceFiltered" :key="index" class="row web-card col-md-11">
                                 <div :style="getDisplayStyle(vehicle)">
                                     <div class="de-item-list mb-3 p-4 ">
                                         <div class="close"
@@ -1030,6 +1100,9 @@ const getFilters = async () => {
     }
 };
 
+const filters = () => {
+    $('.mobile-filters').slideToggle()
+}
 const hideItem = (index) => {
     const item = filteredVehicles.value[index];
     item.isHidden = true;
@@ -1098,6 +1171,7 @@ const setParams = async () => {
 
     await getVehicles();
 }
+
 onMounted(() => {
     setParams();
 })
@@ -1443,6 +1517,81 @@ onMounted(() => {
     left: 130px !important;
     transform: translate(0px, 0px) !important;
     display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebar-filter {
+        padding: 1rem;
+    }
+
+    .sidebar-filter h5,
+    .sidebar-filter h4 {
+        font-size: 16px;
+    }
+
+    .sidebar-filter .row {
+        flex-direction: column;
+    }
+
+    .sidebar-filter .col-md-10,
+    .sidebar-filter .col-md-9,
+    .sidebar-filter .col-md-6,
+    .sidebar-filter .col-md-5,
+    .sidebar-filter .col-md-2 {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-filter .form-control,
+    .sidebar-filter .el-select,
+    .sidebar-filter .el-date-picker,
+    .sidebar-filter select {
+        width: 100% !important;
+    }
+
+    .sidebar-filter .btn-main {
+        width: 100%;
+    }
+
+    .sidebar-filter .fa {
+        float: right;
+        margin-top: -25px;
+    }
+}
+
+@media screen  and (max-width: 999px){
+ .mobile-filters {
+     display: none;
+   }
+    .filter-by {
+        display: block;
+    }
+    .web-card{
+        display: none;
+    }
+    .mobile-card {
+        display: block;
+
+    }
+
+}
+
+@media screen  and (min-width: 1000px){
+
+    .filter-by {
+        display: none;
+    }
+    .mobile-filters {
+        display: block;
+    }
+    .web-card {
+        display: block;
+    }
+    .mobile-card {
+        display: none;
+    }
+
 }
 
 

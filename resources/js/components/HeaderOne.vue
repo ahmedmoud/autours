@@ -3,17 +3,17 @@
     <header style="background: #f9d602; height: 85px;">
         <div id="mySidenav" class="sidenav">
                 <div class="row" style=" background: #f9d602; margin-top: -60px;">
-                    <a style="width:20%; margin-top: 3%;" href="javascript:void(0)" class="col-md-10"><i @click="closeNav()" class="fa fa-arrow-left"/></a>
-                    <a style="width:20%;" href="/"> <img src="/img/4k-logo.png" width="150" alt="logo"></a>
+                    <a style="width:20%; margin-top: 3%;" href="javascript:void(0)" class="col-md-10 text-nowrap"><i @click="closeNav()" class="fa fa-arrow-left"/></a>
+                    <a style="width:20%;" href="/" class="text-nowrap"> <img src="/img/4k-logo.png" width="150" alt="logo"></a>
                 </div>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/"><i class="fa fa-home"/> Home</a>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/register"><i class="fa fa-car"/>&nbsp;Bookings</a>
-            <a v-else-if="user.role !== 'customer'" class="nav-link col-md-2 text-black "
+            <a v-if="!user" class="nav-link col-md-2  text-black text-nowrap" href="/"><i class="fa fa-home"/> Home</a>
+            <a v-if="!user" class="nav-link col-md-2  text-black text-nowrap" href="/register"><i class="fa fa-car"/>&nbsp;Bookings</a>
+            <a v-else-if="user.role !== 'customer'" class="nav-link col-md-2 text-black text-nowrap"
                href="/company"><span>My&nbsp;console</span></a>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/contact-us"><i class="fa fa-phone"/> Contact&nbsp;us</a>
-            <a v-if="!user" class="nav-link col-md-2  text-black " href="/about-us"><i class="fa fa-book"/> About&nbsp;us</a>
-            <a v-if="user.role === 'customer'" class="col-md-2" @click="() => router.get('/my-profile')"><i class="fa fa-user"/> My&nbsp;Profile</a>
-            <a v-if="user.role === 'customer'" class="col-md-2" @click="() => router.get('/logout')"><i class="fa fa-log-out"/> Log&nbsp;Out</a>
+            <a v-if="!user" class="nav-link col-md-2  text-black text-nowrap" href="/contact-us"><i class="fa fa-phone"/> Contact&nbsp;us</a>
+            <a v-if="!user" class="nav-link col-md-2  text-black text-nowrap" href="/about-us"><i class="fa fa-book"/> About&nbsp;us</a>
+            <a v-if="user.role === 'customer'" class="col-md-2 text-nowrap" @click="() => router.get('/my-profile')"><i class="fa fa-user"/> My&nbsp;Profile</a>
+            <a v-if="user.role === 'customer'" class="col-md-2 text-nowrap" @click="() => router.get('/logout')"><i class="fa fa-log-out"/> Log&nbsp;Out</a>
         </div>
 
 
@@ -30,7 +30,7 @@
 
             <div class="row topnav  justify-content-end align-items-center col-5 col-md-5 " id="myTopnav">
 
-                    <a v-if="!user" class="nav-link col-md-3  text-black " href="/register">Manage&nbsp;Booking</a>
+                    <a v-if="!user" class="nav-link col-4  col-md-4  text-black " href="/register">Manage&nbsp;Booking</a>
                     <a v-else-if="user.role !== 'customer'" class="nav-link col-md-2 text-black " href="/company"><span>My&nbsp;console</span></a>
 
                     <a v-if="user.role === 'customer'" class="col-md-2">
@@ -51,7 +51,7 @@
                             </CDropdownMenu>
                         </CDropdown>
                     </a>
-                    <a class="col-md-2 ">
+                    <a class="col-md-2 ml-3 ">
                         <CDropdown togglerText="Dropdown button" class="mt-1 ">
                             <CDropdownToggle class="text-black " component="a" style="color: rgba(30, 30, 30, 1);">{{
                                     selectedCurrency

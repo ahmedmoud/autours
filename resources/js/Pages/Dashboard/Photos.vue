@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="">
-                        <form @submit.prevent="upload">
+                        <form @submit.prevent="upload" enctype="multipart/form-data">
                             <div class="formbold-mb-3">
                                 <img v-if="photo" :src="'img/vehicles' + photo" style="width:300px;">
                                 <label class="formbold-form-label">
