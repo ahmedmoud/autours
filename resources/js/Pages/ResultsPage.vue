@@ -496,7 +496,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-2 col-md-3 d-flex mt-2">
+                                                <div class="col-2 col-md-3 d-flex mt-0">
                                                     <img
                                                         v-if="vehicle.instant_confirmation"
                                                         src="/images/icons/instant_confirmation.png"
@@ -516,7 +516,7 @@
                                             <div class="mt-2">
                                                 <p class="fw-bold text-success">What is Included!</p>
                                                 <ul class="list-unstyled row">
-                                                    <li v-for="(item, index) in vehicle.included" :key="index" class="col-6 ">
+                                                    <li v-for="(item, index) in vehicle.included" :key="index" class="col-6">
                                                         <el-tooltip v-if="item.description" placement="top">
                                                             <template #content>
                                                                 {{ item.description }}
