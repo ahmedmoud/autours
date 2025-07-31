@@ -202,51 +202,73 @@
 
             <section id="section-car-details">
 
-                <div class="row">
-                    <div class="offset-1 col-md-12    mt-3 top-buttons">
-                        <button class="mr-1  btn steps-button "
-                                style="width:28%; background: #f9d602; color: #000;"><span
-                            class="ti ti-circle-number-1 mr-1"/>Choose Your Location
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10 mb-1 mt-5 top-buttons d-flex flex-column flex-md-row gap-2 gap-md-3">
+                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
+                                style="background: #f9d602; color: #000;">
+                            <span class="ti ti-circle-number-1 me-2"></span> Choose Your Location
                         </button>
-                        <button class="mr-1 btn  steps-button " style="width:28%; background: #f9d602; color: #000; "
-                        ><span
-                            class="ti ti-circle-number-2 mr-2"/>Choose Your Car
+                        <button class="btn steps-button active w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
+                                style="background: rgb(155,147,84); color: #000;">
+                            <span class="ti ti-circle-number-2 me-2"></span> Choose Your Car
                         </button>
-                        <button class="btn  steps-button active"
-                                style="width:27.2%; background: rgb(155,147,84);color: #000;"><span
-                            class="ti ti-circle-number-3 mr-2"/>Reserve Your Car
+                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
+                                style="background: #f9d602; color: #000;">
+                            <span class="ti ti-circle-number-3 me-2"></span> Reserve Your Car
                         </button>
                     </div>
-                    <div class="col-md-3 offset-1 mt-4 ">
 
-                        <div class="p-1 col-11" style="background-color: #e1e1e1; ">
-                            <h5 class="p-2">YOUR SEARCH DETAILS</h5>
+                    <div class="col-12 col-md-3 offset-md-1 mt-4">
+
+                        <div class="col-12 col-md-12 p-1 rounded"  style="background-color: #e1e1e1; ">
+                            <h5 class="p-2 mb-0">YOUR SEARCH DETAILS</h5>
                         </div>
-                        <div class="col-md-11 pb-4" style="background: #fff;">
-
-                            <div class="row" style="background: #fff;">
-                                <h5 class="mt-4">PICK-UP - LOCATION </h5>
-
-                                <p class="col-md-11"><span class=" col-md-1 ti ti-gps"></span>{{ form.pickupLoc }}</p>
-                                <span class="col-md-6 ti ti-calendar">&nbsp;{{ form.date_from }}</span>
-                                <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_from }}</span>
+                        <div class="col-12 col-md-12 pb-4 bg-white">
+                            <div class="row">
+                                <div class="col-12 mt-4">
+                                    <h5>PICK-UP - LOCATION</h5>
+                                </div>
+                                <div class="col-12 d-flex align-items-start mb-2">
+                                    <i class="ti ti-gps me-2"></i>
+                                    <p class="mb-0">{{ form.pickupLoc }}</p>
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <i class="ti ti-calendar me-1"></i> {{ form.date_from }}
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <i class="ti ti-clock me-1"></i> {{ form.time_from }}
+                                </div>
                             </div>
-                            <hr/>
-                            <div class=" mt-3 row" style="background: #fff;">
-                                <h5>DROP-OFF - LOCATION </h5>
-                                <p class="col-12"><span class=" col-md-1 ti ti-gps"></span>{{ form.pickupLoc }}</p>
-                                <span class="col-md-6 ti ti-calendar">&nbsp;{{ form.date_to }}</span>
-                                <span class="col-md-3 ti ti-clock">&nbsp;{{ form.time_to }}</span>
+
+                            <hr class="my-3"/>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>DROP-OFF - LOCATION</h5>
+                                </div>
+                                <div class="col-12 d-flex align-items-start mb-2">
+                                    <i class="ti ti-gps me-2"></i>
+                                    <p class="mb-0">{{ form.pickupLoc }}</p>
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <i class="ti ti-calendar me-1"></i> {{ form.date_to }}
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <i class="ti ti-clock me-1"></i> {{ form.time_to }}
+                                </div>
                             </div>
                         </div>
-                        <div class="p-1 col-11 mt-3" style="background: #e1e1e1;">
-                            <h5 class="p-2">Booking This Car</h5>
-                        </div>
-                        <div class="col-md-11 pb-4" style="background: #fff;">
 
-                            <form class="trip-form  px-2" @submit.prevent="search">
-                                <div class="row  flex-column">
-                                    <div class="w-100 mt-4 mb-3 col-md-11">
+                        <div class="p-1 col-12 mt-3" style="background: #e1e1e1;">
+                            <h5 class="p-4 m-0">Booking This Car</h5>
+                        </div>
+
+                        <div class="col-12 pb-4" style="background: #fff;">
+                            <form class="trip-form px-2" @submit.prevent="search">
+                                <div class="row gy-3">
+
+                                    <!-- Pickup Location -->
+                                    <div class="col-12 mt-3">
                                         <el-select
                                             class="w-100"
                                             v-model="form.pickupLoc"
@@ -255,147 +277,53 @@
                                             disabled>
                                         </el-select>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <div class="form-control-wrap col-md-7">
-                                            <el-date-picker
-                                                v-model="form.date_from"
-                                                placeholder="Start date"
-                                                size="large"
-                                                format="YYYY/MM/DD"
-                                                value-format="YYYY-MM-DD"
-                                                :disabled-date="disabledDate"
 
-                                            />
-                                        </div>
-                                        <div class="form-control-wrap col-md-5">
-                                            <select class="form-control rounded-1"
-                                                    v-model="form.time_from">
-                                                <option value="00:00" selected>00:00</option>
-                                                <option value="00:30">00:30</option>
-                                                <option value="01:00">01:00</option>
-                                                <option value="01:30">01:30</option>
-                                                <option value="02:00">02:00</option>
-                                                <option value="02:30">02:30</option>
-                                                <option value="03:00">03:00</option>
-                                                <option value="03:30">03:30</option>
-                                                <option value="04:00">04:00</option>
-                                                <option value="04:30">04:30</option>
-                                                <option value="05:00">05:00</option>
-                                                <option value="05:30">05:30</option>
-                                                <option value="06:00">06:00</option>
-                                                <option value="06:30">06:30</option>
-                                                <option value="07:00">07:00</option>
-                                                <option value="07:30">07:30</option>
-                                                <option value="08:00">08:00</option>
-                                                <option value="08:30">08:30</option>
-                                                <option value="09:00">09:00</option>
-                                                <option value="09:30">09:30</option>
-                                                <option value="10:00" selected>10:00</option>
-                                                <option value="10:30">10:30</option>
-                                                <option value="11:00">11:00</option>
-                                                <option value="11:30">11:30</option>
-                                                <option value="12:00">12:00</option>
-                                                <option value="12:30">12:30</option>
-                                                <option value="13:00">13:00</option>
-                                                <option value="13:30">13:30</option>
-                                                <option value="14:00">14:00</option>
-                                                <option value="14:30">14:30</option>
-                                                <option value="15:00">15:00</option>
-                                                <option value="15:30">15:30</option>
-                                                <option value="16:00">16:00</option>
-                                                <option value="16:30">16:30</option>
-                                                <option value="17:00">17:00</option>
-                                                <option value="17:30">17:30</option>
-                                                <option value="18:00">18:00</option>
-                                                <option value="18:30">18:30</option>
-                                                <option value="19:00">19:00</option>
-                                                <option value="19:30">19:30</option>
-                                                <option value="20:00">20:00</option>
-                                                <option value="20:30">20:30</option>
-                                                <option value="21:00">21:00</option>
-                                                <option value="21:30">21:30</option>
-                                                <option value="22:00">22:00</option>
-                                                <option value="22:30">22:30</option>
-                                                <option value="23:00">23:00</option>
-                                                <option value="23:30">23:30</option>
-                                            </select>
-                                        </div>
+                                    <!-- Date From + Time From -->
+                                    <div class="col-12 col-md-7">
+                                        <el-date-picker
+                                            v-model="form.date_from"
+                                            placeholder="Start date"
+                                            size="large"
+                                            format="YYYY/MM/DD"
+                                            value-format="YYYY-MM-DD"
+                                            :disabled-date="disabledDate" />
+                                    </div>
 
+                                    <div class="col-12 col-md-5">
+                                        <select class="form-control rounded-1 w-100" v-model="form.time_from">
+                                            <option v-for="h in 24" :key="h*2">{{ (h-1).toString().padStart(2, '0') }}:00</option>
+                                            <option v-for="h in 24" :key="'h'+h">{{ (h-1).toString().padStart(2, '0') }}:30</option>
+                                        </select>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <div class="form-control-wrap col-md-7">
-                                            <el-date-picker
-                                                v-model="form.date_to"
-                                                placeholder="End date"
-                                                size="large"
-                                                format="YYYY/MM/DD"
-                                                value-format="YYYY-MM-DD"
-                                                :disabled-date="disabledDate"
 
-                                            />
-                                        </div>
-                                        <div class="form-control-wrap col-md-5">
-                                            <select class="form-control rounded-1"
-                                                    v-model="form.time_to">
-                                                <option value="00:00" selected>00:00</option>
-                                                <option value="00:30">00:30</option>
-                                                <option value="01:00">01:00</option>
-                                                <option value="01:30">01:30</option>
-                                                <option value="02:00">02:00</option>
-                                                <option value="02:30">02:30</option>
-                                                <option value="03:00">03:00</option>
-                                                <option value="03:30">03:30</option>
-                                                <option value="04:00">04:00</option>
-                                                <option value="04:30">04:30</option>
-                                                <option value="05:00">05:00</option>
-                                                <option value="05:30">05:30</option>
-                                                <option value="06:00">06:00</option>
-                                                <option value="06:30">06:30</option>
-                                                <option value="07:00">07:00</option>
-                                                <option value="07:30">07:30</option>
-                                                <option value="08:00">08:00</option>
-                                                <option value="08:30">08:30</option>
-                                                <option value="09:00">09:00</option>
-                                                <option value="09:30">09:30</option>
-                                                <option value="10:00" selected>10:00</option>
-                                                <option value="10:30">10:30</option>
-                                                <option value="11:00">11:00</option>
-                                                <option value="11:30">11:30</option>
-                                                <option value="12:00">12:00</option>
-                                                <option value="12:30">12:30</option>
-                                                <option value="13:00">13:00</option>
-                                                <option value="13:30">13:30</option>
-                                                <option value="14:00">14:00</option>
-                                                <option value="14:30">14:30</option>
-                                                <option value="15:00">15:00</option>
-                                                <option value="15:30">15:30</option>
-                                                <option value="16:00">16:00</option>
-                                                <option value="16:30">16:30</option>
-                                                <option value="17:00">17:00</option>
-                                                <option value="17:30">17:30</option>
-                                                <option value="18:00">18:00</option>
-                                                <option value="18:30">18:30</option>
-                                                <option value="19:00">19:00</option>
-                                                <option value="19:30">19:30</option>
-                                                <option value="20:00">20:00</option>
-                                                <option value="20:30">20:30</option>
-                                                <option value="21:00">21:00</option>
-                                                <option value="21:30">21:30</option>
-                                                <option value="22:00">22:00</option>
-                                                <option value="22:30">22:30</option>
-                                                <option value="23:00">23:00</option>
-                                                <option value="23:30">23:30</option>
-                                            </select>
-                                        </div>
+                                    <!-- Date To + Time To -->
+                                    <div class="col-12 col-md-7">
+                                        <el-date-picker
+                                            v-model="form.date_to"
+                                            placeholder="End date"
+                                            size="large"
+                                            format="YYYY/MM/DD"
+                                            value-format="YYYY-MM-DD"
+                                            :disabled-date="disabledDate" />
                                     </div>
-                                    <div class="  ">
-                                        <input type="submit" value="Check Availability"
-                                               class="btn-main btn-fullwidth " style="background: #f9d602"/>
+
+                                    <div class="col-12 col-md-5">
+                                        <select class="form-control rounded-1 w-100" v-model="form.time_to">
+                                            <option v-for="h in 24" :key="'to'+h*2">{{ (h-1).toString().padStart(2, '0') }}:00</option>
+                                            <option v-for="h in 24" :key="'to'+h">{{ (h-1).toString().padStart(2, '0') }}:30</option>
+                                        </select>
                                     </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="col-12">
+                                        <input type="submit" value="Check Availability" class="btn-main btn-fullwidth w-100" style="background: #f9d602" />
+                                    </div>
+
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-11 pb-4 mt-4" style="background: #e5e5e3; border: 3px solid #eed616;">
+
+                        <div class="col-md-12 pb-4 mt-4" style="background: #e5e5e3; border: 3px solid #eed616;">
                             <div>
                                 <p class="mt-3">Total Rental Price</p>
                                 <h3>{{ currency + ' ' + vehicle.final_price }}</h3>
@@ -404,16 +332,16 @@
                                     per
                                     day </p>
                                 <div class="row">
-                                    <p class="col-md-8">Rental Cost</p>
-                                    <p class="col-md-3">{{ currency + '&nbsp' + parseFloat(vehicle.final_price).toFixed(2) }}</p>
+                                    <p class="col-md-8 col-8">Rental Cost</p>
+                                    <p class="col-md-3 col-3">{{ currency + '&nbsp' + parseFloat(vehicle.final_price).toFixed(2) }}</p>
                                 </div>
                                 <div class="row">
-                                    <p class="col-md-8">Extras</p>
-                                    <p class="col-md-3">{{ currency + '&nbsp' + 0 }}</p>
+                                    <p class="col-md-8 col-8">Extras</p>
+                                    <p class="col-md-3 col-3">{{ currency + '&nbsp' + 0 }}</p>
                                 </div>
                                 <div class="row">
-                                    <p class="col-md-8">Total Rental Cost</p>
-                                    <p class="col-md-3">{{ currency + '&nbsp' + parseFloat(vehicle.final_price).toFixed(2) }}</p>
+                                    <p class="col-md-8 col-8">Total Rental Cost</p>
+                                    <p class="col-md-3 col-3">{{ currency + '&nbsp' + parseFloat(vehicle.final_price).toFixed(2) }}</p>
                                 </div>
                                 <hr style="margin-bottom: 5%;"/>
                                 <div class="row" v-if="selectedMethod === 2">
@@ -440,51 +368,56 @@
 
                     </div>
                     <Loader v-if="loading"/>
-                    <div v-else class="container bg-white col-md-7 offset-md-0 pt-5 pl-5 mt-4">
-                        <div class="row">
-                            <div>
-                                <h4 class="" style=" font-size: 1.3vw; text-wrap: nowrap;">
-                                    {{ vehicle.name }} <small style="font-weight: 50; ">OR&nbsp;Similar</small>&nbsp
-                                    <el-tooltip placement="right-start">
-                                        <template #content>
-                                            <div style="font-size: 1vw;">
-                                                The supplier will provide a car with same class and specifications,<br>
-                                                though the make may vary.
-                                            </div>
-                                        </template>
-                                        <i class="fas fa-info-circle" style="color: #7373e1"/>
-                                    </el-tooltip>
+                    <div v-if="!loading" class="container bg-white col-md-7 offset-md-0 pt-5 pl-5 mt-4">
+                        <div class="row web-card">
+                                <div>
+                                    <h4 class="" style=" font-size: 1.3vw; text-wrap: nowrap;">
+                                        {{ vehicle.name }} <small style="font-weight: 50; ">OR&nbsp;Similar</small>&nbsp
+                                        <el-tooltip placement="right-start">
+                                            <template #content>
+                                                <div style="font-size: 1vw;">
+                                                    The supplier will provide a car with same class and
+                                                    specifications,<br>
+                                                    though the make may vary.
+                                                </div>
+                                            </template>
+                                            <i class="fas fa-info-circle" style="color: #7373e1"/>
+                                        </el-tooltip>
 
-                                </h4>
-                                <h5>{{ vehicle?.category?.name }}</h5>
-                            </div>
-                            <div class="col-md-4">
-                                <div id="slider-carousel text-nowrap">
-                                    <div class="row"></div>
-                                    <div class="">
-                                        <img
-                                            :src=" '/img/vehicles/' + vehicle?.photo "
-                                            width="300" height="180"/>
+                                    </h4>
+                                    <h5>{{ vehicle?.category?.name }}</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <div id="slider-carousel text-nowrap">
+                                        <div class="row"></div>
+                                        <div class="">
+                                            <img
+                                                :src=" '/img/vehicles/' + vehicle?.photo "
+                                                width="300" height="180"/>
+                                        </div>
+                                        <div class="spacer-30"></div>
+
                                     </div>
-                                    <div class="spacer-30"></div>
-
                                 </div>
-                            </div>
 
-                            <div class="row col-md-6">
-                                <div class=" ml-3 row">
-                                    <h3 class="mb-3 col-md-5 text-nowrap">
-                                        {{ currency + ' ' + vehicle.final_price }}</h3>
-                                    <p class="col-md-6 text-nowrap" style="color: green;"><i class="fa fa-arrow-right"/>
-                                        For {{ daysNumber }}
-                                        day{{ daysNumber < 2 ? '' : 's' }} -
-                                        {{ currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2) }}
-                                        / per
-                                        day </p>
-                                </div>
-                                <div class="col-md-8 row de-spec text-nowrap">
-                                    <div v-if="vehicle.specifications" v-for="specification in vehicle.specifications"
-                                         class="col-md-6">
+                                <div class="row col-md-6">
+                                    <div class=" ml-3 row">
+                                        <h3 class="mb-3 col-md-5 text-nowrap">
+                                            {{ currency + ' ' + vehicle.final_price }}</h3>
+                                        <p class="col-md-6 text-nowrap" style="color: green;"><i
+                                            class="fa fa-arrow-right"/>
+                                            For {{ daysNumber }}
+                                            day{{ daysNumber < 2 ? '' : 's' }} -
+                                            {{
+                                                currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2)
+                                            }}
+                                            / per
+                                            day </p>
+                                    </div>
+                                    <div class="col-md-8 row de-spec text-nowrap">
+                                        <div v-if="vehicle.specifications"
+                                             v-for="specification in vehicle.specifications"
+                                             class="col-md-6">
 
                                         <span class="text-nowrap" style="margin-top: -10%">
                                                     <img style="width: 45%; margin-right: 2px;"
@@ -500,77 +433,77 @@
                                                     ? '' : specification.name?.split(' ')[specification.name?.split(' ')?.length - 1]
                                             }}
                                         </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <el-tooltip v-if="vehicle.instant_confirmation"
-                                                placement="right-start">
-                                        <template #content>
-                                            <div style="font-size: 1vw;">
-                                                Receive instant booking confirmation!
-                                            </div>
-                                        </template>
-                                        <div class="col-md-2 mt-2 text-nowrap bold">
-                                            <div class="" id="instant_btn">
-                                                <p style="font-size: 1vw;"><img class="mb-2" width="40"
-                                                                                src="/images/icons/instant_confirmation.png"/>
-                                                    Instant Confirmation <i class="fas fa-info-circle"
-                                                                            style="color: #6969d8;"></i></p>
-                                            </div>
                                         </div>
-                                    </el-tooltip>
-
-                                    <el-tooltip v-if="!vehicle.instant_confirmation"
-                                                placement="right-start">
-                                        <template #content>
-                                            <div style="font-size: 1vw;">
-                                                You will receive booking confirmation after the<br>
-                                                requested service availability is verified!
+                                    </div>
+                                    <div class="col-md-2">
+                                        <el-tooltip v-if="vehicle.instant_confirmation"
+                                                    placement="right-start">
+                                            <template #content>
+                                                <div style="font-size: 1vw;">
+                                                    Receive instant booking confirmation!
+                                                </div>
+                                            </template>
+                                            <div class="col-md-2 mt-2 text-nowrap bold">
+                                                <div class="" id="instant_btn">
+                                                    <p style="font-size: 1vw;"><img class="mb-2" width="40"
+                                                                                    src="/images/icons/instant_confirmation.png"/>
+                                                        Instant Confirmation <i class="fas fa-info-circle"
+                                                                                style="color: #6969d8;"></i></p>
+                                                </div>
                                             </div>
-                                        </template>
-                                        <div class="col-md-2  text-nowrap bold">
+                                        </el-tooltip>
+
+                                        <el-tooltip v-if="!vehicle.instant_confirmation"
+                                                    placement="right-start">
+                                            <template #content>
+                                                <div style="font-size: 1vw;">
+                                                    You will receive booking confirmation after the<br>
+                                                    requested service availability is verified!
+                                                </div>
+                                            </template>
+                                            <div class="col-md-2  text-nowrap bold">
+                                                <div>
+                                                    <p style="font-size: 1vw">
+                                                        <i style="font-size: 1.8vw; color: gold;"
+                                                           class=" px-2 fa fa-ban be_media-left be_media-middle"/>
+                                                        <strong class="mb-5"> On request <i class=" fas fa-info-circle"
+                                                                                            style="color: #6969d8;"></i></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </el-tooltip>
+
+                                    </div>
+                                    <div class="spacer-single"></div>
+                                </div>
+
+                                <div class=" rounded-2 py-1 mb-2 ml-1"
+                                     style="background: #edecec; width: 90%; margin-top: -3%; ">
+                                    <div class="d-supplier">
+                                        <div class="col-md-2 d-img w-100" style="height: 50px">
+                                            <img :src="'/img/' + vehicle?.supplier?.logo" height="50"
+                                                 width="120" alt=""/>
+                                        </div>
+                                        <div class="col-md-2 row">
                                             <div>
-                                                <p style="font-size: 1vw">
-                                                    <i style="font-size: 1.8vw; color: gold;"
-                                                       class=" px-2 fa fa-ban be_media-left be_media-middle"/>
-                                                    <strong class="mb-5"> On request <i class=" fas fa-info-circle"
-                                                                                        style="color: #6969d8;"></i></strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </el-tooltip>
-
-                                </div>
-                                <div class="spacer-single"></div>
-                            </div>
-
-                            <div class=" rounded-2 py-1 mb-2 ml-1"
-                                 style="background: #edecec; width: 90%; margin-top: -3%; ">
-                                <div class="d-supplier">
-                                    <div class="col-md-2 d-img w-100" style="height: 50px">
-                                        <img :src="'/img/' + vehicle?.supplier?.logo" height="50"
-                                             width="120" alt=""/>
-                                    </div>
-                                    <div class="col-md-2 row">
-                                        <div>
                                                             <span style="font-size: medium;"
                                                                   class="text-nowrap">{{
                                                                     vehicle?.supplier?.company
                                                                 }}</span>
+                                            </div>
+                                            <div>
+                                                <div><a class="cursor-pointer text-primary text-decoration-underline"
+                                                        href="javascript:void(0);"
+                                                        @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <div><a class="cursor-pointer text-primary text-decoration-underline"
-                                                    href="javascript:void(0);"
-                                                    @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
+                                        <div class="col-md-2">
                                         <span class="py-2 px-1 rounded-1 ml-3"
                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{
                                                 vehicle.supplier_rate
                                             }}/10</span>
-                                    </div>
-                                    <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-3">
                                                         <span class="be_media-body"><h5> {{
                                                                 vehicle?.supplier_rate >= 1 && vehicle?.supplier_rate <= 2 ? 'Terrible' :
                                                                     vehicle?.supplier_rate > 2 && vehicle?.supplier_rate <= 4 ? 'Ok' :
@@ -583,355 +516,368 @@
                                                                 <strong style="color: #f9d602">{{
                                                                         vehicle.supplier_number_of_reviews
                                                                     }}&nbsp;</strong>+&nbsp;reviews)</span></span>
-                                    </div>
-                                    <div class="col-md-4 ">
-                                        <p class="text-nowrap mt-2" style="font-size: 18px;">
-                                            <a target="_blank"
-                                               :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle?.branch?.lat+','+vehicle?.branch?.lng">
-                                                <i class="fa fa-earth" style="color: navy;"/></a>
-                                            &nbsp;Address:&nbsp;&nbsp;<small
-                                            style="font-size: 18px;">{{ vehicle?.supplier?.address }}</small></p>
-                                        <div>
-                                            <el-tooltip placement="bottom">
-                                                <template #content>
-                                                    <div style="font-size: 1vw;">
-                                                        {{ vehicle?.fuel_policy?.description }}
-                                                    </div>
-                                                </template>
-                                                <p style="margin-top: -20px;">
-                                                    <strong class="text-nowrap" style="font-size: 1vw;"><i
-                                                        class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
-                                                    <strong class="text-nowrap">{{
-                                                            vehicle?.fuel_policy?.name
-                                                        }} </strong>
-                                                </p>
-                                            </el-tooltip>
                                         </div>
+                                        <div class="col-md-4 ">
+                                            <p class="text-nowrap mt-2" style="font-size: 18px;">
+                                                <a target="_blank"
+                                                   :href=" 'https://www.google.com/maps/search/?api=1&query=' +vehicle?.branch?.lat+','+vehicle?.branch?.lng">
+                                                    <i class="fa fa-earth" style="color: navy;"/></a>
+                                                &nbsp;Address:&nbsp;&nbsp;<small
+                                                style="font-size: 18px;">{{ vehicle?.supplier?.address }}</small></p>
+                                            <div>
+                                                <el-tooltip placement="bottom">
+                                                    <template #content>
+                                                        <div style="font-size: 1vw;">
+                                                            {{ vehicle?.fuel_policy?.description }}
+                                                        </div>
+                                                    </template>
+                                                    <p style="margin-top: -20px;">
+                                                        <strong class="text-nowrap" style="font-size: 1vw;"><i
+                                                            class="fa fa-gas-pump"/></strong> &nbsp;Fuel Policy:
+                                                        <strong class="text-nowrap">{{
+                                                                vehicle?.fuel_policy?.name
+                                                            }} </strong>
+                                                    </p>
+                                                </el-tooltip>
+                                            </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class=" row ml-1 rounded-2 bg-light-gray pt-1 " style="width: 90%; ">
-                                <div class="row col-md-12">
-                                    <p class="primary bold m-0" style="color: #5e9007;">What is Included!</p>
-                                    <ul class="row">
-                                        <div class="col-md-4">
-                                            <li v-for="(item, index) in vehicle?.included?.slice(0 , (vehicle?.included?.length) /2)"
-                                                style="height: 30px">
-                                                <div class="row" v-if="index <= (vehicle?.included?.length - 1) / 2">
-                                                    <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
-                                                       style="color: green;"/>
-                                                    <el-tooltip v-if="item?.description?.length" placement="right-start"
-                                                                trigger="hover">
-                                                        <template #content>
-                                                            <div class="" style="font-size: 1vw;">
-                                                                {{ item.description }}
-                                                            </div>
-                                                        </template>
-                                                        <p class="col-md-10 text-nowrap included-font"
-                                                           style="font-size: 0.9vw;">
-                                                            {{ item.what_is_included }} <i class="fas fa-info-circle"
-                                                                                           style="color: #7373e1"/></p>
-                                                    </el-tooltip>
-                                                    <p v-else class="col-md-10 included-font text-nowrap"
-                                                       style="font-size: 0.9vw;">
-                                                        {{ item.what_is_included }}</p>
-                                                </div>
-                                            </li>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <li v-for="(item, index) in vehicle?.included?.slice( (vehicle?.included?.length-1) /2 +1 ,  vehicle?.included?.length)"
-                                                style="height: 30px">
-                                                <div class="row">
-                                                    <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
-                                                       style="color: green;"/>
-                                                    <el-tooltip v-if="item?.description?.length" placement="right-start"
-                                                                trigger="hover">
-                                                        <template #content>
-                                                            <div class="" style="font-size: 1vw;">
-                                                                {{ item.description }}
-                                                            </div>
-                                                        </template>
-                                                        <p class="col-md-10 text-nowrap included-font"
+                                <div class=" row ml-1 rounded-2 bg-light-gray pt-1 " style="width: 90%; ">
+                                    <div class="row col-md-12">
+                                        <p class="primary bold m-0" style="color: #5e9007;">What is Included!</p>
+                                        <ul class="row">
+                                            <div class="col-md-4">
+                                                <li v-for="(item, index) in vehicle?.included?.slice(0 , (vehicle?.included?.length) /2)"
+                                                    style="height: 30px">
+                                                    <div class="row"
+                                                         v-if="index <= (vehicle?.included?.length - 1) / 2">
+                                                        <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
+                                                           style="color: green;"/>
+                                                        <el-tooltip v-if="item?.description?.length"
+                                                                    placement="right-start"
+                                                                    trigger="hover">
+                                                            <template #content>
+                                                                <div class="" style="font-size: 1vw;">
+                                                                    {{ item.description }}
+                                                                </div>
+                                                            </template>
+                                                            <p class="col-md-10 text-nowrap included-font"
+                                                               style="font-size: 0.9vw;">
+                                                                {{ item.what_is_included }} <i
+                                                                class="fas fa-info-circle"
+                                                                style="color: #7373e1"/></p>
+                                                        </el-tooltip>
+                                                        <p v-else class="col-md-10 included-font text-nowrap"
                                                            style="font-size: 0.9vw;">
                                                             {{ item.what_is_included }}</p>
-                                                    </el-tooltip>
-                                                    <p v-else class="col-md-10 included-font text-nowrap"
-                                                       style="font-size: 0.9vw;">
-                                                        {{ item.what_is_included }}</p>
-                                                </div>
-                                            </li>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="text-nowrap" v-if="vehicle?.location_type?.length"><i
-                                                :class="' fa fa-'+ vehicle?.location_type[0].icon  "/>&nbsp;
-                                                &nbsp;Location Type: <strong class="text-nowrap">{{
-                                                        vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
-                                                    }}</strong></p>
-                                            <p class="text-nowrap" style="font-size: .8vw"><i
-                                                class="fa fa-map-marker" style="font-size: 1.3vw"/>&nbsp;
-                                                &nbsp;Pickup: <strong>{{
-                                                        vehicle?.branch ? vehicle.branch.location : ''
-                                                    }}</strong></p>
-                                        </div>
+                                                    </div>
+                                                </li>
+                                            </div>
 
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="de-box row col-lg-12 mt-5 mb25">
-                                <div class="col-lg-12">
-                                    <div class="">
-                                        <div class="row">
-
-                                            <div class="col-lg-12" v-if="!user">
-                                                <h4 style="text-align: center;">Register First to continue your
-                                                    reservation</h4>
-                                                <hr/>
-                                                <form method="post" @submit.prevent="register"
-                                                >
+                                            <div class="col-md-4">
+                                                <li v-for="(item, index) in vehicle?.included?.slice( (vehicle?.included?.length-1) /2 +1 ,  vehicle?.included?.length)"
+                                                    style="height: 30px">
                                                     <div class="row">
-                                                        <div class="formbold-mb-3 col-md-12">
-                                                            <div class="row">
-                                                                <el-select
-                                                                    v-model="RegisterForm.gender"
-                                                                    size="large"
-                                                                    filterable
-                                                                    class="col-md-3"
-                                                                    reserve-keyword
-                                                                    placeholder="Mr/Mrs..."
-                                                                    remote-show-suffix
-                                                                    required>
-                                                                    <el-option
-                                                                        v-for='item in ["Mr.","Mrs."]'
-                                                                        :key="'+' + item"
-                                                                        :label="item"
-                                                                        :value="item"
-                                                                    />
-                                                                </el-select>
-                                                                <el-input
-                                                                    v-model="RegisterForm.name"
-                                                                    size="large"
-                                                                    filterable
-                                                                    remote
-                                                                    class="col-md-9"
-                                                                    reserve-keyword
-                                                                    placeholder="Enter Full name here..."
-                                                                    remote-show-suffix
-                                                                    :loading="countries.loading.value"
-                                                                    required>
-                                                                </el-input>
-                                                            </div>
-                                                        </div>
-                                                        <div class="formbold-mb-3 col-md-8">
-                                                            <div class="row">
-                                                                <el-select
-                                                                    v-model="RegisterForm.mobile_code"
-                                                                    size="large"
-                                                                    class="col-md-4"
-                                                                    filterable
-                                                                    reserve-keyword
-                                                                    placeholder="code..."
-                                                                    remote-show-suffix
-                                                                    required>
-                                                                    <el-option
-                                                                        v-for='item in countryCodes'
-                                                                        :key="'+' + item.code"
-                                                                        :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
-                                                                        :value="'+' + item.code"
-                                                                    />
-                                                                </el-select>
-                                                                <el-input
-                                                                    v-model="RegisterForm.phone"
-                                                                    size="large"
-                                                                    class="col-md-8"
-                                                                    filterable
-                                                                    remote
-                                                                    reserve-keyword
-                                                                    placeholder="Phone Number..."
-                                                                    remote-show-suffix
-                                                                    :loading="countries.loading.value"
-                                                                    required>
-                                                                </el-input>
-                                                            </div>
-                                                        </div>
-                                                        <div class="formbold-mb-3 col-md-4"
-                                                             v-if="!user || user.role !== 'customer' ">
-                                                            <div class="countries row">
-                                                                <el-select
-                                                                    v-model="RegisterForm.country"
-                                                                    size="large"
-                                                                    class="col-md-12"
-                                                                    filterable
-                                                                    reserve-keyword
-                                                                    placeholder="Select Country..."
-                                                                    remote-show-suffix
-                                                                    :loading="countries.loading.value"
-                                                                    required>
-                                                                    <el-option
-                                                                        v-for="item in countries.list.value"
-                                                                        :key="item.id"
-                                                                        :label="item.label"
-                                                                        :value="item.label"
-                                                                    />
-                                                                </el-select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="formbold-mb-3 col-md-6">
-                                                            <div class="countries">
-                                                                <el-input
-                                                                    v-model="RegisterForm.email"
-                                                                    size="large"
-                                                                    filterable
-                                                                    remote
-                                                                    reserve-keyword
-                                                                    placeholder="E-mail..."
-                                                                    remote-show-suffix
-                                                                    required>
-                                                                </el-input>
-                                                            </div>
-                                                        </div>
-                                                        <div class="formbold-mb-3 col-md-6">
-                                                            <div class="countries">
-                                                                <el-input
-                                                                    v-model="RegisterForm.password"
-                                                                    size="large"
-                                                                    filterable
-                                                                    remote
-                                                                    type="password"
-                                                                    reserve-keyword
-                                                                    placeholder="Account Password ..."
-                                                                    remote-show-suffix
-                                                                    required>
-                                                                </el-input>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </form>
-                                            </div><!-- end col -->
-                                            <div class="col-lg-12" v-else-if="user && user.role === 'customer' ">
-                                                <div style="border-radius: 10px;    background-color: #FFF; height: 90%; margin-right: 0.5%;" v-if="vehicle?.supplier?.payment_methods?.length > 0">
-                                                    <div class="card-header"> Select payment method</div>
-                                                    <div class="card-body">
-                                                        <el-radio-group v-model="selectedMethod" @change="selectMethod">
-                                                            <div v-for="item in vehicle.supplier.payment_methods"
-                                                                 :key="item.name" class="col-md-12 ">
-                                                                <el-radio :label="item.id" :model-value="item.id">
-                                                                    {{ item.name }}
-                                                                </el-radio>
-                                                            </div>
-                                                        </el-radio-group>
-                                                    </div>
-                                                    <div v-if="selectedMethod === 3 || selectedMethod === 2">
-                                                        <div class="card-header">Enter You card data</div>
-                                                        <div class="card-body">
-                                                            <form
-                                                                method="post"
-                                                                @submit.prevent="register">
-                                                                <div class="row">
-                                                                    <div class=" formbold-mb-3 col-md-6">
-                                                                        <label class="formbold-form-label">Name On
-                                                                            Card</label>
-                                                                        <div class="countries">
-                                                                            <el-input
-                                                                                v-model="bookingForm.name_on_card"
-                                                                                size="large"
-                                                                                filterable
-                                                                                remote
-                                                                                reserve-keyword
-                                                                                placeholder="Name on Card..."
-                                                                                remote-show-suffix
-                                                                                :disabled="loading"
-                                                                                required>
-                                                                            </el-input>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="formbold-mb-3 col-md-6">
-                                                                        <label class="formbold-form-label">Card
-                                                                            Number</label>
-                                                                        <div class="row">
-                                                                            <el-input
-                                                                                v-model="bookingForm.card_number"
-                                                                                size="large"
-                                                                                filterable
-                                                                                remote
-                                                                                reserve-keyword
-                                                                                placeholder="Enter front card number..."
-                                                                                remote-show-suffix
-                                                                                :disabled="loading"
-                                                                                required>
-                                                                            </el-input>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class=" formbold-mb-3 col-md-6">
-                                                                        <label class="formbold-form-label">CVV</label>
-                                                                        <el-input
-                                                                            v-model="bookingForm.CVV"
-                                                                            size="large"
-                                                                            class="col-md-4"
-                                                                            filterable
-                                                                            remote
-                                                                            reserve-keyword
-                                                                            placeholder="CVV..."
-                                                                            :disabled="loading"
-
-                                                                            remote-show-suffix
-                                                                            required>
-                                                                        </el-input>
-                                                                    </div>
-
-                                                                    <div class="row formbold-mb-3 col-md-6">
-                                                                        <label class="formbold-form-label">Exp
-                                                                            Date</label>
-                                                                        <el-input
-                                                                            v-model="bookingForm.card_exp_date"
-                                                                            size="large"
-                                                                            class="col-md-4"
-                                                                            filterable
-                                                                            remote
-                                                                            :disabled="loading"
-                                                                            reserve-keyword
-                                                                            placeholder="YY/MM"
-                                                                            remote-show-suffix
-                                                                            required>
-                                                                        </el-input>
-                                                                    </div>
+                                                        <i class="col-md-1 fa fa-check fa-l mt-2 text-nowrap"
+                                                           style="color: green;"/>
+                                                        <el-tooltip v-if="item?.description?.length"
+                                                                    placement="right-start"
+                                                                    trigger="hover">
+                                                            <template #content>
+                                                                <div class="" style="font-size: 1vw;">
+                                                                    {{ item.description }}
                                                                 </div>
-                                                            </form>
-                                                        </div>
+                                                            </template>
+                                                            <p class="col-md-10 text-nowrap included-font"
+                                                               style="font-size: 0.9vw;">
+                                                                {{ item.what_is_included }}</p>
+                                                        </el-tooltip>
+                                                        <p v-else class="col-md-10 included-font text-nowrap"
+                                                           style="font-size: 0.9vw;">
+                                                            {{ item.what_is_included }}</p>
                                                     </div>
+                                                </li>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="text-nowrap" v-if="vehicle?.location_type?.length"><i
+                                                    :class="' fa fa-'+ vehicle?.location_type[0].icon  "/>&nbsp;
+                                                    &nbsp;Location Type: <strong class="text-nowrap">{{
+                                                            vehicle?.location_type?.length ? vehicle.location_type[0]?.name : ''
+                                                        }}</strong></p>
+                                                <p class="text-nowrap" style="font-size: .8vw"><i
+                                                    class="fa fa-map-marker" style="font-size: 1.3vw"/>&nbsp;
+                                                    &nbsp;Pickup: <strong>{{
+                                                            vehicle?.branch ? vehicle.branch.location : ''
+                                                        }}</strong></p>
+                                            </div>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                        </div>
+
+                        <div class="row g-3 mobile-card">
+                                <!-- Vehicle name and image -->
+                                <div class="col-12 d-flex flex-column flex-md-row ">
+                                    <div class="flex-grow-1">
+                                        <h4 class="fs-5 text-nowrap">
+                                            {{ vehicle.name }} <small class="fw-light">OR Similar</small>
+                                            <el-tooltip placement="right-start">
+                                                <template #content>
+                                                    <div class="fs-6">The supplier will provide a similar car...</div>
+                                                </template>
+                                                <i class="fas fa-info-circle text-primary ms-1"></i>
+                                            </el-tooltip>
+                                        </h4>
+                                        <h5 class="fs-6">{{ vehicle?.category?.name }}</h5>
+                                    </div>
+                                    <div class="text-center mt-3 mt-md-0">
+                                        <img :src="'/img/vehicles/' + vehicle?.photo" class="img-fluid" style="max-width: 100%; height: auto;" />
+                                    </div>
+                                </div>
+
+                                <!-- Price Info -->
+                                <div class="col-12 col-md-6">
+                                    <h3 class="fs-5 text-nowrap">{{ currency + '  ' + vehicle.final_price }}</h3>
+                                    <p class="text-success text-nowrap">
+                                        <i class="fa fa-arrow-right"></i> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
+                                        {{ currency + ' ' + parseFloat(vehicle.final_price / daysNumber).toFixed(2) }}/day
+                                    </p>
+                                </div>
+
+                                <!-- What's Included -->
+                                <div class="col-12">
+                                    <div class="bg-light rounded-2 p-3">
+                                        <p class="fw-bold text-success mb-2">What is Included!</p>
+                                        <div class="row">
+                                            <div class="col-6 col-md-4" v-for="(item, index) in vehicle?.included">
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <i class="fa fa-check text-success me-2"></i>
+                                                    <el-tooltip v-if="item?.description?.length" placement="right">
+                                                        <template #content>
+                                                            <div class="fs-6">{{ item.description }}</div>
+                                                        </template>
+                                                        <span class="text-truncate d-block included-font">{{ item.what_is_included }}<i class="fas fa-info-circle text-primary ms-1"></i></span>
+                                                    </el-tooltip>
+                                                    <span v-else class="text-truncate d-block included-font">{{ item.what_is_included }}</span>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </div>
-                                    <el-checkbox class="mr-2"/>
-                                    Remember me on this device. <br/>
-                                    <el-checkbox v-model="rental_terms" class="mr-2"/>
-                                    I confirm that i have read, understood and agree with the
-                                    <a class="cursor-pointer text-primary " style="text-decoration: underline;"
-                                       href="javascript:void(0);"
-                                       @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a> &
-                                    <a class="cursor-pointer text-primary " style="text-decoration: underline;"
-                                       href="javascript:void(0);" @click="openAutoursTerms()">Autours terms</a>.<br/>
-                                    <el-checkbox class="mr-2"/>
-                                    Subscribe me to the promotional emails.
-                                    <hr/>
-                                    <ProgressBar v-if="loading" mode="indeterminate" style="height: 6px"></ProgressBar>
-
                                 </div>
-                                <button v-if="!loading" id='send_message' @click="book" :disabled="loading"
-                                        class="btn-main btn-fullwidth offset-4 col-md-5" style="background: #f9d602">
+                            </div>
+
+                        <!-- Register and payment part -->
+                        <div class="de-box row col-lg-12 mt-5 mb25">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <!-- If not logged in -->
+                                    <div class="col-lg-12" v-if="!user">
+                                        <h4 class="text-center">Register first to continue</h4>
+                                        <hr />
+                                        <form method="post" @submit.prevent="register">
+                                            <div class="row g-3">
+                                                <!-- Gender and Name -->
+                                                <div class="col-12">
+                                                    <div class="row g-2">
+                                                        <el-select
+                                                            v-model="RegisterForm.gender"
+                                                            size="large"
+                                                            class="col-4 col-md-3"
+                                                            filterable
+                                                            placeholder="Mr/Mrs..."
+                                                            required
+                                                        >
+                                                            <el-option
+                                                                v-for="item in ['Mr.', 'Mrs.']"
+                                                                :key="item"
+                                                                :label="item"
+                                                                :value="item"
+                                                            />
+                                                        </el-select>
+                                                        <el-input
+                                                            v-model="RegisterForm.name"
+                                                            size="large"
+                                                            class="col-8 col-md-9"
+                                                            placeholder="Enter Full name here..."
+                                                            required
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <!-- Phone Code and Phone -->
+                                                <div class="col-12">
+                                                    <div class="row g-2">
+                                                        <el-select
+                                                            v-model="RegisterForm.mobile_code"
+                                                            size="large"
+                                                            class="col-4"
+                                                            filterable
+                                                            placeholder="Code..."
+                                                            required
+                                                        >
+                                                            <el-option
+                                                                v-for="item in countryCodes"
+                                                                :key="item.code"
+                                                                :label="getUnicodeFlagIcon(item.iso) + ' +' + item.code"
+                                                                :value="'+' + item.code"
+                                                            />
+                                                        </el-select>
+                                                        <el-input
+                                                            v-model="RegisterForm.phone"
+                                                            size="large"
+                                                            class="col-8"
+                                                            placeholder="Phone Number..."
+                                                            required
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <!-- Country -->
+                                                <div class="col-12 col-md-4" v-if="!user || user.role !== 'customer'">
+                                                    <el-select
+                                                        v-model="RegisterForm.country"
+                                                        size="large"
+                                                        class="w-100"
+                                                        filterable
+                                                        placeholder="Select Country..."
+                                                        required
+                                                    >
+                                                        <el-option
+                                                            v-for="item in countries.list.value"
+                                                            :key="item.id"
+                                                            :label="item.label"
+                                                            :value="item.label"
+                                                        />
+                                                    </el-select>
+                                                </div>
+
+                                                <!-- Email -->
+                                                <div class="col-12 col-md-6">
+                                                    <el-input
+                                                        v-model="RegisterForm.email"
+                                                        size="large"
+                                                        placeholder="E-mail..."
+                                                        required
+                                                    />
+                                                </div>
+
+                                                <!-- Password -->
+                                                <div class="col-12 col-md-6">
+                                                    <el-input
+                                                        v-model="RegisterForm.password"
+                                                        size="large"
+                                                        type="password"
+                                                        placeholder="Account Password..."
+                                                        required
+                                                    />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- If logged in as customer -->
+                                    <div class="col-lg-12" v-else-if="user && user.role === 'customer'">
+                                        <div class="bg-white rounded p-3" v-if="vehicle?.supplier?.payment_methods?.length > 0">
+                                            <div class="card-header">Select Payment Method</div>
+                                            <div class="card-body">
+                                                <el-radio-group v-model="selectedMethod" @change="selectMethod">
+                                                    <div
+                                                        v-for="item in vehicle.supplier.payment_methods"
+                                                        :key="item.name"
+                                                        class="mb-2"
+                                                    >
+                                                        <el-radio :label="item.id">{{ item.name }}</el-radio>
+                                                    </div>
+                                                </el-radio-group>
+                                            </div>
+
+                                            <!-- Card Data -->
+                                            <div v-if="selectedMethod === 3 || selectedMethod === 2">
+                                                <div class="card-header">Enter Your Card Data</div>
+                                                <div class="card-body">
+                                                    <form method="post" @submit.prevent="register">
+                                                        <div class="row g-3">
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="formbold-form-label">Name On Card</label>
+                                                                <el-input
+                                                                    v-model="bookingForm.name_on_card"
+                                                                    size="large"
+                                                                    placeholder="Name on Card..."
+                                                                    :disabled="loading"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="formbold-form-label">Card Number</label>
+                                                                <el-input
+                                                                    v-model="bookingForm.card_number"
+                                                                    size="large"
+                                                                    placeholder="Enter front card number..."
+                                                                    :disabled="loading"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                            <div class="col-6 col-md-4">
+                                                                <label class="formbold-form-label">CVV</label>
+                                                                <el-input
+                                                                    v-model="bookingForm.CVV"
+                                                                    size="large"
+                                                                    placeholder="CVV..."
+                                                                    :disabled="loading"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                            <div class="col-6 col-md-4">
+                                                                <label class="formbold-form-label">Exp Date</label>
+                                                                <el-input
+                                                                    v-model="bookingForm.card_exp_date"
+                                                                    size="large"
+                                                                    placeholder="YY/MM"
+                                                                    :disabled="loading"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Checkboxes and Submit -->
+                                <div class="mt-4">
+                                    <el-checkbox class="mr-2" /> Remember me on this device. <br />
+                                    <el-checkbox v-model="rental_terms" class="mr-2" />
+                                    I confirm that I have read, understood, and agree with the
+                                    <a class="text-primary text-decoration-underline cursor-pointer" @click="openRentalTerms(vehicle)">Rental Terms</a>
+                                    &amp;
+                                    <a class="text-primary text-decoration-underline cursor-pointer" @click="openAutoursTerms()">Autours terms</a>.<br />
+                                    <el-checkbox class="mr-2" /> Subscribe me to promotional emails.
+                                </div>
+
+                                <hr />
+
+                                <ProgressBar v-if="loading" mode="indeterminate" style="height: 6px"></ProgressBar>
+
+                                <button
+                                    v-if="!loading"
+                                    id="send_message"
+                                    @click="book"
+                                    :disabled="loading"
+                                    class="btn-main btn-fullwidth col-12 col-md-5 offset-md-4 mt-3"
+                                    style="background: #f9d602"
+                                >
                                     Continue&nbsp;To&nbsp;Payment
                                 </button>
                             </div>
-
                         </div>
+
                     </div>
 
                 </div>
@@ -1389,5 +1335,28 @@ li::before {
     left: 130px !important;
     transform: translate(0px, 0px);
     display: none !important;
+}
+@media screen  and (min-width: 1000px){
+
+
+    .web-card {
+        display: block;
+    }
+    .mobile-card {
+        display: none;
+    }
+
+}
+
+@media screen  and (max-width: 999px){
+
+    .web-card{
+        display: none;
+    }
+    .mobile-card {
+        display: block;
+
+    }
+
 }
 </style>

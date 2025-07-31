@@ -43,26 +43,27 @@
 
 
                 <div class="w-100  ps-md-5 ps-lg-5" >
-                    <div class="col-md-11 mb-1 top-buttons d-flex flex-wrap flex-md-nowrap justify-content-between">
-                        <button class="btn steps-button mr-md-2 mb-2 mb-md-0 w-100 w-md-33"
+                    <div class="col-md-11 mb-1 top-buttons d-flex flex-column flex-md-row gap-2 gap-md-3">
+                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
                                 style="background: #f9d602; color: #000;">
-                            <span class="ti ti-circle-number-1 mr-1"></span>Choose Your Location
+                            <span class="ti ti-circle-number-1 me-2"></span> Choose Your Location
                         </button>
-                        <button class="btn steps-button active mr-md-2 mb-2 mb-md-0 w-100 w-md-33"
+                        <button class="btn steps-button active w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
                                 style="background: rgb(155,147,84); color: #000;">
-                            <span class="ti ti-circle-number-2 mr-1"></span>Choose Your Car
+                            <span class="ti ti-circle-number-2 me-2"></span> Choose Your Car
                         </button>
-                        <button class="btn steps-button w-100 w-md-33"
+                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
                                 style="background: #f9d602; color: #000;">
-                            <span class="ti ti-circle-number-3 mr-1"></span>Reserve Your Car
+                            <span class="ti ti-circle-number-3 me-2"></span> Reserve Your Car
                         </button>
                     </div>
+
 
                     <div class="row">
 
                         <div class="hidden filter-by">
-                            <div>
-                                <button id="filter-btn" @click="filters()" class="col-md-11 bg-white btn btn-main  mt-2"><i class="fa fa-filter"/> Filter by</button>
+                            <div class="d-flex align-items-center justify-content-center  align-content-center">
+                                <button id="filter-btn" @click="filters()" class="col-md-11 col-11  bg-white btn btn-main  mt-2"><i class="fa fa-filter"/> Filter by</button>
                             </div>
                         </div>
                         <div class="col-12 col-md-8 col-lg-3 mobile-filters">
