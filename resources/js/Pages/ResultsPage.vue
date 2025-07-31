@@ -445,7 +445,7 @@
                             </div>
 
                             <div v-if="!loading" v-for="(vehicle, mobileIndex) in priceFiltered" :key="mobileIndex" class="mb-4 mobile-card px-2">
-                                <div class="  p-3 position-relative" style="background: #fff; border-radius: 1%; height: 78% !important;">
+                                <div class="  p-3 position-relative" style="background: #fff; border-radius: 1%;">
                                     <!-- Close Button -->
                                     <div class="position-absolute top-0 end-0 m-2 cursor-pointer" @click="hideItem(mobileIndex)">
                                       <i class="fa fa-close"/>
