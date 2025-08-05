@@ -202,21 +202,22 @@
 
             <section id="section-car-details">
 
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-10 mb-1 mt-5 top-buttons d-flex flex-column flex-md-row gap-2 gap-md-3">
-                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
-                                style="background: #f9d602; color: #000;">
-                            <span class="ti ti-circle-number-1 me-2"></span> Choose Your Location
-                        </button>
-                        <button class="btn steps-button active w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
-                                style="background: rgb(155,147,84); color: #000;">
-                            <span class="ti ti-circle-number-2 me-2"></span> Choose Your Car
-                        </button>
-                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
-                                style="background: #f9d602; color: #000;">
-                            <span class="ti ti-circle-number-3 me-2"></span> Reserve Your Car
-                        </button>
+                <div class="row d-flex justify-content-center steps">
+                    <div class="col-md-10  col-11 stepper gap-3 mt-5">
+                        <div class="step">
+                            <span class="ti ti-circle-number-1 me-2"></span>
+                            Choose Your Location
+                        </div>
+                        <div class="step active-step">
+                            <span class="ti ti-circle-number-2 me-2"></span>
+                            Choose Your Car
+                        </div>
+                        <div class="step">
+                            <span class="ti ti-circle-number-3 me-2"></span>
+                            Reserve Your Car
+                        </div>
                     </div>
+
 
                     <div class="col-12 col-md-3 offset-md-1 mt-4">
 
@@ -1359,4 +1360,69 @@ li::before {
     }
 
 }
+
+@media  (max-width: 768px) {
+    .steps{
+        margin-top: -100px
+    }
+}
+.stepper {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .stepper {
+        flex-direction: row;
+    }
+}
+
+.step {
+    position: relative;
+    background-color: #f9d602;
+    color: #000;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 10px solid #f9d602;
+    z-index: 1;
+}
+
+@media (max-width: 767px) {
+    .step:not(:last-child)::after {
+        right: 50%;
+        top: 100%;
+        transform: translateX(50%);
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 10px solid #f9d602;
+    }
+}
+
+.step.active-step {
+    background-color: rgb(155, 147, 84);
+}
+
+
+@media (max-width: 767px) {
+    .step.active-step::after {
+        border-top-color: rgb(155, 147, 84);
+    }
+}
+
 </style>
