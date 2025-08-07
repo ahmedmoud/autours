@@ -288,7 +288,7 @@ const getLocations = async () => {
             el[0].style.height = '45px'
             el[0].style.borderRadius = 0
             el[0].style.marginTop = 7
-        }, 20000)
+        }, 200)
         loading.value = false
     } catch (error) {
         console.error(error)
