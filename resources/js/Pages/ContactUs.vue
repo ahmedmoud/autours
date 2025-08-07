@@ -9,9 +9,9 @@
         <div class="no-bottom no-top zebra" id="content">
             <div id="top"></div>
 
-            <div style="margin-left: 40%; width: 15%; ">
-                <div style="background:#ffd100; height: 2%; margin-bottom: -15%;"></div>
-                <h1 class="text-nowrap">Contact us</h1>
+            <div class="text-center col-12" style="margin-top: 100px;">
+                <div class="mx-auto mb-2" style="background: #ffd100; height: 20px; width: 250px; position: absolute; left: 0; right: 0; top: 20px; z-index: -100;"></div>
+                <h1 class="text-nowrap">Contact Us</h1>
             </div>
             <div class="contact-info row">
                 <div class="col-lg-2 offset-1">
@@ -39,45 +39,52 @@
                     </div>
                 </div>
 
-                <div class="col-lg-8 my-5 row">
-                    <h1>Get in touch </h1>
-                    <form class="col-md-12">
-                        <input class="col-md-6 contact_form" type="text" placeholder="First name" required>
-                        <input class="col-md-6 contact_form" type="text" placeholder="Last name" required>
-                        <input class="col-md-6 contact_form" type="email" placeholder="E-mail Address" required>
-                        <input class="col-md-6 contact_form" type="tel" placeholder="Phone number" required>
-                        <div class="col-md-12">
-                        <textarea class="w-100 contact_form" placeholder="   Message..." rows="5"
-                                  v-model="form.message" type="text" required>
 
-                        </textarea>
+                <!-- Contact Form -->
+                <div class="col-lg-6 col-md-8 mt-3">
+                    <h2 class="mb-4">Get in Touch</h2>
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control contact_form" placeholder="First Name" required />
                         </div>
-                        <div class="col-md-12">
-                            <button class=" btn btn-primary text-black p-3 mt-3" onclick="()=> event.preventDefault()"
-                                    type="submit">SUBMIT
-                            </button>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control contact_form" placeholder="Last Name" required />
                         </div>
-
+                        <div class="col-md-6">
+                            <input type="email" class="form-control contact_form" placeholder="E-mail Address" required />
+                        </div>
+                        <div class="col-md-6">
+                            <input type="tel" class="form-control contact_form" placeholder="Phone Number" required />
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control contact_form" placeholder="Message..." rows="5" required v-model="form.message"></textarea>
+                        </div>
+                        <div class="col-12 col-md-3 ">
+                            <button type="submit" class="btn btn-primary text-black p-3 mt-2 w-100" @click.prevent>SUBMIT</button>
+                        </div>
                     </form>
+
+                    <!-- Social Links -->
+                    <div class="d-flex justify-content-center flex-wrap my-4">
+                        <a target="_blank" href="https://www.facebook.com/profile.php?id=61560740824598" class="mx-3">
+                            <img width="30" src="/assets/images/icons/f.png" alt="Facebook" />
+                        </a>
+                        <a target="_blank" href="https://www.instagram.com/autours_/" class="mx-3">
+                            <img width="40" src="/assets/images/icons/n.png" alt="Instagram" />
+                        </a>
+                        <a target="_blank" href="https://x.com/Autours_" class="mx-3">
+                            <img width="40" src="/assets/images/icons/x.png" alt="Twitter" />
+                        </a>
+                        <a target="_blank" href="#" class="mx-3">
+                            <img width="40" src="/assets/images/icons/t.png" alt="TikTok" />
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/company/autours/" class="mx-3">
+                            <img width="40" src="/assets/images/icons/in.png" alt="LinkedIn" />
+                        </a>
+                    </div>
                 </div>
-                <div class="my-5">
-                    <a target="_blank" href="https://www.facebook.com/profile.php?id=61560740824598" class="mx-5"><img
-                        width="30" height="60" src="/assets/images/icons/f.png"
-                        alt="Facebook"></a>
-                    <a target="_blank" href="https://www.instagram.com/autours_/" class="mx-5"><img width="60"
-                                                                                                    height="60"
-                                                                                                    src="/assets/images/icons/n.png"
-                                                                                                    alt="Instgram"></a>
-                    <a target="_blank" href="https://x.com/Autours_" class="mx-5"><img width="60" height="60"
-                                                                                       src="/assets/images/icons/x.png"
-                                                                                       alt="Twitter"></a>
-                    <a target="_blank" href="#" class="mx-5"><img width="60" height="60"
-                                                                  src="/assets/images/icons/t.png" alt="TikTok"></a>
-                    <a target="_blank" href="https://www.linkedin.com/company/autours/" class="mx-5"><img width="60"
-                                                                                                          height="60"
-                                                                                                          src="/assets/images/icons/in.png"
-                                                                                                          alt="LinkedIn"></a>
-                </div>
+
+
             </div>
 
         </div>
@@ -111,7 +118,21 @@ onMounted(() => {
 
 <style scoped>
 
-
+.contact-box {
+    height: 250px;
+    width: 60%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+}
+.text-gold {
+    color: gold;
+}
 div.contact-info {
     background-color: #fff5a9;
     padding: 20px;
