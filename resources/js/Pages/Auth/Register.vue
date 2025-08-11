@@ -43,16 +43,10 @@
                 <div :class="RegisterForm.user_type === 'supplier' ? 'register-form' : ''">
                     <div class="row">
                         <div class="row">
-                            <div v-if="RegisterForm.user_type === 'supplier'"
-                                 class="col-md-5 ml-5  mt-4 supplier-notice"
-                                 style=" height: 350px; scrollbar-gutter: auto;
-                                            overflow-y: scroll;
-                                            scrollbar-width: thin;
-
-                                            scrollbar-color: black rgba(255,255,255,0);
-">
-                                <p style="    border-color: black;
-                                            border-width: 10px;">Become a car rental supplier!
+                            <div v-if="RegisterForm.user_type === 'supplier'" class="col-md-5 ml-5  mt-4 supplier-notice"
+                                 style=" height: 350px; scrollbar-gutter: auto; overflow-y: scroll;scrollbar-width: thin;scrollbar-color: black rgba(255,255,255,0);">
+                                <p style="border-color: black; border-width: 10px;">
+                                    Become a car rental supplier!
                                     Autours is a company operating in the tourism field since its establishment in
                                     2005, with car rental bookings being our main area of expertise.
                                     We provide you a great chance to increase the business, as through our
@@ -82,12 +76,12 @@
                                 </p>
                             </div>
 
-                            <div class="col-12 col-md-6 flip-container">
+                            <div class=" col-md-6 flip-container">
 
                                 <div :class="RegisterForm.user_type !== 'supplier' ? 'flipper offset-5' : 'flipper' "
                                      v-bind:class="(RegisterForm.supplier) ? 'flip' : ''" id="flipper">
                                     <div class="front">
-                                        <p style="font-size: 3vw; margin-top: 5%; margin-left: 20%; font-weight: 1000;">Manage Booking</p>
+                                        <h3 style=" margin-top: 5%; margin-left: 20%; font-weight: 1000;">Manage Booking</h3>
                                         <form class="form-border" @submit.prevent="manageBooking">
 
                                             <div class="row">
@@ -108,20 +102,20 @@
 
 
                                                 <div class=" mt-5 row">
-                                                    <div id='submit' class="pull-left col-md-8">
+                                                    <div id='submit' class="pull-left col-md-8 col-8">
                                                         <button type='submit' id='send_message'
                                                                 class="btn-main color-2 rounded-5" :disabled="loading">
                                                             LOGIN
                                                             <span><i
                                                                 class="fa fa-arrow-right ml-2"/></span></button>
                                                     </div>
-                                                    <div id='submit' class="mt-4 col-md-4 ">
+                                                    <div id='submit' class="mt-4 col-md-4 col-6 text-nowrap ">
                                                         <a class="flipbutton cursor-pointer" id="loginButton"
                                                            v-on:click="createAccount()">Create my account →</a>
                                                     </div>
-                                                    <div id='submit' class="mt-4 col-md-4 ">
+                                                    <div id='submit' class="mt-4 col-md-4 col-6 text-nowrap">
                                                         <a class="flipbutton cursor-pointer" id="loginButton"
-                                                           v-on:click="forgetPassword()">Forget Your Password ? </a>
+                                                           v-on:click="forgetPassword()">Forgot Your Password ? </a>
                                                     </div>
 
                                                     <div id='mail_success' class='success'>Your message has been sent
@@ -147,57 +141,47 @@
 
                                                 <div class="col-md-6 mt-3">
                                                     <div class="field-set">
-                                                        <input v-model="RegisterForm.name" type="text"
-                                                               placeholder="Full name" class="input-text"/>
+                                                        <input v-model="RegisterForm.name" type="text" placeholder="Full name" class="input-text"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6 mt-3">
                                                     <div class="field-set">
-                                                        <input v-model="RegisterForm.email" type="email" id="email"
-                                                               placeholder="E-mail" name="email" class="input-text"/>
+                                                        <input v-model="RegisterForm.email" type="email" id="email" placeholder="E-mail" name="email" class="input-text"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="field-set">
-                                                        <input v-model="RegisterForm.country" type="text"
-                                                               placeholder="Country" class="input-text"/>
+                                                        <input v-model="RegisterForm.country" type="text" placeholder="Country" class="input-text"/>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-2 col-4">
                                                     <div class="field-set">
-                                                        <input v-model="RegisterForm.code" type='text' name='code'
-                                                               placeholder="+20" autocomplete="false" id='code'
-                                                               class="input-text">
+                                                        <input v-model="RegisterForm.code" type='text' name='code' placeholder="+20" autocomplete="false" id='code' class="input-text">
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 col-8">
                                                     <div class="field-set">
-                                                        <input v-model="RegisterForm.phone" autocomplete="false"
-                                                               placeholder="phone number" type='text' name='phone'
-                                                               id='phone' class="input-text">
+                                                        <input v-model="RegisterForm.phone" autocomplete="false" placeholder="phone number" type='text' name='phone' id='phone' class="input-text">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="field-set">
-                                                        <input v-model="RegisterForm.password" type="password"
-                                                               placeholder="Passwrod" name="password" id="password"
-                                                               class="input-text"/>
+                                                        <input v-model="RegisterForm.password" type="password" placeholder="Passwrod" name="password" id="password" class="input-text"/>
                                                     </div>
                                                 </div>
 
 
                                                 <div class="col-md-12 mt-2 row">
 
-                                                    <div id='submit' class="pull-left col-md-8 ">
+                                                    <div id='submit' class="pull-left col-md-8 col-7 ">
                                                         <button type='submit' id='send_message'
                                                                 class="btn-main color-2 rounded-5 mt-4">Register
                                                             <span><i
                                                                 class="fa fa-arrow-right ml-2"/></span></button>
                                                     </div>
-                                                    <div class="col-md-4 mt-5">
+                                                    <div class="col-md-4 col-5 mt-5">
                                                         <a class="flipbutton cursor-pointer" id="registerButton"
                                                            v-on:click="LoginToMyAccount()">Manage My Booking →</a></div>
 
@@ -402,10 +386,20 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
+@media screen and (max-width: 1000px) {
+    .flipper {
+        margin-left: 0;
+        background-image: url('/images/background/manage-booking-form.png');
+        background-repeat: no-repeat;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        transition: 0.6s;
+        transform-style: preserve-3d;
+    }
+}
 
 #subheader h3, h2 {
-    font-family: 'Outfit';
     margin-top: 100px;
     margin-bottom: 10px;
     letter-spacing: -2px;
@@ -414,7 +408,7 @@ onMounted(() => {
 
 .flipper {
     padding: 30px;
-    width: 95%;
+    width: 88%;
     left: 5%;
     height: 450px;
     position: relative;
@@ -423,16 +417,13 @@ onMounted(() => {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-
     transition: 0.6s;
     transform-style: preserve-3d;
 }
 
 .front, .back {
-    /*background-color: rgba(0,0,0,.3);*/
     position: absolute;
     padding: 10px 30px;
-
     top: 0;
     left: 0;
     right: 0;
