@@ -52,8 +52,7 @@
                         </div>
 
                         <div class=" col-md-2 mt-2 time-input">
-                            <select style="height: 45px;" class=" w-100 form-control rounded-0"
-                                    v-model="form.time_from">
+                            <select style="height: 45px;" class=" w-100 form-control rounded-0" v-model="form.time_from">
                                 <option value="00:00" selected>00:00</option>
                                 <option value="00:30">00:30</option>
                                 <option value="01:00">01:00</option>
@@ -160,7 +159,40 @@
                         </div>
                     </div>
 
+
+                    <!-- Mobile: split date + time -->
+                    <button class="search-button  px-5 mt-2" @click="search">
+                        SEARCH CARS
+                    </button>
+                    <a class="mobile-currency col-md-2">
+                        <CDropdown togglerText="Dropdown button" class="mt-1 ">
+                            <CDropdownToggle class="text-black " component="a" style="color: rgba(30, 30, 30, 1);">
+                               {{selectedCurrency }}
+                            </CDropdownToggle>
+                            <CDropdownMenu>
+                                <CDropdownItem class="cursor-pointer " v-for="currency in currencies"
+                                               v-on:click="changeCurrency(currency.name)">
+                                    <p class="text-black "><img style="margin-right: 25px"
+                                                                :src="'https://flagsapi.com/' + currency.flag + '/shiny/32.png'">
+                                        {{ currency.name }}</p>
+                                </CDropdownItem>
+                            </CDropdownMenu>
+                        </CDropdown>
+                    </a>
+                    <p class="col-md-12 text-white position-relative float-right included-part" style="top: 10px">
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free
+                        Cancellation
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No
+                        Credit
+                        card fees
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>No
+                        hidden
+                        fees
+                        <i class="col-md-2 fa fa-check-square fa-xl " style="color: #7fff1f; margin-right: -13%;"/>Free
+                        amendment
+                    </p>
                 </div>
+
             </form>
 
         </div>
