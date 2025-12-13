@@ -22,8 +22,8 @@ onMounted(() => {
     <div style="background-color: #000; height: 20px;"></div>
     <footer class="wrapper" id="copyright" style="background: rgb(249, 214, 2);">
         <div class="container">
-            <a href="/">   <img src="/img/4k-logo.png" alt="logo" width="250" height="80"></a>
-            <hr class="w-25"/>
+            <a href="/" >   <img  style="margin-top: -50px" src="/img/4k-logo.png" alt="logo" width="250" height="80"></a>
+            <hr class="w-25 mt-2"/>
             <div class="row">
                 <div class="col-4 col-md-4 " id="company">
                     <h4 class="text-black">Company</h4>

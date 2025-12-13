@@ -21,8 +21,8 @@
             <div class="col-7 col-md-7 d-flex justify-content-start">
                 <a href="/"><img src="/img/4k-logo.png" width="200" alt="logo"></a>
             </div>
-            <div class="mobile-nav-icon col-1 col-md-1  justify-content-end">
-                <a class=" icon text-black" href="javascript:void(0);" @click="myFunction()">
+            <div class="mobile-nav-icon col-1 col-md-1 bold justify-content-end" style="font-size: x-large;">
+                <a class=" icon text-black " href="javascript:void(0);" @click="myFunction()">
                     <i class="fa fa-bars"/>
                 </a>
             </div>

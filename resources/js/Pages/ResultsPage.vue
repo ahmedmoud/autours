@@ -42,17 +42,17 @@
 
 
 
-                <div class="w-100  ps-md-5 ps-lg-5" >
-                    <div class="col-md-11 mb-1 top-buttons d-flex flex-column flex-md-row gap-2 gap-md-3">
-                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
+                <div class="w-100 mt-2  ps-md-5 ps-lg-5 " >
+                    <div class=" col-md-11 mb-1 top-buttons d-flex flex-column flex-md-row gap-2 gap-md-3">
+                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center"
                                 style="background: #f9d602; color: #000;">
                             <span class="ti ti-circle-number-1 me-2"></span> Choose Your Location
                         </button>
-                        <button class="btn steps-button active w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
+                        <button class="btn steps-button active w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center "
                                 style="background: rgb(155,147,84); color: #000;">
                             <span class="ti ti-circle-number-2 me-2"></span> Choose Your Car
                         </button>
-                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center justify-content-md-start"
+                        <button class="btn steps-button w-100 text-start px-3 py-2 d-flex align-items-center justify-content-center "
                                 style="background: #f9d602; color: #000;">
                             <span class="ti ti-circle-number-3 me-2"></span> Reserve Your Car
                         </button>
@@ -335,11 +335,11 @@
 
                                 <div class="col-md-12 my-5" style="background: #fff;">
                                     <div class="row" @click="collapse('payment')">
-                                        <h4 class="col-md-9 col-10 mr-3" style="color: #000; margin-bottom: -30px">
+                                        <h4 class="col-md-9 col-10 mr-3" style="color: #000; margin-top: -10px">
                                             Payment Types</h4> <i
                                         :class="'col-md-2 col-1 fa fa-arrow-down cursor-pointer  pointer-arrow-payment' "/>
                                     </div>
-                                    <hr class="my-5"/>
+                                    <hr class="my-2"/>
                                     <div style="margin-top: -10px;" id="payment">
                                         <div class="row" v-for="paymentMethod in paymentMethods">
                                             <div class="row">
@@ -515,16 +515,16 @@
 
                                             <!-- What's Included -->
                                             <div class="mt-2">
-                                                <p class="fw-bold text-success">What is Included!</p>
+                                                <p class="bold " style="color: #5e9007;">What is Included!</p>
                                                 <ul class="list-unstyled row">
                                                     <li v-for="(item, index) in vehicle.included" :key="index" class="col-6">
                                                         <el-tooltip v-if="item.description" placement="top">
                                                             <template #content>
                                                                 {{ item.description }}
                                                             </template>
-                                                            <span class="small text-nowrap"><i class="fa fa-check text-success me-2"/> {{ item.what_is_included }}</span>
+                                                            <span class="small text-nowrap"><i class="fa fa-check  me-2" style="color: #5e9007;"/> {{ item.what_is_included }}</span>
                                                         </el-tooltip>
-                                                        <span v-else class="small text-nowrap"><i class="fa fa-check text-success me-2"/> {{ item.what_is_included }}</span>
+                                                        <span v-else class="small text-nowrap"><i class="fa fa-check  me-2" style="color: #5e9007;"/> {{ item.what_is_included }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
