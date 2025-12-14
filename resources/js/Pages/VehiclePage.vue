@@ -350,15 +350,15 @@
                                     <strong  class="col-4 col-md-4">{{ currency + ' ' + parseFloat(vehicle.final_price).toFixed(2) }}</strong>
                                 </div>
                                 <div class="row text-nowrap" v-if="selectedMethod === 3">
-                                    <strong class="col-md-8">Pay Now</strong>
-                                    <strong class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.profit_price).toFixed(2) }}</strong>
+                                    <strong class="col-md-8 col-8">Pay Now</strong>
+                                    <strong class="col-md-4 col-4">{{ currency + ' ' + parseFloat(vehicle.profit_price).toFixed(2) }}</strong>
                                     <strong class="col-md-8 col-8">Pay at office</strong>
                                     <strong  class="col-md-4 col-4">{{ currency + ' ' + parseFloat(vehicle.final_price - vehicle.profit_price).toFixed(2) }}</strong>
                                 </div>
 
                                 <div class="row text-nowrap" v-if="selectedMethod === 1">
-                                    <strong class="col-md-8">Pay Now</strong>
-                                    <strong class="col-md-4">{{ currency + ' 0' }}</strong>
+                                    <strong class="col-md-8 col-8">Pay Now</strong>
+                                    <strong class="col-md-4 col-4">{{ currency + ' 0' }}</strong>
                                     <strong class="col-md-8 col-8">Pay at office</strong>
                                     <strong  class="col-md-4 col-4">{{ currency + ' ' + parseFloat(vehicle.final_price).toFixed(2) }}</strong>
                                 </div>
