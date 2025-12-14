@@ -344,23 +344,23 @@
                                     <p class="col-md-8 col-8">Total Rental Cost</p>
                                     <p class="col-md-3 col-3">{{ currency + '&nbsp' + parseFloat(vehicle.final_price).toFixed(2) }}</p>
                                 </div>
-                                <hr style="margin-bottom: 5%;"/>
-                                <div class="row" v-if="selectedMethod === 2">
-                                    <strong class="col-md-8">Pay Now</strong>
-                                    <strong  class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.final_price).toFixed(2) }}</strong>
+                                <hr style="margin-bottom: 2%; margin-top: 0"/>
+                                <div class="row text-nowrap" v-if="selectedMethod === 2">
+                                    <strong class="col-8 col-md-8">Pay Now</strong>
+                                    <strong  class="col-4 col-md-4">{{ currency + ' ' + parseFloat(vehicle.final_price).toFixed(2) }}</strong>
                                 </div>
-                                <div class="row" v-if="selectedMethod === 3">
+                                <div class="row text-nowrap" v-if="selectedMethod === 3">
                                     <strong class="col-md-8">Pay Now</strong>
                                     <strong class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.profit_price).toFixed(2) }}</strong>
-                                    <strong class="col-md-8">Pay at office</strong>
-                                    <strong  class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.final_price - vehicle.profit_price).toFixed(2) }}</strong>
+                                    <strong class="col-md-8 col-8">Pay at office</strong>
+                                    <strong  class="col-md-4 col-4">{{ currency + ' ' + parseFloat(vehicle.final_price - vehicle.profit_price).toFixed(2) }}</strong>
                                 </div>
 
-                                <div class="row" v-if="selectedMethod === 1">
+                                <div class="row text-nowrap" v-if="selectedMethod === 1">
                                     <strong class="col-md-8">Pay Now</strong>
                                     <strong class="col-md-4">{{ currency + ' 0' }}</strong>
-                                    <strong class="col-md-8">Pay at office</strong>
-                                    <strong  class="col-md-4">{{ currency + ' ' + parseFloat(vehicle.final_price).toFixed(2) }}</strong>
+                                    <strong class="col-md-8 col-8">Pay at office</strong>
+                                    <strong  class="col-md-4 col-4">{{ currency + ' ' + parseFloat(vehicle.final_price).toFixed(2) }}</strong>
                                 </div>
 
                                 <hr style="margin-top: 1%;"/>
@@ -371,7 +371,8 @@
                     <Loader v-if="loading"/>
                     <div v-if="!loading" class="container bg-white col-md-7 offset-md-0 pt-5 pl-5 mt-4">
                         <div class="row web-card">
-                                <div>
+                        <div class="row">
+                                <div class="col-md-6">
                                     <h4 class="" style=" font-size: 1.3vw; text-wrap: nowrap;">
                                         {{ vehicle.name }} <small style="font-weight: 50; ">OR&nbsp;Similar</small>&nbsp
                                         <el-tooltip placement="right-start">
@@ -387,7 +388,11 @@
 
                                     </h4>
                                     <h5>{{ vehicle?.category?.name }}</h5>
+
                                 </div>
+
+                        </div>
+                            <div class="row">
                                 <div class="col-md-4">
                                     <div id="slider-carousel text-nowrap">
                                         <div class="row"></div>
@@ -401,27 +406,29 @@
                                     </div>
                                 </div>
 
-                                <div class="row col-md-6">
-                                    <div class=" ml-3 row">
-                                        <h3 class="mb-3 col-md-5 text-nowrap">
-                                            {{ currency + ' ' + vehicle.final_price }}</h3>
-                                        <p class="col-md-6 text-nowrap" style="color: green;"><i
-                                            class="fa fa-arrow-right"/>
-                                            For {{ daysNumber }}
-                                            day{{ daysNumber < 2 ? '' : 's' }} -
-                                            {{
-                                                currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2)
-                                            }}
-                                            / per
-                                            day </p>
-                                    </div>
+                            <div class="col-md-6 ml-3 row">
+                                <h3 class="mb-3 col-md-6 text-nowrap">{{ currency + ' ' + vehicle.final_price }}</h3>
+                                <p class="col-md-6 text-nowrap" style="color: green;"><i
+                                    class="fa fa-arrow-right"/>
+                                    For {{ daysNumber }}
+                                    day{{ daysNumber < 2 ? '' : 's' }} -
+                                    {{
+                                        currency + ' ' + parseFloat((vehicle.final_price / daysNumber)).toFixed(2)
+                                    }}
+                                    / per
+                                    day </p>
+                            </div>
+                        </div>
+
+                                <div class="row col-md-10">
+
                                     <div class="col-md-8 row de-spec text-nowrap">
                                         <div v-if="vehicle.specifications"
                                              v-for="specification in vehicle.specifications"
                                              class="col-md-6">
 
-                                        <span class="text-nowrap" style="margin-top: -10%">
-                                                    <img style="width: 45%; margin-right: 2px;"
+                                        <span class="text-nowrap" style="margin-top: -5%">
+                                                    <img style="width: 25%; margin-right: 2px;"
                                                          :src="'/assets/images/icons/' + specification.icon + '.svg'"/>
                                            {{
                                                 specification.value
@@ -446,7 +453,7 @@
                                             </template>
                                             <div class="col-md-2 mt-2 text-nowrap bold">
                                                 <div class="" id="instant_btn">
-                                                    <p style="font-size: 1vw;"><img class="mb-2" width="40"
+                                                    <p style="font-size: 1vw;"><img class="mb-2" width="50"
                                                                                     src="/images/icons/instant_confirmation.png"/>
                                                         Instant Confirmation <i class="fas fa-info-circle"
                                                                                 style="color: #6969d8;"></i></p>
@@ -483,7 +490,7 @@
                                     <div class="d-supplier">
                                         <div class="col-md-2 d-img w-100" style="height: 50px">
                                             <img :src="'/img/' + vehicle?.supplier?.logo" height="50"
-                                                 width="120" alt=""/>
+                                                 width="80" alt=""/>
                                         </div>
                                         <div class="col-md-2 row">
                                             <div>
@@ -498,13 +505,13 @@
                                                         @click="openRentalTerms(vehicle)">Rental&nbsp;Terms</a></div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-1">
                                         <span class="py-2 px-1 rounded-1 ml-3"
                                               style=" background-color: #f9d602; font-size: 1.0em;font-weight: 600;">{{
                                                 vehicle.supplier_rate
                                             }}/10</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                                         <span class="be_media-body"><h5> {{
                                                                 vehicle?.supplier_rate >= 1 && vehicle?.supplier_rate <= 2 ? 'Terrible' :
                                                                     vehicle?.supplier_rate > 2 && vehicle?.supplier_rate <= 4 ? 'Ok' :
@@ -644,7 +651,7 @@
                                 <!-- Price Info -->
                                 <div class="col-12 col-md-6">
                                     <h3 class="fs-5 text-nowrap">{{ currency + '  ' + vehicle.final_price }}</h3>
-                                    <p class="text-success text-nowrap">
+                                    <p class=" text-nowrap" style="color: #5e9007">
                                         <i class="fa fa-arrow-right"></i> For {{ daysNumber }} day{{ daysNumber < 2 ? '' : 's' }} -
                                         {{ currency + ' ' + parseFloat(vehicle.final_price / daysNumber).toFixed(2) }}/day
                                     </p>
@@ -653,11 +660,11 @@
                                 <!-- What's Included -->
                                 <div class="col-12">
                                     <div class="bg-light rounded-2 p-3">
-                                        <p class="fw-bold text-success mb-2">What is Included!</p>
+                                        <p class="fw-bold  mb-2" style="color: #5e9007;">What is Included!</p>
                                         <div class="row">
                                             <div class="col-6 col-md-4" v-for="(item, index) in vehicle?.included">
                                                 <div class="d-flex align-items-center mb-2">
-                                                    <i class="fa fa-check text-success me-2"></i>
+                                                    <i class="fa fa-check  me-2" style="color: #5e9007;"></i>
                                                     <el-tooltip v-if="item?.description?.length" placement="right">
                                                         <template #content>
                                                             <div class="fs-6">{{ item.description }}</div>

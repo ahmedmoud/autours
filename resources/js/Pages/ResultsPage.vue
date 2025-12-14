@@ -478,7 +478,7 @@
                                             </div>
 
                                             <!-- Supplier & Review -->
-                                            <div class="row bg-light p-2 rounded mb-2 g-2 flex-md-nowrap align-items-center">
+                                            <div class="row bg-light  rounded   flex-md-nowrap align-items-center">
                                                 <div class="col-2 col-md-3 text-center">
                                                     <img :src="'img/' + vehicle.supplier.logo" alt="" class="img-fluid"   />
                                                 </div>
@@ -490,14 +490,14 @@
                                                     </a>
                                                 </div>
 
-                                                <div class="col-3 col-md-3 ml-1">
+                                                <div class="col-3 col-md-3 ml-1 ">
                                                     <span class="badge bg-warning text-dark ml-3">{{ vehicle.supplier_rate }}/10</span>
                                                     <div>
                                                         <small class="text-nowrap"> ({{ vehicle.supplier_number_of_reviews }}+ reviews)</small>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-2 col-md-3 d-flex mt-0">
+                                                <div class="col-2 col-md-3 mt-3 d-flex">
                                                     <img
                                                         v-if="vehicle.instant_confirmation"
                                                         src="/images/icons/instant_confirmation.png"
@@ -554,7 +554,7 @@
                                             <span class="text-muted">For {{ daysNumber }} day{{ daysNumber > 1 ? 's' : '' }}</span>
                                             <h4 class="mb-0">{{ vehicle.final_price }} <small>{{ selectedCurrency }}</small></h4>
                                         </div>
-                                        <button class="btn btn-primary mt-2 col-12" @click="goToBookingPage(vehicle.id)">
+                                        <button class="btn btn-primary mt-2 col-12" style="color: #000;" @click="goToBookingPage(vehicle.id)">
                                             Booking <i class="fa fa-arrow-right ms-2"></i>
                                         </button>
                                     </div>
@@ -697,9 +697,9 @@
                                                                 Receive instant booking confirmation!
                                                             </div>
                                                         </template>
-                                                        <div class="col-md-2 mt-2 text-nowrap bold">
+                                                        <div class="col-md-2 mt-3 text-nowrap bold">
                                                             <div class="" id="instant_btn">
-                                                                <p style="font-size: 1vw;"><img class="mb-2" width="40"
+                                                                <p style="font-size: 1vw;"><img class="mb-1" width="40"
                                                                                                 src="/images/icons/instant_confirmation.png"/>
                                                                     Instant Confirmation <i class="fas fa-info-circle"
                                                                                             style="color: #6969d8;"></i>
