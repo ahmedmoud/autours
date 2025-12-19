@@ -1509,7 +1509,7 @@ onMounted(() => {
 
 .swiper-button-next {
     color: rgb(0, 0, 0);
-    width: 4%;
+    width: 48px;
     height: 80px;
     background-repeat: no-repeat;
     margin-top: -40px;
@@ -1532,7 +1532,7 @@ onMounted(() => {
     height: 80px;
     background-repeat: no-repeat;
     margin-top: -40px;
-    width: 4%;
+    width: 48px;
     font-weight: bold;
     background-color: #fff;
     border-radius: 10px;
