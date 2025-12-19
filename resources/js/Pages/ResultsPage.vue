@@ -333,7 +333,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 my-5" style="background: #fff;">
+                                <div class="col-md-12 my-4" style="background: #fff;">
                                     <div class="row" @click="collapse('payment')">
                                         <h4 class="col-md-9 col-10 mr-3" style="color: #000; margin-top: -10px">
                                             Payment Types</h4> <i
@@ -360,7 +360,7 @@
                                     </div>
                                 </div>
 
-                                <div v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
+                                <div class=" my-4" v-for="(item, i) in filteredSpecifications" :key="i" style="background: #fff;">
                                     <div class="col-md-12 my-4  ">
                                         <div @click="collapse(item.id)" class="row"><h4 class="col-md-9 col-10 mr-3"
                                                                                         style="color: #000; margin-bottom: -30px">
@@ -404,7 +404,7 @@
                                     :modules="[Navigation, Pagination, Scrollbar, A11y]"
                                     :space-between="5"
                                     navigation
-                                    style="width: 100%;"
+                                    style="width: 90%;"
                                     :class="'slide-container mt-2'"
                                     :breakpoints="{
                                               0: { slidesPerView: 1.2 },
@@ -485,7 +485,7 @@
 
                                                 <div class="col-3 col-md-3">
                                                     <div style="margin-bottom: -10px;" class="ml-2">{{ vehicle.supplier.company }}</div>
-                                                    <a href="javascript:void(0);" @click="openRentalTerms(vehicle)" style="font-size: 13px;" class="text-decoration-underline  text-nowrap">
+                                                    <a href="javascript:void(0);" @click="openRentalTerms(vehicle)" style="font-size: 13px; color: blue" class="text-decoration-underline  text-nowrap">
                                                         Rental Terms
                                                     </a>
                                                 </div>
@@ -515,7 +515,7 @@
 
                                             <!-- What's Included -->
                                             <div class="mt-2">
-                                                <p class="bold " style="color: #5e9007;">What is Included!</p>
+                                                <p class="bold " style="color: #5e9007; margin-bottom: 5px !important;">What is Included!</p>
                                                 <ul class="list-unstyled row">
                                                     <li v-for="(item, index) in vehicle.included" :key="index" class="col-6">
                                                         <el-tooltip v-if="item.description" placement="top">

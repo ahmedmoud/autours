@@ -862,7 +862,7 @@
                                 <div class="mt-4">
                                     <el-checkbox class="mr-2" /> Remember me on this device. <br />
                                     <el-checkbox v-model="rental_terms" class="mr-2" />
-                                    I confirm that I have read, understood, and agree with the
+                                    I confirm that I have read, understood,  and <br/> agree with the
                                     <a class="text-primary text-decoration-underline cursor-pointer" @click="openRentalTerms(vehicle)">Rental Terms</a>
                                     &amp;
                                     <a class="text-primary text-decoration-underline cursor-pointer" @click="openAutoursTerms()">Autours terms</a>.<br />
