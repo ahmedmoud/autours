@@ -16,6 +16,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <meta name="description" content="Autours offers reliable car rental and travel services with competitive prices, easy booking, and trusted support. Book your ride today.">
+
+    <meta name="keywords" content="car rental, autours, rent a car, travel services, vehicle booking">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://www.autours.com/">
+
     @vite('resources/js/app.js')
     @inertiaHead
 </head>
