@@ -30,7 +30,7 @@ class NotifyNewSupplier implements ShouldQueue
     {
 
         $body = $event->user;
-
+        echo $body;
         $status = Mail::to($event->user->email)->send(new NewSupplierEmailAdmin($body));
     }
 }
