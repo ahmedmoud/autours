@@ -99,7 +99,6 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
                 }
 
                 $vehicle->save();
-                dd($collection);
 
                 $vehicleIds[] = $vehicle->id;
 
@@ -197,6 +196,8 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
 
     public function saveIncluded(Collection $collection)
     {
+        dd($collection);
+
         foreach ($collection as $key => $row) {
             if(!is_null($row[0])){
                 $included = new Included();
