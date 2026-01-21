@@ -97,9 +97,9 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
                 if (count($this->errors) > 0) {
                     return $this->errors;
                 }
-                dd($collection);
 
                 $vehicle->save();
+                dd($collection);
 
                 $vehicleIds[] = $vehicle->id;
 
