@@ -57,7 +57,6 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
     {
         $vehicleIds = [];
 
-        dd($collection);
         foreach ($collection as $key => $row) {
             if (is_numeric($row[0])) {
                 $vehicle = new Vehicle();
@@ -98,6 +97,8 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
                 if (count($this->errors) > 0) {
                     return $this->errors;
                 }
+                dd($collection);
+
                 $vehicle->save();
 
                 $vehicleIds[] = $vehicle->id;
