@@ -196,6 +196,9 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
 
     public function saveIncluded(Collection $collection)
     {
+        if (count($this->errors) > 0) {
+            return $this->errors;
+        }
 
         foreach ($collection as $key => $row) {
             if(!is_null($row[0])){
