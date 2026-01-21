@@ -204,6 +204,7 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
                 $included->save();
                 foreach ($this->vehicleIds as $vehicleId) {
                     dd($vehicleId);
+
                     VehicleIncluded::query()->insert([
                         'vehicle_id' => $vehicleId,
                         'included_id' => $included->id
