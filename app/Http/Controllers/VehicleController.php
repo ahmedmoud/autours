@@ -9,6 +9,7 @@ use App\Http\Requests\CreateEditVehicle;
 use App\Http\Requests\EditVehiclePrice;
 use App\Http\Requests\FilterVehicleRequest;
 use App\Http\Requests\GetVehiclePageRequest;
+use App\Imports\VehiclesExcelImport;
 use App\Models\CurrencyRate;
 use App\Models\Included;
 use App\Models\LocationTypeVehicle;
@@ -35,6 +36,7 @@ use Inertia\Inertia;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 use stdClass;
 
 class VehicleController extends Controller
@@ -753,5 +755,42 @@ class VehicleController extends Controller
     public function updateActivation(Request $request)
     {
         Vehicle::query()->find($request->vehicle_id)->update(['activation' => $request->activation]);
+    }
+
+    public function bulkUpload(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx,xls',
+            'branch' => 'required|integer'
+        ]);
+        DB::beginTransaction();
+        try {
+
+            $import = new VehiclesExcelImport(
+                $request->branch,
+                $request->supplier
+            );
+
+             Excel::import($import, $request->file('file'));
+            if (!empty($import->errors)) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $import->errors
+                ], StatusCodes::BAD_REQUEST);
+            }
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'data' => [],
+                'message' => 'uploaded successfully'
+            ], StatusCodes::SUCCESS);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ], StatusCodes::SERVER_ERROR);
+        }
+
     }
 }

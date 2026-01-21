@@ -162,8 +162,10 @@ Route::middleware(['admin'])->group(function () {
     Route::post('profit/upload', [ProfitsController::class, 'upload']);
 
     Route::inertia('photos', 'Dashboard/Photos');
+    Route::inertia('vehicles-bulk-upload', 'Dashboard/VehiclesBulkUpload');
     Route::post('post/photos', [VehicleController::class, 'createPhotos']);
     Route::post('delete/photos', [VehicleController::class, 'deletePhotos']);
+    Route::post('vehicles/bulk-upload', [VehicleController::class, 'bulkUpload']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/get/subscribers', [SubscriberController::class, 'index']);

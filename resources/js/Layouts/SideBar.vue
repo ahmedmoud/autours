@@ -76,6 +76,13 @@
                                 <i class="ti ti-photo"></i>
                                 <span>Vehicles Photos</span></a>
                         </li>
+
+                        <li class="sidebar-item">
+                            <a :class="  ['sidebar-link', isActive('vehicles-bulk-upload') ? 'active' : '']" href="/vehicles-bulk-upload">
+                                <i class="ti ti-photo"></i>
+                                <span>Vehicles Bulk Upload</span></a>
+                        </li>
+
                         <li class="sidebar-item">
                             <a :class="  ['sidebar-link', isActive('categories') ? 'active' : '']" href="/categories">
                                 <i class="ti ti-category"></i>
