@@ -45,6 +45,7 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
 
     public function collection(Collection $collection)
     {
+        dd(1);
         if (count($this->vehicleIds) == 0)
             $this->vehicleIds = $this->saveVehicles(collect($collection));
         else
