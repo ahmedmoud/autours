@@ -87,7 +87,7 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
 
 
                 if ($row[16] < '0') {
-                    $this->errors[] = ['row' => $key + 1, 'error' => 'Week Price not applicable in row number ' . $key + 1];
+                    $this->errors[] = ['row' => $key + 1, 'error' => 'Month Price not applicable in row number ' . $key + 1];
                 }
                 $vehicle->month_price = $row[16];
 
@@ -206,7 +206,6 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
                 $included->what_is_included = $row[0];
                 $included->save();
                 foreach ($this->vehicleIds as $vehicleId) {
-                    dd($vehicleId);
 
                     VehicleIncluded::query()->insert([
                         'vehicle_id' => $vehicleId,
