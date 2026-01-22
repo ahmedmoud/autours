@@ -224,16 +224,16 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
         $airCondition = strtolower($airCondition);
 
         if (str_contains($airCondition, 'air')) {
-            return 'cool & Heat';
+            return 'Air Conditioning';
         }
         if (str_contains($airCondition, 'condition')) {
-            return 'cool & Heat';
+            return 'Air Conditioning';
         }
         if (str_contains($airCondition, 'ac')) {
-            return 'cool & Heat';
+            return 'Air Conditioning';
         }
         if (str_contains($airCondition, 'a/c')) {
-            return 'cool & Heat';
+            return 'Air Conditioning';
         }
         return null;
     }
