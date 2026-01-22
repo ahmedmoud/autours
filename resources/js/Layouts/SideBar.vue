@@ -139,7 +139,7 @@
                     </li>
 
                     <ul class="sidebar-item " v-if="admin" @click="openChild('rentals')">
-                        <a :class="  ['sidebar-link', isActive('photos') ? 'active' : '']" href="#">
+                        <a :class="  ['sidebar-link', isActive('rentals') ? 'active' : '']" href="#">
                             <i class="ti ti-receipt" aria-hidden="true"></i>
                             <span>Rentals</span></a>
                     </ul>
@@ -216,7 +216,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a :class="  ['sidebar-link', isActive('photos') ? 'active' : '']" href="/logout">
+                        <a :class="  ['sidebar-link', isActive('') ? 'active' : '']" href="/logout">
                             <i class="ti ti-logout" aria-hidden="true"></i>
                             <span>Sign Out</span></a>
 

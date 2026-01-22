@@ -62,7 +62,7 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
                 $vehicle = new Vehicle();
                 $vehicle->name = $row[1];
                 $vehicle->pickup_loc = $this->branchId;
-                $photo = VehiclesPhotos::query()->where('name', 'ilike', '%' . trim($row[1]) . '%')->first();
+                $photo = VehiclesPhotos::query()->where('name', 'ilike', '%' . trim(strtolower($row[1])) . '%')->first();
                 if ($photo == null) {
                     $this->errors[] = ['row' => $key + 1, 'error' => 'No Photos for this car found in row number ' . $key + 1];
                 }

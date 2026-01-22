@@ -4,24 +4,25 @@
             <h2 class="mb-4">Vehicles Photos</h2>
             <div class="card">
                 <div class="card-body">
-                    <div class="">
-                        <form @submit.prevent="upload" enctype="multipart/form-data">
-                            <div class="formbold-mb-3">
-                                <img v-if="photo" :src="'img/vehicles' + photo" style="width:300px;">
+                    <div class="row">
+                        <form class="row" @submit.prevent="upload" enctype="multipart/form-data">
+                            <div class="formbold-mb-3 col-md-3">
                                 <label class="formbold-form-label">
                                     Vehicle Photo
                                 </label>
-                                <input @change="handle" type="file"
-                                       class="formbold-form-input formbold-form-file" required/>
+                                <input @change="handle" type="file" class="formbold-form-input formbold-form-file" required/>
+
+                                <img v-if="image" :src="'img/vehicles' + photo" style="width:300px;">
+
                             </div>
 
-                            <div class="formbold-mb-3">
+                            <div class="formbold-mb-3 col-md-3">
                                 <label class="formbold-form-label"> Vehicle Name </label>
                                 <input v-model="name" type="text" class="formbold-form-input"
                                        required/>
                             </div>
 
-                            <div class="text-center">
+                            <div class="text-left ">
                                 <button type="submit" class="btn btn-primary p-3" style="color: #0a3622;">Submit</button>
                             </div>
                         </form>
