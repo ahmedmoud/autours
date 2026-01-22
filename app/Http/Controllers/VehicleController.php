@@ -407,8 +407,10 @@ class VehicleController extends Controller
                 $included = explode(',', $request->included);
                 VehicleIncluded::query()->where('vehicle_id', $request->id)->delete();
                 foreach ($included as $include) {
-                    $includeId = Included::query()->where('what_is_included', $include)->first()->id;
-                    VehicleIncluded::insert(['vehicle_id' => $request->id, 'included_id' => $includeId]);
+                    $includeId = Included::query()->where('what_is_included', $include)->first();
+                    if(!is_null($includeId)){
+                        VehicleIncluded::insert(['vehicle_id' => $request->id, 'included_id' => $includeId]);
+                    }
                 }
             }
 
