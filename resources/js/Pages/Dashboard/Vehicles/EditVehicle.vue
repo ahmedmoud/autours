@@ -151,7 +151,6 @@
 
                                         <el-option
                                             v-for="item in fuelPolicies.list.value"
-                                            :aria-selected="item.id == fuelPolicy.value"
                                             :key="item.label"
                                             :label="item.label"
                                             :value="item.id"
