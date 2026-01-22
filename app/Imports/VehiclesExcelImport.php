@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Category;
+use App\Models\FuelPolicy;
 use App\Models\Included;
 use App\Models\LocationType;
 use App\Models\LocationTypeVehicle;
@@ -74,25 +75,25 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
                 }
                 $vehicle->category = $category ? $category->id : null;
 
-                if ($row[14] == null || $row[14] == '' || $row[14] <= '0') {
+                if ($row[15] == null || $row[15] == '' || $row[15] <= '0') {
                     $this->errors[] = ['row' => $key + 1, 'error' => '1-3 days Price not applicable in row number ' . $key + 1];
                 }
-                $vehicle->price = $row[14];
+                $vehicle->price = $row[15];
 
 
-                if ($row[15] == null || $row[15] == '' || $row[15] <= '0') {
+                if ($row[16] == null || $row[16] == '' || $row[16] <= '0') {
                     $this->errors[] = ['row' => $key + 1, 'error' => 'Week Price not applicable in row number ' . $key + 1];
                 }
-                $vehicle->week_price = $row[15];
+                $vehicle->week_price = $row[16];
 
 
-                if ($row[16] < '0') {
+                if ($row[17] < '0') {
                     $this->errors[] = ['row' => $key + 1, 'error' => 'Month Price not applicable in row number ' . $key + 1];
                 }
-                $vehicle->month_price = $row[16];
+                $vehicle->month_price = $row[17];
 
                 $vehicle->activation = true;
-                $vehicle->instant_confirmation = str_contains(strtolower($row[11]), 'instant') ? 1 : 0;
+                $vehicle->instant_confirmation = str_contains(strtolower($row[12]), 'instant') ? 1 : 0;
 
                 if (count($this->errors) > 0) {
                     return $this->errors;
@@ -184,6 +185,12 @@ class VehiclesExcelImport implements ToCollection, WithMultipleSheets
                         'location_type_id' => $locationType->id,
                         'vehicle_id' => $vehicle->id
                     ]);
+                }
+
+                $fuelPolicy = FuelPolicy::query()->where('name', 'ilike', '%' . strtolower(trim($row[10])) . '%')->first();
+                if (!is_null($fuelPolicy)) {
+                    $vehicle->fuel_policy = $fuelPolicy->id;
+                    $vehicle->save();
                 }
             }
 
