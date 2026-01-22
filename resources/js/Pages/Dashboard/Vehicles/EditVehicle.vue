@@ -89,7 +89,7 @@
                             <div class="formbold-mb-3 col-3">
                                 <label class="formbold-form-label col-12">Category</label>
                                 <div class="display-none " style="color: red;" id="category">
-                                    <li>Pleasee select Category</li>
+                                    <li>Please select Category</li>
                                 </div>
                                 <el-select
                                     v-model="category"
@@ -109,6 +109,7 @@
                                         :key="item.id"
                                         :label="item.label"
                                         :value="item.id"
+                                        :aria-selected="item.label == category.value"
                                         aria-selected="true"
                                     />
                                 </el-select>
@@ -551,7 +552,6 @@ const upload = async () => {
         formData.append('week_price', weekPrice.value);
         formData.append('month_price', monthPrice.value);
         formData.append('pickupLoc', pickupLoc.value);
-        formData.append('category', category.value);
        if(selectedSpecifications.value.length) {
            formData.append('specifications', JSON.stringify(selectedSpecifications.value));
        }
@@ -564,6 +564,9 @@ const upload = async () => {
         }
         if(!isNaN( fuelPolicy.value))
         formData.append('fuel_policy', fuelPolicy.value);
+
+        if(!isNaN( category.value))
+            formData.append('category', category.value);
 
         if (!validateForm()) return;
 
