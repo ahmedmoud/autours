@@ -256,7 +256,6 @@ class VehicleController extends Controller
 
     public function search(Request $request)
     {
-        dd($request->all());
         $location = $request->pickupLoc;
         $date = $request->date;
 
@@ -714,6 +713,7 @@ class VehicleController extends Controller
             }
         }
         $vehicle->specifications = $specs;
+        dd($vehicle);
         return response()->json([
             'data' => $vehicle,
             'status' => true
