@@ -713,7 +713,6 @@ class VehicleController extends Controller
             }
         }
         $vehicle->specifications = $specs;
-        dd($vehicle);
         return response()->json([
             'data' => $vehicle,
             'status' => true
