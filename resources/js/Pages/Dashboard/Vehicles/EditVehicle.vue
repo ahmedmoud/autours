@@ -429,7 +429,7 @@ const fetchBranches = async () => {
         locations.all.value = response.data
         locations.list.value = locations.all.value.map((item) => ({
             id: `${item.id}`,
-            label: `${item?.name}`,
+            label: `${item?.location}`,
         }))
     } catch (error) {
         console.error(error)
@@ -596,7 +596,7 @@ const getData = async () => {
         const response = await axios.get('/edit/vehicles/' + id);
         vehicle = response?.data?.data
         name.value = vehicle?.name
-        pickupLoc.value = vehicle.branch?.name
+        pickupLoc.value = vehicle.branch?.location
         category.value = vehicle.category?.name
         description.value = vehicle.description
         price.value = vehicle.price
