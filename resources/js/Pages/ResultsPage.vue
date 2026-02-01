@@ -824,10 +824,10 @@
                                                 </div>
                                                 <div class="" style="width: 20%; margin-top: -3%; margin-left: 4%;">
                                                     <p style="color: green; text-wrap: nowrap; font-weight: 600" v-if="vehicle.promo.length"><i style="font-size: 18px" class="fa fa-check fa-xl"/>{{ vehicle.promo }}</p>
-                                                    <span class="d-days ml-5" >For {{
+                                                    <span class="d-days" >For {{
                                                             daysNumber
                                                         }} day{{ daysNumber < 2 ? '' : 's' }}</span>
-                                                    <div class=" text-nowrap ml-5"><h2>{{
+                                                    <div class=" text-nowrap"><h2>{{
                                                             vehicle.final_price
                                                         }} <small style="font-size: 20px;">{{
                                                                 selectedCurrency
