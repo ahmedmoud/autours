@@ -629,7 +629,7 @@
                                             </div>
                                             <div class="row rounded-2 mb-3 py-1" style="background: #edecec; width: 76.5%;">
                                                 <div class="d-supplier">
-                                                    <div class="mt-2 d-img" style="width: 14%; height: 60px; ">
+                                                    <div class="mt-2 d-img" style="width: 18%; height: 60px; ">
                                                         <img :src="'img/' + vehicle.supplier.logo" height="55"  width="140" alt=""/>
                                                     </div>
                                                     <div class="col-md-3 row">
@@ -822,12 +822,12 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="" style="width: 20%; margin-top: -5%; margin-left: 5%;">
+                                                <div class="" style="width: 20%; margin-top: -3%; margin-left: 4%;">
                                                     <p style="color: green; text-wrap: nowrap; font-weight: 600" v-if="vehicle.promo.length"><i style="font-size: 18px" class="fa fa-check fa-xl"/>{{ vehicle.promo }}</p>
-                                                    <span class="d-days">For {{
+                                                    <span class="d-days ml-5" >For {{
                                                             daysNumber
                                                         }} day{{ daysNumber < 2 ? '' : 's' }}</span>
-                                                    <div class=" text-nowrap"><h2>{{
+                                                    <div class=" text-nowrap ml-5"><h2>{{
                                                             vehicle.final_price
                                                         }} <small style="font-size: 20px;">{{
                                                                 selectedCurrency
