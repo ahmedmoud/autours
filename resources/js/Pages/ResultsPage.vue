@@ -607,7 +607,7 @@
                                                         <div class="d-atr-group row">
                                                             <ul class="d-atr col-md-8 text-nowrap">
                                                                 <li v-for="specification in vehicle.specifications">
-                                                                    <img style="width:15%; margin-right: 5px;"
+                                                                    <img style="width:15%; margin-right: -3px;"
                                                                          v-if="specification.icon"
                                                                          :src="'assets/images/icons/' + specification.icon + '.svg'"/>
                                                                     <span> {{
@@ -627,12 +627,10 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="row rounded-2 mb-3 py-1 "
-                                                 style="background: #edecec; width: 76.5%;">
+                                            <div class="row rounded-2 mb-3 py-1" style="background: #edecec; width: 76.5%;">
                                                 <div class="d-supplier">
                                                     <div class="mt-2 d-img" style="width: 14%; height: 60px; ">
-                                                        <img :src="'img/' + vehicle.supplier.logo" height="50"
-                                                             width="90" alt=""/>
+                                                        <img :src="'img/' + vehicle.supplier.logo" height="55"  width="140" alt=""/>
                                                     </div>
                                                     <div class="col-md-3 row">
                                                         <div>
@@ -824,11 +822,8 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2 d-price d-total offset-1">
-                                                    <p style="color: green; text-wrap: nowrap; font-weight: 600"
-                                                       v-if="vehicle.promo.length"><i style="font-size: 18px"
-                                                                                      class="fa fa-check fa-xl"/>
-                                                        {{ vehicle.promo }}</p>
+                                                <div class="" style="width: 20%; margin-top: -5%; margin-left: 5%;">
+                                                    <p style="color: green; text-wrap: nowrap; font-weight: 600" v-if="vehicle.promo.length"><i style="font-size: 18px" class="fa fa-check fa-xl"/>{{ vehicle.promo }}</p>
                                                     <span class="d-days">For {{
                                                             daysNumber
                                                         }} day{{ daysNumber < 2 ? '' : 's' }}</span>
@@ -838,7 +833,7 @@
                                                                 selectedCurrency
                                                             }}</small></h2></div>
                                                     <a class="btn-main select-btn cursor-pointer  "
-                                                       style="width: 180px; border-radius: 15px;"
+                                                       style="width: 110%; border-radius: 15px;"
                                                        @click="goToBookingPage(vehicle.id)">Booking
                                                         <svg width="25" height="25" fill="currentColor"
                                                              viewBox="0 2 20 20"
