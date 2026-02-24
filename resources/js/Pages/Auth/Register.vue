@@ -1,216 +1,221 @@
 <template>
     <header-one/>
 
-    <div id="">
+    <div>
         <!-- content begin -->
-        <section class="no-bottom no-top" style="width:110%; background-image: url('/images/background/manage-booking-div.jpg')">
+        <section class="no-bottom no-top manage-bg">
             <div id="top"></div>
+
             <!-- section begin -->
-            <section id="subheader" class="jarallax ">
+            <section id="subheader" class="jarallax">
                 <div class="center-y relative text-center">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 text-center">
-                            </div>
+                            <div class="col-12 text-center"></div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
             </section>
             <!-- section close -->
+
             <section aria-label="section">
-                <div class="col-md-6 flip-container">
-                    <div id="forgetPassword" class="flipper display-none offset-5">
-                        <div class="front">
-                            <p style="font-size: 50px; margin-top: 5%; margin-left: 20%; font-weight: 1000;">
-                                Forget Password</p>
-                            <form class="mt-5">
-                                <div class="col-md-8" style="left: 15%">
-                                    <input placeholder="E-mail" class="input-text mt-4" v-model="forgetPasswordEmail"/>
-                                </div>
-                                <a style="left: 40%;" class="cursor-pointer btn-main mt-4  rounded-5"
-                                   @click="sendForgetPasswordEmail()">Submit</a>
-                            </form>
-                            <div class=" mt-5 row">
-                                <div id='submit' class="mt-4 col-md-4 ">
-                                    <a class="flipbutton cursor-pointer" id="loginButton"
-                                       v-on:click="createAccount()">Create my account →</a>
-                                </div>
-                            </div>
+                <div class="container">
+                    <div class="row justify-content-center">
+
+                        <!-- SUPPLIER NOTICE -->
+                        <div v-if="RegisterForm.user_type === 'supplier'"
+                             class="col-12 col-md-5 mt-4 supplier-notice">
+
+                            <p>
+                                Become a car rental supplier!
+                                Autours is a company operating in the tourism field since its establishment in
+                                2005, with car rental bookings being our main area of expertise.
+                                We provide you a great chance to increase the business, as through our
+                                multilingual www.autours.net millions of customers from different countries book
+                                their car rental. We have a huge affiliate and reseller network worldwide, who
+                                send us high amount of car bookings in different countries and destinations. It
+                                is an opportunity for you to expand your business in different markets.
+                                If you are a car rental company, small or big, and you want to increase the
+                                volume of your car rental reservations, you are welcome to join our car rental
+                                partner network.
+                                Benefits from joining the car rental network of www.autours.net
+                                No financial risk at all. The customers pay directly to you upon the arrival.
+                                Immediate increase of your car rental sales.
+                                No entry/administration fee or other costs.
+                                Access to our agent area for special offers, stop sales, statistics, information
+                                and evaluation results from customers. The results from the feedback and
+                                evaluation will help you and improve your service.
+                                Smart reservation procedure for confirming via e-mail or Dashboard for your
+                                admin interface.
+                                Flexible system for amendments, cancellations and one-way rentals.
+                                Guaranteed bookings and very low volume of no-show customers
+                                Our team will assist you, proposing rates, car groups purchase, changes and
+                                tips.
+                                Please fill in the Supplier Application Form in order to get more information on
+                                how you can become an www.autours.net Supplier.
+                            </p>
                         </div>
-                    </div>
-                </div>
-                <div :class="RegisterForm.user_type === 'supplier' ? 'register-form' : ''">
-                    <div class="row">
-                        <div class="row">
-                            <div v-if="RegisterForm.user_type === 'supplier'" class="col-md-5 ml-5  mt-4 supplier-notice"
-                                 style=" height: 350px; scrollbar-gutter: auto; overflow-y: scroll;scrollbar-width: thin;scrollbar-color: black rgba(255,255,255,0);">
-                                <p style="border-color: black; border-width: 10px;">
-                                    Become a car rental supplier!
-                                    Autours is a company operating in the tourism field since its establishment in
-                                    2005, with car rental bookings being our main area of expertise.
-                                    We provide you a great chance to increase the business, as through our
-                                    multilingual www.autours.net millions of customers from different countries book
-                                    their car rental. We have a huge affiliate and reseller network worldwide, who
-                                    send us high amount of car bookings in different countries and destinations. It
-                                    is an opportunity for you to expand your business in different markets.
-                                    If you are a car rental company, small or big, and you want to increase the
-                                    volume of your car rental reservations, you are welcome to join our car rental
-                                    partner network.
-                                    Benefits from joining the car rental network of www.autours.net
-                                    No financial risk at all. The customers pay directly to you upon the arrival.
-                                    Immediate increase of your car rental sales.
-                                    No entry/administration fee or other costs.
-                                    Access to our agent area for special offers, stop sales, statistics, information
-                                    and evaluation results from customers. The results from the feedback and
-                                    evaluation will help you and improve your service.
-                                    Smart reservation procedure for confirming via e-mail or Dashboard for your
-                                    admin interface.
-                                    Flexible system for amendments, cancellations and one-way rentals.
-                                    Guaranteed bookings and very low volume of no-show customers
-                                    Our team will assist you, proposing rates, car groups purchase, changes and
-                                    tips.
-                                    Please fill in the Supplier Application Form in order to get more information on
-                                    how you can become an www.autours.net
-                                    Supplier.
-                                </p>
-                            </div>
 
-                            <div class=" col-md-6 flip-container">
+                        <!-- FORM -->
+                        <div class="col-12 col-md-6 mt-4">
+                            <div class="flip-container">
 
-                                <div :class="RegisterForm.user_type !== 'supplier' ? 'flipper offset-5' : 'flipper' "
-                                     v-bind:class="(RegisterForm.supplier) ? 'flip' : ''" id="flipper">
+                                <div v-if="!showForgetPassword"
+                                     :class="RegisterForm.supplier ? 'flipper flip' : 'flipper'" id="flipper">
+                                    <!-- FRONT (LOGIN) -->
                                     <div class="front">
-                                        <h3 style=" margin-top: 5%; margin-left: 20%; font-weight: 1000;">Manage Booking</h3>
+                                        <h3 class="form-title">Manage Booking</h3>
+
                                         <form class="form-border" @submit.prevent="manageBooking">
 
-                                            <div class="row">
-                                                <div class="col-md-12 mt-3">
-                                                    <div class="field-set">
-                                                        <input placeholder="E-mail" v-model="loginForm.email"
-                                                               type="email" class="col-md-10 input-text"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12 mt-3">
-                                                    <div class="field-set">
-                                                        <input v-model="loginForm.password" type='password'
-                                                               name='password' placeholder="Password" id='password'
-                                                               class="col-md-10 input-text">
-                                                    </div>
-                                                </div>
-
-
-                                                <div class=" mt-5 row">
-                                                    <div id='submit' class="pull-left col-md-8 col-8">
-                                                        <button type='submit' id='send_message'
-                                                                class="btn-main color-2 rounded-5" :disabled="loading">
-                                                            LOGIN
-                                                            <span><i
-                                                                class="fa fa-arrow-right ml-2"/></span></button>
-                                                    </div>
-                                                    <div id='submit' class="mt-4 col-md-4 col-6 text-nowrap ">
-                                                        <a class="flipbutton cursor-pointer" id="loginButton"
-                                                           v-on:click="createAccount()">Create my account →</a>
-                                                    </div>
-                                                    <div id='submit' class="mt-4 col-md-4 col-6 text-nowrap">
-                                                        <a class="flipbutton cursor-pointer" id="loginButton"
-                                                           v-on:click="forgetPassword()">Forgot Your Password ? </a>
-                                                    </div>
-
-                                                    <div id='mail_success' class='success'>Your message has been sent
-                                                        successfully.
-                                                    </div>
-                                                    <div id='mail_fail' class='error'>Sorry, error occurred this time
-                                                        sending your message.
-                                                    </div>
-                                                    <div class="clearfix"></div>
-
-                                                </div>
-
+                                            <div class="mb-3">
+                                                <input placeholder="E-mail"
+                                                       v-model="loginForm.email"
+                                                       type="email"
+                                                       class="input-text"/>
                                             </div>
-                                        </form>
 
+                                            <div class="mb-3">
+                                                <input v-model="loginForm.password"
+                                                       type="password"
+                                                       placeholder="Password"
+                                                       class="input-text"/>
+                                            </div>
+
+                                            <div class="mt-4">
+                                                <button type="submit"
+                                                        class="btn-main color-2 rounded-5 w-100"
+                                                        :disabled="loading">
+                                                    LOGIN
+                                                    <span><i class="fa fa-arrow-right ml-2"></i></span>
+                                                </button>
+                                            </div>
+
+                                            <div class="text-center mt-3">
+                                                <a class="flipbutton d-block"
+                                                   @click="createAccount()">
+                                                    Create my account →
+                                                </a>
+                                            </div>
+
+                                            <div class="text-center mt-2">
+                                                <a class="flipbutton d-block"
+                                                   @click="forgetPassword()">
+                                                    Forgot Your Password ?
+                                                </a>
+                                            </div>
+
+                                        </form>
                                     </div>
 
+                                    <!-- BACK (REGISTER) -->
                                     <div class="back">
-                                        <h3 class="title my-3">Register</h3>
-                                        <form class="form-border" autocomplete="off" @submit.prevent="postUserData">
+                                        <h3 class="title my-3 text-center">Register</h3>
 
-                                            <div class="row ">
+                                        <form class="form-border"
+                                              autocomplete="off"
+                                              @submit.prevent="postUserData">
 
-                                                <div class="col-md-6 mt-3">
-                                                    <div class="field-set">
-                                                        <input v-model="RegisterForm.name" type="text" placeholder="Full name" class="input-text"/>
-                                                    </div>
+                                            <div class="row">
+
+                                                <div class="col-12 col-md-6 mb-3">
+                                                    <input v-model="RegisterForm.name"
+                                                           type="text"
+                                                           placeholder="Full name"
+                                                           class="input-text"/>
                                                 </div>
 
-                                                <div class="col-md-6 mt-3">
-                                                    <div class="field-set">
-                                                        <input v-model="RegisterForm.email" type="email" id="email" placeholder="E-mail" name="email" class="input-text"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="field-set">
-                                                        <input v-model="RegisterForm.country" type="text" placeholder="Country" class="input-text"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 col-4">
-                                                    <div class="field-set">
-                                                        <input v-model="RegisterForm.code" type='text' name='code' placeholder="+20" autocomplete="false" id='code' class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 col-8">
-                                                    <div class="field-set">
-                                                        <input v-model="RegisterForm.phone" autocomplete="false" placeholder="phone number" type='text' name='phone' id='phone' class="input-text">
-                                                    </div>
+                                                <div class="col-12 col-md-6 mb-3">
+                                                    <input v-model="RegisterForm.email"
+                                                           type="email"
+                                                           placeholder="E-mail"
+                                                           class="input-text"/>
                                                 </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="field-set">
-                                                        <input v-model="RegisterForm.password" type="password" placeholder="Passwrod" name="password" id="password" class="input-text"/>
-                                                    </div>
+                                                <div class="col-12 mb-3">
+                                                    <input v-model="RegisterForm.country"
+                                                           type="text"
+                                                           placeholder="Country"
+                                                           class="input-text"/>
                                                 </div>
 
+                                                <div class="col-4 mb-3">
+                                                    <input v-model="RegisterForm.code"
+                                                           type="text"
+                                                           placeholder="+20"
+                                                           class="input-text"/>
+                                                </div>
 
-                                                <div class="col-md-12 mt-2 row">
+                                                <div class="col-8 mb-3">
+                                                    <input v-model="RegisterForm.phone"
+                                                           type="text"
+                                                           placeholder="Phone number"
+                                                           class="input-text"/>
+                                                </div>
 
-                                                    <div id='submit' class="pull-left col-md-8 col-7 ">
-                                                        <button type='submit' id='send_message'
-                                                                class="btn-main color-2 rounded-5 mt-4">Register
-                                                            <span><i
-                                                                class="fa fa-arrow-right ml-2"/></span></button>
-                                                    </div>
-                                                    <div class="col-md-4 col-5 mt-5">
-                                                        <a class="flipbutton cursor-pointer" id="registerButton"
-                                                           v-on:click="LoginToMyAccount()">Manage My Booking →</a></div>
+                                                <div class="col-12 mb-3">
+                                                    <input v-model="RegisterForm.password"
+                                                           type="password"
+                                                           placeholder="Password"
+                                                           class="input-text"/>
+                                                </div>
 
-                                                    <div id='mail_success' class='success'>Your message has been sent
-                                                        successfully.
-                                                    </div>
-                                                    <div id='mail_fail' class='error'>Sorry, error occurred this time
-                                                        sending your message.
-                                                    </div>
-                                                    <div class="clearfix"></div>
+                                                <div class="col-12 mt-3">
+                                                    <button type="submit"
+                                                            class="btn-main color-2 rounded-5 w-100">
+                                                        Register
+                                                        <span><i class="fa fa-arrow-right ml-2"></i></span>
+                                                    </button>
+                                                </div>
 
+                                                <div class="col-12 text-center mt-3">
+                                                    <a class="flipbutton d-block"
+                                                       @click="LoginToMyAccount()">
+                                                        Manage My Booking →
+                                                    </a>
                                                 </div>
 
                                             </div>
                                         </form>
-
                                     </div>
                                 </div>
-                            </div>
 
+                                <div v-if="showForgetPassword" class="forget-card">
+
+                                    <h3 class="form-title text-center">Forget Password</h3>
+
+                                    <div class="mb-3">
+                                        <input placeholder="E-mail"
+                                               class="input-text"
+                                               v-model="forgetPasswordEmail"/>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <button class="btn-main color-2 rounded-5 w-100"
+                                                @click="sendForgetPasswordEmail">
+                                            Submit
+                                        </button>
+                                    </div>
+
+                                    <div class="text-center mt-3">
+                                        <a class="flipbutton d-block"
+                                           @click="backToLogin">
+                                            ← Back to Login
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </section>
         </section>
-        <!-- content close -->
     </div>
-    <Footer/>
 
+    <Footer/>
 </template>
 
 <script setup>
@@ -223,6 +228,7 @@ import Footer from "../../components/Footer.vue"
 import Contactus from "../../components/Contactus.vue"
 import {onMounted, onBeforeMount} from 'vue'
 
+const showForgetPassword = ref(false);
 
 const RegisterForm = useForm({
     name: '',
@@ -333,10 +339,12 @@ const manageBooking = async () => {
     }
 };
 const forgetPassword = () => {
-    $("#flipper").hide();
-    $(".supplier-notice").hide();
-    $("#forgetPassword").show();
-}
+    showForgetPassword.value = true;
+};
+
+const backToLogin = () => {
+    showForgetPassword.value = false;
+};
 const createAccount = () => {
     document.querySelector("#flipper").classList.toggle("flip");
 }
@@ -386,59 +394,56 @@ onMounted(() => {
 </script>
 
 <style scoped>
-@media screen and (max-width: 1000px) {
-    .flipper {
-        margin-left: 0;
-        background-image: url('/images/background/manage-booking-form.png');
-        background-repeat: no-repeat;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        border-radius: 20px;
-        transition: 0.6s;
-        transform-style: preserve-3d;
-    }
+.manage-bg {
+    width: 100%;
+    background-image: url('/images/background/manage-booking-div.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-#subheader h3, h2 {
-    margin-top: 100px;
-    margin-bottom: 10px;
-    letter-spacing: -2px;
+html, body {
+    overflow-x: hidden;
 }
 
+/* FLIP CARD */
+.flip-container {
+    perspective: 1000px;
+}
 
 .flipper {
-    padding: 30px;
-    width: 88%;
-    left: 5%;
-    height: 450px;
     position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    min-height: 550px;
+    padding: 30px;
     background-image: url('/images/background/manage-booking-form.png');
+    background-size: cover;
     background-repeat: no-repeat;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
     border-radius: 20px;
     transition: 0.6s;
     transform-style: preserve-3d;
 }
 
-.front, .back {
+.front {
     position: absolute;
-    padding: 10px 30px;
-    top: 0;
+    top: 70px;
     left: 0;
     right: 0;
-
+    padding: 20px;
     backface-visibility: hidden;
-}
-
-.front {
-
-    z-index: 2;
-    /* for firefox 31 */
     transform: rotateY(0deg);
+    z-index: 2;
 }
 
 .back {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    backface-visibility: hidden;
     transform: rotateY(180deg);
 }
 
@@ -446,33 +451,81 @@ onMounted(() => {
     transform: rotateY(180deg);
 }
 
-input {
-    width: 100%;
-    margin-bottom: 15px;
-    height: 40px;
-    box-sizing: border-box;
-    padding: 10px;
+/* FORM */
+.form-title {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
-.title {
-    text-align: center;
+.input-text {
+    width: 100%;
+    height: 45px;
+    padding: 10px 15px;
+    border-radius: 50px !important;
+    border: 3px solid black !important;
 }
 
 .flipbutton {
     color: #4096ee;
+    cursor: pointer;
     text-decoration: none;
-    text-align: left !important;
 }
 
-
-.input-text {
-    border-radius: 50px !important;
-    border-width: 3px !important;
-    border-color: black !important;
+/* SUPPLIER NOTICE */
+.supplier-notice {
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 20px;
 }
 
-.register-form {
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .supplier-notice {
+        max-height: 280px;
+        margin-bottom: 20px;
+    }
+
+    .flipper {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .front {
+        position: relative;
+        padding: 10px;
+        max-height: 250px;
+    }
+
+    .back {
+        position: relative;
+        padding: 10px;
+        max-height: 450px;
+        top: -200px;
+    }
+
+    .flip {
+        transform: rotateY(180deg);
+    }
+
+    .btn-main {
+        width: 100%;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+}
+
+.forget-card {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 30px;
     background-image: url('/images/background/manage-booking-form.png');
+    background-size: cover;
     background-repeat: no-repeat;
+    border-radius: 20px;
 }
 </style>
