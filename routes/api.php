@@ -51,12 +51,5 @@ Route::prefix('blogs')->group(function () {
     Route::get('/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 
     // Protected routes
-    Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/', [BlogController::class, 'store'])->name('blogs.store');
-        Route::post('/{blog}', [BlogController::class, 'update'])->name('blogs.update');
-        Route::put('/{blog}', [BlogController::class, 'update'])->name('blogs.put-update');
-        Route::delete('/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
-        Route::patch('/{blog}/toggle-publish', [BlogController::class, 'togglePublish'])->name('blogs.toggle-publish');
-    });
 });
 

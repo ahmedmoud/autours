@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\CategoriesController;
@@ -176,6 +177,21 @@ Route::middleware(['admin'])->group(function () {
         Route::inertia('/{blog}', 'Dashboard/Blogs/View')->name('blogs.view');
         Route::inertia('/{blog}/edit', 'Dashboard/Blogs/Edit')->name('blogs.edit');
     });
+
+    Route::prefix('api/blogs')->group(function () {
+        // Public routes
+        Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
+        Route::get('/published', [BlogController::class, 'published'])->name('blogs.published');
+        Route::get('/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+
+        // Protected routes
+        Route::post('/', [BlogController::class, 'store'])->name('blogs.store');
+        Route::post('/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+        Route::put('/{blog}', [BlogController::class, 'update'])->name('blogs.put-update');
+        Route::delete('/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+        Route::patch('/{blog}/toggle-publish', [BlogController::class, 'togglePublish'])->name('blogs.toggle-publish');
+    });
+
 
     // Blog Categories Management
     Route::inertia('admin/blog-categories', 'Dashboard/Blogs/Categories')->name('blog.categories');

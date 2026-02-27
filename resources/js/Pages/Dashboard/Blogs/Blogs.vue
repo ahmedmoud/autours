@@ -400,7 +400,7 @@ onMounted(() => {
 }
 
 .page-title i {
-    color: #0066cc;
+    color: #ffd100;
     font-size: 2.2rem;
 }
 
@@ -440,8 +440,8 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    background: #e3f2fd;
-    color: #0066cc;
+    background: #fff8e1;
+    color: #ffd100;
 }
 
 .stat-icon.published {
@@ -500,7 +500,7 @@ onMounted(() => {
 }
 
 .author-info i {
-    color: #0066cc;
+    color: #ffd100;
 }
 
 .action-buttons {
@@ -582,20 +582,20 @@ onMounted(() => {
 .page-link {
     border-radius: 4px;
     border: 1px solid #dee2e6;
-    color: #0066cc;
+    color: #ffd100;
     font-weight: 500;
 }
 
 .page-link:hover {
-    background: #0066cc;
-    color: white;
-    border-color: #0066cc;
+    background: #ffd100;
+    color: #333;
+    border-color: #ffd100;
 }
 
 .page-item.active .page-link {
-    background: #0066cc;
-    border-color: #0066cc;
-    color: white;
+    background: #ffd100;
+    border-color: #ffd100;
+    color: #333;
 }
 
 .input-group-text {
@@ -604,8 +604,8 @@ onMounted(() => {
 }
 
 .form-control:focus {
-    border-color: #0066cc;
-    box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+    border-color: #ffd100;
+    box-shadow: 0 0 0 0.2rem rgba(255, 209, 0, 0.25);
 }
 </style>
 

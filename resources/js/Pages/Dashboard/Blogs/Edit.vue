@@ -86,12 +86,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import {ref, onMounted, onBeforeMount, computed} from 'vue'
 import { Link, router, usePage } from '@inertiajs/vue3'
 import axios from 'axios'
 
 const page = usePage()
-const blogId = ref(page.props.blog?.id)
 
 const form = ref({
     title: '',
@@ -187,6 +186,7 @@ onMounted(() => {
     fetchBlog()
     fetchCategories()
 })
+const blogId = computed(() => window.location.pathname.split('/')[3])
 </script>
 
 <style scoped>

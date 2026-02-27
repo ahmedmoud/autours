@@ -109,7 +109,7 @@ class BlogController extends Controller
                 'author' => 'required|string|max:255|unique:blogs,author',
                 'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'content' => 'required|string',
-                'is_published' => 'sometimes|boolean',
+                'is_published' => 'required|string',
             ]);
 
             // Handle image upload
@@ -155,7 +155,6 @@ class BlogController extends Controller
                 'author' => 'sometimes|string|max:255|unique:blogs,author,' . $blog->id,
                 'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'content' => 'sometimes|string',
-                'is_published' => 'sometimes|boolean',
             ]);
 
             // Handle image upload

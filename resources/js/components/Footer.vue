@@ -64,7 +64,7 @@ onMounted(() => {
                                 Autours?</a>
                         </div>
                         <div class="mt-1">
-                            <a href="/blogs" class="text-black text-decoration-underline footer_link" >📝 Our Blog</a>
+                            <a href="/blogs" class="text-black text-decoration-underline footer_link" > Our Blogs</a>
                         </div>
                     </div>
                 </div>
