@@ -50,6 +50,13 @@
                             <span class="hide-menu">My Companies</span>
                         </a>
                     </li>
+                    <li class="sidebar-item" v-if="admin">
+                        <a :class="  ['sidebar-link', isActive('compan') ? 'active' : '']" href="/admin/blogs"
+                           aria-expanded="false">
+                            <span><i class="ti ti-book"></i></span>
+                            <span class="hide-menu">Blogs</span>
+                        </a>
+                    </li>
                     <li class="sidebar-item" v-if="activeSupplier">
                         <a :class="  ['sidebar-link', isActive('branches') ? 'active' : '']" href="/branches"
                            aria-expanded="false">
@@ -79,7 +86,7 @@
 
                         <li class="sidebar-item">
                             <a :class="  ['sidebar-link', isActive('vehicles-bulk-upload') ? 'active' : '']" href="/vehicles-bulk-upload">
-                                <i class="ti ti-photo"></i>
+                                <i class="ti ti-upload"></i>
                                 <span>Vehicles Bulk Upload</span></a>
                         </li>
 

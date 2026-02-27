@@ -143,7 +143,6 @@ Route::middleware(['admin'])->group(function () {
     Route::post('delete/specifications', [SpecificationsController::class, 'destroy']);
     Route::post('rentals/reconcile', [BookingsController::class, 'reconcile']);
 
-
     Route::inertia('included', 'Dashboard/Included');
     Route::post('post/included', [IncludedController::class, 'store']);
     Route::post('delete/included', [IncludedController::class, 'delete']);
@@ -153,7 +152,6 @@ Route::middleware(['admin'])->group(function () {
     Route::post('edit/rental-terms', [RentalTermsController::class, 'edit']);
     Route::post('show/rental-terms', [RentalTermsController::class, 'show']);
     Route::post('update/rental-terms/status', [RentalTermsController::class, 'approveOrReject']);
-
 
     Route::inertia('memberships', 'Dashboard/Memberships');
     Route::get('get/requests', [UserController::class, 'memberships']);
@@ -170,6 +168,17 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/get/subscribers', [SubscriberController::class, 'index']);
     Route::inertia('/subscribers','Dashboard/SubscribersList');
+
+    // Blog Management Routes
+    Route::prefix('admin/blogs')->group(function () {
+        Route::inertia('/', 'Dashboard/Blogs/Blogs')->name('blogs.list');
+        Route::inertia('/create', 'Dashboard/Blogs/Create')->name('blogs.create');
+        Route::inertia('/{blog}', 'Dashboard/Blogs/View')->name('blogs.view');
+        Route::inertia('/{blog}/edit', 'Dashboard/Blogs/Edit')->name('blogs.edit');
+    });
+
+    // Blog Categories Management
+    Route::inertia('admin/blog-categories', 'Dashboard/Blogs/Categories')->name('blog.categories');
 
 });
 
@@ -239,5 +248,7 @@ Route::inertia('/contact-us', 'ContactUs' );
 Route::inertia('/about-us', 'AboutUs' );
 Route::inertia('/why_autours', 'WhyAutours' );
 Route::inertia('/where-we-are', 'WhereWeAre' );
+Route::inertia('/blogs', 'Blogs/Blogs');
+Route::inertia('/blogs/{id}', 'Blogs/BlogDetails');
 Route::post('/send-email',[SubscriberController::class,'sendEmail']);
 

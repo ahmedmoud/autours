@@ -63,6 +63,9 @@ onMounted(() => {
                             <a href="/why_autours" class="text-black text-decoration-underline footer_link" >Why
                                 Autours?</a>
                         </div>
+                        <div class="mt-1">
+                            <a href="/blogs" class="text-black text-decoration-underline footer_link" >📝 Our Blog</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-4 col-md-4" id="support">
