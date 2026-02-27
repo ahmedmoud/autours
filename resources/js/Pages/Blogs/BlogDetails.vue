@@ -18,134 +18,116 @@
 
             <!-- BLOG DETAILS -->
             <div v-else-if="blog" class="blog-details-wrapper">
-                <!-- HERO SECTION -->
-                <section class="blog-hero-section" v-if="blog.image">
-                    <img :src="`/img/blogs/${blog.image}`"
-                         :alt="blog.title"
-                         class="hero-image"/>
-                    <div class="hero-content">
-                        <div class="breadcrumb-hero">
-                            <a href="/blogs">🏠 Blog</a> /
-                            <span>{{ blog.title.substring(0, 50) }}{{ blog.title.length > 50 ? '...' : '' }}</span>
-                        </div>
-                    </div>
-                </section>
 
                 <!-- MAIN CONTENT -->
-                <section class="blog-content-wrapper py-5">
+                <section class="blog-content-section">
                     <div class="container-lg">
-                        <div class="row">
-                            <!-- MAIN ARTICLE -->
-                            <div class="col-lg-8">
-                                <!-- ARTICLE HEADER -->
-                                <article class="article-main">
-                                    <header class="article-header">
-                                        <div class="header-top">
-                                            <h1 class="article-title">{{ blog.title }}</h1>
-                                        </div>
-
-                                        <div class="article-meta">
-                                            <div class="meta-item">
-                                                <i class="fa fa-calendar"></i>
-                                                <span class="meta-text">{{ formatDate(blog.created_at) }}</span>
-                                            </div>
-                                            <div class="meta-item">
-                                                <i class="fa fa-user"></i>
-                                                <span class="meta-text">By {{ blog.author }}</span>
-                                            </div>
-                                            <div class="meta-item" v-if="blog.category">
-                                                <i class="fa fa-folder-open"></i>
-                                                <span class="meta-text">{{ blog.category.title }}</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="article-divider"></div>
-                                    </header>
-
-                                    <!-- ARTICLE CONTENT -->
-                                    <div class="article-body">
-                                        <div v-html="blog.content" class="content-text"></div>
+                        <!-- FEATURED IMAGE SECTION -->
+                        <div class="featured-image-wrapper" v-if="blog.image">
+                            <div class="featured-container">
+                                <img :src="`/img/blogs/${blog.image}`"
+                                     :alt="blog.title"
+                                     class="featured-image"/>
+                                <div class="image-overlay">
+                                    <div class="image-content">
+                                        <h1 class="featured-title">{{ blog.title }}</h1>
                                     </div>
-
-                                    <!-- ARTICLE FOOTER -->
-                                    <footer class="article-footer">
-                                        <div class="author-box">
-                                            <div class="author-avatar">
-                                                <i class="fa fa-user-circle"></i>
-                                            </div>
-                                            <div class="author-info">
-                                                <h5>✍️ About the Author</h5>
-                                                <p>{{ blog.author }} is a travel and automotive expert at Autours, sharing valuable insights about global destinations and car rental solutions to help travelers make informed decisions.</p>
-                                            </div>
-                                        </div>
-                                    </footer>
-                                </article>
+                                </div>
                             </div>
+                        </div>
 
-                            <!-- SIDEBAR -->
-                            <div class="col-lg-4">
-                                <!-- NAVIGATION WIDGET -->
-                                <div class="sidebar-widget">
-                                    <h5 class="widget-title">
-                                        <i class="fa fa-compass"></i> Quick Navigation
-                                    </h5>
-                                    <div class="nav-links">
-                                        <a href="/blogs" class="nav-link">
-                                            <i class="fa fa-arrow-left"></i> Back to All Articles
-                                        </a>
+                        <div class="row">
+                            <!-- LEFT COLUMN - MAIN CONTENT -->
+                            <div class="col-lg-8">
+                                <!-- ARTICLE METADATA -->
+                                <div class="article-metadata">
+                                    <div class="meta-left">
+                                        <div class="author-avatar-small">
+                                            <i class="fa fa-user-circle"></i>
+                                        </div>
+                                        <div class="author-details">
+                                            <p class="author-name">By {{ blog.author }}</p>
+                                            <p class="publish-date">
+                                                <i class="fa fa-calendar"></i> {{ formatDate(blog.created_at) }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="meta-right">
+                                        <p class="share-label">Share:</p>
+                                        <div class="social-share">
+                                            <a href="#" class="social-btn facebook" title="Facebook">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                            <a href="#" class="social-btn whatsapp" title="WhatsApp">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </a>
+                                            <a href="#" class="social-btn pinterest" title="Pinterest">
+                                                <i class="fab fa-pinterest-p"></i>
+                                            </a>
+                                            <a href="#" class="social-btn linkedin" title="LinkedIn">
+                                                <i class="fab fa-linkedin-in"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- ARTICLE INFO WIDGET -->
+                                <!-- ARTICLE TITLE & DIVIDER -->
+                                <h2 class="article-main-title">{{ blog.title }}</h2>
+                                <div class="title-divider"></div>
+
+                                <!-- ARTICLE CONTENT -->
+                                <article class="article-content">
+                                    <div v-html="blog.content" class="content-text"></div>
+                                </article>
+
+                                <!-- AUTHOR BIO -->
+                                <div class="author-bio-section">
+                                    <div class="author-bio-avatar">
+                                        <i class="fa fa-user-circle"></i>
+                                    </div>
+                                    <div class="author-bio-content">
+                                        <h5>About Author</h5>
+                                        <p>{{ blog.author }} is an expert contributor at Autours, sharing valuable insights about global destinations and car rental solutions.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- RIGHT COLUMN - SIDEBAR -->
+                            <div class="col-lg-4">
+                                <!-- SEARCH WIDGET -->
                                 <div class="sidebar-widget">
-                                    <h5 class="widget-title">
-                                        <i class="fa fa-info-circle"></i> Article Information
-                                    </h5>
-                                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <i class="fa fa-user" style="color: var(--primary-color); width: 20px;"></i>
-                                            <span style="color: var(--text-light); font-size: 0.9rem;">{{ blog.author }}</span>
-                                        </div>
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <i class="fa fa-calendar" style="color: var(--primary-color); width: 20px;"></i>
-                                            <span style="color: var(--text-light); font-size: 0.9rem;">{{ formatDate(blog.created_at) }}</span>
-                                        </div>
-                                        <div v-if="blog.category" style="display: flex; align-items: center; gap: 10px;">
-                                            <i class="fa fa-folder-open" style="color: var(--primary-color); width: 20px;"></i>
-                                            <span style="color: var(--text-light); font-size: 0.9rem;">{{ blog.category.title }}</span>
-                                        </div>
+                                    <div class="search-box">
+                                        <input type="text" placeholder="Search..." class="search-input">
+                                        <button class="search-btn">
+                                            <i class="fa fa-search"></i>
+                                        </button>
                                     </div>
                                 </div>
 
                                 <!-- CATEGORIES WIDGET -->
-                                <div class="sidebar-widget" v-if="categories.length > 0">
-                                    <h5 class="widget-title">
-                                        <i class="fa fa-list"></i> All Categories
-                                    </h5>
+                                <div class="sidebar-widget">
+                                    <h5 class="widget-heading">Category</h5>
                                     <div class="categories-list">
                                         <a v-for="category in categories"
                                            :key="category.id"
                                            href="#"
-                                           class="category-link"
+                                           class="category-item"
                                            @click.prevent="navigateToCategory(category.id)">
-                                            <span>{{ category.title }}</span>
-                                            <span class="count">{{ category.blogs?.length || 0 }}</span>
+                                            <span class="cat-bullet">•</span> {{ category.title }}
                                         </a>
                                     </div>
                                 </div>
 
                                 <!-- RELATED POSTS WIDGET -->
                                 <div class="sidebar-widget" v-if="relatedBlogs.length > 0">
-                                    <h5 class="widget-title">
-                                        <i class="fa fa-link"></i> Related Reading
-                                    </h5>
-                                    <div class="related-posts-list">
+                                    <h5 class="widget-heading">Related Articles</h5>
+                                    <div class="related-list">
                                         <div v-for="related in relatedBlogs.slice(0, 5)"
                                              :key="related.id"
-                                             class="related-post"
+                                             class="related-item"
                                              @click="openBlog(related.id)">
-                                            <h6>{{ related.title }}</h6>
-                                            <span class="related-date">{{ formatDate(related.created_at) }}</span>
+                                            <p class="related-title">{{ related.title }}</p>
+                                            <span class="related-meta">{{ formatDate(related.created_at) }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -154,30 +136,46 @@
                     </div>
                 </section>
 
-                <!-- RELATED SECTION -->
-                <section class="related-articles-section py-5" v-if="relatedBlogs.length > 0">
-                    <div class="container">
-                        <h3 class="section-title">You May Also Like</h3>
-                        <div class="row">
-                            <div v-for="related in relatedBlogs.slice(0, 3)"
-                                 :key="related.id"
-                                 class="col-md-4 mb-4">
-                                <div class="related-article-card" @click="openBlog(related.id)">
-                                    <div class="card-image">
+                <!-- RELATED ARTICLES CAROUSEL -->
+                <section class="related-carousel-section" v-if="relatedBlogs.length > 0">
+                    <div class="container-lg">
+                        <div class="carousel-header">
+                            <h3 class="carousel-title">You May Also Like</h3>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn prev" @click="scrollCarousel('left')">
+                                    <i class="fa fa-chevron-left"></i>
+                                </button>
+                                <button class="carousel-btn next" @click="scrollCarousel('right')">
+                                    <i class="fa fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="carousel-wrapper">
+                            <div ref="carouselContainer" class="carousel-container">
+                                <div v-for="related in relatedBlogs.slice(0, 6)"
+                                     :key="related.id"
+                                     class="carousel-card"
+                                     @click="openBlog(related.id)">
+                                    <div class="carousel-image">
                                         <img v-if="related.image"
                                              :src="`/img/blogs/${related.image}`"
                                              :alt="related.title"
                                              loading="lazy"/>
-                                        <div v-else class="placeholder">
+                                        <div v-else class="image-placeholder">
                                             <i class="fa fa-newspaper-o"></i>
                                         </div>
+                                        <div class="image-overlay">
+                                            <button class="play-btn">
+                                                <i class="fa fa-arrow-right"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="card-content">
-                                        <h5>{{ related.title }}</h5>
-                                        <p>{{ getExcerpt(related.content, 80) }}</p>
-                                        <span class="read-more">
-                                            <i class="fa fa-arrow-right"></i> Read More
-                                        </span>
+                                    <div class="carousel-content">
+                                        <h5 class="carousel-card-title">{{ related.title }}</h5>
+                                        <p class="carousel-card-meta">
+                                            <i class="fa fa-calendar"></i> {{ formatDate(related.created_at) }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -218,6 +216,7 @@ const blog = ref(null)
 const allBlogs = ref([])
 const categories = ref([])
 const loading = ref(true)
+const carouselContainer = ref(null)
 
 // ... define functions first ...
 const formatDate = (date) => {
@@ -292,6 +291,16 @@ const navigateToCategory = (categoryId) => {
     window.location.href = `/blogs?category=${categoryId}`
 }
 
+const scrollCarousel = (direction) => {
+    if (!carouselContainer.value) return
+    const scrollAmount = 350
+    if (direction === 'left') {
+        carouselContainer.value.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+    } else {
+        carouselContainer.value.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    }
+}
+
 // Get blog ID from route params - try multiple approaches
 const blogId = computed(() => {
     // Try ziggy params first
@@ -341,13 +350,701 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-/* HERO SECTION */
-.blog-hero-section {
+:root {
+    --primary-color: #1ab394;
+    --text-dark: #2c2c2c;
+    --text-light: #666666;
+    --border-color: #e5e5e5;
+    --bg-light: #f9f9f9;
+}
+
+/* FEATURED IMAGE SECTION */
+.blog-featured-section {
     position: relative;
-    height: 500px;
+    height: 450px;
     overflow: hidden;
-    background: linear-gradient(135deg, #ffd100 0%, #f0c000 100%);
-    margin-bottom: 0;
+    background: #f0f0f0;
+}
+
+.featured-image-wrapper {
+    margin-bottom: 50px;
+    margin-top: 100px;
+    width: 100%;
+}
+
+.featured-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f0f0f0;
+}
+
+.featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: flex-end;
+}
+
+.image-content {
+    width: 100%;
+    padding: 40px;
+    color: white;
+}
+
+.featured-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* CONTENT SECTION */
+.blog-content-section {
+    background: white;
+    padding: 60px 0;
+}
+
+/* ARTICLE METADATA */
+.article-metadata {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.meta-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.author-avatar-small {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.author-details p {
+    margin: 0;
+    padding: 2px 0;
+    font-size: 0.9rem;
+}
+
+.author-name {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.publish-date {
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.publish-date i {
+    font-size: 0.85rem;
+}
+
+.meta-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.share-label {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.social-share {
+    display: flex;
+    gap: 10px;
+}
+
+.social-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-btn.facebook {
+    background: #3b5998;
+}
+
+.social-btn.whatsapp {
+    background: #25d366;
+}
+
+.social-btn.pinterest {
+    background: #e60023;
+}
+
+.social-btn.linkedin {
+    background: #0077b5;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ARTICLE TITLE */
+.article-main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 20px 0;
+    line-height: 1.3;
+}
+
+.title-divider {
+    height: 3px;
+    width: 50px;
+    background: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+/* ARTICLE CONTENT */
+.article-content {
+    margin: 30px 0;
+}
+
+.content-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+}
+
+.content-text :deep(p) {
+    margin-bottom: 20px;
+}
+
+.content-text :deep(h2) {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 40px 0 20px 0;
+}
+
+.content-text :deep(h3) {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 30px 0 15px 0;
+}
+
+.content-text :deep(ul),
+.content-text :deep(ol) {
+    margin: 20px 0 20px 25px;
+}
+
+.content-text :deep(li) {
+    margin-bottom: 10px;
+}
+
+.content-text :deep(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 25px 0;
+}
+
+.content-text :deep(a) {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.content-text :deep(a:hover) {
+    text-decoration: underline;
+}
+
+/* AUTHOR BIO */
+.author-bio-section {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    background: var(--bg-light);
+    border-radius: 8px;
+    margin-top: 50px;
+}
+
+.author-bio-avatar {
+    flex-shrink: 0;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.author-bio-content {
+    flex: 1;
+}
+
+.author-bio-content h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 8px 0;
+}
+
+.author-bio-content p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* SIDEBAR */
+.sidebar-widget {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.widget-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* SEARCH BOX */
+.search-box {
+    display: flex;
+    gap: 0;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px 0 0 6px;
+    font-size: 0.9rem;
+}
+
+.search-btn {
+    padding: 10px 15px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search-btn:hover {
+    background: #0d8659;
+}
+
+/* CATEGORIES */
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.category-item:last-child {
+    border-bottom: none;
+}
+
+.category-item:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.cat-bullet {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* RELATED POSTS */
+.related-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.related-item {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.related-item:last-child {
+    border-bottom: none;
+}
+
+.related-item:hover {
+    padding-left: 5px;
+}
+
+.related-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 5px 0;
+    line-height: 1.3;
+}
+
+.related-meta {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+/* RELATED CAROUSEL SECTION */
+.related-carousel-section {
+    background: linear-gradient(135deg, #f0f9f7 0%, #f9f9f9 100%);
+    padding: 80px 0;
+    border-top: 2px solid var(--border-color);
+}
+
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.carousel-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.carousel-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.carousel-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background: white;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* CAROUSEL WRAPPER */
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel-container::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb:hover {
+    background: #0d8659;
+}
+
+/* CAROUSEL CARDS */
+.carousel-card {
+    flex: 0 0 280px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-card:hover {
+    box-shadow: 0 12px 28px rgba(26, 179, 148, 0.15);
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+}
+
+.carousel-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: var(--bg-light);
+}
+
+.carousel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.carousel-card:hover .carousel-image img {
+    transform: scale(1.1) rotate(1deg);
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d8659 100%);
+    color: white;
+    font-size: 2.5rem;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-card:hover .image-overlay {
+    opacity: 1;
+}
+
+.play-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.carousel-content {
+    padding: 18px;
+}
+
+.carousel-card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.carousel-card-meta {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.carousel-card-meta i {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+}
+
+/* NOT FOUND */
+.not-found-section {
+    background: white;
+    padding: 100px 40px;
+    text-align: center;
+}
+
+.not-found-section i {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.not-found-section h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 15px 0;
+}
+
+.not-found-section p {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin: 0 0 30px 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #0d8659;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 179, 148, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .blog-featured-section {
+        height: 300px;
+    }
+
+    .featured-title {
+        font-size: 1.8rem;
+    }
+
+    .article-main-title {
+        font-size: 1.8rem;
+    }
+
+    .article-metadata {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .section-heading {
+        font-size: 1.5rem;
+    }
+
+    .card-image-wrapper {
+        height: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .blog-featured-section {
+        height: 250px;
+    }
+
+    .featured-title {
+        font-size: 1.5rem;
+    }
+
+    .article-main-title {
+        font-size: 1.5rem;
+    }
+
+    .content-text {
+        font-size: 0.95rem;
+    }
+
+    .meta-right {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .social-share {
+        width: 100%;
+    }
+
+    .section-heading {
+        font-size: 1.3rem;
+    }
+
+    .card-image-wrapper {
+        height: 150px;
+    }
 }
 
 .hero-image {
@@ -404,118 +1101,45 @@ onMounted(async () => {
 }
 
 .article-header {
-    margin-bottom: 60px;
-    padding-bottom: 50px;
-    border-bottom: none;
-    position: relative;
-}
-
-.article-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #ffd100 0%, #f0c000 50%, transparent 100%);
-    border-radius: 2px;
-}
-
-.header-top {
-    margin-bottom: 35px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .article-title {
-    font-size: 3.5rem;
-    font-weight: 900;
+    font-size: 3rem;
+    font-weight: 800;
     color: #1f2937;
-    line-height: 1.15;
-    margin: 0;
+    line-height: 1.2;
+    margin: 0 0 20px 0;
     word-wrap: break-word;
     word-break: break-word;
-    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    letter-spacing: -0.5px;
 }
 
 .article-meta {
     display: flex;
-    gap: 25px;
+    align-items: center;
+    gap: 10px;
     flex-wrap: wrap;
     font-size: 0.95rem;
-    margin-top: 30px;
-    padding-top: 30px;
+    color: #6b7280;
 }
 
 .meta-item {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 18px;
-    background: linear-gradient(135deg, #fff8e1 0%, rgba(255, 241, 224, 0.5) 100%);
-    border-radius: 8px;
-    color: #666;
-    font-weight: 600;
-    white-space: nowrap;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    cursor: default;
-    box-shadow: 0 2px 8px rgba(255, 209, 0, 0.08);
-}
-
-.meta-item:hover {
-    border-color: #ffd100;
-    background: linear-gradient(135deg, #fff8e1 0%, rgba(255, 209, 0, 0.1) 100%);
-    box-shadow: 0 4px 16px rgba(255, 209, 0, 0.15);
-    transform: translateY(-2px);
+    gap: 6px;
+    color: #6b7280;
 }
 
 .meta-item i {
     color: #ffd100;
-    font-size: 1.2rem;
-    width: 24px;
-    text-align: center;
+    font-size: 1rem;
 }
 
-.meta-text {
-    color: #374151;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
-
-.article-divider {
-    height: 4px;
-    background: linear-gradient(90deg, #ffd100 0%, #f0c000 50%, transparent 100%);
-    margin: 0;
-    border-radius: 2px;
-    position: relative;
-    top: 50px;
-}
-
-.article-divider::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 0;
-    width: 40px;
-    height: 8px;
-    background: #ffd100;
-    border-radius: 4px;
-    animation: slideIn 0.6s ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        width: 0;
-        opacity: 0;
-    }
-    to {
-        width: 40px;
-        opacity: 1;
-    }
+.meta-separator {
+    color: #d1d5db;
+    font-weight: 300;
 }
 
 /* RESPONSIVE */
@@ -711,17 +1335,17 @@ onMounted(async () => {
 .article-footer {
     margin-top: 60px;
     padding-top: 40px;
-    border-top: 3px solid #fff8e1;
+    border-top: 1px solid #e5e7eb;
     clear: both;
 }
 
 .author-box {
     display: flex;
-    gap: 25px;
-    background: #fff8e1;
-    padding: 30px;
+    gap: 20px;
+    background: #f9fafb;
+    padding: 24px;
     border-radius: 8px;
-    border-left: 5px solid #ffd100;
+    border-left: 4px solid #ffd100;
 }
 
 .author-avatar {
@@ -734,7 +1358,7 @@ onMounted(async () => {
 }
 
 .author-avatar i {
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: #ffd100;
 }
 
@@ -743,7 +1367,7 @@ onMounted(async () => {
 }
 
 .author-info h5 {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #1f2937;
     margin: 0 0 8px 0;
@@ -751,7 +1375,7 @@ onMounted(async () => {
 
 .author-info p {
     font-size: 0.9rem;
-    color: #4b5563;
+    color: #6b7280;
     line-height: 1.6;
     margin: 0;
 }
@@ -759,33 +1383,32 @@ onMounted(async () => {
 /* SIDEBAR WIDGETS */
 .sidebar-widget {
     background: #ffffff;
-    border: 2px solid #fff8e1;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
-    padding: 25px;
-    margin-bottom: 30px;
-    transition: all 0.3s ease;
+    padding: 24px;
+    margin-bottom: 25px;
+    transition: border-color 0.3s ease;
 }
 
 .sidebar-widget:hover {
     border-color: #ffd100;
-    box-shadow: 0 6px 16px rgba(255, 209, 0, 0.1);
 }
 
 .widget-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #1f2937;
-    margin: 0 0 20px 0;
+    margin: 0 0 18px 0;
     padding-bottom: 12px;
     border-bottom: 2px solid #ffd100;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .widget-title i {
     color: #ffd100;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 /* NAVIGATION LINKS */
@@ -800,11 +1423,11 @@ onMounted(async () => {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 13px 18px;
-    background: #fff8e1;
-    border: 2px solid #ffd100;
+    padding: 12px 16px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
     border-radius: 6px;
-    color: #f0c000;
+    color: #1f2937;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
@@ -815,26 +1438,26 @@ onMounted(async () => {
 .nav-link:hover {
     background: #ffd100;
     color: #333;
+    border-color: #ffd100;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 209, 0, 0.2);
 }
 
 /* CATEGORIES */
 .categories-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .category-link {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 15px;
-    background: #fff8e1;
-    border: 1px solid #ffd100;
+    padding: 11px 14px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
     border-radius: 6px;
-    color: #666;
+    color: #1f2937;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
@@ -844,7 +1467,8 @@ onMounted(async () => {
 .category-link:hover {
     background: #ffd100;
     color: #333;
-    transform: translateX(3px);
+    border-color: #ffd100;
+    transform: translateX(2px);
 }
 
 .category-link .count {
@@ -871,18 +1495,18 @@ onMounted(async () => {
 }
 
 .related-post {
-    padding: 14px 16px;
-    background: #fff8e1;
-    border: 1px solid #ffd100;
+    padding: 12px 14px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-left: 4px solid #ffd100;
 }
 
 .related-post:hover {
     background: #ffd100;
-    transform: translateX(3px);
+    border-color: #ffd100;
+    transform: translateX(2px);
 }
 
 .related-post h6 {
@@ -899,8 +1523,8 @@ onMounted(async () => {
 
 .related-date {
     font-size: 0.8rem;
-    color: #f0c000;
-    font-weight: 600;
+    color: #6b7280;
+    font-weight: 500;
 }
 
 .related-post:hover .related-date {
@@ -911,7 +1535,7 @@ onMounted(async () => {
 .related-articles-section {
     background: #f9fafb;
     padding: 80px 0;
-    border-top: 3px solid #fff8e1;
+    border-top: 1px solid #e5e7eb;
     margin-top: 60px;
 }
 
@@ -932,7 +1556,7 @@ onMounted(async () => {
     left: 50%;
     transform: translateX(-50%);
     width: 70px;
-    height: 3px;
+    height: 2px;
     background: #ffd100;
     border-radius: 2px;
 }
@@ -950,9 +1574,9 @@ onMounted(async () => {
 }
 
 .related-article-card:hover {
-    box-shadow: 0 10px 25px rgba(255, 209, 0, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     border-color: #ffd100;
-    transform: translateY(-5px);
+    transform: translateY(-4px);
 }
 
 .card-image {
@@ -971,7 +1595,7 @@ onMounted(async () => {
 }
 
 .related-article-card:hover .card-image img {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 .placeholder {
@@ -1002,7 +1626,7 @@ onMounted(async () => {
 
 .card-content p {
     font-size: 0.9rem;
-    color: #4b5563;
+    color: #6b7280;
     margin: 0 0 12px 0;
     line-height: 1.5;
     flex: 1;
@@ -1030,7 +1654,7 @@ onMounted(async () => {
 
 .not-found-section i {
     font-size: 4rem;
-    color: #fff8e1;
+    color: #e5e7eb;
     margin-bottom: 20px;
     display: block;
 }
@@ -1043,7 +1667,7 @@ onMounted(async () => {
 }
 
 .not-found-section p {
-    color: #4b5563;
+    color: #6b7280;
     margin: 0 0 30px 0;
     font-size: 1rem;
     line-height: 1.6;
@@ -1054,7 +1678,7 @@ onMounted(async () => {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 13px 30px;
+    padding: 12px 28px;
     background: #ffd100;
     color: #333;
     text-decoration: none;
@@ -1069,7 +1693,7 @@ onMounted(async () => {
 .btn:hover {
     background: #f0c000;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 209, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 209, 0, 0.2);
 }
 
 /* RESPONSIVE */

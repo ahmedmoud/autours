@@ -7,16 +7,9 @@
             <div id="top"></div>
 
             <!-- section begin -->
-            <section id="subheader" class="jarallax">
-                <div class="center-y relative text-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 text-center"></div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div id="" class="" style="height: 50px;">
+
+            </div>
             <!-- section close -->
 
             <section aria-label="section">
@@ -58,7 +51,7 @@
                         </div>
 
                         <!-- FORM -->
-                        <div class="col-12 col-md-6 mt-4">
+                        <div class="col-12 col-md-6">
                             <div class="flip-container">
 
                                 <div v-if="!showForgetPassword"
@@ -414,7 +407,7 @@ html, body {
 .flipper {
     position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: 1000px;
     margin: auto;
     min-height: 550px;
     padding: 30px;
