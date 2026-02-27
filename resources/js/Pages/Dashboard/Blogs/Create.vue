@@ -39,7 +39,7 @@
 
                             <div class="mb-4">
                                 <label class="form-label">Content *</label>
-                                <textarea v-model="form.content" class="form-control" rows="15" required></textarea>
+                                <Editor v-model="form.content"  style="height: 200px" required></Editor>
                             </div>
                         </div>
 
@@ -84,6 +84,9 @@
 import { ref, onMounted } from 'vue'
 import { Link, router } from '@inertiajs/vue3'
 import axios from 'axios'
+import Editor from 'primevue/editor';
+
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 const form = ref({
     title: '',

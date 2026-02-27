@@ -43,7 +43,7 @@
 
                             <div class="mb-4">
                                 <label class="form-label">Content *</label>
-                                <textarea v-model="form.content" class="form-control" rows="15" required></textarea>
+                                <Editor v-model="form.content"  style="height: 200px" required></Editor>
                             </div>
                         </div>
 
@@ -86,11 +86,12 @@
 </template>
 
 <script setup>
-import {ref, onMounted, onBeforeMount, computed} from 'vue'
-import { Link, router, usePage } from '@inertiajs/vue3'
+import {ref, onMounted, computed} from 'vue'
+import { Link, router } from '@inertiajs/vue3'
 import axios from 'axios'
+import Editor from 'primevue/editor';
 
-const page = usePage()
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 const form = ref({
     title: '',
@@ -210,7 +211,7 @@ const blogId = computed(() => window.location.pathname.split('/')[3])
 }
 
 .page-title i {
-    color: #0066cc;
+    color: #ffd100;
     font-size: 2.2rem;
 }
 
@@ -232,8 +233,8 @@ const blogId = computed(() => window.location.pathname.split('/')[3])
 }
 
 .form-control:focus {
-    border-color: #0066cc;
-    box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+    border-color: #ffd100;
+    box-shadow: 0 0 0 0.2rem rgba(255, 209, 0, 0.25);
 }
 
 .form-label {
@@ -251,8 +252,8 @@ const blogId = computed(() => window.location.pathname.split('/')[3])
 }
 
 .image-upload-box:hover {
-    border-color: #0066cc;
-    background: rgba(0, 102, 204, 0.05);
+    border-color: #ffd100;
+    background: rgba(255, 209, 0, 0.05);
 }
 
 .upload-placeholder {
@@ -286,12 +287,14 @@ const blogId = computed(() => window.location.pathname.split('/')[3])
 }
 
 .btn-primary {
-    background: #0066cc;
-    border-color: #0066cc;
+    background: #ffd100;
+    border-color: #ffd100;
+    color: #333;
 }
 
 .btn-primary:hover {
-    background: #0052a3;
+    background: #f0c000;
+    border-color: #f0c000;
 }
 
 .btn-secondary {
