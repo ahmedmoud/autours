@@ -549,7 +549,7 @@
 
                                     <!-- Pricing and Booking -->
                                     <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
-                                        <div>
+                                        <div style="top: 100px;">
                                             <p class="mb-0 text-success" v-if="vehicle.promo.length"><i class="fa fa-check me-1"></i>{{ vehicle.promo }}</p>
                                             <span class="text-muted">For {{ daysNumber }} day{{ daysNumber > 1 ? 's' : '' }}</span>
                                             <h4 class="mb-0">{{ vehicle.final_price }} <small>{{ selectedCurrency }}</small></h4>
@@ -822,7 +822,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="" style="width: 20%; margin-top: -3%; margin-left: 4%;">
+                                                <div class="" style="width: 20%; margin-top: 1%; margin-left: 4%;">
                                                     <p style="color: green; text-wrap: nowrap; font-weight: 600" v-if="vehicle.promo.length"><i style="font-size: 18px" class="fa fa-check fa-xl"/>{{ vehicle.promo }}</p>
                                                     <span class="d-days" >For {{
                                                             daysNumber
