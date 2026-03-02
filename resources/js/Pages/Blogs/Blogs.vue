@@ -151,7 +151,7 @@
                                     <h5 class="filter-header-title">
                                         <i class="fa fa-sliders"></i> Refine Search
                                     </h5>
-                                    <button v-if="selectedCategory !== null || filterPublished || searchQuery"
+                                    <button v-if="selectedCategory !== null || searchQuery"
                                             @click="clearAllFilters"
                                             class="clear-filters-btn"
                                             title="Clear all filters">
@@ -206,24 +206,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Publication Status Filter -->
-                                <div class="filter-widget stats-widget">
-                                    <h5 class="widget-title">
-                                        <i class="fa fa-eye"></i> Visibility
-                                    </h5>
-                                    <div class="checkbox-group">
-                                        <label class="checkbox-item">
-                                            <input
-                                                type="checkbox"
-                                                v-model="filterPublished"
-                                                @change="currentPage = 1">
-                                            <span class="checkbox-text">
-                                                <i class="fa fa-check-circle"></i>
-                                                Published Only
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div>
 
                                 <!-- Recent Posts -->
                                 <div class="filter-widget stats-widget">
@@ -289,7 +271,6 @@ const blogs = ref([])
 const categories = ref([])
 const loading = ref(false)
 const selectedCategory = ref(null)
-const filterPublished = ref(false)
 const searchQuery = ref('')
 const currentPage = ref(1)
 const pageSize = ref(6)
@@ -303,10 +284,6 @@ const filteredBlogs = computed(() => {
         filtered = filtered.filter(blog => blog.blog_category_id === selectedCategory.value)
     }
 
-    // Filter by publication status
-    if (filterPublished.value) {
-        filtered = filtered.filter(blog => blog.is_published === true)
-    }
 
     // Filter by search query
     if (searchQuery.value) {
@@ -403,7 +380,6 @@ const viewBlogDetails = (blogId) => {
 
 const clearAllFilters = () => {
     selectedCategory.value = null
-    filterPublished.value = false
     searchQuery.value = ''
     currentPage.value = 1
 }

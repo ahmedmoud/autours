@@ -27,6 +27,12 @@
                             </div>
 
                             <div class="mb-4">
+                                <label class="form-label">Slug (URL-friendly)</label>
+                                <input v-model="form.slug" type="text" class="form-control" placeholder="Leave empty to auto-generate">
+                                <small class="text-muted">Auto-generated from title if left empty</small>
+                            </div>
+
+                            <div class="mb-4">
                                 <label class="form-label">Author *</label>
                                 <input v-model="form.author" type="text" class="form-control" required>
                             </div>
@@ -45,25 +51,46 @@
                                 <label class="form-label">Content *</label>
                                 <Editor v-model="form.content"  style="height: 200px" required></Editor>
                             </div>
+
+                            <!-- SEO Section -->
+                            <div class="card border-light mt-4">
+                                <div class="card-header bg-light">
+                                    <h6 class="mb-0">
+                                        <i class="fa fa-search"></i> SEO Settings
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-4">
+                                        <label class="form-label">Meta Description (for search engines)</label>
+                                        <textarea v-model="form.meta_description" class="form-control" rows="3" maxlength="500" placeholder="Brief description for search engine results (max 160 characters recommended)"></textarea>
+                                        <small class="text-muted">{{ form.meta_description.length }}/500 characters</small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-lg-4">
                             <div class="mb-4">
                                 <label class="form-label">Featured Image</label>
                                 <div class="image-upload-box">
-                                    <img v-if="imagePreview || form.currentImage" :src="imagePreview || `/img/blogs/${form.currentImage}`" class="preview-image">
+                                    <img v-if="imagePreview || form.currentImage" :src="imagePreview || `/img/blogs/${form.currentImage}`" :alt="form.image_alt_text || 'Blog image'" class="preview-image">
                                     <div v-else class="upload-placeholder">
                                         <i class="fa fa-image"></i>
                                         <p>No image</p>
                                     </div>
                                     <input @change="handleImageUpload" type="file" class="form-control form-control-sm" accept="image/*">
                                 </div>
+                                <div class="mt-2">
+                                    <label class="form-label">Image Alt Text (for accessibility)</label>
+                                    <input v-model="form.image_alt_text" type="text" class="form-control form-control-sm" placeholder="Describe the image content">
+                                    <small class="text-muted">Important for SEO and accessibility</small>
+                                </div>
                             </div>
 
                             <div class="mb-4 p-3 bg-light rounded">
                                 <label class="form-label mb-3">Status</label>
                                 <div class="form-check">
-                                    <input v-model="form.is_published" :true-value="true" :false-value="false" type="checkbox" class="form-check-input" id="publishCheck">
+                                    <input v-model="form.is_published" type="checkbox" class="form-check-input" id="publishCheck">
                                     <label class="form-check-label" for="publishCheck">
                                         <span v-if="form.is_published" class="badge bg-success">Published</span>
                                         <span v-else class="badge bg-warning">Draft</span>
@@ -95,9 +122,12 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 
 const form = ref({
     title: '',
+    slug: '',
     author: '',
     blog_category_id: '',
     content: '',
+    meta_description: '',
+    image_alt_text: '',
     is_published: false,
     image: null,
     currentImage: null
@@ -125,10 +155,13 @@ const submitForm = async () => {
     try {
         const formData = new FormData()
         formData.append('title', form.value.title)
+        formData.append('slug', form.value.slug)
         formData.append('author', form.value.author)
         formData.append('blog_category_id', form.value.blog_category_id)
         formData.append('content', form.value.content)
-        formData.append('is_published', form.value.is_published)
+        formData.append('meta_description', form.value.meta_description)
+        formData.append('image_alt_text', form.value.image_alt_text)
+        formData.append('is_published', form.value.is_published ? '1' : '0')
         if (form.value.image) {
             formData.append('image', form.value.image)
         }
@@ -156,9 +189,12 @@ const fetchBlog = async () => {
             const blog = res.data.data
             form.value = {
                 title: blog.title,
+                slug: blog.slug || '',
                 author: blog.author,
                 blog_category_id: blog.blog_category_id,
                 content: blog.content,
+                meta_description: blog.meta_description || '',
+                image_alt_text: blog.image_alt_text || '',
                 is_published: blog.is_published,
                 image: null,
                 currentImage: blog.image

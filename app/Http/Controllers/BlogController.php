@@ -106,11 +106,19 @@ class BlogController extends Controller
             $validated = $request->validate([
                 'blog_category_id' => 'required|exists:blog_categories,id',
                 'title' => 'required|string|max:255',
+                'slug' => 'sometimes|string|max:255|unique:blogs,slug',
                 'author' => 'required|string|max:255|unique:blogs,author',
                 'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image_alt_text' => 'sometimes|string|max:255',
                 'content' => 'required|string',
+                'meta_description' => 'sometimes|string|max:500',
                 'is_published' => 'required|string',
             ]);
+
+            // Generate slug if not provided
+            if (empty($validated['slug'])) {
+                $validated['slug'] = $this->generateSlug($validated['title']);
+            }
 
             // Handle image upload
             if ($request->hasFile('image')) {
@@ -152,10 +160,18 @@ class BlogController extends Controller
             $validated = $request->validate([
                 'blog_category_id' => 'sometimes|exists:blog_categories,id',
                 'title' => 'sometimes|string|max:255',
+                'slug' => 'sometimes|string|max:255|unique:blogs,slug,' . $blog->id,
                 'author' => 'sometimes|string|max:255|unique:blogs,author,' . $blog->id,
                 'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image_alt_text' => 'sometimes|string|max:255',
                 'content' => 'sometimes|string',
+                'meta_description' => 'sometimes|string|max:500',
             ]);
+
+            // Generate slug if title changed but slug not provided
+            if (isset($validated['title']) && !isset($validated['slug'])) {
+                $validated['slug'] = $this->generateSlug($validated['title']);
+            }
 
             // Handle image upload
             if ($request->hasFile('image')) {
@@ -270,6 +286,19 @@ class BlogController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    /**
+     * Generate a URL-friendly slug from a title.
+     */
+    private function generateSlug(string $title): string
+    {
+        $slug = \Illuminate\Support\Str::slug($title);
+
+        // Ensure uniqueness
+        $count = Blog::where('slug', 'LIKE', $slug . '%')->count();
+
+        return $count > 0 ? $slug . '-' . ($count + 1) : $slug;
     }
 }
 
