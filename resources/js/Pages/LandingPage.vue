@@ -37,7 +37,7 @@
                  class="col-md-3 text-center">
                 <img src="images/icons/home-icon1.png" width="100px" height="100px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Variety<br> Of Cars</h5>
-                <p style="font-size: 20px; color: #595555;">Choose from a wide range of <br> cars with a varaity of models <br> and colors to meet all<br> your
+                <p style="font-size: 20px; color: #595555;">Choose from a wide range of <br> cars with a variety of models <br> and colors to meet all<br> your
                     needs.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
@@ -91,8 +91,8 @@
                  class="col-md-2 text-center">
                 <img src="images/icons/home-icon9.png" width="170px" height="120px"  alt="Phishing Detect" class="mx-auto my-1 service">
                 <h5>Free<br>Cancellation</h5>
-                <p style="font-size: 20px; color: #595555;">Enjoy the option of free Cancellation without any addtional
-                    cahrges.</p>
+                <p style="font-size: 20px; color: #595555;">Enjoy the option of free Cancellation without any additional
+                    charges.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
                  class="col-md-2 text-center">

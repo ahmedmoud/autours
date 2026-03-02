@@ -43,9 +43,9 @@
                             <div class="col-md-5">
                                 <p class="row">
                                     <strong class="col-md-2 text-nowrap">Pick-up:</strong>
-                                    <small class="col-md-10 text-nowrap">{{ item.vehicle.branch?.adresse }}</small>
+                                    <small class="col-md-10 text-nowrap">{{ item.vehicle.branch?.address }}</small>
                                     <strong class="col-md-2 text-nowrap">Drop-off:</strong>
-                                    <small class="col-md-10 text-nowrap">{{ item.vehicle.branch?.adresse }}</small>
+                                    <small class="col-md-10 text-nowrap">{{ item.vehicle.branch?.address }}</small>
                                 </p>
                                 <p class="row"><strong class="col-md-5"> Total price:</strong><small class="col-md-4">
                                     {{ item.currency }}&nbsp;{{ item.price }}</small></p>

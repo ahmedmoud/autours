@@ -195,7 +195,7 @@ const fetchBlog = async () => {
                 content: blog.content,
                 meta_description: blog.meta_description || '',
                 image_alt_text: blog.image_alt_text || '',
-                is_published: blog.is_published,
+                is_published: blog.is_published === true || blog.is_published === 1 || blog.is_published === '1',
                 image: null,
                 currentImage: blog.image
             }

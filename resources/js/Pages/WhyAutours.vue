@@ -10,7 +10,7 @@
             <div class=" mb-3">
                <img src="/images/why_autours/ttile.png">
             </div>
-            <p style="font-size: 20px;" class="mx-5"> Whether you are a supplier looking fto expand your reach or a
+            <p style="font-size: 20px;" class="mx-5"> Whether you are a supplier looking to expand your reach or a
                 renter of a vehicle, Autours is your trusted partner in the car rental market. Join us today and
                 experience the Autours difference! </p>
             <img style="width: 100%" src="/images/why_autours_customer.jpg"/>

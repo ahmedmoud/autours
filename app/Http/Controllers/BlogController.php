@@ -112,13 +112,16 @@ class BlogController extends Controller
                 'image_alt_text' => 'sometimes|string|max:255',
                 'content' => 'required|string',
                 'meta_description' => 'sometimes|string|max:500',
-                'is_published' => 'required|string',
+                'is_published' => 'required|in:0,1',
             ]);
 
             // Generate slug if not provided
             if (empty($validated['slug'])) {
                 $validated['slug'] = $this->generateSlug($validated['title']);
             }
+
+            // Cast is_published to boolean
+            $validated['is_published'] = (bool) $validated['is_published'];
 
             // Handle image upload
             if ($request->hasFile('image')) {
@@ -166,11 +169,17 @@ class BlogController extends Controller
                 'image_alt_text' => 'sometimes|string|max:255',
                 'content' => 'sometimes|string',
                 'meta_description' => 'sometimes|string|max:500',
+                'is_published' => 'sometimes|in:0,1',
             ]);
 
             // Generate slug if title changed but slug not provided
             if (isset($validated['title']) && !isset($validated['slug'])) {
                 $validated['slug'] = $this->generateSlug($validated['title']);
+            }
+
+            // Cast is_published to boolean
+            if (isset($validated['is_published'])) {
+                $validated['is_published'] = (bool) $validated['is_published'];
             }
 
             // Handle image upload
