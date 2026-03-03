@@ -168,6 +168,8 @@ const loading = ref(false)
 const searchQuery = ref('')
 const currentPage = ref(1)
 const pageSize = ref(6)
+// New: fallback flag to show all fetched articles when published filtering would hide them all
+const showAllFallback = ref(false)
 
 // Computed properties
 const filteredBlogs = computed(() => {
@@ -175,7 +177,7 @@ const filteredBlogs = computed(() => {
     let filtered = Array.isArray(blogs.value) ? blogs.value.slice() : []
 
     // Only published items (handle boolean/string/number and common fields)
-    filtered = filtered.filter(b => {
+    const publishedFiltered = filtered.filter(b => {
         if (!b) return false
         return (
             b.is_published === true || b.is_published === 1 || b.is_published === '1' ||
@@ -184,6 +186,18 @@ const filteredBlogs = computed(() => {
             String(b.visibility || '').toLowerCase() === 'public'
         )
     })
+
+    // If publishedFiltered has items and no explicit fallback forced, use it; otherwise use all (fallback)
+    if (publishedFiltered.length > 0 && !showAllFallback.value) {
+        filtered = publishedFiltered
+    } else {
+        // if publishedFiltered is empty but we have fetched items, enable fallback to show all
+        if (!showAllFallback.value && Array.isArray(blogs.value) && blogs.value.length > 0 && publishedFiltered.length === 0) {
+            console.warn('No published items detected using standard fields; falling back to show all fetched blogs for visibility (mobile fix).')
+            showAllFallback.value = true
+        }
+        // filtered remains as all blogs
+    }
 
     // Apply top search box only (case-insensitive) - safe guards for missing fields
     if (searchQuery.value && String(searchQuery.value).trim() !== '') {
@@ -199,7 +213,7 @@ const filteredBlogs = computed(() => {
     // Debug: when blogs fetched but none visible
     const fetched = Array.isArray(blogs.value) ? blogs.value.length : 0
     if (fetched > 0 && filtered.length === 0) {
-        console.debug('filteredBlogs empty after applying published+search filters', { fetched, searchQuery: searchQuery.value, sample: blogs.value.slice(0,5) })
+        console.debug('filteredBlogs empty after applying published+search filters', { fetched, searchQuery: searchQuery.value, sample: blogs.value.slice(0,5), showAllFallback: showAllFallback.value })
     }
 
     return filtered
@@ -283,6 +297,24 @@ const fetchBlogs = async () => {
 
         blogs.value = data || []
         console.debug('fetchBlogs final count=', blogs.value.length)
+
+        // New: compute publishedCount and reset showAllFallback depending on data
+        const publishedCount = Array.isArray(blogs.value) ? blogs.value.filter(b => b && (
+            b.is_published === true || b.is_published === 1 || b.is_published === '1' ||
+            b.published === true || b.published === 1 || b.published === '1' ||
+            String(b.status || '').toLowerCase() === 'published' ||
+            String(b.visibility || '').toLowerCase() === 'public'
+        )).length : 0
+
+        if (blogs.value.length > 0 && publishedCount === 0) {
+            // Likely different field naming on API/mobile; enable fallback so users see content
+            console.warn('No published items detected; enabling fallback to show all fetched blogs. publishedCount=0, total=', blogs.value.length)
+            showAllFallback.value = true
+        } else {
+            // We have published items, no need to fallback
+            showAllFallback.value = false
+        }
+
     } catch (error) {
         console.error('Error fetching blogs:', error)
     } finally {
