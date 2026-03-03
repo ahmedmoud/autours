@@ -44,7 +44,7 @@
                             </div>
 
                             <!-- BLOGS LIST - CARD GRID -->
-                            <div v-if="filteredBlogs.length > 0" class="blog-list">
+                            <div v-if="filteredBlogs.length > 0 && paginatedBlogs.length > 0" class="blog-list">
                                 <div class="blog-grid">
                                     <div v-for="blog in paginatedBlogs"
                                          :key="blog.id"
