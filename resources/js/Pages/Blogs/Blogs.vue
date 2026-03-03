@@ -259,46 +259,65 @@ const getExcerpt = (content, length = 150) => {
 const fetchBlogs = async () => {
     loading.value = true
     try {
-        const res = await axios.get('/api/blogs')
-        // normalize common shapes
-        let data = []
-        if (!res || !res.data) {
-            data = []
-        } else if (Array.isArray(res.data)) {
-            data = res.data
-        } else if (Array.isArray(res.data.data)) {
-            data = res.data.data
-        } else if (Array.isArray(res.data.data?.data)) {
-            data = res.data.data.data
-        } else if (Array.isArray(res.data.items)) {
-            data = res.data.items
-        } else {
-            const possible = Object.values(res.data).find(v => Array.isArray(v))
-            data = Array.isArray(possible) ? possible : []
-        }
+        // Try multiple endpoints to handle mobile/base-href differences
+        const tryUrls = [
+            '/api/blogs',
+            'api/blogs',
+            (window.location.origin ? `${window.location.origin}/api/blogs` : null)
+        ].filter(Boolean)
 
-        // fallback: if empty, try a relative request without leading slash (helps some mobile setups)
-        if ((!data || data.length === 0)) {
+        let data = []
+        let lastRes = null
+        for (const url of tryUrls) {
             try {
-                const res2 = await axios.get('api/blogs')
-                if (res2 && res2.data) {
-                    if (Array.isArray(res2.data)) data = res2.data
-                    else if (Array.isArray(res2.data.data)) data = res2.data.data
-                    else if (Array.isArray(res2.data.items)) data = res2.data.items
-                    else {
-                        const possible2 = Object.values(res2.data).find(v => Array.isArray(v))
-                        data = Array.isArray(possible2) ? possible2 : data
-                    }
+                console.debug('fetchBlogs: trying', url)
+                const res = await axios.get(url)
+                lastRes = res
+                if (!res || !res.data) {
+                    console.debug('fetchBlogs: empty res.data for', url)
+                    continue
                 }
-            } catch (e) {
-                console.debug('fetchBlogs fallback failed', e && e.message)
+                // Normalize possible shapes
+                if (Array.isArray(res.data)) data = res.data
+                else if (Array.isArray(res.data.data)) data = res.data.data
+                else if (Array.isArray(res.data.data?.data)) data = res.data.data.data
+                else if (Array.isArray(res.data.items)) data = res.data.items
+                else {
+                    const possible = Object.values(res.data).find(v => Array.isArray(v))
+                    data = Array.isArray(possible) ? possible : []
+                }
+
+                if (Array.isArray(data) && data.length > 0) {
+                    console.debug('fetchBlogs: got data from', url, 'count=', data.length)
+                    break
+                } else {
+                    console.debug('fetchBlogs: normalized data empty for', url)
+                }
+            } catch (err) {
+                console.warn('fetchBlogs: request failed for', url, err && err.message)
+                // try next
             }
         }
 
-        blogs.value = data || []
+        // If still empty and lastRes exists, attempt to inspect lastRes to find any nested arrays
+        if ((!data || data.length === 0) && lastRes && lastRes.data) {
+            const flatVals = Object.values(lastRes.data).filter(v => v && typeof v === 'object')
+            // attempt to pull first array inside nested objects
+            for (const v of flatVals) {
+                if (Array.isArray(v)) {
+                    data = v; break
+                }
+                if (v && typeof v === 'object') {
+                    const nestedArray = Object.values(v).find(x => Array.isArray(x))
+                    if (Array.isArray(nestedArray)) { data = nestedArray; break }
+                }
+            }
+        }
+
+        blogs.value = Array.isArray(data) ? data : []
         console.debug('fetchBlogs final count=', blogs.value.length)
 
-        // New: compute publishedCount and reset showAllFallback depending on data
+        // Recompute publishedCount and set fallback
         const publishedCount = Array.isArray(blogs.value) ? blogs.value.filter(b => b && (
             b.is_published === true || b.is_published === 1 || b.is_published === '1' ||
             b.published === true || b.published === 1 || b.published === '1' ||
@@ -307,16 +326,14 @@ const fetchBlogs = async () => {
         )).length : 0
 
         if (blogs.value.length > 0 && publishedCount === 0) {
-            // Likely different field naming on API/mobile; enable fallback so users see content
             console.warn('No published items detected; enabling fallback to show all fetched blogs. publishedCount=0, total=', blogs.value.length)
             showAllFallback.value = true
         } else {
-            // We have published items, no need to fallback
             showAllFallback.value = false
         }
 
     } catch (error) {
-        console.error('Error fetching blogs:', error)
+        console.error('Error fetching blogs (outer):', error)
     } finally {
         loading.value = false
     }
