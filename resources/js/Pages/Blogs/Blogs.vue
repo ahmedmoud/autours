@@ -19,9 +19,8 @@
                                 v-model="searchQuery"
                                 type="text"
                                 class="search-input-hero"
-                                placeholder="Search articles..."
-                                @keyup="currentPage = 1">
-                            <button class="search-btn-hero" @click="currentPage = 1">
+                                placeholder="Search articles...">
+                            <button class="search-btn-hero">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -44,9 +43,9 @@
                             </div>
 
                             <!-- BLOGS LIST - CARD GRID -->
-                            <div v-if="filteredBlogs.length > 0 && paginatedBlogs.length > 0" class="blog-list">
+                            <div v-if="filteredBlogs.length > 0" class="blog-list">
                                 <div class="blog-grid">
-                                    <div v-for="blog in paginatedBlogs"
+                                    <div v-for="blog in filteredBlogs"
                                          :key="blog.id"
                                          class="blog-item-card">
                                         <!-- Blog Image -->
@@ -144,46 +143,8 @@
                                 </div>
                             </div>
 
-                            <!-- PAGINATION -->
-                            <div v-if="filteredBlogs.length > pageSize" class="pagination-section">
-                                <nav aria-label="Blog pagination">
-                                    <ul class="pagination">
-                                        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                                            <button class="page-link" @click="currentPage = 1"
-                                                    :disabled="currentPage === 1">
-                                                <i class="fa fa-angle-double-left"></i> First
-                                            </button>
-                                        </li>
-                                        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                                            <button class="page-link" @click="currentPage--"
-                                                    :disabled="currentPage === 1">
-                                                <i class="fa fa-angle-left"></i> Previous
-                                            </button>
-                                        </li>
+                            <!-- pagination removed -->
 
-                                        <li v-for="page in paginationRange" :key="page"
-                                            class="page-item"
-                                            :class="{ active: page === currentPage }">
-                                            <button class="page-link" @click="currentPage = page">
-                                                {{ page }}
-                                            </button>
-                                        </li>
-
-                                        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                                            <button class="page-link" @click="currentPage++"
-                                                    :disabled="currentPage === totalPages">
-                                                Next <i class="fa fa-angle-right"></i>
-                                            </button>
-                                        </li>
-                                        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                                            <button class="page-link" @click="currentPage = totalPages"
-                                                    :disabled="currentPage === totalPages">
-                                                Last <i class="fa fa-angle-double-right"></i>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
                         </div>
 
                     </div>
@@ -209,10 +170,7 @@ import Footer from '@/components/Footer.vue'
 const blogs = ref([])
 const loading = ref(false)
 const searchQuery = ref('')
-const currentPage = ref(1)
-const pageSize = ref(6)
 const showAllFallback = ref(false)
-
 // Debugging: track fetch attempts so mobile issues are diagnosable
 const fetchAttempts = ref([]) // { url, ok, status, count, error }
 const lastResponse = ref(null)
@@ -281,26 +239,6 @@ const toggleShowAllFallback = () => {
     showAllFallback.value = !showAllFallback.value
 }
 
-const totalPages = computed(() => Math.ceil(filteredBlogs.value.length / pageSize.value))
-const paginatedBlogs = computed(() => {
-    const start = (currentPage.value - 1) * pageSize.value
-    const end = start + pageSize.value
-    return filteredBlogs.value.slice(start, end)
-})
-
-const paginationRange = computed(() => {
-    const range = []
-    const maxVisible = 5
-    let start = Math.max(1, currentPage.value - Math.floor(maxVisible / 2))
-    let end = Math.min(totalPages.value, start + maxVisible - 1)
-
-    if (end - start + 1 < maxVisible) {
-        start = Math.max(1, end - maxVisible + 1)
-    }
-
-    for (let i = start; i <= end; i++) range.push(i)
-    return range
-})
 
 // Methods
 const formatDate = (date) => {
