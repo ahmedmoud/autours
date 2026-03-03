@@ -101,6 +101,49 @@
                                 <p>Try adjusting your search query</p>
                             </div>
 
+                            <!-- DEBUG PANEL - SHOW IF NO ARTICLES AND FETCH ATTEMPTS EXIST -->
+                            <div v-if="filteredBlogs.length === 0 && fetchAttempts.length > 0" class="debug-panel">
+                                <h6 class="debug-title">Debug Info - Fetch Attempts</h6>
+                                <div v-for="(attempt, index) in fetchAttempts" :key="index" class="debug-attempt">
+                                    <div class="attempt-url">
+                                        <strong>Attempt {{ index + 1 }}:</strong> {{ attempt.url }}
+                                    </div>
+                                    <div class="attempt-status">
+                                        Status: <strong>{{ attempt.ok ? 'Success' : 'Failed' }}</strong>
+                                    </div>
+                                    <div class="attempt-details" v-if="!attempt.ok">
+                                        Error: {{ attempt.error }}
+                                    </div>
+                                </div>
+
+                                <!-- LAST RESPONSE RAW DATA (JSON) - PRETTY PRINTED -->
+                                <div v-if="lastResponse" class="last-response">
+                                    <h6>Last Response (Raw Data)</h6>
+                                    <pre class="response-json">{{ JSON.stringify(lastResponse.data, null, 2) }}</pre>
+                                </div>
+
+                                <div class="text-center mt-3">
+                                    <button class="btn btn-primary" @click="showRawResponse = !showRawResponse">
+                                        <i class="fa" :class="showRawResponse ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                        Toggle Raw Response
+                                    </button>
+                                </div>
+
+                                <!-- SHOW RAW RESPONSE AS PLAIN TEXT -->
+                                <div v-if="showRawResponse" class="raw-response-text">
+                                    <h6>Raw Response (Text)</h6>
+                                    <pre>{{ lastResponse }}</pre>
+                                </div>
+
+                                <!-- NEW: PUBLISHED COUNT AND TOGGLE FALLBACK BUTTON -->
+                                <div class="debug-stats">
+                                    <div>Fetched: {{ blogs.length }} • Published detected: {{ publishedCount }}</div>
+                                    <button class="btn btn-sm btn-outline-primary" @click="toggleShowAllFallback()">
+                                        {{ showAllFallback ? 'Showing all (fallback ON)' : 'Show all (enable fallback)' }}
+                                    </button>
+                                </div>
+                            </div>
+
                             <!-- PAGINATION -->
                             <div v-if="filteredBlogs.length > pageSize" class="pagination-section">
                                 <nav aria-label="Blog pagination">
@@ -168,8 +211,12 @@ const loading = ref(false)
 const searchQuery = ref('')
 const currentPage = ref(1)
 const pageSize = ref(6)
-// New: fallback flag to show all fetched articles when published filtering would hide them all
 const showAllFallback = ref(false)
+
+// Debugging: track fetch attempts so mobile issues are diagnosable
+const fetchAttempts = ref([]) // { url, ok, status, count, error }
+const lastResponse = ref(null)
+const showRawResponse = ref(false)
 
 // Computed properties
 const filteredBlogs = computed(() => {
@@ -219,6 +266,21 @@ const filteredBlogs = computed(() => {
     return filtered
 })
 
+// New computed: publishedCount (useful in debug panel)
+const publishedCount = computed(() => {
+    return Array.isArray(blogs.value) ? blogs.value.filter(b => b && (
+        b.is_published === true || b.is_published === 1 || b.is_published === '1' ||
+        b.published === true || b.published === 1 || b.published === '1' ||
+        String(b.status || '').toLowerCase() === 'published' ||
+        String(b.visibility || '').toLowerCase() === 'public'
+    )).length : 0
+})
+
+// Toggle force fallback
+const toggleShowAllFallback = () => {
+    showAllFallback.value = !showAllFallback.value
+}
+
 const totalPages = computed(() => Math.ceil(filteredBlogs.value.length / pageSize.value))
 const paginatedBlogs = computed(() => {
     const start = (currentPage.value - 1) * pageSize.value
@@ -258,6 +320,9 @@ const getExcerpt = (content, length = 150) => {
 
 const fetchBlogs = async () => {
     loading.value = true
+    fetchAttempts.value = []
+    lastResponse.value = null
+
     try {
         // Try multiple endpoints to handle mobile/base-href differences
         const tryUrls = [
@@ -273,8 +338,10 @@ const fetchBlogs = async () => {
                 console.debug('fetchBlogs: trying', url)
                 const res = await axios.get(url)
                 lastRes = res
+                lastResponse.value = res
                 if (!res || !res.data) {
                     console.debug('fetchBlogs: empty res.data for', url)
+                    fetchAttempts.value.push({ url, ok: false, status: res?.status || null, count: 0, error: 'empty res.data' })
                     continue
                 }
                 // Normalize possible shapes
@@ -287,6 +354,9 @@ const fetchBlogs = async () => {
                     data = Array.isArray(possible) ? possible : []
                 }
 
+                const count = Array.isArray(data) ? data.length : 0
+                fetchAttempts.value.push({ url, ok: count > 0, status: res?.status || null, count, error: null })
+
                 if (Array.isArray(data) && data.length > 0) {
                     console.debug('fetchBlogs: got data from', url, 'count=', data.length)
                     break
@@ -295,6 +365,7 @@ const fetchBlogs = async () => {
                 }
             } catch (err) {
                 console.warn('fetchBlogs: request failed for', url, err && err.message)
+                fetchAttempts.value.push({ url, ok: false, status: err?.response?.status || null, count: 0, error: err.message || String(err) })
                 // try next
             }
         }
@@ -312,6 +383,8 @@ const fetchBlogs = async () => {
                     if (Array.isArray(nestedArray)) { data = nestedArray; break }
                 }
             }
+            // Log this inspection as a pseudo-attempt
+            fetchAttempts.value.push({ url: 'inspect-last-res', ok: Array.isArray(data) && data.length > 0, status: lastRes?.status || null, count: Array.isArray(data) ? data.length : 0, error: null })
         }
 
         blogs.value = Array.isArray(data) ? data : []
@@ -334,6 +407,7 @@ const fetchBlogs = async () => {
 
     } catch (error) {
         console.error('Error fetching blogs (outer):', error)
+        fetchAttempts.value.push({ url: 'outer-exception', ok: false, status: null, count: 0, error: error.message || String(error) })
     } finally {
         loading.value = false
     }
@@ -829,6 +903,70 @@ onMounted(() => {
     background: #0052a3;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+}
+
+/* DEBUG PANEL */
+.debug-panel {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+    animation: fadeIn 0.5s ease;
+}
+
+.debug-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.debug-attempt {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.attempt-url {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.attempt-status {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.attempt-details {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    background: #f5f5f5;
+    padding: 8px 10px;
+    border-radius: 4px;
+}
+
+/* LAST RESPONSE */
+.last-response {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fbfbfb;
+    overflow-x: auto;
+}
+
+.response-json {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: #333;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 /* PAGINATION SECTION */
