@@ -21,7 +21,7 @@
                                 class="search-input-hero"
                                 placeholder="Search articles..."
                                 @keyup="currentPage = 1">
-                            <button class="search-btn-hero">
+                            <button class="search-btn-hero" @click="currentPage = 1">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -33,8 +33,8 @@
             <section class="blog-section py-5">
                 <div class="container">
                     <div class="row">
-                        <!-- MAIN CONTENT - BLOGS -->
-                        <div class="col-lg-9 order-lg-1">
+                        <!-- MAIN CONTENT - BLOGS (full width, sidebar removed) -->
+                        <div class="col-12">
                             <!-- LOADING STATE -->
                             <div v-if="loading" class="text-center py-5">
                                 <div class="spinner-border text-primary" role="status">
@@ -44,7 +44,7 @@
                             </div>
 
                             <!-- BLOGS LIST - CARD GRID -->
-                            <div v-else-if="filteredBlogs.length > 0" class="blog-list">
+                            <div v-if="filteredBlogs.length > 0" class="blog-list">
                                 <div class="blog-grid">
                                     <div v-for="blog in paginatedBlogs"
                                          :key="blog.id"
@@ -98,7 +98,7 @@
                             <div v-else class="empty-state">
                                 <i class="fa fa-inbox"></i>
                                 <h5>No articles found</h5>
-                                <p>Try adjusting your filters or search query</p>
+                                <p>Try adjusting your search query</p>
                             </div>
 
                             <!-- PAGINATION -->
@@ -143,110 +143,6 @@
                             </div>
                         </div>
 
-                        <!-- SIDEBAR - FILTERS RIGHT SIDE -->
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="sidebar-filters">
-                                <!-- Clear Filters Button -->
-                                <div class="filter-header">
-                                    <h5 class="filter-header-title">
-                                        <i class="fa fa-sliders"></i> Refine Search
-                                    </h5>
-                                    <button v-if="selectedCategory !== null || searchQuery"
-                                            @click="clearAllFilters"
-                                            class="clear-filters-btn"
-                                            title="Clear all filters">
-                                        <i class="fa fa-times-circle"></i> Clear
-                                    </button>
-                                </div>
-
-                                <!-- Search Widget -->
-                                <div class="filter-widget search-widget">
-                                    <div class="search-input-wrapper">
-                                        <input
-                                            v-model="searchQuery"
-                                            type="text"
-                                            class="filter-search-input"
-                                            placeholder="Search articles..."
-                                            @keyup="currentPage = 1">
-                                        <i class="fa fa-search search-icon"></i>
-                                    </div>
-                                    <small class="search-hint">Search by title, author, or content</small>
-                                </div>
-
-                                <!-- Categories Filter -->
-                                <div class="filter-widget stats-widget">
-                                    <h5 class="widget-title">
-                                        <i class="fa fa-folder-open"></i> Categories
-                                        <span class="category-badge-count">{{ categories.length }}</span>
-                                    </h5>
-                                    <div class="categories-list">
-                                        <button
-                                            @click="selectedCategory = null"
-                                            :class="['category-item', { active: selectedCategory === null }]"
-                                            class="category-btn">
-                                            <span class="category-icon">
-                                                <i class="fa fa-th-list"></i>
-                                            </span>
-                                            <span class="category-name">All Articles</span>
-                                            <span class="category-count">{{ totalBlogs }}</span>
-                                        </button>
-
-                                        <button
-                                            v-for="category in categories"
-                                            :key="category.id"
-                                            @click="selectedCategory = category.id"
-                                            :class="['category-item', { active: selectedCategory === category.id }]"
-                                            class="category-btn">
-                                            <span class="category-icon">
-                                                <i class="fa fa-bookmark"></i>
-                                            </span>
-                                            <span class="category-name">{{ category.title }}</span>
-                                            <span class="category-count">{{ category.blogs?.length || 0 }}</span>
-                                        </button>
-                                    </div>
-                                </div>
-
-
-                                <!-- Recent Posts -->
-                                <div class="filter-widget stats-widget">
-                                    <h5 class="widget-title">
-                                        <i class="fa fa-history"></i> Latest Articles
-                                    </h5>
-                                    <div class="recent-posts" v-if="blogs.length > 0">
-                                        <div v-for="blog in blogs.slice(0, 4)"
-                                             :key="blog.id"
-                                             class="recent-post-item"
-                                             @click="viewBlogDetails(blog.id)">
-                                            <div class="recent-post-icon">
-                                                <i class="fa fa-file-text-o"></i>
-                                            </div>
-                                            <div class="recent-post-content">
-                                                <h6>{{ blog.title.substring(0, 35) }}</h6>
-                                                <span class="recent-post-date">{{ formatDate(blog.created_at) }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div v-else class="no-recent">
-                                        <p>No articles yet</p>
-                                    </div>
-                                </div>
-
-                                <!-- Stats Widget -->
-                                <div class="filter-widget stats-widget">
-                                    <div class="stats-grid">
-                                        <div class="stat-box">
-                                            <div class="stat-number">{{ totalBlogs }}</div>
-                                            <div class="stat-label">Total Articles</div>
-                                        </div>
-                                        <div class="stat-box">
-                                            <div class="stat-number">{{ categories.length }}</div>
-                                            <div class="stat-label">Categories</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </section>
@@ -268,37 +164,47 @@ import Footer from '@/components/Footer.vue'
 
 // Data
 const blogs = ref([])
-const categories = ref([])
 const loading = ref(false)
-const selectedCategory = ref(null)
 const searchQuery = ref('')
 const currentPage = ref(1)
 const pageSize = ref(6)
 
 // Computed properties
 const filteredBlogs = computed(() => {
-    let filtered = blogs.value
+    // start with safe copy
+    let filtered = Array.isArray(blogs.value) ? blogs.value.slice() : []
 
-    // Filter by category
-    if (selectedCategory.value !== null) {
-        filtered = filtered.filter(blog => blog.blog_category_id === selectedCategory.value)
+    // Only published items (handle boolean/string/number and common fields)
+    filtered = filtered.filter(b => {
+        if (!b) return false
+        return (
+            b.is_published === true || b.is_published === 1 || b.is_published === '1' ||
+            b.published === true || b.published === 1 || b.published === '1' ||
+            String(b.status || '').toLowerCase() === 'published' ||
+            String(b.visibility || '').toLowerCase() === 'public'
+        )
+    })
+
+    // Apply top search box only (case-insensitive) - safe guards for missing fields
+    if (searchQuery.value && String(searchQuery.value).trim() !== '') {
+        const q = String(searchQuery.value).toLowerCase().trim()
+        filtered = filtered.filter(blog => {
+            const title = String(blog.title || '').toLowerCase()
+            const author = String(blog.author || '').toLowerCase()
+            const content = String(blog.content || '').toLowerCase()
+            return title.includes(q) || author.includes(q) || content.includes(q)
+        })
     }
 
-
-    // Filter by search query
-    if (searchQuery.value) {
-        const query = searchQuery.value.toLowerCase()
-        filtered = filtered.filter(blog =>
-            blog.title.toLowerCase().includes(query) ||
-            blog.author.toLowerCase().includes(query) ||
-            blog.content.toLowerCase().includes(query)
-        )
+    // Debug: when blogs fetched but none visible
+    const fetched = Array.isArray(blogs.value) ? blogs.value.length : 0
+    if (fetched > 0 && filtered.length === 0) {
+        console.debug('filteredBlogs empty after applying published+search filters', { fetched, searchQuery: searchQuery.value, sample: blogs.value.slice(0,5) })
     }
 
     return filtered
 })
 
-const totalBlogs = computed(() => blogs.value.length)
 const totalPages = computed(() => Math.ceil(filteredBlogs.value.length / pageSize.value))
 const paginatedBlogs = computed(() => {
     const start = (currentPage.value - 1) * pageSize.value
@@ -316,10 +222,7 @@ const paginationRange = computed(() => {
         start = Math.max(1, end - maxVisible + 1)
     }
 
-    for (let i = start; i <= end; i++) {
-        range.push(i)
-    }
-
+    for (let i = start; i <= end; i++) range.push(i)
     return range
 })
 
@@ -333,19 +236,9 @@ const formatDate = (date) => {
     })
 }
 
-const formatFullDate = (date) => {
-    if (!date) return 'Unknown'
-    return new Date(date).toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    })
-}
-
 const getExcerpt = (content, length = 150) => {
     if (!content) return 'No description available'
-    const text = content.replace(/<[^>]*>/g, '')
+    const text = String(content).replace(/<[^>]*>/g, '')
     return text.length > length ? text.substring(0, length) + '...' : text
 }
 
@@ -353,9 +246,43 @@ const fetchBlogs = async () => {
     loading.value = true
     try {
         const res = await axios.get('/api/blogs')
-        if (res.data.success) {
-            blogs.value = res.data.data.data || res.data.data
+        // normalize common shapes
+        let data = []
+        if (!res || !res.data) {
+            data = []
+        } else if (Array.isArray(res.data)) {
+            data = res.data
+        } else if (Array.isArray(res.data.data)) {
+            data = res.data.data
+        } else if (Array.isArray(res.data.data?.data)) {
+            data = res.data.data.data
+        } else if (Array.isArray(res.data.items)) {
+            data = res.data.items
+        } else {
+            const possible = Object.values(res.data).find(v => Array.isArray(v))
+            data = Array.isArray(possible) ? possible : []
         }
+
+        // fallback: if empty, try a relative request without leading slash (helps some mobile setups)
+        if ((!data || data.length === 0)) {
+            try {
+                const res2 = await axios.get('api/blogs')
+                if (res2 && res2.data) {
+                    if (Array.isArray(res2.data)) data = res2.data
+                    else if (Array.isArray(res2.data.data)) data = res2.data.data
+                    else if (Array.isArray(res2.data.items)) data = res2.data.items
+                    else {
+                        const possible2 = Object.values(res2.data).find(v => Array.isArray(v))
+                        data = Array.isArray(possible2) ? possible2 : data
+                    }
+                }
+            } catch (e) {
+                console.debug('fetchBlogs fallback failed', e && e.message)
+            }
+        }
+
+        blogs.value = data || []
+        console.debug('fetchBlogs final count=', blogs.value.length)
     } catch (error) {
         console.error('Error fetching blogs:', error)
     } finally {
@@ -363,31 +290,12 @@ const fetchBlogs = async () => {
     }
 }
 
-const fetchCategories = async () => {
-    try {
-        const res = await axios.get('/api/blog-categories/active')
-        if (res.data.success) {
-            categories.value = res.data.data
-        }
-    } catch (error) {
-        console.error('Error fetching categories:', error)
-    }
-}
-
 const viewBlogDetails = (blogId) => {
     window.location.href = `/blogs/${blogId}`
 }
 
-const clearAllFilters = () => {
-    selectedCategory.value = null
-    searchQuery.value = ''
-    currentPage.value = 1
-}
-
-// Lifecycle
 onMounted(() => {
     fetchBlogs()
-    fetchCategories()
 })
 </script>
 
@@ -462,457 +370,6 @@ onMounted(() => {
 .blog-section {
     background: #ffffff;
     padding: 60px 0;
-}
-
-/* SIDEBAR FILTERS - ENHANCED UX */
-.sidebar-filters {
-    position: sticky;
-    top: 20px;
-}
-
-.filter-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    padding: 0 5px;
-}
-
-.filter-header-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.filter-header-title i {
-    color: var(--primary-color);
-    font-size: 1.3rem;
-}
-
-.clear-filters-btn {
-    background: none;
-    border: none;
-    color: #e74c3c;
-    font-size: 0.85rem;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-weight: 600;
-}
-
-.clear-filters-btn:hover {
-    background: #ffe0e0;
-    color: #c0392b;
-}
-
-/* SEARCH WIDGET */
-.search-widget {
-    border: 2px solid var(--primary-color) !important;
-    background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(0, 102, 204, 0.02) 100%);
-}
-
-.search-input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.filter-search-input {
-    width: 100%;
-    padding: 12px 35px 12px 15px;
-    border: none;
-    background: white;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.filter-search-input::placeholder {
-    color: #bbb;
-}
-
-.filter-search-input:focus {
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-}
-
-.search-icon {
-    position: absolute;
-    right: 12px;
-    color: var(--primary-color);
-    pointer-events: none;
-}
-
-.search-hint {
-    display: block;
-    margin-top: 8px;
-    color: var(--text-light);
-    font-size: 0.8rem;
-    font-style: italic;
-}
-
-/* FILTER WIDGETS - ENHANCED */
-.filter-widget {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.filter-widget:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-color: var(--primary-color);
-}
-
-.widget-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 18px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--accent-color);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: space-between;
-}
-
-.widget-title i {
-    color: var(--primary-color);
-    font-size: 1.1rem;
-}
-
-.category-badge-count {
-    background: var(--primary-color);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-/* CATEGORIES LIST - ENHANCED */
-.categories-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.category-btn {
-    all: unset;
-    cursor: pointer;
-}
-
-.category-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    background: white;
-    border: 1px solid var(--border-color);
-    border-left: 3px solid transparent;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-}
-
-.category-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    color: var(--text-light);
-    transition: all 0.3s ease;
-}
-
-.category-item:hover {
-    background: var(--secondary-color);
-    border-left-color: var(--primary-color);
-    transform: translateX(4px);
-}
-
-.category-item:hover .category-icon {
-    color: var(--primary-color);
-}
-
-.category-item.active {
-    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 102, 204, 0.05) 100%);
-    border-left-color: var(--primary-color);
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.category-item.active .category-icon {
-    color: var(--primary-color);
-}
-
-.category-name {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.category-count {
-    background: var(--primary-color);
-    color: white;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    min-width: 32px;
-    text-align: center;
-}
-
-/* CHECKBOX GROUP - ENHANCED */
-.checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.checkbox-item {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    padding: 10px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-}
-
-.checkbox-item:hover {
-    background: var(--secondary-color);
-}
-
-.checkbox-item input {
-    width: 18px;
-    height: 18px;
-    margin-right: 12px;
-    cursor: pointer;
-    accent-color: var(--primary-color);
-}
-
-.checkbox-text {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.checkbox-text i {
-    color: var(--primary-color);
-    font-size: 1rem;
-}
-
-/* RECENT POSTS - ENHANCED */
-.recent-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.recent-post-item {
-    display: flex;
-    gap: 12px;
-    padding: 12px;
-    background: var(--secondary-color);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-left: 3px solid transparent;
-    align-items: flex-start;
-}
-
-.recent-post-item:hover {
-    background: #f5f5f5;
-    border-left-color: var(--primary-color);
-    transform: translateX(4px);
-}
-
-.recent-post-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background: white;
-    border-radius: 4px;
-    color: var(--primary-color);
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-}
-
-.recent-post-item:hover .recent-post-icon {
-    background: var(--primary-color);
-    color: white;
-}
-
-.recent-post-content {
-    flex: 1;
-}
-
-.recent-post-content h6 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin: 0 0 4px 0;
-    line-height: 1.3;
-}
-
-.recent-post-date {
-    font-size: 0.8rem;
-    color: var(--text-light);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.recent-post-date::before {
-    content: "📅";
-}
-
-.no-recent {
-    text-align: center;
-    padding: 20px 10px;
-    color: var(--text-light);
-}
-
-.no-recent p {
-    margin: 0;
-    font-style: italic;
-}
-
-/* STATS WIDGET - ENHANCED */
-.stats-widget {
-    background: linear-gradient(135deg, rgba(0, 102, 204, 0.08) 0%, rgba(0, 102, 204, 0.04) 100%);
-    border: 1px solid rgba(0, 102, 204, 0.2);
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.stat-box {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    border-left: 3px solid var(--primary-color);
-    transition: all 0.3s ease;
-}
-
-.stat-box:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
-}
-
-.stat-number {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 992px) {
-    .sidebar-filters {
-        position: static;
-        margin-top: 30px;
-    }
-
-    .filter-widget {
-        margin-bottom: 15px;
-    }
-}
-
-/* ===== ENHANCED MAIN CONTENT SECTION ===== */
-
-/* CONTENT HEADER */
-.content-header-section {
-    margin-bottom: 40px;
-    padding-bottom: 25px;
-    border-bottom: 2px solid var(--accent-color);
-    animation: slideInDown 0.6s ease;
-}
-
-@keyframes slideInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.content-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin: 0 0 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.content-title i {
-    color: var(--primary-color);
-    font-size: 2.2rem;
-}
-
-.content-subtitle {
-    font-size: 1rem;
-    color: var(--text-light);
-    margin: 0;
-    font-style: italic;
-}
-
-/* LOADING CONTAINER */
-.loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 100px 40px;
-    text-align: center;
-}
-
-.loading-container .spinner-border {
-    width: 50px;
-    height: 50px;
-    border-width: 4px;
-}
-
-.loading-text {
-    margin-top: 20px;
-    font-size: 1.1rem;
-    color: var(--text-light);
-    font-weight: 500;
 }
 
 /* BLOG LIST */
@@ -1172,11 +629,6 @@ onMounted(() => {
     .blog-item-card {
         animation: none !important;
         opacity: 1;
-    }
-
-    .sidebar-filters {
-        position: static;
-        margin-top: 30px;
     }
 }
 
