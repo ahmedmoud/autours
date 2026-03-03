@@ -45,6 +45,7 @@ Route::prefix('blog-categories')->group(function () {
 
 // Blog Routes
 Route::prefix('blogs')->group(function () {
+
     // Public routes
     Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
     Route::get('/published', [BlogController::class, 'published'])->name('blogs.published');

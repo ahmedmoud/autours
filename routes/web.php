@@ -180,9 +180,6 @@ Route::middleware(['admin'])->group(function () {
 
     Route::prefix('api/blogs')->group(function () {
         // Public routes
-        Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
-        Route::get('/published', [BlogController::class, 'published'])->name('blogs.published');
-        Route::get('/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 
         // Protected routes
         Route::post('/', [BlogController::class, 'store'])->name('blogs.store');
