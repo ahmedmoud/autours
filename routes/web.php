@@ -262,6 +262,6 @@ Route::inertia('/about-us', 'AboutUs' );
 Route::inertia('/why_autours', 'WhyAutours' );
 Route::inertia('/where-we-are', 'WhereWeAre' );
 Route::inertia('/blogs', 'Blogs/Blogs');
-Route::inertia('/blogs/{id}', 'Blogs/BlogDetails');
+Route::inertia('/blogs/{slug}', 'Blogs/BlogDetails');
 Route::post('/send-email',[SubscriberController::class,'sendEmail']);
 

@@ -125,7 +125,7 @@
                                         <div v-for="related in relatedBlogs.slice(0, 5)"
                                              :key="related.id"
                                              class="related-item"
-                                             @click="openBlog(related.id)">
+                                             @click="openBlog(related.slug)">
                                             <p class="related-title">{{ related.title }}</p>
                                             <span class="related-meta">{{ formatDate(related.created_at) }}</span>
                                         </div>
@@ -156,7 +156,7 @@
                                 <div v-for="related in relatedBlogs.slice(0, 6)"
                                      :key="related.id"
                                      class="carousel-card"
-                                     @click="openBlog(related.id)">
+                                     @click="openBlog(related.slug)">
                                     <div class="carousel-image">
                                         <img v-if="related.image"
                                              :src="`/img/blogs/${related.image}`"
@@ -235,8 +235,8 @@ const getExcerpt = (content, length = 80) => {
 }
 
 const fetchBlog = async () => {
-    if (!blogId.value) {
-        console.error('Blog ID not found', {
+    if (!blogSlug.value) {
+        console.error('Blog slug not found', {
             ziggyParams: page.props.ziggy?.params,
             pathname: window.location.pathname
         })
@@ -245,8 +245,8 @@ const fetchBlog = async () => {
     }
 
     try {
-        console.log('Fetching blog with ID:', blogId.value)
-        const res = await axios.get(`/api/blogs/${blogId.value}`)
+        console.log('Fetching blog with slug:', blogSlug.value)
+        const res = await axios.get(`/api/blogs/slug/${blogSlug.value}`)
         if (res.data.success) {
             blog.value = res.data.data
             console.log('Blog fetched successfully:', blog.value)
@@ -283,8 +283,8 @@ const fetchCategories = async () => {
     }
 }
 
-const openBlog = (id) => {
-    window.location.href = `/blogs/${id}`
+const openBlog = (slug) => {
+    window.location.href = `/blogs/${slug}`
 }
 
 const navigateToCategory = (categoryId) => {
@@ -301,26 +301,26 @@ const scrollCarousel = (direction) => {
     }
 }
 
-// Get blog ID from route params - try multiple approaches
-const blogId = computed(() => {
+// Get blog slug from route params - try multiple approaches
+const blogSlug = computed(() => {
     // Try ziggy params first
-    if (page.props.ziggy?.params?.id) {
-        return parseInt(page.props.ziggy.params.id)
+    if (page.props.ziggy?.params?.slug) {
+        return page.props.ziggy.params.slug
     }
 
     // Try from URL directly
     const urlParts = window.location.pathname.split('/')
-    const id = parseInt(urlParts[urlParts.length - 1])
-    if (!isNaN(id)) {
-        return id
+    const slug = urlParts[urlParts.length - 1]
+    if (slug && slug !== '' && slug !== 'blogs') {
+        return slug
     }
 
     return null
 })
 
-// Watch for blog ID changes and fetch when it's available (NOW fetchBlog is defined)
-watch(() => blogId.value, (newId) => {
-    if (newId) {
+// Watch for blog slug changes and fetch when it's available (NOW fetchBlog is defined)
+watch(() => blogSlug.value, (newSlug) => {
+    if (newSlug) {
         fetchBlog()
     }
 }, { immediate: true })
@@ -340,8 +340,8 @@ onMounted(async () => {
         fetchCategories()
     ])
 
-    // Fetch blog if ID is available
-    if (blogId.value) {
+    // Fetch blog if slug is available
+    if (blogSlug.value) {
         await fetchBlog()
     } else {
         loading.value = false

@@ -49,6 +49,7 @@ Route::prefix('blogs')->group(function () {
     // Public routes
     Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
     Route::get('/published', [BlogController::class, 'published'])->name('blogs.published');
+    Route::get('/slug/{slug}', [BlogController::class, 'showBySlug'])->name('blogs.show-by-slug');
     Route::get('/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 
     // Protected routes

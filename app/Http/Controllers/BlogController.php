@@ -98,6 +98,37 @@ class BlogController extends Controller
     }
 
     /**
+     * Display a specific blog by slug.
+     */
+    public function showBySlug(string $slug): JsonResponse
+    {
+        try {
+            $blog = Blog::where('slug', $slug)->first();
+
+            if (!$blog) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Blog not found',
+                ], 404);
+            }
+
+            $blog->load('category');
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Blog retrieved successfully',
+                'data' => $blog,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve blog',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
      * Store a newly created blog.
      */
     public function store(Request $request): JsonResponse

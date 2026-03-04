@@ -61,7 +61,7 @@
                                                 {{ blog.category.title }}
                                             </span>
                                             <div class="blog-image-overlay">
-                                                <button class="read-btn-overlay" @click="viewBlogDetails(blog.id)">
+                                                <button class="read-btn-overlay" @click="viewBlogDetails(blog)">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </button>
                                             </div>
@@ -84,7 +84,7 @@
                                                 {{ getExcerpt(blog.content, 100) }}
                                             </p>
 
-                                            <a @click="viewBlogDetails(blog.id)" class="read-more-link">
+                                            <a @click="viewBlogDetails(blog)" class="read-more-link">
                                                 Read More
                                                 <i class="fa fa-arrow-right"></i>
                                             </a>
@@ -351,8 +351,8 @@ const fetchBlogs = async () => {
     }
 }
 
-const viewBlogDetails = (blogId) => {
-    window.location.href = `/blogs/${blogId}`
+const viewBlogDetails = (blog) => {
+    window.location.href = `/blogs/${blog.slug}`
 }
 
 onMounted(() => {
