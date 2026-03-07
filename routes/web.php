@@ -13,6 +13,7 @@ use App\Http\Controllers\PaymentMethodsController;
 use App\Http\Controllers\PromosController;
 use App\Http\Controllers\SpecificationsController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\FuelPolicyController;
 use App\Http\Controllers\IncludedController;
 use App\Http\Controllers\LocationTypesController;
@@ -263,5 +264,6 @@ Route::inertia('/why_autours', 'WhyAutours' );
 Route::inertia('/where-we-are', 'WhereWeAre' );
 Route::inertia('/blogs', 'Blogs/Blogs');
 Route::inertia('/blogs/{slug}', 'Blogs/BlogDetails');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 Route::post('/send-email',[SubscriberController::class,'sendEmail']);
 

@@ -42,7 +42,7 @@ onMounted(() => {
                             &Condition</a>
                     </div>
                     <div class="mt-1">
-                        <a href="#" class="text-black text-decoration-underline footer_link" >Site Map</a>
+                        <a href="/sitemap.xml" class="text-black text-decoration-underline footer_link" >Site Map</a>
                     </div>
                 </div>
                 <div class="col-4 col-md-4" id="support">
