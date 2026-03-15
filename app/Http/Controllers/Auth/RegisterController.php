@@ -98,7 +98,7 @@ class RegisterController extends Controller
                 $request->session()->regenerate();
             }
             if ($request->supplier === 1) {
-                event(new NewSupplier(User::query()->find(Auth::id())));
+                event(new NewSupplier($request->email));
             }
             return response()->json([
                 'data' => [],
