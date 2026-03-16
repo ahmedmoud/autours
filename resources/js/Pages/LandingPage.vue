@@ -1023,7 +1023,7 @@ $color: white;
     background-color: rgba(255, 255, 255, 0);
 }
 .offers-section{
-    background-image: url(/images/background/offers.png);
+    background-image: url(/images/background/offers.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1031,7 +1031,7 @@ $color: white;
     align-content: center;
 }
 .offers-section:hover{
-    background-image: url(/images/background/offers-light.png);
+    background-image: url(/images/background/offers.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
