@@ -37,5 +37,69 @@
 <script src="{{url('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
 <script src="{{url('assets/libs/simplebar/dist/simplebar.js')}}"></script>
 <script src="{{url('assets/js/dashboard.js')}}"></script>
+<script>
+    fbq('track', 'PageView');
+</script>
 
+<script>
+    fbq('track', 'ViewContent', {
+        content_name: '',
+        content_category: '',
+        content_ids: ['']
+    });
+</script>
+
+
+<script>
+    document.getElementById("book-btn").addEventListener("click", function() {
+        fbq('track', 'InitiateCheckout', {
+            content_name: '',
+            content_category: ''
+        });
+    });
+</script>
+
+
+
+<script>
+    fbq('trackCustom', 'StartBooking', {
+        tour_name: ''
+    });
+</script>
+
+
+<script>
+    document.getElementById("booking-form").addEventListener("submit", function() {
+        fbq('track', 'AddToCart', {
+            content_name: ''
+        });
+    });
+</script>
+
+
+<script>
+    fbq('track', 'Purchase', {
+        value:
+        currency: 'USD',
+        content_name: ''
+    });
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1313651383940831');
+    fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+               src="https://www.facebook.com/tr?id=1313651383940831&ev=PageView&noscript=1"
+    /></noscript>
+<!-- End Meta Pixel Code -->
 </html>
