@@ -79,6 +79,9 @@ onMounted(() => {
                             <a href="/where-we-are" class="text-black text-decoration-underline footer_link" >Where we
                                 are?</a>
                         </div>
+                        <div v-if="!user">
+                            <a href="/register" class="text-black text-decoration-underline footer_link" >Register</a>
+                        </div>
                         <div class="mt-1">
                             <a href="#our-fleet" class="text-black text-decoration-underline footer_link" >Our
                                 Fleet</a>

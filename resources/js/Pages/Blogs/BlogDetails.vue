@@ -55,16 +55,14 @@
                                     <div class="meta-right">
                                         <p class="share-label">Share:</p>
                                         <div class="social-share">
-                                            <a href="#" class="social-btn facebook" title="Facebook">
+                                            <a href="https://www.facebook.com/profile.php?id=61560740824598" class="social-btn facebook" title="Facebook">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
-                                            <a href="#" class="social-btn whatsapp" title="WhatsApp">
-                                                <i class="fab fa-whatsapp"></i>
+
+                                            <a href="https://www.instagram.com/autours_/" class="social-btn pinterest" title="Instgram">
+                                                <i class="fab fa-instagram"></i>
                                             </a>
-                                            <a href="#" class="social-btn pinterest" title="Pinterest">
-                                                <i class="fab fa-pinterest-p"></i>
-                                            </a>
-                                            <a href="#" class="social-btn linkedin" title="LinkedIn">
+                                            <a href="https://www.linkedin.com/company/autours/" class="social-btn linkedin" title="LinkedIn">
                                                 <i class="fab fa-linkedin-in"></i>
                                             </a>
                                         </div>
@@ -1252,16 +1250,16 @@ onMounted(async () => {
 .content-text :deep(h2) {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #ffd100;
+    color: #000;
     margin: 40px 0 20px 0;
     padding-bottom: 12px;
-    border-bottom: 2px solid #ffd100;
+    border-bottom: 2px solid #000;
 }
 
 .content-text :deep(h3) {
     font-size: 1.4rem;
     font-weight: 600;
-    color: #ffd100;
+    color: #000;
     margin: 30px 0 15px 0;
 }
 
@@ -1283,7 +1281,7 @@ onMounted(async () => {
 }
 
 .content-text :deep(blockquote) {
-    border-left: 5px solid #ffd100;
+    border-left: 5px solid #000;
     padding: 20px 25px;
     margin: 25px 0;
     background: #fff8e1;
@@ -1301,7 +1299,7 @@ onMounted(async () => {
 }
 
 .content-text :deep(a) {
-    color: #ffd100;
+    color: blue;
     text-decoration: none;
     font-weight: 600;
     border-bottom: 2px solid transparent;
@@ -1310,7 +1308,7 @@ onMounted(async () => {
 
 .content-text :deep(a:hover) {
     color: #f0c000;
-    border-bottom-color: #ffd100;
+    border-bottom-color: blue;
 }
 
 .content-text :deep(table) {
