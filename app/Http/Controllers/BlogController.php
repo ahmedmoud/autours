@@ -30,7 +30,7 @@ class BlogController extends Controller
             }
 
             // Paginate results
-            $blogs = $query->paginate($request->query('per_page', 15));
+            $blogs = $query->orderBy('id', 'desc')->paginate($request->query('per_page', 15));
 
             return response()->json([
                 'success' => true,
